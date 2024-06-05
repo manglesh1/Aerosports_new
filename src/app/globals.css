@@ -10,6 +10,13 @@ body {
   overflow-x: hidden;
 }
 
+:root {
+  --primary-color: #ed0871;
+  --secondary-color: #0052ff;
+  --white-color: #fff;
+  --black-color: #000;
+}
+
 .aero-bg {
   background: linear-gradient(to bottom, transparent, #3d3d3d) #4d4d4d;
 }
