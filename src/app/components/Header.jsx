@@ -1,5 +1,10 @@
+"use client";
+
 import Link from "next/link";
 import "../styles/header.css";
+import { GrLocation } from "react-icons/gr";
+import { IoMenu } from "react-icons/io5";
+import { useState } from "react";
 
 const navList = [
   {
@@ -33,73 +38,79 @@ const navList = [
 ];
 
 const Header = () => {
+  const [mobile_nav, setMobile_nav] = useState(false);
   return (
-    <>
-      <header>
-        <section className="d-flex aero-col-3">
-          <div className="aero-menu-location app-container">
-            <div className="aero-menuicon">
-              <div></div>
-              <div></div>
-              <div></div>
-            </div>
-            <div>
-              <img
-                src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTL6ocklp_Ze3faHnpHjOToVchhfKJLP1f2wyLszfDJobAyr-Y5xrigw6am_-SdNMKAynA&usqp=CAU"
-                alt="location"
-                height="30"
-              />
-            </div>
-            <div>fag</div>
-          </div>
-          <div className="desktop-container">
-            <div className="aero-menu-location">
-              <div className="aero-d-changelocation">
-                <img
-                  src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTL6ocklp_Ze3faHnpHjOToVchhfKJLP1f2wyLszfDJobAyr-Y5xrigw6am_-SdNMKAynA&usqp=CAU"
-                  alt="location"
-                  height="30"
-                />
-                Change location
-              </div>
-              <div className="aero-faq">fag</div>
-            </div>
-          </div>
-          <div>
-            <img
-              src="https://www.aerosportsparks.ca/assets/image/logo/logo_white.png"
-              height="71"
-              alt="logo"
-              title="logo"
+    <header>
+      <section className="d-flex aero-col-3">
+        <div className="aero-menu-location app-container">
+          <div className="d-flex-center aero_menu_location_icon">
+            <IoMenu
+              fontSize={40}
+              color="#fff"
+              onClick={() => setMobile_nav(!mobile_nav)}
             />
+            <GrLocation fontSize={30} color="#fff" />
           </div>
-          <div
-            className="aero-btn-booknow app-container"
-            style={{ textAlign: "right" }}
-          >
-            <button>book</button>
+          {mobile_nav && (
+            <nav className="d-flex-center aero-list-7">
+              {navList &&
+                navList.map((item) => {
+                  return (
+                    <Link
+                      href="#"
+                      key={item.id}
+                      className="aero-app-changelocation"
+                    >
+                      {item.nav}
+                    </Link>
+                  );
+                })}
+            </nav>
+          )}
+        </div>
+        <div className="desktop-container">
+          <div className="aero-menu-location">
+            <div className="aero-d-changelocation">
+              <GrLocation />
+              Change location
+            </div>
+            <div className="aero-faq">fag</div>
           </div>
-          <div className="aero-btn-booknow desktop-container">
-            <button>book now</button>
-          </div>
-        </section>
-        <nav className="d-flex-center aero-list-7">
-          <div className="desktop-container">
-            {navList &&
-              navList.map((item) => {
-                return (
-                  <Link href="#" key={item.id}>
-                    {item.nav}
-                  </Link>
-                );
-              })}
-          </div>
-          <div className="aero-app-changelocation app-container">
-            Change location
-          </div>
-        </nav>
-      </header>
-    </>
+        </div>
+        <div>
+          <img
+            src="https://www.aerosportsparks.ca/assets/image/logo/logo_white.png"
+            height="71"
+            alt="logo"
+            title="logo"
+          />
+        </div>
+        <div
+          className="aero-btn-booknow app-container"
+          style={{ textAlign: "right" }}
+        >
+          <button>book</button>
+        </div>
+        <div className="aero-btn-booknow desktop-container">
+          <button>book now</button>
+        </div>
+      </section>
+      <nav className="d-flex-center aero-list-7">
+        <div className="desktop-container">
+          {navList &&
+            navList.map((item) => {
+              return (
+                <Link href="#" key={item.id}>
+                  {item.nav}
+                </Link>
+              );
+            })}
+        </div>
+        <div className="aero-app-changelocation app-container">
+          Change location
+        </div>
+      </nav>
+    </header>
   );
 };
 

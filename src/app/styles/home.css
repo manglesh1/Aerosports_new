@@ -1,0 +1,219 @@
+.aero_home-headerimg-wrapper,
+.aero_home-play-small-img,
+.aero_home_birthday_section,
+.aero_home_article_desc {
+  position: relative;
+}
+.aero_home-headerimg-wrapper img {
+  width: 100%;
+  height: 600px;
+  object-fit: cover;
+  opacity: 0.9;
+}
+.aero_home-headerimg-wrapper article,
+.aero_home-play-small-img span,
+.aero_home_birthday_section h2,
+.aero_home_birthday_section p {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  width: 90%;
+}
+
+.aero_home-headerimg-wrapper article h1,
+.aero_home-headerimg-wrapper article p {
+  font-size: 2rem;
+  font-weight: 600;
+  color: var(--white-color);
+  letter-spacing: 2px;
+  padding-bottom: 0.5em;
+}
+.aero_home-headerimg-wrapper article p {
+  font-size: 1rem;
+  font-weight: 400;
+  line-height: 24px;
+  padding-bottom: 1.5em;
+}
+
+/* action buttons  */
+.aero_home-actionbtn-bg {
+  background-color: var(--black-color);
+}
+.aero_home-actionbtn {
+  padding: 2.5em 1.5em;
+}
+.aero_home-actionbtn h2 {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: var(--white-color);
+  padding-bottom: 1em;
+}
+.aero_home-actionbtn div button {
+  width: 100%;
+}
+
+/* playground section */
+.aero_home-playsection-bg,
+.aero_home_feature_section-bg {
+  background-color: var(--primary-color);
+}
+.aero_home-playsection-1 {
+  gap: 1rem;
+  text-align: center;
+  padding: 2.5em 1.5em;
+}
+.aero_home-playsection-1 h2,
+.aero_home_article_section h2 {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: var(--white-color);
+  text-align: center;
+}
+.aero_home-playsection-1 p,
+.aero_home_article_section p {
+  font-size: 1rem;
+  font-weight: 400;
+  line-height: 24px;
+  color: var(--white-color);
+  text-align: center;
+}
+.aero_home-playsection-2,
+.aero_home-actionbtn-wrap,
+.aero_home_article_card-wrapper,
+.aero_home_feature_section,
+.aero_home_BPJ_wrapper {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1rem;
+  padding: 2em 0;
+}
+.aero_home-playsection-2 article img,
+.aero_home_article_card img {
+  width: 100%;
+  height: auto;
+}
+.aero_home-play-small-img span {
+  font-size: 2rem;
+  font-weight: 500;
+  color: var(--white-color);
+}
+
+/* birthday image section */
+.aero_home_birthday_section img {
+  width: 100%;
+  height: auto;
+}
+.aero_home_birthday_section h2 {
+  top: calc(35% + 4vw);
+}
+.aero_home_birthday_section p {
+  font-size: 1rem;
+  letter-spacing: 0;
+  font-weight: 400;
+  top: calc(35% + 4vw);
+}
+
+/* article section  */
+.aero_home_article_section {
+  background-color: var(--black-color);
+  padding: 2em 0 1em;
+}
+.aero_home_article_card img {
+  border-radius: 0 0 30px 30px;
+}
+.aero_home_article_section p {
+  padding-bottom: 0.5em;
+}
+.aero_home_article_card {
+  background-color: var(--white-color);
+  box-shadow: 0 0 5px 2px #ffffff69;
+  transition: all 0.2s ease-in;
+  border-radius: 12px;
+  overflow: clip;
+}
+.aero_home_article_desc div {
+  min-width: 50px;
+  width: 50px;
+  height: 50px;
+  background-color: var(--primary-color);
+  border-radius: 50%;
+  position: absolute;
+  top: -32px;
+  left: 8px;
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--white-color);
+  text-align: center;
+  align-content: center;
+}
+.aero_home_article_desc h3 {
+  font-size: 1.2rem;
+  padding: 1.5em 0.5em 0.5em;
+}
+.aero_home_article_desc p {
+  font-size: 0.75rem;
+  color: var(--black-color);
+  text-align: left;
+  padding: 0 0.5em 1em;
+}
+
+/* feature section */
+.aero_home_feature_section-card {
+  text-align: center;
+  color: var(--white-color);
+}
+.aero_home_feature_section-card div:first-child {
+  font-size: 1.5rem;
+  font-weight: 700;
+}
+.aero_home_feature_section-card div:last-child {
+  font-size: 1.2rem;
+  font-weight: 500;
+  padding: 0.5em 0;
+}
+
+@media screen and (min-width: 992px) {
+  .aero_home-playsection-2,
+  .aero_home-actionbtn-wrap,
+  .aero_home_article_card-wrapper,
+  .aero_home_feature_section,
+  .aero_home_BPJ_wrapper {
+    gap: 2rem;
+  }
+
+  .aero_home-headerimg-wrapper article h1 {
+    font-size: 2.5rem;
+  }
+  .aero_home-headerimg-wrapper article p,
+  .aero_home-playsection-1 p,
+  .aero_home_article_section p {
+    font-size: 1.5rem;
+    line-height: 30px;
+  }
+  .aero_home-headerimg-wrapper article {
+    width: 60%;
+  }
+  article.aero_home_BPJ_wrapper {
+    width: 100%;
+  }
+  .aero_home-actionbtn h2,
+  .aero_home-playsection-1 h2,
+  .aero_home_article_section h2 {
+    font-size: 2rem;
+  }
+  .aero_home-actionbtn div button {
+    font-size: 1.3rem;
+  }
+  .aero_home_article_card:hover {
+    box-shadow: 0 0 5px 2px #dedada69;
+    transform: translateY(-5px);
+  }
+  .aero_home_article_desc p {
+    font-size: 1rem;
+  }
+  .aero_home_BPJ_wrapper span {
+    font-size: 2rem;
+  }
+}

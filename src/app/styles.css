@@ -1,8 +1,19 @@
+.aero-bg {
+  background: linear-gradient(to top, transparent, var(--primary-color))
+    var(--secondary-color);
+  min-height: 100vh;
+}
+
+.aero-bg-padding {
+  padding: 1em;
+}
+
 .aero-img-heading {
-  display: flex;
-  align-items: center;
-  gap: 17%;
   margin-bottom: 20px;
+}
+.aero-img-heading img {
+  height: 100px;
+  width: auto;
 }
 .city-card-h1-heading {
   text-align: center;
@@ -14,8 +25,9 @@
 }
 
 .city-card-wrapper {
-  display: flex;
-  justify-content: space-between;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1.5rem;
 }
 .city-card-wrap {
   background: #fff;
@@ -25,6 +37,7 @@
   width: 23%;
   text-align: center;
   overflow: hidden;
+  width: 100%;
 }
 .city-card-wrap img {
   width: 100%;
@@ -33,15 +46,15 @@
 
 .city-card-wrap h2 {
   font-size: 1.3rem;
-  padding: 0.8em 0;
+  padding: 0.8em 1em;
 }
 
 .city-card-wrap p {
   font-size: 0.9rem;
-  padding-bottom: 0.8em;
+  padding: 0 1em 0.8em;
 }
 
-button {
+.city-card-wrap button {
   position: relative;
   display: flex;
   justify-content: center;
@@ -58,7 +71,7 @@ button {
   border-bottom-left-radius: 30px;
 }
 
-button:after {
+.city-card-wrap button:after {
   content: " ";
   width: 0%;
   height: 100%;
@@ -69,13 +82,13 @@ button:after {
   right: 0;
 }
 
-button:hover::after {
+.city-card-wrap button:hover::after {
   right: auto;
   left: 0;
   width: 100%;
 }
 
-button span {
+.city-card-wrap button span {
   text-align: center;
   text-decoration: none;
   width: 100%;
@@ -88,7 +101,7 @@ button span {
   transition: all 0.3s ease-in-out;
 }
 
-button:hover span {
+.city-card-wrap button:hover span {
   color: var(--white-color);
   animation: scaleUp 0.3s ease-in-out;
 }
@@ -107,20 +120,14 @@ button:hover span {
   }
 }
 
-@media screen and (max-width: 450px) {
-  html,
-  body {
-    padding: 10px;
-  }
+@media screen and (min-width: 900px) {
   .city-card-wrapper {
-    flex-direction: column;
-    gap: 50px;
+    flex-direction: row;
   }
   .city-card-wrap {
     width: 100%;
   }
   .aero-img-heading {
     margin-bottom: 40px;
-    flex-direction: column;
   }
 }
