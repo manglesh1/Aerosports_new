@@ -1,0 +1,18 @@
+.aero_kids_party {
+  background: #ed087178;
+  max-width: 500px;
+  max-height: 400px;
+  height: 100%;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+}
+.aero_bp_2_main_section {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+  gap: 3rem;
+}
+
+.aero_bp_2_main_section div {
+  padding: 1em 3em;
+}

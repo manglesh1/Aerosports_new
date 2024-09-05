@@ -15,7 +15,7 @@ const nextConfig = {
     ],
   },
   env: {
-    NEXT_PUBLIC_API_URL: "http://localhost:8080",
+    NEXT_PUBLIC_API_URL: "https://apis-351216.nn.r.appspot.com/api",
   },
 };
 

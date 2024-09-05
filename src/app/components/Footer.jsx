@@ -1,10 +1,27 @@
 import Image from "next/image";
-import "../styles/footer.css";
+import "../styles/home.css";
 import event_icon from "@public/assets/images/home/event_icon.svg";
 import park_feature_icon from "@public/assets/images/home/park_feature_icon.svg";
 import jump_icon from "@public/assets/images/home/jump_icon.svg";
+import Link from "next/link";
+import { getDataByParentId } from "@/utils/customFunctions";
+import { fetchData } from "@/utils/fetchData";
 
-const Footer = () => {
+const Footer = async ({ location_slug }) => {
+  const apiUrl = process.env.NEXT_PUBLIC_API_URL;
+
+  const data = await fetchData(
+    `${apiUrl}/fetchmenudata?location=${location_slug}`
+  );
+
+  const header_image = data.filter((item) => item.pageid === "home");
+
+  const attractionsData = getDataByParentId(data, "attractions");
+  const programsData = getDataByParentId(data, "programs");
+  const groupsData = getDataByParentId(data, "groups-events");
+  const companyData = getDataByParentId(data, "aboutus");
+  const blogsData = getDataByParentId(data, "blogs");
+
   return (
     <footer className="aero_footer_section-bg">
       <section className="aero_home-headerimg-wrapper">
@@ -32,145 +49,100 @@ const Footer = () => {
       </section>
       <section className="aero-max-container">
         <div className="d-flex-center">
-          <Image
-            src="https://www.aerosportsparks.ca/assets/image/logo/logo.png"
-            alt="footer logo"
-            width={200}
-            height={100}
-          />
+          <Link href={`/${location_slug}`}>
+            <Image
+              src="https://www.aerosportsparks.ca/assets/image/logo/logo.png"
+              alt="footer logo"
+              width={200}
+              height={100}
+            />
+          </Link>
         </div>
         <section className="aero_footer_col-4-wrapper">
           <ul>
-            <li>Services</li>
-            <li>
-              <a href="#">Open Jump</a>
-            </li>
-            <li>
-              <a href="#">Aero Slam</a>
-            </li>
-            <li>
-              <a href="#">Dodge ball</a>
-            </li>
-            <li>
-              <a href="#">Ninja Warrior</a>
-            </li>
-            <li>
-              <a href="#">Aero Drop</a>
-            </li>
-            <li>
-              <a href="#">Climb&Slide</a>
-            </li>
-            <li>
-              <a href="#">Climbing Walls</a>
-            </li>
-            <li>
-              <a href="#">Arcade</a>
-            </li>
+            <li>Attractions</li>
+            {attractionsData[0]?.children?.map((item, i) => {
+              return (
+                <li key={i}>
+                  <Link
+                    href={`/${location_slug}/${item?.parentid}/${item?.path}`}
+                  >
+                    {item?.desc}
+                  </Link>
+                </li>
+              );
+            })}
           </ul>
           <ul>
-            <li>Services</li>
-            <li>
-              <a href="#">Open Jump</a>
-            </li>
-            <li>
-              <a href="#">Aero Slam</a>
-            </li>
-            <li>
-              <a href="#">Dodge ball</a>
-            </li>
-            <li>
-              <a href="#">Ninja Warrior</a>
-            </li>
-            <li>
-              <a href="#">Aero Drop</a>
-            </li>
-            <li>
-              <a href="#">Climb&Slide</a>
-            </li>
-            <li>
-              <a href="#">Climbing Walls</a>
-            </li>
-            <li>
-              <a href="#">Arcade</a>
-            </li>
+            <li>Programs</li>
+            {programsData[0]?.children?.map((item, i) => {
+              return (
+                <li key={i}>
+                  <Link
+                    href={`/${location_slug}/${item?.parentid}/${item?.path}`}
+                  >
+                    {item?.desc}
+                  </Link>
+                </li>
+              );
+            })}
+            <ul>
+              <li>Company</li>
+              {companyData[0]?.children?.map((item, i) => {
+                return (
+                  item?.isactive == 1 && (
+                    <li key={i}>
+                      <Link
+                        href={`/${location_slug}/${item?.parentid}/${item?.path}`}
+                      >
+                        {item?.desc}
+                      </Link>
+                    </li>
+                  )
+                );
+              })}
+            </ul>
           </ul>
           <ul>
-            <li>Services</li>
-            <li>
-              <a href="#">Open Jump</a>
-            </li>
-            <li>
-              <a href="#">Aero Slam</a>
-            </li>
-            <li>
-              <a href="#">Dodge ball</a>
-            </li>
-            <li>
-              <a href="#">Ninja Warrior</a>
-            </li>
-            <li>
-              <a href="#">Aero Drop</a>
-            </li>
-            <li>
-              <a href="#">Climb&Slide</a>
-            </li>
-            <li>
-              <a href="#">Climbing Walls</a>
-            </li>
-            <li>
-              <a href="#">Arcade</a>
-            </li>
+            <li>Groups</li>
+            {groupsData[0]?.children?.map((item, i) => {
+              return (
+                <li key={i}>
+                  <Link
+                    href={`/${location_slug}/${item?.parentid}/${item?.path}`}
+                  >
+                    {item?.desc}
+                  </Link>
+                </li>
+              );
+            })}
           </ul>
           <ul>
-            <li>Services</li>
-            <li>
-              <a href="#">
-                <article className="d-flex-center aero_footer_article-card">
-                  <Image
-                    src="https://www.aerosportsparks.ca/assets/image/logo/logo.png"
-                    alt="footer logo"
-                    width={50}
-                    height={50}
-                  />
-                  <div>
-                    <h6>20-May-21</h6>
-                    <p>Reasons fof taking kids to indoor Playground windsor</p>
-                  </div>
-                </article>
-              </a>
-            </li>
-            <li>
-              <a href="#">
-                <article className="d-flex-center aero_footer_article-card">
-                  <Image
-                    src="https://www.aerosportsparks.ca/assets/image/logo/logo.png"
-                    alt="footer logo"
-                    width={50}
-                    height={50}
-                  />
-                  <div>
-                    <h6>20-May-21</h6>
-                    <p>Reasons fof taking kids to indoor Playground windsor</p>
-                  </div>
-                </article>
-              </a>
-            </li>
-            <li>
-              <a href="#">
-                <article className="d-flex-center aero_footer_article-card">
-                  <Image
-                    src="https://www.aerosportsparks.ca/assets/image/logo/logo.png"
-                    alt="footer logo"
-                    width={50}
-                    height={50}
-                  />
-                  <div>
-                    <h6>20-May-21</h6>
-                    <p>Reasons fof taking kids to indoor Playground windsor</p>
-                  </div>
-                </article>
-              </a>
-            </li>
+            <li>Latest News</li>
+            {blogsData[0].children &&
+              blogsData[0].children.map((item, i) => {
+                return (
+                  <li key={i}>
+                    <Link
+                      href={`/${location_slug}/${item?.parentid}/${item?.path}`}
+                    >
+                      <article className="d-flex-center aero_footer_article-card">
+                        <Image
+                          src={item?.smallimage}
+                          alt={item?.title}
+                          title={item?.title}
+                          width={50}
+                          height={50}
+                        />
+                        <div>
+                          <h6>{item?.pageid}</h6>
+                          <p>{item?.title}</p>
+                        </div>
+                      </article>
+                    </Link>
+                  </li>
+                );
+              })}
           </ul>
         </section>
       </section>

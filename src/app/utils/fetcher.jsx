@@ -1,16 +1,30 @@
-import useSWR from "swr";
+import { useState, useEffect } from "react";
 
-const fetcher = (url) => fetch(url).then((res) => res.json());
+const useFetchData = (url) => {
+  const [data, setData] = useState(null);
+  const [error, setError] = useState(null);
+  const [isLoading, setIsLoading] = useState(true);
 
-export function useFetch(url) {
-  const { data, error, isLoading } = useSWR(
-    `http://localhost:8080/api/${url}`,
-    fetcher
-  );
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await fetch(url);
+        if (!response.ok) {
+          throw new Error("Network response was not ok");
+        }
+        const result = await response.json();
+        setData(result);
+      } catch (error) {
+        setError(error);
+      } finally {
+        setIsLoading(false);
+      }
+    };
 
-  return {
-    data,
-    isLoading,
-    error,
-  };
-}
+    fetchData();
+  }, [url]);
+
+  return { data, error, isLoading };
+};
+
+export default useFetchData;
