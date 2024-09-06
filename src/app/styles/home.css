@@ -1,0 +1,444 @@
+/* header css start  */
+.aero_menu_location_icon {
+  gap: 0.5rem;
+}
+.aero-col-3 {
+  background: linear-gradient(
+    90deg,
+    var(--primary-color) 0% 30%,
+    #f194be 45% 55%,
+    var(--primary-color) 70% 100%
+  );
+  border-bottom: 1px solid var(--white-color);
+  padding: 0.75em 1.25em;
+}
+.aero-col-3 > div {
+  flex-basis: 33.3%;
+  text-align: center;
+}
+.aero-col-3 > div:first-child {
+  text-align: left;
+}
+.aero-col-3 > div:last-child {
+  text-align: right;
+}
+.aero-list-7 {
+  background: #ef3473;
+  padding: 10px 0;
+  flex-direction: column;
+  width: 100%;
+  position: absolute;
+  left: 0;
+  text-align: center;
+  align-items: unset;
+  z-index: 9;
+}
+.aero_changelocation_height {
+  height: 44px;
+}
+.aero-menu-location {
+  display: flex;
+  align-items: center;
+  gap: 1.2rem;
+}
+.aero-d-changelocation {
+  display: flex;
+  align-items: center;
+  gap: 1.2rem;
+  border: 1px solid var(--white-color);
+  padding: 0.5em 1.6em;
+  border-radius: 30px;
+  font-size: 1.25rem;
+  text-wrap: nowrap;
+  color: var(--white-color);
+}
+.aero-app-changelocation {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: var(--white-color);
+}
+.aero-faq {
+  display: flex;
+  align-items: center;
+  padding: 0.2rem 1rem;
+  transition: color 0.2s ease-out, background 0.2s ease-out;
+  height: 30px;
+  background-color: var(--white-color);
+  color: var(--primary-color);
+  font-weight: 600;
+  margin-left: 10px;
+  border: 3px var(--white-color) solid;
+  border-radius: 20px;
+}
+.aero-faq:hover {
+  background-color: transparent;
+  color: var(--white-color);
+  border-color: #bc6371;
+}
+.aero-list-7 a {
+  color: var(--white-color);
+  padding: 10px;
+  font-size: 1rem;
+  text-transform: uppercase;
+}
+
+.aero-btn-booknow button {
+  outline: none;
+  transition: top 0.05s linear, box-shadow 0.05s linear;
+  position: relative;
+  font-weight: 500;
+  border: none;
+  text-transform: uppercase;
+  font-size: 1rem;
+  border-radius: 12.5rem;
+  padding: 0.75rem 1.25rem;
+  cursor: pointer;
+  background-color: var(--primary-color);
+  color: var(--white-color);
+  box-shadow: 0 0.375rem #a0054c, 0 0.75rem #00000020,
+    inset -0.0625rem 0 #ffffff80, inset 0.0625rem 0 #ffffff80,
+    inset 0 0.0625rem #fff;
+}
+.aero-btn-booknow button:hover {
+  top: 4px;
+  box-shadow: 0 0.125rem #a0054c, 0 0.25rem #00000020,
+    inset -0.0625rem 0 #ffffff80, inset 0.0625rem 0 #ffffff80,
+    inset 0 0.0625rem var(--white-color);
+}
+
+/* header css end  */
+
+.aero_home-headerimg-wrapper,
+.aero_home-play-small-img,
+.aero_home_birthday_section,
+.aero_home_article_desc {
+  position: relative;
+}
+.aero_home-headerimg-wrapper img {
+  width: 100%;
+  height: 550px;
+  object-fit: cover;
+  opacity: 0.9;
+}
+.aero_home-headerimg-wrapper article,
+.aero_home-play-small-img span,
+.aero_home_birthday_section h2,
+.aero_home_birthday_section p {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  width: 90%;
+}
+
+.aero_home-headerimg-wrapper article h1,
+.aero_home-headerimg-wrapper article p {
+  font-size: 2rem;
+  font-weight: 600;
+  color: var(--white-color);
+  letter-spacing: 2px;
+  padding-bottom: 0.5em;
+}
+.aero_home-headerimg-wrapper article p {
+  font-size: 1rem;
+  font-weight: 400;
+  line-height: 24px;
+  padding-bottom: 1.5em;
+}
+
+/* action buttons  */
+.aero_home-actionbtn-bg {
+  background-color: var(--black-color);
+}
+.aero_home-actionbtn {
+  padding: 2.5em 1.5em;
+}
+.aero_home-actionbtn h2 {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: var(--white-color);
+  padding-bottom: 1em;
+}
+.aero_home-actionbtn div button {
+  width: 100%;
+}
+
+/* playground section */
+.aero_home-playsection-bg,
+.aero_home_feature_section-bg {
+  background-color: var(--primary-color);
+}
+.aero_home-playsection-1 {
+  gap: 1rem;
+  text-align: center;
+  padding: 2.5em 1.5em;
+}
+.aero_home-playsection-1 h2,
+.aero_home_article_section h2 {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: var(--white-color);
+  text-align: center;
+  text-transform: capitalize;
+}
+.aero_home-playsection-1 p,
+.aero_home_article_section p {
+  font-size: 1rem;
+  font-weight: 400;
+  line-height: 24px;
+  color: var(--white-color);
+  text-align: center;
+}
+.aero_home-playsection-2,
+.aero_home-actionbtn-wrap,
+.aero_home_article_card-wrapper,
+.aero_home_feature_section,
+.aero_home_BPJ_wrapper {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 2rem;
+  padding: 2em 0.5em;
+}
+.aero_home-playsection-2 article img,
+.aero_home_article_card img {
+  width: 100%;
+  height: auto;
+}
+:is(.aero_home-playsection-2 article, .aero_home_article_card) > img {
+  aspect-ratio: 3/2;
+}
+.aero_home-play-small-img span {
+  font-size: 1.75rem;
+  font-weight: 500;
+  color: var(--white-color);
+  text-transform: uppercase;
+}
+
+/* birthday image section */
+.aero_home_birthday_section img {
+  width: 100%;
+  height: auto;
+}
+.aero_home_birthday_section h2 {
+  top: calc(35% + 4vw);
+}
+.aero_home_birthday_section p {
+  font-size: 1rem;
+  letter-spacing: 0;
+  font-weight: 400;
+  top: calc(35% + 4vw);
+}
+
+/* article section  */
+.aero_home_article_section {
+  background-color: var(--black-color);
+  padding: 2em 0 1em;
+}
+.aero_home_article_card img {
+  border-radius: 0 0 30px 30px;
+}
+.aero_home_article_section p {
+  padding-bottom: 0.5em;
+}
+.aero_home_article_card {
+  background-color: var(--white-color);
+  box-shadow: 0 0 5px 2px #ffffff69;
+  transition: all 0.2s ease-in;
+  border-radius: 12px;
+  overflow: clip;
+}
+.aero_home_article_desc div {
+  min-width: 50px;
+  width: 50px;
+  height: 50px;
+  background-color: var(--primary-color);
+  border-radius: 50%;
+  position: absolute;
+  top: -32px;
+  left: 8px;
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--white-color);
+  text-align: center;
+  align-content: center;
+}
+.aero_home_article_desc h3 {
+  font-size: 1.2rem;
+  padding: 1.5em 0.5em 0.5em;
+}
+.aero_home_article_desc p {
+  font-size: 0.75rem;
+  color: var(--black-color);
+  text-align: left;
+  padding: 0 0.5em 1em;
+}
+
+/* feature section */
+.aero_home_feature_section-card {
+  text-align: center;
+  color: var(--white-color);
+}
+.aero_home_feature_section-card div:first-child {
+  font-size: 1.5rem;
+  font-weight: 700;
+}
+.aero_home_feature_section-card div:last-child {
+  font-size: 1.2rem;
+  font-weight: 500;
+  padding: 0.5em 0;
+}
+
+/* footer css start  */
+/* BPJ section  */
+.aero_home-headerimg-wrapper {
+  position: relative;
+}
+.aero_home_BPJ_wrapper div {
+  flex-direction: column;
+  gap: 1rem;
+}
+.aero_home_BPJ_wrapper img {
+  width: 90px;
+  height: auto;
+}
+.aero_home_BPJ_wrapper span {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: var(--white-color);
+}
+
+/* main footer section */
+.aero_footer_section-bg {
+  background-color: var(--primary-color);
+}
+
+.aero_footer_col-4-wrapper {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 1rem;
+  padding: 1em;
+}
+.aero_footer_col-4-wrapper ul {
+  list-style: none;
+  flex-basis: calc(33.33% - 1rem);
+}
+.aero_footer_col-4-wrapper ul:last-child {
+  flex-basis: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+.aero_footer_col-4-wrapper ul:last-child li:first-child {
+  width: 100%;
+  text-align: center;
+}
+.aero_footer_col-4-wrapper ul li {
+  font-size: 0.8rem;
+  color: var(--white-color);
+  font-weight: 400;
+  padding-bottom: 0.8em;
+}
+.aero_footer_col-4-wrapper ul li:first-child {
+  font-size: 1.3rem;
+  padding-bottom: 0.5em;
+  margin-bottom: 0.5em;
+  font-weight: 500;
+  border-bottom: 0.1px solid #fff;
+}
+.aero_footer_article-card {
+  gap: 1rem;
+}
+.aero_footer_article-card img {
+  border-radius: 50%;
+}
+.aero_footer_article-card div h6 {
+  font-size: 0.8rem;
+  font-weight: 400;
+  padding-bottom: 0.5em;
+}
+.aero_footer_article-card div p {
+  font-size: 1rem;
+  font-weight: 500;
+}
+
+/* footer css end  */
+
+@media screen and (min-width: 992px) {
+  .app-container {
+    display: none;
+  }
+  .desktop-container {
+    display: block;
+  }
+  .aero-btn-booknow button {
+    font-size: 1.2rem;
+  }
+
+  .aero_home-playsection-2,
+  .aero_home-actionbtn-wrap,
+  .aero_home_article_card-wrapper,
+  .aero_home_feature_section {
+    gap: 2rem;
+  }
+
+  .aero_home-headerimg-wrapper article h1 {
+    font-size: 2.5rem;
+  }
+  .aero_home-headerimg-wrapper article p,
+  .aero_home-playsection-1 p,
+  .aero_home_article_section p {
+    font-size: 1.5rem;
+    line-height: 30px;
+  }
+  .aero_home-headerimg-wrapper article {
+    width: 60%;
+  }
+  article.aero_home_BPJ_wrapper {
+    width: 100%;
+  }
+  .aero_home-actionbtn h2,
+  .aero_home-playsection-1 h2,
+  .aero_home_article_section h2 {
+    font-size: 2rem;
+  }
+  .aero_home-actionbtn div button {
+    font-size: 1.3rem;
+  }
+  .aero_home_article_card:hover {
+    box-shadow: 0 0 5px 2px #dedada69;
+    transform: translateY(-5px);
+  }
+  .aero_home_article_desc p {
+    font-size: 1rem;
+  }
+  .aero_home_BPJ_wrapper span {
+    font-size: 2rem;
+  }
+  /* footer  */
+
+  .aero_footer_col-4-wrapper {
+    flex-wrap: nowrap;
+    padding: 2em 1.5em 3em;
+  }
+  .aero_footer_col-4-wrapper ul:last-child li:first-child {
+    text-align: left;
+  }
+  .aero_footer_col-4-wrapper ul li:first-child {
+    font-size: 1.6rem;
+  }
+  .aero_footer_col-4-wrapper ul li {
+    font-size: 1.2rem;
+  }
+  .aero_footer_article-card img {
+    min-width: 80px;
+    height: 80px;
+  }
+  .aero_footer_article-card div h6 {
+    font-size: 1rem;
+  }
+  .aero_footer_article-card div p {
+    font-size: 1.2rem;
+  }
+}

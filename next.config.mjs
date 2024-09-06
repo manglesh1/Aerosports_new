@@ -1,4 +1,22 @@
 /** @type {import('next').NextConfig} */
-const nextConfig = {};
+const nextConfig = {
+  images: {
+    remotePatterns: [
+      {
+        protocol: "https",
+        hostname: "storage.googleapis.com",
+        port: "",
+      },
+      {
+        protocol: "https",
+        hostname: "www.aerosportsparks.ca",
+        port: "",
+      },
+    ],
+  },
+  env: {
+    NEXT_PUBLIC_API_URL: "https://apis-351216.nn.r.appspot.com/api",
+  },
+};
 
 export default nextConfig;
