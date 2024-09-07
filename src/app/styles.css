@@ -5,7 +5,7 @@
 }
 
 .aero-bg-padding {
-  padding: 1em;
+  padding: 1em 1em 3em;
 }
 
 .aero-img-heading {
@@ -47,11 +47,13 @@
 .city-card-wrap h2 {
   font-size: 1.3rem;
   padding: 0.8em 1em;
+  white-space: nowrap;
 }
 
 .city-card-wrap p {
   font-size: 0.9rem;
   padding: 0 1em 0.8em;
+  height: 55px;
 }
 
 .city-card-wrap button {

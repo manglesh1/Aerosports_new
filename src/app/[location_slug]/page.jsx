@@ -9,12 +9,44 @@ import Link from "next/link";
 import { getDataByParentId } from "@/utils/customFunctions";
 import { fetchData } from "@/utils/fetchData";
 
+export async function generateMetadata({ params }) {
+  const location_slug = params?.location_slug;
+  const API_URL = process.env.NEXT_PUBLIC_API_URL;
+  const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL;
+  const data = await fetchData(
+    `${API_URL}/fetchmenudata?location=${location_slug}`
+  );
+
+  const header_image = data?.filter((item) => item.pageid === "home")?.map((item) => ({
+      title: item?.metatitle,
+      description: item?.metadescription,
+    }));
+  return {
+    title: header_image[0]?.title,
+    description: header_image[0]?.description,
+    alternates: {
+      canonical: BASE_URL + '/' + location_slug,
+    },
+    openGraph: {
+      type: "website",
+      url: BASE_URL + `/${location_slug}`,
+      title: header_image[0]?.title,
+      description: header_image[0]?.description,
+      images: [
+        {
+          url: "https://www.aerosportsparks.ca/assets/image/logo/logo_white.png",
+        },
+      ],
+    },
+  };
+}
+
 const Home = async ({ params }) => {
   const location_slug = params?.location_slug;
-  const apiUrl = process.env.NEXT_PUBLIC_API_URL;
+  const API_URL = process.env.NEXT_PUBLIC_API_URL;
 
   const data = await fetchData(
-    `${apiUrl}/fetchmenudata?location=${location_slug}`
+    `${API_URL}/fetchmenudata?location=${location_slug}`
   );
 
   const header_image = data?.filter((item) => item.pageid === "home");

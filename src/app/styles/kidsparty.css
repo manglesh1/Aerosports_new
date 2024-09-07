@@ -9,10 +9,24 @@
 }
 .aero_bp_2_main_section {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
-  gap: 3rem;
+  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+  gap: 1rem;
+  padding: 2em 0;
 }
 
-.aero_bp_2_main_section div {
-  padding: 1em 3em;
+.aero_bp_card_wrap {
+  padding: 1em 2em;
+  box-shadow: 0 0 5px var(--primary-color);
+  margin: 1em;
+  border-radius: 12px;
+}
+.aero_bp_card_wrap_list {
+  display: grid;
+  gap: 1rem;
+  padding: 1em 0;
+  list-style-type: none;
+}
+.aero_bp_card_wrap_list li::before {
+  content: "⛳";
+  margin-right: 0.5em;
 }
