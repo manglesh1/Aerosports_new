@@ -67,7 +67,7 @@ const Header = ({ location_slug }) => {
           <div className="aero-menu-location">
             <Link href="/" className="aero-d-changelocation">
               <GrLocation />
-              Change location
+              {location_slug}
             </Link>
             <div className="aero-faq">fag</div>
           </div>

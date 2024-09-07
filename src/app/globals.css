@@ -48,3 +48,14 @@ a {
 .desktop-container {
   display: none;
 }
+header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1000;
+  height: 145px;
+}
+header + * {
+  padding-top: 145px;
+}

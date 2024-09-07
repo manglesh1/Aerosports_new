@@ -40,10 +40,12 @@ const Subcategory = async ({ params }) => {
   return (
     <main>
       <Header location_slug={location_slug} />
-      <div
-        className="subcategory_main_section"
-        dangerouslySetInnerHTML={{ __html: attractionsData[0].section1 }}
-      ></div>
+      <section className="aero-max-container">
+        <div
+          className="subcategory_main_section"
+          dangerouslySetInnerHTML={{ __html: attractionsData[0].section1 }}
+        ></div>
+      </section>
       <Footer location_slug={location_slug} />
     </main>
   );
