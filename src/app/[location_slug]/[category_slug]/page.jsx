@@ -7,15 +7,38 @@ import Image from "next/image";
 import Link from "next/link";
 import React from "react";
 
+
+export async function generateMetadata({ params }) {
+  const { location_slug, category_slug } = params;
+  const API_URL = process.env.NEXT_PUBLIC_API_URL;
+  const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL;
+  const data = await fetchData(
+    `${API_URL}/fetchmenudata?location=${location_slug}`
+  );
+
+  const attractionsData = getDataByParentId(data, category_slug)?.map((item) => ({
+      title: item?.metatitle,
+      description: item?.metadescription,
+    }));
+  return {
+    title: attractionsData[0]?.title,
+    description: attractionsData[0]?.description,
+    alternates: {
+      canonical: BASE_URL + '/' + location_slug + '/' + category_slug,
+    },
+  };
+}
+
 const Category = async ({ params }) => {
   const { location_slug, category_slug } = params;
-  const apiUrl = process.env.NEXT_PUBLIC_API_URL;
+  const API_URL = process.env.NEXT_PUBLIC_API_URL;
 
   const data = await fetchData(
-    `${apiUrl}/fetchmenudata?location=${location_slug}`
+    `${API_URL}/fetchmenudata?location=${location_slug}`
   );
 
   const attractionsData = getDataByParentId(data, category_slug);
+  console.log(attractionsData)
 
   return (
     <main>

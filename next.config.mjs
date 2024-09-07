@@ -16,6 +16,7 @@ const nextConfig = {
   },
   env: {
     NEXT_PUBLIC_API_URL: "https://apis-351216.nn.r.appspot.com/api",
+    NEXT_PUBLIC_BASE_URL: "https://www.aerosportsparks.ca",
   },
 };
 
