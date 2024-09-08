@@ -8,6 +8,8 @@ const Countup = ({ num }) => {
   const countRef = useRef(null);
 
   useEffect(() => {
+    const refValue = countRef.current; // Store the current ref value in a stable variable
+
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {
@@ -17,13 +19,13 @@ const Countup = ({ num }) => {
       { threshold: 0.5 }
     );
 
-    if (countRef.current) {
-      observer.observe(countRef.current);
+    if (refValue) {
+      observer.observe(refValue);
     }
 
     return () => {
-      if (countRef.current) {
-        observer.unobserve(countRef.current);
+      if (refValue) {
+        observer.unobserve(refValue);
       }
     };
   }, []);
