@@ -38,11 +38,17 @@ const Category = async ({ params }) => {
     `${API_URL}/fetchmenudata?location=${location_slug}`
   );
 
+  const dataconfig = await fetchData(
+    `${API_URL}/fetchsheetdata?sheetname=config&location=${location_slug}`
+  );
+
+  const booknow = dataconfig?.filter((item) => item.key === "estorebase");
+
   const attractionsData = getDataByParentId(data, category_slug);
 
   return (
     <main>
-      <Header location_slug={location_slug} />
+      <Header location_slug={location_slug} booknow={booknow} />
       <section>
         <section className="aero_category_section_wrapper">
           <section className="aero-max-container">
