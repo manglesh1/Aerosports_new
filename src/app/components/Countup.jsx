@@ -8,7 +8,7 @@ const Countup = ({ num }) => {
   const countRef = useRef(null);
 
   useEffect(() => {
-    const refValue = countRef.current; // Store the current ref value in a stable variable
+    const refValue = countRef.current;
 
     const observer = new IntersectionObserver(
       ([entry]) => {
