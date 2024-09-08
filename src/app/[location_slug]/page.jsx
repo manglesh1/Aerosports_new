@@ -8,6 +8,8 @@ import line_pattern from "@public/assets/images/home/line_pattern.svg";
 import Link from "next/link";
 import { getDataByParentId } from "@/utils/customFunctions";
 import { fetchData } from "@/utils/fetchData";
+import Countup from "@/components/Countup";
+import MotionImage from "@/components/MotionImage";
 
 export async function generateMetadata({ params }) {
   const location_slug = params?.location_slug;
@@ -17,7 +19,9 @@ export async function generateMetadata({ params }) {
     `${API_URL}/fetchmenudata?location=${location_slug}`
   );
 
-  const header_image = data?.filter((item) => item.pageid === "home")?.map((item) => ({
+  const header_image = data
+    ?.filter((item) => item.pageid === "home")
+    ?.map((item) => ({
       title: item?.metatitle,
       description: item?.metadescription,
     }));
@@ -25,7 +29,7 @@ export async function generateMetadata({ params }) {
     title: header_image[0]?.title,
     description: header_image[0]?.description,
     alternates: {
-      canonical: BASE_URL + '/' + location_slug,
+      canonical: BASE_URL + "/" + location_slug,
     },
     openGraph: {
       type: "website",
@@ -48,38 +52,20 @@ const Home = async ({ params }) => {
   const data = await fetchData(
     `${API_URL}/fetchmenudata?location=${location_slug}`
   );
+  const dataconfig = await fetchData(
+    `${API_URL}/fetchsheetdata?sheetname=config&location=${location_slug}`
+  );
 
+  const booknow = dataconfig?.filter((item) => item.key === "estorebase");
+  const waiver = dataconfig?.filter((item) => item.key === "waiver");
   const header_image = data?.filter((item) => item.pageid === "home");
   const attractionsData = getDataByParentId(data, "attractions");
   const blogsData = getDataByParentId(data, "blogs");
 
   return (
     <main>
-      <Header location_slug={location_slug} />
-      <section className="aero_home-headerimg-wrapper">
-        {header_image &&
-          header_image.map((item, i) => {
-            return (
-              <div key={i}>
-                <Image
-                  src={item.headerimage}
-                  alt="header - image"
-                  width={1200}
-                  height={600}
-                  title="header image for more info about the image"
-                />
-
-                <article>
-                  <h1>{item.title}</h1>
-                  <p>{item.smalltext}</p>
-                  <div className="aero-btn-booknow">
-                    <button>WAIVER</button>
-                  </div>
-                </article>
-              </div>
-            );
-          })}
-      </section>
+      <Header location_slug={location_slug} booknow={booknow} />
+      <MotionImage header_image={header_image} waiver={waiver} />
       <section className="aero_home-actionbtn-bg">
         <section className="aero-max-container aero_home-actionbtn">
           <h2 className="d-flex-center">JUMP STRIGHT TO</h2>
@@ -118,6 +104,7 @@ const Home = async ({ params }) => {
             </Link>
           </section>
         </section>
+        <div className="aero_home_triangle"></div>
       </section>
       <section className="aero_home-playsection">
         <section className="aero_home-playsection-bg">
@@ -132,34 +119,36 @@ const Home = async ({ params }) => {
             <h2>Explore attractions</h2>
           </section>
         </section>
-        <section className="aero-max-container aero_home-playsection-2 ">
-          {attractionsData[0]?.children &&
-            attractionsData[0]?.children?.map((item, i) => {
-              return (
-                <Link
-                  href={`/${location_slug}/${item?.parentid}/${item?.path}`}
-                  key={i}
-                >
-                  <article className="d-flex-dir-col">
-                    <Image
-                      src={item?.smallimage}
-                      width={120}
-                      height={120}
-                      alt={item?.title}
-                    />
-                    <figure className="aero_home-play-small-img">
+        <section className="aero_home-actionbtn-bg">
+          <section className="aero-max-container aero_home-playsection-2 ">
+            {attractionsData[0]?.children &&
+              attractionsData[0]?.children?.map((item, i) => {
+                return (
+                  <Link
+                    href={`/${location_slug}/${item?.parentid}/${item?.path}`}
+                    key={i}
+                  >
+                    <article className="d-flex-dir-col">
                       <Image
-                        src={line_pattern}
+                        src={item?.smallimage}
                         width={120}
                         height={120}
                         alt={item?.title}
                       />
-                      <span>{item?.desc}</span>
-                    </figure>
-                  </article>
-                </Link>
-              );
-            })}
+                      <figure className="aero_home-play-small-img">
+                        <Image
+                          src={line_pattern}
+                          width={120}
+                          height={120}
+                          alt={item?.title}
+                        />
+                        <span>{item?.desc}</span>
+                      </figure>
+                    </article>
+                  </Link>
+                );
+              })}
+          </section>
         </section>
       </section>
       <section className="aero_home_birthday_section">
@@ -177,23 +166,6 @@ const Home = async ({ params }) => {
           height={120}
           alt="birthday img"
         />
-        {/* <div>
-          <h2>KIDS PARTY PACKAGE</h2>
-          <p>
-            We feature a full assortment of birthday party packages, options and
-            add-ons that are sure to impress jumpers of all ages. Aerosports
-            Oakville – Mississauga hosts 3 party rooms as well as 2 large
-            corporate rooms that fits up to 150 guests.Our birthday party guests
-            love Aerosports aerial experience and incredible park features!
-            We’ve recently added Canada’s largest Ninja Warrior Course and a
-            fantastic Climb + Slide Kid Zone. Check them out below!Best of all,
-            our trained party staff make it a complete breeze for parents and
-            ensure our guests are always following our safety rules. Parents and
-            supervision can choose to jump or relax in our comfortable perimeter
-            wifi lounges.With all this, there’s no wonder we are one of the best
-            birthday party places in the ONTARIO! LEARN MORE
-          </p>
-        </div> */}
       </section>
       <section className="aero_home_article_section">
         <section className="aero-max-container">
@@ -230,19 +202,19 @@ const Home = async ({ params }) => {
       <section className="aero_home_feature_section-bg">
         <section className="aero-max-container aero_home_feature_section">
           <article className="aero_home_feature_section-card">
-            <div>130+</div>
+            <Countup num={130} />
             <div>Trampolines</div>
           </article>
           <article className="aero_home_feature_section-card">
-            <div>27,000+</div>
+            <Countup num={27000} />
             <div>Square Feet</div>
           </article>
           <article className="aero_home_feature_section-card">
-            <div>4+</div>
+            <Countup num={4} />
             <div>Party Rooms</div>
           </article>
           <article className="aero_home_feature_section-card">
-            <div>6+</div>
+            <Countup num={6} />
             <div>Fun Attractions</div>
           </article>
         </section>

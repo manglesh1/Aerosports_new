@@ -1,6 +1,7 @@
 import "../../styles/kidsparty.css";
 import Footer from "@/components/Footer";
 import Header from "@/components/Header";
+import MotionImage from "@/components/MotionImage";
 import { fetchData } from "@/utils/fetchData";
 import Image from "next/image";
 import React from "react";
@@ -13,9 +14,9 @@ export async function generateMetadata({ params }) {
     `${API_URL}/fetchsheetdata?sheetname=Data&location=${location_slug}`
   );
 
-  const kidsmetadata = data?.filter(
-    (item) => item.pageid === "kids-birthday-parties"
-  )?.map((item) => ({
+  const kidsmetadata = data
+    ?.filter((item) => item.pageid === "kids-birthday-parties")
+    ?.map((item) => ({
       title: item?.metatitle,
       description: item?.metadescription,
     }));
@@ -24,7 +25,7 @@ export async function generateMetadata({ params }) {
     title: kidsmetadata[0]?.title,
     description: kidsmetadata[0]?.description,
     alternates: {
-      canonical: BASE_URL + '/' + location_slug + '/' + subcategory_slug,
+      canonical: BASE_URL + "/" + location_slug + "/" + subcategory_slug,
     },
   };
 }
@@ -42,40 +43,24 @@ const Page = async ({ params }) => {
     `${API_URL}/fetchsheetdata?sheetname=birthday%20packages&location=${location_slug}`
   );
 
+  const dataconfig = await fetchData(
+    `${API_URL}/fetchsheetdata?sheetname=config&location=${location_slug}`
+  );
+
+  const booknow = dataconfig?.filter(
+    (item) => item.key === "kids-birthday-parties-roller-url"
+  );
+  const waiver = dataconfig?.filter((item) => item.key === "waiver");
+
   const header_image = data?.filter(
     (item) => item.pageid === "kids-birthday-parties"
   );
 
   return (
     <main>
-      <Header location_slug={location_slug} />
+      <Header location_slug={location_slug} booknow={booknow} />
       <section>
-        <section className="aero_home-headerimg-wrapper">
-          {header_image &&
-            header_image.map((item, i) => {
-              return (
-                <div key={i}>
-                  <Image
-                    src={item.headerimage}
-                    alt="header - image"
-                    width={1200}
-                    height={600}
-                    title="header image for more info about the image"
-                  />
-
-                  <article className="aero_kids_party">
-                    <section>
-                      <h1>{item.title}</h1>
-                      <p>{item.smalltext}</p>
-                      <div className="aero-btn-booknow">
-                        <button>WAIVER</button>
-                      </div>
-                    </section>
-                  </article>
-                </div>
-              );
-            })}
-        </section>
+        <MotionImage header_image={header_image} waiver={waiver} />
       </section>
       <section className="aero-max-container">
         <article className="aero_bp_2_main_section">

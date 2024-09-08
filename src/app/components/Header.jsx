@@ -45,7 +45,7 @@ const navList = [
   },
 ];
 
-const Header = ({ location_slug }) => {
+const Header = ({ location_slug, booknow }) => {
   const [mobile_nav, setMobile_nav] = useState(false);
 
   return (
@@ -58,7 +58,7 @@ const Header = ({ location_slug }) => {
               color="#fff"
               onClick={() => setMobile_nav(!mobile_nav)}
             />
-            <Link href="/">
+            <Link href="/" className="d-flex-center">
               <GrLocation fontSize={30} color="#fff" />
             </Link>
           </div>
@@ -87,10 +87,15 @@ const Header = ({ location_slug }) => {
           className="aero-btn-booknow app-container"
           style={{ textAlign: "right" }}
         >
-          <button>book</button>
+          <Link href={booknow[0].value}>
+            <button>book</button>
+          </Link>
         </div>
         <div className="aero-btn-booknow desktop-container">
-          <button>book now</button>
+          <Link href={booknow[0].value}>
+            {" "}
+            <button>book now</button>
+          </Link>
         </div>
       </section>
       <section className="aero_changelocation_height">
@@ -107,7 +112,7 @@ const Header = ({ location_slug }) => {
           </div>
           <div style={{ position: "relative" }}>
             <Link href="/" className="aero-app-changelocation app-container">
-              Change location
+              {location_slug}
             </Link>
             {mobile_nav && (
               <nav className="d-flex-center aero-list-7">
