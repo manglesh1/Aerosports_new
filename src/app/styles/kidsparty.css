@@ -14,19 +14,22 @@
   padding: 2em 0;
 }
 
-.aero_bp_card_wrap {
-  padding: 1em 2em;
+.aero_bp_card_wrap,.subcategory_main_section .boxcontainer {
+  padding: 1em;
   box-shadow: 0 0 5px var(--primary-color);
-  margin: 1em;
+  margin: 1em 0;
   border-radius: 12px;
 }
-.aero_bp_card_wrap_list {
+.aero_bp_card_wrap_list,.pinklist{
   display: grid;
   gap: 1rem;
   padding: 1em 0;
   list-style-type: none;
 }
-.aero_bp_card_wrap_list li::before {
+:is(.aero_bp_card_wrap_list,.pinklist) li::before {
   content: "⛳";
   margin-right: 0.5em;
+}
+:is(.aero_bp_card_wrap_list,.pinklist) li {
+  display: inline-flex;
 }
