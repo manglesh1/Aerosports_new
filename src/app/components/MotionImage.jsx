@@ -21,7 +21,8 @@ const MotionImage = ({ header_image, waiver }) => {
                 repeatType: "reverse", // Reverse the zoom effect for continuous motion
               }}
             >
-              <Image
+              {
+                item?.video ? <video src=""></video> : <Image
                 src={item.headerimage}
                 alt="header - image"
                 width={1200}
@@ -29,6 +30,8 @@ const MotionImage = ({ header_image, waiver }) => {
                 title="header image for more info about the image"
                 className="header-image"
               />
+              }
+        
 
               <motion.article
                 className="image-content"

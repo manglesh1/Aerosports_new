@@ -34,16 +34,12 @@ const Category = async ({ params }) => {
   const { location_slug, category_slug } = params;
   const API_URL = process.env.NEXT_PUBLIC_API_URL;
 
-  const data = await fetchData(
-    `${API_URL}/fetchmenudata?location=${location_slug}`
-  );
-
-  const dataconfig = await fetchData(
-    `${API_URL}/fetchsheetdata?sheetname=config&location=${location_slug}`
-  );
+  const [data, dataconfig] = await Promise.all([
+    fetchData(`${API_URL}/fetchmenudata?location=${location_slug}`),
+    fetchData(`${API_URL}/fetchsheetdata?sheetname=config&location=${location_slug}`),
+  ]);
 
   const booknow = dataconfig?.filter((item) => item.key === "estorebase");
-
   const attractionsData = getDataByParentId(data, category_slug);
 
   return (

@@ -43,6 +43,11 @@ const navList = [
     nav: "MEMBERSHIPS",
     slug: "membership",
   },
+  {
+    id: 7,
+    nav: "BOGO OFFER",
+    slug: "bogo",
+  },
 ];
 
 const Header = ({ location_slug, booknow }) => {
@@ -87,12 +92,12 @@ const Header = ({ location_slug, booknow }) => {
           className="aero-btn-booknow app-container"
           style={{ textAlign: "right" }}
         >
-          <Link href={booknow[0].value}>
+          <Link href={booknow[0]?.value}>
             <button>book</button>
           </Link>
         </div>
         <div className="aero-btn-booknow desktop-container">
-          <Link href={booknow[0].value}>
+          <Link href={booknow[0]?.value}>
             {" "}
             <button>book now</button>
           </Link>

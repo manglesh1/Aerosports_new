@@ -14,7 +14,7 @@ export async function generateMetadata({ params }) {
   );
 
   const membershipmetadata = data
-    ?.filter((item) => item?.path === "membership")
+    ?.filter((item) => item?.path === "bogo")
     ?.map((item) => ({
       title: item?.metatitle?.replace(/windsor|oakville/gi, location_slug),
       description: item?.metadescription?.replace(/windsor|oakville/gi , location_slug),
@@ -42,12 +42,10 @@ const page = async ({ params }) => {
     ),
   ]);
 
-  const booknow = dataconfig?.filter(
-    (item) => item.key === "membership-roller-url" || item.key === "estorebase"
-  );
+  const booknow = dataconfig?.filter((item) => item.key === "estorebase");
   const waiver = dataconfig?.filter((item) => item.key === "waiver");
-  const header_image = getDataByParentId(data, "membership");
-  const memberData = getDataByParentId(data, "membership");
+  const header_image = getDataByParentId(data, "bogo");
+  const bogoData = getDataByParentId(data, "bogo");
 
   return (
     <main>
@@ -58,7 +56,7 @@ const page = async ({ params }) => {
       <section className="aero-max-container">
         <div
           className="subcategory_main_section"
-          dangerouslySetInnerHTML={{ __html: memberData[0]?.section1 || "" }}
+          dangerouslySetInnerHTML={{ __html: bogoData[0]?.section1 || "" }}
         ></div>
       </section>
       <Footer location_slug={location_slug} />

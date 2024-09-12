@@ -49,12 +49,10 @@ const Home = async ({ params }) => {
   const location_slug = params?.location_slug;
   const API_URL = process.env.NEXT_PUBLIC_API_URL;
 
-  const data = await fetchData(
-    `${API_URL}/fetchmenudata?location=${location_slug}`
-  );
-  const dataconfig = await fetchData(
-    `${API_URL}/fetchsheetdata?sheetname=config&location=${location_slug}`
-  );
+  const [data, dataconfig] = await Promise.all([
+    fetchData(`${API_URL}/fetchsheetdata?sheetname=Data&location=${location_slug}`),
+    fetchData(`${API_URL}/fetchsheetdata?sheetname=config&location=${location_slug}`),
+  ]);
 
   const booknow = dataconfig?.filter((item) => item.key === "estorebase");
   const waiver = dataconfig?.filter((item) => item.key === "waiver");
