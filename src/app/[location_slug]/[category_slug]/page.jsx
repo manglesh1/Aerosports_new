@@ -1,3 +1,4 @@
+import React from "react";
 import "../../styles/category.css";
 import Footer from "@/components/Footer";
 import Header from "@/components/Header";
@@ -5,7 +6,6 @@ import { getDataByParentId } from "@/utils/customFunctions";
 import { fetchData } from "@/utils/fetchData";
 import Image from "next/image";
 import Link from "next/link";
-import React from "react";
 
 export async function generateMetadata({ params }) {
   const { location_slug, category_slug } = params;
@@ -36,7 +36,9 @@ const Category = async ({ params }) => {
 
   const [data, dataconfig] = await Promise.all([
     fetchData(`${API_URL}/fetchmenudata?location=${location_slug}`),
-    fetchData(`${API_URL}/fetchsheetdata?sheetname=config&location=${location_slug}`),
+    fetchData(
+      `${API_URL}/fetchsheetdata?sheetname=config&location=${location_slug}`
+    ),
   ]);
 
   const booknow = dataconfig?.filter((item) => item.key === "estorebase");
@@ -46,11 +48,11 @@ const Category = async ({ params }) => {
     <main>
       <Header location_slug={location_slug} booknow={booknow} />
       <section>
+        <h1 className="aero_category_main_heading d-flex-center">
+          {category_slug?.replace("-", " ")?.toUpperCase()}
+        </h1>
         <section className="aero_category_section_wrapper">
           <section className="aero-max-container">
-            <h1 className="aero_category_main_heading">
-              {category_slug?.toUpperCase()}
-            </h1>
             <section className="aero_category_section_card_wrapper">
               {attractionsData[0]?.children?.map((item, i) => {
                 return (

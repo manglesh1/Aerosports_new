@@ -14,24 +14,25 @@ const MotionImage = ({ header_image, waiver }) => {
               key={i}
               className="image-container"
               initial={{ scale: 1 }}
-              animate={{ scale: 1.1 }} // Slowly zoom the image like a video
+              animate={{ scale: 1.1 }}
               transition={{
-                duration: 5, // Long animation to mimic video-like motion
-                repeat: Infinity, // Loop the animation
-                repeatType: "reverse", // Reverse the zoom effect for continuous motion
+                duration: 5,
+                repeat: Infinity,
+                repeatType: "reverse",
               }}
             >
-              {
-                item?.video ? <video src=""></video> : <Image
-                src={item.headerimage}
-                alt="header - image"
-                width={1200}
-                height={600}
-                title="header image for more info about the image"
-                className="header-image"
-              />
-              }
-        
+              {item?.video ? (
+                <video src=""></video>
+              ) : (
+                <Image
+                  src={item.headerimage}
+                  alt="header - image"
+                  width={1200}
+                  height={600}
+                  title="header image for more info about the image"
+                  className="header-image"
+                />
+              )}
 
               <motion.article
                 className="image-content"
@@ -49,7 +50,7 @@ const MotionImage = ({ header_image, waiver }) => {
                     <motion.button
                       animate={{
                         scale: [1, 1.2, 1.5, 1.2, 1],
-                        borderRadius: ["12px", "30px", "50%", "30px", "12px"],
+                        borderRadius: ["12px", "30px", "60px", "30px", "12px"],
                       }}
                       transition={{
                         duration: 5,

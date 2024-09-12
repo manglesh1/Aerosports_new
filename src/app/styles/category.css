@@ -5,8 +5,12 @@
 .aero_category_main_heading {
   font-size: 1.5rem;
   color: var(--white-color);
-  text-align: center;
-  padding-bottom: 1.5em;
+  background-image: url(/assets/images/home/bg_img_category.svg);
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  height: 150px;
+  width: 100vw;
 }
 .aero_category_section_card_wrapper {
   display: grid;
@@ -56,4 +60,11 @@
 .aero_category_section_card_desc span {
   font-size: 0.7rem;
   font-weight: 600;
+}
+
+@media screen and (min-width: 992px) {
+  .aero_category_main_heading {
+    font-size: 2rem;
+    height: 300px;
+  }
 }

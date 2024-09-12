@@ -14,10 +14,10 @@ export async function generateMetadata({ params }) {
   );
 
   const membershipmetadata = data
-    ?.filter((item) => item?.path === "bogo")
+    ?.filter((item) => item?.path === "BOGO")
     ?.map((item) => ({
-      title: item?.metatitle?.replace(/windsor|oakville/gi, location_slug),
-      description: item?.metadescription?.replace(/windsor|oakville/gi , location_slug),
+      title: item?.metatitle,
+      description: item?.metadescription,
     }));
 
   return {
@@ -44,8 +44,9 @@ const page = async ({ params }) => {
 
   const booknow = dataconfig?.filter((item) => item.key === "estorebase");
   const waiver = dataconfig?.filter((item) => item.key === "waiver");
-  const header_image = getDataByParentId(data, "bogo");
-  const bogoData = getDataByParentId(data, "bogo");
+  const header_image = getDataByParentId(data, "BOGO");
+  const bogoData = getDataByParentId(data, "BOGO");
+  console.log(data);
 
   return (
     <main>
