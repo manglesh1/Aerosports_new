@@ -5,24 +5,38 @@
   padding: 1.5em 1em 3em;
 }
 
-.subcategory_main_section :is(h2, h3),.boxcircle{
+.subcategory_main_section :is(h1, h2, h3),
+.boxcircle {
   text-align: center;
 }
-.subcategory_main_section h2{
+.subcategory_main_section h1 {
+  margin: 0.5em 0;
+}
+.subcategory_main_section h2 {
   margin: 2em 0.5em 0.5em;
 }
-.subcategory_main_section h3{
+.subcategory_main_section h3 {
   margin: 0.5em;
 }
-.subcategory_main_section #container{
- padding: 0 1em;
- text-align: center;
+.subcategory_main_section #container {
+  padding: 0 1em;
+  text-align: center;
 }
-.schedule ul{
+.schedule ul {
   text-align: left;
   margin: 2em 0;
 }
 
+.subcategory_main_section ul {
+  list-style-type: none;
+  margin: 0.5em 0;
+}
+
+.subcategory_main_section ul li::before {
+  content: "⚾";
+  margin-right: 0.5em;
+  margin-top: 0.1em;
+}
 .subcategory_main_section .textinsidecircle {
   background: var(--black-color);
   color: var(--white-color);
@@ -32,22 +46,18 @@
   font-size: 1rem;
 }
 
-.subcategory_main_section .include{
+.subcategory_main_section .include {
   margin-left: 0;
   padding: 1em;
 }
 
-.box ul{
+.box ul {
   padding-left: 0;
 }
-.box ul ::marker{
+.box ul ::marker {
   margin-right: 0.5em;
 }
 
-.box img{
+.box img {
   width: 100%;
-}
-
-@media screen and (min-width: 992px) {
- 
 }

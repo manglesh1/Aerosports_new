@@ -50,8 +50,10 @@ const Home = async ({ params }) => {
   const API_URL = process.env.NEXT_PUBLIC_API_URL;
 
   const [data, dataconfig] = await Promise.all([
-    fetchData(`${API_URL}/fetchsheetdata?sheetname=Data&location=${location_slug}`),
-    fetchData(`${API_URL}/fetchsheetdata?sheetname=config&location=${location_slug}`),
+    fetchData(`${API_URL}/fetchmenudata?location=${location_slug}`),
+    fetchData(
+      `${API_URL}/fetchsheetdata?sheetname=config&location=${location_slug}`
+    ),
   ]);
 
   const booknow = dataconfig?.filter((item) => item.key === "estorebase");
@@ -170,8 +172,8 @@ const Home = async ({ params }) => {
           <p>POPULAR STORIES</p>
           <h2>Every Updated Article</h2>
           <section className="aero_home_article_card-wrapper">
-            {blogsData[0].children &&
-              blogsData[0].children.map((item, i) => {
+            {blogsData[0]?.children &&
+              blogsData[0]?.children.map((item, i) => {
                 return (
                   <Link
                     key={i}

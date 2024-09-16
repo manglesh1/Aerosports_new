@@ -1,9 +1,10 @@
+import React from "react";
+import "../../styles/kidsparty.css";
 import Footer from "@/components/Footer";
 import Header from "@/components/Header";
 import MotionImage from "@/components/MotionImage";
 import { getDataByParentId } from "@/utils/customFunctions";
 import { fetchData } from "@/utils/fetchData";
-import React from "react";
 
 export async function generateMetadata({ params }) {
   const { location_slug, subcategory_slug } = params;
@@ -46,7 +47,6 @@ const page = async ({ params }) => {
   const waiver = dataconfig?.filter((item) => item.key === "waiver");
   const header_image = getDataByParentId(data, "BOGO");
   const bogoData = getDataByParentId(data, "BOGO");
-  console.log(data);
 
   return (
     <main>
@@ -56,7 +56,7 @@ const page = async ({ params }) => {
       </section>
       <section className="aero-max-container">
         <div
-          className="subcategory_main_section"
+          className="bogo_main_section"
           dangerouslySetInnerHTML={{ __html: bogoData[0]?.section1 || "" }}
         ></div>
       </section>

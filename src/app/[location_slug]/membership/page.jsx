@@ -17,7 +17,10 @@ export async function generateMetadata({ params }) {
     ?.filter((item) => item?.path === "membership")
     ?.map((item) => ({
       title: item?.metatitle?.replace(/windsor|oakville/gi, location_slug),
-      description: item?.metadescription?.replace(/windsor|oakville/gi , location_slug),
+      description: item?.metadescription?.replace(
+        /windsor|oakville/gi,
+        location_slug
+      ),
     }));
 
   return {

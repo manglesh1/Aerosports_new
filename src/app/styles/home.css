@@ -120,9 +120,9 @@
 }
 .aero_home-headerimg-wrapper img {
   width: 100%;
-  height: 550px;
+  height: 400px;
   object-fit: cover;
-  opacity: 0.9;
+  opacity: 2;
 }
 .aero_home-headerimg-wrapper article,
 .aero_home-play-small-img span,
@@ -347,7 +347,7 @@
 }
 .aero_footer_col-4-wrapper ul {
   list-style: none;
-  flex-basis: calc(33.33% - 1rem);
+  flex-basis: 26%;
 }
 .aero_footer_col-4-wrapper ul:last-child {
   flex-basis: 100%;

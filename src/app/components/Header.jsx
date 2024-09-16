@@ -92,12 +92,12 @@ const Header = ({ location_slug, booknow }) => {
           className="aero-btn-booknow app-container"
           style={{ textAlign: "right" }}
         >
-          <Link href={booknow[0]?.value}>
+          <Link href={booknow[0]?.value} target="_blank">
             <button>book</button>
           </Link>
         </div>
         <div className="aero-btn-booknow desktop-container">
-          <Link href={booknow[0]?.value}>
+          <Link href={booknow[0]?.value} target="_blank">
             {" "}
             <button>book now</button>
           </Link>

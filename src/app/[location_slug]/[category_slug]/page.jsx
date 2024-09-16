@@ -56,28 +56,30 @@ const Category = async ({ params }) => {
             <section className="aero_category_section_card_wrapper">
               {attractionsData[0]?.children?.map((item, i) => {
                 return (
-                  <Link
-                    href={`/${location_slug}/${category_slug}/${item?.path}`}
-                    key={i}
-                  >
-                    <article className="aero_category_section_card_wrap">
-                      <Image
-                        src={item?.smallimage}
-                        width={150}
-                        height={150}
-                        alt={item?.title}
-                        title={item?.title}
-                        className="aero_category_section_card_img"
-                      />
-                      <div className="aero_category_section_card_desc">
-                        <h2>{item?.desc}</h2>
-                        <p>
-                          {item?.smalltext?.slice(0, 50) + "..."}{" "}
-                          <span>READ MORE</span>
-                        </p>
-                      </div>
-                    </article>
-                  </Link>
+                  item?.isactive == 1 && (
+                    <Link
+                      href={`/${location_slug}/${category_slug}/${item?.path}`}
+                      key={i}
+                    >
+                      <article className="aero_category_section_card_wrap">
+                        <Image
+                          src={item?.smallimage}
+                          width={150}
+                          height={150}
+                          alt={item?.title}
+                          title={item?.title}
+                          className="aero_category_section_card_img"
+                        />
+                        <div className="aero_category_section_card_desc">
+                          <h2>{item?.desc}</h2>
+                          <p>
+                            {item?.smalltext?.slice(0, 50) + "..."}{" "}
+                            <span>READ MORE</span>
+                          </p>
+                        </div>
+                      </article>
+                    </Link>
+                  )
                 );
               })}
             </section>

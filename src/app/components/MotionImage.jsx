@@ -46,7 +46,7 @@ const MotionImage = ({ header_image, waiver }) => {
                 <h1>{item.title}</h1>
                 <p>{item.smalltext}</p>
                 <div className="aero-btn-booknow">
-                  <Link href={waiver[0].value}>
+                  <Link href={waiver[0].value} target="_blank">
                     <motion.button
                       animate={{
                         scale: [1, 1.2, 1.5, 1.2, 1],
