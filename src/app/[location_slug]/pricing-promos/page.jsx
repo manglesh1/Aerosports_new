@@ -1,24 +1,26 @@
-import React from "react";
-import "../../styles/kidsparty.css";
 import Footer from "@/components/Footer";
 import Header from "@/components/Header";
 import MotionImage from "@/components/MotionImage";
 import { getDataByParentId } from "@/utils/customFunctions";
 import { fetchData } from "@/utils/fetchData";
+import React from "react";
 
 export async function generateMetadata({ params }) {
   const { location_slug, subcategory_slug } = params;
   const API_URL = process.env.NEXT_PUBLIC_API_URL;
   const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL;
   const data = await fetchData(
-    `${API_URL}/fetchsheetdata?sheetname=Data&location=${location_slug}`
+    `${API_URL}/fetchpagedata?location=${location_slug}&page=membership`
   );
 
   const membershipmetadata = data
-    ?.filter((item) => item?.path === "BOGO")
+    ?.filter((item) => item?.path === "pricing-promos")
     ?.map((item) => ({
-      title: item?.metatitle,
-      description: item?.metadescription,
+      title: item?.metatitle?.replace(/windsor|oakville/gi, location_slug),
+      description: item?.metadescription?.replace(
+        /windsor|oakville/gi,
+        location_slug
+      ),
     }));
 
   return {
@@ -35,27 +37,24 @@ const page = async ({ params }) => {
   const API_URL = process.env.NEXT_PUBLIC_API_URL;
 
   const [data, dataconfig] = await Promise.all([
-<<<<<<< Updated upstream
     fetchData(
-      `${API_URL}/fetchsheetdata?sheetname=Data&location=${location_slug}`
-    ),
+<<<<<<< Updated upstream:src/app/[location_slug]/pricing-promos/page.jsx
+      `${API_URL}/fetchpagedata?location=${location_slug}&page=pricing-promos`
 =======
-    fetchData(`${API_URL}/fetchpagedata?location=${location_slug}&page=bogo`),
->>>>>>> Stashed changes
+      `${API_URL}/fetchpagedata?location=${location_slug}&page=membership`
+>>>>>>> Stashed changes:src/app/[location_slug]/membership/page.jsx
+    ),
     fetchData(
       `${API_URL}/fetchsheetdata?sheetname=config&location=${location_slug}`
     ),
   ]);
 
-  const booknow = dataconfig?.filter((item) => item.key === "estorebase");
+  const booknow = dataconfig?.filter(
+    (item) => item.key === "membership-roller-url" || item.key === "estorebase"
+  );
   const waiver = dataconfig?.filter((item) => item.key === "waiver");
-<<<<<<< Updated upstream
-  const header_image = getDataByParentId(data, "BOGO");
-  const bogoData = getDataByParentId(data, "BOGO");
-=======
-  const header_image = getDataByParentId(data, "bogo");
-  const bogoData = getDataByParentId(data, "bogo");
->>>>>>> Stashed changes
+  const header_image = getDataByParentId(data, "pricing-promos");
+  const memberData = getDataByParentId(data, "pricing-promos");
 
   return (
     <main>
@@ -65,8 +64,12 @@ const page = async ({ params }) => {
       </section>
       <section className="aero-max-container">
         <div
-          className="bogo_main_section"
-          dangerouslySetInnerHTML={{ __html: bogoData[0]?.section1 || "" }}
+          className="subcategory_main_section"
+          dangerouslySetInnerHTML={{ __html: memberData[0]?.section1 || "" }}
+        ></div>
+        <div
+          className="subcategory_main_section"
+          dangerouslySetInnerHTML={{ __html: memberData[0]?.section2 || "" }}
         ></div>
       </section>
       <Footer location_slug={location_slug} />
