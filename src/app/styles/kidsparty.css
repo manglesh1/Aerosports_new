@@ -14,19 +14,68 @@
   padding: 2em 0;
 }
 
-.aero_bp_card_wrap {
-  padding: 1em 2em;
+.aero_bp_card_wrap,
+.subcategory_main_section .boxcontainer {
+  padding: 1em;
   box-shadow: 0 0 5px var(--primary-color);
-  margin: 1em;
+  margin: 1em 0;
   border-radius: 12px;
 }
-.aero_bp_card_wrap_list {
+.aero_bp_card_wrap_list,
+.pinklist {
   display: grid;
   gap: 1rem;
   padding: 1em 0;
   list-style-type: none;
 }
-.aero_bp_card_wrap_list li::before {
-  content: "⛳";
+:is(.aero_bp_card_wrap_list, .pinklist, .bogo_main_section ul) li::before {
+  content: "⚾";
   margin-right: 0.5em;
+  margin-top: 0.1em;
+}
+:is(.aero_bp_card_wrap_list, .pinklist) li {
+  display: inline-flex;
+}
+
+/* bogo offers page css */
+
+.bogo_main_section {
+  margin: 3em 0;
+  padding: 1em;
+}
+.bogo_main_section :is(h1, h3, h4, h5, h6, ul) {
+  padding-bottom: 0.8em;
+}
+.bogo_main_section h1 {
+  font-size: 1.8rem;
+}
+.bogo_main_section h3 {
+  font-size: 1.5rem;
+}
+.bogo_main_section h5 {
+  font-size: 1.3rem;
+  font-weight: 500;
+}
+.bogo_main_section h6 {
+  font-size: 1rem;
+  font-weight: 400;
+}
+.bogo_main_section ul li {
+  padding: 0.4em;
+  list-style-type: none;
+}
+
+@media screen and (min-width: 992px) {
+  .bogo_main_section h1 {
+    font-size: 2rem;
+  }
+  .bogo_main_section h3 {
+    font-size: 1.7rem;
+  }
+  .bogo_main_section h5 {
+    font-size: 1.5rem;
+  }
+  .bogo_main_section h6 {
+    font-size: 1.2rem;
+  }
 }

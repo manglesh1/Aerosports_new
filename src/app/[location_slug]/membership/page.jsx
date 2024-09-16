@@ -1,11 +1,9 @@
-import React from "react";
-import "../../../styles/subcategory.css";
-import "../../../styles/kidsparty.css";
 import Footer from "@/components/Footer";
 import Header from "@/components/Header";
+import MotionImage from "@/components/MotionImage";
 import { getDataByParentId } from "@/utils/customFunctions";
 import { fetchData } from "@/utils/fetchData";
-import MotionImage from "@/components/MotionImage";
+import React from "react";
 
 export async function generateMetadata({ params }) {
   const { location_slug, subcategory_slug } = params;
@@ -15,36 +13,45 @@ export async function generateMetadata({ params }) {
     `${API_URL}/fetchsheetdata?sheetname=Data&location=${location_slug}`
   );
 
-  const attractionsData = getDataByParentId(data, subcategory_slug)?.map(
-    (item) => ({
-      title: item?.metatitle,
-      description: item?.metadescription,
-    })
-  );
+  const membershipmetadata = data
+    ?.filter((item) => item?.path === "membership")
+    ?.map((item) => ({
+      title: item?.metatitle?.replace(/windsor|oakville/gi, location_slug),
+      description: item?.metadescription?.replace(
+        /windsor|oakville/gi,
+        location_slug
+      ),
+    }));
+
   return {
-    title: attractionsData[0]?.title,
-    description: attractionsData[0]?.description,
+    title: membershipmetadata[0]?.title,
+    description: membershipmetadata[0]?.description,
     alternates: {
       canonical: BASE_URL + "/" + location_slug + "/" + subcategory_slug,
     },
   };
 }
 
-const Subcategory = async ({ params }) => {
-  const { location_slug, subcategory_slug } = params;
+const page = async ({ params }) => {
+  const { location_slug } = params;
   const API_URL = process.env.NEXT_PUBLIC_API_URL;
 
- 
   const [data, dataconfig] = await Promise.all([
-    fetchData(`${API_URL}/fetchsheetdata?sheetname=Data&location=${location_slug}`),
-    fetchData(`${API_URL}/fetchsheetdata?sheetname=config&location=${location_slug}`),
+    fetchData(
+      `${API_URL}/fetchsheetdata?sheetname=Data&location=${location_slug}`
+    ),
+    fetchData(
+      `${API_URL}/fetchsheetdata?sheetname=config&location=${location_slug}`
+    ),
   ]);
 
-  const booknow = dataconfig?.filter((item) => item.key === "estorebase");
+  const booknow = dataconfig?.filter(
+    (item) => item.key === "membership-roller-url" || item.key === "estorebase"
+  );
   const waiver = dataconfig?.filter((item) => item.key === "waiver");
-  const attractionsData = getDataByParentId(data, subcategory_slug);
-  const header_image = getDataByParentId(data, subcategory_slug);
- 
+  const header_image = getDataByParentId(data, "membership");
+  const memberData = getDataByParentId(data, "membership");
+
   return (
     <main>
       <Header location_slug={location_slug} booknow={booknow} />
@@ -54,7 +61,7 @@ const Subcategory = async ({ params }) => {
       <section className="aero-max-container">
         <div
           className="subcategory_main_section"
-          dangerouslySetInnerHTML={{ __html: attractionsData[0].section1 }}
+          dangerouslySetInnerHTML={{ __html: memberData[0]?.section1 || "" }}
         ></div>
       </section>
       <Footer location_slug={location_slug} />
@@ -62,4 +69,4 @@ const Subcategory = async ({ params }) => {
   );
 };
 
-export default Subcategory;
+export default page;

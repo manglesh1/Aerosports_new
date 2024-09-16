@@ -1,12 +1,63 @@
 .subcategory_main_section {
   min-height: 50vh;
-  text-align: center;
   align-content: center;
   line-height: 32px;
+  padding: 1.5em 1em 3em;
 }
 
-@media screen and (min-width: 992px) {
-  .subcategory_main_section {
-    text-align: left;
-  }
+.subcategory_main_section :is(h1, h2, h3),
+.boxcircle {
+  text-align: center;
+}
+.subcategory_main_section h1 {
+  margin: 0.5em 0;
+}
+.subcategory_main_section h2 {
+  margin: 2em 0.5em 0.5em;
+}
+.subcategory_main_section h3 {
+  margin: 0.5em;
+}
+.subcategory_main_section #container {
+  padding: 0 1em;
+  text-align: center;
+}
+.schedule ul {
+  text-align: left;
+  margin: 2em 0;
+}
+
+.subcategory_main_section ul {
+  list-style-type: none;
+  margin: 0.5em 0;
+}
+
+.subcategory_main_section ul li::before {
+  content: "⚾";
+  margin-right: 0.5em;
+  margin-top: 0.1em;
+}
+.subcategory_main_section .textinsidecircle {
+  background: var(--black-color);
+  color: var(--white-color);
+  padding: 0.5em 1em;
+  border-radius: 14px;
+  font-weight: 600;
+  font-size: 1rem;
+}
+
+.subcategory_main_section .include {
+  margin-left: 0;
+  padding: 1em;
+}
+
+.box ul {
+  padding-left: 0;
+}
+.box ul ::marker {
+  margin-right: 0.5em;
+}
+
+.box img {
+  width: 100%;
 }

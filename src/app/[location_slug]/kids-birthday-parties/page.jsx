@@ -32,9 +32,16 @@ export async function generateMetadata({ params }) {
 
 const Page = async ({ params }) => {
   const location_slug = params.location_slug;
-
   const API_URL = process.env.NEXT_PUBLIC_API_URL;
 
+<<<<<<< Updated upstream
+  const [data, birthdaydata, dataconfig] = await Promise.all([
+    fetchData(`${API_URL}/fetchsheetdata?sheetname=Data&location=${location_slug}`),
+    fetchData(`${API_URL}/fetchsheetdata?sheetname=birthday%20packages&location=${location_slug}`),
+    fetchData(`${API_URL}/fetchsheetdata?sheetname=config&location=${location_slug}`)
+  ]);
+=======
+<<<<<<< Updated upstream
   const data = await fetchData(
     `${API_URL}/fetchmenudata?location=${location_slug}`
   );
@@ -46,6 +53,20 @@ const Page = async ({ params }) => {
   const dataconfig = await fetchData(
     `${API_URL}/fetchsheetdata?sheetname=config&location=${location_slug}`
   );
+=======
+  const [data, birthdaydata, dataconfig] = await Promise.all([
+    fetchData(
+      `${API_URL}/fetchpagedata?location=${location_slug}&page=kids-birthday-parties`
+    ),
+    fetchData(
+      `${API_URL}/fetchsheetdata?sheetname=birthday%20packages&location=${location_slug}`
+    ),
+    fetchData(
+      `${API_URL}/fetchsheetdata?sheetname=config&location=${location_slug}`
+    ),
+  ]);
+>>>>>>> Stashed changes
+>>>>>>> Stashed changes
 
   const booknow = dataconfig?.filter(
     (item) => item.key === "kids-birthday-parties-roller-url"
