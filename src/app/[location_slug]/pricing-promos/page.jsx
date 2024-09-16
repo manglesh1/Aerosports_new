@@ -38,11 +38,7 @@ const page = async ({ params }) => {
 
   const [data, dataconfig] = await Promise.all([
     fetchData(
-<<<<<<< Updated upstream:src/app/[location_slug]/pricing-promos/page.jsx
       `${API_URL}/fetchpagedata?location=${location_slug}&page=pricing-promos`
-=======
-      `${API_URL}/fetchpagedata?location=${location_slug}&page=membership`
->>>>>>> Stashed changes:src/app/[location_slug]/membership/page.jsx
     ),
     fetchData(
       `${API_URL}/fetchsheetdata?sheetname=config&location=${location_slug}`

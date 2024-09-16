@@ -35,13 +35,7 @@ const page = async ({ params }) => {
   const API_URL = process.env.NEXT_PUBLIC_API_URL;
 
   const [data, dataconfig] = await Promise.all([
-<<<<<<< Updated upstream
-    fetchData(
-      `${API_URL}/fetchsheetdata?sheetname=Data&location=${location_slug}`
-    ),
-=======
     fetchData(`${API_URL}/fetchpagedata?location=${location_slug}&page=bogo`),
->>>>>>> Stashed changes
     fetchData(
       `${API_URL}/fetchsheetdata?sheetname=config&location=${location_slug}`
     ),
@@ -49,13 +43,8 @@ const page = async ({ params }) => {
 
   const booknow = dataconfig?.filter((item) => item.key === "estorebase");
   const waiver = dataconfig?.filter((item) => item.key === "waiver");
-<<<<<<< Updated upstream
-  const header_image = getDataByParentId(data, "BOGO");
-  const bogoData = getDataByParentId(data, "BOGO");
-=======
   const header_image = getDataByParentId(data, "bogo");
   const bogoData = getDataByParentId(data, "bogo");
->>>>>>> Stashed changes
 
   return (
     <main>
