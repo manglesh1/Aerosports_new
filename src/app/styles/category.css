@@ -12,6 +12,7 @@
   height: 150px;
   width: 100vw;
 }
+
 .aero_category_section_card_wrapper {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
