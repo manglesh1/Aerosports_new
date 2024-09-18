@@ -13,9 +13,7 @@ const Footer = async ({ location_slug }) => {
   const data = await fetchData(
     `${apiUrl}/fetchmenudata?location=${location_slug}`
   );
-
-  const header_image = data.filter((item) => item.pageid === "home");
-
+  
   const attractionsData = getDataByParentId(data, "attractions");
   const programsData = getDataByParentId(data, "programs");
   const groupsData = getDataByParentId(data, "groups-events");
@@ -53,8 +51,9 @@ const Footer = async ({ location_slug }) => {
             <Image
               src="https://www.aerosportsparks.ca/assets/image/logo/logo.png"
               alt="footer logo"
-              width={200}
-              height={100}
+              width={100}
+              height={50}
+              style={{ background:'var(--white-color)', borderRadius:"12px"}}
             />
           </Link>
         </div>

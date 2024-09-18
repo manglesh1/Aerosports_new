@@ -1,7 +1,5 @@
 import React from "react";
 import "../../styles/kidsparty.css";
-import Footer from "@/components/Footer";
-import Header from "@/components/Header";
 import MotionImage from "@/components/MotionImage";
 import { getDataByParentId } from "@/utils/customFunctions";
 import { fetchData } from "@/utils/fetchData";
@@ -41,14 +39,12 @@ const page = async ({ params }) => {
     ),
   ]);
 
-  const booknow = dataconfig?.filter((item) => item.key === "estorebase");
   const waiver = dataconfig?.filter((item) => item.key === "waiver");
   const header_image = getDataByParentId(data, "bogo");
   const bogoData = getDataByParentId(data, "bogo");
 
   return (
     <main>
-      <Header location_slug={location_slug} booknow={booknow} />
       <section>
         <MotionImage header_image={header_image} waiver={waiver} />
       </section>
@@ -58,7 +54,6 @@ const page = async ({ params }) => {
           dangerouslySetInnerHTML={{ __html: bogoData[0]?.section1 || "" }}
         ></div>
       </section>
-      <Footer location_slug={location_slug} />
     </main>
   );
 };

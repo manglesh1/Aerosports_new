@@ -1,11 +1,10 @@
-"use client";
 
 import "../styles/home.css";
 import Link from "next/link";
 import { GrLocation } from "react-icons/gr";
-import { IoMenu } from "react-icons/io5";
-import { useState } from "react";
 import Image from "next/image";
+import { fetchData } from "@/utils/fetchData";
+import MenuButton from "./smallComponents/MenuButton";
 
 const navList = [
   {
@@ -50,19 +49,22 @@ const navList = [
   },
 ];
 
-const Header = ({ location_slug, booknow }) => {
-  const [mobile_nav, setMobile_nav] = useState(false);
+const Header = async({ location_slug }) => {
+  const API_URL = process.env.NEXT_PUBLIC_API_URL;
+  const [data, dataconfig] = await Promise.all([
+    fetchData(`${API_URL}/fetchmenudata?location=${location_slug}`),
+    fetchData(
+      `${API_URL}/fetchsheetdata?sheetname=config&location=${location_slug}`
+    ),
+  ]);
 
+  const booknow = dataconfig?.filter((item) => item.key === "estorebase");
   return (
     <header>
       <section className="d-flex aero-col-3">
         <div className="aero-menu-location app-container">
           <div className="d-flex-center aero_menu_location_icon">
-            <IoMenu
-              fontSize={40}
-              color="#fff"
-              onClick={() => setMobile_nav(!mobile_nav)}
-            />
+           <MenuButton navList={navList} location_slug={location_slug}/>
             <Link href="/" className="d-flex-center">
               <GrLocation fontSize={30} color="#fff" />
             </Link>
@@ -119,22 +121,7 @@ const Header = ({ location_slug, booknow }) => {
             <Link href="/" className="aero-app-changelocation app-container">
               {location_slug}
             </Link>
-            {mobile_nav && (
-              <nav className="d-flex-center aero-list-7">
-                {navList &&
-                  navList.map((item) => {
-                    return (
-                      <Link
-                        href={`/${location_slug}/${item?.slug}`}
-                        key={item.id}
-                        className="aero-app-changelocation"
-                      >
-                        {item.nav}
-                      </Link>
-                    );
-                  })}
-              </nav>
-            )}
+     
           </div>
         </nav>
       </section>

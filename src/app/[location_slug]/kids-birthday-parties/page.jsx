@@ -1,10 +1,7 @@
+import React from "react";
 import "../../styles/kidsparty.css";
-import Footer from "@/components/Footer";
-import Header from "@/components/Header";
 import MotionImage from "@/components/MotionImage";
 import { fetchData } from "@/utils/fetchData";
-import Image from "next/image";
-import React from "react";
 
 export async function generateMetadata({ params }) {
   const { location_slug, subcategory_slug } = params;
@@ -46,18 +43,12 @@ const Page = async ({ params }) => {
     ),
   ]);
 
-  const booknow = dataconfig?.filter(
-    (item) => item.key === "kids-birthday-parties-roller-url"
-  );
-  const waiver = dataconfig?.filter((item) => item.key === "waiver");
 
-  const header_image = data?.filter(
-    (item) => item.pageid === "kids-birthday-parties"
-  );
+  const waiver = dataconfig?.filter((item) => item.key === "waiver");
+  const header_image = data?.filter((item) => item.pageid === "kids-birthday-parties");
 
   return (
     <main>
-      <Header location_slug={location_slug} booknow={booknow} />
       <section>
         <MotionImage header_image={header_image} waiver={waiver} />
       </section>
@@ -80,7 +71,6 @@ const Page = async ({ params }) => {
           })}
         </article>
       </section>
-      <Footer location_slug={location_slug} />
     </main>
   );
 };

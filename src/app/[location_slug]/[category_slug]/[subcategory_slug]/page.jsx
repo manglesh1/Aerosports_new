@@ -1,8 +1,6 @@
 import React from "react";
 import "../../../styles/subcategory.css";
 import "../../../styles/kidsparty.css";
-import Footer from "@/components/Footer";
-import Header from "@/components/Header";
 import { getDataByParentId } from "@/utils/customFunctions";
 import { fetchData } from "@/utils/fetchData";
 import MotionImage from "@/components/MotionImage";
@@ -40,14 +38,12 @@ const Subcategory = async ({ params }) => {
     fetchData(`${API_URL}/fetchsheetdata?sheetname=config&location=${location_slug}`),
   ]);
 
-  const booknow = dataconfig?.filter((item) => item.key === "estorebase");
   const waiver = dataconfig?.filter((item) => item.key === "waiver");
   const attractionsData = getDataByParentId(data, subcategory_slug);
   const header_image = getDataByParentId(data, subcategory_slug);
  
   return (
     <main>
-      <Header location_slug={location_slug} booknow={booknow} />
       <section>
         <MotionImage header_image={header_image} waiver={waiver} />
       </section>
@@ -57,7 +53,6 @@ const Subcategory = async ({ params }) => {
           dangerouslySetInnerHTML={{ __html: attractionsData[0].section1 }}
         ></div>
       </section>
-      <Footer location_slug={location_slug} />
     </main>
   );
 };

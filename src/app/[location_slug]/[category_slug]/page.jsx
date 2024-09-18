@@ -1,11 +1,9 @@
-import React from "react";
-import "../../styles/category.css";
-import Footer from "@/components/Footer";
-import Header from "@/components/Header";
-import { getDataByParentId } from "@/utils/customFunctions";
-import { fetchData } from "@/utils/fetchData";
 import Image from "next/image";
 import Link from "next/link";
+import React from "react";
+import "../../styles/category.css";
+import { getDataByParentId } from "@/utils/customFunctions";
+import { fetchData } from "@/utils/fetchData";
 
 export async function generateMetadata({ params }) {
   const { location_slug, category_slug } = params;
@@ -34,19 +32,11 @@ const Category = async ({ params }) => {
   const { location_slug, category_slug } = params;
   const API_URL = process.env.NEXT_PUBLIC_API_URL;
 
-  const [data, dataconfig] = await Promise.all([
-    fetchData(`${API_URL}/fetchmenudata?location=${location_slug}`),
-    fetchData(
-      `${API_URL}/fetchsheetdata?sheetname=config&location=${location_slug}`
-    ),
-  ]);
-
-  const booknow = dataconfig?.filter((item) => item.key === "estorebase");
+  const data = await  fetchData(`${API_URL}/fetchmenudata?location=${location_slug}`);
   const attractionsData = getDataByParentId(data, category_slug);
 
   return (
     <main>
-      <Header location_slug={location_slug} booknow={booknow} />
       <section>
         <h1 className="aero_category_main_heading d-flex-center">
           {category_slug?.replace("-", " ")?.toUpperCase()}
@@ -86,7 +76,6 @@ const Category = async ({ params }) => {
           </section>
         </section>
       </section>
-      <Footer location_slug={location_slug} />
     </main>
   );
 };

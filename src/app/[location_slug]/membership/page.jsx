@@ -1,9 +1,7 @@
-import Footer from "@/components/Footer";
-import Header from "@/components/Header";
+import React from "react";
 import MotionImage from "@/components/MotionImage";
 import { getDataByParentId } from "@/utils/customFunctions";
 import { fetchData } from "@/utils/fetchData";
-import React from "react";
 
 export async function generateMetadata({ params }) {
   const { location_slug, subcategory_slug } = params;
@@ -45,16 +43,13 @@ const page = async ({ params }) => {
     ),
   ]);
 
-  const booknow = dataconfig?.filter(
-    (item) => item.key === "membership-roller-url" || item.key === "estorebase"
-  );
+
   const waiver = dataconfig?.filter((item) => item.key === "waiver");
   const header_image = getDataByParentId(data, "membership");
   const memberData = getDataByParentId(data, "membership");
 
   return (
     <main>
-      <Header location_slug={location_slug} booknow={booknow} />
       <section>
         <MotionImage header_image={header_image} waiver={waiver} />
       </section>
@@ -64,7 +59,6 @@ const page = async ({ params }) => {
           dangerouslySetInnerHTML={{ __html: memberData[0]?.section1 || "" }}
         ></div>
       </section>
-      <Footer location_slug={location_slug} />
     </main>
   );
 };

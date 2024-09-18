@@ -30,6 +30,7 @@
   flex-direction: column;
   width: 100%;
   position: absolute;
+  top: 102px;
   left: 0;
   text-align: center;
   align-items: unset;
@@ -120,7 +121,7 @@
 }
 .aero_home-headerimg-wrapper img {
   width: 100%;
-  height: 400px;
+  height: 600px;
   object-fit: cover;
   opacity: 2;
 }

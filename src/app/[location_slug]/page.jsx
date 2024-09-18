@@ -1,6 +1,4 @@
 import "../styles/home.css";
-import Footer from "@/components/Footer";
-import Header from "@/components/Header";
 import Image from "next/image";
 import birthday_img from "@public/assets/images/home/birthday_img_home_page.svg";
 import birthday_m_img from "@public/assets/images/home/birthday_img_home_mobile.svg";
@@ -10,6 +8,7 @@ import { getDataByParentId } from "@/utils/customFunctions";
 import { fetchData } from "@/utils/fetchData";
 import Countup from "@/components/Countup";
 import MotionImage from "@/components/MotionImage";
+import PromotionModal from "@/components/model/PromotionModal";
 
 export async function generateMetadata({ params }) {
   const location_slug = params?.location_slug;
@@ -56,7 +55,6 @@ const Home = async ({ params }) => {
     ),
   ]);
 
-  const booknow = dataconfig?.filter((item) => item.key === "estorebase");
   const waiver = dataconfig?.filter((item) => item.key === "waiver");
   const header_image = data?.filter((item) => item.pageid === "home");
   const attractionsData = getDataByParentId(data, "attractions");
@@ -64,7 +62,7 @@ const Home = async ({ params }) => {
 
   return (
     <main>
-      <Header location_slug={location_slug} booknow={booknow} />
+      <PromotionModal/>
       <MotionImage header_image={header_image} waiver={waiver} />
       <section className="aero_home-actionbtn-bg">
         <section className="aero-max-container aero_home-actionbtn">
@@ -219,7 +217,6 @@ const Home = async ({ params }) => {
           </article>
         </section>
       </section>
-      <Footer location_slug={location_slug} />
     </main>
   );
 };
