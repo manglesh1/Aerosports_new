@@ -8,7 +8,7 @@ export async function generateMetadata({ params }) {
   const API_URL = process.env.NEXT_PUBLIC_API_URL;
   const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL;
   const data = await fetchData(
-    `${API_URL}/fetchsheetdata?sheetname=Data&location=${location_slug}`
+    `${API_URL}/fetchpagedata?location=${location_slug}&page=kids-birthday-parties`
   );
 
   const kidsmetadata = data
@@ -27,7 +27,7 @@ export async function generateMetadata({ params }) {
   };
 }
 
-const Page = async ({ params }) => {
+const Page = async ({ params}) => {
   const location_slug = params.location_slug;
   const API_URL = process.env.NEXT_PUBLIC_API_URL;
 
@@ -42,7 +42,6 @@ const Page = async ({ params }) => {
       `${API_URL}/fetchsheetdata?sheetname=config&location=${location_slug}`
     ),
   ]);
-
 
   const waiver = dataconfig?.filter((item) => item.key === "waiver");
   const header_image = data?.filter((item) => item.pageid === "kids-birthday-parties");

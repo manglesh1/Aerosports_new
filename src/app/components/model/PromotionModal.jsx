@@ -2,7 +2,7 @@
 import React, { useEffect, useState } from "react";
 import Modal from "./Modal"; 
 
-const PromotionModal = () => {
+const PromotionModal = ({promotionPopup}) => {
   const [isModalOpen, setIsModalOpen] = useState(true);
 
   const openModal = () => setIsModalOpen(true);
@@ -19,11 +19,12 @@ const PromotionModal = () => {
       window.removeEventListener("DOMContentLoaded", handleDOMContentLoaded);
     };
   }, []);
+
+  const sanitizedHTML = promotionPopup[0]?.value?.replace(/<br\s*\/?>/gi, '') || '';
   return (
     <div>
       <Modal isOpen={isModalOpen} onClose={closeModal}>
-        <h2>Modal Content</h2>
-        <p>This is a modal using React portals!</p>
+        <div dangerouslySetInnerHTML={{__html: sanitizedHTML}} className="aero_promotion_popup"></div>
       </Modal>
     </div>
   );

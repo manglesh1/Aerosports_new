@@ -6,14 +6,19 @@ import jump_icon from "@public/assets/images/home/jump_icon.svg";
 import Link from "next/link";
 import { getDataByParentId } from "@/utils/customFunctions";
 import { fetchData } from "@/utils/fetchData";
+import RatingComponent from "./smallComponents/RatingComponent";
 
 const Footer = async ({ location_slug }) => {
-  const apiUrl = process.env.NEXT_PUBLIC_API_URL;
+  const API_URL = process.env.NEXT_PUBLIC_API_URL;
 
-  const data = await fetchData(
-    `${apiUrl}/fetchmenudata?location=${location_slug}`
-  );
-  
+  const cofigdata = await fetchData( `${API_URL}/fetchsheetdata?sheetname=locations_new&location=${location_slug}`);
+  const locationid = cofigdata.map(item => item.locationid);
+
+  const [data, ratingdata] = await Promise.all([
+    fetchData(`${API_URL}/fetchmenudata?location=${location_slug}`),
+    fetchData(`${API_URL}/getreviews?locationid=${locationid[0]}`),
+  ]);
+
   const attractionsData = getDataByParentId(data, "attractions");
   const programsData = getDataByParentId(data, "programs");
   const groupsData = getDataByParentId(data, "groups-events");
@@ -46,6 +51,7 @@ const Footer = async ({ location_slug }) => {
         </article>
       </section>
       <section className="aero-max-container">
+        <RatingComponent ratingdata={ratingdata}/>
         <div className="d-flex-center">
           <Link href={`/${location_slug}`}>
             <Image
@@ -53,7 +59,7 @@ const Footer = async ({ location_slug }) => {
               alt="footer logo"
               width={100}
               height={50}
-              style={{ background:'var(--white-color)', borderRadius:"12px"}}
+              style={{ background: "var(--white-color)", borderRadius: "12px" }}
             />
           </Link>
         </div>

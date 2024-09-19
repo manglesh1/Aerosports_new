@@ -20,12 +20,12 @@ const MenuButton = ({ navList, location_slug }) => {
             navList.map((item) => {
               return (
                 <Link
-                  href={`/${location_slug}/${item?.slug}`}
-                  key={item.id}
+                  href={`/${location_slug}/${item?.navUrl}`}
+                  key={item.navName}
                   className="aero-app-changelocation"
                   onClick={() => setMobile_nav(!mobile_nav)}
                 >
-                  {item.nav}
+                  {item.navName}
                 </Link>
               );
             })}

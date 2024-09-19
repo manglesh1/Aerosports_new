@@ -15,7 +15,7 @@ export async function generateMetadata({ params }) {
   const API_URL = process.env.NEXT_PUBLIC_API_URL;
   const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL;
   const data = await fetchData(
-    `${API_URL}/fetchmenudata?location=${location_slug}`
+    `${API_URL}/fetchpagedata?location=${location_slug}&page=home`
   );
 
   const header_image = data
@@ -56,13 +56,14 @@ const Home = async ({ params }) => {
   ]);
 
   const waiver = dataconfig?.filter((item) => item.key === "waiver");
+  const promotionPopup = dataconfig?.filter((item) => item.key === "promotion-popup");
   const header_image = data?.filter((item) => item.pageid === "home");
   const attractionsData = getDataByParentId(data, "attractions");
   const blogsData = getDataByParentId(data, "blogs");
 
   return (
     <main>
-      <PromotionModal/>
+      <PromotionModal promotionPopup={promotionPopup}/>
       <MotionImage header_image={header_image} waiver={waiver} />
       <section className="aero_home-actionbtn-bg">
         <section className="aero-max-container aero_home-actionbtn">

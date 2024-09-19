@@ -26,7 +26,6 @@
 .aero-list-7 {
   background: var(--black-color);
   padding: 10px 0;
-  margin-top: -1px;
   flex-direction: column;
   width: 100%;
   position: absolute;
@@ -121,9 +120,12 @@
 }
 .aero_home-headerimg-wrapper img {
   width: 100%;
-  height: 600px;
+  height: 450px;
   object-fit: cover;
   opacity: 2;
+}
+.aero_home-headerimg-wrapper > img {
+  height: 600px;
 }
 .aero_home-headerimg-wrapper article,
 .aero_home-play-small-img span,
@@ -210,7 +212,8 @@
 .aero_home-actionbtn-wrap,
 .aero_home_article_card-wrapper,
 .aero_home_feature_section,
-.aero_home_BPJ_wrapper {
+.aero_home_BPJ_wrapper,
+.aero_rating_wrapper {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
   gap: 2rem;
@@ -332,6 +335,38 @@
   font-size: 1.5rem;
   font-weight: 600;
   color: var(--white-color);
+}
+
+/* rating section */
+.aero_rating_wrapper {
+  color: var(--white-color);
+}
+
+.aero_rating_card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.2rem;
+  padding: 1em 2em;
+  border: 1px solid;
+  border-radius: 12px;
+}
+.aero_rating_card h4{
+  display: flex;
+  align-items: center;
+  font-size: 1.2rem;
+  font-weight: 500;
+}
+.aero_rating_card p{
+  font-size: 0.85rem;
+  line-height: 1.8;
+  font-weight: 200;
+}
+.aero_rating_card h5{
+  font-size: 1rem;
+  font-weight: 400;
+  font-style: oblique;
+  color: var(--primary-color);
 }
 
 /* main footer section */

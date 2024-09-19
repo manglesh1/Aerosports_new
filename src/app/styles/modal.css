@@ -14,12 +14,22 @@
   
   /* Modal content styles */
   .modal-content {
-    background: white;
-    padding: 20px;
+    background: var(--secondary-color);
+    padding: 1em;
     border-radius: 8px;
     position: relative;
     min-width: 300px;
+    max-width: 540px;
+    height: 90vh;
     z-index: 1001;
+  }
+  
+  .aero_promotion_popup img{
+   width: 100%;
+  } 
+  .aero_promotion_popup h3{
+    color: var(--white-color);
+    padding: 1em 0;
   }
   
   /* Close button styles */
