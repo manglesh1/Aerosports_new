@@ -56,14 +56,18 @@ const Home = async ({ params }) => {
   ]);
 
   const waiver = dataconfig?.filter((item) => item.key === "waiver");
-  const promotionPopup = dataconfig?.filter((item) => item.key === "promotion-popup");
+  const promotionPopup = dataconfig?.filter(
+    (item) => item.key === "promotion-popup"
+  );
   const header_image = data?.filter((item) => item.pageid === "home");
   const attractionsData = getDataByParentId(data, "attractions");
   const blogsData = getDataByParentId(data, "blogs");
 
   return (
     <main>
-      <PromotionModal promotionPopup={promotionPopup}/>
+      {promotionPopup[0] !== undefined && (
+        <PromotionModal promotionPopup={promotionPopup} />
+      )}
       <MotionImage header_image={header_image} waiver={waiver} />
       <section className="aero_home-actionbtn-bg">
         <section className="aero-max-container aero_home-actionbtn">

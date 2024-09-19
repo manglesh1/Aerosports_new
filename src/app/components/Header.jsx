@@ -15,9 +15,9 @@ const Header = async ({ location_slug }) => {
   ]);
 
   const navList = data
-  .filter((item) => item.isactive === 1)
-  .map((item) => ({ navName: item.desc, navUrl: item.path }))
-  .sort((a, b) => a.navName.localeCompare(b.navName));
+    .filter((item) => item.isactive === 1)
+    .map((item) => ({ navName: item.desc, navUrl: item.path.toLowerCase() }))
+    .sort((a, b) => a.navName.localeCompare(b.navName));
 
   const booknow = dataconfig?.filter((item) => item.key === "estorebase");
   return (
@@ -72,7 +72,10 @@ const Header = async ({ location_slug }) => {
             {navList &&
               navList.map((item) => {
                 return (
-                  <Link href={`/${location_slug}/${item?.navUrl}`} key={item.navName}>
+                  <Link
+                    href={`/${location_slug}/${item?.navUrl}`}
+                    key={item.navName}
+                  >
                     {item.navName}
                   </Link>
                 );
