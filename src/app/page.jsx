@@ -11,7 +11,6 @@ export default async function Home() {
   const FetchLocation = await fetchData(
     `${apiUrl}/fetchsheetdata?sheetname=locations`
   );
-
   return (
     <main className="aero-bg">
       <section className="aero-max-container aero-bg-padding">
