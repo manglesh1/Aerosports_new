@@ -14,8 +14,7 @@
   padding: 2em 1em;
 }
 
-.aero_bp_card_wrap,
-.subcategory_main_section .boxcontainer {
+.aero_bp_card_wrap{
   padding: 1em;
   box-shadow: 0 0 5px var(--primary-color);
   margin: 1em 0;

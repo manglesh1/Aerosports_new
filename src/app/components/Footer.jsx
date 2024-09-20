@@ -57,9 +57,9 @@ const Footer = async ({ location_slug }) => {
             <Image
               src="https://www.aerosportsparks.ca/assets/image/logo/logo.png"
               alt="footer logo"
-              width={100}
-              height={50}
-              style={{ background: "var(--white-color)", borderRadius: "12px" }}
+              width={130}
+              height={62}
+              style={{ background: "#ffffff1c" }}
             />
           </Link>
         </div>

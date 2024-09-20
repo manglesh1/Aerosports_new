@@ -8,6 +8,7 @@
 .subcategory_main_section :is(h1, h2, h3),
 .boxcircle {
   text-align: center;
+  font-size: 1.2rem;
 }
 .subcategory_main_section h1 {
   margin: 0.5em 0;
@@ -21,6 +22,20 @@
 .subcategory_main_section #container {
   padding: 0 1em;
   text-align: center;
+}
+.subcategory_main_section .boxcontainer {
+  padding: 1em;
+  box-shadow: 0 0 5px #dde7ec;
+  margin: 1em 0;
+  border-radius: 12px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
+  gap: 1rem;
+}
+.subcategory_main_section .shadow{
+  padding: 2em 1em;
+  border-radius: 12px;
+  box-shadow: 0 0 5px var(--primary-color);
 }
 .schedule ul {
   text-align: left;
@@ -49,15 +64,66 @@
 .subcategory_main_section .include {
   margin-left: 0;
   padding: 1em;
+  background-color: var(--primary-color);
+  color: var(--white-color);
 }
-
+.subcategory_main_section .sigma_btn-custom{
+  margin-top: 2em;
+}
+.subcategory_main_section .boxcirclepara{
+margin-bottom: 2em;
+}
 .box ul {
   padding-left: 0;
 }
 .box ul ::marker {
   margin-right: 0.5em;
 }
-
 .box img {
   width: 100%;
+  border-radius: 0.7em;
+}
+
+/* faq's section */
+.entry-content{
+  counter-reset: question answer;
+}
+.entry-content h3{
+  text-align: left;
+  margin: 0;
+  margin-top: 1.5em;
+  display: flex;
+  font-size: 1.1rem;
+}
+.entry-content p{
+display: inline-flex;
+font-size: 0.9rem;
+}
+.entry-content :is(h3,p)::before{
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--primary-color);
+  margin-right: 1em;
+}
+.entry-content h3::before{
+  counter-increment: question;
+  content: 'Q.' counter(question) ':';
+}
+.entry-content p::before{
+  counter-increment: answer;
+  content: 'A.' counter(answer) ':';
+}
+
+
+@media screen and (min-width: 992px) {
+  .box img {
+   padding-right: 1em;
+  } 
+  .subcategory_main_section :is(h1, h2, h3),
+.boxcircle {
+  font-size: 1.5rem;
+}
+.entry-content p{
+  font-size: 1rem;
+  }
 }

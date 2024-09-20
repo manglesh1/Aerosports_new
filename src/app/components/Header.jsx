@@ -37,7 +37,8 @@ const Header = async ({ location_slug }) => {
               <GrLocation />
               {location_slug}
             </Link>
-            <div className="aero-faq">fag</div>
+            <Link href={`/${location_slug}/aboutus/faq`}><div className="aero-faq">FAQ&apos;s</div></Link>
+            
           </div>
         </div>
         <div>

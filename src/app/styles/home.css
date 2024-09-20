@@ -23,7 +23,7 @@
 .aero-col-3 > div:last-child {
   text-align: right;
 }
-.aero-list-7 {
+.aero-list-7,.aero-list-7-1 {
   background: var(--black-color);
   padding: 10px 0;
   flex-direction: column;
@@ -33,7 +33,19 @@
   left: 0;
   text-align: center;
   align-items: unset;
-  z-index: 9;
+}
+.aero-list-7-1 {
+  z-index: -1;
+  animation: listanimate 0.5s ease-in-out;
+  padding-top: 3em;
+}
+@keyframes listanimate {
+  0% {
+    transform: translateY(-200px);
+  }
+  100% {
+    transform: translateY(0);
+  }
 }
 .aero_changelocation_height {
   height: 43px;
@@ -49,11 +61,12 @@
   align-items: center;
   gap: 1.2rem;
   border: 1px solid var(--white-color);
-  padding: 0.5em 1.6em;
+  padding: 0.6em 1.1em;
   border-radius: 30px;
-  font-size: 1.25rem;
+  font-size: 1.1rem;
   text-wrap: nowrap;
   color: var(--white-color);
+  transition: color 0.2s ease-out, background 0.2s ease-out;
   text-transform: uppercase;
 }
 .aero-app-changelocation {
@@ -61,12 +74,16 @@
   font-weight: 600;
   color: var(--white-color);
 }
+.aero-d-changelocation:hover {
+  border-color: var(--primary-color);
+  color: var(--primary-color);
+}
 .aero-faq {
   display: flex;
   align-items: center;
   padding: 0.2rem 1rem;
   transition: color 0.2s ease-out, background 0.2s ease-out;
-  height: 30px;
+  height: 40px;
   background-color: var(--white-color);
   color: var(--primary-color);
   font-weight: 600;
@@ -79,14 +96,15 @@
   color: var(--white-color);
   border-color: #bc6371;
 }
-.aero-list-7 a {
+:is(.aero-list-7,.aero-list-7-1) a {
   color: var(--white-color);
   padding: 10px;
   font-size: 1rem;
   text-transform: uppercase;
 }
 
-.aero-btn-booknow button {
+.aero-btn-booknow button,
+.sigma_btn-custom {
   outline: none;
   transition: top 0.05s linear, box-shadow 0.05s linear;
   position: relative;
@@ -103,7 +121,7 @@
     inset -0.0625rem 0 #ffffff80, inset 0.0625rem 0 #ffffff80,
     inset 0 0.0625rem #fff;
 }
-.aero-btn-booknow button:hover {
+:is(.aero-btn-booknow button, .sigma_btn-custom):hover {
   top: 4px;
   box-shadow: 0 0.125rem #a0054c, 0 0.25rem #00000020,
     inset -0.0625rem 0 #ffffff80, inset 0.0625rem 0 #ffffff80,
@@ -351,22 +369,43 @@
   border: 1px solid;
   border-radius: 12px;
 }
-.aero_rating_card h4{
+
+.aero_rating_card h4 {
   display: flex;
   align-items: center;
   font-size: 1.2rem;
   font-weight: 500;
 }
-.aero_rating_card p{
+.aero_rating_card p {
   font-size: 0.85rem;
   line-height: 1.8;
   font-weight: 200;
+  overflow: hidden;
+  transition: height 0.5s ease-in-out;
+  height: 150px;
+  position: relative;
 }
-.aero_rating_card h5{
+.aero_rating_card:hover p {
+  height: 100%;
+}
+.aero_rating_card h5 {
   font-size: 1rem;
   font-weight: 400;
   font-style: oblique;
   color: var(--primary-color);
+}
+.aero_rating_card p span {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  font-size: 0.8rem;
+  background: var(--black-color);
+  padding: 0.5em 1em;
+  visibility: visible;
+  font-weight: 400;
+}
+.aero_rating_card p:hover span {
+  visibility: hidden;
 }
 
 /* main footer section */
