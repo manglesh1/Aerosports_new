@@ -127,6 +127,16 @@
     inset -0.0625rem 0 #ffffff80, inset 0.0625rem 0 #ffffff80,
     inset 0 0.0625rem var(--white-color);
 }
+.aero-btn-kidslearnmore{
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 1em;
+  text-align: center;
+}
+.aero-btn-kidslearnmore button{
+font-size: 0.6rem;
+}
 
 /* header css end  */
 
@@ -238,7 +248,7 @@
   padding: 2em 0.5em;
 }
 .aero_home_feature_section {
-  padding: 4em 0.5em;
+  padding: 4em 1em;
 }
 .aero_home-playsection-2 article img,
 .aero_home_article_card img {
@@ -385,7 +395,7 @@
   height: 150px;
   position: relative;
 }
-.aero_rating_card:hover p {
+.aero_rating_card p:hover{
   height: 100%;
 }
 .aero_rating_card h5 {
@@ -394,7 +404,7 @@
   font-style: oblique;
   color: var(--primary-color);
 }
-.aero_rating_card p span {
+.aero_rating_readmore {
   position: absolute;
   bottom: 0;
   right: 0;
@@ -411,6 +421,26 @@
 /* main footer section */
 .aero_footer_section-bg {
   background-color: var(--black-color);
+}
+
+.aero_logo_social_wrap{
+  flex-direction: column;
+  margin: 2em 1em 1em;
+  gap: 1rem;
+}
+
+.aero_social_icon {
+  display: inline-flex;
+  width: 40px;
+  height: 40px;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid var(--white-color);
+  margin: 0.4em;
+  border-radius: 50%;
+  font-size: 1.2rem;
+  color: var(--white-color);
+  transition: all 0.5s ease-in-out;
 }
 
 .aero_footer_col-4-wrapper {
@@ -475,7 +505,9 @@
   .aero-btn-booknow button {
     font-size: 1.2rem;
   }
-
+  .aero-btn-kidslearnmore{
+    bottom: 3em;
+  }
   .aero_home-playsection-2,
   .aero_home-actionbtn-wrap,
   .aero_home_article_card-wrapper,
@@ -491,6 +523,9 @@
   .aero_home_article_section p {
     font-size: 1.5rem;
     line-height: 30px;
+  }
+  .aero_home-playsection-1 p{
+    font-family: cursive;
   }
   .aero_home-headerimg-wrapper article {
     width: 60%;
@@ -523,6 +558,16 @@
   .aero_home-headerimg-wrapper > img {
     height: 400px;
   }
+  .aero_social_icon{
+    width: 50px;
+    height: 50px;
+    font-size: 1.5rem;
+  }
+
+  .aero_social_icon:hover{
+    color: var(--primary-color);
+    border-color: var(--primary-color);
+    }
 
   .aero_footer_col-4-wrapper {
     flex-wrap: nowrap;

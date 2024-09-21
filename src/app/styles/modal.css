@@ -26,6 +26,7 @@
 
 .aero_promotion_popup {
   max-height: 85vh;
+  min-height: 85vh;
   overflow: auto;
 }
 

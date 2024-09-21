@@ -19,7 +19,7 @@ const RatingComponent = memo(({ ratingdata }) => {
           return (
             <article key={i} className="aero_rating_card">
               <h4>Rating: &nbsp; {stars}</h4>
-              <p>{review.text}  <span>...Read More</span></p>
+              <p>{review.text}  <span className="aero_rating_readmore">...Read More</span></p>
               <h5>{review.author_name}</h5>
              
             </article>

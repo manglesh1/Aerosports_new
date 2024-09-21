@@ -8,12 +8,11 @@ export async function generateMetadata({ params }) {
   const { location_slug, subcategory_slug } = params;
   const API_URL = process.env.NEXT_PUBLIC_API_URL;
   const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL;
-  const data = await fetchData(
-    `${API_URL}/fetchsheetdata?sheetname=Data&location=${location_slug}`
-  );
+
+  const data = await fetchData(`${API_URL}/fetchpagedata?location=${location_slug}&page=bogo`);
 
   const membershipmetadata = data
-    ?.filter((item) => item?.path === "BOGO")
+    ?.filter((item) => item?.path === "bogo")
     ?.map((item) => ({
       title: item?.metatitle,
       description: item?.metadescription,
@@ -34,9 +33,7 @@ const page = async ({ params }) => {
 
   const [data, dataconfig] = await Promise.all([
     fetchData(`${API_URL}/fetchpagedata?location=${location_slug}&page=bogo`),
-    fetchData(
-      `${API_URL}/fetchsheetdata?sheetname=config&location=${location_slug}`
-    ),
+    fetchData(`${API_URL}/fetchsheetdata?sheetname=config&location=${location_slug}`),
   ]);
 
   const waiver = dataconfig?.filter((item) => item.key === "waiver");

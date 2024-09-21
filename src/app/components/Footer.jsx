@@ -7,12 +7,21 @@ import Link from "next/link";
 import { getDataByParentId } from "@/utils/customFunctions";
 import { fetchData } from "@/utils/fetchData";
 import RatingComponent from "./smallComponents/RatingComponent";
+import { RiFacebookFill } from "react-icons/ri";
+import { BiLogoTwitter } from "react-icons/bi";
+import { GrInstagram } from "react-icons/gr";
+import { FaTiktok } from "react-icons/fa6";
 
 const Footer = async ({ location_slug }) => {
   const API_URL = process.env.NEXT_PUBLIC_API_URL;
 
-  const cofigdata = await fetchData( `${API_URL}/fetchsheetdata?sheetname=locations_new&location=${location_slug}`);
-  const locationid = cofigdata.map(item => item.locationid);
+  const configdata = await fetchData( `${API_URL}/fetchsheetdata?sheetname=locations_new&location=${location_slug}`);
+
+  const locationid = configdata.map(item => item.locationid);
+  const facebook = configdata.map(item => item.facebook);
+  const insta = configdata.map(item => item.insta);
+  const twitter = configdata.map(item => item.twitter);
+  const tiktok = configdata.map(item => item.tiktok);
 
   const [data, ratingdata] = await Promise.all([
     fetchData(`${API_URL}/fetchmenudata?location=${location_slug}`),
@@ -52,16 +61,21 @@ const Footer = async ({ location_slug }) => {
       </section>
       <section className="aero-max-container">
         <RatingComponent ratingdata={ratingdata}/>
-        <div className="d-flex-center">
+        <div className="d-flex-center aero_logo_social_wrap">
           <Link href={`/${location_slug}`}>
             <Image
-              src="https://www.aerosportsparks.ca/assets/image/logo/logo.png"
+              src="https://www.aerosportsparks.ca/assets/image/logo/logo_white.png"
               alt="footer logo"
-              width={130}
-              height={62}
-              style={{ background: "#ffffff1c" }}
+              width={100}
+              height={93.42}
             />
           </Link>
+          <div className="aero_social_icon_wrap">
+            { facebook[0] &&  <Link href={`https://www.facebook.com/${facebook[0]}`} target="_blank" className="aero_social_icon"><RiFacebookFill /></Link>}
+            { twitter[0] &&  <Link href={`https://x.com/${twitter[0]}`} target="_blank" className="aero_social_icon"><BiLogoTwitter /></Link>}
+            { insta[0] &&  <Link href={`https://www.instagram.com/${insta[0]}`} target="_blank" className="aero_social_icon"><GrInstagram /></Link>}
+            { tiktok[0] &&  <Link href={`https://www.tiktok.com/${tiktok[0]}`} target="_blank" className="aero_social_icon"><FaTiktok /></Link>}
+          </div>
         </div>
         <section className="aero_footer_col-4-wrapper">
           <ul>

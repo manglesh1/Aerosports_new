@@ -1,4 +1,5 @@
 import React from "react";
+import '../../styles/subcategory.css';
 import MotionImage from "@/components/MotionImage";
 import { getDataByParentId } from "@/utils/customFunctions";
 import { fetchData } from "@/utils/fetchData";
@@ -53,14 +54,16 @@ const page = async ({ params }) => {
         <MotionImage header_image={header_image} waiver={waiver} />
       </section>
       <section className="aero-max-container">
+        <section className="subcategory_main_section">
         <div
-          className="subcategory_main_section"
+          className="pricing_promo_main_section"
           dangerouslySetInnerHTML={{ __html: memberData[0]?.section1 || "" }}
         ></div>
         <div
-          className="subcategory_main_section"
+          className="pricing_promo_main_section"
           dangerouslySetInnerHTML={{ __html: memberData[0]?.section2 || "" }}
         ></div>
+           </section>
       </section>
     </main>
   );

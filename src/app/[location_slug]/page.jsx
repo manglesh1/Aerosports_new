@@ -169,6 +169,14 @@ const Home = async ({ params }) => {
           height={120}
           alt="birthday img"
         />
+        <Link
+          href={`/${location_slug}/kids-birthday-parties`}
+          className="aero-btn-booknow aero-btn-kidslearnmore"
+        >
+          <div>
+            <button>Learn More</button>
+          </div>
+        </Link>
       </section>
       <section className="aero_home_article_section">
         <section className="aero-max-container">

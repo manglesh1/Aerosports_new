@@ -57,6 +57,10 @@ const Page = async ({ params}) => {
             const includedata = item.includes.split(";");
             return (
               <div key={i} className="aero_bp_card_wrap">
+                <div className="aero-bp-boxcircle-wrap">
+                  <span className="aero-bp-boxcircle">${item?.price}</span>
+                </div>
+                <div className="aero-bp-boxcircle-wrap">{item?.category}</div>
                 <h2 className="d-flex-center aero_bp_card_wrap_heading">
                   {item?.plantitle}
                 </h2>
