@@ -1,5 +1,5 @@
 import React from "react";
-import '../../styles/subcategory.css'
+import "../../styles/subcategory.css";
 import MotionImage from "@/components/MotionImage";
 import { getDataByParentId } from "@/utils/customFunctions";
 import { fetchData } from "@/utils/fetchData";
@@ -44,7 +44,6 @@ const page = async ({ params }) => {
     ),
   ]);
 
-
   const waiver = dataconfig?.filter((item) => item.key === "waiver");
   const header_image = getDataByParentId(data, "membership");
   const memberData = getDataByParentId(data, "membership");
@@ -54,11 +53,13 @@ const page = async ({ params }) => {
       <section>
         <MotionImage header_image={header_image} waiver={waiver} />
       </section>
-      <section className="aero-max-container">
-        <div
-          className="subcategory_main_section"
-          dangerouslySetInnerHTML={{ __html: memberData[0]?.section1 || "" }}
-        ></div>
+      <section className="subcategory_main_section-bg">
+        <section className="aero-max-container">
+          <div
+            className="subcategory_main_section"
+            dangerouslySetInnerHTML={{ __html: memberData[0]?.section1 || "" }}
+          ></div>
+        </section>
       </section>
     </main>
   );

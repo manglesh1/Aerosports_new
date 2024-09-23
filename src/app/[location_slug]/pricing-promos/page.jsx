@@ -3,6 +3,7 @@ import "../../styles/subcategory.css";
 import MotionImage from "@/components/MotionImage";
 import { getDataByParentId } from "@/utils/customFunctions";
 import { fetchData } from "@/utils/fetchData";
+import Link from "next/link";
 
 export async function generateMetadata({ params }) {
   const { location_slug } = params;
@@ -84,53 +85,65 @@ const page = async ({ params }) => {
     };
   });
 
-  console.log(mergedArray);
-
   return (
     <main>
       <section>
         <MotionImage header_image={header_image} waiver={waiver} />
       </section>
-      <section className="aero-max-container">
-        <section className="subcategory_main_section">
-          <div
-            className="pricing_promo_main_section"
-            dangerouslySetInnerHTML={{ __html: memberData[0]?.section1 || "" }}
-          ></div>
+      <section className="subcategory_main_section-bg">
+        <section className="aero-max-container">
+          <section className="subcategory_main_section">
+            <div
+              className="pricing_promo_main_section"
+              dangerouslySetInnerHTML={{
+                __html: memberData[0]?.section1 || "",
+              }}
+            ></div>
 
-          <section>
-            {mergedArray?.map((item, index) => (
-              <div className="aero_pricingpromo_card" key={index}>
-                <h3 className="aero_pricingpromo_card-heading">Ages</h3>
-                <p className="aero_pricingpromo_card-para">{item?.value1}</p>
+            <section className="aero_pricingpromo_card_wrapper">
+              {mergedArray?.map((item, index) => (
+                <div className="aero_pricingpromo_card" key={index}>
+                  <h3 className="aero_pricingpromo_card-heading">Age</h3>
+                  <p className="aero_pricingpromo_card-para">{item?.value1}</p>
 
-                <div className="aero_pricingpromo_card-1 d-flex">
-                  <div className="aero_pricingpromo_card-2">
-                    {Object.keys(filterheadervalue[0])
-                      .slice(1)
-                      .map((key, keyIndex) => (
-                        <h4 key={keyIndex}>{filterheadervalue[0][key]}</h4>
-                      ))}
+                  <div className="aero_pricingpromo_card-1 d-flex">
+                    <div className="aero_pricingpromo_card-2 aero_pricingpromo_card-21">
+                      {Object.keys(filterheadervalue[0])
+                        .slice(1)
+                        .map((key, keyIndex) => (
+                          <h4 key={keyIndex}>{filterheadervalue[0][key]}</h4>
+                        ))}
+                    </div>
+
+                    <div className="aero_pricingpromo_card-2 aero_pricingpromo_card-22">
+                      {Object.keys(filterheadervalue[0])
+                        .slice(1)
+                        .map((key, keyIndex) => (
+                          <p key={keyIndex}>
+                            {item[filterheadervalue[0][key]] || "N/A"}
+                          </p>
+                        ))}
+                    </div>
                   </div>
-
-                  <div className="aero_pricingpromo_card-2">
-                    {Object.keys(filterheadervalue[0])
-                      .slice(1)
-                      .map((key, keyIndex) => (
-                        <p key={keyIndex}>
-                          {item[filterheadervalue[0][key]] || "N/A"}
-                        </p>
-                      ))}
+                  {/* <Link
+                  href={`/${location_slug}/attractions`}
+                  className="aero-btn-booknow"
+                >
+                  <div>
+                    <button>ATTRACTIONS</button>
                   </div>
+                </Link> */}
                 </div>
-              </div>
-            ))}
-          </section>
+              ))}
+            </section>
 
-          <div
-            className="pricing_promo_main_section"
-            dangerouslySetInnerHTML={{ __html: memberData[0]?.section2 || "" }}
-          ></div>
+            <div
+              className="pricing_promo_main_section"
+              dangerouslySetInnerHTML={{
+                __html: memberData[0]?.section2 || "",
+              }}
+            ></div>
+          </section>
         </section>
       </section>
     </main>

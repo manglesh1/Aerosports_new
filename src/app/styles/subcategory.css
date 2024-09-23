@@ -1,3 +1,7 @@
+.subcategory_main_section-bg {
+  background-color: var(--black-color);
+  color: var(--white-color);
+}
 .subcategory_main_section {
   min-height: 50vh;
   align-content: center;
@@ -5,7 +9,7 @@
   padding: 1.5em 1em 3em;
 }
 
-.subcategory_main_section :is(h1, h2, h3,h4),
+.subcategory_main_section :is(h1, h2, h3, h4),
 .boxcircle {
   text-align: center;
   font-size: 1.2rem;
@@ -20,7 +24,7 @@
   margin: 2em 0.5em 0.5em;
 }
 .subcategory_main_section h3 {
-  margin: 1em 0.5em 0.5em;
+  margin: 2em 0.5em 0.5em 0;
   color: var(--primary-color);
 }
 .subcategory_main_section #container {
@@ -46,7 +50,8 @@
 }
 .subcategory_main_section .schedule ul {
   text-align: left;
-  margin: 2em 0;
+  margin: 1em 0;
+  color: var(--black-color);
 }
 
 .subcategory_main_section ul {
@@ -84,6 +89,7 @@
   color: var(--white-color);
   border-color: var(--white-color);
   border-radius: 5px;
+  align-content: center;
 }
 .subcategory_main_section .sigma_btn-custom {
   margin-top: 2em;
@@ -133,16 +139,60 @@
 }
 
 /* membership section  */
-.membership-memberships{
+.membership-memberships {
   align-items: unset !important;
 }
-.membership-memberships :is(.membership-membership-gold,.membership-membership-platinum){
- box-shadow: 0 0 5px var(--primary-color);
- border: none;
+.membership-memberships
+  :is(.membership-membership-gold, .membership-membership-platinum) {
+  box-shadow: 0 0 5px var(--primary-color);
+  border: none;
 }
-.membership-text{
+.membership-text {
   color: var(--primary-color) !important;
 }
+
+/* pricing promo section  */
+.aero_pricingpromo_card_wrapper {
+  display: flex;
+  gap: 2rem;
+  flex-direction: column;
+  margin: 2em 0;
+}
+.aero_pricingpromo_card {
+  border: 2px solid var(--primary-color);
+  border-radius: 12px;
+  flex-basis: 33.33%;
+}
+.aero_pricingpromo_card-heading {
+  text-align: center !important;
+}
+.aero_pricingpromo_card-para {
+  text-align: center;
+  padding-bottom: 0.5em;
+  margin-bottom: 0.5em;
+  border-bottom: 2px solid var(--primary-color);
+}
+.aero_pricingpromo_card-1 {
+  padding: 1em;
+}
+.aero_pricingpromo_card-2 {
+  flex-basis: 60%;
+  line-height: 2;
+}
+.aero_pricingpromo_card-21 {
+  border-right: 2px solid var(--primary-color);
+  padding-right: 0.5em;
+  margin-right: 1em;
+}
+.aero_pricingpromo_card-2 :is(h4, p) {
+  text-align: left;
+  font-size: 1em;
+  white-space: nowrap;
+  width: 140px;
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
+
 @media screen and (min-width: 992px) {
   .box img {
     padding-right: 1em;
@@ -153,5 +203,15 @@
   }
   .entry-content p {
     font-size: 1rem;
+  }
+
+  .aero_pricingpromo_card_wrapper {
+    flex-direction: row;
+  }
+  .aero_pricingpromo_card-2 :is(h4, p) {
+    width: unset;
+  }
+  .subcategory_main_section h3 {
+    text-align: left;
   }
 }

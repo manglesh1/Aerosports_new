@@ -10,7 +10,9 @@ export async function generateMetadata({ params }) {
   const API_URL = process.env.NEXT_PUBLIC_API_URL;
   const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL;
 
-  const data = await fetchData(`${API_URL}/fetchpagedata?location=${location_slug}&page=${subcategory_slug}`);
+  const data = await fetchData(
+    `${API_URL}/fetchpagedata?location=${location_slug}&page=${subcategory_slug}`
+  );
 
   const attractionsData = getDataByParentId(data, subcategory_slug)?.map(
     (item) => ({
@@ -31,26 +33,31 @@ const Subcategory = async ({ params }) => {
   const { location_slug, subcategory_slug } = params;
   const API_URL = process.env.NEXT_PUBLIC_API_URL;
 
- 
   const [data, dataconfig] = await Promise.all([
-    fetchData(`${API_URL}/fetchsheetdata?sheetname=Data&location=${location_slug}`),
-    fetchData(`${API_URL}/fetchsheetdata?sheetname=config&location=${location_slug}`),
+    fetchData(
+      `${API_URL}/fetchsheetdata?sheetname=Data&location=${location_slug}`
+    ),
+    fetchData(
+      `${API_URL}/fetchsheetdata?sheetname=config&location=${location_slug}`
+    ),
   ]);
 
   const waiver = dataconfig?.filter((item) => item.key === "waiver");
   const attractionsData = getDataByParentId(data, subcategory_slug);
   const header_image = getDataByParentId(data, subcategory_slug);
- 
+
   return (
     <main>
       <section>
         <MotionImage header_image={header_image} waiver={waiver} />
       </section>
-      <section className="aero-max-container">
-        <div
-          className="subcategory_main_section"
-          dangerouslySetInnerHTML={{ __html: attractionsData[0].section1 }}
-        ></div>
+      <section className="subcategory_main_section-bg">
+        <section className="aero-max-container">
+          <div
+            className="subcategory_main_section"
+            dangerouslySetInnerHTML={{ __html: attractionsData[0].section1 }}
+          ></div>
+        </section>
       </section>
     </main>
   );

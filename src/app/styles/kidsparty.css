@@ -13,11 +13,11 @@
   gap: 1rem;
   padding: 2em 1em;
 }
-.aero-bp-boxcircle-wrap{
+.aero-bp-boxcircle-wrap {
   text-align: center;
   padding-bottom: 1em;
 }
-.aero-bp-boxcircle{
+.aero-bp-boxcircle {
   background: var(--primary-color);
   color: var(--white-color);
   padding: 0.5em 1em;
@@ -33,7 +33,7 @@
   border: 7px solid var(--white-color);
   box-shadow: 0 0 5px #80808085;
 }
-.aero_bp_card_wrap{
+.aero_bp_card_wrap {
   padding: 1em;
   box-shadow: 0 0 5px var(--primary-color);
   margin: 1em 0;
@@ -58,8 +58,7 @@
 /* bogo offers page css */
 
 .bogo_main_section {
-  margin: 3em 0;
-  padding: 1em;
+  padding: 3em 1em;
 }
 .bogo_main_section :is(h1, h3, h4, h5, h6, ul) {
   padding-bottom: 0.8em;
@@ -96,7 +95,7 @@
   .bogo_main_section h6 {
     font-size: 1.2rem;
   }
-  .aero-bp-boxcircle{
+  .aero-bp-boxcircle {
     font-size: 1.5rem;
     height: 120px;
     width: 120px;

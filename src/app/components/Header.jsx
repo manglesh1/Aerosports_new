@@ -23,7 +23,7 @@ const Header = async ({ location_slug }) => {
   const booknow = dataconfig?.filter((item) => item.key === "estorebase");
   return (
     <header>
-      <TopHeader/>
+      <TopHeader />
       <section className="d-flex aero-col-3">
         <div className="aero-menu-location app-container">
           <div className="d-flex-center aero_menu_location_icon">
@@ -39,8 +39,9 @@ const Header = async ({ location_slug }) => {
               <GrLocation />
               {location_slug}
             </Link>
-            <Link href={`/${location_slug}/aboutus/faq`}><div className="aero-faq">FAQ&apos;s</div></Link>
-            
+            <Link href={`/${location_slug}/aboutus/faq`}>
+              <div className="aero-faq">FAQ&apos;s</div>
+            </Link>
           </div>
         </div>
         <div>
