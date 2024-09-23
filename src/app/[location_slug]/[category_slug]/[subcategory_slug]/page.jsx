@@ -9,9 +9,8 @@ export async function generateMetadata({ params }) {
   const { location_slug, subcategory_slug } = params;
   const API_URL = process.env.NEXT_PUBLIC_API_URL;
   const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL;
-  const data = await fetchData(
-    `${API_URL}/fetchsheetdata?sheetname=Data&location=${location_slug}`
-  );
+
+  const data = await fetchData(`${API_URL}/fetchpagedata?location=${location_slug}&page=${subcategory_slug}`);
 
   const attractionsData = getDataByParentId(data, subcategory_slug)?.map(
     (item) => ({

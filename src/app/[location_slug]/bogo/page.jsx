@@ -5,7 +5,8 @@ import { getDataByParentId } from "@/utils/customFunctions";
 import { fetchData } from "@/utils/fetchData";
 
 export async function generateMetadata({ params }) {
-  const { location_slug, subcategory_slug } = params;
+
+  const { location_slug } = params;
   const API_URL = process.env.NEXT_PUBLIC_API_URL;
   const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL;
 
@@ -22,7 +23,7 @@ export async function generateMetadata({ params }) {
     title: membershipmetadata[0]?.title,
     description: membershipmetadata[0]?.description,
     alternates: {
-      canonical: BASE_URL + "/" + location_slug + "/" + subcategory_slug,
+      canonical: BASE_URL + "/" + location_slug + "/bogo",
     },
   };
 }

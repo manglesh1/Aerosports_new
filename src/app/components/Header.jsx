@@ -4,6 +4,7 @@ import { GrLocation } from "react-icons/gr";
 import Image from "next/image";
 import { fetchData } from "@/utils/fetchData";
 import MenuButton from "./smallComponents/MenuButton";
+import TopHeader from "./smallComponents/TopHeader";
 
 const Header = async ({ location_slug }) => {
   const API_URL = process.env.NEXT_PUBLIC_API_URL;
@@ -22,6 +23,7 @@ const Header = async ({ location_slug }) => {
   const booknow = dataconfig?.filter((item) => item.key === "estorebase");
   return (
     <header>
+      <TopHeader/>
       <section className="d-flex aero-col-3">
         <div className="aero-menu-location app-container">
           <div className="d-flex-center aero_menu_location_icon">
