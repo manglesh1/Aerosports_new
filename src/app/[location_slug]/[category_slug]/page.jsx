@@ -10,7 +10,9 @@ export async function generateMetadata({ params }) {
   const API_URL = process.env.NEXT_PUBLIC_API_URL;
   const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL;
 
- const data = await fetchData(`${API_URL}/fetchpagedata?location=${location_slug}&page=${category_slug}`);
+  const data = await fetchData(
+    `${API_URL}/fetchpagedata?location=${location_slug}&page=${category_slug}`
+  );
 
   const attractionsData = getDataByParentId(data, category_slug)?.map(
     (item) => ({
@@ -31,7 +33,9 @@ const Category = async ({ params }) => {
   const { location_slug, category_slug } = params;
   const API_URL = process.env.NEXT_PUBLIC_API_URL;
 
-  const data = await  fetchData(`${API_URL}/fetchmenudata?location=${location_slug}`);
+  const data = await fetchData(
+    `${API_URL}/fetchmenudata?location=${location_slug}`
+  );
   const attractionsData = getDataByParentId(data, category_slug);
 
   return (

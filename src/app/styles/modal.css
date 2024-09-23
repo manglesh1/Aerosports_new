@@ -1,31 +1,31 @@
 /* top header section */
-.aero_topheader_wrapper{
-background: var(--primary-color);
-color: white;
-position: absolute;
-top: 80px;
-left: 25px;
-width: 150px;
-height: 190px;
-z-index: 9;
-text-align: center;
-align-content: center;
-padding: 0.5em;
-overflow: clip;
-border-radius: 0 20px 20px 20px;
+.aero_topheader_wrapper {
+  background: var(--primary-color);
+  color: white;
+  position: absolute;
+  top: 80px;
+  left: 25px;
+  width: 150px;
+  height: 190px;
+  z-index: 9;
+  text-align: center;
+  align-content: center;
+  padding: 0.5em;
+  overflow: clip;
+  border-radius: 0 20px 20px 20px;
 }
 
-.aero_topheader_wrapper .modal-close svg{
+.aero_topheader_wrapper .modal-close svg {
   font-size: 1.5rem;
   border: none;
   padding: 0;
   top: 4px;
   right: 4px;
 }
-.aero_topheader_wrapper .modal-close svg:hover{
+.aero_topheader_wrapper .modal-close svg:hover {
   color: var(--white-color);
 }
-
+/* top header section end*/
 
 /* promotion popup section  */
 
