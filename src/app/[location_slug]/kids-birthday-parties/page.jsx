@@ -12,6 +12,7 @@ export async function generateMetadata({ params }) {
     `${API_URL}/fetchpagedata?location=${location_slug}&page=kids-birthday-parties`
   );
 
+  
   const kidsmetadata = data
     ?.filter((item) => item.pageid === "kids-birthday-parties")
     ?.map((item) => ({
