@@ -3,7 +3,7 @@ import React, { useEffect, useState } from "react";
 import { IoCloseCircleSharp } from "react-icons/io5";
 import "../../styles/modal.css";
 
-const TopHeader = () => {
+const TopHeader = ({topheader}) => {
   const [isModalOpen, setIsModalOpen] = useState(true);
 
   const openModal = () => setIsModalOpen(true);
@@ -13,9 +13,7 @@ const TopHeader = () => {
     const handleDOMContentLoaded = () => {
       openModal();
     };
-
     window.addEventListener("DOMContentLoaded", handleDOMContentLoaded);
-
     return () => {
       window.removeEventListener("DOMContentLoaded", handleDOMContentLoaded);
     };
@@ -27,7 +25,7 @@ const TopHeader = () => {
           <button className="modal-close" onClick={closeModal}>
             <IoCloseCircleSharp />
           </button>
-          Open PA Day Monday -23 Sep from 11am to 7pm!
+         <div dangerouslySetInnerHTML={{__html: topheader[0]?.value}}></div>
         </div>
       </>
     )

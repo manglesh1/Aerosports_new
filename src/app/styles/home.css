@@ -48,7 +48,7 @@
   }
 }
 .aero_changelocation_height {
-  height: 43px;
+  height: 44px;
   box-shadow: 0 0 2px var(--white-color);
 }
 .aero-menu-location {
@@ -137,8 +137,16 @@
 .aero-btn-kidslearnmore button{
 font-size: 0.6rem;
 }
+.aero_home_video-container{
+  max-height: 700px;
+  overflow: clip;
+  background-color: var(--black-color);
+}
 
 /* header css end  */
+.aero_home-headerimg-wrapper{
+  background-color: var(--black-color);
+}
 
 .aero_home-headerimg-wrapper,
 .aero_home-play-small-img,
