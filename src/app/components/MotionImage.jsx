@@ -6,7 +6,6 @@ import Image from "next/image";
 import Link from "next/link";
 
 const MotionImage = ({ header_image, waiver }) => {
-
   return (
     <section className="aero_home-headerimg-wrapper">
       {header_image &&

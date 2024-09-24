@@ -23,7 +23,8 @@
 .aero-col-3 > div:last-child {
   text-align: right;
 }
-.aero-list-7,.aero-list-7-1 {
+.aero-list-7,
+.aero-list-7-1 {
   background: var(--black-color);
   padding: 10px 0;
   flex-direction: column;
@@ -96,7 +97,7 @@
   color: var(--white-color);
   border-color: #bc6371;
 }
-:is(.aero-list-7,.aero-list-7-1) a {
+:is(.aero-list-7, .aero-list-7-1) a {
   color: var(--white-color);
   padding: 10px;
   font-size: 1rem;
@@ -127,24 +128,24 @@
     inset -0.0625rem 0 #ffffff80, inset 0.0625rem 0 #ffffff80,
     inset 0 0.0625rem var(--white-color);
 }
-.aero-btn-kidslearnmore{
+.aero-btn-kidslearnmore {
   position: absolute;
   left: 0;
   right: 0;
   bottom: 1em;
   text-align: center;
 }
-.aero-btn-kidslearnmore button{
-font-size: 0.6rem;
+.aero-btn-kidslearnmore button {
+  font-size: 0.6rem;
 }
-.aero_home_video-container{
+.aero_home_video-container {
   max-height: 700px;
   overflow: clip;
   background-color: var(--black-color);
 }
 
 /* header css end  */
-.aero_home-headerimg-wrapper{
+.aero_home-headerimg-wrapper {
   background-color: var(--black-color);
 }
 
@@ -227,7 +228,7 @@ font-size: 0.6rem;
   color: var(--black-color);
 }
 .aero_home_article_section h2,
-.aero_rating_second_heading  {
+.aero_rating_second_heading {
   color: var(--white-color);
 }
 .aero_home-playsection-1 h2,
@@ -238,7 +239,7 @@ font-size: 0.6rem;
   text-align: center;
   text-transform: uppercase;
 }
-.aero_rating_second_heading{
+.aero_rating_second_heading {
   padding: 1.5em 1em 0;
 }
 .aero_home-playsection-1 p,
@@ -249,7 +250,7 @@ font-size: 0.6rem;
   line-height: 24px;
   text-align: center;
 }
-.aero_home-playsection-1 p{
+.aero_home-playsection-1 p {
   font-family: cursive;
 }
 .aero_home-playsection-2,
@@ -313,7 +314,7 @@ font-size: 0.6rem;
   color: var(--white-color);
   font-style: oblique;
 }
-.aero_rating_overallrating strong{
+.aero_rating_overallrating strong {
   color: var(--primary-color);
 }
 .aero_home_article_card {
@@ -419,7 +420,7 @@ font-size: 0.6rem;
   height: 150px;
   position: relative;
 }
-.aero_rating_card p:hover{
+.aero_rating_card p:hover {
   height: 100%;
 }
 .aero_rating_card h5 {
@@ -447,7 +448,7 @@ font-size: 0.6rem;
   background-color: var(--black-color);
 }
 
-.aero_logo_social_wrap{
+.aero_logo_social_wrap {
   flex-direction: column;
   margin: 2em 2em 1em;
   gap: 1rem;
@@ -529,7 +530,7 @@ font-size: 0.6rem;
   .aero-btn-booknow button {
     font-size: 1.2rem;
   }
-  .aero-btn-kidslearnmore{
+  .aero-btn-kidslearnmore {
     bottom: 3em;
   }
   .aero_home-playsection-2,
@@ -544,8 +545,8 @@ font-size: 0.6rem;
   }
   .aero_home-headerimg-wrapper article p,
   .aero_home-playsection-1 p,
-  .aero_home_article_section p ,
-  .aero_rating_overallrating{
+  .aero_home_article_section p,
+  .aero_rating_overallrating {
     font-size: 1.5rem;
     line-height: 30px;
   }
@@ -582,20 +583,20 @@ font-size: 0.6rem;
   .aero_home-headerimg-wrapper > img {
     height: 400px;
   }
-  .aero_logo_social_wrap{
+  .aero_logo_social_wrap {
     flex-direction: row;
     justify-content: space-between;
   }
-  .aero_social_icon{
+  .aero_social_icon {
     width: 50px;
     height: 50px;
     font-size: 1.5rem;
   }
 
-  .aero_social_icon:hover{
+  .aero_social_icon:hover {
     color: var(--primary-color);
     border-color: var(--primary-color);
-    }
+  }
 
   .aero_footer_col-4-wrapper {
     flex-wrap: nowrap;
