@@ -21,9 +21,11 @@ const Header = async ({ location_slug }) => {
     .sort((a, b) => a.navName.localeCompare(b.navName));
 
   const booknow = dataconfig?.filter((item) => item.key === "estorebase");
+  const topheader = dataconfig?.filter((item) => item.key === "top-header");
+
   return (
     <header>
-      <TopHeader />
+      {topheader[0]?.value && <TopHeader topheader={topheader} />}
       <section className="d-flex aero-col-3">
         <div className="aero-menu-location app-container">
           <div className="d-flex-center aero_menu_location_icon">
