@@ -66,7 +66,7 @@ const MotionImage = ({ header_image, waiver }) => {
                 }}
               >
                 <h1>{item.title}</h1>
-                <p>{item.smalltext}</p>
+                <p dangerouslySetInnerHTML={{ __html: item.smalltext }} />
                 <div className="aero-btn-booknow">
                   <Link href={waiver[0].value} target="_blank">
                     <motion.button

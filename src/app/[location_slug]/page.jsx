@@ -56,6 +56,7 @@ const Home = async ({ params }) => {
   ]);
 
   const waiver = dataconfig?.filter((item) => item.key === "waiver");
+  const homepageSection1 = dataconfig?.filter((item) => item.key === "homepageSection1");
   const promotionPopup = dataconfig?.filter(
     (item) => item.key === "promotion-popup"
   );
@@ -71,7 +72,7 @@ const Home = async ({ params }) => {
       <MotionImage header_image={header_image} waiver={waiver} />
       <section className="aero_home-actionbtn-bg">
         <section className="aero-max-container aero_home-actionbtn">
-          <h2 className="d-flex-center">JUMP STRIGHT TO</h2>
+          <h2 className="d-flex-center">JUMP STRAIGHT TO</h2>
           <section className="aero_home-actionbtn-wrap">
             <Link
               href={`/${location_slug}/attractions`}
@@ -114,10 +115,7 @@ const Home = async ({ params }) => {
           <section className="aero-max-container aero_home-playsection-1 d-flex-dir-col">
             <h2>THERE IS SO MUCH TO DO AT AEROSPORTS!</h2>
             <p>
-              Every park feature and all the fun includes in your Aerosports
-              hourly or multi visit pass. Prepare yourself to fly over our huge
-              trampoline areas. duck and dive through extreme dodgeball and dunk
-              your heart out in the slam zone.
+              {homepageSection1}
             </p>
             <h2>Explore attractions</h2>
           </section>
