@@ -19,12 +19,14 @@ const locationTrackingId1='test' ;
       switch (locationSlug) {
         case 'london':
           setLocationTrackingId('G-L59BND7FS0');
+          
           break;
         case 'windsor':
           setLocationTrackingId('G-KWJLE4VJRW');
           break;
         case 'st-catharines':
           console.log('tracking stc')
+          locationTrackingId1='G-CJJLRQ2Q2Y'
           setLocationTrackingId('G-CJJLRQ2Q2Y');
           break;
         case 'oakville':
