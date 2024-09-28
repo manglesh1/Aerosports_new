@@ -18,10 +18,12 @@ export default function GoogleAnalytics() {
       // Dynamically set Google Analytics ID based on location
       switch (locationSlug) {
         case 'london':
+          console.log('tracking london')
           setLocationTrackingId('G-L59BND7FS0');
-          
+         
           break;
         case 'windsor':
+          console.log('tracking windsor')
           setLocationTrackingId('G-KWJLE4VJRW');
           break;
         case 'st-catharines':
@@ -29,6 +31,7 @@ export default function GoogleAnalytics() {
          setLocationTrackingId('G-CJJLRQ2Q2Y');
           break;
         case 'oakville':
+          console.log('tracking oakville')
           setLocationTrackingId('G-D5W5H2N64H');
           break;
         default:
@@ -66,7 +69,7 @@ export default function GoogleAnalytics() {
       )}
 
       {/* Location-specific Google Analytics */}
-      {locationTrackingId && (
+      {(
         <>
           <Script
             strategy="afterInteractive"
