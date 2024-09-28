@@ -4,11 +4,11 @@ import { useRouter } from "next/navigation";  // Use from next/navigation for Ap
 import { useEffect, useState } from "react";
 import Script from "next/script";
 
-export default function GoogleAnalytics() {
-  const router = useRouter();
+export default function GoogleAnalytics() { 
   const [locationTrackingId, setLocationTrackingId] = useState("");
+  const router = useRouter();
   const globalTrackingId = 'G-1TETQERPZN';  // Global Google Analytics ID
-const locationTrackingId1='test' ;
+
   useEffect(() => {
     if (router) {  // Ensure the router is available
       const pathname = window.location.pathname;  // Use window for client-side pathname
@@ -26,8 +26,7 @@ const locationTrackingId1='test' ;
           break;
         case 'st-catharines':
           console.log('tracking stc')
-          locationTrackingId1='G-CJJLRQ2Q2Y'
-          setLocationTrackingId('G-CJJLRQ2Q2Y');
+         setLocationTrackingId('G-CJJLRQ2Q2Y');
           break;
         case 'oakville':
           setLocationTrackingId('G-D5W5H2N64H');
@@ -67,7 +66,7 @@ const locationTrackingId1='test' ;
       )}
 
       {/* Location-specific Google Analytics */}
-      {(
+      {locationTrackingId && (
         <>
           <Script
             strategy="afterInteractive"

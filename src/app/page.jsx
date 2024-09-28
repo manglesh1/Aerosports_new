@@ -34,7 +34,7 @@ export default async function Home() {
                 />
                 <h2>{card.desc}</h2>
                 <p>{card.address}</p>
-                <Link href={`/${card.locations}`}>
+                <Link href={`https://www.aerosportsparks.ca/${card.locations}`}>
                   <button>
                     <span>SELECT THIS PARK</span>
                   </button>
