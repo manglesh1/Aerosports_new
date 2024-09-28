@@ -16,10 +16,13 @@ export async function generateMetadata({ params }) {
   const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL;
   const data = await fetchData(
     `${API_URL}/fetchpagedata?location=${location_slug}&page=home`
+    
   );
+  console.log( `${API_URL}/fetchpagedata?location=${location_slug}&page=home`);
+  console.log('home page data');
 
   const header_image = data
-    ?.filter((item) => item.pageid === "home")
+    ?.filter((item) => item.path === "home")
     ?.map((item) => ({
       title: item?.metatitle,
       description: item?.metadescription,
@@ -37,7 +40,7 @@ export async function generateMetadata({ params }) {
       description: header_image[0]?.description,
       images: [
         {
-          url: "https://www.aerosportsparks.ca/assets/image/logo/logo_white.png",
+          url: "https://storage.googleapis.com/aerosports/logo_white.png",
         },
       ],
     },
@@ -45,23 +48,27 @@ export async function generateMetadata({ params }) {
 }
 
 const Home = async ({ params }) => {
+  
   const location_slug = params?.location_slug;
   const API_URL = process.env.NEXT_PUBLIC_API_URL;
 
   const [data, dataconfig] = await Promise.all([
-    fetchData(`${API_URL}/fetchmenudata?location=${location_slug}`),
+    fetchData(`${API_URL}/fetchmenudata1?location=${location_slug}`),
     fetchData(
       `${API_URL}/fetchsheetdata?sheetname=config&location=${location_slug}`
     ),
   ]);
 
+
   const waiver = dataconfig?.filter((item) => item.key === "waiver");
-  const homepageSection1 = dataconfig?.filter((item) => item.key === "homepageSection1");
+  const homepageSection1 = dataconfig?.filter((item) => item.key === "homepageSection1")?.[0]?.value??"";
+  
   const promotionPopup = dataconfig?.filter(
     (item) => item.key === "promotion-popup"
   );
-  const header_image = data?.filter((item) => item.pageid === "home");
+  const header_image = data?.filter((item) => item.path === "home");
   const attractionsData = getDataByParentId(data, "attractions");
+
   const blogsData = getDataByParentId(data, "blogs");
 
   return (

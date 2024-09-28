@@ -14,7 +14,7 @@ export async function generateMetadata({ params }) {
 
   
   const kidsmetadata = data
-    ?.filter((item) => item.pageid === "kids-birthday-parties")
+    ?.filter((item) => item.path === "kids-birthday-parties")
     ?.map((item) => ({
       title: item?.metatitle,
       description: item?.metadescription,
@@ -47,7 +47,7 @@ const Page = async ({ params }) => {
 
   const waiver = dataconfig?.filter((item) => item.key === "waiver");
   const header_image = data?.filter(
-    (item) => item.pageid === "kids-birthday-parties"
+    (item) => item.path === "kids-birthday-parties"
   );
 
   return (

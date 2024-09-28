@@ -4,6 +4,7 @@ import "./styles.css";
 import logo_white from "@public/assets/images/city/logo_white.png";
 import { fetchData } from "./utils/fetchData";
 import LocationButton from "./components/LocationButton";
+import GoogleAnalytics from "./components/GoogleAnalytics";
 
 export default async function Home() {
   const apiUrl = process.env.NEXT_PUBLIC_API_URL;
@@ -12,7 +13,9 @@ export default async function Home() {
     `${apiUrl}/fetchsheetdata?sheetname=locations`
   );
   return (
+    
     <main className="aero-bg">
+     
       <section className="aero-max-container aero-bg-padding">
         <div className="aero-img-heading">
           <Image src={logo_white} alt="logo" />

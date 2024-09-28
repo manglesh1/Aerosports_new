@@ -5,6 +5,8 @@ export const fetchData = async (url) => {
       throw new Error("Network response was not ok");
     }
     const data = await response.json();
+
+   // console.log('fetchdata'+url);
     return data;
   } catch (error) {
     throw error;

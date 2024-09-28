@@ -9,12 +9,12 @@ import TopHeader from "./smallComponents/TopHeader";
 const Header = async ({ location_slug }) => {
   const API_URL = process.env.NEXT_PUBLIC_API_URL;
   const [data, dataconfig] = await Promise.all([
-    fetchData(`${API_URL}/fetchmenudata?location=${location_slug}`),
+    fetchData(`${API_URL}/fetchmenudata1?location=${location_slug}`),
     fetchData(
       `${API_URL}/fetchsheetdata?sheetname=config&location=${location_slug}`
     ),
   ]);
-
+  
   const navList = data
     .filter((item) => item.isactive === 1)
     .map((item) => ({ navName: item.desc, navUrl: item.path.toLowerCase() }))
@@ -49,7 +49,7 @@ const Header = async ({ location_slug }) => {
         <div>
           <Link href={`/${location_slug}`}>
             <Image
-              src="https://www.aerosportsparks.ca/assets/image/logo/logo_white.png"
+              src="https://storage.googleapis.com/aerosports/logo_white.png"
               height="71"
               width="71"
               alt="logo"

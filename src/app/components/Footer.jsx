@@ -64,7 +64,7 @@ const Footer = async ({ location_slug }) => {
         <div className="d-flex-center aero_logo_social_wrap">
           <Link href={`/${location_slug}`}>
             <Image
-              src="https://www.aerosportsparks.ca/assets/image/logo/logo_white.png"
+              src="https://storage.googleapis.com/aerosports/logo_white.png"
               alt="footer logo"
               width={100}
               height={93.42}
@@ -154,7 +154,7 @@ const Footer = async ({ location_slug }) => {
                           height={50}
                         />
                         <div>
-                          <h6>{item?.pageid}</h6>
+                          <h6>{item?.path}</h6>
                           <p>{item?.title}</p>
                         </div>
                       </article>
