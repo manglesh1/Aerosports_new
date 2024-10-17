@@ -15,6 +15,7 @@ export const metadata = {
   robots: {
     index: true,
   },
+  "google-site-verification": "SJEMRcmJ9QPGTx8rq7FFoeypG8tObUDWFunTqQXgRx8",
   alternates: {
     canonical: BASE_URL + '/',
   },

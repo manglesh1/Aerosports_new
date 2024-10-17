@@ -10,86 +10,86 @@ export default function GoogleAnalytics() {
   const globalTrackingId = 'G-1TETQERPZN';  // Global Google Analytics ID
 
   useEffect(() => {
-    if (router) {  // Ensure the router is available
-      const pathname = window.location.pathname;  // Use window for client-side pathname
-      const locationSlug = pathname.split("/")[1];
-      console.log('locationsss ' + pathname +' '+ locationSlug );
- 
-      // Dynamically set Google Analytics ID based on location
-      switch (locationSlug) {
-        case 'london':
-          console.log('tracking london')
-          setLocationTrackingId('G-L59BND7FS0');
-         
-          break;
-        case 'windsor':
-          console.log('tracking windsor')
-          setLocationTrackingId('G-KWJLE4VJRW');
-          break;
-        case 'st-catharines':
-          console.log('tracking stc')
-         setLocationTrackingId('G-CJJLRQ2Q2Y');
-          break;
-        case 'oakville':
-          console.log('tracking oakville')
-          setLocationTrackingId('G-D5W5H2N64H');
-          break;
-        default:
-          setLocationTrackingId(''); // Fallback if no valid location is found
-          break;
-      
+    const pathname = window.location.pathname;  // Use window for client-side pathname
+    const locationSlug = pathname.split("/")[1];
+
+    console.log('Current path: ', pathname, ' | Location: ', locationSlug );
+
+    // Dynamically set Google Analytics ID based on location
+    switch (locationSlug) {
+      case 'london':
+        console.log('Tracking for London');
+        setLocationTrackingId('G-L59BND7FS0');
+        break;
+      case 'windsor':
+        console.log('Tracking for Windsor');
+        setLocationTrackingId('G-KWJLE4VJRW');
+        break;
+      case 'st-catharines':
+        console.log('Tracking for St. Catharines');
+        setLocationTrackingId('G-CJJLRQ2Q2Y');
+        break;
+      case 'oakville':
+        console.log('Tracking for Oakville');
+        setLocationTrackingId('G-D5W5H2N64H');
+        break;
+      default:
+        console.log('No location-specific tracking');
+        setLocationTrackingId(''); // Fallback if no valid location is found
+        break;
+    }
+
+    // Track page view with global GA ID
+    if (window.gtag) {
+      window.gtag('config', globalTrackingId, {
+        page_path: pathname,
+      });
+
+      // Track page view with location-specific GA ID (if set)
+      if (locationTrackingId) {
+        window.gtag('config', locationTrackingId, {
+          page_path: pathname,
+        });
       }
     }
-  }, [router]);
+
+  }, [router.pathname, locationTrackingId, globalTrackingId]);
 
   return (
     <>
-      {/* Global Google Analytics */}
-      {globalTrackingId && (
-        <>
-          <Script
-            strategy="afterInteractive"
-            src={`https://www.googletagmanager.com/gtag/js?id=${globalTrackingId}`}
-          />
-          <Script
-            id="google-analytics-global"
-            strategy="afterInteractive"
-            dangerouslySetInnerHTML={{
-              __html: `
-                window.dataLayer = window.dataLayer || [];
-                function gtag(){dataLayer.push(arguments);}
-                gtag('js', new Date());
-                gtag('config', '${globalTrackingId}', {
-                  page_path: window.location.pathname,
-                });
-              `,
-            }}
-          />
-        </>
-      )}
+      {/* Load Global Google Analytics */}
+      <Script
+        strategy="afterInteractive"
+        src={`https://www.googletagmanager.com/gtag/js?id=${globalTrackingId}`}
+      />
+      <Script
+        id="google-analytics-global"
+        strategy="afterInteractive"
+        dangerouslySetInnerHTML={{
+          __html: `
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', '${globalTrackingId}', {
+              page_path: window.location.pathname,
+            });
+          `,
+        }}
+      />
 
-      {/* Location-specific Google Analytics */}
-      {(
-        <>
-          <Script
-            strategy="afterInteractive"
-            src={`https://www.googletagmanager.com/gtag/js?id=${locationTrackingId}`}
-          />
-          <Script
-            id="google-analytics-location"
-            strategy="afterInteractive"
-            dangerouslySetInnerHTML={{
-              __html: `
-                window.dataLayer = window.dataLayer || [];
-                function gtag(){dataLayer.push(arguments);}
-                gtag('js', new Date());
-                gtag('config', '${locationTrackingId}', {
-                  page_path: window.location.pathname,
-                });
-              `,
-            }}
-          />
-        </>
+      {/* Only render location-specific tracking if there is a locationTrackingId */}
+      {locationTrackingId && (
+        <Script
+          id="google-analytics-location"
+          strategy="afterInteractive"
+          dangerouslySetInnerHTML={{
+            __html: `
+              window.gtag('config', '${locationTrackingId}', {
+                page_path: window.location.pathname,
+              });
+            `,
+          }}
+        />
       )}
     </>
   );

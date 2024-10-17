@@ -34,11 +34,11 @@ export default async function Home() {
                 />
                 <h2>{card.desc}</h2>
                 <p>{card.address}</p>
-                <Link href={`https://www.aerosportsparks.ca/${card.locations}`}>
+                <a href={`/${card.locations}`}>
                   <button>
                     <span>SELECT THIS PARK</span>
                   </button>
-                </Link>
+                </a>
                 {/* <LocationButton location={card.locations} /> */}
               </div>
             );

@@ -36,8 +36,11 @@ const Category = async ({ params }) => {
   const data = await fetchData(
     `${API_URL}/fetchmenudata?location=${location_slug}`
   );
+ // console.log(data);
   const attractionsData = getDataByParentId(data, category_slug);
-
+  console.log('attractiondata');
+  console.log(attractionsData);
+  
   return (
     <main>
       <section>
@@ -66,6 +69,7 @@ const Category = async ({ params }) => {
                         <div className="aero_category_section_card_desc">
                           <h2>{item?.desc}</h2>
                           <p>
+                            
                             {item?.smalltext?.slice(0, 50) + "..."}{" "}
                             <span>READ MORE</span>
                           </p>
