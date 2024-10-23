@@ -6,7 +6,7 @@ import { fetchData } from "@/utils/fetchData";
 import MotionImage from "@/components/MotionImage";
 
 export async function generateMetadata({ params }) {
-  const { location_slug, subcategory_slug } = params;
+  const { location_slug, subcategory_slug,category_slug } = params;
   const API_URL = process.env.NEXT_PUBLIC_API_URL;
   const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL;
 
@@ -17,14 +17,16 @@ export async function generateMetadata({ params }) {
   const attractionsData = getDataByParentId(data, subcategory_slug)?.map(
     (item) => ({
       title: item?.metatitle,
-      description: item?.metadescription,
+      description: item?.metadescription
+      
+
     })
   );
   return {
     title: attractionsData[0]?.title,
     description: attractionsData[0]?.description,
     alternates: {
-      canonical: BASE_URL + "/" + location_slug + "/" + subcategory_slug,
+      canonical: BASE_URL + "/" + location_slug + "/" + category_slug + "/" + subcategory_slug,
     },
   };
 }
