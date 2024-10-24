@@ -1,7 +1,7 @@
 export const fetchData = async (url, options = {}) => {
   try {
     //console.log(`Fetching data from: ${url}`); // Log the URL being called
-
+console.log('url:' +url)
     const response = await fetch(url, {
       method: 'GET',
       headers: {
@@ -10,7 +10,7 @@ export const fetchData = async (url, options = {}) => {
         ...options.headers,
       },
       ...options, // Merge in other fetch options if necessary
-    });
+    },{cache: 'no-store'});
 
     // Log status and response headers for debugging
     //console.log(`Response status: ${response.status}`);

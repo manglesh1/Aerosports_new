@@ -60,7 +60,9 @@ const Subcategory = async ({ params }) => {
             dangerouslySetInnerHTML={{ __html: attractionsData[0].section1 }}
           ></div>
         </section>
+        
       </section>
+      
     </main>
   );
 };

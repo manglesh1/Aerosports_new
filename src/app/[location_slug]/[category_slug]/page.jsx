@@ -40,7 +40,7 @@ const Category = async ({ params }) => {
   const attractionsData = getDataByParentId(data, category_slug);
   console.log('attractiondata');
   console.log(attractionsData);
-  
+  const seosection = data?.filter((item) => item.path === category_slug)?.[0]?.seosection;
   return (
     <main>
       <section>
@@ -69,7 +69,6 @@ const Category = async ({ params }) => {
                         <div className="aero_category_section_card_desc">
                           <h2>{item?.desc}</h2>
                           <p>
-                            
                             {item?.smalltext?.slice(0, 50) + "..."}{" "}
                             <span>READ MORE</span>
                           </p>
@@ -81,6 +80,11 @@ const Category = async ({ params }) => {
               })}
             </section>
           </section>
+        </section>
+      </section>
+      <section className="aero_home_article_section">
+      <section className="aero-max-container">
+        <div dangerouslySetInnerHTML={{ __html: seosection }} />
         </section>
       </section>
     </main>

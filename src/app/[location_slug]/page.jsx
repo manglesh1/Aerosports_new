@@ -20,7 +20,7 @@ export async function generateMetadata({ params }) {
   );
   console.log( `${API_URL}/fetchpagedata?location=${location_slug}&page=home`);
   console.log('home page data');
-
+ 
   const header_image = data
     ?.filter((item) => item.path === "home")
     ?.map((item) => ({
@@ -67,6 +67,7 @@ const Home = async ({ params }) => {
     (item) => item.key === "promotion-popup"
   );
   const header_image = data?.filter((item) => item.path === "home");
+  const seosection = data?.filter((item) => item.path === "home")?.[0]?.seosection;
   const attractionsData = getDataByParentId(data, "attractions");
 
   const blogsData = getDataByParentId(data, "blogs");
@@ -233,6 +234,11 @@ const Home = async ({ params }) => {
             <Countup num={6} />
             <div>Fun Attractions</div>
           </article>
+        </section>
+      </section>
+      <section className="aero_home_article_section">
+      <section className="aero-max-container">
+        <div dangerouslySetInnerHTML={{ __html: seosection }} />
         </section>
       </section>
     </main>
