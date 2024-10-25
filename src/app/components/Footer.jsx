@@ -70,12 +70,7 @@ const Footer = async ({ location_slug }) => {
               height={93.42}
             />
           </Link>
-          <div className="aero_social_icon_wrap">
-            { facebook[0] &&  <Link href={`https://www.facebook.com/${facebook[0]}`} target="_blank" className="aero_social_icon"><RiFacebookFill /></Link>}
-            { twitter[0] &&  <Link href={`https://x.com/${twitter[0]}`} target="_blank" className="aero_social_icon"><BiLogoTwitter /></Link>}
-            { insta[0] &&  <Link href={`https://www.instagram.com/${insta[0]}`} target="_blank" className="aero_social_icon"><GrInstagram /></Link>}
-            { tiktok[0] &&  <Link href={`https://www.tiktok.com/${tiktok[0]}`} target="_blank" className="aero_social_icon"><FaTiktok /></Link>}
-          </div>
+         
         </div>
         <section className="aero_footer_col-4-wrapper">
           <ul>
