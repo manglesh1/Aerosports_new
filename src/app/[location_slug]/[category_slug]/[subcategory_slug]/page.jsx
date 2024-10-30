@@ -46,6 +46,7 @@ const Subcategory = async ({ params }) => {
 
   const waiver = dataconfig?.filter((item) => item.key === "waiver");
   const attractionsData = getDataByParentId(data, subcategory_slug);
+  console.log(attractionsData);
   const header_image = getDataByParentId(data, subcategory_slug);
 
   return (
@@ -57,7 +58,7 @@ const Subcategory = async ({ params }) => {
         <section className="aero-max-container">
           <div
             className="subcategory_main_section"
-            dangerouslySetInnerHTML={{ __html: attractionsData[0].section1 }}
+            dangerouslySetInnerHTML={{ __html: attractionsData[0]?.section1  || ''}}
           ></div>
         </section>
         

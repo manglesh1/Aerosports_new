@@ -1,5 +1,19 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  async redirects() {
+    return [
+      {
+        source: "/brampton",
+        destination: "/oakville",
+        permanent: true,
+      },
+      {
+        source: "/oakville/programs/summerpass",
+        destination: "/oakville/programs/camps",
+        permanent: true,
+      },
+    ];
+  },
   images: {
     remotePatterns: [
       {

@@ -16,11 +16,10 @@ export async function generateMetadata({ params }) {
   const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL;
   const data = await fetchData(
     `${API_URL}/fetchpagedata?location=${location_slug}&page=home`
-    
   );
-  console.log( `${API_URL}/fetchpagedata?location=${location_slug}&page=home`);
-  console.log('home page data');
- 
+  console.log(`${API_URL}/fetchpagedata?location=${location_slug}&page=home`);
+  console.log("home page data");
+
   const header_image = data
     ?.filter((item) => item.path === "home")
     ?.map((item) => ({
@@ -48,7 +47,6 @@ export async function generateMetadata({ params }) {
 }
 
 const Home = async ({ params }) => {
-  
   const location_slug = params?.location_slug;
   const API_URL = process.env.NEXT_PUBLIC_API_URL;
 
@@ -59,15 +57,20 @@ const Home = async ({ params }) => {
     ),
   ]);
 
+  console.log(`${API_URL}/fetchpagedata?location=${location_slug}&page=home`);
+  console.log("home page data");
 
   const waiver = dataconfig?.filter((item) => item.key === "waiver");
-  const homepageSection1 = dataconfig?.filter((item) => item.key === "homepageSection1")?.[0]?.value??"";
-  
+  const homepageSection1 =
+    dataconfig?.filter((item) => item.key === "homepageSection1")?.[0]?.value ??
+    "";
+
   const promotionPopup = dataconfig?.filter(
     (item) => item.key === "promotion-popup"
   );
   const header_image = data?.filter((item) => item.path === "home");
-  const seosection = data?.filter((item) => item.path === "home")?.[0]?.seosection;
+  const seosection = data?.filter((item) => item.path === "home")?.[0]
+    ?.seosection;
   const attractionsData = getDataByParentId(data, "attractions");
 
   const blogsData = getDataByParentId(data, "blogs");
@@ -122,9 +125,7 @@ const Home = async ({ params }) => {
         <section className="aero_home-playsection-bg">
           <section className="aero-max-container aero_home-playsection-1 d-flex-dir-col">
             <h2>THERE IS SO MUCH TO DO AT AEROSPORTS!</h2>
-            <p>
-              {homepageSection1}
-            </p>
+            <p>{homepageSection1}</p>
             <h2>Explore attractions</h2>
           </section>
         </section>
@@ -237,8 +238,8 @@ const Home = async ({ params }) => {
         </section>
       </section>
       <section className="aero_home_article_section">
-      <section className="aero-max-container">
-        <div dangerouslySetInnerHTML={{ __html: seosection }} />
+        <section className="aero-max-container">
+          <div dangerouslySetInnerHTML={{ __html: seosection }} />
         </section>
       </section>
     </main>

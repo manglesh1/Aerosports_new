@@ -24,7 +24,7 @@ const PromotionModal = ({promotionPopup}) => {
   return (
     <div>
       <Modal isOpen={isModalOpen} onClose={closeModal}>
-        <div dangerouslySetInnerHTML={{__html: sanitizedHTML}} className="aero_promotion_popup"></div>
+        <div dangerouslySetInnerHTML={{__html: sanitizedHTML || ''}} className="aero_promotion_popup"></div>
       </Modal>
     </div>
   );

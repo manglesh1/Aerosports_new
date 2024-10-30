@@ -84,7 +84,7 @@ const Category = async ({ params }) => {
       </section>
       <section className="aero_home_article_section">
       <section className="aero-max-container">
-        <div dangerouslySetInnerHTML={{ __html: seosection }} />
+        <div dangerouslySetInnerHTML={{ __html: seosection || '' }} />
         </section>
       </section>
     </main>

@@ -1,11 +1,12 @@
 import React, { memo } from "react";
-import { FaStar } from "react-icons/fa";
+import star from "@public/assets/images/home/star.png";
+import Image from "next/image";
 
 const renderStars = (rating) => {
   const stars = [];
   const fullStars = Math.floor(rating);
   for (let i = 0; i < fullStars; i++) {
-    stars.push(<FaStar color="var(--primary-color)" key={`star-${i}`} />);
+    stars.push( <Image src={star} width={18} height={18} key={`star-${i}`}/>);
   }
   return stars;
 };
@@ -21,7 +22,7 @@ const RatingComponent = memo(({ ratingdata }) => {
           const stars = renderStars(review.rating); 
           return (
             <article key={i} className="aero_rating_card">
-             
+             <h4>Rating : &nbsp; {stars}</h4>
               <p>{review.text}  <span className="aero_rating_readmore">...Read More</span></p>
               <h5>{review.author_name}</h5>
              
