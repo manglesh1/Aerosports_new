@@ -52,7 +52,6 @@ const Page = async ({ params }) => {
 
   return (
     <main>
-      {header_image && (
         <section>
           <MotionImage header_image={header_image} waiver={waiver} />
         </section>
