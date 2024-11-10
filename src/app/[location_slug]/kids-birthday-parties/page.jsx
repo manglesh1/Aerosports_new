@@ -52,9 +52,12 @@ const Page = async ({ params }) => {
 
   return (
     <main>
-      <section>
-        <MotionImage header_image={header_image} waiver={waiver} />
-      </section>
+      {header_image && (
+        <section>
+          <MotionImage header_image={header_image} waiver={waiver} />
+        </section>
+      )}
+
       <section className="subcategory_main_section-bg">
         <section className="aero-max-container">
           <article className="aero_bp_2_main_section">

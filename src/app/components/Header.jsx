@@ -5,6 +5,7 @@ import Image from "next/image";
 import { fetchData } from "@/utils/fetchData";
 import MenuButton from "./smallComponents/MenuButton";
 import TopHeader from "./smallComponents/TopHeader";
+import { MdOutlinePermContactCalendar } from "react-icons/md";
 
 const Header = async ({ location_slug }) => {
   const API_URL = process.env.NEXT_PUBLIC_API_URL;
@@ -66,6 +67,14 @@ const Header = async ({ location_slug }) => {
           </Link>
         </div>
         <div className="aero-btn-booknow desktop-container">
+          <Link
+            href={`/${location_slug}/contactus`}
+            className="aero-header-contactus-btn aero-d-changelocation"
+            style={{ color: "white" }}
+          >
+            <MdOutlinePermContactCalendar />
+            <span>Inquiry Now</span>
+          </Link>
           <Link href={booknow[0]?.value} target="_blank">
             {" "}
             <button>book now</button>
@@ -87,9 +96,17 @@ const Header = async ({ location_slug }) => {
                 );
               })}
           </div>
-          <div style={{ position: "relative" }}>
+          <div style={{ position: "relative" }} className="aero-header-changelocation-wrap">
             <Link href="/" className="aero-app-changelocation app-container">
               {location_slug}
+            </Link>
+            <Link
+              href={`/${location_slug}/contactus`}
+              className="aero-header-contactus-btn aero-app-changelocation app-container"
+              style={{ marginRight:"0"}}
+            >
+              <MdOutlinePermContactCalendar />
+              <span>Inquiry</span>
             </Link>
           </div>
         </nav>

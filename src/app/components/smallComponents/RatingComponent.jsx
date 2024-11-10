@@ -6,7 +6,7 @@ const renderStars = (rating) => {
   const stars = [];
   const fullStars = Math.floor(rating);
   for (let i = 0; i < fullStars; i++) {
-    stars.push( <Image src={star} width={18} height={18} key={`star-${i}`}/>);
+    stars.push( <Image src={star} alt="star icon" width={18} height={18} key={`star-${i}`}/>);
   }
   return stars;
 };

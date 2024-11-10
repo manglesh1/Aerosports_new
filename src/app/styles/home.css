@@ -30,7 +30,7 @@
   flex-direction: column;
   width: 100%;
   position: absolute;
-  top: 102px;
+  top: 99px;
   left: 0;
   text-align: center;
   align-items: unset;
@@ -69,6 +69,11 @@
   color: var(--white-color);
   transition: color 0.2s ease-out, background 0.2s ease-out;
   text-transform: uppercase;
+}
+.aero-header-changelocation-wrap{
+display: flex;
+justify-content: space-around;
+align-items: center;
 }
 .aero-app-changelocation {
   font-size: 1.25rem;
@@ -127,6 +132,11 @@
   box-shadow: 0 0.125rem #a0054c, 0 0.25rem #00000020,
     inset -0.0625rem 0 #ffffff80, inset 0.0625rem 0 #ffffff80,
     inset 0 0.0625rem var(--white-color);
+}
+.aero-header-contactus-btn{
+      display: inline-flex;
+    gap: 1rem;
+    margin-right: 1em;
 }
 .aero-btn-kidslearnmore {
   position: absolute;
@@ -251,10 +261,8 @@
   text-align: center;
 }
 
-.aero_home-playsection-2,
 .aero_home-actionbtn-wrap,
 .aero_home_article_card-wrapper,
-.aero_home_feature_section,
 .aero_home_BPJ_wrapper,
 .aero_rating_wrapper {
   display: grid;
@@ -265,8 +273,15 @@
 .aero_home_feature_section {
   padding: 4em 1em;
 }
-.aero_home-playsection-2 article{
- overflow: hidden;
+.aero_home-playsection-2,
+.aero_home_feature_section {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 1rem;
+  padding: 2em 0.5em;
+}
+.aero_home-playsection-2 article {
+  overflow: hidden;
 }
 .aero_home-playsection-2 article img,
 .aero_home_article_card img {
@@ -274,14 +289,14 @@
   height: auto;
   transition: 0.5s ease-in-out;
 }
-.aero_home-playsection-2 article:hover > img{
+.aero_home-playsection-2 article:hover > img {
   transform: scale(1.05);
 }
 :is(.aero_home-playsection-2 article, .aero_home_article_card) > img {
   aspect-ratio: 3/2;
 }
 .aero_home-play-small-img span {
-  font-size: 1.75rem;
+  font-size: 0.8rem;
   font-weight: 500;
   color: var(--white-color);
   text-transform: uppercase;
@@ -374,6 +389,28 @@
   font-size: 1.2rem;
   font-weight: 500;
   padding: 0.5em 0;
+}
+
+/* Seo section  */
+.aero_home_seo_section {
+  color: var(--primary-color);
+  padding: 0 1em;
+}
+.aero_home_seo_section h2 {
+  font-size: 1rem;
+  margin-bottom: 1em;
+}
+.aero_home_seo_section p {
+  font-size: 0.8rem;
+  margin-bottom: 2em;
+}
+.aero_home_seo_section ul {
+  margin-bottom: 2.5em;
+}
+.aero_home_seo_section ul li {
+  font-size: 0.7rem;
+  margin-bottom: 1em;
+  margin-left: 2em;
 }
 
 /* footer css start  */
@@ -472,10 +509,10 @@
   color: var(--white-color);
   transition: all 0.5s ease-in-out;
 }
- .aero_social_icon img {
-    background: var(--white-color);
-    border-radius: 50%;
-  }
+.aero_social_icon img {
+  background: var(--white-color);
+  border-radius: 50%;
+}
 
 .aero_footer_col-4-wrapper {
   display: flex;
@@ -542,10 +579,8 @@
   .aero-btn-kidslearnmore {
     bottom: 3em;
   }
-  .aero_home-playsection-2,
   .aero_home-actionbtn-wrap,
-  .aero_home_article_card-wrapper,
-  .aero_home_feature_section {
+  .aero_home_article_card-wrapper {
     gap: 2rem;
   }
 
@@ -558,6 +593,12 @@
   .aero_rating_overallrating {
     font-size: 1.5rem;
     line-height: 30px;
+  }
+
+  .aero_home-playsection-2,
+  .aero_home_feature_section {
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
   }
 
   .aero_home-headerimg-wrapper article {
@@ -585,8 +626,21 @@
   .aero_home_BPJ_wrapper span {
     font-size: 2rem;
   }
+  .aero_home-play-small-img span {
+    font-size: 1.75rem;
+  }
   .aero_home_feature_section-card div:first-child {
     font-size: 2rem;
+  }
+
+  .aero_home_seo_section h2 {
+    font-size: 1.5rem;
+  }
+  .aero_home_seo_section p {
+    font-size: 1rem;
+  }
+  .aero_home_seo_section ul li {
+    font-size: 0.9rem;
   }
   /* footer  */
   .aero_home-headerimg-wrapper > img {

@@ -9,14 +9,13 @@ import { fetchData } from "@/utils/fetchData";
 import Countup from "@/components/Countup";
 import MotionImage from "@/components/MotionImage";
 import PromotionModal from "@/components/model/PromotionModal";
+import BlogCard from "@/components/smallComponents/BlogCard";
 
 export async function generateMetadata({ params }) {
   const location_slug = params?.location_slug;
   const API_URL = process.env.NEXT_PUBLIC_API_URL;
   const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL;
-  const data = await fetchData(
-    `${API_URL}/fetchpagedata?location=${location_slug}&page=home`
-  );
+  const data = await fetchData(`${API_URL}/fetchpagedata?location=${location_slug}&page=home`);
   console.log(`${API_URL}/fetchpagedata?location=${location_slug}&page=home`);
   console.log("home page data");
 
@@ -72,8 +71,51 @@ const Home = async ({ params }) => {
   const seosection = data?.filter((item) => item.path === "home")?.[0]
     ?.seosection;
   const attractionsData = getDataByParentId(data, "attractions");
-
   const blogsData = getDataByParentId(data, "blogs");
+
+  const stCatharinesSchema = {
+    "@context": "https://schema.org",
+    "@type": "AmusementPark",
+    additionalType: [
+      "https://schema.org/SportsActivityLocation",
+      "https://schema.org/EntertainmentBusiness",
+      "https://schema.org/GolfCourse",
+      "https://schema.org/TouristAttraction",
+    ],
+    name: "AeroSports Trampoline Park",
+    description:
+      "A fun-filled trampoline park offering amusement, activities, mini golf, and kids' party services.",
+    address: {
+      "@type": "PostalAddress",
+      streetAddress: "333 Ontario Street",
+      addressLocality: "St. Catharines",
+      addressRegion: "ON",
+      postalCode: "L2R 5L3",
+      addressCountry: "Canada",
+    },
+    telephone: "+1-905-123-4567",
+    geo: {
+      "@type": "GeoCoordinates",
+      latitude: 43.159374,
+      longitude: -79.246862,
+    },
+    openingHours: [
+      "Mo-Th 10:00-20:00",
+      "Fr 10:00-21:00",
+      "Sa 10:00-21:00",
+      "Su 10:00-20:00",
+    ],
+    priceRange: "$$",
+    aggregateRating: {
+      "@type": "AggregateRating",
+      ratingValue: "4.5",
+      reviewCount: "150",
+    },
+    sameAs: [
+      "https://www.facebook.com/AeroSportsTrampolinePark",
+      "https://www.instagram.com/aerosportspark",
+    ],
+  };
 
   return (
     <main>
@@ -189,32 +231,7 @@ const Home = async ({ params }) => {
         <section className="aero-max-container">
           <p>POPULAR STORIES</p>
           <h2>Every Updated Article</h2>
-          <section className="aero_home_article_card-wrapper">
-            {blogsData[0]?.children &&
-              blogsData[0]?.children.map((item, i) => {
-                return (
-                  <Link
-                    key={i}
-                    href={`/${location_slug}/${item?.parentid}/${item?.path}`}
-                  >
-                    <article className="aero_home_article_card">
-                      <Image
-                        src={item?.smallimage}
-                        width={120}
-                        height={120}
-                        alt="article image"
-                        title="article image"
-                      />
-                      <div className="aero_home_article_desc">
-                        <div>{i + 1}</div>
-                        <h3>{item?.title}</h3>
-                        <p>Continue Reading...</p>
-                      </div>
-                    </article>
-                  </Link>
-                );
-              })}
-          </section>
+          <BlogCard blogsData={blogsData[0]} location_slug={location_slug} />
         </section>
       </section>
       <section className="aero_home_feature_section-bg">
@@ -238,10 +255,16 @@ const Home = async ({ params }) => {
         </section>
       </section>
       <section className="aero_home_article_section">
-        <section className="aero-max-container">
-          <div dangerouslySetInnerHTML={{ __html: seosection }} />
+        <section className="aero-max-container aero_home_seo_section">
+          <div dangerouslySetInnerHTML={{ __html: seosection || ''}} />
         </section>
       </section>
+      {location_slug === "st-catharines" && (
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(stCatharinesSchema) }}
+        />
+      )}
     </main>
   );
 };

@@ -1,6 +1,8 @@
 import { Poppins } from "next/font/google";
 import "./globals.css";
 import GoogleAnalytics from  './components/GoogleAnalytics' // Import the GoogleAnalytics component
+import { Suspense } from "react";
+import Loading from "./loading";
 
 const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL;
 
@@ -36,8 +38,9 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body className={inter.className}>
-        <GoogleAnalytics /> {/* Render the client-side Google Analytics component */}
-        {children}
+        <GoogleAnalytics />{" "}
+        {/* Render the client-side Google Analytics component */}
+        <Suspense fallback={<Loading />}>{children}</Suspense>
       </body>
     </html>
   );

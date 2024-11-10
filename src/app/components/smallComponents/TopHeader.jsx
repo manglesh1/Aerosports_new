@@ -25,7 +25,7 @@ const TopHeader = ({topheader}) => {
           <button className="modal-close" onClick={closeModal}>
             <IoCloseCircleSharp />
           </button>
-         <div dangerouslySetInnerHTML={{__html: topheader[0]?.value}}></div>
+         <div dangerouslySetInnerHTML={{__html: topheader[0]?.value || ''}}></div>
         </div>
       </>
     )
