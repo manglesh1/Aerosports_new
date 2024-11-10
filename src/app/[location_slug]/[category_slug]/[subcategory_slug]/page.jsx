@@ -55,14 +55,16 @@ const Subcategory = async ({ params }) => {
         <MotionImage header_image={header_image} waiver={waiver} />
       </section>
       <section className="subcategory_main_section-bg">
-        <section className="aero-max-container">
-          <div
-            className="subcategory_main_section"
-            dangerouslySetInnerHTML={{ __html: attractionsData[0]?.section1  || ''}}
-          ></div>
-        </section>
-        
-      </section>
+       <section className="aero-max-container">
+      <div dangerouslySetInnerHTML={{ __html: data[0]?.section1 || '' }} />
+    </section>
+  </section>
+  <section className="aero_home_article_section">
+    <section className="aero-max-container">
+      <div dangerouslySetInnerHTML={{ __html: data[0]?.seosection || '' }} />
+    </section>
+  </section>
+
       
     </main>
   );
