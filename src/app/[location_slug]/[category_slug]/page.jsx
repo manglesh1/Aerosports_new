@@ -41,6 +41,7 @@ const Category = async ({ params }) => {
   console.log('attractiondata');
   console.log(attractionsData);
   const seosection = data?.filter((item) => item.path === category_slug)?.[0]?.seosection;
+  const sectiontt = data?.filter((item) => item.path === category_slug)?.[0]?.section1;
   return (
     <main>
       <section>
@@ -84,6 +85,7 @@ const Category = async ({ params }) => {
       </section>
       <section className="aero_home_article_section">
       <section className="aero-max-container">
+         <div dangerouslySetInnerHTML={{ __html: sectiontt || '' }} />
         <div dangerouslySetInnerHTML={{ __html: seosection || '' }} />
         </section>
       </section>
