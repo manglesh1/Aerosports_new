@@ -1,19 +1,55 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  async redirects() {
-    return [
-      {
-        source: "/brampton",
-        destination: "/oakville",
-        permanent: true,
-      },
-      {
-        source: "/oakville/programs/summerpass",
-        destination: "/oakville/programs/camps",
-        permanent: true,
-      },
-    ];
-  },
+ async redirects() {
+  return [
+    {
+      source: "/brampton",
+      destination: "/oakville",
+      permanent: true,
+    },
+    {
+      source: "/oakville/programs/summerpass",
+      destination: "/oakville/programs/camps",
+      permanent: true,
+    },
+    // Dynamic redirect for any URL containing "aboutus"
+    {
+      source: "/:path*/aboutus",
+      destination: "/:path*/about-us",
+      permanent: true,
+    },
+    // Dynamic redirect for any URL containing "aboutus"
+    {
+      source: "/st-catharines/attractions/open-jumps",
+      destination: "/st-catharines/attractions/open-jump",
+      permanent: true,
+    },
+    // Dynamic redirect for any URL containing "brampton" in the path
+    {
+      source: "/:path*/brampton",
+      destination: "/oakville",
+      permanent: true,
+    },
+	{
+      source: "/:path*/contact us",
+      destination:  "/:path*/contact-us",
+      permanent: true,
+    },
+	{
+      source: "/thunderbay/:path*",
+      destination:  "/oakville",
+      permanent: true,
+    }
+	,
+	{
+      source: "/st-catharines/glow",
+      destination:  "/st-catharines/attractions/glow",
+      permanent: true,
+    }
+	
+  ];
+},
+
   images: {
     remotePatterns: [
       {
