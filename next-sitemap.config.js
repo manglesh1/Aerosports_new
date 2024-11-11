@@ -17,8 +17,9 @@ module.exports = {
 
   additionalPaths: async (config) => {
     const dynamicPaths = [];
-    const dynamicUrlsSet = new Set();  // Use Set to avoid duplicate URLs
+    const dynamicUrlsSet = new Set();
     const siteUrl = 'https://www.aerosportsparks.ca';
+    const locations = ['oakville', 'london', 'st-catharines', 'windsor'];  
 
     try {
       const API_URL = 'https://apis-351216.nn.r.appspot.com';
@@ -26,31 +27,19 @@ module.exports = {
 
       if (Array.isArray(response)) {
         response.forEach(nav => {
-          const { location, parentid, path, isactive, children } = nav;
+          const { parentid, path, isactive, children } = nav;
 
-          // Skip inactive entries
-         
-          const d= ['oakville','london','st-catharines','windsor']
-          d.forEach(l=>
-              {
-                dynamicUrlsSet.add(`${siteUrl}/${l}`);
-              }
+          if (!isactive) return;
 
-          )
-          // Process locations, split by commas, and trim any whitespace
-          const locations = location ? location.split(',').map(loc => loc.trim()) : d;
-
-          // Only generate URLs for locations that exist in the `location` field
           locations.forEach(loc => {
+            // Generate main paths
             if (!parentid || parentid.toLowerCase() === path.toLowerCase()) {
-              // URL for pages without a parent
               dynamicUrlsSet.add(`${siteUrl}/${loc}/${path.toLowerCase()}`);
             } else {
-              // URL for pages with a parent
               dynamicUrlsSet.add(`${siteUrl}/${loc}/${parentid}/${path.toLowerCase()}`);
             }
 
-            // Process children if they exist
+            // Generate URLs for child paths, if any
             if (children && Array.isArray(children)) {
               children.forEach(child => {
                 dynamicUrlsSet.add(`${siteUrl}/${loc}/${child.parentid}/${child.path}`);
@@ -59,7 +48,7 @@ module.exports = {
           });
         });
 
-        // Map the URLs to sitemap format
+        // Map URLs to the sitemap format
         dynamicUrlsSet.forEach(url => {
           dynamicPaths.push({
             loc: url,
@@ -67,11 +56,9 @@ module.exports = {
             priority: 0.7,
           });
         });
-
       } else {
         console.error('Expected an array but got:', response);
       }
-
     } catch (error) {
       console.error('Error fetching menu data:', error);
     }

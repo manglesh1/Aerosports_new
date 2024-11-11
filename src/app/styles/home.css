@@ -3,15 +3,15 @@
   gap: 0.5rem;
 }
 .aero-col-3 {
-  /* background: linear-gradient(
+  background: linear-gradient(
     90deg,
-    var(--primary-color) 0% 30%,
-    #f194be 45% 55%,
-    var(--primary-color) 70% 100%
-  ); */
+    var(--black-color) 0% 30%,
+    #524c4ec4 45% 55%,
+    var(--black-color) 70% 100%
+  );
   background-color: var(--black-color);
   border-bottom: 1px solid var(--white-color);
-  padding: 0.75em 1.25em;
+  padding: 0.75em;
 }
 .aero-col-3 > div {
   flex-basis: 33.3%;
@@ -26,11 +26,11 @@
 .aero-list-7,
 .aero-list-7-1 {
   background: var(--black-color);
-  padding: 10px 0;
+  padding: 4px 0;
   flex-direction: column;
   width: 100%;
   position: absolute;
-  top: 99px;
+  top: 66px;
   left: 0;
   text-align: center;
   align-items: unset;
@@ -48,8 +48,25 @@
     transform: translateY(0);
   }
 }
+
+.aero_main_logo_wrap{
+position: relative;
+}
+.aero_main_logo{
+  position: absolute;
+  inset: 0;
+  top: -26px;
+  z-index: 99;
+}
+.aero_main_logo img{
+  max-width: 78px;
+  width: 100%;
+  height: auto;
+  padding: 5px;
+}
+
 .aero_changelocation_height {
-  height: 44px;
+  /* height: 44px; */
   box-shadow: 0 0 2px var(--white-color);
 }
 .aero-menu-location {
@@ -104,8 +121,8 @@ align-items: center;
 }
 :is(.aero-list-7, .aero-list-7-1) a {
   color: var(--white-color);
-  padding: 10px;
-  font-size: 1rem;
+  padding:5px 10px;
+  font-size: 0.9rem;
   text-transform: uppercase;
 }
 
@@ -135,6 +152,7 @@ align-items: center;
 }
 .aero-header-contactus-btn{
       display: inline-flex;
+      align-items: center;
     gap: 1rem;
     margin-right: 1em;
 }
@@ -396,7 +414,8 @@ align-items: center;
   color: var(--primary-color);
   padding: 0 1em;
 }
-.aero_home_seo_section h2 {
+.aero_home_seo_section :is(h2,h3) {
+  text-align: center;
   font-size: 1rem;
   margin-bottom: 1em;
 }
@@ -584,6 +603,16 @@ align-items: center;
     gap: 2rem;
   }
 
+  .aero-col-3{
+    padding: 1.25em;
+  }
+
+  .aero-list-7,
+.aero-list-7-1 {
+padding: 14px 0;
+  top: 90px;
+}
+
   .aero_home-headerimg-wrapper article h1 {
     font-size: 2.5rem;
   }
@@ -633,14 +662,23 @@ align-items: center;
     font-size: 2rem;
   }
 
-  .aero_home_seo_section h2 {
+  .aero_home_seo_section :is(h2,h3) {
+    text-align: left;
     font-size: 1.5rem;
   }
   .aero_home_seo_section p {
     font-size: 1rem;
+    text-align: left;
   }
   .aero_home_seo_section ul li {
     font-size: 0.9rem;
+  }
+  .aero_main_logo{
+    top: -35px;
+  }
+
+  .aero_main_logo img{
+    max-width:98px;
   }
   /* footer  */
   .aero_home-headerimg-wrapper > img {

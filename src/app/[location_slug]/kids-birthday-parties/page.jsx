@@ -55,7 +55,6 @@ const Page = async ({ params }) => {
         <section>
           <MotionImage header_image={header_image} waiver={waiver} />
         </section>
-      )}
 
       <section className="subcategory_main_section-bg">
         <section className="aero-max-container">

@@ -48,6 +48,7 @@ const MotionImage = ({ header_image, waiver }) => {
                 repeat: Infinity,
                 repeatType: "reverse",
               }}
+              style={{maxHeight:'600px', minHeight:"450px"}}
             >
               <Image
                 src={item?.headerimage}

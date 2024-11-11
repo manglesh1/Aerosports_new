@@ -2,6 +2,7 @@
 const nextConfig = {
  async redirects() {
   return [
+
     {
       source: "/brampton",
       destination: "/oakville",
@@ -12,19 +13,16 @@ const nextConfig = {
       destination: "/oakville/programs/camps",
       permanent: true,
     },
-    // Dynamic redirect for any URL containing "aboutus"
     {
       source: "/:path*/aboutus",
       destination: "/:path*/about-us",
       permanent: true,
     },
-    // Dynamic redirect for any URL containing "aboutus"
     {
       source: "/st-catharines/attractions/open-jumps",
       destination: "/st-catharines/attractions/open-jump",
       permanent: true,
     },
-    // Dynamic redirect for any URL containing "brampton" in the path
     {
       source: "/:path*/brampton",
       destination: "/oakville",

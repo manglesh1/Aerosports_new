@@ -54,8 +54,14 @@ header:first-child {
   left: 0;
   width: 100%;
   z-index: 1000;
-  height: 146px;
 }
 header:first-child + * {
-  padding-top: 146px;
+  padding-top: 105px;
+}
+
+@media screen and (min-width: 992px) {
+  header:first-child + * {
+    padding-top: 142px;
+  }
+
 }

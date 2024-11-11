@@ -47,8 +47,8 @@ const Header = async ({ location_slug }) => {
             </Link>
           </div>
         </div>
-        <div>
-          <Link href={`/${location_slug}`}>
+        <div className="aero_main_logo_wrap">
+          <Link href={`/${location_slug}`} className="aero_main_logo">
             <Image
               src="https://storage.googleapis.com/aerosports/logo_white.png"
               height="71"
