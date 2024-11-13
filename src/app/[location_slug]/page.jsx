@@ -16,15 +16,14 @@ export async function generateMetadata({ params }) {
   const API_URL = process.env.NEXT_PUBLIC_API_URL;
   const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL;
   const data = await fetchData(`${API_URL}/fetchpagedata?location=${location_slug}&page=home`);
-  console.log(`${API_URL}/fetchpagedata?location=${location_slug}&page=home`);
-  console.log("home page data");
+  // console.log(`${API_URL}/fetchpagedata?location=${location_slug}&page=home`);
+  // console.log("home page data");
 
-  const header_image = data
-    ?.filter((item) => item.path === "home")
-    ?.map((item) => ({
+  const header_image = data?.filter((item) => item.path === "home")?.map((item) => ({
       title: item?.metatitle,
       description: item?.metadescription,
     }));
+
   return {
     title: header_image[0]?.title,
     description: header_image[0]?.description,
@@ -49,73 +48,23 @@ const Home = async ({ params }) => {
   const location_slug = params?.location_slug;
   const API_URL = process.env.NEXT_PUBLIC_API_URL;
 
-  const [data, dataconfig] = await Promise.all([
+  const [data, dataconfig, locations] = await Promise.all([
     fetchData(`${API_URL}/fetchmenudata1?location=${location_slug}`),
     fetchData(
       `${API_URL}/fetchsheetdata?sheetname=config&location=${location_slug}`
     ),
+    fetchData(
+      `${API_URL}/fetchsheetdata?sheetname=locations_new&location=${location_slug}`
+    ),
   ]);
 
-  console.log(`${API_URL}/fetchpagedata?location=${location_slug}&page=home`);
-  console.log("home page data");
-
   const waiver = dataconfig?.filter((item) => item.key === "waiver");
-  const homepageSection1 =
-    dataconfig?.filter((item) => item.key === "homepageSection1")?.[0]?.value ??
-    "";
-
-  const promotionPopup = dataconfig?.filter(
-    (item) => item.key === "promotion-popup"
-  );
+  const homepageSection1 = dataconfig?.filter((item) => item.key === "homepageSection1")?.[0]?.value ?? "";
+  const promotionPopup = dataconfig?.filter((item) => item.key === "promotion-popup");
   const header_image = data?.filter((item) => item.path === "home");
-  const seosection = data?.filter((item) => item.path === "home")?.[0]
-    ?.seosection;
+  const seosection = data?.filter((item) => item.path === "home")?.[0]?.seosection;
   const attractionsData = getDataByParentId(data, "attractions");
   const blogsData = getDataByParentId(data, "blogs");
-
-  const stCatharinesSchema = {
-    "@context": "https://schema.org",
-    "@type": "AmusementPark",
-    additionalType: [
-      "https://schema.org/SportsActivityLocation",
-      "https://schema.org/EntertainmentBusiness",
-      "https://schema.org/GolfCourse",
-      "https://schema.org/TouristAttraction",
-    ],
-    name: "AeroSports Trampoline Park",
-    description:
-      "A fun-filled trampoline park offering amusement, activities, mini golf, and kids' party services.",
-    address: {
-      "@type": "PostalAddress",
-      streetAddress: "333 Ontario Street",
-      addressLocality: "St. Catharines",
-      addressRegion: "ON",
-      postalCode: "L2R 5L3",
-      addressCountry: "Canada",
-    },
-    telephone: "+1-905-123-4567",
-    geo: {
-      "@type": "GeoCoordinates",
-      latitude: 43.159374,
-      longitude: -79.246862,
-    },
-    openingHours: [
-      "Mo-Th 10:00-20:00",
-      "Fr 10:00-21:00",
-      "Sa 10:00-21:00",
-      "Su 10:00-20:00",
-    ],
-    priceRange: "$$",
-    aggregateRating: {
-      "@type": "AggregateRating",
-      ratingValue: "4.5",
-      reviewCount: "150",
-    },
-    sameAs: [
-      "https://www.facebook.com/AeroSportsTrampolinePark",
-      "https://www.instagram.com/aerosportspark",
-    ],
-  };
 
   return (
     <main>
@@ -256,15 +205,13 @@ const Home = async ({ params }) => {
       </section>
       <section className="aero_home_article_section">
         <section className="aero-max-container aero_home_seo_section">
-          <div dangerouslySetInnerHTML={{ __html: seosection || ''}} />
+          <div dangerouslySetInnerHTML={{ __html: seosection || "" }} />
         </section>
       </section>
-      {location_slug === "st-catharines" && (
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(stCatharinesSchema) }}
-        />
-      )}
+
+      <div
+        dangerouslySetInnerHTML={{ __html: locations[0].schema || '' }}
+      ></div>
     </main>
   );
 };

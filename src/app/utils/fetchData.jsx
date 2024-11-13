@@ -2,7 +2,7 @@ import { notFound } from "next/navigation";
 
 export const fetchData = async (url) => {
   try {
-    const response = await fetch(url, { cache: "no-store" });
+    const response = await fetch(url, { cache: "force-cache" });
     if (!response.ok) notFound();
     const data = await response.json();
     if (!data || (Array.isArray(data) && data.length === 0)) notFound();
