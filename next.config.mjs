@@ -17,6 +17,16 @@ const nextConfig = {
       source: "/:path*/aboutus",
       destination: "/:path*/about-us",
       permanent: true,
+    },    
+    {
+      source: "/:path*/aboutus/:slug*",
+      destination: "/:path*/about-us/:slug*",
+      permanent: true,
+    },
+    {
+      source: "/:path*/summercamp",
+      destination: "/:path*/programs/camps*",
+      permanent: true,
     },
     {
       source: "/st-catharines/attractions/open-jumps",
@@ -41,7 +51,7 @@ const nextConfig = {
 	,
 	{
       source: "/st-catharines/glow",
-      destination:  "/st-catharines/attractions/glow",
+      destination:  "/st-catharines/programs/glow",
       permanent: true,
     }
 	
