@@ -294,7 +294,7 @@ align-items: center;
 .aero_home-playsection-2,
 .aero_home_feature_section {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
   gap: 1rem;
   padding: 2em 0.5em;
 }
@@ -311,7 +311,7 @@ align-items: center;
   transform: scale(1.05);
 }
 :is(.aero_home-playsection-2 article, .aero_home_article_card) > img {
-  aspect-ratio: 3/2;
+  /*aspect-ratio: 3/2; */
 }
 .aero_home-play-small-img span {
   font-size: 0.8rem;

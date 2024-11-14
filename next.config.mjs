@@ -1,4 +1,5 @@
 /** @type {import('next').NextConfig} */
+
 const nextConfig = {
  async redirects() {
   return [
@@ -21,11 +22,6 @@ const nextConfig = {
     {
       source: "/:path*/aboutus/:slug*",
       destination: "/:path*/about-us/:slug*",
-      permanent: true,
-    },
-    {
-      source: "/:path*/summercamp",
-      destination: "/:path*/programs/camps*",
       permanent: true,
     },
     {

@@ -1,14 +1,12 @@
 import Image from "next/image";
+
 import Link from "next/link";
 import "./styles.css";
 import logo_white from "@public/assets/images/city/logo_white.png";
 import { fetchData } from "./utils/fetchData";
-import LocationButton from "./components/LocationButton";
-import GoogleAnalytics from "./components/GoogleAnalytics";
 
 export default async function Home() {
   const apiUrl = process.env.NEXT_PUBLIC_API_URL;
-
   const FetchLocation = await fetchData(
     `${apiUrl}/fetchsheetdata?sheetname=locations`
   );

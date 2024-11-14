@@ -181,7 +181,7 @@ const Home = async ({ params }) => {
                     key={i}
                   >
                     <article className="d-flex-dir-col">
-                      <Image
+                      <img
                         src={item?.smallimage}
                         width={120}
                         height={120}

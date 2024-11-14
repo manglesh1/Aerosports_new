@@ -59,7 +59,7 @@ const Category = async ({ params }) => {
                       key={i}
                     >
                       <article className="aero_category_section_card_wrap">
-                        <Image
+                        <img
                           src={item?.smallimage}
                           width={150}
                           height={150}

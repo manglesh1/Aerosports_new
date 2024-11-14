@@ -3,7 +3,7 @@ import "../../styles/kidsparty.css";
 import "../../styles/subcategory.css";
 import MotionImage from "@/components/MotionImage";
 import { fetchData } from "@/utils/fetchData";
-
+import ImageMarquee from "@/components/ImageMarquee";
 export async function generateMetadata({ params }) {
   const { location_slug } = params;
   const API_URL = process.env.NEXT_PUBLIC_API_URL;
@@ -55,7 +55,9 @@ const Page = async ({ params }) => {
         <section>
           <MotionImage header_image={header_image} waiver={waiver} />
         </section>
-
+        <section>
+        <ImageMarquee imagesString={header_image[0].headerimage}/>
+      </section>
       <section className="subcategory_main_section-bg">
         <section className="aero-max-container">
           <article className="aero_bp_2_main_section">
@@ -79,6 +81,16 @@ const Page = async ({ params }) => {
               );
             })}
           </article>
+        </section>
+      </section>
+      <section className="aero_home_article_section">
+        <section className="aero-max-container">
+          <div dangerouslySetInnerHTML={{ __html: data[0]?.section1 || '' }} />
+        </section>
+      </section>
+      <section className="aero_home_article_section">
+        <section className="aero-max-container">
+          <div dangerouslySetInnerHTML={{ __html: data[0]?.seosection || '' }} />
         </section>
       </section>
     </main>

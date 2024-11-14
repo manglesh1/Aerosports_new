@@ -50,16 +50,9 @@ const MotionImage = ({ header_image, waiver }) => {
               }}
               style={{maxHeight:'600px', minHeight:"450px"}}
             >
-              <Image
-                src={item?.headerimage}
-                alt="header - image"
-                width={1200}
-                height={600}
-                title="header image for more info about the image"
-                className="header-image"
-              />
+           {/****   <Image                src={item?.headerimage}                alt="header - image"                width={1200}                height={600}                title="header image for more info about the image"                className="header-image" />**/}
 
-              <motion.article
+                        <motion.article
                 className="image-content"
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
