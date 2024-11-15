@@ -18,7 +18,7 @@ const ImageMarquee = ({ imagesString }) => {
       <div className={styles.marqueeContent}>
         {images.map((image, index) => (
           <div key={index} className={styles.imageContainer}>
-            <Image 
+            <img 
               src={image.src} 
               alt={image.title} 
               title={image.title} 
@@ -34,7 +34,7 @@ const ImageMarquee = ({ imagesString }) => {
       <div className={styles.marqueeContentDuplicated}>
         {images.map((image, index) => (
           <div key={`${index}-duplicate`} className={styles.imageContainer}>
-            <Image 
+            <img 
               src={image.src} 
               alt={image.title} 
               title={image.title} 
