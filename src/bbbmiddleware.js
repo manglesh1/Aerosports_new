@@ -8,7 +8,7 @@ export function middleware(request) {
   const pathname = request.nextUrl.pathname;
 
   // Skip caching for static assets and API routes
-  if (pathname.startsWith('/_next/') || pathname.startsWith('/api/')) {
+  if (pathname.startsWith('/_next/') || pathname.startsWith('/api/') || pathname.indexOf('contactus')>0) {
     return NextResponse.next();
   }
 

@@ -1,10 +1,14 @@
 // app/components/ContactForm.js
 "use client"; // This component is client-side
 
-import { useState } from "react";
+import { useState ,useEffect } from "react";
+import { useRouter } from "next/navigation"; // Next.js hook for accessing router
 import "../../styles/contactus.css"; // Assuming you create a CSS file named ContactForm.css
 
 function ContactForm() {
+  const router = useRouter(); // Access router
+  const [currentLocation, setCurrentLocation] = useState(""); // State to store extracted location
+
   const [formData, setFormData] = useState({
     fullName: "",
     email: "",
@@ -16,16 +20,26 @@ function ContactForm() {
   });
 
   const [successMessage, setSuccessMessage] = useState(""); // New state for success message
-
+  useEffect(() => {
+    // Extract location segment from the URL
+    const currentUrl = window.location.href; // Get full URL
+    const pathSegments = new URL(currentUrl).pathname.split("/"); // Split the path by "/"
+    const locationSegment = pathSegments[1]; // "st-catharines" is the second segment
+    setCurrentLocation(locationSegment); // Update state with extracted location
+  }, []);
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData({ ...formData, [name]: value });
   };
 
  const handleSubmit = async (e) => {
+  console.log('contact form'); 
+  formData.locationEmail='event@aerosportsparks.ca'
+  formData.subject = currentLocation +' ' + formData.selectedEvent + ' from ' + formData.fullName + ' on ' + formData.date + ' at ' + formData.time;
    e.preventDefault();
    try {
-     const response = await fetch(`${API_URL}/email`, {
+ 
+     const response = await fetch(`https://apis-351216.nn.r.appspot.com/api/email`, {
        method: "POST",
        headers: {
          "Content-Type": "application/json",
@@ -133,6 +147,7 @@ function ContactForm() {
             <option value="Group Booking">Group Booking</option>
             <option value="Admission">Admission</option>
             <option value="Camp">Camp</option>
+            <option value="Fund Raisers">Fund Raisers</option>
             <option value="Others">Others</option>
           </select>
         </div>
