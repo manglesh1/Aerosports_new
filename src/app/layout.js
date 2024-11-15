@@ -1,6 +1,7 @@
 import { Poppins } from "next/font/google";
 import "./globals.css";
-import GoogleAnalytics from  './components/GoogleAnalytics' // Import the GoogleAnalytics component
+import dynamic from "next/dynamic";
+const GoogleAnalytics = dynamic(()=> import('./components/GoogleAnalytics'));
 import { Suspense } from "react";
 import Loading from "./loading";
 

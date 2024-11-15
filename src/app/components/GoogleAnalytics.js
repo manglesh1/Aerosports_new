@@ -57,11 +57,11 @@ export default function GoogleAnalytics() {
   return (
     <>
       {/* Load Global Google Analytics */}
-      <Script
+      <Script async 
         strategy="afterInteractive"
         src={`https://www.googletagmanager.com/gtag/js?id=${globalTrackingId}`}
       />
-      <Script
+      <Script  async 
         id="google-analytics-global"
         strategy="afterInteractive"
         dangerouslySetInnerHTML={{
@@ -78,7 +78,7 @@ export default function GoogleAnalytics() {
 
       {/* Only render location-specific tracking if there is a locationTrackingId */}
       {locationTrackingId && (
-        <Script
+        <Script async 
           id="google-analytics-location"
           strategy="afterInteractive"
           dangerouslySetInnerHTML={{
