@@ -222,6 +222,7 @@ align-items: center;
 /* action buttons  */
 .aero_home-actionbtn-bg {
   background-color: var(--black-color);
+  color: var(--white-color);
 }
 .aero_home-actionbtn {
   padding: 2.5em 1.5em;
@@ -309,9 +310,6 @@ align-items: center;
 }
 .aero_home-playsection-2 article:hover > img {
   transform: scale(1.05);
-}
-:is(.aero_home-playsection-2 article, .aero_home_article_card) > img {
-  /*aspect-ratio: 3/2; */
 }
 .aero_home-play-small-img span {
   font-size: 0.8rem;
