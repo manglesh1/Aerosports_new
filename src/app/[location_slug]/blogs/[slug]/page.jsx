@@ -1,24 +1,15 @@
-import { fetchData } from '@/utils/fetchData';
-import '../../../styles/blogs.css'
-import { getDataByParentId } from '@/utils/customFunctions';
+import { fetchData } from "@/utils/fetchData";
+import "../../../styles/blogs.css";
+import { getDataByBlogId } from "@/utils/customFunctions";
 
-export default async function BlogDetail({params}) {
-
-  const { location_slug, subcategory_slug } = params;
+export default async function BlogDetail({ params }) {
+  const { location_slug, slug } = params;
   const API_URL = process.env.NEXT_PUBLIC_API_URL;
 
-  const [data, dataconfig] = await Promise.all([
-    fetchData(
-      `${API_URL}/fetchsheetdata?sheetname=Data&location=${location_slug}`
-    ),
-    fetchData(
-      `${API_URL}/fetchsheetdata?sheetname=config&location=${location_slug}`
-    ),
-  ]);
-
-  const attractionsData = getDataByParentId(data, subcategory_slug);
-  const header_image = getDataByParentId(data, subcategory_slug);
-  console.log(attractionsData);
+  const data = await fetchData(
+    `${API_URL}/fetchsheetdata?sheetname=blogs&location=${location_slug}`
+  );
+  const blogData = getDataByBlogId(data, slug);
 
   return (
     <main className="aero_home-actionbtn-bg">
@@ -28,15 +19,13 @@ export default async function BlogDetail({params}) {
             <img
               src="https://storage.googleapis.com/aerosports/common/gallery-thummbnail-wall-climbwall.jpg"
               alt=""
-              width='100%'
+              width="100%"
             />
           </div>
-          <div>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Nemo
-            reiciendis, excepturi, mollitia harum beatae impedit quas quos fugit
-            minus vitae alias, iusto iste fuga sed deleniti? Consectetur magni
-            eum harum.
-          </div>
+          <div
+            className="aero-blog-detail-content-section"
+            dangerouslySetInnerHTML={{ __html: blogData?.htmldesc || "" }}
+          ></div>
         </div>
       </section>
     </main>

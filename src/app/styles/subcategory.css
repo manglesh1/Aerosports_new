@@ -157,11 +157,12 @@
   gap: 2rem;
   flex-direction: column;
   margin: 2em 0;
+  flex-flow: wrap;
 }
 .aero_pricingpromo_card {
   border: 2px solid var(--primary-color);
   border-radius: 12px;
-  flex-basis: 33.33%;
+  flex-basis: 47.33%;
 }
 .aero_pricingpromo_card-heading {
   text-align: center !important;
@@ -207,6 +208,7 @@
 
   .aero_pricingpromo_card_wrapper {
     flex-direction: row;
+    justify-content: center;
   }
   .aero_pricingpromo_card-2 :is(h4, p) {
     width: unset;

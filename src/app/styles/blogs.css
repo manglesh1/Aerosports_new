@@ -1,16 +1,16 @@
 .aero-blog-main-section {
- background-color: var(--black-color);
+  background-color: var(--black-color);
   color: var(--white-color);
 }
 .aero-blog-second-main-section {
   max-width: 1100px;
   margin: auto;
-  padding-bottom:80px ;
+  padding-bottom: 80px;
 }
 .aero-blog-main-heading {
   text-align: center;
-  padding: 80px 36px 36px;
-  font-size: 50px;
+  padding: 50px 26px 16px;
+  font-size: 2.4rem;
   font-weight: 600;
 }
 .aero-blog-second-heading {
@@ -18,29 +18,90 @@
   line-height: 1.2;
   font-weight: 600;
   hyphens: auto;
+  margin: 0.2em 0 1em;
 }
-.aero-blog-updated-time{
+.aero-blog-updated-time {
   font-size: 12px;
   font-weight: 600;
   line-height: 1.6;
 }
 
-.aero-blog-main-article-card {
-  display: flex;
-  align-items: center;
-  gap: 100px;
-}
 
-.aero-blog-main-article-wrapper{
+
+.aero-blog-main-article-wrapper {
   display: flex;
-    flex-direction: column;
-    gap: 50px;
-    padding: 10px 20px 100px;
+  flex-direction: column;
+  gap: 50px;
+  padding: 10px 20px 100px;
 }
 
 .aero-blog-main-article-card:nth-child(even) {
   flex-direction: row-reverse;
   text-align: right;
+}
+
+
+
+.aero-blog-img-section img {
+  opacity: 0;
+  scale: 0.8;
+  border-radius: 30px;
+  margin-top: -10px;
+  width: 100%;
+  animation: fade-in linear forwards;
+  animation-timeline: view();
+  animation-range: 250px 500px;
+  animation-duration: 500ms;
+}
+
+.aero-blog-readmore-btn {
+  margin-top: 20px;
+  font-size: 12px;
+  background-color: var(--white-color);
+  color: var(--black-color);
+  padding: 10px 20px;
+  border-radius: 5px;
+  text-decoration: none;
+  transition: all 0.3s ease-in-out;
+  border: 1px solid var(--white-color);
+}
+.aero-blog-readmore-btn:hover {
+  border: 1px solid var(--white-color);
+  background-color: var(--black-color);
+  color: var(--white-color);
+}
+
+@keyframes fade-in {
+  to {
+    opacity: 1;
+    scale: 1;
+    margin-top: 0;
+  }
+}
+
+/* blog detail page  */
+
+.aero-blog-detail-main-section {
+  padding: 0;
+}
+
+.aero-blog-detail-img-section {
+  padding-bottom: 40px;
+}
+
+.aero-blog-detail-content-section{
+  padding: 0 1em 3em;
+}
+
+@media screen and (min-width: 992px) {
+  .aero-blog-detail-main-section {
+    padding: 80px 150px;
+  }
+
+  .aero-blog-main-article-card {
+  display: flex;
+  align-items: center;
+  gap: 100px;
 }
 
 .aero-blog-main-article-card:nth-child(even) .aero-blog-second-heading {
@@ -55,59 +116,4 @@
 .aero-blog-main-article-card > div {
   width: 50%;
 }
-
-.aero-blog-img-section img {
-  opacity: 0;
-  scale: 0.8;
-  border-radius: 30px;
-  margin-top: -10px;
-  width: 100%;
-  animation: fade-in linear forwards;
-  animation-timeline: view();
-  animation-range: 250px 500px;
-  animation-duration: 500ms;
-}
-
-.aero-blog-readmore-btn{
-  margin-top: 20px;
-  font-size: 12px;
-  background-color: var(--white-color);
-  color: var(--black-color);
-  padding: 10px 20px;
-  border-radius: 5px;
-  text-decoration: none;
-  transition: all 0.3s ease-in-out;
-  border: 1px solid var(--white-color);
-}
-.aero-blog-readmore-btn:hover{
- border: 1px solid var(--white-color);
- background-color: var(--black-color);
- color: var(--white-color);
-}
-
-@keyframes fade-in {
-  to {
-    opacity: 1;
-    scale: 1;
-    margin-top: 0;
-  }
-}
-
-
-/* blog detail page  */
-
-.aero-blog-detail-main-section{
-  padding: 0;
-}
-
-.aero-blog-detail-img-section{
- padding-bottom: 40px;
-}
-
-
-@media screen and (min-width: 992px) {
-  .aero-blog-detail-main-section{
-    padding: 80px 150px;
-  }
-
 }
