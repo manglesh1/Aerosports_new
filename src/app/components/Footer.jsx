@@ -154,22 +154,25 @@ const Footer = async ({ location_slug }) => {
                 </li>
               );
             })}
-            <ul>
-              <li>Company</li>
-              {companyData[0]?.children?.map((item, i) => {
-                return (
-                  item?.isactive == 1 && (
-                    <li key={i}>
-                      <Link
-                        href={`/${location_slug}/${item?.parentid}/${item?.path}`}
-                      >
-                        {item?.desc}
-                      </Link>
-                    </li>
-                  )
-                );
-              })}
-            </ul>
+
+            {companyData[0]?.children?.length > 0 && (
+              <ul>
+                <li>Company</li>
+                {companyData[0]?.children?.map((item, i) => {
+                  return (
+                    item?.isactive == 1 && (
+                      <li key={i}>
+                        <Link
+                          href={`/${location_slug}/${item?.parentid}/${item?.path}`}
+                        >
+                          {item?.desc}
+                        </Link>
+                      </li>
+                    )
+                  );
+                })}
+              </ul>
+            )}
           </ul>
           <ul>
             <li>Groups</li>

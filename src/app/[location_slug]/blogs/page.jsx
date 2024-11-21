@@ -165,7 +165,7 @@ const page = async({params}) => {
   console.log(extractBlogData)
   return (
     <main className="aero-blog-main-section">
-      <section className='aero-blog-second-main-section'>
+      <section className='aero-max-container'>
       <h1 className="aero-blog-main-heading">Our Latest News</h1>
       <section className="aero-blog-main-article-wrapper">
         {extractBlogData?.map((item,i) => (

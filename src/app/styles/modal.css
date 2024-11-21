@@ -1,18 +1,20 @@
 /* top header section */
 .aero_topheader_wrapper {
-  background: var(--primary-color);
+  background: var(--black-color);
   color: white;
+  border: 2px solid var(--primary-color);
   position: absolute;
   top: 80px;
   left: 25px;
-  width: 150px;
-  height: 190px;
+  max-width: 170px;
+  height: auto;
   z-index: 9;
   text-align: center;
   align-content: center;
-  padding: 0.5em;
+  padding: 1em;
   overflow: clip;
   border-radius: 0 20px 20px 20px;
+  font-size: 1rem;
 }
 
 .aero_topheader_wrapper .modal-close svg {
@@ -21,9 +23,10 @@
   padding: 0;
   top: 4px;
   right: 4px;
+  color: var(--white-color);
 }
 .aero_topheader_wrapper .modal-close svg:hover {
-  color: var(--white-color);
+  color: var(--primary-color);
 }
 /* top header section end*/
 
@@ -72,8 +75,8 @@
 
 .modal-close {
   position: absolute;
-  top: 10px;
-  right: 10px;
+  top: 4px;
+  right: 4px;
   background: transparent;
   border: none;
   font-size: 16px;
@@ -88,3 +91,43 @@
 .modal-close svg:hover {
   color: red;
 }
+
+
+.aero_topheader_wrapper::before {
+  content: '';
+  position: absolute;
+  height: 16px;
+  width: 16px;
+  background: radial-gradient(circle, red, orange, yellow, green, blue);;
+  border-radius: 50%; 
+  animation: rotate-around 5s linear infinite;
+}
+
+@keyframes rotate-around {
+  0% {
+    top: 0;
+    left: 0;
+    transform: translate(0, 0) rotate(0deg);
+}
+25% {
+    top: 0;
+    left: 100%; /* Move to top-right corner */
+    transform: translateX(-100%) rotate(90deg);
+}
+50% {
+    top: 100%; /* Move to bottom-right corner */
+    left: 100%;
+    transform: translate(-100%, -100%) rotate(180deg);
+}
+75% {
+    top: 100%; /* Move to bottom-left corner */
+    left: 0;
+    transform: translateY(-100%) rotate(270deg);
+}
+100% {
+    top: 0; /* Back to top-left corner */
+    left: 0;
+    transform: translate(0, 0) rotate(360deg);
+}
+}
+

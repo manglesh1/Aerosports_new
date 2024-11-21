@@ -285,7 +285,7 @@ align-items: center;
 .aero_home_BPJ_wrapper,
 .aero_rating_wrapper {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
   gap: 2rem;
   padding: 2em 0.5em;
 }
@@ -295,7 +295,7 @@ align-items: center;
 .aero_home-playsection-2,
 .aero_home_feature_section {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
   gap: 1rem;
   padding: 2em 0.5em;
 }
@@ -312,7 +312,7 @@ align-items: center;
   transform: scale(1.05);
 }
 .aero_home-play-small-img span {
-  font-size: 0.8rem;
+  font-size: 1.7rem;
   font-weight: 500;
   color: var(--white-color);
   text-transform: uppercase;
@@ -624,7 +624,7 @@ padding: 14px 0;
 
   .aero_home-playsection-2,
   .aero_home_feature_section {
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
     gap: 2rem;
   }
 
@@ -641,7 +641,7 @@ padding: 14px 0;
     font-size: 2rem;
   }
   .aero_home-actionbtn div button {
-    font-size: 1.3rem;
+    font-size: 1.1rem;
   }
   .aero_home_article_card:hover {
     box-shadow: 0 0 5px 2px #dedada69;
@@ -651,10 +651,10 @@ padding: 14px 0;
     font-size: 1rem;
   }
   .aero_home_BPJ_wrapper span {
-    font-size: 2rem;
+    font-size: 1.8rem;
   }
   .aero_home-play-small-img span {
-    font-size: 1.75rem;
+    font-size: 1.5rem;
   }
   .aero_home_feature_section-card div:first-child {
     font-size: 2rem;
@@ -706,15 +706,16 @@ padding: 14px 0;
   .aero_footer_col-4-wrapper {
     flex-wrap: nowrap;
     padding: 2em 1.5em 3em;
+    gap: 2rem;
   }
   .aero_footer_col-4-wrapper ul:last-child li:first-child {
     text-align: left;
   }
   .aero_footer_col-4-wrapper ul li:first-child {
-    font-size: 1.6rem;
+    font-size: 1.45rem;
   }
   .aero_footer_col-4-wrapper ul li {
-    font-size: 1.2rem;
+    font-size: 1.1rem;
   }
   .aero_footer_article-card img {
     min-width: 80px;
