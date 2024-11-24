@@ -11,6 +11,7 @@ import facebookicon from "@public/assets/images/social_icon/facebook.png";
 import twittericon from "@public/assets/images/social_icon/twitter.png";
 import tiktokicon from "@public/assets/images/social_icon/tiktok.png";
 import instagramicon from "@public/assets/images/social_icon/instagram.png";
+import Script from "next/script";
 
 const Footer = async ({ location_slug }) => {
   const API_URL = process.env.NEXT_PUBLIC_API_URL;
@@ -19,15 +20,18 @@ const Footer = async ({ location_slug }) => {
     `${API_URL}/fetchsheetdata?sheetname=locations_new&location=${location_slug}`
   );
 
-  const locationid = configdata.map((item) => item.locationid);
-  const facebook = configdata.map((item) => item.facebook);
-  const insta = configdata.map((item) => item.insta);
-  const twitter = configdata.map((item) => item.twitter);
-  const tiktok = configdata.map((item) => item.tiktok);
+  const {
+    locationid,
+    facebook,
+    insta,
+    twitter,
+    tiktok,
+    chatid,
+  } = configdata[0] || {};
 
   const [data, ratingdata] = await Promise.all([
     fetchData(`${API_URL}/fetchmenudata?location=${location_slug}`),
-    fetchData(`${API_URL}/getreviews?locationid=${locationid[0]}`),
+    fetchData(`${API_URL}/getreviews?locationid=${locationid}`),
   ]);
 
   const attractionsData = getDataByParentId(data, "attractions");
@@ -41,178 +45,106 @@ const Footer = async ({ location_slug }) => {
       <section className="aero_home-headerimg-wrapper">
         <Image
           src="https://storage.googleapis.com/aerosports/windsor/GLOW-2-h.jpg"
-          alt="header - image"
+          alt="Glow Night Event"
           width={1200}
           height={600}
-          title="site image"
+          title="Glow Night Event"
         />
         <article className="aero-max-container aero_home_BPJ_wrapper">
-          <div className="d-flex-center">
-            <Image src={event_icon} width={90} height={80} alt="img" />
-            <span>Birthday Parties</span>
-          </div>
-          <div className="d-flex-center">
-            <Image src={park_feature_icon} width={90} height={80} alt="img" />
-            <span>Park Features</span>
-          </div>
-          <div className="d-flex-center">
-            <Image src={jump_icon} width={90} height={80} alt="img" />
-            <span>Safe Jumping</span>
-          </div>
+          {[
+            { icon: event_icon, text: "Birthday Parties" },
+            { icon: park_feature_icon, text: "Park Features" },
+            { icon: jump_icon, text: "Safe Jumping" },
+          ].map((item, index) => (
+            <div className="d-flex-center" key={index}>
+              <Image src={item.icon} width={90} height={80} alt={item.text} />
+              <span>{item.text}</span>
+            </div>
+          ))}
         </article>
       </section>
+
       <section className="aero-max-container">
         <RatingComponent ratingdata={ratingdata} />
         <div className="d-flex-center aero_logo_social_wrap">
           <Link href={`/${location_slug}`}>
             <Image
               src="https://storage.googleapis.com/aerosports/logo_white.png"
-              alt="footer logo"
+              alt="AeroSports Logo"
               width={100}
               height={93.42}
             />
           </Link>
           <div className="aero_social_icon_wrap">
-            {facebook[0] && (
+            {facebook && (
               <Link
-                href={`https://www.facebook.com/${facebook[0]}`}
+                href={`https://www.facebook.com/${facebook}`}
                 target="_blank"
                 className="aero_social_icon"
               >
-                <Image
-                  src={facebookicon}
-                  alt="facebook"
-                  height={50}
-                  width={50}
-                />
+                <Image src={facebookicon} alt="Facebook" height={50} width={50} />
               </Link>
             )}
-            {twitter[0] && (
+            {twitter && (
               <Link
-                href={`https://x.com/${twitter[0]}`}
+                href={`https://x.com/${twitter}`}
                 target="_blank"
                 className="aero_social_icon"
               >
-                <Image
-                  src={twittericon}
-                  alt="facebook"
-                  height={50}
-                  width={50}
-                />
+                <Image src={twittericon} alt="Twitter" height={50} width={50} />
               </Link>
             )}
-            {insta[0] && (
+            {insta && (
               <Link
-                href={`https://www.instagram.com/${insta[0]}`}
+                href={`https://www.instagram.com/${insta}`}
                 target="_blank"
                 className="aero_social_icon"
               >
-                <Image
-                  src={instagramicon}
-                  alt="facebook"
-                  height={50}
-                  width={50}
-                />
+                <Image src={instagramicon} alt="Instagram" height={50} width={50} />
               </Link>
             )}
-            {tiktok[0] && (
+            {tiktok && (
               <Link
-                href={`https://www.tiktok.com/${tiktok[0]}`}
+                href={`https://www.tiktok.com/${tiktok}`}
                 target="_blank"
                 className="aero_social_icon"
               >
-                <Image src={tiktokicon} alt="facebook" height={50} width={50} />
+                <Image src={tiktokicon} alt="TikTok" height={50} width={50} />
               </Link>
             )}
           </div>
         </div>
+
         <section className="aero_footer_col-4-wrapper">
-          <ul>
-            <li>Attractions</li>
-            {attractionsData[0]?.children?.map((item, i) => {
-              return (
-                <li key={i}>
+          {[{ title: "Attractions", data: attractionsData },
+            { title: "Programs", data: programsData },
+            { title: "Groups", data: groupsData },
+            { title: "Company", data: companyData },
+            { title: "Latest News", data: blogsData },
+          ].map((section, i) => (
+            <ul key={i}>
+              <li>{section.title}</li>
+              {section.data?.[0]?.children?.map((item, idx) => (
+                <li key={idx}>
                   <Link
                     href={`/${location_slug}/${item?.parentid}/${item?.path}`}
                   >
                     {item?.desc}
                   </Link>
                 </li>
-              );
-            })}
-          </ul>
-          <ul>
-            <li>Programs</li>
-            {programsData[0]?.children?.map((item, i) => {
-              return (
-                <li key={i}>
-                  <Link
-                    href={`/${location_slug}/${item?.parentid}/${item?.path}`}
-                  >
-                    {item?.desc}
-                  </Link>
-                </li>
-              );
-            })}
-            <ul>
-              <li>Company</li>
-              {companyData[0]?.children?.map((item, i) => {
-                return (
-                  item?.isactive == 1 && (
-                    <li key={i}>
-                      <Link
-                        href={`/${location_slug}/${item?.parentid}/${item?.path}`}
-                      >
-                        {item?.desc}
-                      </Link>
-                    </li>
-                  )
-                );
-              })}
+              ))}
             </ul>
-          </ul>
-          <ul>
-            <li>Groups</li>
-            {groupsData[0]?.children?.map((item, i) => {
-              return (
-                <li key={i}>
-                  <Link
-                    href={`/${location_slug}/${item?.parentid}/${item?.path}`}
-                  >
-                    {item?.desc}
-                  </Link>
-                </li>
-              );
-            })}
-          </ul>
-          <ul>
-            <li>Latest News</li>
-            {blogsData[0]?.children &&
-              blogsData[0]?.children.map((item, i) => {
-                return (
-                  <li key={i}>
-                    <Link
-                      href={`/${location_slug}/${item?.parentid}/${item?.path}`}
-                    >
-                      <article className="d-flex-center aero_footer_article-card">
-                        <Image
-                          src={item?.smallimage}
-                          alt={item?.title}
-                          title={item?.title}
-                          width={50}
-                          height={50}
-                        />
-                        <div>
-                          <p>{item?.title}</p>
-                        </div>
-                      </article>
-                    </Link>
-                  </li>
-                );
-              })}
-          </ul>
+          ))}
         </section>
       </section>
+
+      {/* Chat Widget Script */}
+      <Script
+        src="https://widgets.leadconnectorhq.com/loader.js"
+        data-resources-url="https://widgets.leadconnectorhq.com/chat-widget/loader.js"
+        data-widget-id={chatid}
+        strategy="afterInteractive"
+      />
     </footer>
   );
 };

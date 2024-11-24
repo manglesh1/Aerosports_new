@@ -42,6 +42,7 @@ export default function RootLayout({ children }) {
         <GoogleAnalytics />{" "}
         {/* Render the client-side Google Analytics component */}
         <Suspense fallback={<Loading />}>{children}</Suspense>
+        
       </body>
     </html>
   );
