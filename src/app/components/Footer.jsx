@@ -135,6 +135,82 @@ const Footer = async ({ location_slug }) => {
               ))}
             </ul>
           ))}
+
+            
+       
+          <ul>
+            <li>Programs</li>
+            {programsData[0]?.children?.map((item, i) => {
+              return (
+                <li key={i}>
+                  <Link
+                    href={`/${location_slug}/${item?.parentid}/${item?.path}`}
+                  >
+                    {item?.desc}
+                  </Link>
+                </li>
+              );
+            })}
+
+            {companyData[0]?.children?.length > 0 && (
+              <ul>
+                <li>Company</li>
+                {companyData[0]?.children?.map((item, i) => {
+                  return (
+                    item?.isactive == 1 && (
+                      <li key={i}>
+                        <Link
+                          href={`/${location_slug}/${item?.parentid}/${item?.path}`}
+                        >
+                          {item?.desc}
+                        </Link>
+                      </li>
+                    )
+                  );
+                })}
+              </ul>
+            )}
+          </ul>
+          <ul>
+            <li>Groups</li>
+            {groupsData[0]?.children?.map((item, i) => {
+              return (
+                <li key={i}>
+                  <Link
+                    href={`/${location_slug}/${item?.parentid}/${item?.path}`}
+                  >
+                    {item?.desc}
+                  </Link>
+                </li>
+              );
+            })}
+          </ul>
+          <ul>
+            <li>Latest News</li>
+            {blogsData[0]?.children &&
+              blogsData[0]?.children.map((item, i) => {
+                return (
+                  <li key={i}>
+                    <Link
+                      href={`/${location_slug}/${item?.parentid}/${item?.path}`}
+                    >
+                      <article className="d-flex-center aero_footer_article-card">
+                        <Image
+                          src={item?.smallimage}
+                          alt={item?.title}
+                          title={item?.title}
+                          width={50}
+                          height={50}
+                        />
+                        <div>
+                          <p>{item?.title}</p>
+                        </div>
+                      </article>
+                    </Link>
+                  </li>
+                );
+              })}
+          </ul>
         </section>
       </section>
 

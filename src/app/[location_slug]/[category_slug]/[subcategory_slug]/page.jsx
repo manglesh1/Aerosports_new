@@ -58,12 +58,12 @@ const Subcategory = async ({ params }) => {
      
       <section className="subcategory_main_section-bg">
        <section className="aero-max-container">
-      <div dangerouslySetInnerHTML={{ __html: header_image[0]?.section1 || '' }} />
+      <div className="subcategory_main_section" dangerouslySetInnerHTML={{ __html: attractionsData[0]?.section1 || '' }} />
     </section>
   </section>
   <section className="aero_home_article_section">
     <section className="aero-max-container aero_home_seo_section">
-      <div dangerouslySetInnerHTML={{ __html: header_image[0]?.seosection || '' }} />
+      <div dangerouslySetInnerHTML={{ __html: attractionsData[0]?.seosection || '' }} />
     </section>
   </section>
 

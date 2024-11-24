@@ -1,40 +1,192 @@
-// app/blog/page.js
-import Link from "next/link";
-import "../../styles/blogs.css"; 
 
-const blogPosts = [
+
+import { fetchData } from '@/utils/fetchData';
+import '../../styles/blogs.css'
+import React from "react";
+import { getDataByParentId } from '@/utils/customFunctions';
+
+const data = [
   {
-    title: "Blog Post 1",
-    slug: "blog-post-1",
-    excerpt: "This is the first blog post.",
+    id: 1,
+    title: "Article 1",
+    image:
+      "https://escapefromthe6.com/wp-content/uploads/2024/10/What-Makes-a-Great-Escape-Room-Leader_.jpg",
+    content: "What Makes a Great Escape Room Leader?",
   },
   {
-    title: "Blog Post 2",
-    slug: "blog-post-2",
-    excerpt: "This is the second blog post.",
+    id: 2,
+    title: "Article 1",
+    image:
+      "https://escapefromthe6.com/wp-content/uploads/2024/09/Common-Escape-Room-Team-Member-Roles-768x512.jpg",
+    content: "Common Escape Room Team Member Roles",
   },
   {
-    title: "Blog Post 3",
-    slug: "blog-post-3",
-    excerpt: "This is the third blog post.",
+    id: 3,
+    title: "Article 1",
+    image:
+      "https://escapefromthe6.com/wp-content/uploads/2024/08/The-Power-of-Immersive-Storytelling-in-Escape-Rooms.jpg",
+    content: "The Power of Immersive Storytelling in Escape Rooms",
+  },
+  {
+    id: 4,
+    title: "Article 1",
+    image:
+      "https://escapefromthe6.com/wp-content/uploads/2024/10/What-Makes-a-Great-Escape-Room-Leader_.jpg",
+    content: "What Makes a Great Escape Room Leader?",
+  },
+  {
+    id: 5,
+    title: "Article 1",
+    image:
+      "https://escapefromthe6.com/wp-content/uploads/2024/09/Common-Escape-Room-Team-Member-Roles-768x512.jpg",
+    content: "Common Escape Room Team Member Roles",
+  },
+  {
+    id: 6,
+    title: "Article 1",
+    image:
+      "https://escapefromthe6.com/wp-content/uploads/2024/08/The-Power-of-Immersive-Storytelling-in-Escape-Rooms.jpg",
+    content: "The Power of Immersive Storytelling in Escape Rooms",
+  },
+  {
+    id: 7,
+    title: "Article 1",
+    image:
+      "https://escapefromthe6.com/wp-content/uploads/2024/10/What-Makes-a-Great-Escape-Room-Leader_.jpg",
+    content: "What Makes a Great Escape Room Leader?",
+  },
+  {
+    id: 8,
+    title: "Article 1",
+    image:
+      "https://escapefromthe6.com/wp-content/uploads/2024/09/Common-Escape-Room-Team-Member-Roles-768x512.jpg",
+    content: "Common Escape Room Team Member Roles",
+  },
+  {
+    id: 9,
+    title: "Article 1",
+    image:
+      "https://escapefromthe6.com/wp-content/uploads/2024/08/The-Power-of-Immersive-Storytelling-in-Escape-Rooms.jpg",
+    content: "The Power of Immersive Storytelling in Escape Rooms",
+  },
+  {
+    id: 10,
+    title: "Article 1",
+    image:
+      "https://escapefromthe6.com/wp-content/uploads/2024/10/What-Makes-a-Great-Escape-Room-Leader_.jpg",
+    content: "What Makes a Great Escape Room Leader?",
+  },
+  {
+    id: 11,
+    title: "Article 1",
+    image:
+      "https://escapefromthe6.com/wp-content/uploads/2024/09/Common-Escape-Room-Team-Member-Roles-768x512.jpg",
+    content: "Common Escape Room Team Member Roles",
+  },
+  {
+    id: 12,
+    title: "Article 1",
+    image:
+      "https://escapefromthe6.com/wp-content/uploads/2024/08/The-Power-of-Immersive-Storytelling-in-Escape-Rooms.jpg",
+    content: "The Power of Immersive Storytelling in Escape Rooms",
+  },
+  {
+    id: 13,
+    title: "Article 1",
+    image:
+      "https://escapefromthe6.com/wp-content/uploads/2024/10/What-Makes-a-Great-Escape-Room-Leader_.jpg",
+    content: "What Makes a Great Escape Room Leader?",
+  },
+  {
+    id: 14,
+    title: "Article 1",
+    image:
+      "https://escapefromthe6.com/wp-content/uploads/2024/09/Common-Escape-Room-Team-Member-Roles-768x512.jpg",
+    content: "Common Escape Room Team Member Roles",
+  },
+  {
+    id: 15,
+    title: "Article 1",
+    image:
+      "https://escapefromthe6.com/wp-content/uploads/2024/08/The-Power-of-Immersive-Storytelling-in-Escape-Rooms.jpg",
+    content: "The Power of Immersive Storytelling in Escape Rooms",
+  },
+  {
+    id: 16,
+    title: "Article 1",
+    image:
+      "https://escapefromthe6.com/wp-content/uploads/2024/10/What-Makes-a-Great-Escape-Room-Leader_.jpg",
+    content: "What Makes a Great Escape Room Leader?",
+  },
+  {
+    id: 17,
+    title: "Article 1",
+    image:
+      "https://escapefromthe6.com/wp-content/uploads/2024/09/Common-Escape-Room-Team-Member-Roles-768x512.jpg",
+    content: "Common Escape Room Team Member Roles",
+  },
+  {
+    id: 18,
+    title: "Article 1",
+    image:
+      "https://escapefromthe6.com/wp-content/uploads/2024/08/The-Power-of-Immersive-Storytelling-in-Escape-Rooms.jpg",
+    content: "The Power of Immersive Storytelling in Escape Rooms",
+  },
+  {
+    id: 19,
+    title: "Article 1",
+    image:
+      "https://escapefromthe6.com/wp-content/uploads/2024/10/What-Makes-a-Great-Escape-Room-Leader_.jpg",
+    content: "What Makes a Great Escape Room Leader?",
+  },
+  {
+    id: 20,
+    title: "Article 1",
+    image:
+      "https://escapefromthe6.com/wp-content/uploads/2024/09/Common-Escape-Room-Team-Member-Roles-768x512.jpg",
+    content: "Common Escape Room Team Member Roles",
+  },
+  {
+    id: 21,
+    title: "Article 1",
+    image:
+      "https://escapefromthe6.com/wp-content/uploads/2024/08/The-Power-of-Immersive-Storytelling-in-Escape-Rooms.jpg",
+    content: "The Power of Immersive Storytelling in Escape Rooms",
   },
 ];
 
-export default function BlogList({location_slug}) {
+const page = async({params}) => {
+  const location_slug = params?.location_slug;
+  const API_URL = process.env.NEXT_PUBLIC_API_URL;
+
+  const data = await fetchData(`${API_URL}/fetchmenudata1?location=${location_slug}`);
+  const blogsData = getDataByParentId(data, "blogs");
+  const extractBlogData = blogsData[0]?.children
+  console.log(extractBlogData)
   return (
-    <div className="blog-list">
-      <h1>All Blog Posts</h1>
-      <ul>
-        {blogPosts.map((post) => (
-          <li key={post.slug}>
-            <h2>{post.title}</h2>
-            <p>{post.excerpt}</p>
-            <Link href={`blogs/${post.slug}`}>
-              <button className="read-more">Read More</button>
-            </Link>
-          </li>
+    <main className="aero-blog-main-section">
+      <section className='aero-max-container'>
+      <h1 className="aero-blog-main-heading">Our Latest News</h1>
+      <section className="aero-blog-main-article-wrapper">
+        {extractBlogData?.map((item,i) => (
+          <article className="aero-blog-main-article-card" key={i}>
+            <div className="aero-blog-img-section">
+              <a href={`blogs/${item?.path}`} >
+              <img src={item.smallimage} alt="Article Image" />
+              </a>
+            </div>
+            <div className="aero-blog-content-section">
+              <span className='aero-blog-updated-time'>October 31, 2024</span>
+              <a href={`blogs/${item?.path}`} ><h2 className='aero-blog-second-heading'>{item.title}</h2></a>
+              <a href={`blogs/${item?.path}`} className='aero-blog-readmore-btn'>READ MORE</a>
+            </div>
+          </article>
         ))}
-      </ul>
-    </div>
+      </section>
+
+      </section>
+    </main>
   );
-}
+};
+
+export default page;

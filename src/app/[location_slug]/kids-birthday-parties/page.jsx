@@ -89,7 +89,7 @@ const Page = async ({ params }) => {
         </section>
       </section>
       <section className="aero_home_article_section">
-        <section className="aero-max-container">
+        <section className="aero-max-container aero_home_seo_section">
           <div dangerouslySetInnerHTML={{ __html: data[0]?.seosection || '' }} />
         </section>
       </section>

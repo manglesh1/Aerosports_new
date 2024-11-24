@@ -58,7 +58,7 @@ const MotionImage = ({ header_image, waiver }) => {
                 animate={{ opacity: 1 }}
                 transition={{
                   duration: 3,
-                  delay: 1,
+                
                 }}
               >
                 <h1>{item.title}</h1>
