@@ -82,7 +82,12 @@ const Footer = async ({ location_slug }) => {
                 target="_blank"
                 className="aero_social_icon"
               >
-                <Image src={facebookicon} alt="Facebook" height={50} width={50} />
+                <Image
+                  src={facebookicon}
+                  alt="Facebook"
+                  height={50}
+                  width={50}
+                />
               </Link>
             )}
             {twitter && (
@@ -100,7 +105,12 @@ const Footer = async ({ location_slug }) => {
                 target="_blank"
                 className="aero_social_icon"
               >
-                <Image src={instagramicon} alt="Instagram" height={50} width={50} />
+                <Image
+                  src={instagramicon}
+                  alt="Instagram"
+                  height={50}
+                  width={50}
+                />
               </Link>
             )}
             {tiktok && (
@@ -114,30 +124,21 @@ const Footer = async ({ location_slug }) => {
             )}
           </div>
         </div>
-
         <section className="aero_footer_col-4-wrapper">
-          {[{ title: "Attractions", data: attractionsData },
-            { title: "Programs", data: programsData },
-            { title: "Groups", data: groupsData },
-            { title: "Company", data: companyData },
-            { title: "Latest News", data: blogsData },
-          ].map((section, i) => (
-            <ul key={i}>
-              <li>{section.title}</li>
-              {section.data?.[0]?.children?.map((item, idx) => (
-                <li key={idx}>
+          <ul>
+            <li>Attractions</li>
+            {attractionsData[0]?.children?.map((item, i) => {
+              return (
+                <li key={i}>
                   <Link
                     href={`/${location_slug}/${item?.parentid}/${item?.path}`}
                   >
                     {item?.desc}
                   </Link>
                 </li>
-              ))}
-            </ul>
-          ))}
-
-            
-       
+              );
+            })}
+          </ul>
           <ul>
             <li>Programs</li>
             {programsData[0]?.children?.map((item, i) => {
@@ -203,6 +204,7 @@ const Footer = async ({ location_slug }) => {
                           height={50}
                         />
                         <div>
+                          <h6>{item?.pageid}</h6>
                           <p>{item?.title}</p>
                         </div>
                       </article>

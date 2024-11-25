@@ -172,6 +172,13 @@ align-items: center;
   background-color: var(--black-color);
 }
 
+.aero-btn-article-section{
+  text-align: center;
+}
+.aero-btn-article-section div{
+  padding: 1em 0 2em;
+}
+
 /* header css end  */
 .aero_home-headerimg-wrapper {
   background-color: var(--black-color);

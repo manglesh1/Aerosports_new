@@ -232,6 +232,14 @@ const Home = async ({ params }) => {
           <p>POPULAR STORIES</p>
           <h2>Every Updated Article</h2>
           <BlogCard blogsData={blogsData[0]} location_slug={location_slug} />
+          <Link
+            href={`/${location_slug}/blogs`}
+            className="aero-btn-booknow aero-btn-article-section"
+          >
+            <div>
+              <button>View All</button>
+            </div>
+          </Link>
         </section>
       </section>
       <section className="aero_home_feature_section-bg">
@@ -256,13 +264,15 @@ const Home = async ({ params }) => {
       </section>
       <section className="aero_home_article_section">
         <section className="aero-max-container aero_home_seo_section">
-          <div dangerouslySetInnerHTML={{ __html: seosection || ''}} />
+          <div dangerouslySetInnerHTML={{ __html: seosection || "" }} />
         </section>
       </section>
       {location_slug === "st-catharines" && (
         <script
           type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(stCatharinesSchema) }}
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify(stCatharinesSchema),
+          }}
         />
       )}
     </main>
