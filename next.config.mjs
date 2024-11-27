@@ -49,6 +49,11 @@ const nextConfig = {
       source: "/st-catharines/glow",
       destination:  "/st-catharines/programs/glow",
       permanent: true,
+    },
+	{
+      source: "/london/summerpass",
+      destination:  "/london/programs/camps",
+      permanent: true,
     }
 	
   ];

@@ -12,7 +12,7 @@
 .subcategory_main_section :is(h1, h2, h3, h4),
 .boxcircle {
   text-align: center;
-  font-size: 1.2rem;
+  font-size: 0.9rem;
 }
 .subcategory_main_section .boxcircle {
   margin-bottom: 1em;
@@ -37,7 +37,7 @@
   margin: 1em 0;
   border-radius: 12px;
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
   gap: 1rem;
 }
 .subcategory_main_section .shadow {
@@ -47,11 +47,20 @@
 }
 .subcategory_main_section .schedule {
   margin: 2.2em 0;
+  background-color: var(--black-color);
+  color: var(--white-color);
+  border: 2px solid var(--primary-color);
+  border-radius: 12px;
 }
 .subcategory_main_section .schedule ul {
   text-align: left;
   margin: 1em 0;
-  color: var(--black-color);
+  color: var(--white-color);
+}
+.subcategory_main_section #container p {
+  text-align: center;
+  margin: 1em 0;
+  color: var(--white-color);
 }
 
 .subcategory_main_section ul {
@@ -195,6 +204,9 @@
 }
 
 @media screen and (min-width: 992px) {
+  .subcategory_main_section #container p{
+    text-align: left;
+  }
   .box img {
     padding-right: 1em;
   }
