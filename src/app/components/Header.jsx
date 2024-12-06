@@ -31,24 +31,24 @@ const Header = async ({ location_slug }) => {
         <div className="aero-menu-location app-container">
           <div className="d-flex-center aero_menu_location_icon">
             <MenuButton navList={navList} location_slug={location_slug} />
-            <Link href="/" className="d-flex-center">
+            <Link href="/" className="d-flex-center" prefetch>
               <GrLocation fontSize={30} color="#fff" />
             </Link>
           </div>
         </div>
         <div className="desktop-container">
           <div className="aero-menu-location">
-            <Link href="/" className="aero-d-changelocation">
+            <Link href="/" className="aero-d-changelocation" prefetch>
               <GrLocation />
               {location_slug}
             </Link>
-            <Link href={`/${location_slug}/aboutus/faq`}>
+            <Link href={`/${location_slug}/aboutus/faq`} prefetch>
               <div className="aero-faq">FAQ&apos;s</div>
             </Link>
           </div>
         </div>
         <div className="aero_main_logo_wrap">
-          <Link href={`/${location_slug}`} className="aero_main_logo">
+          <Link href={`/${location_slug}`} className="aero_main_logo" prefetch>
             <Image
               src="https://storage.googleapis.com/aerosports/logo_white.png"
               height="71"
@@ -62,20 +62,21 @@ const Header = async ({ location_slug }) => {
           className="aero-btn-booknow app-container"
           style={{ textAlign: "right" }}
         >
-          <Link href={booknow[0]?.value} target="_blank">
+          <Link href={booknow[0]?.value} target="_blank" prefetch>
             <button>book</button>
           </Link>
         </div>
         <div className="aero-btn-booknow desktop-container">
           <Link
             href={`/${location_slug}/contactus`}
+            prefetch
             className="aero-header-contactus-btn aero-d-changelocation"
             style={{ color: "white" }}
           >
             <MdOutlinePermContactCalendar />
             <span>Inquiry Now</span>
           </Link>
-          <Link href={booknow[0]?.value} target="_blank">
+          <Link href={booknow[0]?.value} target="_blank" prefetch>
             {" "}
             <button>book now</button>
           </Link>
@@ -89,6 +90,7 @@ const Header = async ({ location_slug }) => {
                 return (
                   <Link
                     href={`/${location_slug}/${item?.navUrl}`}
+                    prefetch
                     key={item.navName}
                   >
                     {item.navName}
@@ -97,11 +99,12 @@ const Header = async ({ location_slug }) => {
               })}
           </div>
           <div style={{ position: "relative" }} className="aero-header-changelocation-wrap">
-            <Link href="/" className="aero-app-changelocation app-container">
+            <Link href="/" prefetch className="aero-app-changelocation app-container">
               {location_slug}
             </Link>
             <Link
               href={`/${location_slug}/contactus`}
+              prefetch
               className="aero-header-contactus-btn aero-app-changelocation app-container"
               style={{ marginRight:"0"}}
             >

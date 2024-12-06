@@ -67,7 +67,7 @@ const Footer = async ({ location_slug }) => {
       <section className="aero-max-container">
         <RatingComponent ratingdata={ratingdata} />
         <div className="d-flex-center aero_logo_social_wrap">
-          <Link href={`/${location_slug}`}>
+          <Link href={`/${location_slug}`} prefetch>
             <Image
               src="https://storage.googleapis.com/aerosports/logo_white.png"
               alt="AeroSports Logo"
@@ -80,6 +80,7 @@ const Footer = async ({ location_slug }) => {
               <Link
                 href={`https://www.facebook.com/${facebook}`}
                 target="_blank"
+                prefetch
                 className="aero_social_icon"
               >
                 <Image
@@ -94,6 +95,7 @@ const Footer = async ({ location_slug }) => {
               <Link
                 href={`https://x.com/${twitter}`}
                 target="_blank"
+                prefetch
                 className="aero_social_icon"
               >
                 <Image src={twittericon} alt="Twitter" height={50} width={50} />
@@ -103,6 +105,7 @@ const Footer = async ({ location_slug }) => {
               <Link
                 href={`https://www.instagram.com/${insta}`}
                 target="_blank"
+                prefetch
                 className="aero_social_icon"
               >
                 <Image
@@ -117,6 +120,7 @@ const Footer = async ({ location_slug }) => {
               <Link
                 href={`https://www.tiktok.com/${tiktok}`}
                 target="_blank"
+                prefetch
                 className="aero_social_icon"
               >
                 <Image src={tiktokicon} alt="TikTok" height={50} width={50} />
@@ -132,6 +136,7 @@ const Footer = async ({ location_slug }) => {
                 <li key={i}>
                   <Link
                     href={`/${location_slug}/${item?.parentid}/${item?.path}`}
+                    prefetch
                   >
                     {item?.desc}
                   </Link>
@@ -146,6 +151,7 @@ const Footer = async ({ location_slug }) => {
                 <li key={i}>
                   <Link
                     href={`/${location_slug}/${item?.parentid}/${item?.path}`}
+                    prefetch
                   >
                     {item?.desc}
                   </Link>
@@ -162,6 +168,7 @@ const Footer = async ({ location_slug }) => {
                       <li key={i}>
                         <Link
                           href={`/${location_slug}/${item?.parentid}/${item?.path}`}
+                          prefetch
                         >
                           {item?.desc}
                         </Link>
@@ -179,6 +186,7 @@ const Footer = async ({ location_slug }) => {
                 <li key={i}>
                   <Link
                     href={`/${location_slug}/${item?.parentid}/${item?.path}`}
+                    prefetch
                   >
                     {item?.desc}
                   </Link>
@@ -194,6 +202,7 @@ const Footer = async ({ location_slug }) => {
                   <li key={i}>
                     <Link
                       href={`/${location_slug}/${item?.parentid}/${item?.path}`}
+                      prefetch
                     >
                       <article className="d-flex-center aero_footer_article-card">
                         <Image
