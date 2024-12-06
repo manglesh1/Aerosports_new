@@ -51,9 +51,7 @@ const Subcategory = async ({ params }) => {
 
   const waiver = dataconfig?.filter((item) => item.key === "waiver");
   const attractionsData = getDataByParentId(data, subcategory_slug);
-  console.log("sub category details");
   const header_image = getDataByParentId(data, subcategory_slug);
-  console.log(header_image[0].headerimage);
   return (
     <main>
       <section>

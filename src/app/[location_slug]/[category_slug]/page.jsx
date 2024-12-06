@@ -38,8 +38,6 @@ const Category = async ({ params }) => {
   );
  // console.log(data);
   const attractionsData = getDataByParentId(data, category_slug);
-  console.log('attractiondata');
-  console.log(attractionsData);
   const seosection = data?.filter((item) => item.path === category_slug)?.[0]?.seosection;
   const sectiontt = data?.filter((item) => item.path === category_slug)?.[0]?.section1;
   return (
@@ -55,7 +53,7 @@ const Category = async ({ params }) => {
                 return (
                   item?.isactive == 1 && (
                     <Link
-                      href={`${location_slug}/${category_slug}/${item?.path}`}
+                      href={`${category_slug}/${item?.path}`}
                       prefetch
                       key={i}
                     >
