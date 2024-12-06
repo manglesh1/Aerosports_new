@@ -189,7 +189,7 @@ const Footer = async ({ location_slug }) => {
           <ul>
             <li>Latest News</li>
             {blogsData[0]?.children &&
-              blogsData[0]?.children.map((item, i) => {
+              blogsData[0]?.children.slice(0,4).map((item, i) => {
                 return (
                   <li key={i}>
                     <Link

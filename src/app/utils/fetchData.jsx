@@ -19,10 +19,8 @@ export const fetchData = async (url) => {
 
     const data = await response.json();
 
-    // Check if data is empty or invalid
     if (!data || (Array.isArray(data) && data.length === 0)) notFound();
-
-    // Cache the fetched data
+    
     cache.set(url, data);
     console.log(`Caching data for ${url}`);
 

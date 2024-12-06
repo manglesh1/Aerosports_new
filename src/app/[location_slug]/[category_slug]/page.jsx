@@ -45,11 +45,11 @@ const Category = async ({ params }) => {
   return (
     <main>
       <section>
-        <h1 className="aero_category_main_heading d-flex-center">
-          {category_slug?.replace("-", " ")?.toUpperCase()}
-        </h1>
         <section className="aero_category_section_wrapper">
           <section className="aero-max-container">
+            <h1 className="aero_category_main_heading d-flex-center">
+              {category_slug?.replace("-", " ")?.toUpperCase()}
+            </h1>
             <section className="aero_category_section_card_wrapper">
               {attractionsData[0]?.children?.map((item, i) => {
                 return (
@@ -82,11 +82,11 @@ const Category = async ({ params }) => {
             </section>
           </section>
         </section>
-      </section>
-      <section className="aero_home_article_section">
-      <section className="aero-max-container aero_home_seo_section">
-         <div dangerouslySetInnerHTML={{ __html: sectiontt || '' }} />
-        <div dangerouslySetInnerHTML={{ __html: seosection || '' }} />
+        <section className="aero_home_article_section">
+          <section className="aero-max-container aero_home_seo_section">
+            <div dangerouslySetInnerHTML={{ __html: sectiontt || "" }} />
+            <div dangerouslySetInnerHTML={{ __html: seosection || "" }} />
+          </section>
         </section>
       </section>
     </main>

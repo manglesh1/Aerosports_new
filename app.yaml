@@ -1,6 +1,18 @@
 runtime: nodejs18
 env: standard
+
+instance_class: F2  
+
+automatic_scaling:
+  min_instances: 1  
+  max_instances: 10 
+  target_cpu_utilization: 0.65
+  target_throughput_utilization: 0.75
+
 handlers:
   - url: /sitemap.xml
     static_files: public/sitemap.xml
     upload: public/sitemap.xml
+
+  - url: /.*
+    script: auto 
