@@ -4,6 +4,7 @@ import { fetchData } from '@/utils/fetchData';
 import '../../styles/blogs.css'
 import React from "react";
 import { getDataByParentId } from '@/utils/customFunctions';
+import Link from 'next/link';
 
 const data = [
   {
@@ -171,14 +172,14 @@ const page = async({params}) => {
         {extractBlogData?.map((item,i) => (
           <article className="aero-blog-main-article-card" key={i}>
             <div className="aero-blog-img-section">
-              <a href={`blogs/${item?.path}`} >
+              <Link href={`blogs/${item?.path}`} prefetch>
               <img src={item.smallimage} alt="Article Image" />
-              </a>
+              </Link>
             </div>
             <div className="aero-blog-content-section">
               <span className='aero-blog-updated-time'>October 31, 2024</span>
-              <a href={`blogs/${item?.path}`} ><h2 className='aero-blog-second-heading'>{item.title}</h2></a>
-              <a href={`blogs/${item?.path}`} className='aero-blog-readmore-btn'>READ MORE</a>
+              <Link href={`blogs/${item?.path}`} prefetch><h2 className='aero-blog-second-heading'>{item.title}</h2></Link>
+              <Link href={`blogs/${item?.path}`} prefetch className='aero-blog-readmore-btn'>READ MORE</Link>
             </div>
           </article>
         ))}

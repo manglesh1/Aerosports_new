@@ -32,12 +32,11 @@ export default async function Home() {
                 />
                 <h2>{card.desc}</h2>
                 <p>{card.address}</p>
-                <a href={`/${card.locations}`}>
+                <Link href={`/${card.locations}`} prefetch>
                   <button>
                     <span>SELECT THIS PARK</span>
                   </button>
-                </a>
-                {/* <LocationButton location={card.locations} /> */}
+                </Link>
               </div>
             );
           })}

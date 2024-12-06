@@ -52,11 +52,11 @@ const Page = async ({ params }) => {
 
   return (
     <main>
-        <section>
-          <MotionImage header_image={header_image} waiver={waiver} />
-        </section>
-        <section>
-        <ImageMarquee imagesString={header_image[0].headerimage}/>
+      <section>
+        <MotionImage header_image={header_image} waiver={waiver} />
+      </section>
+      <section>
+        <ImageMarquee imagesString={header_image[0].headerimage} />
       </section>
       <section className="subcategory_main_section-bg">
         <section className="aero-max-container">
@@ -85,12 +85,17 @@ const Page = async ({ params }) => {
       </section>
       <section className="aero_home_article_section">
         <section className="aero-max-container">
-          <div dangerouslySetInnerHTML={{ __html: data[0]?.section1 || '' }} />
+          <div
+            className="subcategory_main_section"
+            dangerouslySetInnerHTML={{ __html: data[0]?.section1 || "" }}
+          />
         </section>
       </section>
       <section className="aero_home_article_section">
         <section className="aero-max-container aero_home_seo_section">
-          <div dangerouslySetInnerHTML={{ __html: data[0]?.seosection || '' }} />
+          <div
+            dangerouslySetInnerHTML={{ __html: data[0]?.seosection || "" }}
+          />
         </section>
       </section>
     </main>

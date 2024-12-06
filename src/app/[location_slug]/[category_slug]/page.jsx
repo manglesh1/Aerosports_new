@@ -55,7 +55,8 @@ const Category = async ({ params }) => {
                 return (
                   item?.isactive == 1 && (
                     <Link
-                      href={`/${location_slug}/${category_slug}/${item?.path}`}
+                      href={`${location_slug}/${category_slug}/${item?.path}`}
+                      prefetch
                       key={i}
                     >
                       <article className="aero_category_section_card_wrap">

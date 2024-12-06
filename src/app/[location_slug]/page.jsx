@@ -128,32 +128,36 @@ const Home = async ({ params }) => {
           <h2 className="d-flex-center">JUMP STRAIGHT TO</h2>
           <section className="aero_home-actionbtn-wrap">
             <Link
-              href={`/${location_slug}/attractions`}
+              href={`${location_slug}/attractions`}
               className="aero-btn-booknow"
+              prefetch
             >
               <div>
                 <button>ATTRACTIONS</button>
               </div>
             </Link>
             <Link
-              href={`/${location_slug}/programs`}
+              href={`${location_slug}/programs`}
               className="aero-btn-booknow"
+              prefetch
             >
               <div>
                 <button>PROGRAMS</button>
               </div>
             </Link>
             <Link
-              href={`/${location_slug}/kids-birthday-parties`}
+              href={`${location_slug}/kids-birthday-parties`}
               className="aero-btn-booknow"
+              prefetch
             >
               <div>
                 <button>BIRTHDAY PARTIES</button>
               </div>
             </Link>
             <Link
-              href={`/${location_slug}/groups-events`}
+              href={`${location_slug}/groups-events`}
               className="aero-btn-booknow"
+              prefetch
             >
               <div>
                 <button>GROUPS & EVENTS</button>
@@ -177,7 +181,8 @@ const Home = async ({ params }) => {
               attractionsData[0]?.children?.map((item, i) => {
                 return (
                   <Link
-                    href={`/${location_slug}/${item?.parentid}/${item?.path}`}
+                    href={`${location_slug}/${item?.parentid}/${item?.path}`}
+                    prefetch
                     key={i}
                   >
                     <article className="d-flex-dir-col">
@@ -219,7 +224,8 @@ const Home = async ({ params }) => {
           alt="birthday img"
         />
         <Link
-          href={`/${location_slug}/kids-birthday-parties`}
+          href={`${location_slug}/kids-birthday-parties`}
+          prefetch
           className="aero-btn-booknow aero-btn-kidslearnmore"
         >
           <div>
@@ -233,7 +239,8 @@ const Home = async ({ params }) => {
           <h2>Every Updated Article</h2>
           <BlogCard blogsData={blogsData[0]} location_slug={location_slug} />
           <Link
-            href={`/${location_slug}/blogs`}
+            href={`${location_slug}/blogs`}
+            prefetch
             className="aero-btn-booknow aero-btn-article-section"
           >
             <div>
