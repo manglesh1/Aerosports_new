@@ -29,6 +29,7 @@ export default async function Home() {
                   alt="city image"
                   width={100}
                   height={100}
+                  unoptimized
                 />
                 <h2>{card.desc}</h2>
                 <p>{card.address}</p>

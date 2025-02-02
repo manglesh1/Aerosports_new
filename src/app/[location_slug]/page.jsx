@@ -186,11 +186,12 @@ const Home = async ({ params }) => {
                     key={i}
                   >
                     <article className="d-flex-dir-col">
-                      <img
+                      <Image
                         src={item?.smallimage}
                         width={120}
                         height={120}
                         alt={item?.title}
+                        unoptimized
                       />
                       <figure className="aero_home-play-small-img">
                         <Image
@@ -198,6 +199,7 @@ const Home = async ({ params }) => {
                           width={120}
                           height={120}
                           alt={item?.title}
+                          unoptimized
                         />
                         <span>{item?.desc}</span>
                       </figure>
@@ -215,6 +217,7 @@ const Home = async ({ params }) => {
           width={220}
           height={120}
           alt="birthday img"
+          unoptimized
         />
         <Image
           className="app-container"
@@ -222,6 +225,7 @@ const Home = async ({ params }) => {
           width={220}
           height={120}
           alt="birthday img"
+          unoptimized
         />
         <Link
           href={`${location_slug}/kids-birthday-parties`}

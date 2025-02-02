@@ -16,7 +16,7 @@ const MotionImage = ({ header_image, waiver }) => {
                 <source src={item?.video} type="video/mp4" />
               </video>
               <article className="image-content">
-             
+
                 <div className="aero-btn-booknow">
                   <Link href={waiver[0].value} target="_blank">
                     <motion.button
@@ -36,7 +36,7 @@ const MotionImage = ({ header_image, waiver }) => {
               </article>
               <h1>{item.title}</h1>
             </section>
-            
+
           ) : (
             <motion.div
               key={i}
@@ -48,17 +48,16 @@ const MotionImage = ({ header_image, waiver }) => {
                 repeat: Infinity,
                 repeatType: "reverse",
               }}
-              style={{maxHeight:'600px', minHeight:"450px"}}
+              style={{ maxHeight: '600px', minHeight: "450px" }}
             >
-           {/****   <Image                src={item?.headerimage}                alt="header - image"                width={1200}                height={600}                title="header image for more info about the image"                className="header-image" />**/}
 
-                        <motion.article
+              <motion.article
                 className="image-content"
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 transition={{
                   duration: 3,
-                
+
                 }}
               >
                 <h1>{item.title}</h1>

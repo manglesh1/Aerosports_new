@@ -49,6 +49,7 @@ const Footer = async ({ location_slug }) => {
           width={1200}
           height={600}
           title="Glow Night Event"
+          unoptimized
         />
         <article className="aero-max-container aero_home_BPJ_wrapper">
           {[
@@ -57,7 +58,7 @@ const Footer = async ({ location_slug }) => {
             { icon: jump_icon, text: "Safe Jumping" },
           ].map((item, index) => (
             <div className="d-flex-center" key={index}>
-              <Image src={item.icon} width={90} height={80} alt={item.text} />
+              <Image src={item.icon} width={90} height={80} alt={item.text} unoptimized/>
               <span>{item.text}</span>
             </div>
           ))}
@@ -73,6 +74,7 @@ const Footer = async ({ location_slug }) => {
               alt="AeroSports Logo"
               width={100}
               height={93.42}
+              unoptimized
             />
           </Link>
           <div className="aero_social_icon_wrap">
@@ -88,6 +90,7 @@ const Footer = async ({ location_slug }) => {
                   alt="Facebook"
                   height={50}
                   width={50}
+                  unoptimized
                 />
               </Link>
             )}
@@ -98,7 +101,7 @@ const Footer = async ({ location_slug }) => {
                 prefetch
                 className="aero_social_icon"
               >
-                <Image src={twittericon} alt="Twitter" height={50} width={50} />
+                <Image src={twittericon} alt="Twitter" height={50} width={50} unoptimized/>
               </Link>
             )}
             {insta && (
@@ -113,6 +116,7 @@ const Footer = async ({ location_slug }) => {
                   alt="Instagram"
                   height={50}
                   width={50}
+                  unoptimized
                 />
               </Link>
             )}
@@ -123,7 +127,7 @@ const Footer = async ({ location_slug }) => {
                 prefetch
                 className="aero_social_icon"
               >
-                <Image src={tiktokicon} alt="TikTok" height={50} width={50} />
+                <Image src={tiktokicon} alt="TikTok" height={50} width={50} unoptimized/>
               </Link>
             )}
           </div>
@@ -211,6 +215,7 @@ const Footer = async ({ location_slug }) => {
                           title={item?.title}
                           width={50}
                           height={50}
+                          unoptimized
                         />
                         <div>
                           <h6>{item?.pageid}</h6>

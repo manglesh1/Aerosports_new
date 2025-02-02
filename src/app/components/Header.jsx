@@ -55,6 +55,7 @@ const Header = async ({ location_slug }) => {
               width="71"
               alt="logo"
               title="logo"
+              unoptimized
             />
           </Link>
         </div>
