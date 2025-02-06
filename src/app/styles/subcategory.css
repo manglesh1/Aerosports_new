@@ -67,6 +67,7 @@
   list-style-type: none;
   margin: 0.5em 0;
   text-align: left;
+  color: var(--primary-color);
 }
 
 .subcategory_main_section ul li::before {

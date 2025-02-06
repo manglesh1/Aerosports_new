@@ -34,7 +34,7 @@ const MotionImage = ({ header_image, waiver }) => {
                   </Link>
                 </div>
               </article>
-              <h1>{item.title}</h1>
+              <h1 className="aero-home-h1heading">{item.title}</h1>
             </section>
 
           ) : (

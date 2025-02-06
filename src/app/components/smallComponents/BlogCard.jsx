@@ -14,7 +14,7 @@ const BlogCard = ({ blogsData, location_slug }) => {
             >
               <article className="aero_home_article_card">
                 <Image
-                  src={item?.smallimage}
+                  src={item?.smallimage || 'https://storage.googleapis.com/aerosports/common/gallery-thummbnail-wall-climbwall.jpg'}
                   width={120}
                   height={120}
                   alt="article image"
