@@ -8,6 +8,7 @@ import TopHeader from "./smallComponents/TopHeader";
 import { MdOutlinePermContactCalendar } from "react-icons/md";
 
 const Header = async ({ location_slug }) => {
+  console.log("header")
   const API_URL = process.env.NEXT_PUBLIC_API_URL;
   const [data, dataconfig] = await Promise.all([
     fetchData(`${API_URL}/fetchmenudata1?location=${location_slug}`),

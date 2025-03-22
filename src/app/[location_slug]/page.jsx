@@ -16,8 +16,6 @@ export async function generateMetadata({ params }) {
   const API_URL = process.env.NEXT_PUBLIC_API_URL;
   const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL;
   const data = await fetchData(`${API_URL}/fetchpagedata?location=${location_slug}&page=home`);
-  console.log(`${API_URL}/fetchpagedata?location=${location_slug}&page=home`);
-  console.log("home page data");
 
   const header_image = data
     ?.filter((item) => item.path === "home")
@@ -56,8 +54,7 @@ const Home = async ({ params }) => {
     ),
   ]);
 
-  console.log(`${API_URL}/fetchpagedata?location=${location_slug}&page=home`);
-  console.log("home page data");
+  // console.log("home page data");
 
   const waiver = dataconfig?.filter((item) => item.key === "waiver");
   const homepageSection1 =

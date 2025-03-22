@@ -13,28 +13,28 @@ export default function GoogleAnalytics() {
     const pathname = window.location.pathname; // Use window for client-side pathname
     const locationSlug = pathname.split("/")[1];
 
-    console.log("Current path: ", pathname, " | Location: ", locationSlug);
+    // console.log("Current path: ", pathname, " | Location: ", locationSlug);
 
     // Dynamically set Google Analytics ID based on location
     switch (locationSlug) {
       case "london":
-        console.log("Tracking for London");
+        // console.log("Tracking for London");
         setLocationTrackingId("G-L59BND7FS0");
         break;
       case "windsor":
-        console.log("Tracking for Windsor");
+        // console.log("Tracking for Windsor");
         setLocationTrackingId("G-KWJLE4VJRW");
         break;
       case "st-catharines":
-        console.log("Tracking for St. Catharines");
+        // console.log("Tracking for St. Catharines");
         setLocationTrackingId("G-CJJLRQ2Q2Y");
         break;
       case "oakville":
-        console.log("Tracking for Oakville");
+        // console.log("Tracking for Oakville");
         setLocationTrackingId("G-D5W5H2N64H");
         break;
       default:
-        console.log("No location-specific tracking");
+        // console.log("No location-specific tracking");
         setLocationTrackingId(""); // Fallback if no valid location is found
         break;
     }

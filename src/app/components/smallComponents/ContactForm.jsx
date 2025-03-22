@@ -1,14 +1,12 @@
-// app/components/ContactForm.js
-"use client"; // This component is client-side
+"use client"; 
 
 import { useState ,useEffect } from "react";
-import { useRouter } from "next/navigation"; // Next.js hook for accessing router
-import "../../styles/contactus.css"; // Assuming you create a CSS file named ContactForm.css
+import { useRouter } from "next/navigation"; 
+import "../../styles/contactus.css"; 
 
 function ContactForm() {
-  const router = useRouter(); // Access router
-  const [currentLocation, setCurrentLocation] = useState(""); // State to store extracted location
-
+  const router = useRouter(); 
+  const [currentLocation, setCurrentLocation] = useState(""); 
   const [formData, setFormData] = useState({
     fullName: "",
     email: "",
@@ -19,11 +17,10 @@ function ContactForm() {
     selectedEvent: "",
   });
 
-  const [successMessage, setSuccessMessage] = useState(""); // New state for success message
+  const [successMessage, setSuccessMessage] = useState(""); 
   useEffect(() => {
-    // Extract location segment from the URL
-    const currentUrl = window.location.href; // Get full URL
-    const pathSegments = new URL(currentUrl).pathname.split("/"); // Split the path by "/"
+    const currentUrl = window.location.href; 
+    const pathSegments = new URL(currentUrl).pathname.split("/"); 
     const locationSegment = pathSegments[1]; // "st-catharines" is the second segment
     setCurrentLocation(locationSegment); // Update state with extracted location
   }, []);
@@ -33,7 +30,7 @@ function ContactForm() {
   };
 
  const handleSubmit = async (e) => {
-  console.log('contact form'); 
+  // console.log('contact form'); 
   formData.locationEmail='event@aerosportsparks.ca'
   formData.subject = currentLocation +' ' + formData.selectedEvent + ' from ' + formData.fullName + ' on ' + formData.date + ' at ' + formData.time;
    e.preventDefault();

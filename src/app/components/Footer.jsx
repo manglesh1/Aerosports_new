@@ -14,6 +14,7 @@ import instagramicon from "@public/assets/images/social_icon/instagram.png";
 import Script from "next/script";
 
 const Footer = async ({ location_slug }) => {
+  console.log("footer")
   const API_URL = process.env.NEXT_PUBLIC_API_URL;
 
   const configdata = await fetchData(

@@ -163,7 +163,7 @@ const page = async({params}) => {
   const data = await fetchData(`${API_URL}/fetchmenudata1?location=${location_slug}`);
   const blogsData = getDataByParentId(data, "blogs");
   const extractBlogData = blogsData[0]?.children
-  console.log(extractBlogData)
+  // console.log(extractBlogData)
   return (
     <main className="aero-blog-main-section">
       <section className='aero-max-container'>
