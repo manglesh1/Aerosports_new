@@ -5,7 +5,7 @@ import park_feature_icon from "@public/assets/images/home/park_feature_icon.svg"
 import jump_icon from "@public/assets/images/home/jump_icon.svg";
 import Link from "next/link";
 import { getDataByParentId } from "@/utils/customFunctions";
-import { fetchData } from "@/utils/fetchData";
+import { fetchData, fetchData1 } from "@/utils/fetchData";
 import RatingComponent from "./smallComponents/RatingComponent";
 import facebookicon from "@public/assets/images/social_icon/facebook.png";
 import twittericon from "@public/assets/images/social_icon/twitter.png";
@@ -31,8 +31,8 @@ const Footer = async ({ location_slug }) => {
   } = configdata[0] || {};
 
   const [data, ratingdata] = await Promise.all([
-    fetchData(`${API_URL}/fetchmenudata?location=${location_slug}`),
-    fetchData(`${API_URL}/getreviews?locationid=${locationid}`),
+    fetchData1(`${API_URL}/fetchmenudata?location=${location_slug}`),
+    fetchData1(`${API_URL}/getreviews?locationid=${locationid}`),
   ]);
 
   const attractionsData = getDataByParentId(data, "attractions");
