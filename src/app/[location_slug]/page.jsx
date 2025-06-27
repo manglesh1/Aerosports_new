@@ -51,7 +51,10 @@ const Home = async ({ params }) => {
     fetchData(`${API_URL}/fetchsheetdata?sheetname=config&location=${location_slug}`),
   ]);
 
-  const waiver = Array.isArray(dataconfig) ? dataconfig.find((item) => item.key === "waiver") : null;
+  const waiver1 = Array.isArray(dataconfig) ? dataconfig.find((item) => item.key === "waiver") : null;
+  const waiverLink=waiver1?.value;
+
+
   const homepageSection1 = Array.isArray(dataconfig)
     ? dataconfig.find((item) => item.key === "homepageSection1")?.value ?? ""
     : "";
@@ -101,7 +104,7 @@ const Home = async ({ params }) => {
     <main>
       {promotionPopup.length > 0 && <PromotionModal promotionPopup={promotionPopup} />}
      
-      <MotionImage header_image={header_image} waiver={waiver} />
+      <MotionImage header_image={header_image} waiver={waiverLink} />
       {attractionsData?.[0]?.children?.length > 0 && (
       <section className="aero_home-actionbtn-bg">
         <section className="aero-max-container aero_home-actionbtn">
@@ -121,8 +124,56 @@ const Home = async ({ params }) => {
             </Link>
           </section>
         </section>
+        <div className="aero_home_triangle"></div>
       </section>
       )}
+
+
+     
+      <section className="aero_home-playsection">
+        <section className="aero_home-playsection-bg">
+          <section className="aero-max-container aero_home-playsection-1 d-flex-dir-col">
+            <h2>THERE IS SO MUCH TO DO AT AEROSPORTS!</h2>
+            <p>{homepageSection1}</p>
+            <h2>Explore attractions</h2>
+          </section>
+        </section>
+        <section className="aero_home-actionbtn-bg">
+          <section className="aero-max-container aero_home-playsection-2 ">
+            {attractionsData[0]?.children &&
+              attractionsData[0]?.children?.map((item, i) => {
+                return (
+                  <Link
+                    href={`${location_slug}/${item?.parentid}/${item?.path}`}
+                    prefetch
+                    key={i}
+                  >
+                    <article className="d-flex-dir-col">
+                      <Image
+                        src={item?.smallimage}
+                        width={120}
+                        height={120}
+                        alt={item?.title}
+                        unoptimized
+                      />
+                      <figure className="aero_home-play-small-img">
+                        <Image
+                          src={line_pattern}
+                          width={120}
+                          height={120}
+                          alt={item?.title}
+                          unoptimized
+                        />
+                        <span>{item?.desc}</span>
+                      </figure>
+                    </article>
+                  </Link>
+                );
+              })}
+          </section>
+        </section>
+      </section>
+
        {attractionsData?.[0]?.children?.length > 0 && (
       <section className="aero_home_birthday_section">
         <Image className="desktop-container" src={birthday_img} width={220} height={120} alt="birthday img" unoptimized />
@@ -156,12 +207,13 @@ const Home = async ({ params }) => {
         </section>
       </section>
        )}
-       
+        {attractionsData?.[0]?.children?.length > 0 && (
       <section className="aero_home_article_section">
         <section className="aero-max-container aero_home_seo_section">
           <div dangerouslySetInnerHTML={{ __html: seosection }} />
         </section>
       </section>
+        )}
       {location_slug === "st-catharines" && (
         <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(stCatharinesSchema) }} />
       )}
