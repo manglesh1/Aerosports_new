@@ -201,4 +201,6 @@
 <url><loc>https://www.aerosportsparks.ca/london/sickkids</loc><changefreq>daily</changefreq><priority>0.7</priority></url>
 <url><loc>https://www.aerosportsparks.ca/st-catharines/sickkids</loc><changefreq>daily</changefreq><priority>0.7</priority></url>
 <url><loc>https://www.aerosportsparks.ca/windsor/sickkids</loc><changefreq>daily</changefreq><priority>0.7</priority></url>
+<url><loc>https://www.aerosportsparks.ca/st-catharines/attractions/axe-throw</loc><changefreq>daily</changefreq><priority>0.7</priority></url>
+<url><loc>https://www.aerosportsparks.ca/st-catharines/attractions/arcade</loc><changefreq>daily</changefreq><priority>0.7</priority></url>
 </urlset>

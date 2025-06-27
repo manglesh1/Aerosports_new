@@ -1,3 +1,4 @@
+"use client";
 import "../styles/home.css";
 import Link from "next/link";
 import { GrLocation } from "react-icons/gr";
@@ -8,26 +9,30 @@ import TopHeader from "./smallComponents/TopHeader";
 import { MdOutlinePermContactCalendar } from "react-icons/md";
 
 const Header = async ({ location_slug }) => {
-  console.log("header")
   const API_URL = process.env.NEXT_PUBLIC_API_URL;
+
   const [data, dataconfig] = await Promise.all([
     fetchData(`${API_URL}/fetchmenudata1?location=${location_slug}`),
-    fetchData(
-      `${API_URL}/fetchsheetdata?sheetname=config&location=${location_slug}`
-    ),
+    fetchData(`${API_URL}/fetchsheetdata?sheetname=config&location=${location_slug}`),
   ]);
-  
-  const navList = data
+
+  const navList = (Array.isArray(data) ? data : [])
     .filter((item) => item.isactive === 1)
     .map((item) => ({ navName: item.desc, navUrl: item.path.toLowerCase() }))
     .sort((a, b) => a.navName.localeCompare(b.navName));
 
-  const booknow = dataconfig?.filter((item) => item.key === "estorebase");
-  const topheader = dataconfig?.filter((item) => item.key === "top-header");
+  const estoreConfig = Array.isArray(dataconfig)
+    ? dataconfig.find((item) => item.key === "estorebase")
+    : null;
+
+  const topHeaderConfig = Array.isArray(dataconfig)
+    ? dataconfig.find((item) => item.key === "top-header")
+    : null;
 
   return (
     <header>
-      {topheader[0]?.value && <TopHeader topheader={topheader} />}
+      {topHeaderConfig?.value && <TopHeader topheader={[topHeaderConfig]} />}
+
       <section className="d-flex aero-col-3">
         <div className="aero-menu-location app-container">
           <div className="d-flex-center aero_menu_location_icon">
@@ -37,6 +42,7 @@ const Header = async ({ location_slug }) => {
             </Link>
           </div>
         </div>
+
         <div className="desktop-container">
           <div className="aero-menu-location">
             <Link href="/" className="aero-d-changelocation" prefetch>
@@ -48,6 +54,7 @@ const Header = async ({ location_slug }) => {
             </Link>
           </div>
         </div>
+
         <div className="aero_main_logo_wrap">
           <Link href={`/${location_slug}`} className="aero_main_logo" prefetch>
             <Image
@@ -60,14 +67,15 @@ const Header = async ({ location_slug }) => {
             />
           </Link>
         </div>
-        <div
-          className="aero-btn-booknow app-container"
-          style={{ textAlign: "right" }}
-        >
-          <Link href={booknow[0]?.value} target="_blank" prefetch>
-            <button>book</button>
-          </Link>
+
+        <div className="aero-btn-booknow app-container" style={{ textAlign: "right" }}>
+          {estoreConfig?.value && (
+            <Link href={estoreConfig.value} target="_blank" prefetch>
+              <button>book</button>
+            </Link>
+          )}
         </div>
+
         <div className="aero-btn-booknow desktop-container">
           <Link
             href={`/${location_slug}/contactus`}
@@ -78,27 +86,27 @@ const Header = async ({ location_slug }) => {
             <MdOutlinePermContactCalendar />
             <span>Inquiry Now</span>
           </Link>
-          <Link href={booknow[0]?.value} target="_blank" prefetch>
-            {" "}
-            <button>book now</button>
-          </Link>
+          {estoreConfig?.value && (
+            <Link href={estoreConfig.value} target="_blank" prefetch>
+              <button>book now</button>
+            </Link>
+          )}
         </div>
       </section>
+
       <section className="aero_changelocation_height">
         <nav className="d-flex-center aero-list-7 aero_changelocation_height">
           <div className="desktop-container">
-            {navList &&
-              navList.map((item) => {
-                return (
-                  <Link
-                    href={`/${location_slug}/${item?.navUrl}`}
-                    prefetch
-                    key={item.navName}
-                  >
-                    {item.navName}
-                  </Link>
-                );
-              })}
+            {Array.isArray(navList) &&
+              navList.map((item) => (
+                <Link
+                  href={`/${location_slug}/${item?.navUrl}`}
+                  prefetch
+                  key={item.navName}
+                >
+                  {item.navName}
+                </Link>
+              ))}
           </div>
           <div style={{ position: "relative" }} className="aero-header-changelocation-wrap">
             <Link href="/" prefetch className="aero-app-changelocation app-container">
@@ -108,7 +116,7 @@ const Header = async ({ location_slug }) => {
               href={`/${location_slug}/contactus`}
               prefetch
               className="aero-header-contactus-btn aero-app-changelocation app-container"
-              style={{ marginRight:"0"}}
+              style={{ marginRight: "0" }}
             >
               <MdOutlinePermContactCalendar />
               <span>Inquiry</span>

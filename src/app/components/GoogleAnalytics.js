@@ -33,6 +33,10 @@ export default function GoogleAnalytics() {
         // console.log("Tracking for Oakville");
         setLocationTrackingId("G-D5W5H2N64H");
         break;
+        case "scarborough":
+          // console.log("Tracking for Oakville");
+          setLocationTrackingId("G-D5W5H2N64H");
+          break;
       default:
         // console.log("No location-specific tracking");
         setLocationTrackingId(""); // Fallback if no valid location is found

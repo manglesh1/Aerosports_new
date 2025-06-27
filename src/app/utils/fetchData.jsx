@@ -2,7 +2,8 @@ import { notFound } from "next/navigation";
 
 export const fetchData = async (url) => {
   try {
-    const response = await fetch(url, {next: {revalidate: 3600}}); 
+    console.log(url);
+    const response = await fetch(url, {next: {revalidate: 0}}); 
     if (!response.ok) notFound();
 
     const data = await response.json();
@@ -17,7 +18,7 @@ export const fetchData = async (url) => {
 
 export const fetchData1 = async (url) => {
   try {
-    const response = await fetch(url, {next: {revalidate: 3600*24*3}}); 
+    const response = await fetch(url, {next: {revalidate: 3600*24*5}}); 
     if (!response.ok) notFound();
 
     const data = await response.json();

@@ -19,7 +19,7 @@ module.exports = {
     const dynamicPaths = [];
     const dynamicUrlsSet = new Set();
     const siteUrl = 'https://www.aerosportsparks.ca';
-    const locations = ['oakville', 'london', 'st-catharines', 'windsor'];  
+    const locations = ['oakville', 'london', 'st-catharines', 'windsor','scarborough'];  
 
     try {
       const API_URL = 'https://apis-351216.nn.r.appspot.com';

@@ -13,7 +13,7 @@ const inter = Poppins({
 });
 
 export const metadata = {
-  title: "Aerosports Trampoline Park St-Catharines, Niagara Falls, Windsor,London, Oakville",
+  title: "Aerosports Trampoline Park St-Catharines, Niagara Falls, Windsor,London, Oakville,scarborough",
   description: "One of the Ontario's top spots for fun: A massive trampoline park featuring climbing walls, giant slides, a jungle gym, Mini Golf, obstacle courses, dodgeball, and more. Perfect for birthday parties!",
   robots: {
     index: true,
@@ -25,7 +25,7 @@ export const metadata = {
   openGraph: {
     type: "website",
     url: BASE_URL,
-    title: "AeroSports Trampoline Park Locations: St. Catharines, Niagara Falls, Windsor, London, Oakville",
+    title: "AeroSports Trampoline Park Locations: St. Catharines, Niagara Falls, Windsor, London, Oakville,scarborough",
     description: "The GTA's ultimate play destination: A huge trampoline park with climbing walls, towering slides, a jungle gym, obstacle courses, dodgeball, and more. Ideal for birthday parties!",
     images: [
       {

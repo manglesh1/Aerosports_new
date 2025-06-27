@@ -30,11 +30,18 @@ const Footer = async ({ location_slug }) => {
     chatid,
   } = configdata[0] || {};
 
-  const [data, ratingdata] = await Promise.all([
-    fetchData1(`${API_URL}/fetchmenudata?location=${location_slug}`),
-    fetchData1(`${API_URL}/getreviews?locationid=${locationid}`),
-  ]);
-
+  const promises = [
+    fetchData1(`${API_URL}/fetchmenudata?location=${location_slug}`)
+  ];
+  
+  // Only fetch reviews if locationid is valid
+  if (locationid) {
+    promises.push(fetchData1(`${API_URL}/getreviews?locationid=${locationid}`));
+  } else {
+    promises.push(Promise.resolve(null)); // to preserve array structure
+  }
+  
+  const [data, ratingdata] = await Promise.all(promises);
   const attractionsData = getDataByParentId(data, "attractions");
   const programsData = getDataByParentId(data, "programs");
   const groupsData = getDataByParentId(data, "groups-events");
@@ -43,6 +50,7 @@ const Footer = async ({ location_slug }) => {
 
   return (
     <footer className="aero_footer_section-bg">
+        {attractionsData?.[0]?.children?.length > 0 && (
       <section className="aero_home-headerimg-wrapper">
         <Image
           src="https://storage.googleapis.com/aerosports/windsor/GLOW-2-h.jpg"
@@ -65,9 +73,11 @@ const Footer = async ({ location_slug }) => {
           ))}
         </article>
       </section>
-
+        )}
       <section className="aero-max-container">
+      {ratingdata && (
         <RatingComponent ratingdata={ratingdata} />
+      )}
         <div className="d-flex-center aero_logo_social_wrap">
           <Link href={`/${location_slug}`} prefetch>
             <Image
