@@ -18,14 +18,14 @@ import { fetchData1 } from "@/utils/fetchData";
 
 const Footer = ({ location_slug, configdata, menudata, locationid }) => {
   const [ratingdata, setRatingdata] = useState(null);
-console.log('footer')
+
   useEffect(() => {
     if (locationid) {
       const url = `${process.env.NEXT_PUBLIC_API_URL}/getreviews?locationid=${locationid}`;
       fetchData1(url).then(data => setRatingdata(data)).catch(err => console.error("Review fetch failed:", err));
     }
   }, [locationid]);
-console.log(configdata);
+
   if (!configdata?.length || !menudata?.length) return null;
 
   const {
