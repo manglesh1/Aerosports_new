@@ -1,5 +1,6 @@
 'use client';
 
+import { useEffect, useState } from "react";
 import Image from "next/image";
 import "../styles/home.css";
 import event_icon from "@public/assets/images/home/event_icon.svg";
@@ -13,12 +14,21 @@ import twittericon from "@public/assets/images/social_icon/twitter.png";
 import tiktokicon from "@public/assets/images/social_icon/tiktok.png";
 import instagramicon from "@public/assets/images/social_icon/instagram.png";
 import Script from "next/script";
+import { fetchData1 } from "@/utils/fetchData";
 
-const Footer = ({ location_slug, configdata, menudata, ratingdata }) => {
+const Footer = ({ location_slug, configdata, menudata, locationid }) => {
+  const [ratingdata, setRatingdata] = useState(null);
+console.log('footer')
+  useEffect(() => {
+    if (locationid) {
+      const url = `${process.env.NEXT_PUBLIC_API_URL}/getreviews?locationid=${locationid}`;
+      fetchData1(url).then(data => setRatingdata(data)).catch(err => console.error("Review fetch failed:", err));
+    }
+  }, [locationid]);
+console.log(configdata);
   if (!configdata?.length || !menudata?.length) return null;
 
   const {
-    locationid,
     facebook,
     insta,
     twitter,
@@ -26,15 +36,15 @@ const Footer = ({ location_slug, configdata, menudata, ratingdata }) => {
     chatid,
   } = configdata[0] || {};
 
-  const data = menudata;
-  const attractionsData = getDataByParentId(data, "attractions");
-  const programsData = getDataByParentId(data, "programs");
-  const groupsData = getDataByParentId(data, "groups-events");
-  const companyData = getDataByParentId(data, "aboutus");
-  const blogsData = getDataByParentId(data, "blogs");
+  const attractionsData = getDataByParentId(menudata, "attractions");
+  const programsData = getDataByParentId(menudata, "programs");
+  const groupsData = getDataByParentId(menudata, "groups-events");
+  const companyData = getDataByParentId(menudata, "aboutus");
+  const blogsData = getDataByParentId(menudata, "blogs");
 
   return (
     <footer className="aero_footer_section-bg">
+      {/* Hero Section */}
       {attractionsData?.[0]?.children?.length > 0 && (
         <section className="aero_home-headerimg-wrapper">
           <Image
@@ -61,7 +71,10 @@ const Footer = ({ location_slug, configdata, menudata, ratingdata }) => {
       )}
 
       <section className="aero-max-container">
+        {/* Rating */}
         {ratingdata && <RatingComponent ratingdata={ratingdata} />}
+
+        {/* Logo + Socials */}
         <div className="d-flex-center aero_logo_social_wrap">
           <Link href={`/${location_slug}`} prefetch>
             <Image
@@ -96,6 +109,7 @@ const Footer = ({ location_slug, configdata, menudata, ratingdata }) => {
           </div>
         </div>
 
+        {/* Footer Menus */}
         <section className="aero_footer_col-4-wrapper">
           <ul>
             <li>Attractions</li>
@@ -167,6 +181,7 @@ const Footer = ({ location_slug, configdata, menudata, ratingdata }) => {
         </section>
       </section>
 
+      {/* Chat Script */}
       {chatid && (
         <Script
           src="https://widgets.leadconnectorhq.com/loader.js"

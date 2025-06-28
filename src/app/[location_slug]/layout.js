@@ -13,9 +13,7 @@ export default async function LocationLayout({ children, params }) {
   ]);
 
   const locationid = sheetdata?.[0]?.locationid || null;
-  const ratingdata = locationid
-    ? await fetchData1(`${process.env.NEXT_PUBLIC_API_URL}/getreviews?locationid=${locationid}`)
-    : null;
+ 
 
   return (
     <div>
@@ -23,9 +21,9 @@ export default async function LocationLayout({ children, params }) {
       {children}
       <Footer
         location_slug={location_slug}
-        configdata={sheetdata}
+        configdata={configdata}
         menudata={menudata}
-        ratingdata={ratingdata}
+        locationid={locationid}
       />
       <div id="modal-root"></div>
     </div>
