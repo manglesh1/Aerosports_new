@@ -4,15 +4,15 @@ import React from "react";
 import "../../styles/category.css";
 import { getDataByParentId } from "@/utils/customFunctions";
 import { fetchData } from "@/utils/fetchData";
-
+import { fetchsheetdata, fetchMenuData, fetchPageData } from "@/lib/sheets";
 export async function generateMetadata({ params }) {
   const { location_slug, category_slug } = params;
   const API_URL = process.env.NEXT_PUBLIC_API_URL;
   const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL;
-
-  const data = await fetchData(
-    `${API_URL}/fetchpagedata?location=${location_slug}&page=${category_slug}`
-  );
+const data = await fetchPageData(location_slug,category_slug);
+  //const data = await fetchData(
+  //  `${API_URL}/fetchpagedata?location=${location_slug}&page=${category_slug}`
+  //  );
 
   const attractionsData = getDataByParentId(data, category_slug)?.map(
     (item) => ({
@@ -32,11 +32,13 @@ export async function generateMetadata({ params }) {
 const Category = async ({ params }) => {
   const { location_slug, category_slug } = params;
   const API_URL = process.env.NEXT_PUBLIC_API_URL;
-
-  const data = await fetchData(
-    `${API_URL}/fetchmenudata?location=${location_slug}`
-  );
+const data = await fetchMenuData(location_slug);
+ // const data = await fetchData(
+  //fetchMenuData(location_slug)
+   // `${API_URL}/fetchmenudata?location=${location_slug}`
+  //);
  // console.log(data);
+
   const attractionsData = getDataByParentId(data, category_slug);
   const seosection = data?.filter((item) => item.path === category_slug)?.[0]?.seosection;
   const sectiontt = data?.filter((item) => item.path === category_slug)?.[0]?.section1;

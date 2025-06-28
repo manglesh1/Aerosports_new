@@ -11,12 +11,17 @@ import Countup from "@/components/Countup";
 import MotionImage from "@/components/MotionImage";
 import PromotionModal from "@/components/model/PromotionModal";
 import BlogCard from "@/components/smallComponents/BlogCard";
+import { fetchsheetdata, fetchMenuData, fetchPageData } from "@/lib/sheets";
+
 
 export async function generateMetadata({ params }) {
-  const location_slug = params?.location_slug;
+
+  
+ const location_slug = params?.location_slug;
   const API_URL = process.env.NEXT_PUBLIC_API_URL;
   const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL;
-  const data = await fetchData(`${API_URL}/fetchpagedata?location=${location_slug}&page=home`);
+  //const data = await fetchData(`${API_URL}/fetchpagedata?location=${location_slug}&page=home`);
+  const data = await fetchPageData(location_slug, 'home');
 
   const header_image = data?.filter((item) => item.path === "home")?.map((item) => ({
     title: item?.metatitle,
@@ -47,8 +52,9 @@ const Home = async ({ params }) => {
   const API_URL = process.env.NEXT_PUBLIC_API_URL;
 
   const [data, dataconfig] = await Promise.all([
-    fetchData(`${API_URL}/fetchmenudata1?location=${location_slug}`),
-    fetchData(`${API_URL}/fetchsheetdata?sheetname=config&location=${location_slug}`),
+    fetchMenuData(location_slug),
+    fetchsheetdata('config', location_slug),
+    
   ]);
 
   const waiver1 = Array.isArray(dataconfig) ? dataconfig.find((item) => item.key === "waiver") : null;

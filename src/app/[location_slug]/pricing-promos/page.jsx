@@ -4,14 +4,15 @@ import MotionImage from "@/components/MotionImage";
 import { getDataByParentId } from "@/utils/customFunctions";
 import { fetchData } from "@/utils/fetchData";
 import Link from "next/link";
-
+import { fetchsheetdata, fetchMenuData, fetchPageData } from "@/lib/sheets";
 export async function generateMetadata({ params }) {
   const { location_slug } = params;
   const API_URL = process.env.NEXT_PUBLIC_API_URL;
   const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL;
-  const data = await fetchData(
-    `${API_URL}/fetchpagedata?location=${location_slug}&page=pricing-promos`
-  );
+  const data = await fetchPageData(location_slug, 'pricing-promos')
+  //const data = await fetchData(
+ //   `${API_URL}/fetchpagedata?location=${location_slug}&page=pricing-promos`
+  //);
 
   const membershipmetadata = data
     ?.filter((item) => item?.path === "pricing-promos")
@@ -37,12 +38,14 @@ const page = async ({ params }) => {
   const API_URL = process.env.NEXT_PUBLIC_API_URL;
 
   const [data, dataconfig] = await Promise.all([
-    fetchData(
-      `${API_URL}/fetchpagedata?location=${location_slug}&page=pricing-promos`
-    ),
-    fetchData(
-      `${API_URL}/fetchsheetdata?sheetname=config&location=${location_slug}`
-    ),
+    await fetchPageData(location_slug, 'pricing-promos'),
+    await fetchsheetdata('config',location_slug),
+ //   fetchData(
+ //     `${API_URL}/fetchpagedata?location=${location_slug}&page=pricing-promos`
+  //  ),
+  //  fetchData(
+  //    `${API_URL}/fetchsheetdata?sheetname=config&location=${location_slug}`
+  //  ),
   ]);
 
   const waiver = dataconfig?.filter((item) => item.key === "waiver");

@@ -7,28 +7,21 @@ import { fetchData } from "@/utils/fetchData";
 import MenuButton from "./smallComponents/MenuButton";
 import TopHeader from "./smallComponents/TopHeader";
 import { MdOutlinePermContactCalendar } from "react-icons/md";
+import { fetchsheetdata, fetchMenuData, fetchPageData } from "@/lib/sheets";
 
-const Header = async ({ location_slug }) => {
-  const API_URL = process.env.NEXT_PUBLIC_API_URL;
-
-  const [data, dataconfig] = await Promise.all([
-    fetchData(`${API_URL}/fetchmenudata1?location=${location_slug}`),
-    fetchData(`${API_URL}/fetchsheetdata?sheetname=config&location=${location_slug}`),
-  ]);
-
-  const navList = (Array.isArray(data) ? data : [])
+const Header = ({ location_slug, menudata, configdata }) => {
+  const navList = (Array.isArray(menudata) ? menudata : [])
     .filter((item) => item.isactive === 1)
     .map((item) => ({ navName: item.desc, navUrl: item.path.toLowerCase() }))
     .sort((a, b) => a.navName.localeCompare(b.navName));
 
-  const estoreConfig = Array.isArray(dataconfig)
-    ? dataconfig.find((item) => item.key === "estorebase")
+  const estoreConfig = Array.isArray(configdata)
+    ? configdata.find((item) => item.key === "estorebase")
     : null;
 
-  const topHeaderConfig = Array.isArray(dataconfig)
-    ? dataconfig.find((item) => item.key === "top-header")
+  const topHeaderConfig = Array.isArray(configdata)
+    ? configdata.find((item) => item.key === "top-header")
     : null;
-
   return (
     <header>
       {topHeaderConfig?.value && <TopHeader topheader={[topHeaderConfig]} />}

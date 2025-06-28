@@ -5,16 +5,16 @@ import { getDataByParentId } from "@/utils/customFunctions";
 import { fetchData } from "@/utils/fetchData";
 import MotionImage from "@/components/MotionImage";
 import ImageMarquee from "@/components/ImageMarquee";
-
+import { fetchsheetdata, fetchMenuData, fetchPageData } from "@/lib/sheets";
 // Page metadata generation
 export async function generateMetadata({ params }) {
   const { location_slug, subcategory_slug, category_slug } = params;
   const API_URL = process.env.NEXT_PUBLIC_API_URL;
   const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL;
-
-  const data = await fetchData(
-    `${API_URL}/fetchpagedata?location=${location_slug}&page=${subcategory_slug}`
-  );
+const data = await fetchPageData(location_slug, subcategory_slug);
+//  const data = await fetchData(
+//    `${API_URL}/fetchpagedata?location=${location_slug}&page=${subcategory_slug}`
+//  );
 
   const attractionsData = Array.isArray(data)
     ? getDataByParentId(data, subcategory_slug)?.map((item) => ({
@@ -37,8 +37,10 @@ const Subcategory = async ({ params }) => {
   const API_URL = process.env.NEXT_PUBLIC_API_URL;
 
   const [data, dataconfig] = await Promise.all([
-    fetchData(`${API_URL}/fetchsheetdata?sheetname=Data&location=${location_slug}`),
-    fetchData(`${API_URL}/fetchsheetdata?sheetname=config&location=${location_slug}`),
+    fetchsheetdata('Data', location_slug),
+    fetchsheetdata('config', location_slug),
+    //fetchData(`${API_URL}/fetchsheetdata?sheetname=Data&location=${location_slug}`),
+    //fetchData(`${API_URL}/fetchsheetdata?sheetname=config&location=${location_slug}`),
   ]);
 
   const waiver = Array.isArray(dataconfig)

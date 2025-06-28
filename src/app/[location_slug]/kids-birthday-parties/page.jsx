@@ -4,15 +4,17 @@ import "../../styles/subcategory.css";
 import MotionImage from "@/components/MotionImage";
 import { fetchData } from "@/utils/fetchData";
 import ImageMarquee from "@/components/ImageMarquee";
+import { fetchsheetdata, fetchMenuData, fetchPageData } from "@/lib/sheets";
 export async function generateMetadata({ params }) {
   const { location_slug } = params;
   const API_URL = process.env.NEXT_PUBLIC_API_URL;
   const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL;
-  const data = await fetchData(
-    `${API_URL}/fetchpagedata?location=${location_slug}&page=kids-birthday-parties`
-  );
+ // const data = await fetchData(
+ //   `${API_URL}/fetchpagedata?location=${location_slug}&page=kids-birthday-parties`
+//  );
 
-  
+  const data = await fetchPageData(location_slug,'kids-birthday-parties');
+
   const kidsmetadata = data
     ?.filter((item) => item.path === "kids-birthday-parties")
     ?.map((item) => ({
@@ -34,15 +36,18 @@ const Page = async ({ params }) => {
   const API_URL = process.env.NEXT_PUBLIC_API_URL;
 
   const [data, birthdaydata, dataconfig] = await Promise.all([
-    fetchData(
-      `${API_URL}/fetchpagedata?location=${location_slug}&page=kids-birthday-parties`
-    ),
-    fetchData(
-      `${API_URL}/fetchsheetdata?sheetname=birthday%20packages&location=${location_slug}`
-    ),
-    fetchData(
-      `${API_URL}/fetchsheetdata?sheetname=config&location=${location_slug}`
-    ),
+     fetchPageData(location_slug,'kids-birthday-parties'),
+     fetchsheetdata('birthday packages',location_slug),
+     fetchsheetdata('config', location_slug),
+  //  fetchData(
+  //    `${API_URL}/fetchpagedata?location=${location_slug}&page=kids-birthday-parties`
+ //   ),
+  //  fetchData(
+  //    `${API_URL}/fetchsheetdata?sheetname=birthday%20packages&location=${location_slug}`
+  //  ),
+  //  fetchData(
+   //   `${API_URL}/fetchsheetdata?sheetname=config&location=${location_slug}`
+  //  ),
   ]);
 
   const waiver = dataconfig?.filter((item) => item.key === "waiver");

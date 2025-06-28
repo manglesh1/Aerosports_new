@@ -1,3 +1,5 @@
+'use client';
+
 import Image from "next/image";
 import "../styles/home.css";
 import event_icon from "@public/assets/images/home/event_icon.svg";
@@ -5,7 +7,6 @@ import park_feature_icon from "@public/assets/images/home/park_feature_icon.svg"
 import jump_icon from "@public/assets/images/home/jump_icon.svg";
 import Link from "next/link";
 import { getDataByParentId } from "@/utils/customFunctions";
-import { fetchData, fetchData1 } from "@/utils/fetchData";
 import RatingComponent from "./smallComponents/RatingComponent";
 import facebookicon from "@public/assets/images/social_icon/facebook.png";
 import twittericon from "@public/assets/images/social_icon/twitter.png";
@@ -13,13 +14,8 @@ import tiktokicon from "@public/assets/images/social_icon/tiktok.png";
 import instagramicon from "@public/assets/images/social_icon/instagram.png";
 import Script from "next/script";
 
-const Footer = async ({ location_slug }) => {
-  console.log("footer")
-  const API_URL = process.env.NEXT_PUBLIC_API_URL;
-
-  const configdata = await fetchData(
-    `${API_URL}/fetchsheetdata?sheetname=locations_new&location=${location_slug}`
-  );
+const Footer = ({ location_slug, configdata, menudata, ratingdata }) => {
+  if (!configdata?.length || !menudata?.length) return null;
 
   const {
     locationid,
@@ -30,18 +26,7 @@ const Footer = async ({ location_slug }) => {
     chatid,
   } = configdata[0] || {};
 
-  const promises = [
-    fetchData1(`${API_URL}/fetchmenudata?location=${location_slug}`)
-  ];
-  
-  // Only fetch reviews if locationid is valid
-  if (locationid) {
-    promises.push(fetchData1(`${API_URL}/getreviews?locationid=${locationid}`));
-  } else {
-    promises.push(Promise.resolve(null)); // to preserve array structure
-  }
-  
-  const [data, ratingdata] = await Promise.all(promises);
+  const data = menudata;
   const attractionsData = getDataByParentId(data, "attractions");
   const programsData = getDataByParentId(data, "programs");
   const groupsData = getDataByParentId(data, "groups-events");
@@ -50,34 +35,33 @@ const Footer = async ({ location_slug }) => {
 
   return (
     <footer className="aero_footer_section-bg">
-        {attractionsData?.[0]?.children?.length > 0 && (
-      <section className="aero_home-headerimg-wrapper">
-        <Image
-          src="https://storage.googleapis.com/aerosports/windsor/GLOW-2-h.jpg"
-          alt="Glow Night Event"
-          width={1200}
-          height={600}
-          title="Glow Night Event"
-          unoptimized
-        />
-        <article className="aero-max-container aero_home_BPJ_wrapper">
-          {[
-            { icon: event_icon, text: "Birthday Parties" },
-            { icon: park_feature_icon, text: "Park Features" },
-            { icon: jump_icon, text: "Safe Jumping" },
-          ].map((item, index) => (
-            <div className="d-flex-center" key={index}>
-              <Image src={item.icon} width={90} height={80} alt={item.text} unoptimized/>
-              <span>{item.text}</span>
-            </div>
-          ))}
-        </article>
-      </section>
-        )}
-      <section className="aero-max-container">
-      {ratingdata && (
-        <RatingComponent ratingdata={ratingdata} />
+      {attractionsData?.[0]?.children?.length > 0 && (
+        <section className="aero_home-headerimg-wrapper">
+          <Image
+            src="https://storage.googleapis.com/aerosports/windsor/GLOW-2-h.jpg"
+            alt="Glow Night Event"
+            width={1200}
+            height={600}
+            title="Glow Night Event"
+            unoptimized
+          />
+          <article className="aero-max-container aero_home_BPJ_wrapper">
+            {[
+              { icon: event_icon, text: "Birthday Parties" },
+              { icon: park_feature_icon, text: "Park Features" },
+              { icon: jump_icon, text: "Safe Jumping" },
+            ].map((item, index) => (
+              <div className="d-flex-center" key={index}>
+                <Image src={item.icon} width={90} height={80} alt={item.text} unoptimized />
+                <span>{item.text}</span>
+              </div>
+            ))}
+          </article>
+        </section>
       )}
+
+      <section className="aero-max-container">
+        {ratingdata && <RatingComponent ratingdata={ratingdata} />}
         <div className="d-flex-center aero_logo_social_wrap">
           <Link href={`/${location_slug}`} prefetch>
             <Image
@@ -90,164 +74,107 @@ const Footer = async ({ location_slug }) => {
           </Link>
           <div className="aero_social_icon_wrap">
             {facebook && (
-              <Link
-                href={`https://www.facebook.com/${facebook}`}
-                target="_blank"
-                prefetch
-                className="aero_social_icon"
-              >
-                <Image
-                  src={facebookicon}
-                  alt="Facebook"
-                  height={50}
-                  width={50}
-                  unoptimized
-                />
+              <Link href={`https://www.facebook.com/${facebook}`} target="_blank" prefetch className="aero_social_icon">
+                <Image src={facebookicon} alt="Facebook" height={50} width={50} unoptimized />
               </Link>
             )}
             {twitter && (
-              <Link
-                href={`https://x.com/${twitter}`}
-                target="_blank"
-                prefetch
-                className="aero_social_icon"
-              >
-                <Image src={twittericon} alt="Twitter" height={50} width={50} unoptimized/>
+              <Link href={`https://x.com/${twitter}`} target="_blank" prefetch className="aero_social_icon">
+                <Image src={twittericon} alt="Twitter" height={50} width={50} unoptimized />
               </Link>
             )}
             {insta && (
-              <Link
-                href={`https://www.instagram.com/${insta}`}
-                target="_blank"
-                prefetch
-                className="aero_social_icon"
-              >
-                <Image
-                  src={instagramicon}
-                  alt="Instagram"
-                  height={50}
-                  width={50}
-                  unoptimized
-                />
+              <Link href={`https://www.instagram.com/${insta}`} target="_blank" prefetch className="aero_social_icon">
+                <Image src={instagramicon} alt="Instagram" height={50} width={50} unoptimized />
               </Link>
             )}
             {tiktok && (
-              <Link
-                href={`https://www.tiktok.com/${tiktok}`}
-                target="_blank"
-                prefetch
-                className="aero_social_icon"
-              >
-                <Image src={tiktokicon} alt="TikTok" height={50} width={50} unoptimized/>
+              <Link href={`https://www.tiktok.com/${tiktok}`} target="_blank" prefetch className="aero_social_icon">
+                <Image src={tiktokicon} alt="TikTok" height={50} width={50} unoptimized />
               </Link>
             )}
           </div>
         </div>
+
         <section className="aero_footer_col-4-wrapper">
           <ul>
             <li>Attractions</li>
-            {attractionsData[0]?.children?.map((item, i) => {
-              return (
-                <li key={i}>
-                  <Link
-                    href={`/${location_slug}/${item?.parentid}/${item?.path}`}
-                    prefetch
-                  >
-                    {item?.desc}
-                  </Link>
-                </li>
-              );
-            })}
+            {attractionsData?.[0]?.children?.map((item, i) => (
+              <li key={i}>
+                <Link href={`/${location_slug}/${item?.parentid}/${item?.path}`} prefetch>
+                  {item?.desc}
+                </Link>
+              </li>
+            ))}
           </ul>
           <ul>
             <li>Programs</li>
-            {programsData[0]?.children?.map((item, i) => {
-              return (
-                <li key={i}>
-                  <Link
-                    href={`/${location_slug}/${item?.parentid}/${item?.path}`}
-                    prefetch
-                  >
-                    {item?.desc}
-                  </Link>
-                </li>
-              );
-            })}
-
-            {companyData[0]?.children?.length > 0 && (
-              <ul>
+            {programsData?.[0]?.children?.map((item, i) => (
+              <li key={i}>
+                <Link href={`/${location_slug}/${item?.parentid}/${item?.path}`} prefetch>
+                  {item?.desc}
+                </Link>
+              </li>
+            ))}
+            {companyData?.[0]?.children?.length > 0 && (
+              <>
                 <li>Company</li>
-                {companyData[0]?.children?.map((item, i) => {
-                  return (
-                    item?.isactive == 1 && (
-                      <li key={i}>
-                        <Link
-                          href={`/${location_slug}/${item?.parentid}/${item?.path}`}
-                          prefetch
-                        >
-                          {item?.desc}
-                        </Link>
-                      </li>
-                    )
-                  );
-                })}
-              </ul>
+                {companyData[0].children.map((item, i) => (
+                  item?.isactive == 1 && (
+                    <li key={i}>
+                      <Link href={`/${location_slug}/${item?.parentid}/${item?.path}`} prefetch>
+                        {item?.desc}
+                      </Link>
+                    </li>
+                  )
+                ))}
+              </>
             )}
           </ul>
           <ul>
             <li>Groups</li>
-            {groupsData[0]?.children?.map((item, i) => {
-              return (
-                <li key={i}>
-                  <Link
-                    href={`/${location_slug}/${item?.parentid}/${item?.path}`}
-                    prefetch
-                  >
-                    {item?.desc}
-                  </Link>
-                </li>
-              );
-            })}
+            {groupsData?.[0]?.children?.map((item, i) => (
+              <li key={i}>
+                <Link href={`/${location_slug}/${item?.parentid}/${item?.path}`} prefetch>
+                  {item?.desc}
+                </Link>
+              </li>
+            ))}
           </ul>
           <ul>
             <li>Latest News</li>
-            {blogsData[0]?.children &&
-              blogsData[0]?.children.slice(0,4).map((item, i) => {
-                return (
-                  <li key={i}>
-                    <Link
-                      href={`/${location_slug}/${item?.parentid}/${item?.path}`}
-                      prefetch
-                    >
-                      <article className="d-flex-center aero_footer_article-card">
-                        <Image
-                          src={item?.smallimage}
-                          alt={item?.title}
-                          title={item?.title}
-                          width={50}
-                          height={50}
-                          unoptimized
-                        />
-                        <div>
-                          <h6>{item?.pageid}</h6>
-                          <p>{item?.title}</p>
-                        </div>
-                      </article>
-                    </Link>
-                  </li>
-                );
-              })}
+            {blogsData?.[0]?.children?.slice(0, 4).map((item, i) => (
+              <li key={i}>
+                <Link href={`/${location_slug}/${item?.parentid}/${item?.path}`} prefetch>
+                  <article className="d-flex-center aero_footer_article-card">
+                    <Image
+                      src={item?.smallimage}
+                      alt={item?.title}
+                      title={item?.title}
+                      width={50}
+                      height={50}
+                      unoptimized
+                    />
+                    <div>
+                      <h6>{item?.pageid}</h6>
+                      <p>{item?.title}</p>
+                    </div>
+                  </article>
+                </Link>
+              </li>
+            ))}
           </ul>
         </section>
       </section>
 
-      {/* Chat Widget Script */}
-      <Script
-        src="https://widgets.leadconnectorhq.com/loader.js"
-        data-resources-url="https://widgets.leadconnectorhq.com/chat-widget/loader.js"
-        data-widget-id={chatid}
-        strategy="afterInteractive"
-      />
+      {chatid && (
+        <Script
+          src="https://widgets.leadconnectorhq.com/loader.js"
+          data-resources-url="https://widgets.leadconnectorhq.com/chat-widget/loader.js"
+          data-widget-id={chatid}
+          strategy="afterInteractive"
+        />
+      )}
     </footer>
   );
 };
