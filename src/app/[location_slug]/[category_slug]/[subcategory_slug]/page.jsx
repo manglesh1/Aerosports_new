@@ -5,32 +5,18 @@ import { getDataByParentId } from "@/utils/customFunctions";
 import { fetchData } from "@/utils/fetchData";
 import MotionImage from "@/components/MotionImage";
 import ImageMarquee from "@/components/ImageMarquee";
-import { fetchsheetdata, fetchMenuData, fetchPageData } from "@/lib/sheets";
-// Page metadata generation
+import { fetchsheetdata, generateMetadataLib } from "@/lib/sheets";
+
 export async function generateMetadata({ params }) {
   const { location_slug, subcategory_slug, category_slug } = params;
-  const API_URL = process.env.NEXT_PUBLIC_API_URL;
-  const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL;
-const data = await fetchPageData(location_slug, subcategory_slug);
-//  const data = await fetchData(
-//    `${API_URL}/fetchpagedata?location=${location_slug}&page=${subcategory_slug}`
-//  );
-
-  const attractionsData = Array.isArray(data)
-    ? getDataByParentId(data, subcategory_slug)?.map((item) => ({
-        title: item?.metatitle || "",
-        description: item?.metadescription || "",
-      }))
-    : [];
-
-  return {
-    title: attractionsData?.[0]?.title || "Aerosports",
-    description: attractionsData?.[0]?.description || "Explore fun attractions!",
-    alternates: {
-      canonical: `${BASE_URL}/${location_slug}/${category_slug}/${subcategory_slug}`,
-    },
-  };
+  const metadata = await generateMetadataLib({
+    location: location_slug,
+    category: category_slug,
+    page: subcategory_slug
+  });
+  return metadata;
 }
+
 
 const Subcategory = async ({ params }) => {
   const { location_slug, subcategory_slug } = params;

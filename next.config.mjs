@@ -18,6 +18,11 @@ const nextConfig = {
       source: "/:path*/aboutus",
       destination: "/:path*/about-us",
       permanent: true,
+    },
+    {
+      source: "/:path*/home",
+      destination: "/:path*/",
+      permanent: true,
     },    
     {
       source: "/:path*/aboutus/:slug*",

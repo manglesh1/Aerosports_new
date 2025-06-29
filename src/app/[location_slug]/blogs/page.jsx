@@ -5,7 +5,16 @@ import '../../styles/blogs.css'
 import React from "react";
 import { getDataByParentId } from '@/utils/customFunctions';
 import Link from 'next/link';
-import { fetchsheetdata, fetchMenuData, fetchPageData } from "@/lib/sheets";
+import { fetchMenuData, generateMetadataLib } from "@/lib/sheets";
+
+export async function generateMetadata({ params }) {
+  const metadata = await generateMetadataLib({
+    location: params.location_slug,
+    category: '',
+    page: 'blogs'
+  });
+  return metadata;
+}
 
 
 const page = async({params}) => {

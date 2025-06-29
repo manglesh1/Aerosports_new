@@ -4,34 +4,19 @@ import MotionImage from "@/components/MotionImage";
 import { getDataByParentId } from "@/utils/customFunctions";
 import { fetchData } from "@/utils/fetchData";
 import Link from "next/link";
-import { fetchsheetdata, fetchMenuData, fetchPageData } from "@/lib/sheets";
+
+import { fetchsheetdata, fetchMenuData, fetchPageData,generateMetadataLib } from "@/lib/sheets";
+
 export async function generateMetadata({ params }) {
-  const { location_slug } = params;
-  const API_URL = process.env.NEXT_PUBLIC_API_URL;
-  const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL;
-  const data = await fetchPageData(location_slug, 'pricing-promos')
-  //const data = await fetchData(
- //   `${API_URL}/fetchpagedata?location=${location_slug}&page=pricing-promos`
-  //);
-
-  const membershipmetadata = data
-    ?.filter((item) => item?.path === "pricing-promos")
-    ?.map((item) => ({
-      title: item?.metatitle?.replace(/windsor|oakville/gi, location_slug),
-      description: item?.metadescription?.replace(
-        /windsor|oakville/gi,
-        location_slug
-      ),
-    }));
-
-  return {
-    title: membershipmetadata[0]?.title,
-    description: membershipmetadata[0]?.description,
-    alternates: {
-      canonical: BASE_URL + "/" + location_slug + "/pricing-promos",
-    },
-  };
+  const metadata = await generateMetadataLib({
+    location: params.location_slug,
+    category: '',
+    page: 'pricing-promos'
+  });
+  return metadata;
 }
+
+
 
 const page = async ({ params }) => {
   const { location_slug } = params;

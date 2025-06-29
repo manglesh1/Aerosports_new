@@ -1,7 +1,18 @@
 import { fetchData } from "@/utils/fetchData";
 import "../../../styles/blogs.css";
 import { getDataByBlogId } from "@/utils/customFunctions";
-import { fetchsheetdata, fetchMenuData, fetchPageData } from "@/lib/sheets";
+import { fetchsheetdata, generateMetadataLib } from "@/lib/sheets";
+
+export async function generateMetadata({ params }) {
+  const { location_slug, slug } = params;
+  const metadata = await generateMetadataLib({
+    location: location_slug,
+    category: 'blogs',
+    page: slug
+  });
+  return metadata;
+}
+
 export default async function BlogDetail({ params }) {
   const { location_slug, slug } = params;
   const API_URL = process.env.NEXT_PUBLIC_API_URL;

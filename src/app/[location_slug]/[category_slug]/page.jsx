@@ -3,31 +3,19 @@ import Link from "next/link";
 import React from "react";
 import "../../styles/category.css";
 import { getDataByParentId } from "@/utils/customFunctions";
-import { fetchData } from "@/utils/fetchData";
-import { fetchsheetdata, fetchMenuData, fetchPageData } from "@/lib/sheets";
+import { fetchMenuData, generateMetadataLib } from "@/lib/sheets";
+
 export async function generateMetadata({ params }) {
   const { location_slug, category_slug } = params;
-  const API_URL = process.env.NEXT_PUBLIC_API_URL;
-  const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL;
-const data = await fetchPageData(location_slug,category_slug);
-  //const data = await fetchData(
-  //  `${API_URL}/fetchpagedata?location=${location_slug}&page=${category_slug}`
-  //  );
-
-  const attractionsData = getDataByParentId(data, category_slug)?.map(
-    (item) => ({
-      title: item?.metatitle,
-      description: item?.metadescription,
-    })
-  );
-  return {
-    title: attractionsData[0]?.title,
-    description: attractionsData[0]?.description,
-    alternates: {
-      canonical: BASE_URL + "/" + location_slug + "/" + category_slug,
-    },
-  };
+  const metadata = await generateMetadataLib({
+    location: location_slug,
+    category: '',
+    page: category_slug
+  });
+  return metadata;
 }
+
+
 
 const Category = async ({ params }) => {
   const { location_slug, category_slug } = params;

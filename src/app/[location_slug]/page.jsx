@@ -11,41 +11,18 @@ import Countup from "@/components/Countup";
 import MotionImage from "@/components/MotionImage";
 import PromotionModal from "@/components/model/PromotionModal";
 import BlogCard from "@/components/smallComponents/BlogCard";
-import { fetchsheetdata, fetchMenuData, fetchPageData } from "@/lib/sheets";
-
+import { fetchsheetdata, fetchMenuData, fetchPageData,generateMetadataLib } from "@/lib/sheets";
 
 export async function generateMetadata({ params }) {
-
-  
- const location_slug = params?.location_slug;
-  const API_URL = process.env.NEXT_PUBLIC_API_URL;
-  const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL;
-  //const data = await fetchData(`${API_URL}/fetchpagedata?location=${location_slug}&page=home`);
-  const data = await fetchPageData(location_slug, 'home');
-
-  const header_image = data?.filter((item) => item.path === "home")?.map((item) => ({
-    title: item?.metatitle,
-    description: item?.metadescription,
-  }));
-  return {
-    title: header_image?.[0]?.title || "AeroSports Trampoline Park",
-    description: header_image?.[0]?.description || "Jump into fun at AeroSports!",
-    alternates: {
-      canonical: BASE_URL + "/" + location_slug,
-    },
-    openGraph: {
-      type: "website",
-      url: BASE_URL + `/${location_slug}`,
-      title: header_image?.[0]?.title,
-      description: header_image?.[0]?.description,
-      images: [
-        {
-          url: "https://storage.googleapis.com/aerosports/logo_white.png",
-        },
-      ],
-    },
-  };
+  const metadata = await generateMetadataLib({
+    location: params.location_slug,
+    category: '',
+    page: ''
+  });
+  return metadata;
 }
+  
+
 
 const Home = async ({ params }) => {
   const location_slug = params?.location_slug;
