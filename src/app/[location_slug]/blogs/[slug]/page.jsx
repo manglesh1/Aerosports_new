@@ -59,9 +59,9 @@ if (imagesString) {
               </Link>
             </div>
             <div className="aero-blog-content-section">
-              <span className='aero-blog-updated-time'>October 31, 2024</span>
-              <Link href={`blogs/${item?.path}`} prefetch><h2 className='aero-blog-second-heading'>{item.title}</h2></Link>
-              <Link href={`blogs/${item?.path}`} prefetch className='aero-blog-readmore-btn'>READ MORE</Link>
+              <span className='aero-blog-updated-time'>{item.pageid}</span>
+              <Link href={`${item?.path}`} prefetch><h2 className='aero-blog-second-heading'>{item.title}</h2></Link>
+              <Link href={`${item?.path}`} prefetch className='aero-blog-readmore-btn'>READ MORE</Link>
             </div>
           </article>
         ))}
