@@ -1,7 +1,7 @@
 import "../../../styles/blogs.css";
-import { getDataByBlogId } from "@/utils/customFunctions";
-import { fetchsheetdata, generateMetadataLib } from "@/lib/sheets";
-
+import { getDataByBlogId,getDataByParentId } from "@/utils/customFunctions";
+import { fetchsheetdata,fetchMenuData, generateMetadataLib } from "@/lib/sheets";
+import Link from 'next/link';
 export async function generateMetadata({ params }) {
   const { location_slug, slug } = params;
   const metadata = await generateMetadataLib({
@@ -16,16 +16,33 @@ export default async function BlogDetail({ params }) {
   const { location_slug, slug } = params;
   const API_URL = process.env.NEXT_PUBLIC_API_URL;
 const data = await fetchsheetdata('Data', location_slug);
- 
- 
-  const blogData = getDataByBlogId(data, slug);
+const blogData = await getDataByBlogId(data, slug);
 
+
+const menuData = await fetchMenuData(location_slug);
+const blogsData = await getDataByParentId(menuData, "blogs");
+const extractBlogData = blogsData[0]?.children;
+    //console.log(blogsData);
+    console.log('blog setail');
+    console.log(extractBlogData.length);
+  let images = [];
+const imagesString=blogData?.headerimage;
+if (imagesString) {
+  const imageItems = imagesString.includes(';')
+    ? imagesString.split(';')
+    : [imagesString]; // Handle single image too
+
+  images = imageItems.map((item) => {
+    const [src, title] = item.split('|');
+    return { src: src?.trim(), title: title?.trim() || '' };
+  });
+}
   return (
     <main className="aero_home-actionbtn-bg">
       <section className="aero-max-container">
         <div className="aero-blog-detail-main-section">
           <div className="aero-blog-img-section aero-blog-detail-img-section">
-          <img src={blogData?.headerimage} alt={blogData?.title} width="100%" />
+          <img src={images?.[0]?.src} title={images?.[0]?.title} width="100%" />
           </div>
           <h1>{ blogData?.title }</h1>
           <div
@@ -33,7 +50,24 @@ const data = await fetchsheetdata('Data', location_slug);
             dangerouslySetInnerHTML={{ __html: blogData?.section1 || "" }}
           ></div>
         </div>
+        <section className="aero-blog-main-article-wrapper">
+        {extractBlogData?.map((item,i) => (
+          <article className="aero-blog-main-article-card" key={i}>
+            <div className="aero-blog-img-section">
+              <Link href={`blogs/${item?.path}`} prefetch>
+              <img src={item.smallimage} alt="Article Image" />
+              </Link>
+            </div>
+            <div className="aero-blog-content-section">
+              <span className='aero-blog-updated-time'>October 31, 2024</span>
+              <Link href={`blogs/${item?.path}`} prefetch><h2 className='aero-blog-second-heading'>{item.title}</h2></Link>
+              <Link href={`blogs/${item?.path}`} prefetch className='aero-blog-readmore-btn'>READ MORE</Link>
+            </div>
+          </article>
+        ))}
       </section>
+      </section>
+     
     </main>
   );
 }

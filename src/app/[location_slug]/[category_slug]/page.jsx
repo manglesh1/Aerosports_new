@@ -18,7 +18,7 @@ export async function generateMetadata({ params }) {
 
 const Category = async ({ params }) => {
   const { location_slug, category_slug } = params;
-  const API_URL = process.env.NEXT_PUBLIC_API_URL;
+  
 const data = await fetchMenuData(location_slug);
  
 

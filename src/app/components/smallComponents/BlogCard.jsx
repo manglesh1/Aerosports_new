@@ -18,7 +18,7 @@ const BlogCard = ({ blogsData, location_slug }) => {
                   width={120}
                   height={120}
                   alt="article image"
-                  title="article image"
+                  title={item.title}
                   unoptimized
                 />
                 <div className="aero_home_article_desc">
