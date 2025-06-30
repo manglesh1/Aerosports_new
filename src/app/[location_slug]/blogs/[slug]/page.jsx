@@ -54,7 +54,7 @@ if (imagesString) {
         {extractBlogData?.map((item,i) => (
           <article className="aero-blog-main-article-card" key={i}>
             <div className="aero-blog-img-section">
-              <Link href={`blogs/${item?.path}`} prefetch>
+              <Link href={`${item?.path}`} prefetch>
               <img src={item.smallimage} alt="Article Image" />
               </Link>
             </div>
