@@ -2,8 +2,6 @@ import React from "react";
 import "../../styles/subcategory.css";
 import MotionImage from "@/components/MotionImage";
 import { getDataByParentId } from "@/utils/customFunctions";
-import { fetchData } from "@/utils/fetchData";
-import Link from "next/link";
 
 import { fetchsheetdata, fetchMenuData, fetchPageData,generateMetadataLib } from "@/lib/sheets";
 
@@ -25,12 +23,7 @@ const page = async ({ params }) => {
   const [data, dataconfig] = await Promise.all([
     await fetchPageData(location_slug, 'pricing-promos'),
     await fetchsheetdata('config',location_slug),
- //   fetchData(
- //     `${API_URL}/fetchpagedata?location=${location_slug}&page=pricing-promos`
-  //  ),
-  //  fetchData(
-  //    `${API_URL}/fetchsheetdata?sheetname=config&location=${location_slug}`
-  //  ),
+ 
   ]);
 
   const waiver = dataconfig?.filter((item) => item.key === "waiver");

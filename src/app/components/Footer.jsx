@@ -41,7 +41,7 @@ const Footer = ({ location_slug, configdata, menudata, locationid }) => {
   const groupsData = getDataByParentId(menudata, "groups-events");
   const companyData = getDataByParentId(menudata, "aboutus");
   const blogsData = getDataByParentId(menudata, "blogs");
-
+  const birthDaypartyData = getDataByParentId(menudata, "kids-birthday-parties");
   return (
     <footer className="aero_footer_section-bg">
       {/* Hero Section */}
@@ -57,12 +57,12 @@ const Footer = ({ location_slug, configdata, menudata, locationid }) => {
           />
           <article className="aero-max-container aero_home_BPJ_wrapper">
             {[
-              { icon: event_icon, text: "Birthday Parties" },
-              { icon: park_feature_icon, text: "Park Features" },
-              { icon: jump_icon, text: "Safe Jumping" },
+              { icon: event_icon, text: "Birthday Parties", url:`/${location_slug}/${birthDaypartyData?.[0]?.path}`  },
+              { icon: park_feature_icon, text: "Park Features", url:`/${location_slug}/${attractionsData?.[0]?.path}` },
+              { icon: jump_icon, text: "Group Events" , url:`/${location_slug}/${groupsData?.[0]?.path}`},
             ].map((item, index) => (
               <div className="d-flex-center" key={index}>
-                <Image src={item.icon} width={90} height={80} alt={item.text} unoptimized />
+              <a href={item.url} >  <Image src={item.icon} width={90} height={80} alt={item.text} unoptimized /></a>
                 <span>{item.text}</span>
               </div>
             ))}

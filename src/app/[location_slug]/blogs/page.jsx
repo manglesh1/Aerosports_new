@@ -1,6 +1,3 @@
-
-
-import { fetchData } from '@/utils/fetchData';
 import '../../styles/blogs.css'
 import React from "react";
 import { getDataByParentId } from '@/utils/customFunctions';
@@ -21,7 +18,7 @@ const page = async({params}) => {
   const location_slug = params?.location_slug;
   const API_URL = process.env.NEXT_PUBLIC_API_URL;
 const data = await fetchMenuData(location_slug);
- // const data = await fetchData(`${API_URL}/fetchmenudata1?location=${location_slug}`);
+ 
   const blogsData = getDataByParentId(data, "blogs");
   const extractBlogData = blogsData[0]?.children
   // console.log(extractBlogData)

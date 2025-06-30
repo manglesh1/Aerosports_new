@@ -1,8 +1,6 @@
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { fetchMenuData, fetchsheetdata } from "@/lib/sheets";
-import { fetchData1 } from "@/utils/fetchData";
-import { headers } from 'next/headers';
 export default async function LocationLayout({ children, params }) {
   const location_slug = params?.location_slug;
 

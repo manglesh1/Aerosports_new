@@ -1,4 +1,3 @@
-import { fetchData } from "@/utils/fetchData";
 import "../../../styles/blogs.css";
 import { getDataByBlogId } from "@/utils/customFunctions";
 import { fetchsheetdata, generateMetadataLib } from "@/lib/sheets";
@@ -17,9 +16,7 @@ export default async function BlogDetail({ params }) {
   const { location_slug, slug } = params;
   const API_URL = process.env.NEXT_PUBLIC_API_URL;
 const data = await fetchsheetdata('Data', location_slug);
- // const data = await fetchData(
- //   `${API_URL}/fetchsheetdata?sheetname=blogs&location=${location_slug}`
- // );
+ 
  
   const blogData = getDataByBlogId(data, slug);
 
@@ -28,8 +25,9 @@ const data = await fetchsheetdata('Data', location_slug);
       <section className="aero-max-container">
         <div className="aero-blog-detail-main-section">
           <div className="aero-blog-img-section aero-blog-detail-img-section">
-          <img src={blogData?.headerimage} alt="" width="100%" />
+          <img src={blogData?.headerimage} alt={blogData?.title} width="100%" />
           </div>
+          <h1>{ blogData?.title }</h1>
           <div
             className="aero-blog-detail-content-section"
             dangerouslySetInnerHTML={{ __html: blogData?.section1 || "" }}

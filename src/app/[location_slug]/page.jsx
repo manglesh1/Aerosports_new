@@ -6,7 +6,6 @@ import birthday_m_img from "@public/assets/images/home/birthday_img_home_mobile.
 import line_pattern from "@public/assets/images/home/line_pattern.svg";
 import Link from "next/link";
 import { getDataByParentId } from "@/utils/customFunctions";
-import { fetchData } from "@/utils/fetchData";
 import Countup from "@/components/Countup";
 import MotionImage from "@/components/MotionImage";
 import PromotionModal from "@/components/model/PromotionModal";

@@ -2,7 +2,6 @@ import React from "react";
 import "../../styles/kidsparty.css";
 import "../../styles/subcategory.css";
 import MotionImage from "@/components/MotionImage";
-import { fetchData } from "@/utils/fetchData";
 import ImageMarquee from "@/components/ImageMarquee";
 import { fetchsheetdata,  fetchPageData,generateMetadataLib } from "@/lib/sheets";
 

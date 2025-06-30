@@ -2,7 +2,6 @@ import React from "react";
 import "../../styles/subcategory.css";
 import MotionImage from "@/components/MotionImage";
 import { getDataByParentId } from "@/utils/customFunctions";
-import { fetchData } from "@/utils/fetchData";
 import { fetchsheetdata, generateMetadataLib } from "@/lib/sheets";
 
 export async function generateMetadata({ params }) {

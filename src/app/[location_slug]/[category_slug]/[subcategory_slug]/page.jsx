@@ -2,7 +2,6 @@ import React from "react";
 import "../../../styles/subcategory.css";
 import "../../../styles/kidsparty.css";
 import { getDataByParentId } from "@/utils/customFunctions";
-import { fetchData } from "@/utils/fetchData";
 import MotionImage from "@/components/MotionImage";
 import ImageMarquee from "@/components/ImageMarquee";
 import { fetchsheetdata, generateMetadataLib } from "@/lib/sheets";
@@ -20,8 +19,6 @@ export async function generateMetadata({ params }) {
 
 const Subcategory = async ({ params }) => {
   const { location_slug, subcategory_slug } = params;
-  const API_URL = process.env.NEXT_PUBLIC_API_URL;
-
   const [data, dataconfig] = await Promise.all([
     fetchsheetdata('Data', location_slug),
     fetchsheetdata('config', location_slug),
@@ -46,7 +43,7 @@ const Subcategory = async ({ params }) => {
       </section>
 
       {header_image?.[0]?.headerimage && (
-        <ImageMarquee imagesString={header_image[0].headerimage} />
+        <ImageMarquee imagesString={header_image[0].headerimage}  />
       )}
 
       <section className="subcategory_main_section-bg">

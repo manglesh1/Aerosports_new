@@ -1,4 +1,3 @@
-import Image from "next/image";
 import Link from "next/link";
 import React from "react";
 import "../../styles/category.css";
@@ -21,11 +20,7 @@ const Category = async ({ params }) => {
   const { location_slug, category_slug } = params;
   const API_URL = process.env.NEXT_PUBLIC_API_URL;
 const data = await fetchMenuData(location_slug);
- // const data = await fetchData(
-  //fetchMenuData(location_slug)
-   // `${API_URL}/fetchmenudata?location=${location_slug}`
-  //);
- // console.log(data);
+ 
 
   const attractionsData = getDataByParentId(data, category_slug);
   const seosection = data?.filter((item) => item.path === category_slug)?.[0]?.seosection;

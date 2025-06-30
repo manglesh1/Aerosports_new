@@ -21,10 +21,7 @@ const page = async ({ params }) => {
   const [data, dataconfig] = await Promise.all([
     fetchPageData(location_slug,'bogo'),
     fetchsheetdata('config',location_slug),
-   // fetchData(`${API_URL}/fetchpagedata?location=${location_slug}&page=bogo`),
-   // fetchData(
-   //   `${API_URL}/fetchsheetdata?sheetname=config&location=${location_slug}`
-   // ),
+   
   ]);
 
   const waiver = dataconfig?.filter((item) => item.key === "waiver");

@@ -42,7 +42,7 @@ console.log('header');
               <GrLocation />
               {location_slug}
             </Link>
-            <Link href={`/${location_slug}/aboutus/faq`} prefetch>
+            <Link href={`/${location_slug}/about-us/faq`} prefetch>
               <div className="aero-faq">FAQ&apos;s</div>
             </Link>
           </div>
