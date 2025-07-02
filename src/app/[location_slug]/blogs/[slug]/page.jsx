@@ -14,14 +14,13 @@ export async function generateMetadata({ params }) {
 
 export default async function BlogDetail({ params }) {
   const { location_slug, slug } = params;
-  const API_URL = process.env.NEXT_PUBLIC_API_URL;
 const data = await fetchsheetdata('Data', location_slug);
 const blogData = await getDataByBlogId(data, slug);
 
 
 const menuData = await fetchMenuData(location_slug);
 const blogsData = await getDataByParentId(menuData, "blogs");
-const extractBlogData = blogsData[0]?.children;
+const extractBlogData = await blogsData[0]?.children;
     //console.log(blogsData);
     console.log('blog setail');
     console.log(extractBlogData.length);

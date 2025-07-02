@@ -11,17 +11,19 @@ export async function GET() {
     rows.forEach(row => {
       const { location, parentid, path } = row;
       const locations = location?.split(',').map(l => l.trim().toLowerCase()) || [];
-
+      dynamicPaths.add(`${siteUrl}`);
       locations.forEach(loc => {
         // Homepage for location
         dynamicPaths.add(`${siteUrl}/${loc}`);
+        if(path!='home'){
+              // Construct path
+              const basePath = (!parentid || parentid.toLowerCase() === path.toLowerCase())
+                ? `/${loc}/${path.toLowerCase()}`
+                : `/${loc}/${parentid.toLowerCase()}/${path.toLowerCase()}`;
 
-        // Construct path
-        const basePath = (!parentid || parentid.toLowerCase() === path.toLowerCase())
-          ? `/${loc}/${path.toLowerCase()}`
-          : `/${loc}/${parentid.toLowerCase()}/${path.toLowerCase()}`;
-
-        dynamicPaths.add(`${siteUrl}${basePath}`);
+            
+              dynamicPaths.add(`${siteUrl}${basePath}`);
+        }
       });
     });
   } catch (error) {

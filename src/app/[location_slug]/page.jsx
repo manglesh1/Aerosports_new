@@ -54,7 +54,7 @@ const Home = async ({ params }) => {
     "@context": "https://schema.org",
     "@type": "AmusementPark",
     name: "AeroSports Trampoline Park",
-    description: "A fun-filled trampoline park offering amusement, activities, mini golf, and kids' party services.",
+    description: "A fun-filled trampoline park offering amusement, activities, mini golf, and kids' party services, axe throw.",
     address: {
       "@type": "PostalAddress",
       streetAddress: "333 Ontario Street",
