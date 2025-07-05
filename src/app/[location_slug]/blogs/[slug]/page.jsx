@@ -1,6 +1,6 @@
 import "../../../styles/blogs.css";
 import { getDataByBlogId,getDataByParentId } from "@/utils/customFunctions";
-import { fetchsheetdata,fetchMenuData, generateMetadataLib } from "@/lib/sheets";
+import { fetchPageData,fetchMenuData, generateMetadataLib } from "@/lib/sheets";
 import Link from 'next/link';
 export async function generateMetadata({ params }) {
   const { location_slug, slug } = params;
@@ -14,13 +14,15 @@ export async function generateMetadata({ params }) {
 
 export default async function BlogDetail({ params }) {
   const { location_slug, slug } = params;
-const data = await fetchsheetdata('Data', location_slug);
+const data = await fetchPageData( location_slug,slug);
 const blogData = await getDataByBlogId(data, slug);
 
 
 const menuData = await fetchMenuData(location_slug);
-const blogsData = await getDataByParentId(menuData, "blogs");
-const extractBlogData = await blogsData[0]?.children;
+const extractBlogData = (await getDataByParentId(menuData, "blogs"))[0]?.children?.filter(child => child.path !== slug);
+
+//const  blogData=  extractBlogData.find((item) => item.path === slug);
+console.log(blogData);
     //console.log(blogsData);
     console.log('blog setail');
     console.log(extractBlogData.length);
