@@ -25,15 +25,15 @@ const Subcategory = async ({ params }) => {
     fetchsheetdata('Data', location_slug),
     fetchsheetdata('config', location_slug),
     fetchMenuData(location_slug),
-    //fetchData(`${API_URL}/fetchsheetdata?sheetname=Data&location=${location_slug}`),
-    //fetchData(`${API_URL}/fetchsheetdata?sheetname=config&location=${location_slug}`),
+  
   ]);
 
   const waiver = Array.isArray(dataconfig)
     ? dataconfig.find((item) => item.key === "waiver")
     : null;
 
-    const categoryData = getDataByParentId(menudata, category_slug)
+   
+  const categoryData = (await getDataByParentId(menudata,category_slug))[0]?.children?.filter(child => child.path !== subcategory_slug);
   const attractionsData = Array.isArray(data)
     ? getDataByParentId(data, subcategory_slug)
     : [];
@@ -70,7 +70,7 @@ const Subcategory = async ({ params }) => {
                title={item.title}
              >
                <article className="aero_category_section_card_wrap">
-                 <img
+                 <image
                    src={item?.smallimage}
                    width={150}
                    height={150}

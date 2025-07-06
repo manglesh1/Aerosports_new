@@ -1,5 +1,6 @@
 
 import "../styles/home.css";
+import "../styles/promotions.css";
 import Image from "next/image";
 import birthday_img from "@public/assets/images/home/birthday_img_home_page.svg";
 import birthday_m_img from "@public/assets/images/home/birthday_img_home_mobile.svg";
@@ -27,9 +28,10 @@ const Home = async ({ params }) => {
   const location_slug = params?.location_slug;
   const API_URL = process.env.NEXT_PUBLIC_API_URL;
 
-  const [data, dataconfig] = await Promise.all([
+  const [data, dataconfig,promotions] = await Promise.all([
     fetchMenuData(location_slug),
     fetchsheetdata('config', location_slug),
+    fetchsheetdata('promotions',location_slug)
     
   ]);
 
@@ -117,11 +119,162 @@ const Home = async ({ params }) => {
           <section className="aero-max-container aero_home-playsection-1 d-flex-dir-col">
             <h2>THERE IS SO MUCH TO DO AT AEROSPORTS!</h2>
             <p>{homepageSection1}</p>
-            <h2>Explore attractions</h2>
+            
           </section>
         </section>
-        <section className="aero_home-actionbtn-bg">
+
+      
+        {attractionsData?.[0]?.children?.length > 0 && (
+        <section className="aero_home_article_section">
+        <section className="aero-max-container">
+          <h2>  <svg
+                className="promotions__icon"
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              >
+                <rect x="3" y="8" width="18" height="4" rx="1"></rect>
+                <path d="M12 8v13"></path>
+                <path d="M19 12v7a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2v-7"></path>
+                <path
+                  d="M7.5 8a2.5 2.5 0 0 1 0-5A4.8 8 0 0 1 12 8a4.8 8 0 0 1 4.5-5 2.5 2.5 0 0 1 0 5"
+                ></path>
+              </svg> Current Promotions</h2>
+          <p>Don't miss out on these amazing deals! Save big on your next visit.
+             
+             
+            </p>
+
+    <div className="promotions__grid">
+      {promotions.map((promo, index) => (
+        <article key={index} className="promotion-card">
+          <span className="promotion-card__badge">{promo.badge}</span>
+
+          <h3 className="promotion-card__title">{promo.title}</h3>
+
+          <p className="promotion-card__description">
+            {promo.description}
+          </p>
+
+          <div className="promotion-card__details">
+            <time className="promotion-card__validity">
+              {promo.validity}
+            </time>
+            <span className="promotion-card__code">
+              Code: {promo.code}
+            </span>
+          </div>
+
+          <a
+            href={promo.link}
+            className="promotion-card__btn"
+          >
+            {promo.linktext}
+          </a>
+        </article>
+      ))}
+    </div>
+    </section>
+</section>
+)}
+
+  <section className="aero_home_article_section">
+  <section className="aero-max-container">
+  <h2>  <svg
+                className="promotions__icon"
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              >
+                <rect x="3" y="8" width="18" height="4" rx="1"></rect>
+                <path d="M12 8v13"></path>
+                <path d="M19 12v7a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2v-7"></path>
+                <path
+                  d="M7.5 8a2.5 2.5 0 0 1 0-5A4.8 8 0 0 1 12 8a4.8 8 0 0 1 4.5-5 2.5 2.5 0 0 1 0 5"
+                ></path>
+              </svg> Celeberate your event</h2>
+          <p>Elevate your event to next level at Aerosports!       
+             
+            </p>
+  <div className="offer-section__inner container">
+    {/* Card 1 */}
+    <article className="offer-card">
+      <div
+        className="offer-card__img"
+        style={{ backgroundImage: "url('https://storage.googleapis.com/aerosports/team-building-aerosports-trampoline-park.png')" }}
+        role="img"
+        aria-label="Memberships"
+      >
+        <h3 className="offer-card__title">Team Building Events</h3>
+      </div>
+      <div className="offer-card__body">
+        <p>
+        Host your next team building day at Aerosports and turn work into play! Our team-based attractions promote collaboration, problem-solving, and laughter.Teamwork has never been this much fun!
+        </p>
+        <Link href={`/${location_slug}/groups-events/corporate-parties-events-groups`} className="sigma_btn-custom">
+          More Info →
+        </Link>
+      </div>
+    </article>
+
+    {/* Card 2 */}
+    <article className="offer-card">
+      <div
+        className="offer-card__img"
+        style={{ backgroundImage: "url('https://storage.googleapis.com/aerosports/celeberate-your-birthday-parties-at-aerosports.png')" }}
+        role="img"
+        aria-label="Birthday Parties"
+      >
+        <h3 className="offer-card__title">BIRTHDAY PARTIES</h3>
+      </div>
+      <div className="offer-card__body">
+        <p>
+          Epic for them. Easy for you. All-inclusive party packages with private
+          room, host, pizza, open-jump & more.
+        </p>
+        <a href={`/${location_slug}/kids-birthday-parties`} className="sigma_btn-custom">
+          COMPARE PACKAGES →
+        </a>
+      </div>
+    </article>
+
+    {/* Card 3 */}
+    <article className="offer-card">
+      <div
+        className="offer-card__img"
+        style={{ backgroundImage: "url('https://storage.googleapis.com/aerosports/schools-field-trips-at-aerosports.png')" }}
+        role="img"
+        aria-label="Jump Tickets"
+      >
+        <h3 className="offer-card__title">Field Trips</h3>
+      </div>
+      <div className="offer-card__body">
+        <p>
+        We offer special Field Trip rates for groups of 10–29 jumpers. For 30+ or to book space and food, please call us!
+        </p>
+        <a href={`${location_slug}/groups-events/school-groups`} className="sigma_btn-custom">
+        More Info →
+        </a>
+      </div>
+    </article>
+  </div>
+</section>
+</section>
+
+
+
+<section className="aero_home_article_section">
+<center><h2>Explore attractions</h2></center>
           <section className="aero-max-container aero_home-playsection-2 ">
+         
             {attractionsData[0]?.children &&
               attractionsData[0]?.children?.map((item, i) => {
                 return (
@@ -155,16 +308,8 @@ const Home = async ({ params }) => {
           </section>
         </section>
       </section>
-
-       {attractionsData?.[0]?.children?.length > 0 && (
-      <section className="aero_home_birthday_section">
-        <Image className="desktop-container" src={birthday_img} width={220} height={120} alt="birthday img" unoptimized />
-        <Image className="app-container" src={birthday_m_img} width={220} height={120} alt="birthday img" unoptimized />
-        <Link href={`/${location_slug}/kids-birthday-parties`} className="aero-btn-booknow aero-btn-kidslearnmore" prefetch>
-          <button>Learn More</button>
-        </Link>
-      </section>
-       )}
+    
+      
         {attractionsData?.[0]?.children?.length > 0 && (
       <section className="aero_home_article_section">
         <section className="aero-max-container">
