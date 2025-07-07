@@ -2,8 +2,6 @@
 import "../styles/home.css";
 import "../styles/promotions.css";
 import Image from "next/image";
-import birthday_img from "@public/assets/images/home/birthday_img_home_page.svg";
-import birthday_m_img from "@public/assets/images/home/birthday_img_home_mobile.svg";
 import line_pattern from "@public/assets/images/home/line_pattern.svg";
 import Link from "next/link";
 import { getDataByParentId } from "@/utils/customFunctions";
@@ -144,7 +142,7 @@ const Home = async ({ params }) => {
                   d="M7.5 8a2.5 2.5 0 0 1 0-5A4.8 8 0 0 1 12 8a4.8 8 0 0 1 4.5-5 2.5 2.5 0 0 1 0 5"
                 ></path>
               </svg> Current Promotions</h2>
-          <p>Don't miss out on these amazing deals! Save big on your next visit.
+          <p>Do not miss out on these amazing deals! Save big on your next visit.
              
              
             </p>
@@ -201,9 +199,7 @@ const Home = async ({ params }) => {
                   d="M7.5 8a2.5 2.5 0 0 1 0-5A4.8 8 0 0 1 12 8a4.8 8 0 0 1 4.5-5 2.5 2.5 0 0 1 0 5"
                 ></path>
               </svg> Celeberate your event</h2>
-          <p>Elevate your event to next level at Aerosports!       
-             
-            </p>
+          <p>Elevate your event to next level at Aerosports! </p>
   <div className="offer-section__inner container">
     {/* Card 1 */}
     <article className="offer-card">

@@ -48,7 +48,7 @@ const Footer = ({ location_slug, configdata, menudata, locationid }) => {
       {attractionsData?.[0]?.children?.length > 0 && (
         <section className="aero_home-headerimg-wrapper">
           <Image
-            src="https://storage.googleapis.com/aerosports/windsor/GLOW-2-h.jpg"
+            src="https://storage.googleapis.com/aerosports/windsor-new/kids-activity-glow-in-the-dark.webp"
             alt="Glow Night Event"
             width={1200}
             height={600}
