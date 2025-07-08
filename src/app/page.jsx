@@ -4,12 +4,11 @@ import Link from "next/link";
 import "./styles.css";
 import logo_white from "@public/assets/images/city/logo_white.png";
 
-import { fetchsheetdata, fetchMenuData, fetchPageData } from "./lib/sheets";
+import { fetchsheetdata } from "./lib/sheets";
 export default async function Home() {
   const apiUrl = process.env.NEXT_PUBLIC_API_URL;
   const FetchLocation =  await fetchsheetdata('locations');
-   
-  return (
+     return (
     
     <main className="aero-bg">
      
