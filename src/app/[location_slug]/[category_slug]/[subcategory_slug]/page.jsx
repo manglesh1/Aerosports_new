@@ -46,9 +46,7 @@ const Subcategory = async ({ params }) => {
         <MotionImage header_image={header_image} waiver={waiver} />
       </section>
 
-      {header_image?.[0]?.headerimage && (
-        <ImageMarquee imagesString={header_image[0].headerimage}  />
-      )}
+     
 
       <section className="subcategory_main_section-bg">
         <section className="aero-max-container">
@@ -94,7 +92,9 @@ const Subcategory = async ({ params }) => {
         </section>
        
       </section>
-
+      {header_image?.[0]?.headerimage && (
+        <ImageMarquee imagesString={header_image[0].headerimage}  />
+      )}
       <section className="aero_home_article_section">
         <section className="aero-max-container aero_home_seo_section">
           <div

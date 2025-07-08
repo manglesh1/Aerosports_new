@@ -4,6 +4,7 @@ import "../../styles/subcategory.css";
 import MotionImage from "@/components/MotionImage";
 import ImageMarquee from "@/components/ImageMarquee";
 import { fetchsheetdata,  fetchPageData,generateMetadataLib } from "@/lib/sheets";
+import FaqCard from "@/components/smallComponents/FaqCard"
 
 export async function generateMetadata({ params }) {
   const metadata = await generateMetadataLib({
@@ -34,9 +35,7 @@ const Page = async ({ params }) => {
       <section>
         <MotionImage header_image={header_image} waiver={waiver} />
       </section>
-      <section>
-        <ImageMarquee imagesString={header_image[0].headerimage} />
-      </section>
+    
       <section className="subcategory_main_section-bg">
         <section className="aero-max-container">
           <article className="aero_bp_2_main_section">
@@ -62,6 +61,12 @@ const Page = async ({ params }) => {
           </article>
         </section>
       </section>
+     
+        
+        <FaqCard page={'kids-birthday-parties'} location_slug={location_slug} />
+        <section>
+        <ImageMarquee imagesString={header_image[0].headerimage} />
+      </section>
       <section className="aero_home_article_section">
         <section className="aero-max-container">
           <div
@@ -70,6 +75,7 @@ const Page = async ({ params }) => {
           />
         </section>
       </section>
+     
       <section className="aero_home_article_section">
         <section className="aero-max-container aero_home_seo_section">
           <div
@@ -77,6 +83,7 @@ const Page = async ({ params }) => {
           />
         </section>
       </section>
+      
     </main>
   );
 };

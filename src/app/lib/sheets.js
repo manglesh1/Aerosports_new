@@ -85,6 +85,11 @@ async function fetchPageData(location, page) {
   const jsonData = await fetchsheetdata("Data", location);
   return jsonData.filter(m => m.path?.toUpperCase().includes(page.toUpperCase()));
 }
+async function fetchFaqData(location, page) {
+  const jsonData = await fetchsheetdata("faq", location);
+  return jsonData.filter(m => m.path?.toUpperCase().includes(page.toUpperCase()));
+}
+
 async function generateMetadataLib({ location, category, page }) {
   const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL;
   const pagefordata = page?page:'home';
@@ -140,4 +145,5 @@ module.exports = {
   fetchMenuData,
   fetchPageData,
   generateMetadataLib,
+  fetchFaqData
 };

@@ -121,6 +121,7 @@
 /* faq's section */
 .entry-content {
   counter-reset: question answer;
+  display: 'flex'; alignItems: 'center'; gap: '0.5rem' ;
 }
 .entry-content h3 {
   text-align: left;
@@ -132,6 +133,7 @@
 .entry-content p {
   display: inline-flex;
   font-size: 0.9rem;
+  text-align: left;
 }
 .entry-content :is(h3, p)::before {
   font-size: 1.1rem;
@@ -139,6 +141,7 @@
   color: var(--primary-color);
   margin-right: 1em;
 }
+/*
 .entry-content h3::before {
   counter-increment: question;
   content: "Q." counter(question) ":";
@@ -147,7 +150,7 @@
   counter-increment: answer;
   content: "A." counter(answer) ":";
 }
-
+*/
 /* membership section  */
 .membership-memberships {
   align-items: unset !important;
