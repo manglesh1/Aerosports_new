@@ -268,18 +268,19 @@ const Home = async ({ params }) => {
 
 
 <section className="aero_home_article_section">
-<center><h2>Explore attractions</h2></center>
+<center><h2 className="text-center" >Explore attractions</h2></center>
           <section className="aero-max-container aero_home-playsection-2 ">
          
-            {attractionsData[0]?.children &&
-              attractionsData[0]?.children?.map((item, i) => {
-                return (
-                  <Link
-                    href={`${location_slug}/${item?.parentid}/${item?.path}`}
-                    prefetch
-                    key={i}
-                  >
-                    <article className="d-flex-dir-col">
+        
+  {attractionsData[0]?.children?.map((item, i) => (
+    <Link
+      href={`/${location_slug}/${item?.parentid}/${item?.path}`}
+      prefetch
+      key={i}      
+    >
+      
+      <article className="d-flex-dir-col">
+      <figure className="attraction-figure">
                       <Image
                         src={item?.smallimage}
                         width={120}
@@ -287,20 +288,17 @@ const Home = async ({ params }) => {
                         alt={item?.title}
                         unoptimized
                       />
-                      <figure className="aero_home-play-small-img">
-                        <Image
-                          src={line_pattern}
-                          width={120}
-                          height={120}
-                          alt={item?.title}
-                          unoptimized
-                        />
-                        <span>{item?.desc}</span>
-                      </figure>
-                    </article>
-                  </Link>
-                );
-              })}
+                      <figcaption className="figcaption-bg"><h3>{item?.desc}</h3></figcaption>
+                      </figure>   </article>
+
+        
+
+      
+      
+    </Link>
+  ))}
+
+
           </section>
         </section>
       </section>

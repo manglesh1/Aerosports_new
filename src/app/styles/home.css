@@ -680,7 +680,26 @@
   font-size: 1rem;
   font-weight: 500;
 }
-
+.figcaption-bg {
+  width: 100%; /* 👈 This makes it match the image's width */
+  background-image: url('/assets/images/home/line_pattern.svg'); /* or any path in /public */
+  background-size: cover;
+  background-position: center;
+  color: white;
+  height: 60px;
+  line-height: 60px;
+  text-align: center;
+  font-weight: bold;
+  border-radius: 0px;
+  margin-top: 0;
+  padding: 0 10px;
+  box-sizing: border-box;
+}
+.attraction-figure {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
 /* footer css end  */
 
 @media screen and (min-width: 992px) {
