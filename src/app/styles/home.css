@@ -700,6 +700,31 @@
   flex-direction: column;
   align-items: center;
 }
+ul.attractions-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  justify-content: left;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+/* Each LI: fixed width on desktop, full width on mobile */
+ul.attractions-grid li {
+  width: 330px;              /* Fixed width by default */
+}
+
+@media (max-width: 768px) {
+  ul.attractions-grid {
+    justify-content: center;
+  }
+
+  ul.attractions-grid li {
+    width: 100%;
+    max-width: 100%;
+  }
+}
 /* footer css end  */
 
 @media screen and (min-width: 992px) {

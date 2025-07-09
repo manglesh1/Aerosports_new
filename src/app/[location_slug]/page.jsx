@@ -271,8 +271,9 @@ const Home = async ({ params }) => {
 <center><h2 className="text-center" >Explore attractions</h2></center>
           <section className="aero-max-container aero_home-playsection-2 ">
          
-        
+       <ul className="attractions-grid">
   {attractionsData[0]?.children?.map((item, i) => (
+    <li>
     <Link
       href={`/${location_slug}/${item?.parentid}/${item?.path}`}
       prefetch
@@ -280,12 +281,13 @@ const Home = async ({ params }) => {
     >
       
       <article className="d-flex-dir-col">
-      <figure className="attraction-figure">
+      <figure >
                       <Image
                         src={item?.smallimage}
-                        width={120}
-                        height={120}
+                        width={330}
+                        height={240}
                         alt={item?.title}
+                       
                         unoptimized
                       />
                       <figcaption className="figcaption-bg"><h3>{item?.desc}</h3></figcaption>
@@ -295,10 +297,10 @@ const Home = async ({ params }) => {
 
       
       
-    </Link>
+    </Link></li>
   ))}
 
-
+</ul> 
           </section>
         </section>
       </section>
