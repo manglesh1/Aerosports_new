@@ -5,6 +5,7 @@ import "../../../styles/kidsparty.css";
 import { getDataByParentId } from "@/utils/customFunctions";
 import MotionImage from "@/components/MotionImage";
 import ImageMarquee from "@/components/ImageMarquee";
+import SubCategoryCard from "@/components/smallComponents/SubCategoryCard"
 import { fetchsheetdata,fetchMenuData, generateMetadataLib } from "@/lib/sheets";
 import Link from "next/link";
 
@@ -28,22 +29,23 @@ const Subcategory = async ({ params }) => {
   
   ]);
 
-  const waiver = Array.isArray(dataconfig)
-    ? dataconfig.find((item) => item.key === "waiver")
-    : null;
+ 
 
    
-  const categoryData = (await getDataByParentId(menudata,category_slug))[0]?.children?.filter(child => child.path !== subcategory_slug);
+  const categoryData = (await getDataByParentId(menudata,category_slug))[0]?.children?.filter(child => child.path !== subcategory_slug && child.isactive==1);
+
   const attractionsData = Array.isArray(data)
     ? getDataByParentId(data, subcategory_slug)
     : [];
 
-  const header_image = attractionsData; // Reusing attractionsData
+  const pagedata = attractionsData?.[0]; // Reusing attractionsData
+  if(!pagedata) return;
+
 
   return (
     <main>
       <section>
-        <MotionImage header_image={header_image} waiver={waiver} />
+        <MotionImage header_image={attractionsData} location_slug={location_slug} />
       </section>
 
      
@@ -53,53 +55,23 @@ const Subcategory = async ({ params }) => {
           <div
             className="subcategory_main_section"
             dangerouslySetInnerHTML={{
-              __html: attractionsData?.[0]?.section1 || "",
+              __html: pagedata.section1 || "",
             }}
           />
-           <section className="aero_category_section_card_wrapper"  >
-       
-       {categoryData?.[0]?.children.map((item, i) => {
-         return (
-           item?.isactive == 1 && (
-             <Link
-               href={`${item?.path}`}
-               prefetch
-               key={i}
-               title={item.title}
-             >
-               <article className="aero_category_section_card_wrap">
-                 <image
-                   src={item?.smallimage}
-                   width={150}
-                   height={150}
-                   alt={item?.title}
-                   title={item?.title}
-                   className="aero_category_section_card_img"
-                 />
-                 <div className="aero_category_section_card_desc">
-                   <h2>{item?.desc}</h2>
-                   <p>
-                     {item?.smalltext?.slice(0, 50) + "..."}{" "}
-                     <span>READ MORE</span>
-                   </p>
-                 </div>
-               </article>
-             </Link>
-           )
-         );
-       })}
-     </section>
+         
         </section>
-       
+       <SubCategoryCard attractionsData={categoryData} location_slug={location_slug} theme={'default'} title={`Other ${pagedata.parentid}`} text={[pagedata.metadescription]} />
       </section>
-      {header_image?.[0]?.headerimage && (
-        <ImageMarquee imagesString={header_image[0].headerimage}  />
-      )}
+      
+        <ImageMarquee imagesString={pagedata.headerimage}  />
+      
+      
+
       <section className="aero_home_article_section">
         <section className="aero-max-container aero_home_seo_section">
           <div
             dangerouslySetInnerHTML={{
-              __html: attractionsData?.[0]?.seosection || "",
+              __html: pagedata.seosection || "",
             }}
           />
         </section>

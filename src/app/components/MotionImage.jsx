@@ -4,11 +4,14 @@ import React from "react";
 import { motion } from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";
-
-const MotionImage = ({ header_image, waiver }) => {
+import { fetchsheetdata } from "@/lib/sheets";
+const MotionImage = async ({ header_image,location_slug }) => {
   console.log(header_image);
   const item = Array.isArray(header_image) && header_image.length > 0 ? header_image[0] : header_image;
-  
+  const dataconfig = await fetchsheetdata('config', location_slug);
+  const waiver1 = Array.isArray(dataconfig) ? dataconfig.find((item) => item.key === "waiver") : null;
+  const waiver=waiver1?.value;
+
   // Handle case when no item exists
   if (!item) return null;
 

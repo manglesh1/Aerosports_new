@@ -15,6 +15,7 @@ if (imagesString) {
     const [src, title] = item.split('|');
     return { src: src?.trim(), title: title?.trim() || '' };
   });
+  if(!images) return;
 }
 
 console.log(images);

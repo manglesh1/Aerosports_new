@@ -2,8 +2,8 @@ import Link from "next/link";
 import React from "react";
 import "../../styles/category.css";
 import { getDataByParentId } from "@/utils/customFunctions";
-import { fetchMenuData, generateMetadataLib } from "@/lib/sheets";
-
+import { fetchMenuData, generateMetadataLib, fetchPageData } from "@/lib/sheets";
+import MotionImage from "@/components/MotionImage";
 export async function generateMetadata({ params }) {
   const { location_slug, category_slug } = params;
   const metadata = await generateMetadataLib({
@@ -20,19 +20,18 @@ const Category = async ({ params }) => {
   const { location_slug, category_slug } = params;
   
 const data = await fetchMenuData(location_slug);
- 
-
+const pageData = await fetchPageData(location_slug,category_slug);
+console.log('pagedata',pageData);
   const attractionsData = getDataByParentId(data, category_slug);
-  const seosection = data?.filter((item) => item.path === category_slug)?.[0]?.seosection;
-  const sectiontt = data?.filter((item) => item.path === category_slug)?.[0]?.section1;
+  console.log('attractionsData');
   return (
     <main>
       <section>
         <section className="aero_category_section_wrapper">
+          
           <section className="aero-max-container">
-            <h1 className="aero_category_main_heading d-flex-center">
-              {category_slug?.replace("-", " ")?.toUpperCase()}
-            </h1>
+          <MotionImage header_image={pageData} location_slug={location_slug}/>
+            
             <section className="aero_category_section_card_wrapper">
               {attractionsData[0]?.children?.map((item, i) => {
                 return (
@@ -68,8 +67,8 @@ const data = await fetchMenuData(location_slug);
         </section>
         <section className="aero_home_article_section">
           <section className="aero-max-container aero_home_seo_section">
-            <div dangerouslySetInnerHTML={{ __html: sectiontt || "" }} />
-            <div dangerouslySetInnerHTML={{ __html: seosection || "" }} />
+            <div dangerouslySetInnerHTML={{ __html: pageData[0].section1 || "" }} />
+            <div dangerouslySetInnerHTML={{ __html: pageData[0].seosection || "" }} />
           </section>
         </section>
       </section>

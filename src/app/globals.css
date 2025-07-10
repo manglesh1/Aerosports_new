@@ -59,7 +59,22 @@ header:first-child {
 header:first-child + * {
   padding-top: 105px;
 }
+.heading-with-icon {
+  display: flex;       /* Inline alignment */
+  align-items: center;        /* Vertical alignment */
+  gap: 8px;                   /* Space between icon and text */
+  justify-content: center;    /* Center inside text-center div */
+  font-size: 1.75rem;         /* Optional: match heading size */
+  text-align: center;
+}
 
+.promotions__icon {
+  width: 2.5rem;
+  height: 2.5rem;
+  stroke: currentColor;
+  color: var(--primary-color);      
+            /* white icon */
+}
 @media screen and (min-width: 992px) {
   header:first-child + * {
     padding-top: 142px;

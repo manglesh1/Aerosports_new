@@ -33,9 +33,7 @@ const Home = async ({ params }) => {
     
   ]);
 
-  const waiver1 = Array.isArray(dataconfig) ? dataconfig.find((item) => item.key === "waiver") : null;
-  const waiverLink=waiver1?.value;
-
+  
 
   const homepageSection1 = Array.isArray(dataconfig)
     ? dataconfig.find((item) => item.key === "homepageSection1")?.value ?? ""
@@ -86,7 +84,7 @@ const Home = async ({ params }) => {
     <main>
       {promotionPopup.length > 0 && <PromotionModal promotionPopup={promotionPopup} />}
      
-      <MotionImage header_image={header_image} waiver={waiverLink} />
+      <MotionImage header_image={header_image}  location_slug={location_slug} />
       {attractionsData?.[0]?.children?.length > 0 && (
       <section className="aero_home-actionbtn-bg">
         <section className="aero-max-container aero_home-actionbtn">
@@ -125,7 +123,7 @@ const Home = async ({ params }) => {
         {attractionsData?.[0]?.children?.length > 0 && (
         <section className="aero_home_article_section">
         <section className="aero-max-container">
-          <h2>  <svg
+          <h2 className="heading-with-icon">  <svg
                 className="promotions__icon"
                 xmlns="http://www.w3.org/2000/svg"
                 viewBox="0 0 24 24"
@@ -182,7 +180,7 @@ const Home = async ({ params }) => {
 
   <section className="aero_home_article_section">
   <section className="aero-max-container">
-  <h2>  <svg
+  <h2 className="heading-with-icon">  <svg
                 className="promotions__icon"
                 xmlns="http://www.w3.org/2000/svg"
                 viewBox="0 0 24 24"
@@ -268,16 +266,30 @@ const Home = async ({ params }) => {
 
 
 <section className="aero_home_article_section">
-<center><h2 className="text-center" >Explore attractions</h2></center>
+<h2 className="heading-with-icon" ><svg
+    className="promotions__icon"
+    xmlns="http://www.w3.org/2000/svg"
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    strokeWidth="2"
+    strokeLinecap="round"
+    strokeLinejoin="round"
+  >
+    <circle cx="12" cy="12" r="10" />
+    <path d="M12 8v4l3 3" />
+  </svg>Explore attractions</h2> <Link href={`/${location_slug}/attractions`} className="aero-btn-booknow" prefetch>
+            View All
+          </Link>   
           <section className="aero-max-container aero_home-playsection-2 ">
          
        <ul className="attractions-grid">
   {attractionsData[0]?.children?.map((item, i) => (
-    <li>
+    <li  key={i}   >
     <Link
       href={`/${location_slug}/${item?.parentid}/${item?.path}`}
       prefetch
-      key={i}      
+        
     >
       
       <article className="d-flex-dir-col">
@@ -285,8 +297,8 @@ const Home = async ({ params }) => {
                       <Image
                         src={item?.smallimage}
                         width={330}
-                        height={240}
-                        alt={item?.title}
+                        height={200}
+                        alt={item?.iconalttextforhomepage}
                        
                         unoptimized
                       />
@@ -301,15 +313,35 @@ const Home = async ({ params }) => {
   ))}
 
 </ul> 
+
           </section>
+                
         </section>
+
       </section>
     
       
         {attractionsData?.[0]?.children?.length > 0 && (
       <section className="aero_home_article_section">
         <section className="aero-max-container">
-          <p>POPULAR STORIES</p>
+          <h2 className="heading-with-icon"><svg
+  xmlns="http://www.w3.org/2000/svg"
+  className="promotions__icon"
+  viewBox="0 0 24 24"
+  fill="none"
+  stroke="currentColor"
+  strokeWidth="2"
+  strokeLinecap="round"
+  strokeLinejoin="round"
+  width="24"
+  height="24"
+  aria-hidden="true"
+>
+  <path d="M4 4h16v16H4z" />              {/* Outer square – looks like a document */}
+  <line x1="8" y1="8" x2="16" y2="8" />   {/* Line 1 */}
+  <line x1="8" y1="12" x2="16" y2="12" /> {/* Line 2 */}
+  <line x1="8" y1="16" x2="12" y2="16" /> {/* Line 3 (shorter) */}
+</svg>Latest Articles & News</h2>
           <h2>Every Updated Article</h2>
           <BlogCard blogsData={blogsData[0]} location_slug={location_slug} />
           <Link href={`/${location_slug}/blogs`} className="aero-btn-booknow aero-btn-article-section" prefetch>

@@ -26,7 +26,7 @@ const page = async ({ params }) => {
  
   ]);
 
-  const waiver = dataconfig?.filter((item) => item.key === "waiver");
+  
   const header_image = getDataByParentId(data, "pricing-promos");
   const memberData = getDataByParentId(data, "pricing-promos");
 
@@ -69,7 +69,7 @@ const page = async ({ params }) => {
   return (
     <main>
       <section>
-        <MotionImage header_image={header_image} waiver={waiver} />
+        <MotionImage header_image={header_image} location_slug={location_slug} />
       </section>
       <section className="subcategory_main_section-bg">
         <section className="aero-max-container">

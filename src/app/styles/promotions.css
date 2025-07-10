@@ -1,12 +1,3 @@
-/* Container helper – adjust as needed in your global stylesheet */
-  .promotions__icon {
-    width: 2.5rem;
-    height: 2.5rem;
-    stroke: currentColor;
-    color: var(--primary-color);      
-              /* white icon */
-  }
- 
   /* Grid of promotion cards */
   .promotions__grid {
     display: grid;

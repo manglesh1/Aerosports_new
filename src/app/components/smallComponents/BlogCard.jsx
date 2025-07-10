@@ -6,7 +6,7 @@ const BlogCard = ({ blogsData, location_slug }) => {
   return (
     <section className="aero_home_article_card-wrapper">
       {blogsData?.children &&
-        blogsData?.children.map((item, i) => {
+        blogsData?.children.slice(0, 4).map((item, i) => {
           return (
             <Link
               key={i}

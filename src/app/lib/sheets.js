@@ -116,7 +116,7 @@ async function generateMetadataLib({ location, category, page }) {
   const data = await fetchPageData(location, pagefordata);
 
   const metadataItem = data?.find((item) => item.path === pagefordata);
-console.log(pagefordata);
+//console.log(pagefordata);
   // Construct canonical path
   let canonicalPath = location;
   if (category && page) {

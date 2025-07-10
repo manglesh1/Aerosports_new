@@ -1,11 +1,12 @@
-import React from "react";
+import React, { Children } from "react";
 import "../../styles/kidsparty.css";
 import "../../styles/subcategory.css";
-import MotionImage from "@/components/MotionImage";
-import ImageMarquee from "@/components/ImageMarquee";
-import { fetchsheetdata,  fetchPageData,generateMetadataLib } from "@/lib/sheets";
-import FaqCard from "@/components/smallComponents/FaqCard"
 
+import ImageMarquee from "@/components/ImageMarquee";
+import { fetchsheetdata,  fetchPageData,generateMetadataLib, fetchMenuData } from "@/lib/sheets";
+import FaqCard from "@/components/smallComponents/FaqCard"
+import SubCategoryCard from "@/components/smallComponents/SubCategoryCard"
+import MotionImage from "@/components/MotionImage";
 export async function generateMetadata({ params }) {
   const metadata = await generateMetadataLib({
     location: params.location_slug,
@@ -18,22 +19,22 @@ export async function generateMetadata({ params }) {
 const Page = async ({ params }) => {
   const location_slug = params.location_slug;
 
-  const [data, birthdaydata, dataconfig] = await Promise.all([
+  const [data, birthdaydata,  menudata] = await Promise.all([
      fetchPageData(location_slug,'kids-birthday-parties'),
      fetchsheetdata('birthday packages',location_slug),
-     fetchsheetdata('config', location_slug),
+     
+     fetchMenuData(location_slug)
   
   ]);
-
-  const waiver = dataconfig?.filter((item) => item.key === "waiver");
-  const header_image = data?.filter(
+  const attractions = menudata?.filter((item)=> item.path=="attractions")[0];
+    const header_image = data?.filter(
     (item) => item.path === "kids-birthday-parties"
   );
 
   return (
     <main >
      
-        <MotionImage header_image={header_image} waiver={waiver} />
+        <MotionImage header_image={header_image} location_slug={location_slug} />
      
     
       <section className="subcategory_main_section-bg">
@@ -69,40 +70,7 @@ const Page = async ({ params }) => {
       </section>
      
       
-      <section  className="aero-max-container">
-  <h2>Games &amp; Activities</h2>
-  <p>
-    Keep the energy high with our selection of top-rated <strong>birthday celebration games</strong>
-    and <strong>children’s birthday party games</strong>. Whether you’re planning party games for
-    birthday party fun or looking for something new, we’ve got you covered!
-  </p>
-  <ul class="games-list">
-    <li>
-      <strong>Foam Pit Dodgeball</strong><br/>
-      Fast-paced fun meets soft landings—one of our most popular party games for birthday parties.
-    </li>
-    <li>
-      <strong>Glow Mini-Golf</strong><br/>
-      Putt your way through neon obstacles on our blacklight course—perfect for a memorable birthday celebration game.
-    </li>
-    <li>
-      <strong>Ninja Warrior Challenges</strong><br/>
-      Test balance and agility across warped walls, swinging rings and cargo nets in this ultimate kids’ birthday party game.
-    </li>
-    <li>
-      <strong>Trampoline Basketball</strong><br/>
-      Slam-dunk in mid-air for a high-flying twist on classic basketball—great for active birthday parties near me.
-    </li>
-    <li>
-      <strong>Obstacle Course Relay</strong><br/>
-      Team up for relay races through hurdles, tunnels and balance beams—ideal for group birthday party games.
-    </li>
-    <li>
-      <strong>Foam Pit Treasure Hunt</strong><br/>
-      Dive into our foam pit to uncover hidden prizes—an exciting addition to any children’s birthday party.
-    </li>
-  </ul>
-</section>
+      <SubCategoryCard attractionsData={attractions.children} location_slug={location_slug} theme={'default'} title={`Activities & Attractions`} text={[attractions.metadescription]} />
 
         <FaqCard page={'kids-birthday-parties'} location_slug={location_slug} />
         <section>

@@ -18,21 +18,21 @@ export async function generateMetadata({ params }) {
 const page = async ({ params }) => {
   const { location_slug } = params;
   const API_URL = process.env.NEXT_PUBLIC_API_URL;
-  const [data, dataconfig] = await Promise.all([
+  const [data] = await Promise.all([
     fetchsheetdata('Data',location_slug),
-    fetchsheetdata('config', location_slug),
+    
     
   ]);
  
 
-  const waiver = dataconfig?.filter((item) => item.key === "waiver");
+  
   const header_image = getDataByParentId(data, "membership");
   const memberData = getDataByParentId(data, "membership");
 
   return (
     <main>
       <section>
-        <MotionImage header_image={header_image} waiver={waiver} />
+        <MotionImage header_image={header_image}  location_slug={location_slug} />
       </section>
       <section className="subcategory_main_section-bg">
         <section className="aero-max-container">
