@@ -6,7 +6,7 @@ import { getDataByParentId } from "@/utils/customFunctions";
 import MotionImage from "@/components/MotionImage";
 import ImageMarquee from "@/components/ImageMarquee";
 import SubCategoryCard from "@/components/smallComponents/SubCategoryCard"
-import { fetchsheetdata,fetchMenuData, generateMetadataLib } from "@/lib/sheets";
+import { fetchsheetdata,fetchMenuData, generateMetadataLib,getWaiverLink } from "@/lib/sheets";
 import Link from "next/link";
 
 export async function generateMetadata({ params }) {
@@ -29,7 +29,7 @@ const Subcategory = async ({ params }) => {
   
   ]);
 
- 
+  const waiverLink = await getWaiverLink(location_slug);
 
    
   const categoryData = (await getDataByParentId(menudata,category_slug))[0]?.children?.filter(child => child.path !== subcategory_slug && child.isactive==1);
@@ -45,7 +45,7 @@ const Subcategory = async ({ params }) => {
   return (
     <main>
       <section>
-        <MotionImage header_image={attractionsData} location_slug={location_slug} />
+        <MotionImage header_image={attractionsData} waiverLink={waiverLink} />
       </section>
 
      

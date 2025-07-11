@@ -13,18 +13,18 @@ const Header = ({ location_slug, menudata, configdata }) => {
     .filter((item) => item.isactive === 1)
     .map((item) => ({ navName: item.desc, navUrl: item.path.toLowerCase() }))
     .sort((a, b) => a.navName.localeCompare(b.navName));
-console.log('header');
+
     console.log(configdata.length);
   const estoreConfig = Array.isArray(configdata)
     ? configdata.find((item) => item.key === "estorebase")
     : null;
 
-  const topHeaderConfig = Array.isArray(configdata)
-    ? configdata.find((item) => item.key === "top-header")
-    : null;
+ // const topHeaderConfig = Array.isArray(configdata)
+ //   ? configdata.find((item) => item.key === "top-header")
+ //   : null;
   return (
     <header>
-      {topHeaderConfig?.value && <TopHeader topheader={[topHeaderConfig]} />}
+      
 
       <section className="d-flex aero-col-3">
         <div className="aero-menu-location app-container">

@@ -22,12 +22,12 @@ export default async function Home() {
           {FetchLocation.map((card, i) => {
             return (
               <div className="city-card-wrap" key={i}>
-                <Image
+                <img
                   src={card.smallimage}
                   alt="city image"
                   width={100}
                   height={100}
-                  unoptimized
+                  loading="lazy"                  
                 />
                 <h2>{card.desc}</h2>
                 <p>{card.address}</p>

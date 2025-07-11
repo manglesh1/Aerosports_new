@@ -1,17 +1,19 @@
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
-import { fetchMenuData, fetchsheetdata } from "@/lib/sheets";
+import { fetchMenuData, fetchsheetdata,getReviewsData } from "@/lib/sheets";
 export default async function LocationLayout({ children, params }) {
   const location_slug = params?.location_slug;
 
   const [menudata, configdata, sheetdata] = await Promise.all([
     fetchMenuData(location_slug),
     fetchsheetdata('config', location_slug),
-    fetchsheetdata('locations', location_slug)
+    fetchsheetdata('locations', location_slug),
+    
   ]);
 
   const locationid = sheetdata?.[0]?.locationid || null;
- 
+  const reviewdata = await getReviewsData(locationid)
+  
 
   return (
     <div>
@@ -21,7 +23,7 @@ export default async function LocationLayout({ children, params }) {
         location_slug={location_slug}
         configdata={configdata}
         menudata={menudata}
-        locationid={locationid}
+        reviewdata={reviewdata}
       />
       <div id="modal-root"></div>
     </div>

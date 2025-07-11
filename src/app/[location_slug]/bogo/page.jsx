@@ -3,7 +3,7 @@ import "../../styles/kidsparty.css";
 import "../../styles/subcategory.css";
 import MotionImage from "@/components/MotionImage";
 import { getDataByParentId } from "@/utils/customFunctions";
-import { fetchsheetdata,fetchPageData, generateMetadataLib } from "@/lib/sheets";
+import { fetchsheetdata,fetchPageData, generateMetadataLib,getWaiverLink } from "@/lib/sheets";
 
 export async function generateMetadata({ params }) {
   const metadata = await generateMetadataLib({
@@ -16,8 +16,7 @@ export async function generateMetadata({ params }) {
 
 const page = async ({ params }) => {
   const { location_slug } = params;
-  const API_URL = process.env.NEXT_PUBLIC_API_URL;
-
+  const waiverLink = await getWaiverLink(location_slug);
   const [data, dataconfig] = await Promise.all([
     fetchPageData(location_slug,'bogo'),
     fetchsheetdata('config',location_slug),
@@ -31,7 +30,7 @@ const page = async ({ params }) => {
   return (
     <main>
       <section>
-        <MotionImage header_image={header_image} location_slug={location_slug} />
+        <MotionImage header_image={header_image} waiverLink={waiverLink} />
       </section>
       <section className="subcategory_main_section-bg">
         <section className="aero-max-container">

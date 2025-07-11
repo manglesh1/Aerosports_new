@@ -2,14 +2,13 @@
 import "../styles/home.css";
 import "../styles/promotions.css";
 import Image from "next/image";
-import line_pattern from "@public/assets/images/home/line_pattern.svg";
 import Link from "next/link";
 import { getDataByParentId } from "@/utils/customFunctions";
 import Countup from "@/components/Countup";
 import MotionImage from "@/components/MotionImage";
 import PromotionModal from "@/components/model/PromotionModal";
 import BlogCard from "@/components/smallComponents/BlogCard";
-import { fetchsheetdata, fetchMenuData, fetchPageData,generateMetadataLib } from "@/lib/sheets";
+import { fetchsheetdata, fetchMenuData, getWaiverLink,generateMetadataLib } from "@/lib/sheets";
 
 export async function generateMetadata({ params }) {
   const metadata = await generateMetadataLib({
@@ -25,8 +24,8 @@ export async function generateMetadata({ params }) {
 const Home = async ({ params }) => {
   const location_slug = params?.location_slug;
   const API_URL = process.env.NEXT_PUBLIC_API_URL;
-
-  const [data, dataconfig,promotions] = await Promise.all([
+   const waiverLink = await getWaiverLink(location_slug);
+     const [data, dataconfig,promotions] = await Promise.all([
     fetchMenuData(location_slug),
     fetchsheetdata('config', location_slug),
     fetchsheetdata('promotions',location_slug)
@@ -84,7 +83,7 @@ const Home = async ({ params }) => {
     <main>
       {promotionPopup.length > 0 && <PromotionModal promotionPopup={promotionPopup} />}
      
-      <MotionImage header_image={header_image}  location_slug={location_slug} />
+      <MotionImage header_image={header_image}  waiverLink={waiverLink} />
       {attractionsData?.[0]?.children?.length > 0 && (
       <section className="aero_home-actionbtn-bg">
         <section className="aero-max-container aero_home-actionbtn">

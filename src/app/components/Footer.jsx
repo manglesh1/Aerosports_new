@@ -14,17 +14,11 @@ import twittericon from "@public/assets/images/social_icon/twitter.png";
 import tiktokicon from "@public/assets/images/social_icon/tiktok.png";
 import instagramicon from "@public/assets/images/social_icon/instagram.png";
 import Script from "next/script";
-import { fetchData1 } from "@/utils/fetchData";
 
-const Footer = ({ location_slug, configdata, menudata, locationid }) => {
-  const [ratingdata, setRatingdata] = useState(null);
 
-  useEffect(() => {
-    if (locationid) {
-      const url = `${process.env.NEXT_PUBLIC_API_URL}/getreviews?locationid=${locationid}`;
-      fetchData1(url).then(data => setRatingdata(data)).catch(err => console.error("Review fetch failed:", err));
-    }
-  }, [locationid]);
+const Footer = ({ location_slug, configdata, menudata, reviewdata }) => {
+  
+
 
   if (!configdata?.length || !menudata?.length) return null;
 
@@ -72,7 +66,7 @@ const Footer = ({ location_slug, configdata, menudata, locationid }) => {
 
       <section className="aero-max-container">
         {/* Rating */}
-        {ratingdata && <RatingComponent ratingdata={ratingdata} />}
+        {reviewdata && <RatingComponent ratingdata={reviewdata} />}
 
         {/* Logo + Socials */}
         <div className="d-flex-center aero_logo_social_wrap">

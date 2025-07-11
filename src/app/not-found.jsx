@@ -1,18 +1,17 @@
-'use client'
-import React from "react";
-import { usePathname } from "next/navigation";
 import './styles/notfound.css';
+import { headers } from 'next/headers';
 
-const NotFound = () => {
-  const router = usePathname();
-  const keyword = router?.split("/").pop() || "page";
-  // console.log(keyword)
+export default function NotFound() {
+  const headersList = headers();
+  const url = headersList.get('x-invoke-path') || headersList.get('referer') || '';
+  // fallback to extract pathname from referer or empty string
+  const keyword = url.split('/').filter(Boolean).pop() || 'page';
 
   return (
     <div className="not-found-container">
       <h1 className="not-found-title">404</h1>
       <p className="not-found-message">
-        Sorry&apos; we couldn&apos;t find the{" "}
+        Sorry&apos; we couldn&apos;t find the{' '}
         <span className="highlight">&quot; {keyword} &quot;</span> you were
         looking for.
       </p>
@@ -24,6 +23,4 @@ const NotFound = () => {
       </a>
     </div>
   );
-};
-
-export default NotFound;
+}

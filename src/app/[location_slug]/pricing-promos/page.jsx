@@ -3,7 +3,7 @@ import "../../styles/subcategory.css";
 import MotionImage from "@/components/MotionImage";
 import { getDataByParentId } from "@/utils/customFunctions";
 
-import { fetchsheetdata, fetchMenuData, fetchPageData,generateMetadataLib } from "@/lib/sheets";
+import { fetchsheetdata, getWaiverLink, fetchPageData,generateMetadataLib } from "@/lib/sheets";
 
 export async function generateMetadata({ params }) {
   const metadata = await generateMetadataLib({
@@ -18,14 +18,12 @@ export async function generateMetadata({ params }) {
 
 const page = async ({ params }) => {
   const { location_slug } = params;
-  const API_URL = process.env.NEXT_PUBLIC_API_URL;
-
   const [data, dataconfig] = await Promise.all([
     await fetchPageData(location_slug, 'pricing-promos'),
     await fetchsheetdata('config',location_slug),
  
   ]);
-
+  const waiverLink = await getWaiverLink(location_slug);
   
   const header_image = getDataByParentId(data, "pricing-promos");
   const memberData = getDataByParentId(data, "pricing-promos");
@@ -69,7 +67,7 @@ const page = async ({ params }) => {
   return (
     <main>
       <section>
-        <MotionImage header_image={header_image} location_slug={location_slug} />
+        <MotionImage header_image={header_image} waiverLink={waiverLink} />
       </section>
       <section className="subcategory_main_section-bg">
         <section className="aero-max-container">

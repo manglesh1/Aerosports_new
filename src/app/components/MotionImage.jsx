@@ -4,14 +4,9 @@ import React from "react";
 import { motion } from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";
-import { fetchsheetdata } from "@/lib/sheets";
-const MotionImage = async ({ header_image,location_slug }) => {
-  console.log(header_image);
+const MotionImage = async ({ header_image,waiverLink }) => {
+  //console.log(header_image);
   const item = Array.isArray(header_image) && header_image.length > 0 ? header_image[0] : header_image;
-  const dataconfig = await fetchsheetdata('config', location_slug);
-  const waiver1 = Array.isArray(dataconfig) ? dataconfig.find((item) => item.key === "waiver") : null;
-  const waiver=waiver1?.value;
-
   // Handle case when no item exists
   if (!item) return null;
 
@@ -25,9 +20,9 @@ const MotionImage = async ({ header_image,location_slug }) => {
             <source src={item.video} type="video/mp4" />
           </video>
           <article className="image-content">
-            {waiver && (
+            {waiverLink && (
               <div className="aero-btn-booknow">
-                <Link href={waiver} target="_blank">
+                <Link href={waiverLink} target="_blank">
                   <motion.button
                     animate={{
                       scale: [1, 1.2, 1.5, 1.2, 1],
@@ -77,9 +72,9 @@ const MotionImage = async ({ header_image,location_slug }) => {
           >
             <h1>{item.title}</h1>
             <p dangerouslySetInnerHTML={{ __html: item.smalltext }} />
-            {waiver && (
+            {waiverLink && (
               <div className="aero-btn-booknow">
-                <Link href={waiver} target="_blank"  title="sign your waiver at aerosports trampoline park" >
+                <Link href={waiverLink} target="_blank"  title="sign your waiver at aerosports trampoline park" >
                   <motion.button
                     animate={{
                       scale: [1, 1.2, 1.5, 1.2, 1],

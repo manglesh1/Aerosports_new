@@ -5,18 +5,25 @@ const XLSX = require('xlsx');
 const SHEET_URL = `https://docs.google.com/spreadsheets/d/1zpV1juNopYe4bnFP959w3ldwj0dC-3WF/export?format=xlsx`;
 const sheetCache = new Map();
 const CACHE_TTL = 1000 * 60 * 15; // 15 min
-
+const waiverLinkCache = new Map();
+const reviewesData = new Map();
 async function fetchsheetdata(sheetName, location) {
   const cacheKey = `${sheetName}:${location || 'all'}`;
   
   const now = Date.now();
 
   const cached = sheetCache.get(cacheKey);
-if(cached)
-{
-  console.log('cache found');
-}
-
+  if(cached)
+  {
+    console.log('cache found');
+    
+   
+  }
+    if(location=='.well-known')
+    {
+      console.log('unknown location', location);
+      return [];
+    }
   if (cached && now - cached.timestamp < CACHE_TTL) {
     console.log("✅ from cache " + cacheKey);
     return cached.data;
@@ -41,7 +48,7 @@ if(cached)
       }
     });
     const distinctLocations = Array.from(locationSet);
-    console.log("Distinct Locations:", distinctLocations);
+    //console.log("Distinct Locations:", distinctLocations);
     // Cache per sheet and location
     workbook.SheetNames.forEach((name) => {
       const worksheet = workbook.Sheets[name];
@@ -59,7 +66,7 @@ if(cached)
           m => m.location?.includes(loc) || m.location === ""
         );
         const cacheKeyLocal = `${name}:${loc}`;
-        console.log('setting cache for: ',cacheKeyLocal)
+      //  console.log('setting cache for: ',cacheKeyLocal)
         sheetCache.set(cacheKeyLocal, {
           data: filteredData,
           timestamp: now,
@@ -110,6 +117,23 @@ async function fetchFaqData(location, page) {
   return jsonData.filter(m => m.path?.toUpperCase().includes(page.toUpperCase()));
 }
 
+async function getWaiverLink(location){
+  console.log(location);
+  const cacheKey = `waiver:${location}`;
+  const cached = waiverLinkCache.get(cacheKey);
+  console.log(cacheKey, cached);
+  if(cached)
+  {
+       return cached;
+  }
+  const dataconfig = await fetchsheetdata('config', location);  
+  const waiver1 = Array.isArray(dataconfig) ? dataconfig.find((item) => item.key === "waiver") : null;
+  const waiver=waiver1?.value;
+  waiverLinkCache.set(cacheKey,waiver);
+  return waiver;
+}
+ 
+
 async function generateMetadataLib({ location, category, page }) {
   const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL;
   const pagefordata = page?page:'home';
@@ -159,11 +183,30 @@ async function generateMetadataLib({ location, category, page }) {
   };
 }
 
+async function getReviewsData(locationid){
+  console.log(locationid);
+  const cacheKey = `reviews:${locationid}`;
+  const cached = reviewesData.get(cacheKey);
+  
+  if(cached)
+  {
+       return cached;
+  }
+  const url = `${process.env.NEXT_PUBLIC_API_URL}/getreviews?locationid=${locationid}`;
+   const response = await fetch(url, {next: {revalidate: 3600*24*5}}); 
+   const data = await response.json();
+  reviewesData.set(cacheKey,data);
+  return data;
+}
+   
+
 
 module.exports = {
   fetchsheetdata,
   fetchMenuData,
   fetchPageData,
   generateMetadataLib,
-  fetchFaqData
+  fetchFaqData,
+  getWaiverLink,
+  getReviewsData
 };

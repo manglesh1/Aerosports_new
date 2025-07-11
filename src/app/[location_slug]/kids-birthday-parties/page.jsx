@@ -3,7 +3,7 @@ import "../../styles/kidsparty.css";
 import "../../styles/subcategory.css";
 
 import ImageMarquee from "@/components/ImageMarquee";
-import { fetchsheetdata,  fetchPageData,generateMetadataLib, fetchMenuData } from "@/lib/sheets";
+import { fetchsheetdata,  fetchPageData,generateMetadataLib, fetchMenuData,getWaiverLink } from "@/lib/sheets";
 import FaqCard from "@/components/smallComponents/FaqCard"
 import SubCategoryCard from "@/components/smallComponents/SubCategoryCard"
 import MotionImage from "@/components/MotionImage";
@@ -18,7 +18,7 @@ export async function generateMetadata({ params }) {
 
 const Page = async ({ params }) => {
   const location_slug = params.location_slug;
-
+  const waiverLink = await getWaiverLink(location_slug);
   const [data, birthdaydata,  menudata] = await Promise.all([
      fetchPageData(location_slug,'kids-birthday-parties'),
      fetchsheetdata('birthday packages',location_slug),
@@ -34,7 +34,7 @@ const Page = async ({ params }) => {
   return (
     <main >
      
-        <MotionImage header_image={header_image} location_slug={location_slug} />
+        <MotionImage header_image={header_image} waiverLink={waiverLink} />
      
     
       <section className="subcategory_main_section-bg">
