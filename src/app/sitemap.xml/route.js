@@ -1,13 +1,13 @@
 import { format } from 'date-fns';
 import { fetchsheetdata } from "@/lib/sheets";
-
+import { fetchsheetdataNoCache  } from "@/lib/sheets";
 export async function GET() {
   const siteUrl = 'https://www.aerosportsparks.ca';
   const dynamicPaths = new Set();
 
   try {
-    const rows = await fetchsheetdata("Data");
-
+    const rows = await fetchsheetdataNoCache("Data");
+    console.log('sitemap',rows);
     rows.forEach(row => {
       const { location, parentid, path } = row;
       const locations = location?.split(',').map(l => l.trim().toLowerCase()) || [];

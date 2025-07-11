@@ -61,6 +61,8 @@ async function fetchsheetdata(sheetName, location) {
         }));
       }
 
+
+      
       distinctLocations.forEach((loc) => {
         const filteredData = sheetData.filter(
           m => m.location?.includes(loc) || m.location === ""
@@ -82,7 +84,15 @@ async function fetchsheetdata(sheetName, location) {
   }
 }
 
+async function fetchsheetdataNoCache(sheetName) {
+   
+    const response = await axios.get(SHEET_URL, { responseType: 'arraybuffer' });
+    const workbook = XLSX.read(response.data, { type: 'buffer' });
 
+    const worksheetLocationsData = workbook.Sheets[sheetName];
+    const jsonLocationsData = XLSX.utils.sheet_to_json(worksheetLocationsData, { defval: '' });
+    return jsonLocationsData;
+}
 
 /**
  * Builds menu data with nested children from "Data" sheet
@@ -208,5 +218,6 @@ module.exports = {
   generateMetadataLib,
   fetchFaqData,
   getWaiverLink,
-  getReviewsData
+  getReviewsData,
+  fetchsheetdataNoCache
 };
