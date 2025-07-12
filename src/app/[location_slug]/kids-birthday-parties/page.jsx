@@ -27,7 +27,7 @@ const Page = async ({ params }) => {
   
   ]);
   const attractions = menudata?.filter((item)=> item.path=="attractions")[0];
-  console.log('section1',data.section1);
+  
   return (
     <main >
      

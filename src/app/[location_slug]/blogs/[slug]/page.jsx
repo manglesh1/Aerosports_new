@@ -15,14 +15,14 @@ export async function generateMetadata({ params }) {
 export default async function BlogDetail({ params }) {
   const { location_slug, slug } = params;
 
-  const [pageData, menuData] = await Promise.all([
+  const [blogData, menuData] = await Promise.all([
     fetchPageData(location_slug,slug),
     fetchMenuData(location_slug),
     
   ]);
 
 const extractBlogData = (await getDataByParentId(menuData, "blogs"))[0]?.children?.filter(child => child.path !== slug);
-const blogData= pageData[0];
+
 //const  blogData=  extractBlogData.find((item) => item.path === slug);
 
     //console.log(blogsData);

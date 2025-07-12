@@ -68,8 +68,8 @@ const waiverLink = await getWaiverLink(location_slug);
         </section>
         <section className="aero_home_article_section">
           <section className="aero-max-container aero_home_seo_section">
-            <div dangerouslySetInnerHTML={{ __html: pageData.section1 || "" }} />
-            <div dangerouslySetInnerHTML={{ __html: pageData.seosection || "" }} />
+            <div dangerouslySetInnerHTML={{ __html: pageData?.section1 || "" }} />
+            <div dangerouslySetInnerHTML={{ __html: pageData?.seosection || "" }} />
           </section>
         </section>
       </section>
