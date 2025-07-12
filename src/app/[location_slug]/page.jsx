@@ -60,7 +60,7 @@ const Home = async ({ params }) => {
       postalCode: "L2R 5L3",
       addressCountry: "Canada",
     },
-    telephone: "+1-905-123-4567",
+    telephone: "+1(289)-362-3377",
     geo: {
       "@type": "GeoCoordinates",
       latitude: 43.159374,
@@ -83,7 +83,7 @@ const Home = async ({ params }) => {
     <main>
       {promotionPopup.length > 0 && <PromotionModal promotionPopup={promotionPopup} />}
      
-      <MotionImage header_image={header_image}  waiverLink={waiverLink} />
+      <MotionImage pageData={header_image}  waiverLink={waiverLink} />
       {attractionsData?.[0]?.children?.length > 0 && (
       <section className="aero_home-actionbtn-bg">
         <section className="aero-max-container aero_home-actionbtn">

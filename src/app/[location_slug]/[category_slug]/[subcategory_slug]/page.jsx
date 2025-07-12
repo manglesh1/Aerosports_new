@@ -45,7 +45,7 @@ const Subcategory = async ({ params }) => {
   return (
     <main>
       <section>
-        <MotionImage header_image={attractionsData} waiverLink={waiverLink} />
+        <MotionImage pageData={attractionsData} waiverLink={waiverLink} />
       </section>
 
      

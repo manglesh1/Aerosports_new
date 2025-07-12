@@ -24,19 +24,18 @@ const page = async ({ params }) => {
   ]);
 
   
-  const header_image = getDataByParentId(data, "bogo");
-  const bogoData = getDataByParentId(data, "bogo");
-
+  const pageData = getDataByParentId(data, "bogo");
+  
   return (
     <main>
       <section>
-        <MotionImage header_image={header_image} waiverLink={waiverLink} />
+        <MotionImage pageData={pageData} waiverLink={waiverLink} />
       </section>
       <section className="subcategory_main_section-bg">
         <section className="aero-max-container">
           <div
             className="bogo_main_section"
-            dangerouslySetInnerHTML={{ __html: bogoData[0]?.section1 || "" }}
+            dangerouslySetInnerHTML={{ __html: pageData[0]?.section1 || "" }}
           ></div>
         </section>
       </section>

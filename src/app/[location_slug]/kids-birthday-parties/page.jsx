@@ -27,14 +27,11 @@ const Page = async ({ params }) => {
   
   ]);
   const attractions = menudata?.filter((item)=> item.path=="attractions")[0];
-    const header_image = data?.filter(
-    (item) => item.path === "kids-birthday-parties"
-  );
-
+  console.log('section1',data.section1);
   return (
     <main >
      
-        <MotionImage header_image={header_image} waiverLink={waiverLink} />
+        <MotionImage pageData={data} waiverLink={waiverLink} />
      
     
       <section className="subcategory_main_section-bg">
@@ -73,23 +70,21 @@ const Page = async ({ params }) => {
       <SubCategoryCard attractionsData={attractions.children} location_slug={location_slug} theme={'default'} title={`Activities & Attractions`} text={[attractions.metadescription]} />
 
         <FaqCard page={'kids-birthday-parties'} location_slug={location_slug} />
-        <section>
-        <ImageMarquee imagesString={header_image[0].headerimage} />
-      </section>
+      
     
      
 <section className="aero_home_article_section">
         <section className="aero-max-container">
           <div
             className="subcategory_main_section"
-            dangerouslySetInnerHTML={{ __html: data[0]?.section1 || "" }}
+            dangerouslySetInnerHTML={{ __html: data?.section1 || "" }}
           />
         </section>
       </section>
       <section className="aero_home_article_section">
         <section className="aero-max-container aero_home_seo_section">
           <div
-            dangerouslySetInnerHTML={{ __html: data[0]?.seosection || "" }}
+            dangerouslySetInnerHTML={{ __html: data?.seosection || "" }}
           />
         </section>
       </section>

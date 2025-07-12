@@ -18,17 +18,15 @@ export async function generateMetadata({ params }) {
 
 const page = async ({ params }) => {
   const { location_slug } = params;
-  const [data, dataconfig] = await Promise.all([
+  const [memberData, dataconfig] = await Promise.all([
     await fetchPageData(location_slug, 'pricing-promos'),
     await fetchsheetdata('config',location_slug),
  
   ]);
   const waiverLink = await getWaiverLink(location_slug);
   
-  const header_image = getDataByParentId(data, "pricing-promos");
-  const memberData = getDataByParentId(data, "pricing-promos");
-
-  const pricingheader = dataconfig?.filter(
+  
+    const pricingheader = dataconfig?.filter(
     (item) => item.key === "pricingheader"
   );
   const filterheadervalue = pricingheader
@@ -67,7 +65,7 @@ const page = async ({ params }) => {
   return (
     <main>
       <section>
-        <MotionImage header_image={header_image} waiverLink={waiverLink} />
+        <MotionImage pageData={memberData} waiverLink={waiverLink} />
       </section>
       <section className="subcategory_main_section-bg">
         <section className="aero-max-container">
@@ -75,7 +73,7 @@ const page = async ({ params }) => {
             <div
               className="pricing_promo_main_section"
               dangerouslySetInnerHTML={{
-                __html: memberData[0]?.section1 || "",
+                __html: memberData?.section1 || "",
               }}
             ></div>
 
@@ -119,7 +117,7 @@ const page = async ({ params }) => {
             <div
               className="pricing_promo_main_section"
               dangerouslySetInnerHTML={{
-                __html: memberData[0]?.section2 || "",
+                __html: memberData?.section2 || "",
               }}
             ></div>
           </section>

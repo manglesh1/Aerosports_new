@@ -7,7 +7,7 @@ export async function GET() {
 
   try {
     const rows = await fetchsheetdataNoCache("Data");
-    console.log('sitemap',rows);
+    
     rows.forEach(row => {
       const { location, parentid, path } = row;
       const locations = location?.split(',').map(l => l.trim().toLowerCase()) || [];

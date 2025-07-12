@@ -120,7 +120,8 @@ async function fetchMenuData(location) {
  */
 async function fetchPageData(location, page) {
   const jsonData = await fetchsheetdata("Data", location);
-  return jsonData.filter(m => m.path?.toUpperCase().includes(page.toUpperCase()));
+  const filtered= jsonData.filter(m => m.path?.toUpperCase().includes(page.toUpperCase()));
+  return filtered[0];
 }
 async function fetchFaqData(location, page) {
   const jsonData = await fetchsheetdata("faq", location);
@@ -149,7 +150,7 @@ async function generateMetadataLib({ location, category, page }) {
   const pagefordata = page?page:'home';
   const data = await fetchPageData(location, pagefordata);
 
-  const metadataItem = data?.find((item) => item.path === pagefordata);
+  const metadataItem = data;//?.find((item) => item.path === pagefordata);
 //console.log(pagefordata);
   // Construct canonical path
   let canonicalPath = location;

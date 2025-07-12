@@ -31,7 +31,7 @@ const waiverLink = await getWaiverLink(location_slug);
         <section className="aero_category_section_wrapper">
           
           <section className="aero-max-container">
-          <MotionImage header_image={pageData} waiverLink={waiverLink}/>
+          <MotionImage pageData={pageData} waiverLink={waiverLink}/>
             
             <section className="aero_category_section_card_wrapper">
               {attractionsData[0]?.children?.map((item, i) => {

@@ -4,9 +4,9 @@ import React from "react";
 import { motion } from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";
-const MotionImage = async ({ header_image,waiverLink }) => {
+const MotionImage = async ({ pageData,waiverLink }) => {
   //console.log(header_image);
-  const item = Array.isArray(header_image) && header_image.length > 0 ? header_image[0] : header_image;
+  const item = Array.isArray(pageData) && pageData.length > 0 ? pageData[0] : pageData;
   // Handle case when no item exists
   if (!item) return null;
 

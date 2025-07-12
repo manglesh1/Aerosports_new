@@ -15,9 +15,11 @@ const Modal = ({ isOpen, onClose, children }) => {
   return ReactDOM.createPortal(
     <div className="modal-overlay">
       <div className="modal-content">
+      
         <button className="modal-close" onClick={onClose}>
           <IoCloseSharp />
         </button>
+      
         <div className="modal-body">{children}</div>
       </div>
     </div>,

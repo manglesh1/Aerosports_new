@@ -32,7 +32,7 @@ const page = async ({ params }) => {
   return (
     <main>
       <section>
-        <MotionImage header_image={memberData}  waiverLink={waiverLink} />
+        <MotionImage pageData={memberData}  waiverLink={waiverLink} />
       </section>
       <section className="subcategory_main_section-bg">
         <section className="aero-max-container">
