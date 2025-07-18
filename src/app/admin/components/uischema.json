@@ -1,0 +1,178 @@
+{
+  "classNames": "row g-3",
+
+  "location": {
+    "ui:widget": "text",
+    "ui:options": {
+      "placeholder": "Enter location",
+      "maxLength": 20
+    },
+    "classNames": "col-md-6"
+  },
+
+  "pageid": {
+    "ui:widget": "text",
+    "ui:options": {
+      "placeholder": "Enter page ID",
+      "maxLength": 10
+    },
+    "classNames": "col-md-6"
+  },
+
+  "isactive": {
+    "ui:widget": "checkbox",
+    "classNames": "col-md-6"
+  },
+
+  "parentid": {
+    "ui:widget": "text",
+    "ui:options": {
+      "placeholder": "Enter parent ID",
+      "maxLength": 50
+    },
+    "classNames": "col-md-6"
+  },
+
+  "path": {
+    "ui:widget": "text",
+    "ui:options": {
+      "placeholder": "e.g. /my-page",
+      "maxLength": 200
+    },
+    "classNames": "col-md-6"
+  },
+
+  "title": {
+    "ui:widget": "text",
+    "ui:options": {
+      "placeholder": "Page title",
+      "maxLength": 150
+    },
+    "classNames": "col-md-6"
+  },
+
+  "desc": {
+    "ui:widget": "text",
+    "classNames": "col-md-6"
+  },
+
+  "metatitle": {
+    "ui:widget": "text",
+    "classNames": "col-md-6"
+  },
+
+  "metadescription": {
+    "ui:widget": "textarea",
+    "classNames": "col-md-6"
+  },
+
+  "seosection": {
+    "ui:widget": "textarea",
+    "classNames": "col-md-12"
+  },
+
+  "icon": {
+    "ui:widget": "text",
+    "classNames": "col-md-6"
+  },
+
+  "homepageicon": {
+    "ui:widget": "text",
+    "classNames": "col-md-6"
+  },
+
+  "iconalttextforhomepage": {
+    "ui:widget": "text",
+    "classNames": "col-md-6"
+  },
+
+  "otherpageicon": {
+    "ui:widget": "text",
+    "classNames": "col-md-6"
+  },
+
+  "otherpageiconalttext": {
+    "ui:widget": "text",
+    "classNames": "col-md-6"
+  },
+
+  "booknowurl": {
+    "ui:widget": "text",
+    "classNames": "col-md-6"
+  },
+
+  "video": {
+    "ui:widget": "text",
+    "classNames": "col-md-6"
+  },
+
+  "smallimage": {
+    "ui:widget": "text",
+    "classNames": "col-md-6"
+  },
+
+  "smalltext": {
+    "ui:widget": "text",
+    "classNames": "col-md-6"
+  },
+
+  "pageimages": {
+    "ui:widget": "textarea",
+    "classNames": "col-md-12"
+  },
+
+  "headerimage": {
+    "ui:widget": "text",
+    "classNames": "col-md-6"
+  },
+
+  "imagetitle": {
+    "ui:widget": "text",
+    "classNames": "col-md-6"
+  },
+
+  "section1": {
+    "ui:widget": "textarea",
+    "classNames": "col-md-12"
+  },
+
+  "sectionImage": {
+    "ui:widget": "text",
+    "classNames": "col-md-6"
+  },
+
+  "section2": {
+    "ui:widget": "textarea",
+    "classNames": "col-md-12"
+  },
+
+  "section2Image": {
+    "ui:widget": "text",
+    "classNames": "col-md-6"
+  },
+
+  "Seoheader": {
+    "ui:widget": "text",
+    "classNames": "col-md-6"
+  },
+
+  "ld_schema_type": {
+    "ui:widget": "text",
+    "classNames": "col-md-6"
+  },
+
+  "ld_schema_name": {
+    "ui:widget": "text",
+    "classNames": "col-md-6"
+  },
+
+  "ld_schema_description": {
+    "ui:widget": "textarea",
+    "classNames": "col-md-12"
+  },
+
+  "booknowlink": {
+    "ui:widget": "text",
+    "classNames": "col-md-6"
+  }
+}

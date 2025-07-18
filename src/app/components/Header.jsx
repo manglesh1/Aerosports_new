@@ -9,12 +9,13 @@ import { MdOutlinePermContactCalendar } from "react-icons/md";
 
 
 const Header = ({ location_slug, menudata, configdata }) => {
+ 
   const navList = (Array.isArray(menudata) ? menudata : [])
     .filter((item) => item.isactive === 1)
     .map((item) => ({ navName: item.desc, navUrl: item.path.toLowerCase() }))
     .sort((a, b) => a.navName.localeCompare(b.navName));
 
-    console.log(configdata.length);
+    console.log('in navList',menudata);
   const estoreConfig = Array.isArray(configdata)
     ? configdata.find((item) => item.key === "estorebase")
     : null;

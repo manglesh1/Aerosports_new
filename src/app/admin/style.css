@@ -1,0 +1,45 @@
+.table-wrapper {
+  max-height: 500px; /* Adjust as needed */
+  overflow: auto;
+  display: block;
+  width: 100%;
+  border: 1px solid #ddd; /* Optional: Adds a border around the table */
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+th, td {
+  padding: 8px;
+  text-align: left;
+  white-space: nowrap; /* Prevents text from wrapping */
+}
+
+thead {
+  background-color: #f4f4f4; /* Optional: Adds a background color to the header */
+}
+
+tr:nth-child(even) {
+  background-color: #f9f9f9; /* Optional: Adds alternating row colors */
+}
+
+.my-grid-container::-webkit-scrollbar {
+  height: 12px;
+}
+
+.my-grid-container::-webkit-scrollbar-track {
+  background: #f0f0f0;
+}
+
+.my-grid-container::-webkit-scrollbar-thumb {
+  background-color: rgba(0,0,0,0.4);
+  border-radius: 6px;
+}
+
+/* Firefox */
+.my-grid-container {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(0,0,0,0.4) #f0f0f0;
+}

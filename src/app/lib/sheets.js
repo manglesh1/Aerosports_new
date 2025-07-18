@@ -2,7 +2,7 @@
 const axios = require('axios');
 const XLSX = require('xlsx');
 
-const SHEET_URL = `https://docs.google.com/spreadsheets/d/1zpV1juNopYe4bnFP959w3ldwj0dC-3WF/export?format=xlsx`;
+const SHEET_URL = `https://docs.google.com/spreadsheets/d/1m4sAEfIJUaIdnsKYBJeMe0FeESEtGU9ISRqJ_O9TFmo/export?format=xlsx`;
 const sheetCache = new Map();
 const CACHE_TTL = 1000 * 60 * 15; // 15 min
 const waiverLinkCache = new Map();
@@ -184,7 +184,7 @@ async function generateMetadataLib({ location, category, page }) {
               url: imageUrl,
               width: 1200,
               height: 630,
-              alt: `AeroSports – ${location}`,
+              alt: `AeroSports`,
             },
           ]
         : [],
