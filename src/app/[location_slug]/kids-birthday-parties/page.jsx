@@ -37,7 +37,7 @@ const Page = async ({ params }) => {
       <section className="subcategory_main_section-bg">
      
         <section className="aero-max-container">
-        <center><h2 style={{paddingTop: '20px'}}>Birthday Party Packages & Pricing</h2></center>
+        <center><h2 style={{paddingTop: '60px'}}>Birthday Party Packages & Pricing</h2></center>
         <p>
          At AeroSports {location_slug}, we offer competitively priced birthday party packages in our private party rooms—perfectly located near you. Choose the package that fits your budget and guest list:
       </p>
@@ -67,19 +67,19 @@ const Page = async ({ params }) => {
       </section>
      
       
-      <SubCategoryCard attractionsData={attractions.children} location_slug={location_slug} theme={'default'} title={`Activities & Attractions`} text={[attractions.metadescription]} />
+      {/* <SubCategoryCard attractionsData={attractions.children} location_slug={location_slug} theme={'default'} title={`Activities & Attractions`} text={[attractions.metadescription]} />
 
         <FaqCard page={'kids-birthday-parties'} location_slug={location_slug} />
       
-    
+     */}
      
 <section className="aero_home_article_section">
-        <section className="aero-max-container">
+        {/* <section className="aero-max-container">
           <div
             className="subcategory_main_section"
             dangerouslySetInnerHTML={{ __html: data?.section1 || "" }}
           />
-        </section>
+        </section> */}
       </section>
       <section className="aero_home_article_section">
         <section className="aero-max-container aero_home_seo_section">
