@@ -2,7 +2,7 @@ import Link from "next/link";
 import React from "react";
 import "../../styles/category.css";
 import { getDataByParentId } from "@/utils/customFunctions";
-import { fetchMenuData, generateMetadataLib, fetchPageData,getWaiverLink } from "@/lib/sheets";
+import { fetchMenuData, generateMetadataLib, fetchPageData,getWaiverLink, fetchsheetdata} from "@/lib/sheets";
 import MotionImage from "@/components/MotionImage";
 export async function generateMetadata({ params }) {
   const { location_slug, category_slug } = params;
@@ -19,9 +19,16 @@ export async function generateMetadata({ params }) {
 const Category = async ({ params }) => {
   const { location_slug, category_slug } = params;
   console.log('location_slug category page:',location_slug );
-const data = await fetchMenuData(location_slug);
-const pageData = await fetchPageData(location_slug,category_slug);
-const waiverLink = await getWaiverLink(location_slug);
+
+ const [data,pageData, waiverLink, locationData] = await Promise.all([
+    fetchMenuData(location_slug),
+    fetchPageData(location_slug,category_slug),
+    getWaiverLink(location_slug),
+    fetchsheetdata('locations',location_slug),
+    
+  ]);
+
+
 //console.log('pagedata',pageData);
   const attractionsData = getDataByParentId(data, category_slug);
   console.log('waiverLink',waiverLink);
@@ -31,7 +38,7 @@ const waiverLink = await getWaiverLink(location_slug);
         <section className="aero_category_section_wrapper">
           
           <section className="aero-max-container">
-          <MotionImage pageData={pageData} waiverLink={waiverLink}/>
+          <MotionImage pageData={pageData} waiverLink={waiverLink} locationData={locationData}/>
             
             <section className="aero_category_section_card_wrapper">
               {attractionsData[0]?.children?.map((item, i) => {

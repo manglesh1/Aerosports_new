@@ -18,12 +18,12 @@ export async function generateMetadata({ params }) {
 
 const page = async ({ params }) => {
   const { location_slug } = params;
-  const [memberData, dataconfig] = await Promise.all([
-    await fetchPageData(location_slug, 'pricing-promos'),
-    await fetchsheetdata('config',location_slug),
- 
+  const [memberData, dataconfig,waiverLink, locationData] = await Promise.all([
+     fetchPageData(location_slug, 'pricing-promos'),
+     fetchsheetdata('config',location_slug),
+       getWaiverLink(location_slug),
+  fetchsheetdata('locations',location_slug),
   ]);
-  const waiverLink = await getWaiverLink(location_slug);
   
   
     const pricingheader = dataconfig?.filter(
@@ -65,7 +65,7 @@ const page = async ({ params }) => {
   return (
     <main>
       <section>
-        <MotionImage pageData={memberData} waiverLink={waiverLink} />
+        <MotionImage pageData={memberData} waiverLink={waiverLink} locationData={locationData} />
       </section>
       <section className="subcategory_main_section-bg">
         <section className="aero-max-container">

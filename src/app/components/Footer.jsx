@@ -16,7 +16,7 @@ import instagramicon from "@public/assets/images/social_icon/instagram.png";
 import Script from "next/script";
 
 
-const Footer = ({ location_slug, configdata, menudata, reviewdata }) => {
+const Footer = ({ location_slug, configdata, menudata, reviewdata,locationData }) => {
   
 
 
@@ -28,7 +28,7 @@ const Footer = ({ location_slug, configdata, menudata, reviewdata }) => {
     twitter,
     tiktok,
     chatid,
-  } = configdata[0] || {};
+  } = locationData[0] || {};
 
   const attractionsData = getDataByParentId(menudata, "attractions");
   const programsData = getDataByParentId(menudata, "programs");
@@ -39,7 +39,7 @@ const Footer = ({ location_slug, configdata, menudata, reviewdata }) => {
   return (
     <footer className="aero_footer_section-bg">
       {/* Hero Section */}
-      {attractionsData?.[0]?.children?.length > 0 && (
+    
         <section className="aero_home-headerimg-wrapper">
           <Image
             src="https://storage.googleapis.com/aerosports/windsor-new/kids-activity-glow-in-the-dark.webp"
@@ -62,7 +62,7 @@ const Footer = ({ location_slug, configdata, menudata, reviewdata }) => {
             ))}
           </article>
         </section>
-      )}
+    
 
       <section className="aero-max-container">
         {/* Rating */}
@@ -81,23 +81,23 @@ const Footer = ({ location_slug, configdata, menudata, reviewdata }) => {
           </Link>
           <div className="aero_social_icon_wrap">
             {facebook && (
-              <Link href={`https://www.facebook.com/${facebook}`} target="_blank" prefetch className="aero_social_icon">
-                <Image src={facebookicon} alt="Facebook" height={50} width={50} unoptimized />
+              <Link href={`https://www.facebook.com/${facebook}`} target="_blank" prefetch className="aero_social_icon" aria-label={`Follow AeroSports ${location_slug} on Facebook`}>
+                <Image src={facebookicon} alt={`follow Aerosports ${location_slug} on Facebook`} height={50} width={50} unoptimized />
               </Link>
             )}
             {twitter && (
-              <Link href={`https://x.com/${twitter}`} target="_blank" prefetch className="aero_social_icon">
-                <Image src={twittericon} alt="Twitter" height={50} width={50} unoptimized />
+              <Link href={`https://x.com/${twitter}`} target="_blank" prefetch className="aero_social_icon" aria-label={`Follow AeroSports ${location_slug} on twitter`}>
+                <Image src={twittericon}  alt={`follow Aerosports ${location_slug} on twitter`} height={50} width={50} unoptimized />
               </Link>
             )}
             {insta && (
-              <Link href={`https://www.instagram.com/${insta}`} target="_blank" prefetch className="aero_social_icon">
-                <Image src={instagramicon} alt="Instagram" height={50} width={50} unoptimized />
+              <Link href={`https://www.instagram.com/${insta}`} target="_blank" prefetch className="aero_social_icon" aria-label={`Follow AeroSports ${location_slug} on Instagram`}>
+                <Image src={instagramicon} alt={`follow Aerosports ${location_slug} on Instagram`} height={50} width={50} unoptimized />
               </Link>
             )}
             {tiktok && (
-              <Link href={`https://www.tiktok.com/${tiktok}`} target="_blank" prefetch className="aero_social_icon">
-                <Image src={tiktokicon} alt="TikTok" height={50} width={50} unoptimized />
+              <Link href={`https://www.tiktok.com/${tiktok}`} target="_blank" prefetch className="aero_social_icon" aria-label={`Follow AeroSports ${location_slug} on tiktok`}>
+                <Image src={tiktokicon} alt={`follow Aerosports ${location_slug} on tiktok`} height={50} width={50} unoptimized />
               </Link>
             )}
           </div>

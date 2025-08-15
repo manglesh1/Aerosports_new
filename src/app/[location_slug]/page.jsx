@@ -23,13 +23,12 @@ export async function generateMetadata({ params }) {
 
 const Home = async ({ params }) => {
   const location_slug = params?.location_slug;
-  const API_URL = process.env.NEXT_PUBLIC_API_URL;
-   const waiverLink = await getWaiverLink(location_slug);
-     const [data, dataconfig,promotions] = await Promise.all([
+  const [data, dataconfig,promotions, locationData,waiverLink] = await Promise.all([
     fetchMenuData(location_slug),
     fetchsheetdata('config', location_slug),
-    fetchsheetdata('promotions',location_slug)
-    
+    fetchsheetdata('promotions',location_slug),
+    fetchsheetdata('locations',location_slug),
+    getWaiverLink(location_slug)
   ]);
 
   
@@ -83,7 +82,7 @@ const Home = async ({ params }) => {
     <main>
       {promotionPopup.length > 0 && <PromotionModal promotionPopup={promotionPopup} />}
      
-      <MotionImage pageData={header_image}  waiverLink={waiverLink} />
+      <MotionImage pageData={header_image}  waiverLink={waiverLink} locationData={locationData} />
       {attractionsData?.[0]?.children?.length > 0 && (
       <section className="aero_home-actionbtn-bg">
         <section className="aero-max-container aero_home-actionbtn">

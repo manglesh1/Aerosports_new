@@ -2,7 +2,7 @@
 const axios = require('axios');
 const XLSX = require('xlsx');
 
-const SHEET_URL = `https://docs.google.com/spreadsheets/d/1m4sAEfIJUaIdnsKYBJeMe0FeESEtGU9ISRqJ_O9TFmo/export?format=xlsx`;
+const SHEET_URL =process.env.SHEET_URL;
 const sheetCache = new Map();
 const CACHE_TTL = 1000 * 60 * 15; // 15 min
 const waiverLinkCache = new Map();
@@ -32,6 +32,7 @@ async function fetchsheetdata(sheetName, location) {
   console.log("🚀 fetching fresh sheet data " + cacheKey);
 
   try {
+
     const response = await axios.get(SHEET_URL, { responseType: 'arraybuffer' });
     const workbook = XLSX.read(response.data, { type: 'buffer' });
 
@@ -206,6 +207,7 @@ async function getReviewsData(locationid){
   const url = `${process.env.NEXT_PUBLIC_API_URL}/getreviews?locationid=${locationid}`;
    const response = await fetch(url, {next: {revalidate: 3600*24*5}}); 
    const data = await response.json();
+   console.log('review data',data);
   reviewesData.set(cacheKey,data);
   return data;
 }

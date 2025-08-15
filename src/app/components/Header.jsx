@@ -10,8 +10,8 @@ import { MdOutlinePermContactCalendar } from "react-icons/md";
 
 const Header = ({ location_slug, menudata, configdata }) => {
  
-  const navList = (Array.isArray(menudata) ? menudata : [])
-    .filter((item) => item.isactive === 1)
+  const navList =menudata
+  .filter((item) => item.isactive === true) // <-- enable filtering
     .map((item) => ({ navName: item.desc, navUrl: item.path.toLowerCase() }))
     .sort((a, b) => a.navName.localeCompare(b.navName));
 
@@ -19,7 +19,7 @@ const Header = ({ location_slug, menudata, configdata }) => {
   const estoreConfig = Array.isArray(configdata)
     ? configdata.find((item) => item.key === "estorebase")
     : null;
-
+console.log(estoreConfig);
  // const topHeaderConfig = Array.isArray(configdata)
  //   ? configdata.find((item) => item.key === "top-header")
  //   : null;

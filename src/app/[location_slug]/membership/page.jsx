@@ -18,21 +18,20 @@ export async function generateMetadata({ params }) {
 const page = async ({ params }) => {
   const { location_slug } = params;
   
-  const [data] = await Promise.all([
-    fetchsheetdata('Data',location_slug),
+  const [data,waiverLink, locationData] = await Promise.all([
+    fetchsheetdata('Data',location_slug),getWaiverLink(location_slug),
+     fetchsheetdata('locations',location_slug)
     
     
   ]);
  
-  const waiverLink = await getWaiverLink(location_slug);
-  
-  
+    
   const memberData = getDataByParentId(data, "membership");
 
   return (
     <main>
       <section>
-        <MotionImage pageData={memberData}  waiverLink={waiverLink} />
+        <MotionImage pageData={memberData}  waiverLink={waiverLink} locationData={locationData} />
       </section>
       <section className="subcategory_main_section-bg">
         <section className="aero-max-container">

@@ -197,6 +197,30 @@
   height: 500px;
   object-fit: cover;
 }
+.location-overlay-box {
+  position: absolute;
+  bottom: 120px;
+  left: 30px;
+  background: rgba(0, 0, 0, 0.7);
+  color: white;
+  padding: 20px 30px;
+  border-radius: 10px;
+  font-family: 'Segoe UI', sans-serif;
+  z-index: 10;
+  max-width: 90%;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+}
+
+.location-overlay-box h2 {
+  font-size: 1.6rem;
+  margin-bottom: 10px;
+}
+
+.location-overlay-box p {
+  margin: 5px 0;
+  font-size: 1rem;
+  line-height: 1.4;
+}
 
 .aero-home-h1heading{
   text-align: center;

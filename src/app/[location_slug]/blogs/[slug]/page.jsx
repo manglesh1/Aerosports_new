@@ -45,7 +45,7 @@ if (imagesString) {
       <section className="aero-max-container">
         <div className="aero-blog-detail-main-section">
           <div className="aero-blog-img-section aero-blog-detail-img-section">
-          <img src={images?.[0]?.src} title={images?.[0]?.title} width="100%" />
+          <img src={images?.[0]?.src} alt={images?.[0]?.title} width="100%" />
           </div>
           <h1>{ blogData?.title }</h1>
           <div

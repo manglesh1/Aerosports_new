@@ -4,12 +4,14 @@ import React from "react";
 import { motion } from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";
-const MotionImage = async ({ pageData,waiverLink }) => {
+const MotionImage = async ({ pageData,waiverLink, locationData }) => {
   //console.log(header_image);
   const item = Array.isArray(pageData) && pageData.length > 0 ? pageData[0] : pageData;
   // Handle case when no item exists
   if (!item) return null;
 
+  console.log('locationData',locationData)
+const locData = locationData[0];
   const hasVideo = !!item.video;
 
   return (
@@ -20,14 +22,18 @@ const MotionImage = async ({ pageData,waiverLink }) => {
             <source src={item.video} type="video/mp4" />
           </video>
           <article className="image-content">
-            {waiverLink && (
+           
+          </article>
+          <div class="location-overlay-box">
+              <h1 className="aero-home-h1heading">{item.title}</h1>
+        <h2>AeroSports {locData.location}</h2>
+        <p><strong>📞</strong>{locData.phone}</p>
+        <p><strong>📍</strong> {locData.address}</p>
+         {waiverLink && (
               <div className="aero-btn-booknow">
                 <Link href={waiverLink} target="_blank">
                   <motion.button
-                    animate={{
-                      scale: [1, 1.2, 1.5, 1.2, 1],
-                      borderRadius: ["12px", "30px", "60px", "30px", "12px"],
-                    }}
+                 
                     transition={{
                       duration: 5,
                       repeat: Infinity,
@@ -38,8 +44,8 @@ const MotionImage = async ({ pageData,waiverLink }) => {
                 </Link>
               </div>
             )}
-          </article>
-          <h1 className="aero-home-h1heading">{item.title}</h1>
+      </div>
+        
         </section>
       ) : (
         <motion.div
@@ -70,16 +76,20 @@ const MotionImage = async ({ pageData,waiverLink }) => {
               duration: 3,
             }}
           >
+          
+          </motion.article>
+        <div class="location-overlay-box">
             <h1>{item.title}</h1>
             <p dangerouslySetInnerHTML={{ __html: item.smalltext }} />
-            {waiverLink && (
+           
+       <h2>AeroSports {locData.location}</h2>
+        <p><strong>📞</strong>{locData.phone}</p>
+        <p><strong>📍</strong> {locData.address}</p>
+         {waiverLink && (
               <div className="aero-btn-booknow">
                 <Link href={waiverLink} target="_blank"  title="sign your waiver at aerosports trampoline park" >
                   <motion.button
-                    animate={{
-                      scale: [1, 1.2, 1.5, 1.2, 1],
-                      borderRadius: ["12px", "30px", "60px", "30px", "12px"],
-                    }}
+                   
                     transition={{
                       duration: 5,
                       repeat: Infinity,
@@ -90,8 +100,9 @@ const MotionImage = async ({ pageData,waiverLink }) => {
                 </Link>
               </div>
             )}
-          </motion.article>
+      </div>
         </motion.div>
+        
       )}
     </section>
   );

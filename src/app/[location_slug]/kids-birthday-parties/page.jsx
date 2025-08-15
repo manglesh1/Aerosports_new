@@ -18,20 +18,20 @@ export async function generateMetadata({ params }) {
 
 const Page = async ({ params }) => {
   const location_slug = params.location_slug;
-  const waiverLink = await getWaiverLink(location_slug);
-  const [data, birthdaydata,  menudata] = await Promise.all([
-     fetchPageData(location_slug,'kids-birthday-parties'),
-     fetchsheetdata('birthday packages',location_slug),
-     
-     fetchMenuData(location_slug)
   
+  const [data, birthdaydata,  menudata, waiverLink, locationData] = await Promise.all([
+     fetchPageData(location_slug,'kids-birthday-parties'),
+     fetchsheetdata('birthday packages',location_slug),     
+     fetchMenuData(location_slug),
+     getWaiverLink(location_slug),
+      fetchsheetdata('locations',location_slug),     
   ]);
   const attractions = menudata?.filter((item)=> item.path=="attractions")[0];
   
   return (
     <main >
      
-        <MotionImage pageData={data} waiverLink={waiverLink} />
+        <MotionImage pageData={data} waiverLink={waiverLink} locationData={locationData}/>
      
     
       <section className="subcategory_main_section-bg">
