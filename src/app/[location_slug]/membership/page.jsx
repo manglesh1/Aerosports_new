@@ -2,7 +2,7 @@ import React from "react";
 import "../../styles/subcategory.css";
 import MotionImage from "@/components/MotionImage";
 import { getDataByParentId } from "@/utils/customFunctions";
-import { fetchsheetdata, generateMetadataLib,getWaiverLink } from "@/lib/sheets";
+import { fetchsheetdata, generateMetadataLib,getWaiverLink,generateSchema } from "@/lib/sheets";
 
 export async function generateMetadata({ params }) {
   const metadata = await generateMetadataLib({
@@ -27,7 +27,7 @@ const page = async ({ params }) => {
  
     
   const memberData = getDataByParentId(data, "membership");
-
+const jsonLDschema = await generateSchema(memberData,locationData,'',"membership");
   return (
     <main>
       <section>
@@ -41,6 +41,9 @@ const page = async ({ params }) => {
           ></div>
         </section>
       </section>
+    <script type="application/ld+json" suppressHydrationWarning
+  dangerouslySetInnerHTML={{ __html: jsonLDschema }}
+/>
     </main>
   );
 };

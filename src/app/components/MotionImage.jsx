@@ -4,16 +4,22 @@ import React from "react";
 import { motion } from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";
-const MotionImage = async ({ pageData,waiverLink, locationData }) => {
+const MotionImage =  ({ pageData,waiverLink, locationData }) => {
   //console.log(header_image);
   const item = Array.isArray(pageData) && pageData.length > 0 ? pageData[0] : pageData;
   // Handle case when no item exists
   if (!item) return null;
 
-  console.log('locationData',locationData)
+  //console.log('locationData',locationData)
 const locData = locationData[0];
   const hasVideo = !!item.video;
-
+const toTelHref = (phone) => {
+  const digits = (phone || "").replace(/\D/g, "");
+  if (!digits) return "tel:";
+  // North America: add +1 if missing, keep leading 1 if present
+  const e164 = digits.length === 11 && digits.startsWith("1") ? `+${digits}` : `+1${digits}`;
+  return `tel:${e164}`;
+};
   return (
     <section className="aero_home-headerimg-wrapper">
       {hasVideo ? (
@@ -24,11 +30,20 @@ const locData = locationData[0];
           <article className="image-content">
            
           </article>
-          <div class="location-overlay-box">
+          <div className="location-overlay-box">
               <h1 className="aero-home-h1heading">{item.title}</h1>
-        <h2>AeroSports {locData.location}</h2>
-        <p><strong>📞</strong>{locData.phone}</p>
-        <p><strong>📍</strong> {locData.address}</p>
+        <p>{item.smalltext}</p>
+       <p>
+      <strong aria-hidden="true">📞</strong>{' '}
+      <a
+        href={toTelHref(locData.phone)}
+        aria-label={`Call AeroSports ${locData.location} at ${locData.phone}`}
+        itemProp="telephone"
+      >
+        {locData.phone}
+      </a>
+    </p>
+        <p><strong>📍</strong><a href={locData.gmburl} target="_blank" > {locData.address}</a></p>
          {waiverLink && (
               <div className="aero-btn-booknow">
                 <Link href={waiverLink} target="_blank">
@@ -78,13 +93,21 @@ const locData = locationData[0];
           >
           
           </motion.article>
-        <div class="location-overlay-box">
-            <h1>{item.title}</h1>
-            <p dangerouslySetInnerHTML={{ __html: item.smalltext }} />
+        <div className="location-overlay-box">
+            <h1 className="aero-home-h1heading">{item.title}</h1>
+        <p>{item.smalltext}</p>
            
-       <h2>AeroSports {locData.location}</h2>
-        <p><strong>📞</strong>{locData.phone}</p>
-        <p><strong>📍</strong> {locData.address}</p>
+        <p>
+      <strong aria-hidden="true">📞</strong>{' '}
+      <a
+        href={toTelHref(locData.phone)}
+        aria-label={`Call AeroSports ${locData.location} at ${locData.phone}`}
+        itemProp="telephone"
+      >
+        {locData.phone}
+      </a>
+    </p>
+        <p><strong>📍</strong><a href={locData.gmburl} target="_blank" > {locData.address}</a></p>
          {waiverLink && (
               <div className="aero-btn-booknow">
                 <Link href={waiverLink} target="_blank"  title="sign your waiver at aerosports trampoline park" >

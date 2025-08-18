@@ -212,9 +212,15 @@
 }
 
 .location-overlay-box h2 {
-  font-size: 1.6rem;
+  font-size: 1.0rem;
   margin-bottom: 10px;
 }
+
+.location-overlay-box h1 {
+  font-size: 1.9rem;
+  margin-bottom: 10px;
+}
+
 
 .location-overlay-box p {
   margin: 5px 0;

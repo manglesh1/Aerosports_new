@@ -6,7 +6,7 @@ import { getDataByParentId } from "@/utils/customFunctions";
 import MotionImage from "@/components/MotionImage";
 import ImageMarquee from "@/components/ImageMarquee";
 import SubCategoryCard from "@/components/smallComponents/SubCategoryCard"
-import { fetchsheetdata,fetchMenuData, generateMetadataLib,getWaiverLink } from "@/lib/sheets";
+import { fetchsheetdata,fetchMenuData, generateMetadataLib,getWaiverLink,generateSchema } from "@/lib/sheets";
 import Link from "next/link";
 
 export async function generateMetadata({ params }) {
@@ -40,7 +40,7 @@ const Subcategory = async ({ params }) => {
   const pagedata = attractionsData?.[0]; // Reusing attractionsData
   if(!pagedata) return;
 
-
+const jsonLDschema = await generateSchema(pagedata,locationData,subcategory_slug,category_slug);
   return (
     <main>
       <section>
@@ -75,7 +75,9 @@ const Subcategory = async ({ params }) => {
           />
         </section>
       </section>
-      
+     <script type="application/ld+json" suppressHydrationWarning
+  dangerouslySetInnerHTML={{ __html: jsonLDschema }}
+/>
      
     </main>
   );

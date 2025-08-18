@@ -2,7 +2,7 @@ import Link from "next/link";
 import React from "react";
 import "../../styles/category.css";
 import { getDataByParentId } from "@/utils/customFunctions";
-import { fetchMenuData, generateMetadataLib, fetchPageData,getWaiverLink, fetchsheetdata} from "@/lib/sheets";
+import { fetchMenuData, generateMetadataLib, fetchPageData,getWaiverLink, fetchsheetdata,generateSchema} from "@/lib/sheets";
 import MotionImage from "@/components/MotionImage";
 export async function generateMetadata({ params }) {
   const { location_slug, category_slug } = params;
@@ -18,7 +18,7 @@ export async function generateMetadata({ params }) {
 
 const Category = async ({ params }) => {
   const { location_slug, category_slug } = params;
-  console.log('location_slug category page:',location_slug );
+  
 
  const [data,pageData, waiverLink, locationData] = await Promise.all([
     fetchMenuData(location_slug),
@@ -28,10 +28,10 @@ const Category = async ({ params }) => {
     
   ]);
 
-
+const jsonLDschema = await generateSchema(pageData,locationData,'',category_slug);
 //console.log('pagedata',pageData);
   const attractionsData = getDataByParentId(data, category_slug);
-  console.log('waiverLink',waiverLink);
+  //console.log('waiverLink',waiverLink);
   return (
     <main>
       <section>
@@ -80,6 +80,9 @@ const Category = async ({ params }) => {
           </section>
         </section>
       </section>
+ <script type="application/ld+json" suppressHydrationWarning
+  dangerouslySetInnerHTML={{ __html: jsonLDschema }}
+/>
     </main>
   );
 };

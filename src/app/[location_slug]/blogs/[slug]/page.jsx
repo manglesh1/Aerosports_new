@@ -1,6 +1,6 @@
 import "../../../styles/blogs.css";
 import { getDataByBlogId,getDataByParentId } from "@/utils/customFunctions";
-import { fetchPageData,fetchMenuData, generateMetadataLib } from "@/lib/sheets";
+import { fetchPageData,fetchMenuData, generateMetadataLib,generateSchema,fetchsheetdata } from "@/lib/sheets";
 import Link from 'next/link';
 export async function generateMetadata({ params }) {
   const { location_slug, slug } = params;
@@ -15,16 +15,16 @@ export async function generateMetadata({ params }) {
 export default async function BlogDetail({ params }) {
   const { location_slug, slug } = params;
 
-  const [blogData, menuData] = await Promise.all([
+  const [blogData, menuData, locationData] = await Promise.all([
     fetchPageData(location_slug,slug),
-    fetchMenuData(location_slug),
+    fetchMenuData(location_slug),   fetchsheetdata('locations',location_slug),
     
   ]);
 
 const extractBlogData = (await getDataByParentId(menuData, "blogs"))[0]?.children?.filter(child => child.path !== slug);
 
 //const  blogData=  extractBlogData.find((item) => item.path === slug);
-
+const jsonLDschema = await generateSchema(blogData,locationData,slug,'blogs');
     //console.log(blogsData);
     console.log('blog setail');
     console.log(blogData);
@@ -70,7 +70,9 @@ if (imagesString) {
         ))}
       </section>
       </section>
-     
+    <script type="application/ld+json" suppressHydrationWarning
+  dangerouslySetInnerHTML={{ __html: jsonLDschema }}
+/>
     </main>
   );
 }

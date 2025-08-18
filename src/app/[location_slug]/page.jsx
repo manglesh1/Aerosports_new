@@ -8,7 +8,7 @@ import Countup from "@/components/Countup";
 import MotionImage from "@/components/MotionImage";
 import PromotionModal from "@/components/model/PromotionModal";
 import BlogCard from "@/components/smallComponents/BlogCard";
-import { fetchsheetdata, fetchMenuData, getWaiverLink,generateMetadataLib } from "@/lib/sheets";
+import { fetchsheetdata, fetchMenuData, getWaiverLink,generateMetadataLib,generateSchema } from "@/lib/sheets";
 
 export async function generateMetadata({ params }) {
   const metadata = await generateMetadataLib({
@@ -41,43 +41,14 @@ const Home = async ({ params }) => {
     ? dataconfig.filter((item) => item.key === "promotion-popup")
     : [];
 
+    
   const header_image = Array.isArray(data) ? data.filter((item) => item.path === "home") : [];
   const seosection = header_image?.[0]?.seosection || "";
   const attractionsData = Array.isArray(data) ? getDataByParentId(data, "attractions") || [] : [];
   const blogsData = Array.isArray(data) ? getDataByParentId(data, "blogs") || [] : [];
-
-  const stCatharinesSchema = {
-    "@context": "https://schema.org",
-    "@type": "AmusementPark",
-    name: "AeroSports Trampoline Park",
-    description: "A fun-filled trampoline park offering amusement, activities, mini golf, and kids' party services, axe throw.",
-    address: {
-      "@type": "PostalAddress",
-      streetAddress: "333 Ontario Street",
-      addressLocality: "St. Catharines",
-      addressRegion: "ON",
-      postalCode: "L2R 5L3",
-      addressCountry: "Canada",
-    },
-    telephone: "+1(289)-362-3377",
-    geo: {
-      "@type": "GeoCoordinates",
-      latitude: 43.159374,
-      longitude: -79.246862,
-    },
-    openingHours: ["Mo-Th 10:00-20:00", "Fr 10:00-21:00", "Sa 10:00-21:00", "Su 10:00-20:00"],
-    priceRange: "$$",
-    aggregateRating: {
-      "@type": "AggregateRating",
-      ratingValue: "4.5",
-      reviewCount: "150",
-    },
-    sameAs: [
-      "https://www.facebook.com/AeroSportsTrampolinePark",
-      "https://www.instagram.com/aerosportspark",
-    ],
-  };
-
+const jsonLDschema = await generateSchema( header_image?.[0],locationData,'','');
+ 
+console.log(jsonLDschema);
   return (
     <main>
       {promotionPopup.length > 0 && <PromotionModal promotionPopup={promotionPopup} />}
@@ -367,9 +338,11 @@ const Home = async ({ params }) => {
         </section>
       </section>
         )}
-      {location_slug === "st-catharines" && (
-        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(stCatharinesSchema) }} />
-      )}
+      
+   <script type="application/ld+json" suppressHydrationWarning
+  dangerouslySetInnerHTML={{ __html: jsonLDschema }}
+/>
+      
     </main>
   );
 };

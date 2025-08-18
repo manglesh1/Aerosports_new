@@ -133,7 +133,7 @@ async function getWaiverLink(location){
   console.log(location);
   const cacheKey = `waiver:${location}`;
   const cached = waiverLinkCache.get(cacheKey);
-  console.log(cacheKey, cached);
+  //console.log(cacheKey, cached);
   if(cached)
   {
        return cached;
@@ -207,12 +207,42 @@ async function getReviewsData(locationid){
   const url = `${process.env.NEXT_PUBLIC_API_URL}/getreviews?locationid=${locationid}`;
    const response = await fetch(url, {next: {revalidate: 3600*24*5}}); 
    const data = await response.json();
-   console.log('review data',data);
+   //console.log('review data',data);
   reviewesData.set(cacheKey,data);
   return data;
 }
    
+async function generateSchema(pagedata, locationData, category, page ) {
+  const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL;
+ 
+  const metadataItem = pagedata;//?.find((item) => item.path === pagefordata);
+//console.log('pagedata', pagedata);
+  let canonicalPath = pagedata?.location;
+  if (category && page) {
+    canonicalPath += `/${category}/${page}`;
+  } else if (page) {
+     canonicalPath += `/${page}`;
+  } else if (category) {
+    canonicalPath += `/${category}`;
+  }
+   
 
+  const fullUrl = `${BASE_URL}/${canonicalPath}`;
+  const imageUrl = metadataItem?.headerimage?.startsWith("http")
+    ? metadataItem.headerimage
+    : `${BASE_URL}${metadataItem?.headerimage || ""}`;
+   
+  const filled = locationData?.[0]?.schema
+  .replace('"{{metadesc}}"', JSON.stringify(metadataItem?.metadescription || "Fun for all ages at AeroSports!"))
+  .replace('"{{image}}"', JSON.stringify(imageUrl))
+  .replace('"{{url}}"', JSON.stringify(fullUrl));
+
+  return     filled;
+  
+}
+
+
+   
 
 module.exports = {
   fetchsheetdata,
@@ -222,5 +252,6 @@ module.exports = {
   fetchFaqData,
   getWaiverLink,
   getReviewsData,
-  fetchsheetdataNoCache
+  fetchsheetdataNoCache,
+  generateSchema
 };

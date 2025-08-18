@@ -3,7 +3,7 @@ import "../../styles/kidsparty.css";
 import "../../styles/subcategory.css";
 
 import ImageMarquee from "@/components/ImageMarquee";
-import { fetchsheetdata,  fetchPageData,generateMetadataLib, fetchMenuData,getWaiverLink } from "@/lib/sheets";
+import { fetchsheetdata,  fetchPageData,generateMetadataLib, fetchMenuData,getWaiverLink,generateSchema } from "@/lib/sheets";
 import FaqCard from "@/components/smallComponents/FaqCard"
 import SubCategoryCard from "@/components/smallComponents/SubCategoryCard"
 import MotionImage from "@/components/MotionImage";
@@ -27,7 +27,7 @@ const Page = async ({ params }) => {
       fetchsheetdata('locations',location_slug),     
   ]);
   const attractions = menudata?.filter((item)=> item.path=="attractions")[0];
-  
+  const jsonLDschema = await generateSchema(data,locationData,'',"kids-birthday-parties");
   return (
     <main >
      
@@ -88,7 +88,9 @@ const Page = async ({ params }) => {
           />
         </section>
       </section>
-      
+     <script type="application/ld+json" suppressHydrationWarning
+  dangerouslySetInnerHTML={{ __html: jsonLDschema }}
+/>
     </main>
   );
 };

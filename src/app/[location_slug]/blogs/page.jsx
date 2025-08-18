@@ -2,7 +2,7 @@ import '../../styles/blogs.css'
 import React from "react";
 import { getDataByParentId } from '@/utils/customFunctions';
 import Link from 'next/link';
-import { fetchMenuData, generateMetadataLib } from "@/lib/sheets";
+import { fetchMenuData, generateMetadataLib,fetchsheetdata,generateSchema } from "@/lib/sheets";
 
 export async function generateMetadata({ params }) {
   const metadata = await generateMetadataLib({
@@ -17,11 +17,18 @@ export async function generateMetadata({ params }) {
 const page = async({params}) => {
   const location_slug = params?.location_slug;
   const API_URL = process.env.NEXT_PUBLIC_API_URL;
-const data = await fetchMenuData(location_slug);
+   const [data, locationData] = await Promise.all([
+    fetchMenuData(location_slug),
+       fetchsheetdata('locations',location_slug),
+    
+  ]);
+  
+
  
   const blogsData = getDataByParentId(data, "blogs");
   const extractBlogData = blogsData[0]?.children
-  console.log('blogsData');
+  const jsonLDschema = await generateSchema(blogsData[0],locationData,'','blogs');
+  //console.log('blogsData');
    //console.log(blogsData);
   return (
     <main className="aero-blog-main-section">
@@ -45,6 +52,9 @@ const data = await fetchMenuData(location_slug);
       </section>
 
       </section>
+      <script type="application/ld+json" suppressHydrationWarning
+  dangerouslySetInnerHTML={{ __html: jsonLDschema }}
+/>
     </main>
   );
 };

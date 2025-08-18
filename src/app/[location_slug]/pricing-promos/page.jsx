@@ -3,7 +3,7 @@ import "../../styles/subcategory.css";
 import MotionImage from "@/components/MotionImage";
 import { getDataByParentId } from "@/utils/customFunctions";
 
-import { fetchsheetdata, getWaiverLink, fetchPageData,generateMetadataLib } from "@/lib/sheets";
+import { fetchsheetdata, getWaiverLink, fetchPageData,generateMetadataLib,generateSchema } from "@/lib/sheets";
 
 export async function generateMetadata({ params }) {
   const metadata = await generateMetadataLib({
@@ -25,7 +25,7 @@ const page = async ({ params }) => {
   fetchsheetdata('locations',location_slug),
   ]);
   
-  
+  const jsonLDschema = await generateSchema(memberData,locationData,'','pricing-promos');
     const pricingheader = dataconfig?.filter(
     (item) => item.key === "pricingheader"
   );
@@ -123,6 +123,9 @@ const page = async ({ params }) => {
           </section>
         </section>
       </section>
+    <script type="application/ld+json" suppressHydrationWarning
+  dangerouslySetInnerHTML={{ __html: jsonLDschema }}
+/>
     </main>
   );
 };

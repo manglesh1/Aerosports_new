@@ -2,11 +2,10 @@
 'use client';
 
 import React from 'react';
-import { Modal, Button } from 'react-bootstrap';
+import { Modal, Button } from 'react-bootstrap';   // ⬅️ add this
 import BootstrapForm from './BootstrapForm';
 import schema from './schema.json';
 import uiSchema from './uischema.json';
-import validator from '@rjsf/validator-ajv8';
 
 export default function EditRowModal({ show, rowData, onSave, onCancel }) {
   const [formData, setFormData] = React.useState(rowData || {});
@@ -16,13 +15,15 @@ export default function EditRowModal({ show, rowData, onSave, onCancel }) {
     setFormData(rowData || {});
   }, [rowData]);
 
+  const formId = 'edit-row-form';
+
   return (
     <Modal
       show={show}
       onHide={onCancel}
-      size="lg"                    // contained width
-      centered                     // vertical centering
-      scrollable                   // body scroll only
+      size="lg"
+      centered
+      scrollable
       dialogClassName="modal-dialog-scrollable"
       aria-labelledby="edit-modal"
     >
@@ -33,24 +34,22 @@ export default function EditRowModal({ show, rowData, onSave, onCancel }) {
       <Modal.Body style={{ maxHeight: '70vh', overflowY: 'auto' }}>
         <div className="container-fluid">
           <BootstrapForm
+            id={formId}                         // ⬅️ give the form an id
             schema={schema}
             uiSchema={uiSchema}
             formData={formData}
-            validator={validator}
-             omitExtraData={true}    
+            omitExtraData
             onChange={({ formData }) => setFormData(formData)}
             onSubmit={({ formData }) => onSave(formData)}
-            showErrorList={true}
+            showErrorList
           />
         </div>
       </Modal.Body>
 
       <Modal.Footer>
         <Button variant="secondary" onClick={onCancel}>Cancel</Button>
-        <Button
-          variant="primary"
-          onClick={() => document.querySelector('form').requestSubmit()}
-        >
+        {/* Submit the RJSF form without DOM queries */}
+        <Button variant="primary" type="submit" form={formId}>
           Save
         </Button>
       </Modal.Footer>

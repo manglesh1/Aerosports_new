@@ -11,15 +11,15 @@ import { MdOutlinePermContactCalendar } from "react-icons/md";
 const Header = ({ location_slug, menudata, configdata }) => {
  
   const navList =menudata
-  .filter((item) => item.isactive === true) // <-- enable filtering
+    .filter((item) => item.isactive === 1) // <-- enable filtering
     .map((item) => ({ navName: item.desc, navUrl: item.path.toLowerCase() }))
     .sort((a, b) => a.navName.localeCompare(b.navName));
 
-    console.log('in navList',menudata);
+  //  console.log('in navList',navList);
   const estoreConfig = Array.isArray(configdata)
     ? configdata.find((item) => item.key === "estorebase")
     : null;
-console.log(estoreConfig);
+//console.log(estoreConfig);
  // const topHeaderConfig = Array.isArray(configdata)
  //   ? configdata.find((item) => item.key === "top-header")
  //   : null;
