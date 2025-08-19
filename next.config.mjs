@@ -1,102 +1,77 @@
+// next.config.mjs
 /** @type {import('next').NextConfig} */
+import * as XLSX from 'xlsx';
+
+// 1) Put this in .env.local (and in your CI/CD env):
+// REDIRECT_SHEET_XLSX="https://docs.google.com/spreadsheets/d/XXX/export?format=xlsx"
+const SHEET_URL = process.env.REDIRECT_SHEET_XLSX
+  ?? 'https://docs.google.com/spreadsheets/d/1zpV1juNopYe4bnFP959w3ldwj0dC-3WF/export?format=xlsx'; // fallback
+
+async function fetchSheetRedirects() {
+  try {
+    const res = await fetch(SHEET_URL, { cache: 'no-store' });
+    if (!res.ok) throw new Error(`Sheet fetch failed: ${res.status} ${res.statusText}`);
+
+    // Parse XLSX
+    const buf = Buffer.from(await res.arrayBuffer());
+    const wb = XLSX.read(buf, { type: 'buffer' });
+
+    // Prefer a sheet named "redirects", else first sheet
+    const ws = wb.Sheets['redirects'] ?? wb.Sheets[wb.SheetNames[0]];
+    if (!ws) return [];
+
+    const rows = XLSX.utils.sheet_to_json(ws, { defval: '' });
+//console.log('Redirects rows:', rows);
+    const out = [];
+    for (const r of rows) {
+      // Be forgiving about column casing/names
+      const source = String(r.source ?? '').trim();
+      const destination = String(r.destination ?? '').trim();
+      const raw = String(
+        r.permanent?? r.code ?? r.Code ?? ''
+      ).trim().toLowerCase();
+
+      if (!source || !destination) continue;
+
+      // permanent: true for 301 (or empty), false for 302
+      const permanent =
+        raw === '' || raw === '301' || raw === 'true' || raw === 'permanent' ||
+        raw === '1' || raw === 'yes';
+
+      out.push({ source, destination, permanent });
+    }
+    
+    return out;
+  } catch (e) {
+    console.warn('[redirects] Failed to load sheet:', e.message);
+    return [];
+  }
+}
 
 const nextConfig = {
- async redirects() {
-  return [
+  async redirects() {
+    const sheetRedirects = await fetchSheetRedirects();
+console.log('Fetched redirects:', sheetRedirects);
 
-    {
-      source: "/brampton",
-      destination: "/oakville",
-      permanent: true,
-    },
-    {
-      source: "/brampton/:slug*",
-      destination: "/oakville",
-      permanent: true,
-    },    
-    {
-      source: "/oakville/programs/summerpass",
-      destination: "/oakville/programs/camps",
-      permanent: true,
-    },
-    {
-      source: '/:city/:path*/kids-birthday-party',
-      destination: '/:city/kids-birthday-party',
-      permanent: true,
-    },
-    {
-      source: "/:path*/about-us/:slug/:mulug",
-      destination: "/:path*/about-us",
-      permanent: true,
-    },
-    {
-      source: "/:path*/aboutus",
-      destination: "/:path*/about-us",
-      permanent: true,
-    },
-    {
-  source: "/:path*/home/",
-  destination: "/:path*/",
-  permanent: true,
-},  
-    {
-      source: "/:path*/aboutus/:slug*",
-      destination: "/:path*/about-us/:slug*",
-      permanent: true,
-    },
-    {
-      source: "/st-catharines/attractions/open-jumps",
-      destination: "/st-catharines/attractions/open-jump",
-      permanent: true,
-    },
-    {
-      source: "/:path*/brampton",
-      destination: "/oakville",
-      permanent: true,
-    },
-	{
-      source: "/:path*/contact us",
-      destination:  "/:path*/contact-us",
-      permanent: true,
-    },
-	{
-      source: "/thunderbay/:path*",
-      destination:  "/oakville",
-      permanent: true,
-    }
-	,
-	{
-      source: "/st-catharines/glow",
-      destination:  "/st-catharines/programs/glow",
-      permanent: true,
-    },
-	{
-      source: "/london/summerpass",
-      destination:  "/london/programs/camps",
-      permanent: true,
-    },
-	
-  ];
-},
+    // (Optional) Keep a few hardcoded fallbacks here if you want
+    // const staticRedirects = [ ... ];
+    // return [...staticRedirects, ...sheetRedirects];
+
+    return sheetRedirects;
+  },
 
   images: {
     remotePatterns: [
-      {
-        protocol: "https",
-        hostname: "storage.googleapis.com",
-        port: "",
-      },
-      {
-        protocol: "https",
-        hostname: "www.aerosportsparks.ca",
-        port: "",
-      },
+      { protocol: 'https', hostname: 'storage.googleapis.com' },
+      { protocol: 'https', hostname: 'www.aerosportsparks.ca' },
     ],
   },
+
+  // NOTE: this exposes envs to the client bundle; it does NOT affect process.env
   env: {
-    NEXT_PUBLIC_API_URL: "https://apis-351216.nn.r.appspot.com/api",
-    NEXT_PUBLIC_BASE_URL: "https://www.aerosportsparks.ca",
-    SHEET_URL: `https://docs.google.com/spreadsheets/d/1zpV1juNopYe4bnFP959w3ldwj0dC-3WF/export?format=xlsx`,
+    NEXT_PUBLIC_API_URL: 'https://apis-351216.nn.r.appspot.com/api',
+    NEXT_PUBLIC_BASE_URL: 'https://www.aerosportsparks.ca',
+    SHEET_URL: 'https://docs.google.com/spreadsheets/d/1zpV1juNopYe4bnFP959w3ldwj0dC-3WF/export?format=xlsx',
   },
 };
 

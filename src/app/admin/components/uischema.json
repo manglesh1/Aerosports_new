@@ -126,7 +126,7 @@
     "classNames": "col-md-6"
   },
 
-  "imagetitle": {
+  "headerimagetitle": {
     "ui:widget": "text",
     "classNames": "col-md-6"
   },

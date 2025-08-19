@@ -204,12 +204,20 @@ async function getReviewsData(locationid){
   {
        return cached;
   }
+  try {
+   console.log('fetching reviews data');
+   //console.log('locationid', locationid); 
   const url = `${process.env.NEXT_PUBLIC_API_URL}/getreviews?locationid=${locationid}`;
    const response = await fetch(url, {next: {revalidate: 3600*24*5}}); 
    const data = await response.json();
    //console.log('review data',data);
   reviewesData.set(cacheKey,data);
-  return data;
+   return data;
+  } catch (error) {
+    console.error(`❌ Error in getReviewsData("${locationid}"):`, error.message);
+    return [];
+  }
+ 
 }
    
 async function generateSchema(pagedata, locationData, category, page ) {

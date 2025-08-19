@@ -25,27 +25,15 @@ const extractBlogData = (await getDataByParentId(menuData, "blogs"))[0]?.childre
 
 //const  blogData=  extractBlogData.find((item) => item.path === slug);
 const jsonLDschema = await generateSchema(blogData,locationData,slug,'blogs');
-    //console.log(blogsData);
-    console.log('blog setail');
-    console.log(blogData);
-   let images = [];
-const imagesString=blogData?.headerimage;
-if (imagesString) {
-  const imageItems = imagesString.includes(';')
-    ? imagesString.split(';')
-    : [imagesString]; // Handle single image too
+    
 
-  images = imageItems.map((item) => {
-    const [src, title] = item.split('|');
-    return { src: src?.trim(), title: title?.trim() || '' };
-  });
-}
+
   return (
     <main className="aero_home-actionbtn-bg">
       <section className="aero-max-container">
         <div className="aero-blog-detail-main-section">
           <div className="aero-blog-img-section aero-blog-detail-img-section">
-          <img src={images?.[0]?.src} alt={images?.[0]?.title} width="100%" />
+          <img src={blogData?.headerimage} alt={blogData?.headerimagetitle} width="100%" />
           </div>
           <h1>{ blogData?.title }</h1>
           <div

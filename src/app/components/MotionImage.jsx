@@ -10,7 +10,7 @@ const MotionImage =  ({ pageData,waiverLink, locationData }) => {
   // Handle case when no item exists
   if (!item) return null;
 
-  //console.log('locationData',locationData)
+  
 const locData = locationData[0];
   const hasVideo = !!item.video;
 const toTelHref = (phone) => {
@@ -76,7 +76,7 @@ const toTelHref = (phone) => {
         >
            <Image
             src={item.headerimage || 'https://storage.googleapis.com/aerosports/aerosports-trampoline-park-redefine-fun.svg'} // Ensure `item.image` has valid URL
-            alt={item.imagetitle || "Aerosports fun for everyone"}
+            alt={item.headerimagetitle || "Aerosports fun for everyone"}
             layout="fill"
             objectFit="cover"
             quality={85}

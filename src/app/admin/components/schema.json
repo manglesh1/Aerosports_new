@@ -24,7 +24,7 @@
     "smalltext": { "type": "string", "maxLength": 200 },
     "pageimages": { "type": "string", "maxLength": 5000 },
     "headerimage": { "type": ["string"], "pattern": "^$|^(https?:\\/\\/[^\\s]+)$","maxLength": 200 },
-    "imagetitle": { "type": "string", "maxLength": 150 },
+    "headerimagetitle": { "type": "string", "maxLength": 150 },
     "section1": { "type": "string", "maxLength": 5000 },
     "sectionImage": { "type": ["string"], "pattern": "^$|^(https?:\\/\\/[^\\s]+)$","maxLength": 200 },
     "section2": { "type": "string", "maxLength": 5000 },

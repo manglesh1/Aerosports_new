@@ -6,6 +6,7 @@ import { getDataByParentId } from "@/utils/customFunctions";
 import MotionImage from "@/components/MotionImage";
 import ImageMarquee from "@/components/ImageMarquee";
 import SubCategoryCard from "@/components/smallComponents/SubCategoryCard"
+import FaqCard from "@/components/smallComponents/FaqCard";
 import { fetchsheetdata,fetchMenuData, generateMetadataLib,getWaiverLink,generateSchema } from "@/lib/sheets";
 import Link from "next/link";
 
@@ -75,6 +76,7 @@ const jsonLDschema = await generateSchema(pagedata,locationData,subcategory_slug
           />
         </section>
       </section>
+      <FaqCard page={subcategory_slug} location_slug={location_slug} />
      <script type="application/ld+json" suppressHydrationWarning
   dangerouslySetInnerHTML={{ __html: jsonLDschema }}
 />
