@@ -36,7 +36,7 @@ function ContactForm() {
    e.preventDefault();
    try {
  
-     const response = await fetch(`https://apis-351216.nn.r.appspot.com/api/email`, {
+     const response = await fetch(`https://websitebackend-439220.ue.r.appspot.com/api/email`, {
        method: "POST",
        headers: {
          "Content-Type": "application/json",
@@ -58,10 +58,10 @@ function ContactForm() {
          selectedEvent: "",
        });
      } else {
-       console.error("Failed to send email");
+       console.error("eFaild to send email");
      }
    } catch (error) {
-     console.error("Error:", error);
+     console.error("eFaild to send email Error:", error);
    }
  };
 

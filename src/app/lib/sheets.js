@@ -4,10 +4,14 @@ const XLSX = require('xlsx');
 
 const SHEET_URL =process.env.SHEET_URL;
 const sheetCache = new Map();
-const CACHE_TTL = 1000 * 60 * 15; // 15 min
+const CACHE_TTL = 1000 * 60 * 60 * 24; // 15 min
 const waiverLinkCache = new Map();
 const reviewesData = new Map();
 async function fetchsheetdata(sheetName, location) {
+  if(sheetName === 'refresh'){
+    console.log('refreshing data');
+    sheetCache.clear();
+  }
   const cacheKey = `${sheetName}:${location || 'all'}`;
   
   const now = Date.now();
@@ -197,6 +201,9 @@ async function generateMetadataLib({ location, category, page }) {
 
 async function getReviewsData(locationid){
   console.log(locationid);
+  if(!locationid || locationid=='undefined')
+    return [];
+  
   const cacheKey = `reviews:${locationid}`;
   const cached = reviewesData.get(cacheKey);
   
@@ -205,7 +212,7 @@ async function getReviewsData(locationid){
        return cached;
   }
   try {
-   console.log('fetching reviews data');
+   console.log('fetching reviews data',locationid);
    //console.log('locationid', locationid); 
   const url = `${process.env.NEXT_PUBLIC_API_URL}/getreviews?locationid=${locationid}`;
    const response = await fetch(url, {next: {revalidate: 3600*24*5}}); 

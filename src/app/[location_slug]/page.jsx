@@ -48,7 +48,7 @@ const Home = async ({ params }) => {
   const blogsData = Array.isArray(data) ? getDataByParentId(data, "blogs") || [] : [];
 const jsonLDschema = await generateSchema( header_image?.[0],locationData,'','');
  
-console.log(jsonLDschema);
+//console.log(jsonLDschema);
   return (
     <main>
       {promotionPopup.length > 0 && <PromotionModal promotionPopup={promotionPopup} />}

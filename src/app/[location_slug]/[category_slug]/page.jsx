@@ -18,7 +18,10 @@ export async function generateMetadata({ params }) {
 
 const Category = async ({ params }) => {
   const { location_slug, category_slug } = params;
-  
+if(category_slug === 'refresh'){
+  await fetchsheetdata('refresh',location_slug);
+  return 'data refreshed';
+}
 
  const [data,pageData, waiverLink, locationData] = await Promise.all([
     fetchMenuData(location_slug),

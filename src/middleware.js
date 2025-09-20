@@ -1,23 +1,21 @@
 import { NextResponse } from 'next/server';
 
 export function middleware(req) {
-const url = req.nextUrl.clone();
+  const url = req.nextUrl.clone();
   const host = req.headers.get('host') || '';
   const isLocal =
     host.startsWith('localhost') || host.startsWith('127.0.0.1');
 
   if (!isLocal) {
     // 1) Ensure HTTPS (use proxy header when deployed)
-    const proto = req.headers.get('x-forwarded-proto') || url.protocol.replace(':', '');
+    const proto = req.headers.get('x-forwarded-proto') || 'http';
     if (proto !== 'https') {
-      url.protocol = 'https:';
-      return NextResponse.redirect(url, 308);
+      return NextResponse.redirect(`https://${host}${url.pathname}${url.search}`, 308);
     }
 
-    // 2) Redirect apex domain to www (only the bare domain)
+    // 2) Redirect apex domain to www
     if (host === 'aerosportsparks.ca') {
-      url.host = 'www.aerosportsparks.ca';
-      return NextResponse.redirect(url, 308);
+      return NextResponse.redirect(`https://www.aerosportsparks.ca${url.pathname}${url.search}`, 308);
     }
   }
 
@@ -25,6 +23,10 @@ const url = req.nextUrl.clone();
 }
 
 export const config = {
-  matcher: ['/((?!api|_next/static|_next/image|favicon.ico).*)'],
-  matcher: ['/admin/:path*', '/locations/:path*', '/'], 
+  matcher: [
+    '/((?!api|_next/static|_next/image|favicon.ico).*)',
+    '/admin/:path*',
+    '/locations/:path*',
+    '/',
+  ],
 };

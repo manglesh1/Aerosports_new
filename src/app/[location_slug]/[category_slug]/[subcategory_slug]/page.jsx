@@ -7,7 +7,7 @@ import MotionImage from "@/components/MotionImage";
 import ImageMarquee from "@/components/ImageMarquee";
 import SubCategoryCard from "@/components/smallComponents/SubCategoryCard"
 import FaqCard from "@/components/smallComponents/FaqCard";
-import { fetchsheetdata,fetchMenuData, generateMetadataLib,getWaiverLink,generateSchema } from "@/lib/sheets";
+import { fetchsheetdata,fetchMenuData, generateMetadataLib,getWaiverLink,generateSchema,fetchPageData } from "@/lib/sheets";
 import Link from "next/link";
 
 export async function generateMetadata({ params }) {
@@ -23,29 +23,28 @@ export async function generateMetadata({ params }) {
 
 const Subcategory = async ({ params }) => {
   const { location_slug, subcategory_slug,category_slug } = params;
-  const [data, dataconfig, menudata,locationData,waiverLink] = await Promise.all([
-    fetchsheetdata('Data', location_slug),
-    fetchsheetdata('config', location_slug),
-    fetchMenuData(location_slug),
-     fetchsheetdata('locations',location_slug),
-     getWaiverLink(location_slug),
-  
-  ]);
+  const [p0, p1, p2, p3, p4] = await Promise.allSettled([
+  fetchPageData(location_slug, subcategory_slug),
+  fetchsheetdata("config", location_slug),
+  fetchMenuData(location_slug),
+  fetchsheetdata("locations", location_slug),
+  getWaiverLink(location_slug),
+]);
+
+const pageData      = p0.status === "fulfilled" ? p0.value : {};
+const dataconfig    = p1.status === "fulfilled" ? p1.value : {};
+const menudata      = p2.status === "fulfilled" ? p2.value : [];
+const locationData  = p3.status === "fulfilled" ? p3.value : {};
+const waiverLink    = p4.status === "fulfilled" ? p4.value : null;
 
     const categoryData = (await getDataByParentId(menudata,category_slug))[0]?.children?.filter(child => child.path !== subcategory_slug && child.isactive==1);
-
-  const attractionsData = Array.isArray(data)
-    ? getDataByParentId(data, subcategory_slug)
-    : [];
-
-  const pagedata = attractionsData?.[0]; // Reusing attractionsData
-  if(!pagedata) return;
-
-const jsonLDschema = await generateSchema(pagedata,locationData,subcategory_slug,category_slug);
+console.log('param ',location_slug,subcategory_slug,category_slug);
+ 
+const jsonLDschema = await generateSchema(pageData,locationData,subcategory_slug,category_slug);
   return (
     <main>
       <section>
-        <MotionImage pageData={attractionsData} waiverLink={waiverLink} locationData={locationData}/>
+        <MotionImage pageData={pageData} waiverLink={waiverLink} locationData={locationData}/>
       </section>
 
      
@@ -55,15 +54,15 @@ const jsonLDschema = await generateSchema(pagedata,locationData,subcategory_slug
           <div
             className="subcategory_main_section"
             dangerouslySetInnerHTML={{
-              __html: pagedata.section1 || "",
+              __html: pageData.section1 || "",
             }}
           />
          
         </section>
-       <SubCategoryCard attractionsData={categoryData} location_slug={location_slug} theme={'default'} title={`Other ${pagedata.parentid}`} text={[pagedata.metadescription]} />
+       <SubCategoryCard attractionsData={categoryData} location_slug={location_slug} theme={'default'} title={`Other ${pageData.parentid}`} text={[pageData.metadescription]} />
       </section>
       
-        <ImageMarquee imagesString={pagedata.headerimage}  />
+        <ImageMarquee imagesString={pageData.headerimage}  />
       
       
 
@@ -71,7 +70,7 @@ const jsonLDschema = await generateSchema(pagedata,locationData,subcategory_slug
         <section className="aero-max-container aero_home_seo_section">
           <div
             dangerouslySetInnerHTML={{
-              __html: pagedata.seosection || "",
+              __html: pageData.seosection || "",
             }}
           />
         </section>
