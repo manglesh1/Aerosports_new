@@ -492,7 +492,7 @@
 
 .aero_bp_pricing_table table {
   width: 100%;
-  border-collapse: separate;
+  border-collapse: collapse;
   border-spacing: 0;
   background: linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 100%);
   overflow: hidden;
@@ -535,7 +535,8 @@
   background: linear-gradient(135deg, rgba(240, 12, 116, 0.2) 0%, rgba(202, 255, 26, 0.1) 100%);
   border-right: 2px solid rgba(240, 12, 116, 0.3);
   vertical-align: middle;
-  width: auto;
+  width: 200px;
+  min-width: 200px;
 }
 
 .aero_bp_pricing_table th:last-child {
@@ -544,22 +545,18 @@
 
 .aero_bp_pricing_table th:first-child {
   clip-path: polygon(0 0, calc(100% - 10px) 0, 100% 10px, 100% 100%, 0 100%);
-  padding-left: 2em !important;
 }
 
 .aero_bp_feature_column {
   text-align: left !important;
-  width: 250px;
-  min-width: 250px;
-  max-width: 250px;
+  width: 300px;
+  min-width: 300px;
   background: linear-gradient(135deg, rgba(240, 12, 116, 0.15) 0%, rgba(0, 0, 0, 0.3) 100%);
   border-right: 3px solid rgba(240, 12, 116, 0.5);
+  padding-left: 1em !important;
 }
 
 .aero_bp_package_column {
-  width: 180px;
-  min-width: 180px;
-  max-width: 180px;
   position: relative;
   transition: all 0.3s ease;
 }
@@ -625,17 +622,8 @@
   z-index: 1;
   border-right: 1px solid rgba(240, 12, 116, 0.1);
   vertical-align: middle;
-  width: 180px;
-  min-width: 180px;
-  max-width: 180px;
-}
-
-.aero_bp_pricing_table td:first-child {
-  text-align: left !important;
-  padding-left: 2em !important;
-  width: 250px;
-  min-width: 250px;
-  max-width: 250px;
+  width: 200px;
+  min-width: 200px;
 }
 
 .aero_bp_pricing_table td:last-child {
@@ -650,16 +638,14 @@
   letter-spacing: 0.5px;
   text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
   position: relative;
-  padding-left: 1.5em;
+  width: 300px;
+  min-width: 300px;
+  text-align: left !important;
+  padding-left: 1em !important;
 }
 
 .aero_bp_feature_name::before {
-  content: '▸';
-  position: absolute;
-  left: 0;
-  color: var(--primary-color);
-  font-size: 1.2rem;
-  animation: slideIn 1s ease-out;
+  content: '';
 }
 
 .aero_bp_feature_value {
@@ -868,19 +854,25 @@
     padding: 1em 0.8em;
     font-size: 0.95rem;
     letter-spacing: 0.2px;
+    width: 150px;
+    min-width: 150px;
   }
 
   .aero_bp_pricing_table td {
     padding: 1em 0.8em;
     font-size: 0.85rem;
+    width: 150px;
+    min-width: 150px;
   }
 
   .aero_bp_feature_column {
-    min-width: 180px;
+    width: 200px;
+    min-width: 200px;
   }
 
-  .aero_bp_package_column {
-    min-width: 130px;
+  .aero_bp_feature_name {
+    width: 200px;
+    min-width: 200px;
   }
 
   .aero_bp_check,
