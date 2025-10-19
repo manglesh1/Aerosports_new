@@ -48,10 +48,11 @@ const toTelHref = (phone) => {
               <div className="aero-btn-booknow">
                 <Link href={waiverLink} target="_blank">
                   <motion.button
-                 
+                    animate={{ scale: [1, 1.05, 1] }}
                     transition={{
-                      duration: 5,
+                      duration: 2,
                       repeat: Infinity,
+                      ease: "easeInOut"
                     }}
                   >
                     WAIVER
@@ -63,36 +64,30 @@ const toTelHref = (phone) => {
         
         </section>
       ) : (
-        <motion.div
-          className="image-container"
-          initial={{ scale: 1 }}
-          animate={{ scale: 1.1 }}
-          transition={{
-            duration: 5,
-            repeat: Infinity,
-            repeatType: "reverse",
-          }}
-          style={{ maxHeight: "600px", minHeight: "450px" }}
-        >
-           <Image
-            src={item.headerimage || 'https://storage.googleapis.com/aerosports/aerosports-trampoline-park-redefine-fun.svg'} // Ensure `item.image` has valid URL
-            alt={item.headerimagetitle || "Aerosports fun for everyone"}
-            layout="fill"
-            objectFit="cover"
-            quality={85}
-            priority
-          />
-          
-          <motion.article
-            className="image-content"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{
-              duration: 3,
-            }}
+        <div className="aero_home-headerimg-container">
+          <div
+            className="image-container"
+            style={{ maxHeight: "600px", minHeight: "450px" }}
           >
-          
-          </motion.article>
+            <Image
+              src={item.headerimage || 'https://storage.googleapis.com/aerosports/aerosports-trampoline-park-redefine-fun.svg'} // Ensure `item.image` has valid URL
+              alt={item.headerimagetitle || "Aerosports fun for everyone"}
+              layout="fill"
+              objectFit="cover"
+              quality={85}
+              priority
+            />
+
+            <motion.article
+              className="image-content"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{
+                duration: 1.5,
+              }}
+            >
+
+            </motion.article>
         <div className="location-overlay-box">
             <h1 className="aero-home-h1heading">{item.title}</h1>
         <p>{item.smalltext}</p>
@@ -112,10 +107,11 @@ const toTelHref = (phone) => {
               <div className="aero-btn-booknow">
                 <Link href={waiverLink} target="_blank"  title="sign your waiver at aerosports trampoline park" >
                   <motion.button
-                   
+                    animate={{ scale: [1, 1.05, 1] }}
                     transition={{
-                      duration: 5,
+                      duration: 2,
                       repeat: Infinity,
+                      ease: "easeInOut"
                     }}
                   >
                     WAIVER
@@ -123,9 +119,10 @@ const toTelHref = (phone) => {
                 </Link>
               </div>
             )}
-      </div>
-        </motion.div>
-        
+          </div>
+          </div>
+        </div>
+
       )}
     </section>
   );

@@ -1,0 +1,24 @@
+{
+  "party_packages": {
+    "Premium Party": {
+      "Jump Time": "75 mins",
+      "Room Time": "45 mins",
+      "Mandatory Aero Grip Socks": "Regular Price",
+      "Pizza & Drinks": true,
+      "Bowls of Chips & Popcorn": true,
+      "Outside Food": false,
+      "Valo Arena & Arcade Game Cards": false,
+      "Birthday T-Shirt": true,
+      "Free 30 Day Pass": true
+    }
+  },
+  "legend": {
+    "✓": "Included",
+    "✗": "Not Included",
+    "$": "Additional Cost"
+  },
+  "location": {
+    "name": "Aerosports London",
+    "description": "Celebrate your special day at Aerosports London — the ultimate destination for non-stop fun and adventure! With incredible attractions for all ages like wall-to-wall trampolines, our Ninja Warrior course, Climb & Slide, Dodgeball, Slack Line, Multiball, and Canada’s 1st Valo Arena."
+  }
+}

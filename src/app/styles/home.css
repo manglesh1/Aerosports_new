@@ -61,7 +61,8 @@
 
 .aero_main_logo {
   position: absolute;
-  inset: 0;
+  left: 50%;
+  transform: translateX(-50%);
   top: -26px;
   z-index: 99;
 }
@@ -245,6 +246,18 @@
 /* header css end  */
 .aero_home-headerimg-wrapper {
   background-color: var(--black-color);
+}
+
+.aero_home-headerimg-container {
+  max-width: 1100px;
+  margin: 0 auto;
+  position: relative;
+  overflow: hidden;
+}
+
+.image-container {
+  position: relative;
+  overflow: hidden;
 }
 
 .aero_home-headerimg-wrapper,
@@ -871,6 +884,8 @@ ul.attractions-grid li {
   }
 
   .aero_main_logo {
+    left: 50%;
+    transform: translateX(-50%);
     top: -35px;
   }
 
