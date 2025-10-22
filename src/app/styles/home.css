@@ -1,34 +1,102 @@
-/* header css start  */
+/* ========================================
+   AEROSPORTS HOME PAGE - MODERN DESIGN
+   Using kidsparty.css design system
+   ======================================== */
+
+/* ========================================
+   ANIMATIONS
+   ======================================== */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateX(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes scaleIn {
+  from {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes shine {
+  0% {
+    background-position: -200% center;
+  }
+  100% {
+    background-position: 200% center;
+  }
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-20px);
+  }
+}
+
+@keyframes pulse {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.05);
+  }
+}
+
+/* ========================================
+   HEADER & NAVIGATION
+   ======================================== */
 .aero_menu_location_icon {
   gap: 0.5rem;
 }
 
 .aero-col-3 {
-  background: linear-gradient(90deg,
-      var(--black-color) 0% 30%,
-      #524c4ec4 45% 55%,
-      var(--black-color) 70% 100%);
-  background-color: var(--black-color);
-  border-bottom: 1px solid var(--white-color);
+  background: linear-gradient(135deg, #000000 0%, #1a1a1a 100%);
+  border-bottom: 3px solid;
+  border-image: linear-gradient(90deg, #f00c74, #caff1a) 1;
   padding: 0.75em;
+  box-shadow: 0 4px 20px rgba(240, 12, 116, 0.3);
 }
 
-.aero-col-3>div {
+.aero-col-3 > div {
   flex-basis: 33.3%;
   text-align: center;
 }
 
-.aero-col-3>div:first-child {
+.aero-col-3 > div:first-child {
   text-align: left;
 }
 
-.aero-col-3>div:last-child {
+.aero-col-3 > div:last-child {
   text-align: right;
 }
 
 .aero-list-7,
 .aero-list-7-1 {
-  background: var(--black-color);
+  background: linear-gradient(135deg, #000000 0%, #1a1a1a 100%);
   padding: 4px 0;
   flex-direction: column;
   width: 100%;
@@ -37,21 +105,24 @@
   left: 0;
   text-align: center;
   align-items: unset;
+  border-bottom: 2px solid rgba(240, 12, 116, 0.3);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
 }
 
 .aero-list-7-1 {
   z-index: -1;
-  animation: listanimate 0.5s ease-in-out;
+  animation: slideDown 0.4s ease-out;
   padding-top: 3em;
 }
 
-@keyframes listanimate {
-  0% {
-    transform: translateY(-200px);
+@keyframes slideDown {
+  from {
+    transform: translateY(-100%);
+    opacity: 0;
   }
-
-  100% {
+  to {
     transform: translateY(0);
+    opacity: 1;
   }
 }
 
@@ -65,6 +136,12 @@
   transform: translateX(-50%);
   top: -26px;
   z-index: 99;
+  filter: drop-shadow(0 4px 10px rgba(240, 12, 116, 0.5));
+  transition: all 0.3s ease;
+}
+
+.aero_main_logo:hover {
+  transform: translateX(-50%) scale(1.1) rotate(5deg);
 }
 
 .aero_main_logo img {
@@ -75,8 +152,7 @@
 }
 
 .aero_changelocation_height {
-  /* height: 44px; */
-  box-shadow: 0 0 2px var(--white-color);
+  box-shadow: 0 4px 20px rgba(240, 12, 116, 0.2);
 }
 
 .aero-menu-location {
@@ -89,14 +165,38 @@
   display: flex;
   align-items: center;
   gap: 1.2rem;
-  border: 1px solid var(--white-color);
+  border: 2px solid transparent;
+  background: linear-gradient(#000, #000) padding-box,
+              linear-gradient(90deg, #f00c74, #caff1a) border-box;
   padding: 0.6em 1.1em;
   border-radius: 30px;
   font-size: 1.1rem;
   text-wrap: nowrap;
   color: var(--white-color);
-  transition: color 0.2s ease-out, background 0.2s ease-out;
+  transition: all 0.3s ease;
   text-transform: uppercase;
+  position: relative;
+  overflow: hidden;
+}
+
+.aero-d-changelocation::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(202, 255, 26, 0.2), transparent);
+  transition: left 0.6s ease;
+}
+
+.aero-d-changelocation:hover::before {
+  left: 100%;
+}
+
+.aero-d-changelocation:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(240, 12, 116, 0.4);
 }
 
 .aero-header-changelocation-wrap {
@@ -111,62 +211,101 @@
   color: var(--white-color);
 }
 
-.aero-d-changelocation:hover {
-  border-color: var(--primary-color);
-  color: var(--primary-color);
-}
-
 .aero-faq {
   display: flex;
   align-items: center;
   padding: 0.2rem 1rem;
-  transition: color 0.2s ease-out, background 0.2s ease-out;
+  transition: all 0.3s ease;
   height: 40px;
-  background-color: var(--white-color);
-  color: var(--primary-color);
-  font-weight: 600;
+  background: linear-gradient(135deg, #f00c74, #caff1a);
+  color: #000;
+  font-weight: 700;
   margin-left: 10px;
-  border: 3px var(--white-color) solid;
+  border: 3px solid transparent;
   border-radius: 20px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  box-shadow: 0 4px 15px rgba(240, 12, 116, 0.3);
 }
 
 .aero-faq:hover {
-  background-color: transparent;
-  color: var(--white-color);
-  border-color: #bc6371;
+  background: linear-gradient(135deg, #caff1a, #f00c74);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(202, 255, 26, 0.4);
 }
 
 :is(.aero-list-7, .aero-list-7-1) a {
   color: var(--white-color);
-  padding: 5px 10px;
+  padding: 8px 10px;
   font-size: 0.9rem;
   text-transform: uppercase;
+  transition: all 0.3s ease;
+  position: relative;
 }
 
+:is(.aero-list-7, .aero-list-7-1) a::before {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 0;
+  height: 2px;
+  background: linear-gradient(90deg, #f00c74, #caff1a);
+  transition: width 0.3s ease;
+}
+
+:is(.aero-list-7, .aero-list-7-1) a:hover::before {
+  width: 80%;
+}
+
+/* ========================================
+   BUTTONS
+   ======================================== */
 .aero-btn-booknow button,
 .sigma_btn-custom {
   outline: none;
-  transition: top 0.05s linear, box-shadow 0.05s linear;
+  transition: all 0.3s ease;
   position: relative;
-  font-weight: 500;
+  font-weight: 700;
   border: none;
   text-transform: uppercase;
   font-size: 1rem;
   border-radius: 12.5rem;
-  padding: 0.75rem 1.25rem;
+  padding: 0.75rem 1.5rem;
   cursor: pointer;
-  background-color: var(--primary-color);
+  background: linear-gradient(135deg, #f00c74 0%, #ff1a8c 100%);
   color: var(--white-color);
-  box-shadow: 0 0.375rem #a0054c, 0 0.75rem #00000020,
-    inset -0.0625rem 0 #ffffff80, inset 0.0625rem 0 #ffffff80,
-    inset 0 0.0625rem #fff;
+  box-shadow: 0 6px 0 #a0054c, 0 10px 20px rgba(240, 12, 116, 0.3);
+  letter-spacing: 1px;
+  overflow: hidden;
+}
+
+.aero-btn-booknow button::before,
+.sigma_btn-custom::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+  transition: left 0.6s ease;
+}
+
+.aero-btn-booknow button:hover::before,
+.sigma_btn-custom:hover::before {
+  left: 100%;
 }
 
 :is(.aero-btn-booknow button, .sigma_btn-custom):hover {
-  top: 4px;
-  box-shadow: 0 0.125rem #a0054c, 0 0.25rem #00000020,
-    inset -0.0625rem 0 #ffffff80, inset 0.0625rem 0 #ffffff80,
-    inset 0 0.0625rem var(--white-color);
+  transform: translateY(4px);
+  box-shadow: 0 2px 0 #a0054c, 0 4px 15px rgba(240, 12, 116, 0.4);
+}
+
+:is(.aero-btn-booknow button, .sigma_btn-custom):active {
+  transform: translateY(6px);
+  box-shadow: 0 0 0 #a0054c, 0 2px 10px rgba(240, 12, 116, 0.3);
 }
 
 .aero-header-contactus-btn {
@@ -188,53 +327,109 @@
   font-size: 0.6rem;
 }
 
-/* .aero_home_video-container {
-  max-height: 700px;
-  overflow: clip;
-  background-color: var(--black-color);
-} */
-
+/* ========================================
+   HERO SECTION
+   ======================================== */
 .aero_home_video-container video {
   height: 500px;
   object-fit: cover;
+  filter: brightness(0.8);
 }
+
 .location-overlay-box {
   position: absolute;
   bottom: 120px;
   left: 30px;
-  background: rgba(0, 0, 0, 0.7);
+  background: linear-gradient(135deg, rgba(0, 0, 0, 0.9) 0%, rgba(26, 26, 26, 0.85) 100%);
   color: white;
-  padding: 20px 30px;
-  border-radius: 10px;
+  padding: 30px 40px;
+  border-radius: 20px;
   font-family: 'Segoe UI', sans-serif;
   z-index: 10;
   max-width: 90%;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+  border: 2px solid rgba(240, 12, 116, 0.3);
+  animation: fadeInUp 1s ease-out;
+}
+
+.location-overlay-box::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, #f00c74, #caff1a, #f00c74);
+  background-size: 200% 100%;
+  animation: shine 3s linear infinite;
 }
 
 .location-overlay-box h2 {
   font-size: 1.0rem;
   margin-bottom: 10px;
+  color: #caff1a;
+  text-transform: uppercase;
+  letter-spacing: 2px;
 }
 
 .location-overlay-box h1 {
   font-size: 1.9rem;
   margin-bottom: 10px;
+  background: linear-gradient(135deg, #f00c74, #caff1a);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  font-weight: 900;
 }
-
 
 .location-overlay-box p {
   margin: 5px 0;
   font-size: 1rem;
-  line-height: 1.4;
+  line-height: 1.6;
+  color: #e0e0e0;
 }
 
-.aero-home-h1heading{
+/* ========================================
+   HEADINGS
+   ======================================== */
+.aero-home-h1heading {
   text-align: center;
   margin-top: 50px;
-  color: var(--white-color);
-  font-size: 25px;
+  background: linear-gradient(135deg, #f00c74, #caff1a);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  font-size: 2rem;
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  animation: fadeInUp 1s ease-out;
 }
+
+.heading-with-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  font-size: 2rem;
+  font-weight: 800;
+  text-align: center;
+  text-transform: uppercase;
+  background: linear-gradient(135deg, #f00c74, #caff1a);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  margin-bottom: 1.5em;
+  animation: fadeInUp 0.8s ease-out;
+}
+
+.promotions__icon {
+  width: 40px;
+  height: 40px;
+  stroke: #f00c74;
+  filter: drop-shadow(0 2px 4px rgba(240, 12, 116, 0.3));
+}
+
 .aero-btn-article-section {
   text-align: center;
 }
@@ -243,9 +438,26 @@
   padding: 1em 0 2em;
 }
 
-/* header css end  */
+/* ========================================
+   HERO IMAGE WRAPPER
+   ======================================== */
 .aero_home-headerimg-wrapper {
-  background-color: var(--black-color);
+  background: linear-gradient(135deg, #000000 0%, #1a1a1a 100%);
+  position: relative;
+  overflow: hidden;
+}
+
+.aero_home-headerimg-wrapper::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: radial-gradient(circle at 30% 50%, rgba(240, 12, 116, 0.1) 0%, transparent 50%),
+              radial-gradient(circle at 70% 50%, rgba(202, 255, 26, 0.08) 0%, transparent 50%);
+  pointer-events: none;
+  z-index: 1;
 }
 
 .aero_home-headerimg-container {
@@ -271,10 +483,16 @@
   width: 100%;
   height: 450px;
   object-fit: cover;
-  opacity: 2;
+  opacity: 0.9;
+  transition: all 0.5s ease;
 }
 
-.aero_home-headerimg-wrapper>img {
+.aero_home-headerimg-wrapper img:hover {
+  transform: scale(1.05);
+  opacity: 1;
+}
+
+.aero_home-headerimg-wrapper > img {
   height: 600px;
 }
 
@@ -288,71 +506,135 @@
   transform: translate(-50%, -50%);
   text-align: center;
   width: 90%;
+  z-index: 2;
 }
 
-.aero_home-headerimg-wrapper article{
+.aero_home-headerimg-wrapper article {
   top: 40%;
+  animation: fadeInUp 1s ease-out 0.3s both;
 }
 
 .aero_home-headerimg-wrapper article h1,
 .aero_home-headerimg-wrapper article p {
   font-size: 2rem;
-  font-weight: 600;
-  color: var(--white-color);
+  font-weight: 700;
+  background: linear-gradient(135deg, #ffffff, #e0e0e0);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
   letter-spacing: 2px;
   padding-bottom: 0.5em;
+  text-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
 }
 
 .aero_home-headerimg-wrapper article p {
-  font-size: 1rem;
+  font-size: 1.1rem;
   font-weight: 400;
-  line-height: 24px;
+  line-height: 1.8;
   padding-bottom: 1.5em;
+  color: #e0e0e0;
 }
 
-/* action buttons  */
+/* ========================================
+   ACTION BUTTONS SECTION
+   ======================================== */
 .aero_home-actionbtn-bg {
-  background-color: var(--black-color);
+  background: linear-gradient(135deg, #000000 0%, #1a1a1a 100%);
   color: var(--white-color);
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 -10px 30px rgba(240, 12, 116, 0.2);
+}
+
+.aero_home-actionbtn-bg::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, #f00c74, #caff1a, #f00c74);
+  background-size: 200% 100%;
+  animation: shine 3s linear infinite;
 }
 
 .aero_home-actionbtn {
-  padding: 2.5em 1.5em;
+  padding: 3em 1.5em 2.5em;
+  position: relative;
+  z-index: 2;
 }
 
 .aero_home-actionbtn h2 {
-  font-size: 1.5rem;
-  font-weight: 600;
-  color: var(--white-color);
+  font-size: 1.8rem;
+  font-weight: 800;
+  background: linear-gradient(135deg, #f00c74, #caff1a);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  margin-bottom: 1.5em;
+  animation: fadeInUp 0.8s ease-out;
 }
 
 .aero_home-actionbtn div button {
   width: 100%;
 }
 
+.aero_home-actionbtn-wrap {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1.5rem;
+  padding: 0 0.5em 2em;
+}
+
+.aero_home-actionbtn-wrap > * {
+  animation: scaleIn 0.6s ease-out;
+  animation-fill-mode: both;
+}
+
+.aero_home-actionbtn-wrap > *:nth-child(1) { animation-delay: 0.1s; }
+.aero_home-actionbtn-wrap > *:nth-child(2) { animation-delay: 0.2s; }
+.aero_home-actionbtn-wrap > *:nth-child(3) { animation-delay: 0.3s; }
+.aero_home-actionbtn-wrap > *:nth-child(4) { animation-delay: 0.4s; }
+
 .aero_home_triangle {
   width: 0;
   height: 0;
   border-left: 0px solid transparent;
   border-right: 100vw solid transparent;
-  border-bottom: 35px solid var(--white-color);
+  border-bottom: 50px solid var(--white-color);
+  position: relative;
+  z-index: 1;
 }
 
-/* playground section */
+/* ========================================
+   PLAY SECTION
+   ======================================== */
 .aero_home-playsection-bg,
 .aero_home_feature_section-bg {
-  background-color: var(--white-color);
+  background: linear-gradient(180deg, #ffffff 0%, #f5f5f5 100%);
+  position: relative;
 }
 
 .aero_home-playsection-1 {
-  gap: 1rem;
+  gap: 1.5rem;
   text-align: center;
-  padding: 2.5em 1.5em;
+  padding: 3em 1.5em;
   color: var(--black-color);
+  animation: fadeInUp 0.8s ease-out;
 }
 
 .aero_home-playsection-1 h2 {
   color: var(--black-color);
+  font-size: 2rem;
+  font-weight: 800;
+  background: linear-gradient(135deg, #f00c74, #caff1a);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-transform: uppercase;
+  letter-spacing: 1px;
 }
 
 .aero_home_article_section h2,
@@ -363,8 +645,8 @@
 .aero_home-playsection-1 h2,
 .aero_home_article_section h2,
 .aero_rating_second_heading {
-  font-size: 1.5rem;
-  font-weight: 600;
+  font-size: 1.8rem;
+  font-weight: 700;
   text-align: center;
   text-transform: uppercase;
 }
@@ -376,18 +658,22 @@
 .aero_home-playsection-1 p,
 .aero_home_article_section p,
 .aero_rating_overallrating {
-  font-size: 1rem;
+  font-size: 1.1rem;
   font-weight: 400;
-  line-height: 24px;
+  line-height: 1.8;
   text-align: center;
+  color: #555;
 }
 
-.aero_home-actionbtn-wrap,
+.aero_home_article_section p {
+  color: #e0e0e0;
+}
+
 .aero_home_article_card-wrapper,
 .aero_home_BPJ_wrapper,
 .aero_rating_wrapper {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
   gap: 2rem;
   padding: 2em 0.5em;
 }
@@ -400,40 +686,65 @@
 .aero_home_feature_section {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-  gap: 1rem;
+  gap: 1.5rem;
   padding: 2em 0.5em;
 }
 
 .aero_home-playsection-2 article {
   overflow: hidden;
+  border-radius: 20px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  transition: all 0.4s ease;
+}
+
+.aero_home-playsection-2 article:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 20px 50px rgba(240, 12, 116, 0.3);
 }
 
 .aero_home-playsection-2 article img,
 .aero_home_article_card img {
   width: 100%;
   height: auto;
-  transition: 0.5s ease-in-out;
+  transition: all 0.5s ease;
 }
 
-.aero_home-playsection-2 article:hover>img {
-  transform: scale(1.05);
+.aero_home-playsection-2 article:hover > img {
+  transform: scale(1.1);
 }
 
 .aero_home-play-small-img span {
   font-size: 1.7rem;
-  font-weight: 500;
+  font-weight: 700;
   color: var(--white-color);
   text-transform: uppercase;
+  text-shadow: 0 4px 10px rgba(0, 0, 0, 0.7);
+  letter-spacing: 1px;
 }
 
-/* birthday image section */
+/* ========================================
+   BIRTHDAY SECTION
+   ======================================== */
 .aero_home_birthday_section img {
   width: 100%;
   height: auto;
+  filter: brightness(0.8);
+  transition: all 0.5s ease;
+}
+
+.aero_home_birthday_section:hover img {
+  filter: brightness(1);
+  transform: scale(1.05);
 }
 
 .aero_home_birthday_section h2 {
   top: calc(35% + 4vw);
+  background: linear-gradient(135deg, #ffffff, #f0f0f0);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  font-weight: 900;
+  text-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
 }
 
 .aero_home_birthday_section p {
@@ -441,16 +752,52 @@
   letter-spacing: 0;
   font-weight: 400;
   top: calc(35% + 4vw);
+  color: #ffffff;
+  text-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
 }
 
-/* article section  */
+/* ========================================
+   ARTICLE SECTION
+   ======================================== */
 .aero_home_article_section {
-  background-color: var(--black-color);
-  padding: 2em 0 1em;
+  background: linear-gradient(135deg, #000000 0%, #1a1a1a 100%);
+  padding: 3em 0 2em;
+  position: relative;
+  overflow: hidden;
+}
+
+.aero_home_article_section::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: radial-gradient(circle at 20% 30%, rgba(240, 12, 116, 0.08) 0%, transparent 50%),
+              radial-gradient(circle at 80% 70%, rgba(202, 255, 26, 0.06) 0%, transparent 50%);
+  pointer-events: none;
+}
+
+.aero_home_article_card {
+  background: linear-gradient(135deg, #1a1a1a 0%, #262626 100%);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+  transition: all 0.4s ease;
+  border-radius: 20px;
+  overflow: hidden;
+  border: 2px solid rgba(240, 12, 116, 0.2);
+  position: relative;
+  animation: fadeInUp 0.6s ease-out;
+  animation-fill-mode: both;
+}
+
+.aero_home_article_card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 20px 50px rgba(240, 12, 116, 0.5);
+  border-color: rgba(240, 12, 116, 0.6);
 }
 
 .aero_home_article_card img {
-  border-radius: 0 0 30px 30px;
+  border-radius: 20px 20px 0 0;
   aspect-ratio: 3/2;
 }
 
@@ -462,41 +809,39 @@
 .aero_rating_overallrating {
   padding-top: 0.5em;
   color: var(--white-color);
-  font-style: oblique;
+  font-style: italic;
 }
 
 .aero_rating_overallrating strong {
-  color: var(--primary-color);
+  color: #caff1a;
+  font-size: 1.2em;
 }
 
-.aero_home_article_card {
-  background-color: var(--white-color);
-  box-shadow: 0 0 5px 2px #ffffff69;
-  transition: all 0.2s ease-in;
-  border-radius: 12px;
-  overflow: clip;
+.aero_home_article_desc {
+  position: relative;
+  padding: 1.5em;
 }
 
 .aero_home_article_desc div {
-  min-width: 60px;
-  width: 60px;
-  height: 50px;
-  background: linear-gradient(135deg, rgba(240, 12, 116, 0.3) 0%, rgba(202, 255, 26, 0.2) 100%);
-  clip-path: polygon(8% 0, 100% 0, 92% 100%, 0 100%);
+  min-width: 70px;
+  width: 70px;
+  height: 60px;
+  background: linear-gradient(135deg, rgba(240, 12, 116, 0.4) 0%, rgba(202, 255, 26, 0.3) 100%);
+  clip-path: polygon(10% 0, 100% 0, 90% 100%, 0 100%);
   position: absolute;
-  top: -32px;
-  left: 8px;
-  font-size: 1rem;
-  font-weight: 700;
+  top: -40px;
+  left: 20px;
+  font-size: 1.1rem;
+  font-weight: 800;
   color: #fff;
   text-align: center;
   align-content: center;
-  border: 2px solid rgba(240, 12, 116, 0.5);
-  box-shadow: 0 4px 12px rgba(240, 12, 116, 0.3), inset 0 -2px 8px rgba(0, 0, 0, 0.3);
+  border: 3px solid rgba(240, 12, 116, 0.6);
+  box-shadow: 0 6px 20px rgba(240, 12, 116, 0.4);
   text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
   transition: all 0.3s ease;
   overflow: hidden;
-  letter-spacing: 0.5px;
+  letter-spacing: 1px;
   text-transform: uppercase;
 }
 
@@ -507,16 +852,16 @@
   left: -100%;
   width: 100%;
   height: 100%;
-  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
   transition: left 0.5s ease;
   transform: skewX(-20deg);
 }
 
 .aero_home_article_card:hover .aero_home_article_desc div {
-  background: linear-gradient(135deg, rgba(240, 12, 116, 0.5) 0%, rgba(202, 255, 26, 0.3) 100%);
-  transform: translateY(-3px) scale(1.08);
-  box-shadow: 0 6px 20px rgba(240, 12, 116, 0.5), 0 0 30px rgba(202, 255, 26, 0.3);
-  border-color: rgba(202, 255, 26, 0.8);
+  background: linear-gradient(135deg, rgba(240, 12, 116, 0.6) 0%, rgba(202, 255, 26, 0.5) 100%);
+  transform: translateY(-5px) scale(1.1);
+  box-shadow: 0 10px 30px rgba(240, 12, 116, 0.6), 0 0 40px rgba(202, 255, 26, 0.4);
+  border-color: rgba(202, 255, 26, 0.9);
 }
 
 .aero_home_article_card:hover .aero_home_article_desc div::before {
@@ -524,55 +869,92 @@
 }
 
 .aero_home_article_desc h3 {
-  font-size: 1.2rem;
+  font-size: 1.3rem;
   padding: 1.5em 0.5em 0.5em;
-  color: var(--black-color);
+  color: #ffffff;
   height: 90px;
   overflow: hidden;
+  font-weight: 700;
+  line-height: 1.4;
 }
 
 .aero_home_article_desc p {
-  font-size: 0.75rem;
-  color: var(--black-color);
+  font-size: 0.9rem;
+  color: #cccccc;
   text-align: left;
   padding: 0 0.5em 1em;
+  line-height: 1.6;
 }
 
-/* feature section */
+/* ========================================
+   FEATURE SECTION
+   ======================================== */
 .aero_home_feature_section-card {
   text-align: center;
   color: var(--black-color);
-  box-shadow: 0 0 6px var(--primary-color);
+  background: linear-gradient(135deg, #ffffff 0%, #f5f5f5 100%);
+  box-shadow: 0 10px 30px rgba(240, 12, 116, 0.2);
+  border: 3px solid transparent;
+  background-image: linear-gradient(#fff, #fff),
+                    linear-gradient(135deg, #f00c74, #caff1a);
+  background-origin: border-box;
+  background-clip: padding-box, border-box;
   border-radius: 30px;
-  padding: 1em 0;
+  padding: 2em 1em;
+  transition: all 0.4s ease;
+  animation: fadeInUp 0.6s ease-out;
+  animation-fill-mode: both;
+}
+
+.aero_home_feature_section-card:hover {
+  transform: translateY(-10px) scale(1.05);
+  box-shadow: 0 20px 50px rgba(240, 12, 116, 0.4);
 }
 
 .aero_home_feature_section-card div:first-child {
-  font-size: 1.8rem;
-  font-weight: 700;
+  font-size: 3rem;
+  font-weight: 900;
+  background: linear-gradient(135deg, #f00c74, #caff1a);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  margin-bottom: 0.3em;
+  animation: pulse 2s ease-in-out infinite;
 }
 
 .aero_home_feature_section-card div:last-child {
-  font-size: 1.2rem;
-  font-weight: 500;
+  font-size: 1.3rem;
+  font-weight: 600;
   padding: 0.5em 0;
+  color: #333;
+  text-transform: uppercase;
+  letter-spacing: 1px;
 }
 
-/* Seo section  */
+/* ========================================
+   SEO SECTION
+   ======================================== */
 .aero_home_seo_section {
-  color: var(--primary-color);
-  padding: 0 1em;
+  color: #e0e0e0;
+  padding: 0 2em 2em;
 }
 
 .aero_home_seo_section :is(h2, h3) {
   text-align: center;
-  font-size: 1rem;
+  font-size: 1.5rem;
   margin-bottom: 1em;
+  background: linear-gradient(135deg, #f00c74, #caff1a);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  font-weight: 700;
 }
 
 .aero_home_seo_section p {
-  font-size: 0.8rem;
+  font-size: 1rem;
   margin-bottom: 2em;
+  line-height: 1.8;
+  color: #cccccc;
 }
 
 .aero_home_seo_section ul {
@@ -580,34 +962,58 @@
 }
 
 .aero_home_seo_section ul li {
-  font-size: 0.7rem;
+  font-size: 0.9rem;
   margin-bottom: 1em;
   margin-left: 2em;
+  color: #b0b0b0;
+  line-height: 1.6;
 }
 
-/* footer css start  */
-/* BPJ section  */
-.aero_home-headerimg-wrapper {
-  position: relative;
-}
-
+/* ========================================
+   BPJ SECTION
+   ======================================== */
 .aero_home_BPJ_wrapper div {
   flex-direction: column;
-  gap: 1rem;
+  gap: 1.5rem;
+  text-align: center;
+  padding: 2em;
+  background: linear-gradient(135deg, rgba(240, 12, 116, 0.1) 0%, rgba(202, 255, 26, 0.05) 100%);
+  border-radius: 20px;
+  border: 2px solid rgba(240, 12, 116, 0.3);
+  transition: all 0.4s ease;
+}
+
+.aero_home_BPJ_wrapper div:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 20px 40px rgba(240, 12, 116, 0.3);
+  border-color: rgba(240, 12, 116, 0.6);
 }
 
 .aero_home_BPJ_wrapper img {
-  width: 90px;
+  width: 120px;
   height: auto;
+  filter: drop-shadow(0 5px 15px rgba(240, 12, 116, 0.3));
+  transition: all 0.3s ease;
+}
+
+.aero_home_BPJ_wrapper div:hover img {
+  transform: scale(1.1) rotate(5deg);
 }
 
 .aero_home_BPJ_wrapper span {
-  font-size: 1.5rem;
-  font-weight: 600;
-  color: var(--white-color);
+  font-size: 1.6rem;
+  font-weight: 700;
+  background: linear-gradient(135deg, #f00c74, #caff1a);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-transform: uppercase;
+  letter-spacing: 1px;
 }
 
-/* rating section */
+/* ========================================
+   RATING SECTION
+   ======================================== */
 .aero_rating_wrapper {
   color: var(--white-color);
 }
@@ -617,78 +1023,97 @@
   flex-direction: column;
   align-items: center;
   gap: 1.2rem;
-  padding: 1em 2em;
-  border: 1px solid;
-  border-radius: 12px;
+  padding: 2em;
+  background: linear-gradient(135deg, rgba(26, 26, 26, 0.8) 0%, rgba(38, 38, 38, 0.9) 100%);
+  border: 2px solid rgba(240, 12, 116, 0.3);
+  border-radius: 20px;
+  transition: all 0.4s ease;
+  animation: fadeInUp 0.6s ease-out;
+  animation-fill-mode: both;
+}
+
+.aero_rating_card:hover {
+  transform: translateY(-10px);
+  border-color: rgba(240, 12, 116, 0.6);
+  box-shadow: 0 20px 40px rgba(240, 12, 116, 0.3);
 }
 
 .aero_rating_card h4 {
   display: flex;
   align-items: center;
-  font-size: 1.2rem;
-  font-weight: 500;
+  gap: 0.5rem;
+  font-size: 1.3rem;
+  font-weight: 600;
+  color: #caff1a;
 }
 
 .aero_rating_card p {
-  font-size: 0.85rem;
+  font-size: 0.95rem;
   line-height: 1.8;
-  font-weight: 200;
+  font-weight: 300;
   overflow: hidden;
-  transition: height 0.5s ease-in-out;
+  transition: height 0.5s ease;
   height: 150px;
   position: relative;
+  color: #d0d0d0;
 }
 
 .aero_rating_card p:hover {
-  height: 100%;
+  height: auto;
 }
 
 .aero_rating_card h5 {
-  font-size: 1rem;
-  font-weight: 400;
-  font-style: oblique;
-  color: var(--primary-color);
+  font-size: 1.1rem;
+  font-weight: 500;
+  font-style: italic;
+  color: #f00c74;
 }
 
 .aero_rating_readmore {
   position: absolute;
   bottom: 0;
   right: 0;
-  font-size: 0.8rem;
-  background: var(--black-color);
+  font-size: 0.85rem;
+  background: linear-gradient(135deg, #000000 0%, #1a1a1a 100%);
   padding: 0.5em 1em;
   visibility: visible;
-  font-weight: 400;
+  font-weight: 500;
+  border-radius: 10px;
+  border: 1px solid rgba(240, 12, 116, 0.3);
 }
 
 .aero_rating_card p:hover span {
   visibility: hidden;
 }
 
-/* main footer section */
+/* ========================================
+   FOOTER
+   ======================================== */
 .aero_footer_section-bg {
-  background-color: var(--black-color);
+  background: linear-gradient(135deg, #000000 0%, #0a0a0a 100%);
+  border-top: 3px solid;
+  border-image: linear-gradient(90deg, #f00c74, #caff1a) 1;
 }
 
 .aero_logo_social_wrap {
   flex-direction: column;
   margin: 2em 2em 1em;
-  gap: 1rem;
+  gap: 1.5rem;
 }
 
 .aero_social_icon {
   display: inline-flex;
-  width: 50px;
-  height: 40px;
+  width: 60px;
+  height: 50px;
   align-items: center;
   justify-content: center;
-  border: 2px solid rgba(240, 12, 116, 0.5);
+  border: 3px solid rgba(240, 12, 116, 0.5);
   margin: 0.7em;
-  clip-path: polygon(8% 0, 100% 0, 92% 100%, 0 100%);
-  font-size: 1.2rem;
+  clip-path: polygon(10% 0, 100% 0, 90% 100%, 0 100%);
+  font-size: 1.3rem;
   color: #fff;
   background: linear-gradient(135deg, rgba(240, 12, 116, 0.3) 0%, rgba(202, 255, 26, 0.2) 100%);
-  box-shadow: 0 4px 12px rgba(240, 12, 116, 0.3), inset 0 -2px 8px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 6px 20px rgba(240, 12, 116, 0.3);
   transition: all 0.3s ease;
   position: relative;
   overflow: hidden;
@@ -707,30 +1132,22 @@
 }
 
 .aero_social_icon:hover {
-  background: linear-gradient(135deg, rgba(240, 12, 116, 0.5) 0%, rgba(202, 255, 26, 0.3) 100%);
-  transform: translateY(-3px) scale(1.08);
-  box-shadow: 0 6px 20px rgba(240, 12, 116, 0.5), 0 0 30px rgba(202, 255, 26, 0.3);
-  border-color: rgba(202, 255, 26, 0.8);
+  background: linear-gradient(135deg, rgba(240, 12, 116, 0.6) 0%, rgba(202, 255, 26, 0.4) 100%);
+  transform: translateY(-5px) scale(1.1);
+  box-shadow: 0 10px 30px rgba(240, 12, 116, 0.6);
+  border-color: rgba(202, 255, 26, 0.9);
 }
 
 .aero_social_icon:hover::before {
   left: 100%;
 }
 
-.aero_social_icon img {
-  background: var(--white-color);
-  clip-path: polygon(10% 0, 100% 0, 90% 100%, 0 100%);
-  transition: all 0.3s ease;
-  position: relative;
-  z-index: 1;
-}
-
 .aero_footer_col-4-wrapper {
   display: flex;
   justify-content: space-between;
   flex-wrap: wrap;
-  gap: 1rem;
-  padding: 1em;
+  gap: 2rem;
+  padding: 2em 1em;
 }
 
 .aero_footer_col-4-wrapper ul {
@@ -751,67 +1168,92 @@
 }
 
 .aero_footer_col-4-wrapper ul li {
-  font-size: 0.8rem;
-  color: var(--white-color);
+  font-size: 0.95rem;
+  color: #cccccc;
   font-weight: 400;
-  padding-bottom: 0.8em;
-}
-
-.aero_footer_col-4-wrapper ul li:first-child {
-  font-size: 1.3rem;
-  padding-bottom: 0.5em;
-  margin-bottom: 0.5em;
-  font-weight: 500;
-  border-bottom: 0.1px solid #fff;
-}
-
-.aero_footer_article-card {
-  gap: 1rem;
-}
-
-.aero_footer_article-card img {
-  clip-path: polygon(8% 0, 100% 0, 92% 100%, 0 100%);
-  border: 2px solid rgba(240, 12, 116, 0.5);
-  box-shadow: 0 4px 12px rgba(240, 12, 116, 0.3), inset 0 -2px 8px rgba(0, 0, 0, 0.3);
+  padding-bottom: 1em;
   transition: all 0.3s ease;
 }
 
+.aero_footer_col-4-wrapper ul li:hover {
+  color: #caff1a;
+  transform: translateX(5px);
+}
+
+.aero_footer_col-4-wrapper ul li:first-child {
+  font-size: 1.4rem;
+  padding-bottom: 0.8em;
+  margin-bottom: 0.8em;
+  font-weight: 700;
+  border-bottom: 2px solid;
+  border-image: linear-gradient(90deg, #f00c74, #caff1a) 1;
+  background: linear-gradient(135deg, #f00c74, #caff1a);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.aero_footer_article-card {
+  gap: 1.5rem;
+  transition: all 0.3s ease;
+}
+
+.aero_footer_article-card:hover {
+  transform: translateX(10px);
+}
+
+.aero_footer_article-card img {
+  clip-path: polygon(10% 0, 100% 0, 90% 100%, 0 100%);
+  border: 3px solid rgba(240, 12, 116, 0.5);
+  box-shadow: 0 6px 20px rgba(240, 12, 116, 0.3);
+  transition: all 0.3s ease;
+  border-radius: 5px;
+}
+
 .aero_footer_article-card:hover img {
-  transform: translateY(-3px) scale(1.08);
-  box-shadow: 0 6px 20px rgba(240, 12, 116, 0.5), 0 0 30px rgba(202, 255, 26, 0.3);
+  transform: scale(1.1);
+  box-shadow: 0 10px 30px rgba(240, 12, 116, 0.5);
   border-color: rgba(202, 255, 26, 0.8);
 }
 
 .aero_footer_article-card div h6 {
-  font-size: 0.8rem;
+  font-size: 0.9rem;
   font-weight: 400;
   padding-bottom: 0.5em;
+  color: #999;
 }
 
 .aero_footer_article-card div p {
-  font-size: 1rem;
-  font-weight: 500;
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #ffffff;
 }
+
 .figcaption-bg {
   width: 100%;
-  background: linear-gradient(135deg, rgba(240, 12, 116, 0.3) 0%, rgba(202, 255, 26, 0.2) 100%);
+  background: linear-gradient(135deg, rgba(240, 12, 116, 0.4) 0%, rgba(202, 255, 26, 0.3) 100%);
   color: #fff;
   height: 60px;
   line-height: 60px;
   text-align: center;
-  font-weight: 700;
-  clip-path: polygon(8% 0, 100% 0, 92% 100%, 0 100%);
+  font-weight: 800;
+  clip-path: polygon(5% 0, 100% 0, 95% 100%, 0 100%);
   margin-top: 0;
-  padding: 0 10px;
+  padding: 0 15px;
   box-sizing: border-box;
-  border: 2px solid rgba(240, 12, 116, 0.5);
-  box-shadow: 0 4px 12px rgba(240, 12, 116, 0.3), inset 0 -2px 8px rgba(0, 0, 0, 0.3);
+  border: 3px solid rgba(240, 12, 116, 0.6);
+  box-shadow: 0 6px 20px rgba(240, 12, 116, 0.4);
   position: relative;
   overflow: hidden;
   text-transform: uppercase;
-  letter-spacing: 0.5px;
+  letter-spacing: 1px;
   text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
   transition: all 0.3s ease;
+}
+
+.figcaption-bg h3 {
+  font-size: 1rem;
+  font-weight: 800;
 }
 
 .figcaption-bg::before {
@@ -827,10 +1269,10 @@
 }
 
 .figcaption-bg:hover {
-  background: linear-gradient(135deg, rgba(240, 12, 116, 0.5) 0%, rgba(202, 255, 26, 0.3) 100%);
-  transform: translateY(-3px) scale(1.08);
-  box-shadow: 0 6px 20px rgba(240, 12, 116, 0.5), 0 0 30px rgba(202, 255, 26, 0.3);
-  border-color: rgba(202, 255, 26, 0.8);
+  background: linear-gradient(135deg, rgba(240, 12, 116, 0.6) 0%, rgba(202, 255, 26, 0.5) 100%);
+  transform: translateY(-3px);
+  box-shadow: 0 10px 30px rgba(240, 12, 116, 0.6);
+  border-color: rgba(202, 255, 26, 0.9);
 }
 
 .figcaption-bg:hover::before {
@@ -843,28 +1285,40 @@
   align-items: center;
   position: relative;
   overflow: hidden;
-  border-radius: 12px;
-  transition: all 0.3s ease;
+  border-radius: 20px;
+  transition: all 0.4s ease;
+  background: linear-gradient(135deg, #1a1a1a 0%, #262626 100%);
+  border: 2px solid rgba(240, 12, 116, 0.2);
 }
 
 .attraction-figure:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 10px 30px rgba(240, 12, 116, 0.4);
+  transform: translateY(-10px);
+  box-shadow: 0 20px 50px rgba(240, 12, 116, 0.5);
+  border-color: rgba(240, 12, 116, 0.6);
 }
+
 ul.attractions-grid {
   display: flex;
   flex-wrap: wrap;
-  gap: 16px;
-  justify-content: left;
+  gap: 20px;
+  justify-content: center;
   list-style: none;
   padding: 0;
   margin: 0;
 }
 
-/* Each LI: fixed width on desktop, full width on mobile */
 ul.attractions-grid li {
-  width: 330px;              /* Fixed width by default */
+  width: 330px;
+  animation: fadeInUp 0.6s ease-out;
+  animation-fill-mode: both;
 }
+
+ul.attractions-grid li:nth-child(1) { animation-delay: 0.1s; }
+ul.attractions-grid li:nth-child(2) { animation-delay: 0.2s; }
+ul.attractions-grid li:nth-child(3) { animation-delay: 0.3s; }
+ul.attractions-grid li:nth-child(4) { animation-delay: 0.4s; }
+ul.attractions-grid li:nth-child(5) { animation-delay: 0.5s; }
+ul.attractions-grid li:nth-child(6) { animation-delay: 0.6s; }
 
 @media (max-width: 768px) {
   ul.attractions-grid {
@@ -876,8 +1330,10 @@ ul.attractions-grid li {
     max-width: 100%;
   }
 }
-/* footer css end  */
 
+/* ========================================
+   RESPONSIVE DESIGN
+   ======================================== */
 @media screen and (min-width: 992px) {
   .app-container {
     display: none;
@@ -897,21 +1353,21 @@ ul.attractions-grid li {
 
   .aero_home-actionbtn-wrap,
   .aero_home_article_card-wrapper {
-    gap: 2rem;
+    gap: 2.5rem;
   }
 
   .aero-col-3 {
-    padding: 1.25em;
+    padding: 1.5em;
   }
 
   .aero_home_video-container video {
     height: unset;
     object-fit: contain;
   }
-  .aero-home-h1heading{
-    font-size: 33px;
-  }
 
+  .aero-home-h1heading {
+    font-size: 2.5rem;
+  }
 
   .aero-list-7,
   .aero-list-7-1 {
@@ -920,25 +1376,25 @@ ul.attractions-grid li {
   }
 
   .aero_home-headerimg-wrapper article h1 {
-    font-size: 2.5rem;
+    font-size: 3rem;
   }
 
   .aero_home-headerimg-wrapper article p,
   .aero_home-playsection-1 p,
   .aero_home_article_section p,
   .aero_rating_overallrating {
-    font-size: 1.5rem;
-    line-height: 30px;
+    font-size: 1.3rem;
+    line-height: 2;
   }
 
   .aero_home-playsection-2,
   .aero_home_feature_section {
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    gap: 2rem;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2.5rem;
   }
 
   .aero_home-headerimg-wrapper article {
-    width: 60%;
+    width: 70%;
   }
 
   article.aero_home_BPJ_wrapper {
@@ -949,51 +1405,48 @@ ul.attractions-grid li {
   .aero_home-playsection-1 h2,
   .aero_home_article_section h2,
   .aero_rating_second_heading {
-    font-size: 2rem;
+    font-size: 2.5rem;
   }
 
   .aero_home-actionbtn div button {
-    font-size: 1.1rem;
+    font-size: 1.2rem;
   }
 
   .aero_home_article_card:hover {
-    box-shadow: 0 0 5px 2px #dedada69;
-    transform: translateY(-5px);
+    box-shadow: 0 25px 60px rgba(240, 12, 116, 0.5);
   }
 
   .aero_home_article_desc p {
-    font-size: 1rem;
+    font-size: 1.05rem;
   }
 
   .aero_home_BPJ_wrapper span {
-    font-size: 1.8rem;
+    font-size: 2rem;
   }
 
   .aero_home-play-small-img span {
-    font-size: 1.5rem;
+    font-size: 2rem;
   }
 
   .aero_home_feature_section-card div:first-child {
-    font-size: 2rem;
+    font-size: 3.5rem;
   }
 
   .aero_home_seo_section :is(h2, h3) {
     text-align: left;
-    font-size: 1.5rem;
+    font-size: 2rem;
   }
 
   .aero_home_seo_section p {
-    font-size: 1rem;
+    font-size: 1.1rem;
     text-align: left;
   }
 
   .aero_home_seo_section ul li {
-    font-size: 0.9rem;
+    font-size: 1rem;
   }
 
   .aero_main_logo {
-    left: 50%;
-    transform: translateX(-50%);
     top: -35px;
   }
 
@@ -1001,9 +1454,8 @@ ul.attractions-grid li {
     max-width: 98px;
   }
 
-  /* footer  */
-  .aero_home-headerimg-wrapper>img {
-    height: 400px;
+  .aero_home-headerimg-wrapper > img {
+    height: 500px;
   }
 
   .aero_logo_social_wrap {
@@ -1012,26 +1464,16 @@ ul.attractions-grid li {
   }
 
   .aero_social_icon {
-    width: 60px;
-    height: 50px;
-    font-size: 1.5rem;
-    margin: 0.4em;
-  }
-
-  .aero_social_icon img {
-    background: var(--white-color);
-    clip-path: polygon(10% 0, 100% 0, 90% 100%, 0 100%);
-  }
-
-  .aero_social_icon img:hover {
-    background: linear-gradient(135deg, rgba(240, 12, 116, 0.3) 0%, rgba(202, 255, 26, 0.2) 100%);
-    border-color: var(--primary-color);
+    width: 70px;
+    height: 60px;
+    font-size: 1.6rem;
+    margin: 0.5em;
   }
 
   .aero_footer_col-4-wrapper {
     flex-wrap: nowrap;
-    padding: 2em 1.5em 3em;
-    gap: 2rem;
+    padding: 3em 2em 4em;
+    gap: 3rem;
   }
 
   .aero_footer_col-4-wrapper ul:last-child li:first-child {
@@ -1039,7 +1481,7 @@ ul.attractions-grid li {
   }
 
   .aero_footer_col-4-wrapper ul li:first-child {
-    font-size: 1.45rem;
+    font-size: 1.6rem;
   }
 
   .aero_footer_col-4-wrapper ul li {
@@ -1047,8 +1489,8 @@ ul.attractions-grid li {
   }
 
   .aero_footer_article-card img {
-    min-width: 80px;
-    height: 80px;
+    min-width: 90px;
+    height: 90px;
   }
 
   .aero_footer_article-card div h6 {
@@ -1056,7 +1498,39 @@ ul.attractions-grid li {
   }
 
   .aero_footer_article-card div p {
-    font-size: 1.2rem;
+    font-size: 1.3rem;
   }
-  
+
+  .heading-with-icon {
+    font-size: 2.5rem;
+  }
+
+  .promotions__icon {
+    width: 50px;
+    height: 50px;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .aero_home-actionbtn h2 {
+    font-size: 1.5rem;
+  }
+
+  .heading-with-icon {
+    font-size: 1.5rem;
+    gap: 0.5rem;
+  }
+
+  .promotions__icon {
+    width: 30px;
+    height: 30px;
+  }
+
+  .aero_home_feature_section-card div:first-child {
+    font-size: 2.5rem;
+  }
+
+  .aero_home_feature_section-card div:last-child {
+    font-size: 1.1rem;
+  }
 }

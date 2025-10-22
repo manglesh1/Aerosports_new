@@ -450,7 +450,6 @@
 
 /* New Grid-based Table Container */
 .aero_bp_pricing_table_container {
-  overflow-x: auto;
   margin-bottom: 2em;
   clip-path: polygon(0 0, 100% 0, 100% calc(100% - 20px), calc(100% - 20px) 100%, 0 100%);
   box-shadow: 0 10px 40px rgba(240, 12, 116, 0.3), 0 0 0 3px rgba(240, 12, 116, 0.1);
@@ -496,7 +495,6 @@
 .aero_bp_grid_table {
   display: grid;
   width: 100%;
-  min-width: max-content;
   position: relative;
   gap: 0;
 }
@@ -798,9 +796,11 @@
     margin: 0;
     border-radius: 12px;
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
+    overflow-x: auto;
   }
 
   .aero_bp_grid_table {
+    min-width: max-content;
     border-radius: 12px;
   }
 

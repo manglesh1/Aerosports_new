@@ -1,11 +1,7 @@
 import React, { Children } from "react";
 import "../../styles/kidsparty.css";
 import "../../styles/subcategory.css";
-
-import ImageMarquee from "@/components/ImageMarquee";
 import { fetchsheetdata,  fetchPageData,generateMetadataLib, fetchMenuData,getWaiverLink,generateSchema, fetchBirthdayPartyJson } from "@/lib/sheets";
-import FaqCard from "@/components/smallComponents/FaqCard"
-import SubCategoryCard from "@/components/smallComponents/SubCategoryCard"
 import MotionImage from "@/components/MotionImage";
 export async function generateMetadata({ params }) {
   const metadata = await generateMetadataLib({
