@@ -478,19 +478,49 @@
 }
 
 .aero_home_article_desc div {
-  min-width: 50px;
-  width: 50px;
+  min-width: 60px;
+  width: 60px;
   height: 50px;
-  background-color: var(--primary-color);
-  border-radius: 50%;
+  background: linear-gradient(135deg, rgba(240, 12, 116, 0.3) 0%, rgba(202, 255, 26, 0.2) 100%);
+  clip-path: polygon(8% 0, 100% 0, 92% 100%, 0 100%);
   position: absolute;
   top: -32px;
   left: 8px;
   font-size: 1rem;
-  font-weight: 600;
-  color: var(--white-color);
+  font-weight: 700;
+  color: #fff;
   text-align: center;
   align-content: center;
+  border: 2px solid rgba(240, 12, 116, 0.5);
+  box-shadow: 0 4px 12px rgba(240, 12, 116, 0.3), inset 0 -2px 8px rgba(0, 0, 0, 0.3);
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+  transition: all 0.3s ease;
+  overflow: hidden;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+}
+
+.aero_home_article_desc div::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+  transition: left 0.5s ease;
+  transform: skewX(-20deg);
+}
+
+.aero_home_article_card:hover .aero_home_article_desc div {
+  background: linear-gradient(135deg, rgba(240, 12, 116, 0.5) 0%, rgba(202, 255, 26, 0.3) 100%);
+  transform: translateY(-3px) scale(1.08);
+  box-shadow: 0 6px 20px rgba(240, 12, 116, 0.5), 0 0 30px rgba(202, 255, 26, 0.3);
+  border-color: rgba(202, 255, 26, 0.8);
+}
+
+.aero_home_article_card:hover .aero_home_article_desc div::before {
+  left: 100%;
 }
 
 .aero_home_article_desc h3 {
@@ -648,21 +678,51 @@
 
 .aero_social_icon {
   display: inline-flex;
-  width: 40px;
+  width: 50px;
   height: 40px;
   align-items: center;
   justify-content: center;
-  border: 1px solid var(--white-color);
+  border: 2px solid rgba(240, 12, 116, 0.5);
   margin: 0.7em;
-  border-radius: 50%;
+  clip-path: polygon(8% 0, 100% 0, 92% 100%, 0 100%);
   font-size: 1.2rem;
-  color: var(--white-color);
-  transition: all 0.5s ease-in-out;
+  color: #fff;
+  background: linear-gradient(135deg, rgba(240, 12, 116, 0.3) 0%, rgba(202, 255, 26, 0.2) 100%);
+  box-shadow: 0 4px 12px rgba(240, 12, 116, 0.3), inset 0 -2px 8px rgba(0, 0, 0, 0.3);
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.aero_social_icon::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+  transition: left 0.5s ease;
+  transform: skewX(-20deg);
+}
+
+.aero_social_icon:hover {
+  background: linear-gradient(135deg, rgba(240, 12, 116, 0.5) 0%, rgba(202, 255, 26, 0.3) 100%);
+  transform: translateY(-3px) scale(1.08);
+  box-shadow: 0 6px 20px rgba(240, 12, 116, 0.5), 0 0 30px rgba(202, 255, 26, 0.3);
+  border-color: rgba(202, 255, 26, 0.8);
+}
+
+.aero_social_icon:hover::before {
+  left: 100%;
 }
 
 .aero_social_icon img {
   background: var(--white-color);
-  border-radius: 50%;
+  clip-path: polygon(10% 0, 100% 0, 90% 100%, 0 100%);
+  transition: all 0.3s ease;
+  position: relative;
+  z-index: 1;
 }
 
 .aero_footer_col-4-wrapper {
@@ -710,7 +770,16 @@
 }
 
 .aero_footer_article-card img {
-  border-radius: 50%;
+  clip-path: polygon(8% 0, 100% 0, 92% 100%, 0 100%);
+  border: 2px solid rgba(240, 12, 116, 0.5);
+  box-shadow: 0 4px 12px rgba(240, 12, 116, 0.3), inset 0 -2px 8px rgba(0, 0, 0, 0.3);
+  transition: all 0.3s ease;
+}
+
+.aero_footer_article-card:hover img {
+  transform: translateY(-3px) scale(1.08);
+  box-shadow: 0 6px 20px rgba(240, 12, 116, 0.5), 0 0 30px rgba(202, 255, 26, 0.3);
+  border-color: rgba(202, 255, 26, 0.8);
 }
 
 .aero_footer_article-card div h6 {
@@ -724,24 +793,63 @@
   font-weight: 500;
 }
 .figcaption-bg {
-  width: 100%; /* 👈 This makes it match the image's width */
-  background-image: url('/assets/images/home/line_pattern.svg'); /* or any path in /public */
-  background-size: cover;
-  background-position: center;
-  color: white;
+  width: 100%;
+  background: linear-gradient(135deg, rgba(240, 12, 116, 0.3) 0%, rgba(202, 255, 26, 0.2) 100%);
+  color: #fff;
   height: 60px;
   line-height: 60px;
   text-align: center;
-  font-weight: bold;
-  border-radius: 0px;
+  font-weight: 700;
+  clip-path: polygon(8% 0, 100% 0, 92% 100%, 0 100%);
   margin-top: 0;
   padding: 0 10px;
   box-sizing: border-box;
+  border: 2px solid rgba(240, 12, 116, 0.5);
+  box-shadow: 0 4px 12px rgba(240, 12, 116, 0.3), inset 0 -2px 8px rgba(0, 0, 0, 0.3);
+  position: relative;
+  overflow: hidden;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+  transition: all 0.3s ease;
 }
+
+.figcaption-bg::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+  transition: left 0.5s ease;
+  transform: skewX(-20deg);
+}
+
+.figcaption-bg:hover {
+  background: linear-gradient(135deg, rgba(240, 12, 116, 0.5) 0%, rgba(202, 255, 26, 0.3) 100%);
+  transform: translateY(-3px) scale(1.08);
+  box-shadow: 0 6px 20px rgba(240, 12, 116, 0.5), 0 0 30px rgba(202, 255, 26, 0.3);
+  border-color: rgba(202, 255, 26, 0.8);
+}
+
+.figcaption-bg:hover::before {
+  left: 100%;
+}
+
 .attraction-figure {
   display: flex;
   flex-direction: column;
   align-items: center;
+  position: relative;
+  overflow: hidden;
+  border-radius: 12px;
+  transition: all 0.3s ease;
+}
+
+.attraction-figure:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 30px rgba(240, 12, 116, 0.4);
 }
 ul.attractions-grid {
   display: flex;
@@ -904,7 +1012,7 @@ ul.attractions-grid li {
   }
 
   .aero_social_icon {
-    width: 50px;
+    width: 60px;
     height: 50px;
     font-size: 1.5rem;
     margin: 0.4em;
@@ -912,11 +1020,11 @@ ul.attractions-grid li {
 
   .aero_social_icon img {
     background: var(--white-color);
-    border-radius: 50%;
+    clip-path: polygon(10% 0, 100% 0, 90% 100%, 0 100%);
   }
 
   .aero_social_icon img:hover {
-    background-color: var(--primary-color);
+    background: linear-gradient(135deg, rgba(240, 12, 116, 0.3) 0%, rgba(202, 255, 26, 0.2) 100%);
     border-color: var(--primary-color);
   }
 

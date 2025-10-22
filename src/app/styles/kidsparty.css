@@ -448,15 +448,17 @@
   animation: fadeInUp 1s ease-out 0.2s both;
 }
 
-.aero_bp_pricing_table {
+/* New Grid-based Table Container */
+.aero_bp_pricing_table_container {
   overflow-x: auto;
   margin-bottom: 2em;
   clip-path: polygon(0 0, 100% 0, 100% calc(100% - 20px), calc(100% - 20px) 100%, 0 100%);
   box-shadow: 0 10px 40px rgba(240, 12, 116, 0.3), 0 0 0 3px rgba(240, 12, 116, 0.1);
   position: relative;
+  background: linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 100%);
 }
 
-.aero_bp_pricing_table::before {
+.aero_bp_pricing_table_container::before {
   content: '';
   position: absolute;
   top: 0;
@@ -470,187 +472,134 @@
 }
 
 /* Energetic scrollbar */
-.aero_bp_pricing_table::-webkit-scrollbar {
+.aero_bp_pricing_table_container::-webkit-scrollbar {
   height: 10px;
 }
 
-.aero_bp_pricing_table::-webkit-scrollbar-track {
+.aero_bp_pricing_table_container::-webkit-scrollbar-track {
   background: #1a1a1a;
   border: 2px solid rgba(240, 12, 116, 0.2);
 }
 
-.aero_bp_pricing_table::-webkit-scrollbar-thumb {
+.aero_bp_pricing_table_container::-webkit-scrollbar-thumb {
   background: linear-gradient(90deg, var(--primary-color), #caff1a);
   clip-path: polygon(10% 0, 100% 0, 90% 100%, 0 100%);
   border: 2px solid #000;
 }
 
-.aero_bp_pricing_table::-webkit-scrollbar-thumb:hover {
+.aero_bp_pricing_table_container::-webkit-scrollbar-thumb:hover {
   background: linear-gradient(90deg, #d00760, #9ce600);
   transform: scaleY(1.2);
 }
 
-.aero_bp_pricing_table table {
+/* CSS Grid Table */
+.aero_bp_grid_table {
+  display: grid;
   width: 100%;
-  border-collapse: collapse;
-  border-spacing: 0;
-  background: linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 100%);
-  overflow: hidden;
+  min-width: max-content;
   position: relative;
+  gap: 0;
 }
 
-.aero_bp_pricing_table thead {
-  background: linear-gradient(135deg, #000000 0%, #1a1a1a 100%);
-  color: var(--white-color);
-  position: sticky;
-  top: 0;
-  z-index: 10;
-  border-bottom: 4px solid var(--primary-color);
-  box-shadow: 0 4px 15px rgba(240, 12, 116, 0.5);
-}
-
-.aero_bp_pricing_table thead::after {
-  content: '';
-  position: absolute;
-  bottom: -4px;
-  left: 0;
-  width: 100%;
-  height: 4px;
-  background: linear-gradient(90deg, transparent, #caff1a, transparent);
-  animation: shine 2s linear infinite;
-}
-
-.aero_bp_pricing_table th {
-  padding: 1.2em 1em;
+/* Grid Header Cells */
+.aero_bp_grid_header {
+  padding: 20px 16px;
   font-weight: 800;
-  text-align: center;
   font-size: 1rem;
   letter-spacing: 1px;
-  border-bottom: none;
   animation: slideIn 0.5s ease-out;
   animation-fill-mode: both;
   text-transform: uppercase;
   position: relative;
-  clip-path: polygon(0 0, calc(100% - 15px) 0, 100% 15px, 100% 100%, 0 100%);
   background: linear-gradient(135deg, rgba(240, 12, 116, 0.2) 0%, rgba(202, 255, 26, 0.1) 100%);
   border-right: 2px solid rgba(240, 12, 116, 0.3);
-  vertical-align: middle;
-  width: 200px;
-  min-width: 200px;
+  border-bottom: 4px solid var(--primary-color);
+  color: var(--white-color);
+  display: flex;
+  align-items: center;
+  min-height: 60px;
 }
 
-.aero_bp_pricing_table th:last-child {
-  clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
-}
-
-.aero_bp_pricing_table th:first-child {
+.aero_bp_grid_header_feature {
   clip-path: polygon(0 0, calc(100% - 10px) 0, 100% 10px, 100% 100%, 0 100%);
-}
-
-.aero_bp_feature_column {
-  text-align: left !important;
-  width: 300px;
-  min-width: 300px;
   background: linear-gradient(135deg, rgba(240, 12, 116, 0.15) 0%, rgba(0, 0, 0, 0.3) 100%);
   border-right: 3px solid rgba(240, 12, 116, 0.5);
-  padding-left: 1em !important;
+  padding-left: 24px;
+  font-weight: 800;
 }
 
-.aero_bp_package_column {
-  position: relative;
+.aero_bp_grid_header_package {
+  clip-path: polygon(0 0, calc(100% - 15px) 0, 100% 15px, 100% 100%, 0 100%);
   transition: all 0.3s ease;
+  justify-content: center;
+  text-align: center;
 }
 
-.aero_bp_package_column:hover {
+.aero_bp_grid_header_package:hover {
   background: linear-gradient(180deg, rgba(240, 12, 116, 0.25) 0%, rgba(202, 255, 26, 0.15) 100%);
   transform: translateY(-3px);
 }
 
-/* Premium/Popular badges removed - keeping design clean and energetic */
+.aero_bp_grid_header:last-child {
+  clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+}
 
-.aero_bp_pricing_table tbody tr {
-  border-bottom: 2px solid rgba(240, 12, 116, 0.2);
+/* Grid Data Cells */
+.aero_bp_grid_cell {
+  padding: 20px 16px;
+  font-size: 0.95rem;
   transition: all 0.3s ease;
+  position: relative;
+  border-right: 1px solid rgba(240, 12, 116, 0.1);
+  border-bottom: 2px solid rgba(240, 12, 116, 0.2);
   animation: fadeInUp 0.4s ease-out;
   animation-fill-mode: both;
-  position: relative;
-  background: linear-gradient(135deg, rgba(0, 0, 0, 0.6) 0%, rgba(26, 26, 26, 0.8) 100%);
+  display: flex;
+  align-items: center;
+  min-height: 60px;
 }
 
-.aero_bp_pricing_table tbody tr::before {
-  content: '';
-  position: absolute;
-  left: 0;
-  top: 0;
-  bottom: 0;
-  width: 0;
-  background: linear-gradient(90deg, rgba(240, 12, 116, 0.2) 0%, transparent 100%);
-  transition: width 0.4s ease;
-  z-index: 0;
-}
-
-.aero_bp_pricing_table tbody tr:hover::before {
-  width: 100%;
-}
-
-.aero_bp_pricing_table tbody tr:hover {
-  background: linear-gradient(90deg, rgba(240, 12, 116, 0.15) 0%, rgba(202, 255, 26, 0.08) 100%);
-  transform: translateX(8px) scale(1.01);
-  border-left: 4px solid var(--primary-color);
-  box-shadow: -6px 0 20px rgba(240, 12, 116, 0.4), 0 4px 20px rgba(0, 0, 0, 0.3);
-  z-index: 5;
-}
-
-.aero_bp_pricing_table tbody tr:last-child {
-  border-bottom: none;
-}
-
-.aero_bp_pricing_table tbody tr:nth-child(odd) {
-  background: linear-gradient(135deg, rgba(0, 0, 0, 0.8) 0%, rgba(26, 26, 26, 0.6) 100%);
-}
-
-.aero_bp_pricing_table tbody tr:nth-child(even) {
-  background: linear-gradient(135deg, rgba(10, 10, 10, 0.9) 0%, rgba(20, 20, 20, 0.7) 100%);
-}
-
-.aero_bp_pricing_table td {
-  padding: 1.2em 1em;
-  text-align: center;
-  font-size: 0.95rem;
-  transition: all 0.3s ease;
-  position: relative;
-  z-index: 1;
-  border-right: 1px solid rgba(240, 12, 116, 0.1);
-  vertical-align: middle;
-  width: 200px;
-  min-width: 200px;
-}
-
-.aero_bp_pricing_table td:last-child {
-  border-right: none;
-}
-
-.aero_bp_feature_name {
+.aero_bp_grid_cell_feature {
   font-weight: 700;
   color: #fff;
-  font-size: 0.95rem;
   text-transform: uppercase;
   letter-spacing: 0.5px;
   text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
-  position: relative;
-  width: 300px;
-  min-width: 300px;
-  text-align: left !important;
-  padding-left: 1em !important;
+  background: linear-gradient(135deg, rgba(0, 0, 0, 0.8) 0%, rgba(26, 26, 26, 0.6) 100%);
+  border-right: 3px solid rgba(240, 12, 116, 0.3);
+  padding-left: 24px;
 }
 
-.aero_bp_feature_name::before {
-  content: '';
-}
-
-.aero_bp_feature_value {
+.aero_bp_grid_cell_value {
   color: #e0e0e0;
   font-weight: 500;
+  justify-content: center;
+  text-align: center;
+  background: linear-gradient(135deg, rgba(0, 0, 0, 0.6) 0%, rgba(26, 26, 26, 0.8) 100%);
+}
+
+/* Alternating row colors using nth-child */
+.aero_bp_grid_cell:nth-child(8n+1),
+.aero_bp_grid_cell:nth-child(8n+2),
+.aero_bp_grid_cell:nth-child(8n+3),
+.aero_bp_grid_cell:nth-child(8n+4) {
+  background: linear-gradient(135deg, rgba(0, 0, 0, 0.8) 0%, rgba(26, 26, 26, 0.6) 100%);
+}
+
+.aero_bp_grid_cell:nth-child(8n+5),
+.aero_bp_grid_cell:nth-child(8n+6),
+.aero_bp_grid_cell:nth-child(8n+7),
+.aero_bp_grid_cell:nth-child(8n+8) {
+  background: linear-gradient(135deg, rgba(10, 10, 10, 0.9) 0%, rgba(20, 20, 20, 0.7) 100%);
+}
+
+/* Feature cells always maintain their background */
+.aero_bp_grid_cell_feature {
+  background: linear-gradient(135deg, rgba(0, 0, 0, 0.8) 0%, rgba(26, 26, 26, 0.6) 100%) !important;
+}
+
+.aero_bp_grid_cell:last-child {
+  border-right: none;
 }
 
 /* Modern SVG Icons with animations */
@@ -783,14 +732,19 @@
     width: 120px;
   }
 
-  .aero_bp_pricing_table th {
+  .aero_bp_grid_header {
     font-size: 1.2rem;
-    padding: 1.8em 1.5em;
+    padding: 28px 24px;
   }
 
-  .aero_bp_pricing_table td {
+  .aero_bp_grid_cell {
     font-size: 1rem;
-    padding: 1.5em 1.4em;
+    padding: 24px 24px;
+  }
+
+  .aero_bp_grid_header_feature,
+  .aero_bp_grid_cell_feature {
+    padding-left: 32px;
   }
 
   .aero_bp_location_description {
@@ -840,39 +794,32 @@
     padding: 1.5em 0;
   }
 
-  .aero_bp_pricing_table {
+  .aero_bp_pricing_table_container {
     margin: 0;
     border-radius: 12px;
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
   }
 
-  .aero_bp_pricing_table table {
+  .aero_bp_grid_table {
     border-radius: 12px;
   }
 
-  .aero_bp_pricing_table th {
-    padding: 1em 0.8em;
+  .aero_bp_grid_header {
+    padding: 16px 12px;
     font-size: 0.95rem;
     letter-spacing: 0.2px;
-    width: 150px;
-    min-width: 150px;
+    min-height: 50px;
   }
 
-  .aero_bp_pricing_table td {
-    padding: 1em 0.8em;
+  .aero_bp_grid_cell {
+    padding: 16px 12px;
     font-size: 0.85rem;
-    width: 150px;
-    min-width: 150px;
+    min-height: 50px;
   }
 
-  .aero_bp_feature_column {
-    width: 200px;
-    min-width: 200px;
-  }
-
-  .aero_bp_feature_name {
-    width: 200px;
-    min-width: 200px;
+  .aero_bp_grid_header_feature,
+  .aero_bp_grid_cell_feature {
+    padding-left: 16px;
   }
 
   .aero_bp_check,

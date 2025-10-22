@@ -103,47 +103,72 @@ const Page = async ({ params }) => {
                 <p className="aero_bp_section_subtitle">Choose the perfect party experience for your celebration</p>
               </div>
 
-              <div className="aero_bp_pricing_table">
-                <table>
-                  <thead>
-                    <tr>
-                      <th className="aero_bp_feature_column">
-                        Features
-                      </th>
-                      {Object.keys(birthdayPartyJson.party_packages).map((packageName, index) => (
-                        <th key={packageName} className="aero_bp_package_column" style={{ animationDelay: `${index * 0.1}s` }}>
-                          {packageName}
-                        </th>
-                      ))}
-                    </tr>
-                  </thead>
-                  <tbody>
-                    {(() => {
-                      // Collect all unique features from all packages
-                      const allFeatures = new Set();
-                      Object.values(birthdayPartyJson.party_packages).forEach(packageData => {
-                        Object.keys(packageData).forEach(feature => allFeatures.add(feature));
-                      });
+              <div className="aero_bp_pricing_table_container">
+                {(() => {
+                  // Get package names
+                  const packageNames = Object.keys(birthdayPartyJson.party_packages);
 
-                      // Convert to array and render rows
-                      return Array.from(allFeatures).map((feature, rowIndex) => (
-                        <tr key={feature} style={{ animationDelay: `${rowIndex * 0.05}s` }}>
-                          <td className="aero_bp_feature_name">{feature}</td>
-                          {Object.keys(birthdayPartyJson.party_packages).map((packageName) => {
+                  // Collect all unique features from all packages in a deterministic order
+                  const allFeaturesSet = new Set();
+                  const firstPackage = birthdayPartyJson.party_packages[packageNames[0]];
+
+                  // First, add features from the first package to maintain order
+                  if (firstPackage) {
+                    Object.keys(firstPackage).forEach(feature => allFeaturesSet.add(feature));
+                  }
+
+                  // Then add any additional features from other packages
+                  Object.values(birthdayPartyJson.party_packages).forEach(packageData => {
+                    Object.keys(packageData).forEach(feature => allFeaturesSet.add(feature));
+                  });
+
+                  const allFeatures = Array.from(allFeaturesSet);
+
+                  return (
+                    <div
+                      className="aero_bp_grid_table"
+                      style={{
+                        gridTemplateColumns: `minmax(200px, 1fr) repeat(${packageNames.length}, minmax(150px, 1fr))`
+                      }}
+                    >
+                      {/* Header Row */}
+                      <div className="aero_bp_grid_header aero_bp_grid_header_feature">
+                        FEATURES
+                      </div>
+                      {packageNames.map((packageName, index) => (
+                        <div
+                          key={packageName}
+                          className="aero_bp_grid_header aero_bp_grid_header_package"
+                          style={{ animationDelay: `${index * 0.1}s` }}
+                        >
+                          {packageName}
+                        </div>
+                      ))}
+
+                      {/* Data Rows */}
+                      {allFeatures.map((feature, rowIndex) => (
+                        <React.Fragment key={feature}>
+                          {/* Feature Name Cell */}
+                          <div
+                            className="aero_bp_grid_cell aero_bp_grid_cell_feature"
+                            style={{ animationDelay: `${rowIndex * 0.05}s` }}
+                          >
+                            {feature}
+                          </div>
+
+                          {/* Package Value Cells */}
+                          {packageNames.map((packageName) => {
                             const value = birthdayPartyJson.party_packages[packageName][feature];
 
-                            // Handle undefined values (feature doesn't exist for this package)
-                            if (value === undefined || value === null) {
-                              return (
-                                <td key={packageName} className="aero_bp_feature_value">
-                                  <span className="aero_bp_na">—</span>
-                                </td>
-                              );
-                            }
-
                             return (
-                              <td key={packageName} className="aero_bp_feature_value">
-                                {typeof value === 'boolean' ? (
+                              <div
+                                key={`${feature}-${packageName}`}
+                                className="aero_bp_grid_cell aero_bp_grid_cell_value"
+                                style={{ animationDelay: `${rowIndex * 0.05}s` }}
+                              >
+                                {value === undefined || value === null ? (
+                                  <span className="aero_bp_na">—</span>
+                                ) : typeof value === 'boolean' ? (
                                   value ? (
                                     <span className="aero_bp_check">
                                       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round">
@@ -161,14 +186,14 @@ const Page = async ({ params }) => {
                                 ) : (
                                   <span className="aero_bp_text_value">{value}</span>
                                 )}
-                              </td>
+                              </div>
                             );
                           })}
-                        </tr>
-                      ));
-                    })()}
-                  </tbody>
-                </table>
+                        </React.Fragment>
+                      ))}
+                    </div>
+                  );
+                })()}
               </div>
             </article>
           ) : (
