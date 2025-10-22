@@ -1,0 +1,808 @@
+/* Attractions Page - Modern & Vibrant Design inspired by kidsparty.css */
+
+/* Main wrapper with decorative background */
+.aero_attractions_wrapper {
+  position: relative;
+  overflow: hidden;
+  background: linear-gradient(145deg, #000000 0%, #1a1a1a 50%, #000000 100%);
+  padding: 3em 0.75em;
+  min-height: 100vh;
+}
+
+/* Decorative Background Elements */
+.aero_attractions_decorative_bg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 1;
+  overflow: hidden;
+}
+
+/* Confetti Animations */
+.aero_attractions_confetti {
+  position: absolute;
+  width: 10px;
+  height: 20px;
+  background: linear-gradient(45deg, #f00c74, #caff1a);
+  animation: confettiFall linear infinite;
+  opacity: 0;
+}
+
+.aero_attractions_confetti_1 { left: 10%; animation-duration: 15s; animation-delay: 0s; }
+.aero_attractions_confetti_2 { left: 30%; animation-duration: 18s; animation-delay: 2s; background: linear-gradient(45deg, #caff1a, #f00c74); }
+.aero_attractions_confetti_3 { left: 50%; animation-duration: 20s; animation-delay: 4s; }
+.aero_attractions_confetti_4 { left: 70%; animation-duration: 16s; animation-delay: 1s; background: linear-gradient(45deg, #ff1a8c, #9ce600); }
+.aero_attractions_confetti_5 { left: 85%; animation-duration: 19s; animation-delay: 3s; }
+
+@keyframes confettiFall {
+  0% {
+    transform: translateY(-100%) rotate(0deg);
+    opacity: 0;
+  }
+  10% {
+    opacity: 1;
+  }
+  90% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(100vh) rotate(720deg);
+    opacity: 0;
+  }
+}
+
+/* Floating Circles */
+.aero_attractions_circle {
+  position: absolute;
+  border-radius: 50%;
+  border: 2px solid rgba(240, 12, 116, 0.2);
+  animation: circleFloat 8s ease-in-out infinite;
+}
+
+.aero_attractions_circle_1 {
+  width: 150px;
+  height: 150px;
+  top: 10%;
+  left: 5%;
+  animation-delay: 0s;
+}
+
+.aero_attractions_circle_2 {
+  width: 100px;
+  height: 100px;
+  top: 50%;
+  right: 10%;
+  border-color: rgba(202, 255, 26, 0.2);
+  animation-delay: 2s;
+}
+
+.aero_attractions_circle_3 {
+  width: 200px;
+  height: 200px;
+  bottom: 10%;
+  left: 15%;
+  border-color: rgba(240, 12, 116, 0.15);
+  animation-delay: 4s;
+}
+
+@keyframes circleFloat {
+  0%, 100% {
+    transform: translate(0, 0) scale(1);
+    opacity: 0.3;
+  }
+  50% {
+    transform: translate(20px, -30px) scale(1.1);
+    opacity: 0.5;
+  }
+}
+
+/* Star Decorations */
+.aero_attractions_star {
+  position: absolute;
+  font-size: 2rem;
+  color: #caff1a;
+  animation: starTwinkle 4s ease-in-out infinite;
+}
+
+.aero_attractions_star_1 { top: 15%; right: 20%; animation-delay: 0s; }
+.aero_attractions_star_2 { top: 40%; left: 10%; animation-delay: 1s; color: #f00c74; }
+.aero_attractions_star_3 { bottom: 30%; right: 15%; animation-delay: 2s; }
+.aero_attractions_star_4 { bottom: 15%; left: 25%; animation-delay: 3s; color: #ff1a8c; }
+
+@keyframes starTwinkle {
+  0%, 100% {
+    opacity: 0.3;
+    transform: scale(0.8) rotate(0deg);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.2) rotate(180deg);
+  }
+}
+
+/* Animated Title Section */
+.aero_attractions_title_wrapper {
+  position: relative;
+  max-width: 1100px;
+  margin: 0 auto 3em;
+  background: linear-gradient(145deg, #000000 0%, #1a1a1a 50%, #000000 100%);
+  border-radius: 24px;
+  overflow: hidden;
+  box-shadow: 0 25px 50px rgba(0, 0, 0, 0.5), 0 0 0 1px rgba(255, 255, 255, 0.1);
+  animation: fadeInUp 0.8s ease-out;
+  z-index: 10;
+}
+
+.aero_attractions_title_content {
+  position: relative;
+  z-index: 10;
+  text-align: center;
+  padding: 40px 32px;
+}
+
+.aero_attractions_title_badge {
+  display: inline-block;
+  background: linear-gradient(45deg, #f00c74, #ff1a8c);
+  padding: 2px;
+  border-radius: 20px;
+  margin-bottom: 20px;
+  animation: badgePulse 3s ease-in-out infinite;
+}
+
+.aero_attractions_title_badge span {
+  display: block;
+  background: #000;
+  color: #fff;
+  padding: 8px 20px;
+  border-radius: 18px;
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+}
+
+.aero_attractions_gradient_title {
+  background: linear-gradient(45deg, #f00c74, #caff1a);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  font-size: 2.5rem;
+  font-weight: 900;
+  margin: 0 0 20px 0;
+  line-height: 1.1;
+  animation: fadeInUp 1s ease-out 0.2s both;
+}
+
+.aero_attractions_description {
+  color: #e0e0e0;
+  font-size: 1.05rem;
+  line-height: 1.7;
+  text-align: center;
+  max-width: 900px;
+  margin: 0 auto;
+  animation: fadeInUp 1s ease-out 0.4s both;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes badgePulse {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.05);
+  }
+}
+
+/* Attractions Grid */
+.aero_attractions_grid {
+  position: relative;
+  z-index: 10;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 2.5rem;
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 2em 1em;
+}
+
+/* Attraction Card */
+.aero_attraction_card {
+  position: relative;
+  background: linear-gradient(135deg, rgba(0, 0, 0, 0.8) 0%, rgba(26, 26, 26, 0.6) 100%);
+  border-radius: 20px;
+  overflow: hidden;
+  cursor: pointer;
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  opacity: 0;
+  transform: translateY(30px);
+  animation: cardFadeIn 0.6s ease forwards;
+  box-shadow: 0 10px 30px rgba(240, 12, 116, 0.3), 0 0 0 2px rgba(240, 12, 116, 0.2);
+  clip-path: polygon(0 0, calc(100% - 20px) 0, 100% 20px, 100% 100%, 20px 100%, 0 calc(100% - 20px));
+}
+
+.aero_attraction_card:nth-child(1) { animation-delay: 0.1s; }
+.aero_attraction_card:nth-child(2) { animation-delay: 0.2s; }
+.aero_attraction_card:nth-child(3) { animation-delay: 0.3s; }
+.aero_attraction_card:nth-child(4) { animation-delay: 0.4s; }
+.aero_attraction_card:nth-child(5) { animation-delay: 0.5s; }
+.aero_attraction_card:nth-child(6) { animation-delay: 0.6s; }
+.aero_attraction_card:nth-child(7) { animation-delay: 0.7s; }
+.aero_attraction_card:nth-child(8) { animation-delay: 0.8s; }
+
+@keyframes cardFadeIn {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.aero_attraction_card:hover {
+  transform: translateY(-10px) scale(1.03);
+  box-shadow: 0 20px 50px rgba(240, 12, 116, 0.5), 0 0 60px rgba(202, 255, 26, 0.4);
+  border-color: rgba(202, 255, 26, 0.8);
+}
+
+/* Card Image Container */
+.aero_attraction_card_image_wrap {
+  position: relative;
+  width: 100%;
+  height: 280px;
+  overflow: hidden;
+}
+
+.aero_attraction_card_image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s ease;
+}
+
+.aero_attraction_card:hover .aero_attraction_card_image {
+  transform: scale(1.15);
+}
+
+/* Gradient Overlay on Image */
+.aero_attraction_card_image_overlay {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 50%;
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.9), transparent);
+  z-index: 1;
+}
+
+/* Card Content */
+.aero_attraction_card_content {
+  padding: 1.5em;
+  position: relative;
+  z-index: 2;
+}
+
+.aero_attraction_card_title {
+  font-size: 1.4rem;
+  font-weight: 800;
+  background: linear-gradient(135deg, #f00c74, #caff1a);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  margin: 0 0 0.5em 0;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+}
+
+.aero_attraction_card_description {
+  color: #e0e0e0;
+  font-size: 0.95rem;
+  line-height: 1.6;
+  margin-bottom: 1em;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.aero_attraction_card_cta {
+  display: inline-block;
+  background: linear-gradient(135deg, rgba(240, 12, 116, 0.3) 0%, rgba(202, 255, 26, 0.2) 100%);
+  clip-path: polygon(8% 0, 100% 0, 92% 100%, 0 100%);
+  color: #fff;
+  padding: 0.6em 1.5em;
+  font-weight: 700;
+  font-size: 0.9rem;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  border: 2px solid rgba(240, 12, 116, 0.5);
+  box-shadow: 0 4px 12px rgba(240, 12, 116, 0.3);
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.aero_attraction_card_cta::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+  transition: left 0.5s ease;
+  transform: skewX(-20deg);
+}
+
+.aero_attraction_card:hover .aero_attraction_card_cta {
+  background: linear-gradient(135deg, rgba(240, 12, 116, 0.5) 0%, rgba(202, 255, 26, 0.3) 100%);
+  border-color: rgba(202, 255, 26, 0.8);
+  box-shadow: 0 6px 20px rgba(240, 12, 116, 0.5), 0 0 30px rgba(202, 255, 26, 0.3);
+  transform: translateX(5px);
+}
+
+.aero_attraction_card:hover .aero_attraction_card_cta::before {
+  left: 100%;
+}
+
+/* Modal Styles */
+.aero_attraction_modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.95);
+  backdrop-filter: blur(10px);
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2em;
+  opacity: 0;
+  animation: modalFadeIn 0.3s ease forwards;
+  overflow-y: auto;
+}
+
+@keyframes modalFadeIn {
+  to {
+    opacity: 1;
+  }
+}
+
+.aero_attraction_modal_content {
+  position: relative;
+  max-width: 1400px;
+  width: 95%;
+  max-height: 90vh;
+  background: linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 100%);
+  border-radius: 24px;
+  overflow: hidden;
+  box-shadow: 0 30px 90px rgba(240, 12, 116, 0.6), 0 0 0 3px rgba(240, 12, 116, 0.3);
+  animation: modalSlideUp 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+  clip-path: polygon(0 0, calc(100% - 30px) 0, 100% 30px, 100% 100%, 30px 100%, 0 calc(100% - 30px));
+  display: flex;
+  flex-direction: column;
+}
+
+@keyframes modalSlideUp {
+  from {
+    transform: translateY(50px) scale(0.9);
+  }
+  to {
+    transform: translateY(0) scale(1);
+  }
+}
+
+/* Modal Header with gradient border */
+.aero_attraction_modal_content::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, #f00c74 0%, #caff1a 50%, #f00c74 100%);
+  background-size: 200% 100%;
+  animation: shine 3s linear infinite;
+  z-index: 100;
+}
+
+@keyframes shine {
+  0% {
+    background-position: -200% center;
+  }
+  100% {
+    background-position: 200% center;
+  }
+}
+
+/* Close Button - More Visible */
+.aero_attraction_modal_close {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  background: linear-gradient(135deg, rgba(240, 12, 116, 0.95), rgba(255, 26, 140, 0.95));
+  border: 3px solid rgba(255, 255, 255, 0.5);
+  color: white;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  font-size: 2rem;
+  font-weight: bold;
+  z-index: 10001;
+  transition: all 0.3s ease;
+  box-shadow: 0 6px 20px rgba(240, 12, 116, 0.8), 0 0 30px rgba(240, 12, 116, 0.4);
+  animation: pulseCloseButton 2s ease-in-out infinite;
+}
+
+@keyframes pulseCloseButton {
+  0%, 100% {
+    box-shadow: 0 6px 20px rgba(240, 12, 116, 0.8), 0 0 30px rgba(240, 12, 116, 0.4);
+  }
+  50% {
+    box-shadow: 0 8px 30px rgba(240, 12, 116, 1), 0 0 50px rgba(240, 12, 116, 0.6);
+  }
+}
+
+.aero_attraction_modal_close:hover {
+  transform: rotate(90deg) scale(1.15);
+  background: linear-gradient(135deg, rgba(255, 26, 140, 1), rgba(240, 12, 116, 1));
+  box-shadow: 0 8px 35px rgba(240, 12, 116, 1), 0 0 60px rgba(240, 12, 116, 0.8);
+  border-color: rgba(255, 255, 255, 0.8);
+}
+
+/* Modal Hero Image */
+.aero_attraction_modal_hero {
+  position: relative;
+  width: 100%;
+  height: 350px;
+  overflow: hidden;
+  flex-shrink: 0;
+}
+
+.aero_attraction_modal_hero_image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.aero_attraction_modal_hero_overlay {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 60%;
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.95), transparent);
+  z-index: 1;
+}
+
+/* Modal Body */
+.aero_attraction_modal_body {
+  padding: 2em 3em 2.5em;
+  position: relative;
+  z-index: 10;
+  overflow-y: auto;
+  flex: 1;
+  min-height: 0;
+}
+
+/* Custom Scrollbar for Modal Body */
+.aero_attraction_modal_body::-webkit-scrollbar {
+  width: 10px;
+}
+
+.aero_attraction_modal_body::-webkit-scrollbar-track {
+  background: #1a1a1a;
+  border-radius: 10px;
+}
+
+.aero_attraction_modal_body::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, #f00c74, #caff1a);
+  border-radius: 10px;
+  border: 2px solid #1a1a1a;
+}
+
+.aero_attraction_modal_body::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(180deg, #ff1a8c, #9ce600);
+}
+
+.aero_attraction_modal_title {
+  font-size: 2.2rem;
+  font-weight: 900;
+  background: linear-gradient(45deg, #f00c74, #caff1a);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  margin: 0 0 0.8em 0;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  line-height: 1.2;
+  text-align: center;
+  animation: fadeInUp 0.6s ease-out;
+}
+
+.aero_attraction_modal_description {
+  color: #e0e0e0;
+  font-size: 1rem;
+  line-height: 1.7;
+  margin-bottom: 1.5em;
+}
+
+/* Style content from HTML sections */
+.aero_attraction_modal_description h1,
+.aero_attraction_modal_description h2,
+.aero_attraction_modal_description h3,
+.aero_attraction_modal_description h4 {
+  background: linear-gradient(45deg, #f00c74, #caff1a);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  font-weight: 800;
+  margin: 1.2em 0 0.6em 0;
+  line-height: 1.3;
+}
+
+.aero_attraction_modal_description h1 {
+  font-size: 1.8rem;
+}
+
+.aero_attraction_modal_description h2 {
+  font-size: 1.6rem;
+}
+
+.aero_attraction_modal_description h3 {
+  font-size: 1.4rem;
+}
+
+.aero_attraction_modal_description h4 {
+  font-size: 1.2rem;
+}
+
+.aero_attraction_modal_description p {
+  margin-bottom: 1em;
+  color: #e0e0e0;
+}
+
+.aero_attraction_modal_description ul,
+.aero_attraction_modal_description ol {
+  margin: 0.8em 0 1.2em 1.5em;
+  color: #e0e0e0;
+}
+
+.aero_attraction_modal_description li {
+  margin-bottom: 0.6em;
+  line-height: 1.6;
+}
+
+.aero_attraction_modal_description strong,
+.aero_attraction_modal_description b {
+  color: #caff1a;
+  font-weight: 700;
+}
+
+.aero_attraction_modal_description a {
+  color: #f00c74;
+  text-decoration: underline;
+  transition: color 0.3s ease;
+}
+
+.aero_attraction_modal_description a:hover {
+  color: #caff1a;
+}
+
+.aero_attraction_modal_description img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 12px;
+  margin: 1em 0;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.5);
+}
+
+.aero_attraction_modal_features {
+  list-style: none;
+  padding: 0;
+  margin: 2em 0;
+  display: grid;
+  gap: 1rem;
+}
+
+.aero_attraction_modal_features li {
+  display: flex;
+  align-items: center;
+  color: #e0e0e0;
+  font-size: 1rem;
+  padding: 0.8em 1.2em;
+  background: linear-gradient(135deg, rgba(240, 12, 116, 0.15) 0%, rgba(202, 255, 26, 0.08) 100%);
+  border-left: 4px solid #f00c74;
+  border-radius: 8px;
+  transition: all 0.3s ease;
+}
+
+.aero_attraction_modal_features li::before {
+  content: "⚾";
+  margin-right: 0.8em;
+  font-size: 1.2rem;
+  animation: floatEmoji 3s ease-in-out infinite;
+}
+
+@keyframes floatEmoji {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-5px);
+  }
+}
+
+.aero_attraction_modal_features li:hover {
+  transform: translateX(10px);
+  background: linear-gradient(135deg, rgba(240, 12, 116, 0.25) 0%, rgba(202, 255, 26, 0.15) 100%);
+  border-left-color: #caff1a;
+}
+
+/* Modal Actions Container */
+.aero_attraction_modal_actions {
+  display: flex;
+  gap: 1.5rem;
+  margin-top: 1.5em;
+  flex-wrap: wrap;
+  justify-content: center;
+  padding-top: 1.5em;
+  border-top: 2px solid rgba(240, 12, 116, 0.2);
+}
+
+/* Modal Action Button */
+.aero_attraction_modal_action {
+  display: inline-block;
+  background: linear-gradient(135deg, rgba(240, 12, 116, 0.4) 0%, rgba(202, 255, 26, 0.3) 100%);
+  clip-path: polygon(8% 0, 100% 0, 92% 100%, 0 100%);
+  color: #fff;
+  padding: 1em 2.5em;
+  font-weight: 800;
+  font-size: 1.1rem;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  border: 3px solid rgba(240, 12, 116, 0.6);
+  box-shadow: 0 6px 20px rgba(240, 12, 116, 0.4);
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+  text-decoration: none;
+  cursor: pointer;
+  background-color: transparent;
+}
+
+.aero_attraction_modal_action::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+  transition: left 0.5s ease;
+  transform: skewX(-20deg);
+}
+
+.aero_attraction_modal_action:hover {
+  background: linear-gradient(135deg, rgba(240, 12, 116, 0.6) 0%, rgba(202, 255, 26, 0.4) 100%);
+  border-color: rgba(202, 255, 26, 0.9);
+  box-shadow: 0 8px 30px rgba(240, 12, 116, 0.6), 0 0 40px rgba(202, 255, 26, 0.4);
+  transform: translateY(-3px);
+}
+
+.aero_attraction_modal_action:hover::before {
+  left: 100%;
+}
+
+/* Back Button Variant */
+.aero_attraction_modal_back {
+  background: linear-gradient(135deg, rgba(26, 26, 26, 0.8) 0%, rgba(60, 60, 60, 0.8) 100%);
+  border: 3px solid rgba(255, 255, 255, 0.3);
+}
+
+.aero_attraction_modal_back:hover {
+  background: linear-gradient(135deg, rgba(60, 60, 60, 0.9) 0%, rgba(26, 26, 26, 0.9) 100%);
+  border-color: rgba(255, 255, 255, 0.5);
+  box-shadow: 0 8px 30px rgba(255, 255, 255, 0.2);
+}
+
+/* Responsive Design */
+@media screen and (max-width: 768px) {
+  .aero_attractions_wrapper {
+    padding: 2em 0.5em;
+  }
+
+  .aero_attractions_title_wrapper {
+    border-radius: 16px;
+    margin: 0 0.5em 2em;
+  }
+
+  .aero_attractions_title_content {
+    padding: 28px 20px;
+  }
+
+  .aero_attractions_gradient_title {
+    font-size: 1.8rem;
+  }
+
+  .aero_attractions_description {
+    font-size: 0.95rem;
+  }
+
+  .aero_attractions_grid {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+    padding: 1em 0.5em;
+  }
+
+  .aero_attraction_card_image_wrap {
+    height: 220px;
+  }
+
+  .aero_attraction_modal {
+    padding: 1em;
+  }
+
+  .aero_attraction_modal_content {
+    border-radius: 16px;
+    max-height: 90vh;
+    overflow-y: auto;
+  }
+
+  .aero_attraction_modal_hero {
+    height: 250px;
+  }
+
+  .aero_attraction_modal_body {
+    padding: 1.5em 1.5em 2em;
+  }
+
+  .aero_attraction_modal_title {
+    font-size: 1.8rem;
+  }
+
+  .aero_attraction_modal_description {
+    font-size: 1rem;
+  }
+
+  .aero_attraction_modal_close {
+    width: 50px;
+    height: 50px;
+    top: 15px;
+    right: 15px;
+    font-size: 1.5rem;
+  }
+
+  .aero_attraction_modal_actions {
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .aero_attraction_modal_action {
+    font-size: 1rem;
+    padding: 0.8em 2em;
+    width: 100%;
+    text-align: center;
+  }
+}
+
+@media screen and (min-width: 769px) and (max-width: 1024px) {
+  .aero_attractions_grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}

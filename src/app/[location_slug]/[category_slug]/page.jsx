@@ -1,9 +1,11 @@
 import Link from "next/link";
 import React from "react";
 import "../../styles/category.css";
+import "../../styles/attractions.css";
 import { getDataByParentId } from "@/utils/customFunctions";
 import { fetchMenuData, generateMetadataLib, fetchPageData,getWaiverLink, fetchsheetdata,generateSchema} from "@/lib/sheets";
 import MotionImage from "@/components/MotionImage";
+import AttractionsGrid from "../../components/AttractionsGrid";
 export async function generateMetadata({ params }) {
   const { location_slug, category_slug } = params;
   const metadata = await generateMetadataLib({
@@ -35,47 +37,41 @@ const jsonLDschema = await generateSchema(pageData,locationData,'',category_slug
 //console.log('pagedata',pageData);
   const attractionsData = getDataByParentId(data, category_slug);
   //console.log('waiverLink',waiverLink);
+  // Filter active attractions
+  const activeAttractions = attractionsData[0]?.children?.filter(item => item?.isactive == 1) || [];
+
   return (
     <main>
-      <section>
-        <section className="aero_category_section_wrapper">
-          
-          <section className="aero-max-container">
+      <section className="aero_attractions_wrapper">
+        <section className="aero-max-container">
           <MotionImage pageData={pageData} waiverLink={waiverLink} locationData={locationData}/>
-            
-            <section className="aero_category_section_card_wrapper">
-              {attractionsData[0]?.children?.map((item, i) => {
-                return (
-                  item?.isactive == 1 && (
-                    <Link
-                      href={`${category_slug}/${item?.path}`}
-                      prefetch
-                      key={i}
-                    >
-                      <article className="aero_category_section_card_wrap">
-                        <img
-                          src={item?.smallimage}
-                          width={150}
-                          height={150}
-                          alt={item?.title}
-                          title={item?.title}
-                          className="aero_category_section_card_img"
-                        />
-                        <div className="aero_category_section_card_desc">
-                          <h2>{item?.desc}</h2>
-                          <p>
-                            {item?.smalltext?.slice(0, 50) + "..."}{" "}
-                            <span>READ MORE</span>
-                          </p>
-                        </div>
-                      </article>
-                    </Link>
-                  )
-                );
-              })}
-            </section>
-          </section>
+
+          {/* Title Section with Gradient and Animations */}
+          <div className="aero_attractions_title_wrapper">
+            <div className="aero_attractions_title_content">
+              <div className="aero_attractions_title_badge">
+                <span>✨ EXPLORE OUR ATTRACTIONS ✨</span>
+              </div>
+              <h1 className="aero_attractions_gradient_title">
+                {pageData?.title || "Amazing Adventures Await"}
+              </h1>
+              {pageData?.description && (
+                <p className="aero_attractions_description">
+                  {pageData.description}
+                </p>
+              )}
+            </div>
+          </div>
+
+          {/* Attractions Grid with Modal */}
+          <AttractionsGrid
+            attractionsData={activeAttractions}
+            waiverLink={waiverLink}
+            locationSlug={location_slug}
+          />
         </section>
+
+        {/* SEO Content Section */}
         <section className="aero_home_article_section">
           <section className="aero-max-container aero_home_seo_section">
             <div dangerouslySetInnerHTML={{ __html: pageData?.section1 || "" }} />
@@ -83,9 +79,9 @@ const jsonLDschema = await generateSchema(pageData,locationData,'',category_slug
           </section>
         </section>
       </section>
- <script type="application/ld+json" suppressHydrationWarning
-  dangerouslySetInnerHTML={{ __html: jsonLDschema }}
-/>
+      <script type="application/ld+json" suppressHydrationWarning
+        dangerouslySetInnerHTML={{ __html: jsonLDschema }}
+      />
     </main>
   );
 };

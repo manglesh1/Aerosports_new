@@ -575,6 +575,7 @@
   letter-spacing: 2px;
   margin-bottom: 1.5em;
   animation: fadeInUp 0.8s ease-out;
+  text-align: center;
 }
 
 .aero_home-actionbtn div button {
@@ -615,14 +616,56 @@
 .aero_home_feature_section-bg {
   background: linear-gradient(180deg, #ffffff 0%, #f5f5f5 100%);
   position: relative;
+  padding: 3em 0;
 }
 
 .aero_home-playsection-1 {
   gap: 1.5rem;
   text-align: center;
-  padding: 3em 1.5em;
+  padding: 2em 1.5em;
   color: var(--black-color);
   animation: fadeInUp 0.8s ease-out;
+}
+
+.aero_home_content_section {
+  max-width: 900px;
+  margin: 2em auto 0;
+  line-height: 1.8;
+  color: #555;
+}
+
+.aero_home_content_section p {
+  margin-bottom: 1.5em;
+  font-size: 1.05rem;
+}
+
+.aero_home_content_section ul {
+  margin: 1.5em 0;
+  padding-left: 2em;
+}
+
+.aero_home_content_section ul li {
+  margin-bottom: 0.8em;
+  color: #444;
+}
+
+.aero_section_subtitle {
+  text-align: center;
+  font-size: 1.1rem;
+  color: #666;
+  margin-bottom: 2.5em;
+  max-width: 800px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.aero_section_header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 2em;
+  flex-wrap: wrap;
+  gap: 1rem;
 }
 
 .aero_home-playsection-1 h2 {
@@ -981,6 +1024,8 @@
   border-radius: 20px;
   border: 2px solid rgba(240, 12, 116, 0.3);
   transition: all 0.4s ease;
+  justify-content: center;
+  align-items: center;
 }
 
 .aero_home_BPJ_wrapper div:hover {
@@ -1087,7 +1132,7 @@
 }
 
 /* ========================================
-   FOOTER
+   MODERN FOOTER
    ======================================== */
 .aero_footer_section-bg {
   background: linear-gradient(135deg, #000000 0%, #0a0a0a 100%);
@@ -1095,138 +1140,196 @@
   border-image: linear-gradient(90deg, #f00c74, #caff1a) 1;
 }
 
-.aero_logo_social_wrap {
-  flex-direction: column;
-  margin: 2em 2em 1em;
-  gap: 1.5rem;
+/* Modern Footer Wrapper */
+.aero_footer_modern_wrapper {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 3rem;
+  padding: 3em 1em;
+  animation: fadeInUp 0.8s ease-out;
 }
 
-.aero_social_icon {
-  display: inline-flex;
-  width: 60px;
-  height: 50px;
+/* Brand Section */
+.aero_footer_brand_section {
+  text-align: center;
+}
+
+.aero_footer_logo {
+  display: inline-block;
+  margin-bottom: 1.5em;
+  transition: all 0.3s ease;
+}
+
+.aero_footer_logo:hover {
+  transform: scale(1.05) rotate(2deg);
+  filter: drop-shadow(0 10px 20px rgba(240, 12, 116, 0.5));
+}
+
+.aero_footer_tagline {
+  color: #cccccc;
+  font-size: 1.1rem;
+  line-height: 1.7;
+  margin-bottom: 2em;
+  max-width: 500px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* Clean Social Media Icons */
+.aero_footer_social_icons {
+  display: flex;
+  gap: 1.5rem;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.aero_footer_social_link {
+  display: flex;
   align-items: center;
   justify-content: center;
-  border: 3px solid rgba(240, 12, 116, 0.5);
-  margin: 0.7em;
-  clip-path: polygon(10% 0, 100% 0, 90% 100%, 0 100%);
-  font-size: 1.3rem;
-  color: #fff;
-  background: linear-gradient(135deg, rgba(240, 12, 116, 0.3) 0%, rgba(202, 255, 26, 0.2) 100%);
-  box-shadow: 0 6px 20px rgba(240, 12, 116, 0.3);
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, rgba(240, 12, 116, 0.2) 0%, rgba(202, 255, 26, 0.1) 100%);
+  border: 2px solid rgba(240, 12, 116, 0.4);
+  color: #ffffff;
   transition: all 0.3s ease;
   position: relative;
   overflow: hidden;
 }
 
-.aero_social_icon::before {
+.aero_footer_social_link::before {
   content: '';
   position: absolute;
   top: 0;
-  left: -100%;
+  left: 0;
   width: 100%;
   height: 100%;
-  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
-  transition: left 0.5s ease;
-  transform: skewX(-20deg);
+  background: linear-gradient(135deg, rgba(240, 12, 116, 0.5) 0%, rgba(202, 255, 26, 0.3) 100%);
+  opacity: 0;
+  transition: opacity 0.3s ease;
 }
 
-.aero_social_icon:hover {
-  background: linear-gradient(135deg, rgba(240, 12, 116, 0.6) 0%, rgba(202, 255, 26, 0.4) 100%);
-  transform: translateY(-5px) scale(1.1);
-  box-shadow: 0 10px 30px rgba(240, 12, 116, 0.6);
-  border-color: rgba(202, 255, 26, 0.9);
+.aero_footer_social_link:hover::before {
+  opacity: 1;
 }
 
-.aero_social_icon:hover::before {
-  left: 100%;
-}
-
-.aero_footer_col-4-wrapper {
-  display: flex;
-  justify-content: space-between;
-  flex-wrap: wrap;
-  gap: 2rem;
-  padding: 2em 1em;
-}
-
-.aero_footer_col-4-wrapper ul {
-  list-style: none;
-  flex-basis: 26%;
-}
-
-.aero_footer_col-4-wrapper ul:last-child {
-  flex-basis: 100%;
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-}
-
-.aero_footer_col-4-wrapper ul:last-child li:first-child {
-  width: 100%;
-  text-align: center;
-}
-
-.aero_footer_col-4-wrapper ul li {
-  font-size: 0.95rem;
-  color: #cccccc;
-  font-weight: 400;
-  padding-bottom: 1em;
+.aero_footer_social_link svg {
+  width: 24px;
+  height: 24px;
+  position: relative;
+  z-index: 1;
   transition: all 0.3s ease;
 }
 
-.aero_footer_col-4-wrapper ul li:hover {
-  color: #caff1a;
-  transform: translateX(5px);
+.aero_footer_social_link:hover {
+  transform: translateY(-5px) scale(1.1);
+  border-color: rgba(202, 255, 26, 0.8);
+  box-shadow: 0 10px 25px rgba(240, 12, 116, 0.5);
 }
 
-.aero_footer_col-4-wrapper ul li:first-child {
-  font-size: 1.4rem;
-  padding-bottom: 0.8em;
-  margin-bottom: 0.8em;
-  font-weight: 700;
-  border-bottom: 2px solid;
-  border-image: linear-gradient(90deg, #f00c74, #caff1a) 1;
+.aero_footer_social_link:hover svg {
+  transform: scale(1.1);
+}
+
+/* Links Section */
+.aero_footer_links_section {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 2.5rem;
+}
+
+.aero_footer_links_column {
+  animation: fadeInUp 0.6s ease-out;
+  animation-fill-mode: both;
+}
+
+.aero_footer_links_column:nth-child(1) { animation-delay: 0.1s; }
+.aero_footer_links_column:nth-child(2) { animation-delay: 0.2s; }
+.aero_footer_links_column:nth-child(3) { animation-delay: 0.3s; }
+
+.aero_footer_column_title {
+  font-size: 1.3rem;
+  font-weight: 800;
+  margin-bottom: 1.2em;
   background: linear-gradient(135deg, #f00c74, #caff1a);
   background-clip: text;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  position: relative;
+  padding-bottom: 0.8em;
 }
 
-.aero_footer_article-card {
-  gap: 1.5rem;
-  transition: all 0.3s ease;
+.aero_footer_column_title::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 50px;
+  height: 3px;
+  background: linear-gradient(90deg, #f00c74, #caff1a);
+  border-radius: 2px;
 }
 
-.aero_footer_article-card:hover {
-  transform: translateX(10px);
+.aero_footer_links_list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
 }
 
-.aero_footer_article-card img {
-  clip-path: polygon(10% 0, 100% 0, 90% 100%, 0 100%);
-  border: 3px solid rgba(240, 12, 116, 0.5);
-  box-shadow: 0 6px 20px rgba(240, 12, 116, 0.3);
-  transition: all 0.3s ease;
-  border-radius: 5px;
+.aero_footer_links_list li {
+  margin-bottom: 0.8em;
 }
 
-.aero_footer_article-card:hover img {
-  transform: scale(1.1);
-  box-shadow: 0 10px 30px rgba(240, 12, 116, 0.5);
-  border-color: rgba(202, 255, 26, 0.8);
-}
-
-.aero_footer_article-card div h6 {
-  font-size: 0.9rem;
+.aero_footer_links_list li a {
+  color: #cccccc;
+  font-size: 1rem;
   font-weight: 400;
-  padding-bottom: 0.5em;
-  color: #999;
+  transition: all 0.3s ease;
+  display: inline-block;
+  position: relative;
+  padding-left: 1.2em;
 }
 
-.aero_footer_article-card div p {
-  font-size: 1.1rem;
-  font-weight: 600;
-  color: #ffffff;
+.aero_footer_links_list li a::before {
+  content: '→';
+  position: absolute;
+  left: 0;
+  opacity: 0;
+  transition: all 0.3s ease;
+  color: #caff1a;
+}
+
+.aero_footer_links_list li a:hover {
+  color: #caff1a;
+  padding-left: 1.8em;
+}
+
+.aero_footer_links_list li a:hover::before {
+  opacity: 1;
+}
+
+/* Copyright Bar */
+.aero_footer_copyright {
+  text-align: center;
+  padding: 2em 1em;
+  border-top: 1px solid rgba(240, 12, 116, 0.2);
+  margin-top: 2em;
+}
+
+.aero_footer_copyright p {
+  color: #999;
+  font-size: 0.95rem;
+  margin: 0;
+}
+
+/* Legacy Support - Keep for backward compatibility */
+.aero_logo_social_wrap {
+  flex-direction: column;
+  margin: 2em 2em 1em;
+  gap: 1.5rem;
 }
 
 .figcaption-bg {
