@@ -340,53 +340,155 @@
   position: absolute;
   bottom: 120px;
   left: 30px;
-  background: linear-gradient(135deg, rgba(0, 0, 0, 0.9) 0%, rgba(26, 26, 26, 0.85) 100%);
+  background: rgba(0, 0, 0, 0.65);
   color: white;
-  padding: 30px 40px;
-  border-radius: 20px;
+  padding: 1.8em 2.2em;
+  border-radius: 0;
   font-family: 'Segoe UI', sans-serif;
   z-index: 10;
-  max-width: 90%;
-  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
-  border: 2px solid rgba(240, 12, 116, 0.3);
+  max-width: 450px;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.7);
+  border: none;
+  border-left: 4px solid #f00c74;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
   animation: fadeInUp 1s ease-out;
+  backdrop-filter: blur(12px);
+  transition: all 0.3s ease;
+  overflow: visible;
+}
+
+.location-overlay-box:hover {
+  box-shadow: 0 15px 50px rgba(0, 0, 0, 0.8);
+  border-left-color: #caff1a;
 }
 
 .location-overlay-box::before {
   content: '';
   position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: 3px;
-  background: linear-gradient(90deg, #f00c74, #caff1a, #f00c74);
-  background-size: 200% 100%;
-  animation: shine 3s linear infinite;
+  top: -1px;
+  left: -1px;
+  right: -1px;
+  height: 1px;
+  background: linear-gradient(90deg, #f00c74 0%, transparent 100%);
+  z-index: 1;
+}
+
+.location-overlay-box::after {
+  content: '';
+  position: absolute;
+  bottom: -1px;
+  left: -1px;
+  right: -1px;
+  height: 1px;
+  background: linear-gradient(90deg, transparent 0%, rgba(202, 255, 26, 0.5) 100%);
+  z-index: 1;
 }
 
 .location-overlay-box h2 {
-  font-size: 1.0rem;
-  margin-bottom: 10px;
-  color: #caff1a;
+  font-size: 0.7rem;
+  margin-bottom: 8px;
+  color: #f00c74;
   text-transform: uppercase;
-  letter-spacing: 2px;
+  letter-spacing: 3px;
+  font-weight: 700;
+  position: relative;
+  z-index: 2;
+  opacity: 0.9;
 }
 
 .location-overlay-box h1 {
-  font-size: 1.9rem;
-  margin-bottom: 10px;
-  background: linear-gradient(135deg, #f00c74, #caff1a);
-  background-clip: text;
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
+  font-size: 1.8rem;
+  margin-bottom: 12px;
+  color: #ffffff;
   font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  position: relative;
+  z-index: 2;
+  line-height: 1.2;
 }
 
 .location-overlay-box p {
-  margin: 5px 0;
-  font-size: 1rem;
+  margin: 10px 0;
+  font-size: 0.9rem;
   line-height: 1.6;
-  color: #e0e0e0;
+  color: rgba(255, 255, 255, 0.85);
+  position: relative;
+  z-index: 2;
+  font-weight: 400;
+}
+
+.location-overlay-box p strong {
+  font-size: 1em;
+  margin-right: 0.4em;
+  color: #f00c74;
+  font-weight: 400;
+}
+
+.location-overlay-box p a {
+  color: #ffffff;
+  font-weight: 500;
+  transition: all 0.3s ease;
+  text-decoration: none;
+  position: relative;
+  display: inline-block;
+  border-bottom: 1px solid transparent;
+}
+
+.location-overlay-box p a:hover {
+  color: #caff1a;
+  border-bottom-color: #caff1a;
+}
+
+.location-overlay-box .aero-btn-booknow {
+  margin-top: 1.2em;
+  position: relative;
+  z-index: 2;
+  display: inline-block;
+}
+
+.location-overlay-box .aero-btn-booknow button {
+  width: auto;
+  font-size: 0.7rem;
+  padding: 0.5em 1.5em;
+  background: linear-gradient(135deg, #f00c74 0%, #ff1a8c 100%);
+  border: none;
+  box-shadow: 0 4px 0 #a0054c, 0 6px 15px rgba(240, 12, 116, 0.4);
+  color: #ffffff;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  border-radius: 0;
+  position: relative;
+  overflow: hidden;
+  transition: all 0.3s ease;
+  clip-path: polygon(8% 0, 100% 0, 92% 100%, 0 100%);
+}
+
+.location-overlay-box .aero-btn-booknow button::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+  transition: left 0.6s ease;
+}
+
+.location-overlay-box .aero-btn-booknow button:hover {
+  background: linear-gradient(135deg, #ff1a8c 0%, #f00c74 100%);
+  box-shadow: 0 2px 0 #a0054c, 0 4px 12px rgba(240, 12, 116, 0.6);
+  transform: translateY(2px);
+}
+
+.location-overlay-box .aero-btn-booknow button:hover::before {
+  left: 100%;
+}
+
+.location-overlay-box .aero-btn-booknow button:active {
+  transform: translateY(4px);
+  box-shadow: 0 0 0 #a0054c, 0 2px 8px rgba(240, 12, 116, 0.4);
 }
 
 /* ========================================
@@ -1334,29 +1436,31 @@
 
 .figcaption-bg {
   width: 100%;
-  background: linear-gradient(135deg, rgba(240, 12, 116, 0.4) 0%, rgba(202, 255, 26, 0.3) 100%);
+  padding: 1.2em 1em;
+  background: linear-gradient(135deg, rgba(240, 12, 116, 0.3) 0%, rgba(202, 255, 26, 0.2) 100%);
   color: #fff;
-  height: 60px;
-  line-height: 60px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
   text-align: center;
-  font-weight: 800;
-  clip-path: polygon(5% 0, 100% 0, 95% 100%, 0 100%);
-  margin-top: 0;
-  padding: 0 15px;
-  box-sizing: border-box;
-  border: 3px solid rgba(240, 12, 116, 0.6);
-  box-shadow: 0 6px 20px rgba(240, 12, 116, 0.4);
+  text-transform: uppercase;
+  font-weight: 700;
+  border-top: 2px solid rgba(240, 12, 116, 0.5);
   position: relative;
   overflow: hidden;
-  text-transform: uppercase;
-  letter-spacing: 1px;
+  letter-spacing: 0.5px;
   text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
   transition: all 0.3s ease;
+  box-shadow: 0 4px 12px rgba(240, 12, 116, 0.3), inset 0 -2px 8px rgba(0, 0, 0, 0.3);
 }
 
 .figcaption-bg h3 {
-  font-size: 1rem;
+  font-size: 1.1rem;
   font-weight: 800;
+  margin: 0;
+  position: relative;
+  z-index: 1;
 }
 
 .figcaption-bg::before {
@@ -1371,49 +1475,30 @@
   transform: skewX(-20deg);
 }
 
-.figcaption-bg:hover {
-  background: linear-gradient(135deg, rgba(240, 12, 116, 0.6) 0%, rgba(202, 255, 26, 0.5) 100%);
-  transform: translateY(-3px);
-  box-shadow: 0 10px 30px rgba(240, 12, 116, 0.6);
-  border-color: rgba(202, 255, 26, 0.9);
+.attraction-figure:hover .figcaption-bg {
+  background: linear-gradient(135deg, rgba(240, 12, 116, 0.5) 0%, rgba(202, 255, 26, 0.3) 100%);
+  border-top-color: rgba(202, 255, 26, 0.8);
+  box-shadow: 0 6px 20px rgba(240, 12, 116, 0.5), 0 0 30px rgba(202, 255, 26, 0.3);
 }
 
-.figcaption-bg:hover::before {
+.attraction-figure:hover .figcaption-bg::before {
   left: 100%;
 }
 
-.attraction-figure {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  position: relative;
-  overflow: hidden;
-  border-radius: 20px;
-  transition: all 0.4s ease;
-  background: linear-gradient(135deg, #1a1a1a 0%, #262626 100%);
-  border: 2px solid rgba(240, 12, 116, 0.2);
-}
-
-.attraction-figure:hover {
-  transform: translateY(-10px);
-  box-shadow: 0 20px 50px rgba(240, 12, 116, 0.5);
-  border-color: rgba(240, 12, 116, 0.6);
-}
-
+/* Homepage Attractions Grid - Matching Attractions Page Design */
 ul.attractions-grid {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 20px;
-  justify-content: center;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 2.5rem;
   list-style: none;
-  padding: 0;
+  padding: 2em 0;
   margin: 0;
 }
 
 ul.attractions-grid li {
-  width: 330px;
-  animation: fadeInUp 0.6s ease-out;
-  animation-fill-mode: both;
+  opacity: 0;
+  transform: translateY(30px);
+  animation: cardFadeIn 0.6s ease forwards;
 }
 
 ul.attractions-grid li:nth-child(1) { animation-delay: 0.1s; }
@@ -1422,15 +1507,69 @@ ul.attractions-grid li:nth-child(3) { animation-delay: 0.3s; }
 ul.attractions-grid li:nth-child(4) { animation-delay: 0.4s; }
 ul.attractions-grid li:nth-child(5) { animation-delay: 0.5s; }
 ul.attractions-grid li:nth-child(6) { animation-delay: 0.6s; }
+ul.attractions-grid li:nth-child(7) { animation-delay: 0.7s; }
+ul.attractions-grid li:nth-child(8) { animation-delay: 0.8s; }
+
+@keyframes cardFadeIn {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.attraction-figure {
+  position: relative;
+  background: linear-gradient(135deg, rgba(0, 0, 0, 0.8) 0%, rgba(26, 26, 26, 0.6) 100%);
+  border-radius: 20px;
+  overflow: hidden;
+  cursor: pointer;
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  box-shadow: 0 10px 30px rgba(240, 12, 116, 0.3), 0 0 0 2px rgba(240, 12, 116, 0.2);
+  clip-path: polygon(0 0, calc(100% - 20px) 0, 100% 20px, 100% 100%, 20px 100%, 0 calc(100% - 20px));
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.attraction-figure:hover {
+  transform: translateY(-10px) scale(1.03);
+  box-shadow: 0 20px 50px rgba(240, 12, 116, 0.5), 0 0 60px rgba(202, 255, 26, 0.4);
+  border-color: rgba(202, 255, 26, 0.8);
+}
+
+.attraction-figure figure {
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.attraction-figure figure img {
+  width: 100%;
+  height: 280px;
+  object-fit: cover;
+  transition: transform 0.5s ease;
+}
+
+.attraction-figure:hover figure img {
+  transform: scale(1.15);
+}
 
 @media (max-width: 768px) {
   ul.attractions-grid {
-    justify-content: center;
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+    padding: 1em 0;
   }
 
-  ul.attractions-grid li {
-    width: 100%;
-    max-width: 100%;
+  .attraction-figure figure img {
+    height: 220px;
+  }
+}
+
+@media (min-width: 769px) and (max-width: 1024px) {
+  ul.attractions-grid {
+    grid-template-columns: repeat(2, 1fr);
   }
 }
 
