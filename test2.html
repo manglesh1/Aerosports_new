@@ -1,0 +1,592 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AeroSports Oakville - Ultimate Indoor Entertainment</title>
+    <style>
+        /* Simplified Animation System */
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+        }
+        
+        @keyframes floatSlow {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-15px) rotate(5deg); }
+        }
+        
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); opacity: 0.7; }
+            50% { transform: scale(1.05); opacity: 1; }
+        }
+        
+        @keyframes gradientFlow {
+            0%, 100% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+        }
+        
+        @keyframes borderFlow {
+            0%, 100% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+        }
+        
+        @keyframes iconSpin {
+            0%, 100% { transform: rotate(0deg) scale(1); }
+            50% { transform: rotate(180deg) scale(1.1); }
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .attractions-grid {
+                grid-template-columns: 1fr !important;
+            }
+            .cta-buttons {
+                flex-direction: column !important;
+            }
+            .stats-container {
+                flex-direction: column !important;
+                gap: 20px !important;
+            }
+        }
+    </style>
+</head>
+<body style="margin: 0; padding: 20px; background: #000; font-family: 'Inter', sans-serif;">
+
+<div style="
+    position: relative;
+    max-width: 1200px;
+    margin: 0 auto;
+    background: 
+        radial-gradient(circle at 15% 15%, rgba(240, 12, 116, 0.18) 0%, transparent 50%),
+        radial-gradient(circle at 85% 85%, rgba(202, 255, 26, 0.12) 0%, transparent 50%),
+        linear-gradient(145deg, #000000 0%, #0a0a0a 25%, #1a1a1a 50%, #0a0a0a 75%, #000000 100%);
+    border-radius: 32px;
+    overflow: hidden;
+    box-shadow: 
+        0 0 100px rgba(240, 12, 116, 0.4),
+        0 0 60px rgba(202, 255, 26, 0.25),
+        0 30px 60px rgba(0, 0, 0, 0.9),
+        inset 0 2px 0 rgba(255, 255, 255, 0.15);
+    border: 2px solid transparent;
+    background-clip: padding-box;
+">
+    <!-- Simplified Particle System -->
+    <div style="
+        position: absolute;
+        top: 0; left: 0; width: 100%; height: 100%;
+        pointer-events: none;
+        overflow: hidden;
+        z-index: 1;
+    ">
+        <div style="position: absolute; top: 10%; left: 5%; font-size: 1.5rem; opacity: 0.08; animation: floatSlow 12s infinite;">🦘</div>
+        <div style="position: absolute; top: 20%; right: 10%; font-size: 1.3rem; opacity: 0.10; animation: float 15s infinite 3s;">🎯</div>
+        <div style="position: absolute; top: 60%; right: 5%; font-size: 1.2rem; opacity: 0.11; animation: floatSlow 13s infinite 2s;">🏆</div>
+        <div style="position: absolute; top: 70%; left: 15%; font-size: 1.6rem; opacity: 0.07; animation: float 11s infinite 4s;">🎪</div>
+    </div>
+    
+    <!-- Simplified Border Effect -->
+    <div style="
+        position: absolute;
+        top: -3px; left: -3px; right: -3px; bottom: -3px;
+        background: linear-gradient(45deg, 
+            rgba(240, 12, 116, 0.4), 
+            rgba(202, 255, 26, 0.3), 
+            rgba(240, 12, 116, 0.4), 
+            rgba(202, 255, 26, 0.3));
+        background-size: 400% 400%;
+        border-radius: 35px;
+        z-index: 0;
+        animation: borderFlow 8s infinite;
+        opacity: 0.7;
+    "></div>
+    
+    <!-- Hero Section -->
+    <div style="
+        position: relative;
+        z-index: 10;
+        text-align: center;
+        padding: 60px 45px;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+        background: radial-gradient(ellipse at center top, rgba(240, 12, 116, 0.08) 0%, transparent 70%);
+    ">
+        <div style="
+            display: inline-block;
+            background: linear-gradient(135deg, #f00c74, #caff1a);
+            background-size: 400% 400%;
+            animation: gradientFlow 5s infinite;
+            padding: 4px;
+            border-radius: 30px;
+            margin-bottom: 30px;
+            box-shadow: 0 0 40px rgba(240, 12, 116, 0.5);
+            animation: pulse 4s infinite;
+        ">
+            <span style="
+                display: block;
+                background: linear-gradient(135deg, #000, #111, #000);
+                color: #fff;
+                padding: 15px 35px;
+                border-radius: 26px;
+                font-size: 0.9rem;
+                font-weight: 900;
+                letter-spacing: 1.5px;
+                text-transform: uppercase;
+                text-shadow: 0 0 15px rgba(240, 12, 116, 0.6);
+            ">🌟 Ultimate Indoor Entertainment</span>
+        </div>
+        
+        <h1 style="
+            background: linear-gradient(135deg, #f00c74 0%, #caff1a 50%, #f00c74 100%);
+            background-size: 400% 400%;
+            background-clip: text;
+            -webkit-background-clip: text;
+            color: transparent;
+            font-size: 3.2rem;
+            font-weight: 900;
+            margin: 0 0 25px 0;
+            line-height: 1.1;
+            animation: gradientFlow 6s infinite;
+        ">Discover AeroSports Oakville</h1>
+        
+        <p style="
+            color: #f0f0f0;
+            font-size: 1.3rem;
+            font-weight: 400;
+            margin: 0 0 40px 0;
+            opacity: 0.95;
+            text-shadow: 0 2px 6px rgba(0, 0, 0, 0.6);
+        ">The Ultimate Indoor Trampoline Park & Family Entertainment Center</p>
+        
+        <div class="stats-container" style="
+            display: flex;
+            justify-content: center;
+            gap: 50px;
+            flex-wrap: wrap;
+            margin-bottom: 20px;
+        ">
+            <div style="
+                text-align: center;
+                background: rgba(202, 255, 26, 0.05);
+                border: 1px solid rgba(202, 255, 26, 0.2);
+                border-radius: 20px;
+                padding: 20px 25px;
+                backdrop-filter: blur(15px);
+                animation: float 6s infinite;
+                box-shadow: 0 8px 25px rgba(202, 255, 26, 0.1);
+            ">
+                <div style="
+                    color: #caff1a; 
+                    font-size: 2.2rem; 
+                    font-weight: 900; 
+                    margin-bottom: 8px;
+                    text-shadow: 0 0 20px rgba(202, 255, 26, 0.6);
+                ">27,000+</div>
+                <div style="color: #d0d0d0; font-size: 1rem; font-weight: 600;">Sq Ft of Fun</div>
+            </div>
+            <div style="
+                text-align: center;
+                background: rgba(240, 12, 116, 0.05);
+                border: 1px solid rgba(240, 12, 116, 0.2);
+                border-radius: 20px;
+                padding: 20px 25px;
+                backdrop-filter: blur(15px);
+                animation: float 6s infinite 2s;
+                box-shadow: 0 8px 25px rgba(240, 12, 116, 0.1);
+            ">
+                <div style="
+                    color: #f00c74; 
+                    font-size: 2.2rem; 
+                    font-weight: 900; 
+                    margin-bottom: 8px;
+                    text-shadow: 0 0 20px rgba(240, 12, 116, 0.6);
+                ">8+</div>
+                <div style="color: #d0d0d0; font-size: 1rem; font-weight: 600;">Attractions</div>
+            </div>
+            <div style="
+                text-align: center;
+                background: linear-gradient(135deg, rgba(240, 12, 116, 0.08) 0%, rgba(202, 255, 26, 0.05) 100%);
+                border: 1px solid rgba(255, 255, 255, 0.15);
+                border-radius: 20px;
+                padding: 20px 25px;
+                backdrop-filter: blur(15px);
+                animation: float 6s infinite 4s;
+                box-shadow: 0 8px 25px rgba(240, 12, 116, 0.1);
+            ">
+                <div style="
+                    background: linear-gradient(45deg, #caff1a, #f00c74);
+                    background-clip: text;
+                    -webkit-background-clip: text;
+                    color: transparent;
+                    font-size: 2.2rem; 
+                    font-weight: 900; 
+                    margin-bottom: 8px;
+                ">All Ages</div>
+                <div style="color: #d0d0d0; font-size: 1rem; font-weight: 600;">Welcome</div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Main Description -->
+    <div style="
+        position: relative;
+        z-index: 10;
+        padding: 45px;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        background: linear-gradient(180deg, rgba(202, 255, 26, 0.03) 0%, transparent 100%);
+    ">
+        <div style="
+            background: 
+                linear-gradient(135deg, rgba(255, 255, 255, 0.12) 0%, rgba(255, 255, 255, 0.05) 100%),
+                radial-gradient(circle at center, rgba(202, 255, 26, 0.08) 0%, transparent 70%);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            border-radius: 25px;
+            padding: 40px;
+            backdrop-filter: blur(20px);
+            max-width: 950px;
+            margin: 0 auto;
+            box-shadow: 0 15px 50px rgba(0, 0, 0, 0.3);
+            animation: float 8s infinite;
+        ">
+            <p style="
+                color: #f5f5f5;
+                font-size: 1.2rem;
+                line-height: 1.9;
+                text-align: justify;
+                margin: 0;
+                text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+            ">
+                Welcome to <strong style="color: #caff1a; font-weight: 700;">AeroSports Oakville-Mississauga</strong>, the top choice for <strong style="color: #caff1a; font-weight: 700;">indoor activities near Oakville, Mississauga, Brampton, Milton, Burlington, Georgetown, Etobicoke, and Toronto</strong>. Our trampoline park spans over 27,000 square feet, providing endless fun for kids, teens, and adults. Perfect for family outings and solo adventurers alike, AeroSports Oakville offers an array of activities for children and kids, including <strong style="color: #caff1a; font-weight: 700;">wall-to-wall trampolines</strong>, thrilling <strong style="color: #caff1a; font-weight: 700;">climbing walls</strong>, and an exciting <strong style="color: #caff1a; font-weight: 700;">dodgeball arena</strong>.
+            </p>
+        </div>
+    </div>
+    
+    <!-- Why Choose Us Section -->
+    <div style="
+        position: relative;
+        z-index: 10;
+        padding: 45px;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        background: linear-gradient(180deg, rgba(240, 12, 116, 0.03) 0%, transparent 100%);
+    ">
+        <h2 style="
+            display: flex;
+            align-items: center;
+            gap: 18px;
+            color: #ffffff;
+            font-size: 2.2rem;
+            font-weight: 800;
+            margin: 0 0 35px 0;
+            text-align: center;
+            justify-content: center;
+            text-shadow: 0 0 25px rgba(255, 255, 255, 0.15);
+        ">
+            <span style="font-size: 2rem; animation: pulse 3s infinite;">🎉</span>
+            Why Choose AeroSports Oakville
+        </h2>
+        <div style="
+            background: 
+                linear-gradient(135deg, rgba(202, 255, 26, 0.12) 0%, rgba(202, 255, 26, 0.18) 100%),
+                radial-gradient(circle at center, rgba(202, 255, 26, 0.08) 0%, transparent 70%);
+            border: 1px solid rgba(202, 255, 26, 0.3);
+            border-radius: 25px;
+            padding: 35px;
+            backdrop-filter: blur(20px);
+            box-shadow: 0 15px 50px rgba(202, 255, 26, 0.15);
+            animation: float 7s infinite;
+        ">
+            <p style="
+                color: #f8f8f8;
+                font-size: 1.2rem;
+                line-height: 1.9;
+                margin: 0;
+                text-align: justify;
+                text-shadow: 0 2px 4px rgba(0, 0, 0, 0.4);
+            ">
+                Located conveniently near <strong style="color: #caff1a; font-weight: 700;">Oakville, Mississauga, and Burlington</strong>, our park combines <strong style="color: #caff1a; font-weight: 700;">active entertainment</strong> with safe and engaging experiences. <strong style="color: #caff1a; font-weight: 700;">AeroSports Oakville</strong> provides the ideal setting for unforgettable <strong style="color: #caff1a; font-weight: 700;">kids' birthday parties</strong>, school events, and corporate gatherings.
+            </p>
+        </div>
+    </div>
+    
+    <!-- Attractions Section -->
+    <div style="
+        position: relative;
+        z-index: 10;
+        padding: 45px;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        background: radial-gradient(ellipse at center, rgba(240, 12, 116, 0.04) 0%, transparent 70%);
+    ">
+        <h2 style="
+            display: flex;
+            align-items: center;
+            gap: 18px;
+            color: #ffffff;
+            font-size: 2.2rem;
+            font-weight: 800;
+            margin: 0 0 35px 0;
+            text-align: center;
+            justify-content: center;
+            text-shadow: 0 0 25px rgba(255, 255, 255, 0.15);
+        ">
+            <!-- <span style="font-size: 2rem; animation: iconSpin 4s infinite;">🚀</span> -->
+            Top Attractions at AeroSports Oakville
+        </h2>
+        
+        <div class="attractions-grid" style="
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 30px;
+            margin-top: 35px;
+        ">
+            <!-- Trampoline Park -->
+            <div style="
+                background: linear-gradient(135deg, rgba(255, 255, 255, 0.12) 0%, rgba(255, 255, 255, 0.05) 100%);
+                border: 1px solid rgba(255, 255, 255, 0.15);
+                border-radius: 25px;
+                padding: 35px;
+                backdrop-filter: blur(25px);
+                transition: all 0.3s ease;
+                box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+                animation: float 10s infinite;
+            " 
+            onmouseover="this.style.transform='translateY(-8px)'; this.style.borderColor='rgba(240, 12, 116, 0.5)'; this.style.boxShadow='0 25px 60px rgba(240, 12, 116, 0.3)';" 
+            onmouseout="this.style.transform='translateY(0)'; this.style.borderColor='rgba(255, 255, 255, 0.15)'; this.style.boxShadow='0 10px 30px rgba(0, 0, 0, 0.3)';">
+                <!-- <div style="font-size: 3rem; margin-bottom: 18px;">🦘</div> -->
+                <h3 style="color: #ffffff; font-size: 1.5rem; font-weight: 800; margin: 0 0 18px 0;">Trampolines</h3>
+                <p style="color: #d0d0d0; font-size: 1.05rem; line-height: 1.8; margin: 0;">Bounce, flip, and soar across our expansive trampoline area, perfect for kids and families to burn energy and have fun.</p>
+            </div>
+            
+            <!-- Valo Arena (Featured) -->
+            <div style="
+                position: relative;
+                background: linear-gradient(135deg, rgba(202, 255, 26, 0.18) 0%, rgba(202, 255, 26, 0.08) 100%);
+                border: 2px solid rgba(202, 255, 26, 0.4);
+                border-radius: 25px;
+                padding: 35px;
+                backdrop-filter: blur(25px);
+                transition: all 0.3s ease;
+                box-shadow: 0 15px 40px rgba(202, 255, 26, 0.2);
+                animation: pulse 8s infinite;
+            " 
+            onmouseover="this.style.transform='translateY(-12px)'; this.style.borderColor='rgba(202, 255, 26, 0.7)'; this.style.boxShadow='0 30px 80px rgba(202, 255, 26, 0.35)';" 
+            onmouseout="this.style.transform='translateY(0)'; this.style.borderColor='rgba(202, 255, 26, 0.4)'; this.style.boxShadow='0 15px 40px rgba(202, 255, 26, 0.2)';">
+                <div style="
+                    position: absolute;
+                    top: -15px; right: 25px;
+                    background: linear-gradient(135deg, #caff1a, #9ce600);
+                    color: #000;
+                    padding: 10px 20px;
+                    border-radius: 20px;
+                    font-size: 0.85rem;
+                    font-weight: 900;
+                    letter-spacing: 1px;
+                    text-transform: uppercase;
+                    box-shadow: 0 8px 25px rgba(202, 255, 26, 0.5);
+                ">Canada's First!</div>
+                <!-- <div style="font-size: 3.5rem; margin-bottom: 20px;">🎮</div> -->
+                <h3 style="color: #ffffff; font-size: 1.5rem; font-weight: 800; margin: 0 0 18px 0;">Valo Arena</h3>
+                <p style="color: #d0d0d0; font-size: 1.05rem; line-height: 1.8; margin: 0;">Experience Canada's first Valo Arena, blending interactive gaming with physical activity.</p>
+            </div>
+            
+            <!-- Other Attractions -->
+            <div style="
+                background: linear-gradient(135deg, rgba(255, 255, 255, 0.12) 0%, rgba(255, 255, 255, 0.05) 100%);
+                border: 1px solid rgba(255, 255, 255, 0.15);
+                border-radius: 25px;
+                padding: 35px;
+                backdrop-filter: blur(25px);
+                transition: all 0.3s ease;
+                box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+                animation: float 10s infinite 2s;
+            " 
+            onmouseover="this.style.transform='translateY(-8px)'; this.style.borderColor='rgba(240, 12, 116, 0.5)';" 
+            onmouseout="this.style.transform='translateY(0)'; this.style.borderColor='rgba(255, 255, 255, 0.15)';">
+                <!-- <div style="font-size: 3rem; margin-bottom: 18px;">💫</div> -->
+                <h3 style="color: #ffffff; font-size: 1.5rem; font-weight: 800; margin: 0 0 18px 0;">Wipeout Zone</h3>
+                <p style="color: #d0d0d0; font-size: 1.05rem; line-height: 1.8; margin: 0;">Test your agility and balance in our Wipeout Zone, featuring rotating obstacles.</p>
+            </div>
+            
+            <div style="
+                background: linear-gradient(135deg, rgba(255, 255, 255, 0.12) 0%, rgba(255, 255, 255, 0.05) 100%);
+                border: 1px solid rgba(255, 255, 255, 0.15);
+                border-radius: 25px;
+                padding: 35px;
+                backdrop-filter: blur(25px);
+                transition: all 0.3s ease;
+                box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+                animation: float 10s infinite 4s;
+            " 
+            onmouseover="this.style.transform='translateY(-8px)'; this.style.borderColor='rgba(202, 255, 26, 0.5)';" 
+            onmouseout="this.style.transform='translateY(0)'; this.style.borderColor='rgba(255, 255, 255, 0.15)';">
+                <!-- <div style="font-size: 3rem; margin-bottom: 18px;">🧗‍♂️</div> -->
+                <h3 style="color: #ffffff; font-size: 1.5rem; font-weight: 800; margin: 0 0 18px 0;">Climbing Walls</h3>
+                <p style="color: #d0d0d0; font-size: 1.05rem; line-height: 1.8; margin: 0;">Tackle our dynamic climbing walls, offering routes for all skill levels.</p>
+            </div>
+            
+            <div style="
+                background: linear-gradient(135deg, rgba(255, 255, 255, 0.12) 0%, rgba(255, 255, 255, 0.05) 100%);
+                border: 1px solid rgba(255, 255, 255, 0.15);
+                border-radius: 25px;
+                padding: 35px;
+                backdrop-filter: blur(25px);
+                transition: all 0.3s ease;
+                box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+                animation: float 10s infinite 6s;
+            " 
+            onmouseover="this.style.transform='translateY(-8px)'; this.style.borderColor='rgba(240, 12, 116, 0.5)';" 
+            onmouseout="this.style.transform='translateY(0)'; this.style.borderColor='rgba(255, 255, 255, 0.15)';">
+                <!-- <div style="font-size: 3rem; margin-bottom: 18px;">🥎</div> -->
+                <h3 style="color: #ffffff; font-size: 1.5rem; font-weight: 800; margin: 0 0 18px 0;">Dodgeball Arena</h3>
+                <p style="color: #d0d0d0; font-size: 1.05rem; line-height: 1.8; margin: 0;">Engage in friendly competition in our trampoline-based dodgeball arena.</p>
+            </div>
+            
+            <div style="
+                background: linear-gradient(135deg, rgba(255, 255, 255, 0.12) 0%, rgba(255, 255, 255, 0.05) 100%);
+                border: 1px solid rgba(255, 255, 255, 0.15);
+                border-radius: 25px;
+                padding: 35px;
+                backdrop-filter: blur(25px);
+                transition: all 0.3s ease;
+                box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+                animation: float 10s infinite 8s;
+            " 
+            onmouseover="this.style.transform='translateY(-8px)'; this.style.borderColor='rgba(202, 255, 26, 0.5)';" 
+            onmouseout="this.style.transform='translateY(0)'; this.style.borderColor='rgba(255, 255, 255, 0.15)';">
+                <!-- <div style="font-size: 3rem; margin-bottom: 18px;">🏀</div> -->
+                <h3 style="color: #ffffff; font-size: 1.5rem; font-weight: 800; margin: 0 0 18px 0;">Aero Slam</h3>
+                <p style="color: #d0d0d0; font-size: 1.05rem; line-height: 1.8; margin: 0;">Fulfill your slam-dunk dreams with AeroSlam trampoline basketball hoops.</p>
+            </div>
+            
+            <div style="
+                background: linear-gradient(135deg, rgba(255, 255, 255, 0.12) 0%, rgba(255, 255, 255, 0.05) 100%);
+                border: 1px solid rgba(255, 255, 255, 0.15);
+                border-radius: 25px;
+                padding: 35px;
+                backdrop-filter: blur(25px);
+                transition: all 0.3s ease;
+                box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+                animation: float 10s infinite 10s;
+            " 
+            onmouseover="this.style.transform='translateY(-8px)'; this.style.borderColor='rgba(240, 12, 116, 0.5)';" 
+            onmouseout="this.style.transform='translateY(0)'; this.style.borderColor='rgba(255, 255, 255, 0.15)';">
+                <!-- <div style="font-size: 3rem; margin-bottom: 18px;">🥷</div> -->
+                <h3 style="color: #ffffff; font-size: 1.5rem; font-weight: 800; margin: 0 0 18px 0;">Ninja Warrior Course</h3>
+                <p style="color: #d0d0d0; font-size: 1.05rem; line-height: 1.8; margin: 0;">Unleash your inner warrior on our challenging obstacle course.</p>
+            </div>
+        </div>  
+    </div>
+    
+    <!-- CTA Section -->
+    <div style="
+        position: relative;
+        z-index: 10;
+        padding: 45px;
+        background: radial-gradient(ellipse at center, rgba(240, 12, 116, 0.08) 0%, transparent 70%);
+    ">
+        <h2 style="
+            display: flex;
+            align-items: center;
+            gap: 18px;
+            color: #ffffff;
+            font-size: 2.2rem;
+            font-weight: 800;
+            margin: 0 0 35px 0;
+            text-align: center;
+            justify-content: center;
+        ">
+            <span style="font-size: 2rem; animation: pulse 5s infinite;">📍</span>
+            Plan Your Visit to AeroSports Oakville
+        </h2>
+        
+        <div style="
+            background: 
+                linear-gradient(135deg, rgba(240, 12, 116, 0.15) 0%, rgba(202, 255, 26, 0.10) 50%, rgba(240, 12, 116, 0.15) 100%),
+                radial-gradient(circle at center, rgba(255, 255, 255, 0.05) 0%, transparent 70%);
+            border: 2px solid transparent;
+            background-clip: padding-box;
+            border-radius: 30px;
+            padding: 45px;
+            text-align: center;
+            position: relative;
+            box-shadow: 0 25px 70px rgba(240, 12, 116, 0.25);
+            animation: float 10s infinite;
+        ">
+            <div style="
+                position: absolute;
+                top: -3px; left: -3px; right: -3px; bottom: -3px;
+                background: linear-gradient(45deg, 
+                    rgba(240, 12, 116, 0.7), 
+                    rgba(202, 255, 26, 0.5), 
+                    rgba(240, 12, 116, 0.7), 
+                    rgba(202, 255, 26, 0.5));
+                background-size: 400% 400%;
+                border-radius: 33px;
+                z-index: -1;
+                animation: borderFlow 8s infinite;
+            "></div>
+            
+            <p style="
+                color: #f8f8f8;
+                font-size: 1.3rem;
+                line-height: 2;
+                margin: 0 0 40px 0;
+                max-width: 900px;
+                margin: 0 auto 40px auto;
+                text-shadow: 0 3px 6px rgba(0, 0, 0, 0.5);">
+                Searching for indoor activities in the Oakville and Greater Toronto Area? Look no further! AeroSports Oakville is the best place for indoor fun, whether you're planning an unforgettable kids' birthday party, a family outing, or an exciting group event.
+            </p>
+            
+            <div class="cta-buttons" style="
+                display: flex;
+                gap: 25px;
+                justify-content: center;
+                flex-wrap: wrap;
+            ">
+                <a href="https://www.aerosportsparks.ca/oakville/pricing-promos" style="
+                    display: inline-flex;
+                    align-items: center;
+                    padding: 20px 40px;
+                    border-radius: 50px;
+                    text-decoration: none;
+                    font-weight: 800;
+                    font-size: 1.2rem;
+                    min-width: 280px;
+                    justify-content: center;
+                    background: linear-gradient(135deg, #f00c74 0%, #caff1a 50%, #f00c74 100%);
+                    background-size: 400% 400%;
+                    color: #000;
+                    box-shadow: 0 20px 50px rgba(240, 12, 116, 0.5);
+                    transition: all 0.3s ease;
+                    animation: gradientFlow 5s infinite;
+                " 
+                onmouseover="this.style.transform='translateY(-5px) scale(1.05)'; this.style.boxShadow='0 30px 80px rgba(240, 12, 116, 0.6)';" 
+                onmouseout="this.style.transform='translateY(0) scale(1)'; this.style.boxShadow='0 20px 50px rgba(240, 12, 116, 0.5)';">
+                    💰 View Pricing & Promos
+                </a>
+                <a href="https://ecom.roller.app/aerosportsoakvillemississauga/products/en/home" style="
+                    display: inline-flex;
+                    align-items: center;
+                    padding: 20px 40px;
+                    border-radius: 50px;
+                    text-decoration: none;
+                    font-weight: 800;
+                    font-size: 1.2rem;
+                    min-width: 280px;
+                    justify-content: center;
+                    background: transparent;
+                    color: #caff1a;
+                    border: 3px solid #caff1a;
+                    transition: all 0.3s ease;
+                    box-shadow: 0 0 30px rgba(202, 255, 26, 0.4);
+                    text-shadow: 0 0 15px rgba(202, 255, 26, 0.6);
+                " 
+                onmouseover="this.style.background='linear-gradient(135deg, #caff1a, #9ce600)'; this.style.color='#000'; this.style.transform='translateY(-5px) scale(1.05)'; this.style.textShadow='0 2px 4px rgba(0, 0, 0, 0.4)';" 
+                onmouseout="this.style.background='transparent'; this.style.color='#caff1a'; this.style.transform='translateY(0) scale(1)'; this.style.textShadow='0 0 15px rgba(202, 255, 26, 0.6)';">
+                    🎫 Buy Your Tickets
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

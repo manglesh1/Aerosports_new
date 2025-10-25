@@ -1,0 +1,530 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AeroSports Oakville - Ultimate Indoor Entertainment</title>
+    <style>
+        :root {
+            --primary-color: #f00c74;
+            --secondary-color: #caff1a;
+            --white-color: #fff;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes shine {
+            0% {
+                background-position: -200% center;
+            }
+            100% {
+                background-position: 200% center;
+            }
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            padding: 20px;
+            background: #000;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+        }
+
+        .main-container {
+            position: relative;
+            max-width: 1200px;
+            margin: 0 auto;
+            background: linear-gradient(145deg, #000000 0%, #0a0a0a 25%, #1a1a1a 50%, #0a0a0a 75%, #000000 100%);
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.8);
+            animation: fadeInUp 0.8s ease-out;
+        }
+
+        .section {
+            position: relative;
+            z-index: 10;
+            padding: 45px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .hero-section {
+            text-align: center;
+            padding: 60px 45px;
+        }
+
+        .badge {
+            display: inline-block;
+            background: transparent;
+            clip-path: polygon(8% 0, 100% 0, 92% 100%, 0 100%);
+            border: 2px solid rgba(240, 12, 116, 0.5);
+            padding: 8px 24px;
+            margin-bottom: 20px;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .badge::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: left 0.5s ease;
+            transform: skewX(-20deg);
+        }
+
+        .badge:hover::before {
+            left: 100%;
+        }
+
+        .badge:hover {
+            border-color: rgba(202, 255, 26, 0.8);
+            background: rgba(240, 12, 116, 0.1);
+        }
+
+        .badge span {
+            display: block;
+            color: var(--white-color);
+            font-size: 0.75rem;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+        }
+
+        .gradient-title {
+            background: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
+            background-clip: text;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            font-size: 2.5rem;
+            font-weight: 900;
+            margin: 0 0 20px 0;
+            line-height: 1.1;
+        }
+
+        .subtitle {
+            color: #e0e0e0;
+            font-size: 1.05rem;
+            font-weight: 400;
+            margin: 0 0 40px 0;
+            line-height: 1.7;
+        }
+
+        .stats-container {
+            display: flex;
+            justify-content: center;
+            gap: 50px;
+            flex-wrap: wrap;
+            margin-bottom: 20px;
+        }
+
+        .stat-box {
+            text-align: center;
+            background: linear-gradient(135deg, rgba(0, 0, 0, 0.8) 0%, rgba(26, 26, 26, 0.6) 100%);
+            padding: 20px 25px;
+            box-shadow: 0 0 5px rgba(128, 128, 128, 0.5);
+            clip-path: polygon(10% 0, 100% 0, 90% 100%, 0 100%);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .stat-box::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+            transition: left 0.5s ease;
+            transform: skewX(-20deg);
+        }
+
+        .stat-box:hover::before {
+            left: 100%;
+        }
+
+        .stat-box:hover {
+            transform: translateY(-5px);
+        }
+
+        .stat-box.pink {
+            border: 1px solid rgba(240, 12, 116, 0.2);
+        }
+
+        .stat-box.green {
+            border: 1px solid rgba(202, 255, 26, 0.2);
+        }
+
+        .stat-box.mixed {
+            border: 1px solid rgba(255, 255, 255, 0.15);
+        }
+
+        .stat-number {
+            font-size: 2.2rem;
+            font-weight: 900;
+            margin-bottom: 8px;
+        }
+
+        .stat-number.pink {
+            color: var(--primary-color);
+        }
+
+        .stat-number.green {
+            color: var(--secondary-color);
+        }
+
+        .stat-number.gradient {
+            background: linear-gradient(45deg, var(--secondary-color), var(--primary-color));
+            background-clip: text;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .stat-label {
+            color: #d0d0d0;
+            font-size: 1rem;
+            font-weight: 600;
+        }
+
+        .content-card {
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.12) 0%, rgba(255, 255, 255, 0.05) 100%);
+            border: 2px solid rgba(255, 255, 255, 0.15);
+            border-radius: 8px;
+            padding: 40px;
+            max-width: 950px;
+            margin: 0 auto;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            transition: all 0.3s ease;
+        }
+
+        .content-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.4);
+        }
+
+        .content-card.green-border {
+            background: linear-gradient(135deg, rgba(0, 0, 0, 0.8) 0%, rgba(26, 26, 26, 0.6) 100%);
+            border: 2px solid rgba(202, 255, 26, 0.3);
+            box-shadow: 0 10px 30px rgba(202, 255, 26, 0.15);
+        }
+
+        .content-card.green-border:hover {
+            border-color: rgba(202, 255, 26, 0.6);
+            box-shadow: 0 15px 40px rgba(202, 255, 26, 0.25);
+        }
+
+        .content-card.pink-border {
+            background: linear-gradient(135deg, rgba(0, 0, 0, 0.8) 0%, rgba(26, 26, 26, 0.6) 100%);
+            border: 2px solid rgba(240, 12, 116, 0.3);
+            box-shadow: 0 10px 30px rgba(240, 12, 116, 0.15);
+        }
+
+        .content-card.pink-border:hover {
+            border-color: rgba(240, 12, 116, 0.6);
+            box-shadow: 0 15px 40px rgba(240, 12, 116, 0.25);
+        }
+
+        .content-text {
+            color: #f5f5f5;
+            font-size: 1.05rem;
+            line-height: 1.8;
+            text-align: justify;
+            margin: 0;
+        }
+
+        .section-title {
+            color: var(--white-color);
+            font-size: 2rem;
+            font-weight: 800;
+            margin: 0 0 35px 0;
+            text-align: center;
+        }
+
+        .location-title {
+            color: var(--secondary-color);
+            font-size: 2rem;
+            font-weight: 800;
+            margin: 0 0 35px 0;
+            text-align: center;
+            border-bottom: 2px solid var(--secondary-color);
+            display: inline-block;
+            width: 100%;
+            padding-bottom: 10px;
+        }
+
+        .map-container {
+            width: 100%;
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .map-container iframe {
+            border-radius: 8px;
+            max-width: 900px;
+            box-shadow: 0 10px 40px rgba(240, 12, 116, 0.3);
+            width: 100%;
+            height: 500px;
+            border: 2px solid rgba(240, 12, 116, 0.3);
+            transition: all 0.3s ease;
+        }
+
+        .map-container iframe:hover {
+            border-color: rgba(202, 255, 26, 0.6);
+            box-shadow: 0 15px 50px rgba(240, 12, 116, 0.4);
+        }
+
+        .location-info {
+            text-align: center;
+            margin: 20px 0;
+        }
+
+        .location-address {
+            font-size: 1.2rem;
+            font-weight: bold;
+            margin: 10px 0;
+            color: #f5f5f5;
+        }
+
+        .location-description {
+            margin: 10px 0;
+            color: #d0d0d0;
+            font-size: 1rem;
+            line-height: 1.7;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 25px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .cta-button {
+            display: inline-flex;
+            align-items: center;
+            padding: 12px 28px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 0.85rem;
+            min-width: 220px;
+            justify-content: center;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            clip-path: polygon(8% 0, 100% 0, 92% 100%, 0 100%);
+            position: relative;
+            overflow: hidden;
+            height: 45px;
+        }
+
+        .cta-button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+            transition: left 0.5s ease;
+            transform: skewX(-20deg);
+        }
+
+        .cta-button:hover::before {
+            left: 100%;
+        }
+
+        .cta-button.primary {
+            background: linear-gradient(135deg, rgba(240, 12, 116, 0.3) 0%, rgba(202, 255, 26, 0.2) 100%);
+            color: #fff;
+            border: 2px solid rgba(240, 12, 116, 0.5);
+            box-shadow: 0 4px 12px rgba(240, 12, 116, 0.3);
+        }
+
+        .cta-button.primary:hover {
+            background: linear-gradient(135deg, rgba(240, 12, 116, 0.4) 0%, rgba(202, 255, 26, 0.25) 100%);
+            border-color: rgba(202, 255, 26, 0.8);
+            box-shadow: 0 6px 20px rgba(240, 12, 116, 0.5), 0 0 30px rgba(202, 255, 26, 0.3);
+            transform: translateX(3px);
+        }
+
+        .cta-button.secondary {
+            background: transparent;
+            color: var(--secondary-color);
+            border: 2px solid rgba(202, 255, 26, 0.5);
+            box-shadow: 0 4px 12px rgba(202, 255, 26, 0.2);
+        }
+
+        .cta-button.secondary:hover {
+            background: rgba(202, 255, 26, 0.1);
+            border-color: rgba(202, 255, 26, 0.8);
+            box-shadow: 0 6px 20px rgba(202, 255, 26, 0.4);
+            transform: translateX(3px);
+        }
+
+        strong.highlight {
+            color: var(--secondary-color);
+            font-weight: 700;
+        }
+
+        @media (max-width: 768px) {
+            .stats-container {
+                flex-direction: column;
+                gap: 20px;
+            }
+
+            .cta-buttons {
+                flex-direction: column;
+            }
+
+            .cta-button {
+                min-width: 100%;
+                font-size: 0.8rem;
+            }
+
+            .gradient-title {
+                font-size: 1.8rem;
+            }
+
+            .section {
+                padding: 28px 20px;
+            }
+
+            .hero-section {
+                padding: 40px 20px;
+            }
+
+            .content-card {
+                padding: 28px;
+            }
+
+            .map-container iframe {
+                height: 400px;
+            }
+
+            .section-title,
+            .location-title {
+                font-size: 1.6rem;
+            }
+
+            .stat-box {
+                padding: 18px 22px;
+            }
+
+            .main-container {
+                border-radius: 4px;
+                margin: 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<div class="main-container">
+
+    <!-- Hero Section -->
+    <div class="section hero-section">
+        <div class="badge">
+            <span>Ultimate Indoor Entertainment</span>
+        </div>
+
+        <h1 class="gradient-title">Discover AeroSports Oakville</h1>
+
+        <p class="subtitle">The Ultimate Indoor Trampoline Park & Family Entertainment Center</p>
+
+        <div class="stats-container">
+            <div class="stat-box green">
+                <div class="stat-number green">27,000+</div>
+                <div class="stat-label">Sq Ft of Fun</div>
+            </div>
+            <div class="stat-box pink">
+                <div class="stat-number pink">8+</div>
+                <div class="stat-label">Attractions</div>
+            </div>
+            <div class="stat-box mixed">
+                <div class="stat-number gradient">All Ages</div>
+                <div class="stat-label">Welcome</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Description -->
+    <div class="section">
+        <div class="content-card">
+            <p class="content-text">
+                Welcome to <strong class="highlight">AeroSports Oakville-Mississauga</strong>, the top choice for <strong class="highlight">indoor activities near Oakville, Mississauga, Brampton, Milton, Burlington, Georgetown, Etobicoke, and Toronto</strong>. Our trampoline park spans over 27,000 square feet, providing endless fun for kids, teens, and adults. Perfect for family outings and solo adventurers alike, AeroSports Oakville offers an array of activities for children and kids, including <strong class="highlight">wall-to-wall trampolines</strong>, thrilling <strong class="highlight">climbing walls</strong>, and an exciting <strong class="highlight">dodgeball arena</strong>.
+            </p>
+        </div>
+    </div>
+
+    <!-- Why Choose Us Section -->
+    <div class="section">
+        <h2 class="section-title">Why Choose AeroSports Oakville</h2>
+        <div class="content-card green-border">
+            <p class="content-text">
+                Located conveniently near <strong class="highlight">Oakville, Mississauga, and Burlington</strong>, our park combines <strong class="highlight">active entertainment</strong> with safe and engaging experiences. <strong class="highlight">AeroSports Oakville</strong> provides the ideal setting for unforgettable <strong class="highlight">kids' birthday parties</strong>, school events, and corporate gatherings.
+            </p>
+        </div>
+    </div>
+
+    <!-- Location Section -->
+    <div class="section">
+        <h2 class="location-title">Where are we located?</h2>
+
+        <div class="map-container">
+            <iframe
+                frameborder="0"
+                scrolling="no"
+                marginheight="0"
+                marginwidth="0"
+                src="https://maps.google.com/maps?width=720&amp;height=600&amp;hl=en&amp;q=2679%20Bristol%20Cir,%20Oakville,%20ON%20L6H%206Z8+(AeroSports%20Oakville)&amp;t=&amp;z=13&amp;ie=UTF8&amp;iwloc=B&amp;output=embed">
+            </iframe>
+        </div>
+
+        <div class="location-info">
+            <p class="location-address">2679 Bristol Cir, Oakville, ON L6H 6Z8</p>
+            <p class="location-description">We have locations all over the globe. You can find your local park using our park locator on our website.</p>
+        </div>
+    </div>
+
+    <!-- CTA Section -->
+    <div class="section" style="border-bottom: none;">
+        <h2 class="section-title">Plan Your Visit to AeroSports Oakville</h2>
+
+        <div class="content-card pink-border">
+
+            <p class="content-text" style="margin: 0 0 40px 0; text-align: center;">
+                Searching for indoor activities in the Oakville and Greater Toronto Area? Look no further! AeroSports Oakville is the best place for indoor fun, whether you're planning an unforgettable kids' birthday party, a family outing, or an exciting group event.
+            </p>
+
+            <div class="cta-buttons">
+                <a href="https://www.aerosportsparks.ca/oakville/pricing-promos" class="cta-button primary">
+                    View Pricing & Promos
+                </a>
+                <a href="https://ecom.roller.app/aerosportsoakvillemississauga/products/en/home" class="cta-button secondary">
+                    Buy Your Tickets
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

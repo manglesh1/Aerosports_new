@@ -215,42 +215,44 @@ header.navbar-hidden {
   justify-content: center;
   gap: 0.4rem;
   background: transparent;
+  clip-path: polygon(8% 0, 100% 0, 92% 100%, 0 100%);
   color: #fff;
   padding: 0.5em 1em;
-  font-weight: 600;
+  font-weight: 700;
   font-size: 0.75rem;
   text-transform: uppercase;
   letter-spacing: 0.5px;
-  border: 2px solid rgba(255, 255, 255, 0.2);
-  border-radius: 4px;
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  border: 2px solid rgba(240, 12, 116, 0.5);
+  box-shadow: 0 4px 12px rgba(240, 12, 116, 0.2);
+  transition: all 0.3s ease;
   position: relative;
   cursor: pointer;
   white-space: nowrap;
   height: 36px;
+  overflow: hidden;
 }
 
 .aero-d-changelocation::before {
   content: '';
   position: absolute;
-  inset: -2px;
-  border-radius: 4px;
-  padding: 2px;
-  background: linear-gradient(135deg, #f00c74, #caff1a);
-  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-  -webkit-mask-composite: xor;
-  mask-composite: exclude;
-  opacity: 0;
-  transition: opacity 0.3s ease;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+  transition: left 0.5s ease;
+  transform: skewX(-20deg);
 }
 
 .aero-d-changelocation:hover {
-  border-color: transparent;
-  transform: translateY(-2px);
+  background: rgba(240, 12, 116, 0.1);
+  border-color: rgba(202, 255, 26, 0.8);
+  box-shadow: 0 6px 20px rgba(240, 12, 116, 0.4), 0 0 30px rgba(202, 255, 26, 0.2);
+  transform: translateX(3px);
 }
 
 .aero-d-changelocation:hover::before {
-  opacity: 1;
+  left: 100%;
 }
 
 .aero-header-changelocation-wrap {
@@ -270,41 +272,43 @@ header.navbar-hidden {
   align-items: center;
   justify-content: center;
   background: transparent;
+  clip-path: polygon(8% 0, 100% 0, 92% 100%, 0 100%);
   color: #fff;
   padding: 0.5em 1em;
-  font-weight: 600;
+  font-weight: 700;
   font-size: 0.75rem;
   text-transform: uppercase;
   letter-spacing: 0.5px;
-  border: 2px solid rgba(255, 255, 255, 0.2);
-  border-radius: 4px;
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  border: 2px solid rgba(240, 12, 116, 0.5);
+  box-shadow: 0 4px 12px rgba(240, 12, 116, 0.3);
+  transition: all 0.3s ease;
   position: relative;
   cursor: pointer;
   height: 36px;
+  overflow: hidden;
 }
 
 .aero-faq::before {
   content: '';
   position: absolute;
-  inset: -2px;
-  border-radius: 4px;
-  padding: 2px;
-  background: linear-gradient(135deg, #f00c74, #caff1a);
-  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-  -webkit-mask-composite: xor;
-  mask-composite: exclude;
-  opacity: 0;
-  transition: opacity 0.3s ease;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+  transition: left 0.5s ease;
+  transform: skewX(-20deg);
 }
 
 .aero-faq:hover {
-  border-color: transparent;
-  transform: translateY(-2px);
+  background: rgba(240, 12, 116, 0.1);
+  border-color: rgba(202, 255, 26, 0.8);
+  box-shadow: 0 6px 20px rgba(240, 12, 116, 0.5), 0 0 30px rgba(202, 255, 26, 0.3);
+  transform: translateX(3px);
 }
 
 .aero-faq:hover::before {
-  opacity: 1;
+  left: 100%;
 }
 
 .aero-list-7 a {
@@ -354,7 +358,7 @@ header.navbar-hidden {
 }
 
 /* ========================================
-   MODERN MINIMAL BUTTON DESIGN (Border Only)
+   MODERN SHARP BUTTON DESIGN
    ======================================== */
 .aero-btn-book,
 .sigma_btn-custom {
@@ -362,51 +366,53 @@ header.navbar-hidden {
   align-items: center;
   justify-content: center;
   background: transparent;
+  clip-path: polygon(8% 0, 100% 0, 92% 100%, 0 100%);
   color: #fff;
   padding: 0.5em 1.5em;
-  font-weight: 600;
+  font-weight: 700;
   font-size: 0.75rem;
   text-transform: uppercase;
   letter-spacing: 0.5px;
-  border: 2px solid rgba(255, 255, 255, 0.2);
-  border-radius: 4px;
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  border: 2px solid rgba(240, 12, 116, 0.5);
+  box-shadow: 0 4px 12px rgba(240, 12, 116, 0.3);
+  transition: all 0.3s ease;
   position: relative;
   cursor: pointer;
   outline: none;
   height: 36px;
   white-space: nowrap;
+  overflow: hidden;
 }
 
 .aero-btn-book::before,
 .sigma_btn-custom::before {
   content: '';
   position: absolute;
-  inset: -2px;
-  border-radius: 4px;
-  padding: 2px;
-  background: linear-gradient(135deg, #f00c74, #caff1a);
-  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-  -webkit-mask-composite: xor;
-  mask-composite: exclude;
-  opacity: 0;
-  transition: opacity 0.3s ease;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+  transition: left 0.5s ease;
+  transform: skewX(-20deg);
 }
 
 .aero-btn-book:hover,
 .sigma_btn-custom:hover {
-  border-color: transparent;
-  transform: translateY(-2px);
+  background: rgba(240, 12, 116, 0.1);
+  border-color: rgba(202, 255, 26, 0.8);
+  box-shadow: 0 6px 20px rgba(240, 12, 116, 0.5), 0 0 30px rgba(202, 255, 26, 0.3);
+  transform: translateX(3px);
 }
 
 .aero-btn-book:hover::before,
 .sigma_btn-custom:hover::before {
-  opacity: 1;
+  left: 100%;
 }
 
 .aero-btn-book:active,
 .sigma_btn-custom:active {
-  transform: translateY(0);
+  transform: translateX(1px);
 }
 
 .aero-header-contactus-btn {
@@ -415,42 +421,44 @@ header.navbar-hidden {
   justify-content: center;
   gap: 0.4rem;
   background: transparent;
+  clip-path: polygon(8% 0, 100% 0, 92% 100%, 0 100%);
   color: #fff;
   padding: 0.5em 1em;
-  font-weight: 600;
+  font-weight: 700;
   font-size: 0.75rem;
   text-transform: uppercase;
   letter-spacing: 0.5px;
-  border: 2px solid rgba(255, 255, 255, 0.2);
-  border-radius: 4px;
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  border: 2px solid rgba(240, 12, 116, 0.5);
+  box-shadow: 0 4px 12px rgba(240, 12, 116, 0.3);
+  transition: all 0.3s ease;
   position: relative;
   cursor: pointer;
   height: 36px;
   white-space: nowrap;
+  overflow: hidden;
 }
 
 .aero-header-contactus-btn::before {
   content: '';
   position: absolute;
-  inset: -2px;
-  border-radius: 4px;
-  padding: 2px;
-  background: linear-gradient(135deg, #f00c74, #caff1a);
-  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-  -webkit-mask-composite: xor;
-  mask-composite: exclude;
-  opacity: 0;
-  transition: opacity 0.3s ease;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+  transition: left 0.5s ease;
+  transform: skewX(-20deg);
 }
 
 .aero-header-contactus-btn:hover {
-  border-color: transparent;
-  transform: translateY(-2px);
+  background: rgba(240, 12, 116, 0.1);
+  border-color: rgba(202, 255, 26, 0.8);
+  box-shadow: 0 6px 20px rgba(240, 12, 116, 0.5), 0 0 30px rgba(202, 255, 26, 0.3);
+  transform: translateX(3px);
 }
 
 .aero-header-contactus-btn:hover::before {
-  opacity: 1;
+  left: 100%;
 }
 
 .aero-btn-kidslearnmore {
@@ -476,49 +484,56 @@ header.navbar-hidden {
 
 .location-overlay-box {
   position: absolute;
-  bottom: 120px;
-  left: 30px;
-  background: rgba(0, 0, 0, 0.65);
+  bottom: 2em;
+  left: 2em;
+  right: 2em;
+  background: linear-gradient(135deg, rgba(240, 12, 116, 0.15) 0%, rgba(202, 255, 26, 0.12) 100%);
   color: white;
-  padding: 1.8em 2.2em;
+  padding: 2em 3em;
   border-radius: 0;
   font-family: 'Segoe UI', sans-serif;
   z-index: 10;
-  max-width: 450px;
-  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.7);
-  border: none;
-  border-left: 4px solid #f00c74;
-  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  max-width: 550px;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+  border: 2px solid rgba(240, 12, 116, 0.4);
+  clip-path: polygon(10% 0, 100% 0, 90% 100%, 0 100%);
   animation: fadeInUp 1s ease-out;
-  backdrop-filter: blur(12px);
+  backdrop-filter: blur(10px);
   transition: all 0.3s ease;
-  overflow: visible;
+  overflow: hidden;
 }
 
 .location-overlay-box:hover {
-  box-shadow: 0 15px 50px rgba(0, 0, 0, 0.8);
-  border-left-color: #caff1a;
+  box-shadow: 0 15px 50px rgba(240, 12, 116, 0.5), 0 0 30px rgba(202, 255, 26, 0.3);
+  border-color: rgba(202, 255, 26, 0.8);
+  background: linear-gradient(135deg, rgba(240, 12, 116, 0.2) 0%, rgba(202, 255, 26, 0.15) 100%);
 }
 
 .location-overlay-box::before {
   content: '';
   position: absolute;
-  top: -1px;
-  left: -1px;
-  right: -1px;
-  height: 1px;
-  background: linear-gradient(90deg, #f00c74 0%, transparent 100%);
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+  transition: left 0.5s ease;
+  transform: skewX(-20deg);
   z-index: 1;
+}
+
+.location-overlay-box:hover::before {
+  left: 100%;
 }
 
 .location-overlay-box::after {
   content: '';
   position: absolute;
-  bottom: -1px;
-  left: -1px;
-  right: -1px;
-  height: 1px;
-  background: linear-gradient(90deg, transparent 0%, rgba(202, 255, 26, 0.5) 100%);
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 0;
+  background: transparent;
   z-index: 1;
 }
 
@@ -530,37 +545,62 @@ header.navbar-hidden {
   letter-spacing: 3px;
   font-weight: 700;
   position: relative;
-  z-index: 2;
+  z-index: 10;
   opacity: 0.9;
 }
 
 .location-overlay-box h1 {
-  font-size: 1.8rem;
+  font-size: 1.5rem;
   margin-bottom: 12px;
   color: #ffffff;
   font-weight: 900;
   text-transform: uppercase;
   letter-spacing: 0.5px;
   position: relative;
-  z-index: 2;
+  z-index: 10;
   line-height: 1.2;
 }
 
+.location-overlay-box .aero-home-h1heading {
+  background: linear-gradient(135deg, #ffffff, #e0e0e0);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  font-size: 1.8rem;
+  margin-bottom: 0.3em;
+  margin-top: 0;
+  font-weight: 900;
+  letter-spacing: 1.5px;
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+  line-height: 1.1;
+}
+
 .location-overlay-box p {
-  margin: 10px 0;
-  font-size: 0.9rem;
-  line-height: 1.6;
-  color: rgba(255, 255, 255, 0.85);
+  margin: 0.6em 0;
+  font-size: 0.95rem;
+  line-height: 1.7;
+  color: rgba(255, 255, 255, 0.95);
   position: relative;
-  z-index: 2;
+  z-index: 10;
   font-weight: 400;
+  letter-spacing: 0.3px;
+}
+
+.location-overlay-box p:first-of-type {
+  font-size: 1.05rem;
+  color: rgba(255, 255, 255, 0.9);
+  margin-bottom: 1em;
+  line-height: 1.6;
+  font-weight: 300;
 }
 
 .location-overlay-box p strong {
-  font-size: 1em;
-  margin-right: 0.4em;
-  color: #f00c74;
-  font-weight: 400;
+  font-size: 0.9em;
+  margin-right: 0.5em;
+  color: #caff1a;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
 }
 
 .location-overlay-box p a {
@@ -570,25 +610,36 @@ header.navbar-hidden {
   text-decoration: none;
   position: relative;
   display: inline-block;
-  border-bottom: 1px solid transparent;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+  padding-bottom: 2px;
 }
 
 .location-overlay-box p a:hover {
   color: #caff1a;
   border-bottom-color: #caff1a;
+  text-shadow: 0 0 10px rgba(202, 255, 26, 0.5);
 }
 
 .location-overlay-box .aero-btn-booknow {
-  margin-top: 1.2em;
+  margin-top: 1.5em;
   position: relative;
-  z-index: 2;
+  z-index: 10;
   display: inline-block;
 }
 
 .location-overlay-box .aero-btn-booknow button {
-  font-size: 0.8rem;
-  padding: 0.6em 1.5em;
+  font-size: 0.85rem;
+  padding: 0.7em 2em;
+  font-weight: 700;
+  letter-spacing: 1px;
   /* Inherits all styles from unified button design */
+}
+
+/* Add subtle separator before contact info */
+.location-overlay-box p:nth-of-type(2) {
+  margin-top: 1.2em;
+  padding-top: 1em;
+  border-top: 1px solid rgba(255, 255, 255, 0.15);
 }
 
 /* ========================================

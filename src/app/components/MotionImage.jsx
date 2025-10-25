@@ -34,7 +34,7 @@ const toTelHref = (phone) => {
               <h1 className="aero-home-h1heading">{item.title}</h1>
         <p>{item.smalltext}</p>
        <p>
-      <strong aria-hidden="true">📞</strong>{' '}
+      <strong>Phone:</strong>{' '}
       <a
         href={toTelHref(locData.phone)}
         aria-label={`Call AeroSports ${locData.location} at ${locData.phone}`}
@@ -43,11 +43,12 @@ const toTelHref = (phone) => {
         {locData.phone}
       </a>
     </p>
-        <p><strong>📍</strong><a href={locData.gmburl} target="_blank" > {locData.address}</a></p>
+        <p><strong>Address:</strong> <a href={locData.gmburl} target="_blank" > {locData.address}</a></p>
          {waiverLink && (
               <div className="aero-btn-booknow">
                 <Link href={waiverLink} target="_blank">
                   <motion.button
+                    className="sigma_btn-custom"
                     animate={{ scale: [1, 1.05, 1] }}
                     transition={{
                       duration: 2,
@@ -55,7 +56,7 @@ const toTelHref = (phone) => {
                       ease: "easeInOut"
                     }}
                   >
-                    WAIVER
+                    Sign Waiver
                   </motion.button>
                 </Link>
               </div>
@@ -91,9 +92,9 @@ const toTelHref = (phone) => {
         <div className="location-overlay-box">
             <h1 className="aero-home-h1heading">{item.title}</h1>
         <p>{item.smalltext}</p>
-           
+
         <p>
-      <strong aria-hidden="true">📞</strong>{' '}
+      <strong>Phone:</strong>{' '}
       <a
         href={toTelHref(locData.phone)}
         aria-label={`Call AeroSports ${locData.location} at ${locData.phone}`}
@@ -102,11 +103,12 @@ const toTelHref = (phone) => {
         {locData.phone}
       </a>
     </p>
-        <p><strong>📍</strong><a href={locData.gmburl} target="_blank" > {locData.address}</a></p>
+        <p><strong>Address:</strong> <a href={locData.gmburl} target="_blank" > {locData.address}</a></p>
          {waiverLink && (
               <div className="aero-btn-booknow">
                 <Link href={waiverLink} target="_blank"  title="sign your waiver at aerosports trampoline park" >
                   <motion.button
+                    className="sigma_btn-custom"
                     animate={{ scale: [1, 1.05, 1] }}
                     transition={{
                       duration: 2,
@@ -114,7 +116,7 @@ const toTelHref = (phone) => {
                       ease: "easeInOut"
                     }}
                   >
-                    WAIVER
+                    Sign Waiver
                   </motion.button>
                 </Link>
               </div>

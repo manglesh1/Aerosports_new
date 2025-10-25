@@ -54,6 +54,18 @@ const Home = async ({ params }) => {
       {/* Hero Section - Full Width */}
       <MotionImage pageData={header_image}  waiverLink={waiverLink} locationData={locationData} />
 
+
+      {/* SEO Section - Centered Container */}
+      {attractionsData?.[0]?.children?.length > 0 && seosection && (
+        <section className="aero_home_article_section">
+          <section className="aero-max-container aero_home_seo_section">
+            <div dangerouslySetInnerHTML={{ __html: seosection }} />
+          </section>
+        </section>
+      )}
+
+
+
       {/* Jump Straight To - Centered Container */}
       {attractionsData?.[0]?.children?.length > 0 && (
       <section className="aero_home-actionbtn-bg">
@@ -292,16 +304,6 @@ const Home = async ({ params }) => {
           </section>
         </section>
       )}
-
-      {/* SEO Section - Centered Container */}
-      {attractionsData?.[0]?.children?.length > 0 && seosection && (
-        <section className="aero_home_article_section">
-          <section className="aero-max-container aero_home_seo_section">
-            <div dangerouslySetInnerHTML={{ __html: seosection }} />
-          </section>
-        </section>
-      )}
-
       <script type="application/ld+json" suppressHydrationWarning
         dangerouslySetInnerHTML={{ __html: jsonLDschema }}
       />
