@@ -43,28 +43,51 @@
   outline: none;
 }
 .modal-body button {
-  background-color: #e91e63; /* Pink */
-  color: white;
-  border: none;
-  padding: 0.6em 1.5em;
-  border-radius: 6px;
-  font-size: 1rem;
-  font-weight: 600;
-  cursor: pointer;
-  box-shadow: 0 4px 8px rgba(233, 30, 99, 0.3);
-  transition: background-color 0.3s ease, box-shadow 0.3s ease;
-  user-select: none;
   display: inline-block;
+  background: linear-gradient(135deg, rgba(240, 12, 116, 0.3) 0%, rgba(202, 255, 26, 0.2) 100%);
+  clip-path: polygon(8% 0, 100% 0, 92% 100%, 0 100%);
+  color: #fff;
+  padding: 0.75em 2em;
+  font-weight: 700;
+  font-size: 1rem;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  border: 2px solid rgba(240, 12, 116, 0.5);
+  box-shadow: 0 4px 12px rgba(240, 12, 116, 0.3);
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+  cursor: pointer;
+  outline: none;
+  user-select: none;
+}
+
+.modal-body button::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+  transition: left 0.5s ease;
+  transform: skewX(-20deg);
 }
 
 .modal-body button:hover,
 .modal-body button:focus {
-  background-color: #d81b60; /* Slightly darker pink */
-  box-shadow: 0 6px 12px rgba(216, 27, 96, 0.5);
+  background: linear-gradient(135deg, rgba(240, 12, 116, 0.5) 0%, rgba(202, 255, 26, 0.3) 100%);
+  border-color: rgba(202, 255, 26, 0.8);
+  box-shadow: 0 6px 20px rgba(240, 12, 116, 0.5), 0 0 30px rgba(202, 255, 26, 0.3);
+  transform: translateX(5px);
   outline: none;
 }
 
+.modal-body button:hover::before {
+  left: 100%;
+}
+
 .modal-body button:active {
-  background-color: #c2185b; /* Even darker pink */
-  box-shadow: 0 2px 4px rgba(194, 24, 91, 0.6);
+  transform: translateX(3px);
+  box-shadow: 0 4px 15px rgba(240, 12, 116, 0.4);
 }

@@ -127,19 +127,10 @@ const AttractionsGrid = ({ attractionsData, waiverLink, locationSlug }) => {
               ✕
             </button>
 
-            <div className="aero_attraction_modal_hero">
-              <img
-                src={attractionDetails?.headerimage || selectedAttraction?.image || selectedAttraction?.smallimage}
-                alt={attractionDetails?.title || selectedAttraction?.title || selectedAttraction?.desc}
-                className="aero_attraction_modal_hero_image"
-              />
-              <div className="aero_attraction_modal_hero_overlay"></div>
-            </div>
-
             <div className="aero_attraction_modal_body">
               {isLoading ? (
-                <div style={{ textAlign: 'center', padding: '3em', color: '#e0e0e0' }}>
-                  <div style={{ fontSize: '2rem', marginBottom: '1em' }}>⏳</div>
+                <div className="aero_attraction_modal_loading">
+                  <div className="aero_attraction_modal_loading_spinner">⏳</div>
                   <p>Loading attraction details...</p>
                 </div>
               ) : (

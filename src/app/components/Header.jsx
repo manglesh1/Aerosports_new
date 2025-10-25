@@ -6,9 +6,34 @@ import Image from "next/image";
 import MenuButton from "./smallComponents/MenuButton";
 import TopHeader from "./smallComponents/TopHeader";
 import { MdOutlinePermContactCalendar } from "react-icons/md";
+import { useState, useEffect } from "react";
 
 
 const Header = ({ location_slug, menudata, configdata }) => {
+  const [isNavbarVisible, setIsNavbarVisible] = useState(true);
+  const [lastScrollY, setLastScrollY] = useState(0);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const currentScrollY = window.scrollY;
+
+      // Hide navbar when scrolling down past 50px
+      if (currentScrollY > 50) {
+        setIsNavbarVisible(false);
+      } else {
+        // Show navbar when at top of page
+        setIsNavbarVisible(true);
+      }
+
+      setLastScrollY(currentScrollY);
+    };
+
+    window.addEventListener("scroll", handleScroll, { passive: true });
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, [lastScrollY]);
  
   const navList =menudata
     .filter((item) => item.isactive === 1) // <-- enable filtering
@@ -24,31 +49,37 @@ const Header = ({ location_slug, menudata, configdata }) => {
  //   ? configdata.find((item) => item.key === "top-header")
  //   : null;
   return (
-    <header>
-      
+    <header className={`${isNavbarVisible ? 'navbar-visible' : 'navbar-hidden'}`}>
+
 
       <section className="d-flex aero-col-3">
-        <div className="aero-menu-location app-container">
-          <div className="d-flex-center aero_menu_location_icon">
-            <MenuButton navList={navList} location_slug={location_slug} />
-            <Link href="/" className="d-flex-center" prefetch>
-              <GrLocation fontSize={30} color="#fff" />
-            </Link>
+        {/* Left: Mobile Menu & Location / Desktop Location & FAQ */}
+        <div className="aero-header-left">
+          {/* Mobile */}
+          <div className="aero-menu-location app-container">
+            <div className="d-flex-center aero_menu_location_icon">
+              <MenuButton navList={navList} location_slug={location_slug} />
+              <Link href="/" className="d-flex-center" prefetch>
+                <GrLocation fontSize={30} color="#fff" />
+              </Link>
+            </div>
+          </div>
+
+          {/* Desktop */}
+          <div className="desktop-container">
+            <div className="aero-menu-location">
+              <Link href="/" className="aero-d-changelocation" prefetch>
+                <GrLocation />
+                {location_slug}
+              </Link>
+              <Link href={`/${location_slug}/about-us/faq`} prefetch>
+                <div className="aero-faq">FAQ&apos;s</div>
+              </Link>
+            </div>
           </div>
         </div>
 
-        <div className="desktop-container">
-          <div className="aero-menu-location">
-            <Link href="/" className="aero-d-changelocation" prefetch>
-              <GrLocation />
-              {location_slug}
-            </Link>
-            <Link href={`/${location_slug}/about-us/faq`} prefetch>
-              <div className="aero-faq">FAQ&apos;s</div>
-            </Link>
-          </div>
-        </div>
-
+        {/* Center: Logo */}
         <div className="aero_main_logo_wrap">
           <Link href={`/${location_slug}`} className="aero_main_logo" prefetch>
             <Image
@@ -62,60 +93,42 @@ const Header = ({ location_slug, menudata, configdata }) => {
           </Link>
         </div>
 
-        <div className="aero-btn-booknow app-container" style={{ textAlign: "right" }}>
-          {estoreConfig?.value && (
-            <Link href={estoreConfig.value} target="_blank" prefetch>
-              <button>book</button>
-            </Link>
-          )}
-        </div>
-
-        <div className="aero-btn-booknow desktop-container">
+        {/* Right: Contact & Book Now */}
+        <div className="aero-header-right">
           <Link
             href={`/${location_slug}/contactus`}
             prefetch
-            className="aero-header-contactus-btn aero-d-changelocation"
-            style={{ color: "white" }}
+            className="aero-header-contactus-btn"
           >
-            <MdOutlinePermContactCalendar />
-            <span>Inquiry Now</span>
+            <MdOutlinePermContactCalendar fontSize={20} />
+            <span className="desktop-container">Inquiry Now</span>
+            <span className="app-container">Inquiry</span>
           </Link>
           {estoreConfig?.value && (
             <Link href={estoreConfig.value} target="_blank" prefetch>
-              <button>book now</button>
+              <button className="aero-btn-book">
+                <span className="desktop-container">Book Now</span>
+                <span className="app-container">Book</span>
+              </button>
             </Link>
           )}
         </div>
       </section>
 
-      <section className="aero_changelocation_height">
+      <section
+        className="aero_changelocation_height desktop-container"
+      >
         <nav className="d-flex-center aero-list-7 aero_changelocation_height">
-          <div className="desktop-container">
-            {Array.isArray(navList) &&
-              navList.map((item) => (
-                <Link
-                  href={`/${location_slug}/${item?.navUrl}`}
-                  prefetch
-                  key={item.navName}
-                >
-                  {item.navName}
-                </Link>
-              ))}
-          </div>
-          <div style={{ position: "relative" }} className="aero-header-changelocation-wrap">
-            <Link href="/" prefetch className="aero-app-changelocation app-container">
-              {location_slug}
-            </Link>
-            <Link
-              href={`/${location_slug}/contactus`}
-              prefetch
-              className="aero-header-contactus-btn aero-app-changelocation app-container"
-              style={{ marginRight: "0" }}
-            >
-              <MdOutlinePermContactCalendar />
-              <span>Inquiry</span>
-            </Link>
-          </div>
+          {Array.isArray(navList) &&
+            navList.map((item) => (
+              <Link
+                href={`/${location_slug}/${item?.navUrl}`}
+                prefetch
+                key={item.navName}
+              >
+                {item.navName}
+              </Link>
+            ))}
         </nav>
       </section>
     </header>

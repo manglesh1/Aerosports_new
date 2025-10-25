@@ -60,7 +60,7 @@ const Footer = ({ location_slug, configdata, menudata, reviewdata,locationData }
 
       <section className="aero-max-container">
         {/* Rating */}
-        {reviewdata && <RatingComponent ratingdata={reviewdata} />}
+        {/* {reviewdata && <RatingComponent ratingdata={reviewdata} />} */}
 
         {/* Modern Footer Content */}
         <div className="aero_footer_modern_wrapper">
