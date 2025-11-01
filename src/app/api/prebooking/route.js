@@ -361,7 +361,7 @@ Submitted: ${new Date(submittedAt).toLocaleString()}
             <h3 style="margin-top: 0;">Contact Us</h3>
             <div class="contact-info">
               <p>
-                📞 <a href="tel:+1234567890">(123) 456-7890</a><br>
+                📞 <a href="tel:+12894545555">(289) 454-5555</a><br>
                 📧 <a href="mailto:events.scb@aerosportsparks.ca">events.scb@aerosportsparks.ca</a>
               </p>
               <p style="margin-top: 20px;">

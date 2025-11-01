@@ -68,7 +68,7 @@ export default function ComingSoon() {
             transition={{ delay: 0.5 }}
           >
             Aerosports
-            <span className="location-name">Scarborough</span>
+            <span className="location-name">Scarborough!</span>
           </motion.h1>
 
           <motion.p
@@ -212,7 +212,7 @@ export default function ComingSoon() {
             <div className="address-card">
               <div className="address-icon">📍</div>
               <div className="address-info">
-                <h3>Aerosports Scarborough</h3>
+                <h3>Aerosports Scarborough!</h3>
                 <p>1120 Birchmount Rd</p>
                 <p>Scarborough, ON M1K 5G4</p>
               </div>
@@ -332,7 +332,7 @@ export default function ComingSoon() {
       <footer className="scarborough-footer">
         <div className="footer-content">
           <div className="footer-logo">
-            <h3>Aerosports Scarborough</h3>
+            <h3>Aerosports Scarborough!</h3>
             <p>Opening Soon</p>
           </div>
           <div className="footer-social">
