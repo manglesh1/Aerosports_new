@@ -713,6 +713,14 @@ header.navbar-hidden {
   z-index: 1;
 }
 
+/* Footer BPJ Section Specific Styling */
+footer .aero_home-headerimg-wrapper {
+  min-height: 600px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
 .aero_home-headerimg-container {
   max-width: 1100px;
   margin: 0 auto;
@@ -749,6 +757,23 @@ header.navbar-hidden {
   height: 600px;
 }
 
+/* Footer BPJ Section Image Specific */
+footer .aero_home-headerimg-wrapper > img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0.4;
+  z-index: 1;
+}
+
+footer .aero_home-headerimg-wrapper > img:hover {
+  opacity: 0.5;
+  transform: none;
+}
+
 .aero_home-headerimg-wrapper article,
 .aero_home-play-small-img span,
 .aero_home_birthday_section h2,
@@ -762,9 +787,20 @@ header.navbar-hidden {
   z-index: 2;
 }
 
-.aero_home-headerimg-wrapper article {
+.aero_home-headerimg-wrapper article:not(.aero_home_BPJ_wrapper) {
+  position: absolute;
   top: 40%;
+  left: 50%;
+  transform: translate(-50%, -50%);
   animation: fadeInUp 1s ease-out 0.3s both;
+}
+
+/* BPJ wrapper specific override to use flexbox centering */
+.aero_home-headerimg-wrapper .aero_home_BPJ_wrapper {
+  position: relative;
+  top: auto;
+  left: auto;
+  transform: none;
 }
 
 .aero_home-headerimg-wrapper article h1,
@@ -971,18 +1007,6 @@ header.navbar-hidden {
   grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
   gap: 2rem;
   padding: 2em 0.5em;
-}
-
-.aero_home_BPJ_wrapper {
-  display: flex;
-  justify-content: center;
-  align-items: stretch;
-  gap: 2rem;
-  padding: 3em 2em;
-  max-width: 1100px;
-  margin: 0 auto;
-  width: 100%;
-  position: relative;
 }
 
 .aero_home_feature_section {
@@ -1277,53 +1301,145 @@ header.navbar-hidden {
 }
 
 /* ========================================
-   BPJ SECTION (Footer Three Icons)
+   BPJ SECTION (Footer Three Icons) - REDESIGNED
    ======================================== */
-.aero_home_BPJ_wrapper div {
+
+/* Wrapper with proper grid centering */
+.aero_home_BPJ_wrapper {
+  position: relative;
+  z-index: 10;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 3rem;
+  width: 100%;
+  max-width: 1400px;
+  padding: 3rem 2rem;
+  margin: 0 auto;
+}
+
+/* Individual card styling */
+.aero_home_BPJ_wrapper > div {
   display: flex;
   flex-direction: column;
-  gap: 1.5rem;
-  text-align: center;
-  padding: 2.5em 2em;
-  background: linear-gradient(135deg, rgba(240, 12, 116, 0.15) 0%, rgba(202, 255, 26, 0.08) 100%);
-  border-radius: 20px;
-  border: 2px solid rgba(240, 12, 116, 0.4);
-  transition: all 0.4s ease;
-  justify-content: center;
   align-items: center;
-  min-height: 280px;
+  justify-content: center;
+  gap: 2rem;
+  text-align: center;
+  padding: 3.5rem 2.5rem;
+  background: rgba(0, 0, 0, 0.7);
+  backdrop-filter: blur(15px);
+  -webkit-backdrop-filter: blur(15px);
+  border-radius: 30px;
+  border: 2.5px solid rgba(240, 12, 116, 0.5);
+  transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  overflow: hidden;
+  min-height: 320px;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.4);
 }
 
-.aero_home_BPJ_wrapper div:hover {
-  transform: translateY(-10px);
-  box-shadow: 0 20px 40px rgba(240, 12, 116, 0.4);
-  border-color: rgba(240, 12, 116, 0.7);
-  background: linear-gradient(135deg, rgba(240, 12, 116, 0.2) 0%, rgba(202, 255, 26, 0.12) 100%);
+/* Gradient overlay effect */
+.aero_home_BPJ_wrapper > div::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(135deg, rgba(240, 12, 116, 0.15) 0%, rgba(202, 255, 26, 0.08) 100%);
+  opacity: 0;
+  transition: opacity 0.5s ease;
+  z-index: 0;
 }
 
+/* Hover state for gradient */
+.aero_home_BPJ_wrapper > div:hover::before {
+  opacity: 1;
+}
+
+/* Animated glow border on hover */
+.aero_home_BPJ_wrapper > div::after {
+  content: '';
+  position: absolute;
+  inset: -2px;
+  background: linear-gradient(135deg, rgba(240, 12, 116, 0.8), rgba(202, 255, 26, 0.6));
+  border-radius: 30px;
+  opacity: 0;
+  z-index: -1;
+  transition: opacity 0.5s ease;
+  filter: blur(15px);
+}
+
+.aero_home_BPJ_wrapper > div:hover::after {
+  opacity: 0.6;
+}
+
+/* Card hover effects */
+.aero_home_BPJ_wrapper > div:hover {
+  transform: translateY(-20px) scale(1.03);
+  border-color: rgba(240, 12, 116, 0.9);
+  box-shadow:
+    0 30px 60px rgba(240, 12, 116, 0.5),
+    0 0 100px rgba(202, 255, 26, 0.3),
+    inset 0 0 60px rgba(240, 12, 116, 0.1);
+  background: rgba(0, 0, 0, 0.85);
+}
+
+/* Icon container with circular background */
+.aero_home_BPJ_wrapper > div a {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 140px;
+  height: 140px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, rgba(240, 12, 116, 0.25) 0%, rgba(202, 255, 26, 0.15) 100%);
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 10px 30px rgba(240, 12, 116, 0.3);
+}
+
+.aero_home_BPJ_wrapper > div:hover a {
+  transform: rotate(360deg) scale(1.15);
+  background: linear-gradient(135deg, rgba(240, 12, 116, 0.45) 0%, rgba(202, 255, 26, 0.3) 100%);
+  box-shadow: 0 15px 50px rgba(240, 12, 116, 0.6);
+}
+
+/* Icon image styling */
 .aero_home_BPJ_wrapper img {
-  width: 100px;
-  height: 100px;
+  width: 90px;
+  height: 90px;
   object-fit: contain;
-  filter: drop-shadow(0 5px 15px rgba(240, 12, 116, 0.4));
-  transition: all 0.3s ease;
+  filter: drop-shadow(0 8px 25px rgba(240, 12, 116, 0.7));
+  transition: all 0.4s ease;
 }
 
-.aero_home_BPJ_wrapper div:hover img {
-  transform: scale(1.15) rotate(5deg);
-  filter: drop-shadow(0 8px 20px rgba(240, 12, 116, 0.6));
+.aero_home_BPJ_wrapper > div:hover img {
+  filter: drop-shadow(0 12px 40px rgba(240, 12, 116, 1));
+  transform: scale(1.1);
 }
 
+/* Text label styling */
 .aero_home_BPJ_wrapper span {
-  font-size: 1.4rem;
-  font-weight: 700;
-  background: linear-gradient(135deg, #f00c74, #caff1a);
+  position: relative;
+  z-index: 1;
+  font-size: 1.6rem;
+  font-weight: 800;
+  background: linear-gradient(135deg, #f00c74 0%, #caff1a 100%);
   background-clip: text;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   text-transform: uppercase;
-  letter-spacing: 1px;
+  letter-spacing: 2.5px;
   line-height: 1.3;
+  transition: all 0.3s ease;
+}
+
+.aero_home_BPJ_wrapper > div:hover span {
+  transform: scale(1.08);
+  letter-spacing: 3.5px;
+  text-shadow: 0 0 30px rgba(240, 12, 116, 0.8);
 }
 
 /* ========================================
@@ -1709,6 +1825,36 @@ ul.attractions-grid li:nth-child(8) { animation-delay: 0.8s; }
   ul.attractions-grid {
     grid-template-columns: repeat(2, 1fr);
   }
+
+  /* Tablet BPJ Section */
+  .aero_home_BPJ_wrapper {
+    gap: 2.5rem;
+    padding: 2.5rem 2rem;
+    max-width: 1200px;
+  }
+
+  .aero_home_BPJ_wrapper > div {
+    min-height: 300px;
+    padding: 3rem 2rem;
+  }
+
+  .aero_home_BPJ_wrapper > div a {
+    width: 120px;
+    height: 120px;
+  }
+
+  .aero_home_BPJ_wrapper img {
+    width: 85px;
+    height: 85px;
+  }
+
+  .aero_home_BPJ_wrapper span {
+    font-size: 1.4rem;
+  }
+
+  footer .aero_home-headerimg-wrapper {
+    min-height: 550px;
+  }
 }
 
 /* ========================================
@@ -1840,22 +1986,32 @@ ul.attractions-grid li:nth-child(8) { animation-delay: 0.8s; }
   }
 
   .aero_home_BPJ_wrapper {
-    grid-template-columns: repeat(3, 1fr);
-    gap: 2rem;
-    padding: 2em 2em;
+    gap: 3.5rem;
+    padding: 3rem 2.5rem;
+    max-width: 1500px;
   }
 
-  .aero_home_BPJ_wrapper div {
-    min-height: 300px;
+  footer .aero_home-headerimg-wrapper {
+    min-height: 650px;
+  }
+
+  .aero_home_BPJ_wrapper > div {
+    min-height: 350px;
+    padding: 4rem 3rem;
+  }
+
+  .aero_home_BPJ_wrapper > div a {
+    width: 150px;
+    height: 150px;
   }
 
   .aero_home_BPJ_wrapper img {
-    width: 110px;
-    height: 110px;
+    width: 100px;
+    height: 100px;
   }
 
   .aero_home_BPJ_wrapper span {
-    font-size: 1.6rem;
+    font-size: 1.7rem;
   }
 
   .aero_home-play-small-img span {
@@ -1966,21 +2122,37 @@ ul.attractions-grid li:nth-child(8) { animation-delay: 0.8s; }
 
   .aero_home_BPJ_wrapper {
     grid-template-columns: 1fr;
-    gap: 1.5rem;
-    padding: 1.5em 1em;
+    gap: 2rem;
+    padding: 2.5rem 1.5rem;
   }
 
-  .aero_home_BPJ_wrapper div {
-    min-height: 240px;
-    padding: 2em 1.5em;
+  footer .aero_home-headerimg-wrapper {
+    min-height: auto;
+    padding: 3rem 0;
+  }
+
+  .aero_home_BPJ_wrapper > div {
+    min-height: 280px;
+    padding: 3rem 2rem;
+    gap: 1.5rem;
+  }
+
+  .aero_home_BPJ_wrapper > div a {
+    width: 110px;
+    height: 110px;
   }
 
   .aero_home_BPJ_wrapper img {
-    width: 80px;
-    height: 80px;
+    width: 75px;
+    height: 75px;
   }
 
   .aero_home_BPJ_wrapper span {
-    font-size: 1.2rem;
+    font-size: 1.3rem;
+    letter-spacing: 2px;
+  }
+
+  .aero_home_BPJ_wrapper > div:hover span {
+    letter-spacing: 2.5px;
   }
 }

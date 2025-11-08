@@ -1,0 +1,29 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Photo Gallery Schema",
+  "type": "object",
+  "properties": {
+    "location": {
+      "type": "string",
+      "maxLength": 50,
+      "description": "Location slug (e.g., oakville, windsor)"
+    },
+    "navbar": {
+      "type": "string",
+      "maxLength": 50,
+      "description": "Navbar section name (e.g., gallery)"
+    },
+    "group": {
+      "type": "string",
+      "maxLength": 100,
+      "description": "Group/category name (e.g., trampoline, dodgeball)"
+    },
+    "urls": {
+      "type": "string",
+      "maxLength": 10000,
+      "description": "Newline-separated list of image/video URLs"
+    }
+  },
+  "required": ["location", "navbar", "group", "urls"],
+  "additionalProperties": false
+}

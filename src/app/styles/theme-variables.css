@@ -1,0 +1,113 @@
+/* ========================================
+   THEME VARIABLES
+   ======================================== */
+
+/* Default (Dark Mode) */
+:root,
+[data-theme="dark"] {
+  /* Primary Brand Colors */
+  --primary-pink: #f00c74;
+  --primary-lime: #caff1a;
+  --secondary-pink: #ff1a8c;
+  --secondary-lime: #d4ff4d;
+
+  /* Background Colors */
+  --bg-primary: #000000;
+  --bg-secondary: #0a0a0a;
+  --bg-tertiary: #1a1a1a;
+  --bg-card: linear-gradient(135deg, rgba(0, 0, 0, 0.8) 0%, rgba(26, 26, 26, 0.6) 100%);
+  --bg-section-dark: linear-gradient(135deg, #000000 0%, #1a1a1a 100%);
+  --bg-section-light: linear-gradient(180deg, #ffffff 0%, #f5f5f5 100%);
+
+  /* Text Colors */
+  --text-primary: #ffffff;
+  --text-secondary: #e0e0e0;
+  --text-tertiary: #cccccc;
+  --text-muted: #999999;
+  --text-body: #b0b0b0;
+  --text-dark: #000000;
+
+  /* Border & Divider Colors */
+  --border-primary: rgba(240, 12, 116, 0.3);
+  --border-secondary: rgba(255, 255, 255, 0.1);
+  --border-hover: rgba(202, 255, 26, 0.8);
+
+  /* Shadow Colors */
+  --shadow-primary: rgba(240, 12, 116, 0.3);
+  --shadow-secondary: rgba(0, 0, 0, 0.5);
+  --shadow-glow: rgba(202, 255, 26, 0.3);
+
+  /* Overlay Colors */
+  --overlay-dark: rgba(0, 0, 0, 0.7);
+  --overlay-light: rgba(0, 0, 0, 0.3);
+
+  /* Button Gradients */
+  --btn-gradient: linear-gradient(135deg, rgba(240, 12, 116, 0.9) 0%, rgba(240, 12, 116, 0.7) 100%);
+  --btn-gradient-hover: linear-gradient(135deg, rgba(240, 12, 116, 1) 0%, rgba(255, 26, 140, 0.9) 100%);
+
+  /* Card Background */
+  --card-bg: linear-gradient(135deg, rgba(26, 26, 26, 0.8) 0%, rgba(38, 38, 38, 0.9) 100%);
+}
+
+/* Light Mode */
+[data-theme="light"] {
+  /* Primary Brand Colors (same) */
+  --primary-pink: #f00c74;
+  --primary-lime: #caff1a;
+  --secondary-pink: #ff1a8c;
+  --secondary-lime: #9ce600;
+
+  /* Background Colors */
+  --bg-primary: #ffffff;
+  --bg-secondary: #f8f8f8;
+  --bg-tertiary: #f0f0f0;
+  --bg-card: linear-gradient(135deg, rgba(255, 255, 255, 0.95) 0%, rgba(248, 248, 248, 0.9) 100%);
+  --bg-section-dark: linear-gradient(135deg, #f5f5f5 0%, #e8e8e8 100%);
+  --bg-section-light: linear-gradient(180deg, #ffffff 0%, #f9f9f9 100%);
+
+  /* Text Colors */
+  --text-primary: #1a1a1a;
+  --text-secondary: #2a2a2a;
+  --text-tertiary: #444444;
+  --text-muted: #666666;
+  --text-body: #555555;
+  --text-dark: #000000;
+
+  /* Border & Divider Colors */
+  --border-primary: rgba(240, 12, 116, 0.4);
+  --border-secondary: rgba(0, 0, 0, 0.1);
+  --border-hover: rgba(202, 255, 26, 0.9);
+
+  /* Shadow Colors */
+  --shadow-primary: rgba(240, 12, 116, 0.25);
+  --shadow-secondary: rgba(0, 0, 0, 0.15);
+  --shadow-glow: rgba(202, 255, 26, 0.4);
+
+  /* Overlay Colors */
+  --overlay-dark: rgba(0, 0, 0, 0.6);
+  --overlay-light: rgba(0, 0, 0, 0.2);
+
+  /* Button Gradients */
+  --btn-gradient: linear-gradient(135deg, rgba(240, 12, 116, 0.95) 0%, rgba(240, 12, 116, 0.8) 100%);
+  --btn-gradient-hover: linear-gradient(135deg, rgba(240, 12, 116, 1) 0%, rgba(255, 26, 140, 1) 100%);
+
+  /* Card Background */
+  --card-bg: linear-gradient(135deg, rgba(255, 255, 255, 0.95) 0%, rgba(248, 248, 248, 0.9) 100%);
+}
+
+/* Smooth transitions for theme changes */
+* {
+  transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Preserve animation transitions */
+*[class*="animation"],
+*[class*="transition"],
+.aero_attraction_card,
+.attraction-figure,
+.offer-card,
+.promotion-card,
+button,
+a {
+  transition: all 0.3s ease;
+}

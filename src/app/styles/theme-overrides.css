@@ -1,0 +1,286 @@
+/* ========================================
+   THEME-AWARE OVERRIDES
+   Apply CSS variables to existing components
+   ======================================== */
+
+/* ========================================
+   BACKGROUNDS
+   ======================================== */
+.aero_home_article_section,
+.aero_home-actionbtn-bg {
+  background: var(--bg-section-dark);
+}
+
+.aero_home-playsection-bg,
+.aero_home_feature_section-bg {
+  background: var(--bg-section-light);
+}
+
+.aero_attractions_wrapper {
+  background: var(--bg-section-dark);
+}
+
+/* ========================================
+   CARDS
+   ======================================== */
+.aero_attraction_card,
+.attraction-figure {
+  background: var(--bg-card);
+  box-shadow: 0 10px 30px var(--shadow-primary), 0 0 0 2px var(--border-primary);
+}
+
+.aero_attraction_card:hover,
+.attraction-figure:hover {
+  box-shadow: 0 20px 50px var(--shadow-primary), 0 0 60px var(--shadow-glow);
+  border-color: var(--border-hover);
+}
+
+.aero_home_article_card,
+.aero_rating_card {
+  background: var(--card-bg);
+  border: 2px solid var(--border-primary);
+  box-shadow: 0 10px 30px var(--shadow-secondary);
+}
+
+.aero_home_article_card:hover {
+  box-shadow: 0 20px 50px var(--shadow-primary);
+  border-color: var(--border-primary);
+}
+
+.offer-card {
+  background: var(--bg-card);
+  border: 3px solid transparent;
+  background-image: var(--bg-card), linear-gradient(135deg, var(--primary-pink) 0.3, var(--primary-lime) 0.2);
+  box-shadow: 0 10px 30px var(--shadow-secondary);
+}
+
+.offer-card:hover {
+  box-shadow: 0 20px 50px var(--shadow-primary);
+}
+
+/* ========================================
+   TEXT COLORS
+   ======================================== */
+body {
+  color: var(--text-primary);
+  background: var(--bg-primary);
+}
+
+.aero_home-playsection-1,
+.aero_section_subtitle,
+.aero_home_content_section p,
+.aero_home_content_section ul li {
+  color: var(--text-body);
+}
+
+.aero_home_article_section p,
+.aero_rating_overallrating,
+.aero_home_seo_section p {
+  color: var(--text-secondary);
+}
+
+.aero_home_seo_section ul li {
+  color: var(--text-tertiary);
+}
+
+.aero_attraction_card_description,
+.aero_home_article_desc p {
+  color: var(--text-secondary);
+}
+
+.offer-card__body p {
+  color: var(--text-body);
+}
+
+.aero_home_article_desc h3,
+.aero_rating_card h4 {
+  color: var(--text-primary);
+}
+
+.aero_rating_card p {
+  color: var(--text-tertiary);
+}
+
+/* ========================================
+   FEATURE CARDS
+   ======================================== */
+.aero_home_feature_section-card {
+  background: var(--bg-card);
+  box-shadow: 0 10px 30px var(--shadow-primary);
+  border: 3px solid transparent;
+  background-image: var(--bg-card), linear-gradient(135deg, var(--primary-pink), var(--primary-lime));
+}
+
+.aero_home_feature_section-card:hover {
+  box-shadow: 0 20px 50px var(--shadow-primary);
+}
+
+.aero_home_feature_section-card div:last-child {
+  color: var(--text-primary);
+}
+
+/* ========================================
+   BPJ SECTION (Footer Icons)
+   ======================================== */
+.aero_home_BPJ_wrapper div {
+  background: var(--bg-card);
+  border: 2px solid var(--border-primary);
+}
+
+.aero_home_BPJ_wrapper div:hover {
+  box-shadow: 0 20px 40px var(--shadow-primary);
+  border-color: var(--border-primary);
+  background: var(--card-bg);
+}
+
+/* ========================================
+   HEADER & NAVIGATION
+   ======================================== */
+[data-theme="light"] .aero-col-3 {
+  background: rgba(255, 255, 255, 0.98);
+  backdrop-filter: blur(10px);
+  border-bottom: 2px solid rgba(0, 0, 0, 0.1);
+}
+
+[data-theme="light"] .aero-list-7,
+[data-theme="light"] .aero-list-7-1 {
+  background: rgba(255, 255, 255, 0.98);
+  backdrop-filter: blur(15px);
+  border-bottom: 2px solid rgba(0, 0, 0, 0.1);
+}
+
+[data-theme="light"] .aero-list-7 a,
+[data-theme="light"] .aero-list-7-1 a {
+  color: rgba(0, 0, 0, 0.85);
+}
+
+[data-theme="light"] .aero-list-7 a:hover,
+[data-theme="light"] .aero-list-7-1 a:hover {
+  color: var(--text-dark);
+  background: rgba(0, 0, 0, 0.05);
+}
+
+/* ========================================
+   PROMOTION CARDS
+   ======================================== */
+.promotion-card {
+  background: var(--bg-card);
+  border: 3px solid transparent;
+  box-shadow: 0 10px 30px var(--shadow-secondary);
+}
+
+.promotion-card:hover {
+  box-shadow: 0 20px 50px var(--shadow-primary);
+}
+
+.promotion-card__description {
+  color: var(--text-tertiary);
+}
+
+.promotion-card__validity,
+.promotion-card__code {
+  color: var(--text-body);
+}
+
+/* ========================================
+   MODAL (if using modals)
+   ======================================== */
+.aero_attraction_modal {
+  background: rgba(0, 0, 0, 0.96);
+}
+
+[data-theme="light"] .aero_attraction_modal {
+  background: rgba(255, 255, 255, 0.96);
+}
+
+.aero_attraction_modal_content {
+  background: var(--bg-secondary);
+}
+
+.aero_attraction_modal_description {
+  color: var(--text-secondary);
+}
+
+.aero_attraction_modal_description p {
+  color: var(--text-secondary);
+}
+
+.aero_attraction_modal_description ul,
+.aero_attraction_modal_description ol {
+  color: var(--text-secondary);
+}
+
+/* ========================================
+   DECORATIVE ELEMENTS
+   ======================================== */
+[data-theme="light"] .aero_attractions_circle {
+  border-color: rgba(240, 12, 116, 0.3);
+}
+
+[data-theme="light"] .aero_attractions_confetti {
+  opacity: 0.5;
+}
+
+/* ========================================
+   CONTENT SECTIONS
+   ======================================== */
+[data-theme="light"] .aero_home_article_desc div {
+  background: linear-gradient(135deg, rgba(240, 12, 116, 0.5) 0%, rgba(202, 255, 26, 0.4) 100%);
+  border: 3px solid rgba(240, 12, 116, 0.7);
+}
+
+[data-theme="light"] .aero_home_article_card:hover .aero_home_article_desc div {
+  background: linear-gradient(135deg, rgba(240, 12, 116, 0.7) 0%, rgba(202, 255, 26, 0.6) 100%);
+}
+
+/* ========================================
+   FOOTER
+   ======================================== */
+[data-theme="light"] .aero_footer_section-bg {
+  background: linear-gradient(135deg, #f5f5f5 0%, #e8e8e8 100%);
+  border-top: 3px solid;
+  border-image: linear-gradient(90deg, var(--primary-pink), var(--primary-lime)) 1;
+}
+
+[data-theme="light"] .aero_footer_tagline,
+[data-theme="light"] .aero_footer_links_list li a,
+[data-theme="light"] .aero_footer_copyright p {
+  color: var(--text-body);
+}
+
+[data-theme="light"] .aero_footer_links_list li a:hover {
+  color: var(--primary-lime);
+}
+
+/* ========================================
+   FORM ELEMENTS & INPUTS
+   ======================================== */
+[data-theme="light"] input,
+[data-theme="light"] textarea,
+[data-theme="light"] select {
+  background: var(--bg-primary);
+  border-color: var(--border-secondary);
+  color: var(--text-primary);
+}
+
+/* ========================================
+   IMAGE OVERLAYS
+   ======================================== */
+.aero_attraction_card_image_overlay {
+  background: linear-gradient(to top, var(--overlay-dark), transparent);
+}
+
+.offer-card__img::before {
+  background: linear-gradient(to bottom, transparent 0%, var(--overlay-light) 50%, var(--overlay-dark) 100%);
+}
+
+/* ========================================
+   RESPONSIVE ADJUSTMENTS
+   ======================================== */
+@media (prefers-color-scheme: light) {
+  :root:not([data-theme]) {
+    /* If user hasn't chosen a theme, respect system preference */
+    --bg-primary: #ffffff;
+    --text-primary: #1a1a1a;
+  }
+}

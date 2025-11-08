@@ -287,8 +287,94 @@ async function fetchBirthdayPartyJson(location) {
   }
 }
 
+/**
+ * Fetch photo gallery data from "photo gallery" sheet
+ * Returns organized data by navbar groups with parsed URLs
+ */
+async function fetchGalleryData(location) {
+  try {
+    const jsonData = await fetchsheetdata("photo gallery", location);
 
-   
+    if (!jsonData || jsonData.length === 0) {
+      console.warn(`No photo gallery data found for location: ${location}`);
+      return {};
+    }
+
+    // Group data by navbar value
+    const groupedData = {};
+
+    jsonData.forEach(row => {
+      const navbar = row.navbar || 'gallery';
+
+      if (!groupedData[navbar]) {
+        groupedData[navbar] = [];
+      }
+
+      // Parse URLs - split by newline and filter empty strings
+      const urls = row.urls
+        ? row.urls.split('\n').map(url => url.trim()).filter(url => url)
+        : [];
+
+      groupedData[navbar].push({
+        group: row.group || '',
+        urls: urls,
+        location: row.location
+      });
+    });
+
+    return groupedData;
+  } catch (error) {
+    console.error(`Error fetching gallery data for ${location}:`, error.message);
+    return {};
+  }
+}
+
+/**
+ * Fetch pricing table data from "pricingtable" sheet
+ * Returns table data with header and footer
+ */
+async function fetchPricingTableData(location) {
+  try {
+    const jsonData = await fetchsheetdata("pricingtable", location);
+
+    if (!jsonData || jsonData.length === 0) {
+      console.warn(`No pricing table data found for location: ${location}`);
+      return null;
+    }
+
+    // Find the row for this location
+    const locationRow = jsonData.find(row =>
+      row.location?.toLowerCase() === location?.toLowerCase()
+    );
+
+    if (!locationRow) {
+      console.warn(`No pricing data found for location: ${location}`);
+      return null;
+    }
+
+    // Parse the table JSON string
+    let tableData = null;
+    if (locationRow.table) {
+      try {
+        tableData = JSON.parse(locationRow.table);
+      } catch (parseError) {
+        console.error(`Error parsing table JSON for ${location}:`, parseError.message);
+      }
+    }
+
+    return {
+      table: tableData,
+      header: locationRow.header || '',
+      footer: locationRow.footer || ''
+    };
+  } catch (error) {
+    console.error(`Error fetching pricing table data for ${location}:`, error.message);
+    return null;
+  }
+}
+
+
+
 
 module.exports = {
   fetchsheetdata,
@@ -300,5 +386,7 @@ module.exports = {
   getReviewsData,
   fetchsheetdataNoCache,
   generateSchema,
-  fetchBirthdayPartyJson
+  fetchBirthdayPartyJson,
+  fetchGalleryData,
+  fetchPricingTableData
 };

@@ -129,6 +129,20 @@ const Header = ({ location_slug, menudata, configdata }) => {
                 {item.navName}
               </Link>
             ))}
+          <Link
+            href={`/${location_slug}/pricing-promos`}
+            prefetch
+            key="pricing-promos"
+          >
+            Pricing & Promos
+          </Link>
+          <Link
+            href={`/${location_slug}/gallery`}
+            prefetch
+            key="gallery"
+          >
+            Gallery
+          </Link>
         </nav>
       </section>
     </header>

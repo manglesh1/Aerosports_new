@@ -59,6 +59,24 @@ const MenuButton = ({ navList, location_slug }) => {
                 </Link>
               );
             })}
+          <Link
+            href={`/${location_slug}/pricing-promos`}
+            key="pricing-promos"
+            className="aero-app-changelocation"
+            onClick={() => setMobile_nav(false)}
+            prefetch
+          >
+            Pricing & Promos
+          </Link>
+          <Link
+            href={`/${location_slug}/gallery`}
+            key="gallery"
+            className="aero-app-changelocation"
+            onClick={() => setMobile_nav(false)}
+            prefetch
+          >
+            Gallery
+          </Link>
         </nav>
       )}
     </div>
