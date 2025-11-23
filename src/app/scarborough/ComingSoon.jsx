@@ -167,7 +167,7 @@ export default function ComingSoon() {
           viewport={{ once: true }}
           className="section-header"
         >
-          <h2 className="section-title">What's Coming to Scarborough</h2>
+          <h2 className="section-title">What&apos;s Coming to Scarborough</h2>
           <p className="section-subtitle">
             Get ready for an action-packed entertainment destination featuring all your favorite activities
           </p>
@@ -244,7 +244,7 @@ export default function ComingSoon() {
         >
           <h2 className="contact-title">Get in Touch</h2>
           <p className="contact-subtitle">
-            Have questions or want to know more about our opening? We'd love to hear from you!
+            Have questions or want to know more about our opening? We&apos;d love to hear from you!
           </p>
 
           <div className="contact-info">
