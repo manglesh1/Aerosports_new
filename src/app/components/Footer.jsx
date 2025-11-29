@@ -13,6 +13,7 @@ import facebookicon from "@public/assets/images/social_icon/facebook.png";
 import twittericon from "@public/assets/images/social_icon/twitter.png";
 import tiktokicon from "@public/assets/images/social_icon/tiktok.png";
 import instagramicon from "@public/assets/images/social_icon/instagram.png";
+import logo from '@public/assets/images/logo.jpg'
 import Script from "next/script";
 
 
@@ -72,7 +73,7 @@ const Footer = ({ location_slug, configdata, menudata, reviewdata }) => {
         <div className="d-flex-center aero_logo_social_wrap">
           <Link href={`/${location_slug}`} prefetch>
             <Image
-              src="https://storage.googleapis.com/aerosports/logo_white.png"
+              src={logo}
               alt="AeroSports Logo"
               width={100}
               height={93.42}

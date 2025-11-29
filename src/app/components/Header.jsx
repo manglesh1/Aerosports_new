@@ -6,6 +6,7 @@ import Image from "next/image";
 import MenuButton from "./smallComponents/MenuButton";
 import TopHeader from "./smallComponents/TopHeader";
 import { MdOutlinePermContactCalendar } from "react-icons/md";
+import logo from '@public/assets/images/logo.jpg'
 
 
 const Header = ({ location_slug, menudata, configdata }) => {
@@ -51,7 +52,7 @@ const Header = ({ location_slug, menudata, configdata }) => {
         <div className="aero_main_logo_wrap">
           <Link href={`/${location_slug}`} className="aero_main_logo" prefetch>
             <Image
-              src="https://storage.googleapis.com/aerosports/logo_white.png"
+              src={logo}
               height="71"
               width="71"
               alt="logo"
