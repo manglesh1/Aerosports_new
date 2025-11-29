@@ -57,11 +57,15 @@
 
 .aero_main_logo_wrap {
   position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .aero_main_logo {
   position: absolute;
-  inset: 0;
+  left: 50%;
+  transform: translateX(-50%);
   top: -26px;
   z-index: 99;
 }
@@ -71,6 +75,7 @@
   width: 100%;
   height: auto;
   padding: 5px;
+  display: block;
 }
 
 .aero_changelocation_height {
