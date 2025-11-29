@@ -112,7 +112,7 @@ export default function PreBookingForm({ onClose }) {
           >
             <div className="success-icon">✓</div>
             <h3>Thank You for Pre-Booking!</h3>
-            <p>We've received your information and will contact you soon with exclusive updates and offers.</p>
+            <p>We&apos;ve received your information and will contact you soon with exclusive updates and offers.</p>
           </motion.div>
         ) : (
           <form onSubmit={handleSubmit} className="prebooking-form">
@@ -223,7 +223,7 @@ export default function PreBookingForm({ onClose }) {
 
             <div className="form-footer">
               <p className="form-note">
-                By submitting this form, you agree to receive updates about Aerosports Scarborough's opening and special offers.
+                By submitting this form, you agree to receive updates about Aerosports Scarborough&apos;s opening and special offers.
               </p>
               <button
                 type="submit"
