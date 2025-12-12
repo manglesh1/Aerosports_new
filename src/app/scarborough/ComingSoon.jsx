@@ -49,7 +49,7 @@ export default function ComingSoon() {
             animate={{ scale: 1 }}
             transition={{ delay: 0.3, type: "spring", stiffness: 200 }}
           >
-            <span className="badge-text">OPENING SOON</span>
+            <span className="badge-text">OPEN NOW</span>
           </motion.div>
 
           <motion.h1
@@ -68,7 +68,7 @@ export default function ComingSoon() {
             animate={{ opacity: 1 }}
             transition={{ delay: 0.7 }}
           >
-            The Ultimate Indoor Entertainment Experience is Coming to Your Neighbourhood
+            The Ultimate Indoor Entertainment Experience is Now Open in Your Neighbourhood
           </motion.p>
 
           <motion.div
@@ -121,9 +121,9 @@ export default function ComingSoon() {
           viewport={{ once: true }}
           className="section-header"
         >
-          <h2 className="section-title">What&apos;s Coming to Scarborough</h2>
+          <h2 className="section-title">What&apos;s Available at Scarborough</h2>
           <p className="section-subtitle">
-            Get ready for an action-packed entertainment destination featuring all your favorite activities
+            Experience our action-packed entertainment destination featuring all your favorite activities
           </p>
         </motion.div>
 
@@ -198,7 +198,7 @@ export default function ComingSoon() {
         >
           <h2 className="contact-title">Get in Touch</h2>
           <p className="contact-subtitle">
-            Have questions or want to know more about our opening? We&apos;d love to hear from you!
+            Have questions or want to know more? We&apos;d love to hear from you!
           </p>
 
           <div className="contact-info">
@@ -282,7 +282,7 @@ export default function ComingSoon() {
         <div className="footer-content">
           <div className="footer-logo">
             <h3>Aerosports Scarborough!</h3>
-            <p>Opening Soon</p>
+            <p>Open Now</p>
           </div>
           <div className="footer-social">
             <p>Follow us for updates:</p>
