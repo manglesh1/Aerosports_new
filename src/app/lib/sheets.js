@@ -229,7 +229,7 @@ async function getReviewsData(locationid){
    
 async function generateSchema(pagedata, locationData, category, page ) {
   const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL;
- 
+
   const metadataItem = pagedata;//?.find((item) => item.path === pagefordata);
 //console.log('pagedata', pagedata);
   let canonicalPath = pagedata?.location;
@@ -240,24 +240,141 @@ async function generateSchema(pagedata, locationData, category, page ) {
   } else if (category) {
     canonicalPath += `/${category}`;
   }
-   
+
 
   const fullUrl = `${BASE_URL}/${canonicalPath}`;
   const imageUrl = metadataItem?.headerimage?.startsWith("http")
     ? metadataItem.headerimage
     : `${BASE_URL}${metadataItem?.headerimage || ""}`;
-   
+
   const filled = locationData?.[0]?.schema
   .replace('"{{metadesc}}"', JSON.stringify(metadataItem?.metadescription || "Fun for all ages at AeroSports!"))
   .replace('"{{image}}"', JSON.stringify(imageUrl))
   .replace('"{{url}}"', JSON.stringify(fullUrl));
 
   return     filled;
-  
+
+}
+
+/**
+ * Fetch and parse birthday party pricing JSON data from Google Sheets
+ */
+async function fetchBirthdayPartyJson(location) {
+  try {
+    const jsonData = await fetchsheetdata("location json", location);
+
+    if (!jsonData || jsonData.length === 0) {
+      console.warn(`No birthday party data found for location: ${location}`);
+      return null;
+    }
+
+    // Find the row for this location
+    const locationRow = jsonData.find(row =>
+      row.location?.toLowerCase() === location?.toLowerCase()
+    );
+
+    if (!locationRow || !locationRow.json) {
+      console.warn(`No JSON data found for location: ${location}`);
+      return null;
+    }
+
+    // Parse the JSON string from the json column
+    const parsedData = JSON.parse(locationRow.json);
+    return parsedData;
+  } catch (error) {
+    console.error(`Error fetching birthday party JSON for ${location}:`, error.message);
+    return null;
+  }
+}
+
+/**
+ * Fetch photo gallery data from "photo gallery" sheet
+ * Returns organized data by navbar groups with parsed URLs
+ */
+async function fetchGalleryData(location) {
+  try {
+    const jsonData = await fetchsheetdata("photo gallery", location);
+
+    if (!jsonData || jsonData.length === 0) {
+      console.warn(`No photo gallery data found for location: ${location}`);
+      return {};
+    }
+
+    // Group data by navbar value
+    const groupedData = {};
+
+    jsonData.forEach(row => {
+      const navbar = row.navbar || 'gallery';
+
+      if (!groupedData[navbar]) {
+        groupedData[navbar] = [];
+      }
+
+      // Parse URLs - split by newline and filter empty strings
+      const urls = row.urls
+        ? row.urls.split('\n').map(url => url.trim()).filter(url => url)
+        : [];
+
+      groupedData[navbar].push({
+        group: row.group || '',
+        urls: urls,
+        location: row.location
+      });
+    });
+
+    return groupedData;
+  } catch (error) {
+    console.error(`Error fetching gallery data for ${location}:`, error.message);
+    return {};
+  }
+}
+
+/**
+ * Fetch pricing table data from "pricingtable" sheet
+ * Returns table data with header and footer
+ */
+async function fetchPricingTableData(location) {
+  try {
+    const jsonData = await fetchsheetdata("pricingtable", location);
+
+    if (!jsonData || jsonData.length === 0) {
+      console.warn(`No pricing table data found for location: ${location}`);
+      return null;
+    }
+
+    // Find the row for this location
+    const locationRow = jsonData.find(row =>
+      row.location?.toLowerCase() === location?.toLowerCase()
+    );
+
+    if (!locationRow) {
+      console.warn(`No pricing data found for location: ${location}`);
+      return null;
+    }
+
+    // Parse the table JSON string
+    let tableData = null;
+    if (locationRow.table) {
+      try {
+        tableData = JSON.parse(locationRow.table);
+      } catch (parseError) {
+        console.error(`Error parsing table JSON for ${location}:`, parseError.message);
+      }
+    }
+
+    return {
+      table: tableData,
+      header: locationRow.header || '',
+      footer: locationRow.footer || ''
+    };
+  } catch (error) {
+    console.error(`Error fetching pricing table data for ${location}:`, error.message);
+    return null;
+  }
 }
 
 
-   
+
 
 module.exports = {
   fetchsheetdata,
@@ -268,5 +385,8 @@ module.exports = {
   getWaiverLink,
   getReviewsData,
   fetchsheetdataNoCache,
-  generateSchema
+  generateSchema,
+  fetchBirthdayPartyJson,
+  fetchGalleryData,
+  fetchPricingTableData
 };

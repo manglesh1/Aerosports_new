@@ -1,4 +1,5 @@
 import "../../../styles/blogs.css";
+import Image from 'next/image';
 import { getDataByBlogId,getDataByParentId } from "@/utils/customFunctions";
 import { fetchPageData,fetchMenuData, generateMetadataLib,generateSchema,fetchsheetdata } from "@/lib/sheets";
 import Link from 'next/link';
@@ -33,7 +34,7 @@ const jsonLDschema = await generateSchema(blogData,locationData,slug,'blogs');
       <section className="aero-max-container">
         <div className="aero-blog-detail-main-section">
           <div className="aero-blog-img-section aero-blog-detail-img-section">
-          <img src={blogData?.headerimage} alt={blogData?.headerimagetitle} width="100%" />
+          <Image src={blogData?.headerimage} alt={blogData?.headerimagetitle} width={800} height={500} unoptimized style={{width: '100%', height: 'auto'}} />
           </div>
           <h1>{ blogData?.title }</h1>
           <div
@@ -46,7 +47,7 @@ const jsonLDschema = await generateSchema(blogData,locationData,slug,'blogs');
           <article className="aero-blog-main-article-card" key={i}>
             <div className="aero-blog-img-section">
               <Link href={`${item?.path}`} prefetch>
-              <img src={item.smallimage} alt="Article Image" />
+              <Image src={item.smallimage} alt="Article Image" width={400} height={300} unoptimized />
               </Link>
             </div>
             <div className="aero-blog-content-section">

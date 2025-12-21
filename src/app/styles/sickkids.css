@@ -1,0 +1,112 @@
+/* SickKids Section - Consistent with BirthdayPartySection Design */
+
+.sickkids-content h2 {
+  font-size: clamp(2.5rem, 8vw, 4rem);
+  font-weight: 900;
+  text-transform: uppercase;
+  line-height: 0.95;
+  margin-bottom: 1.5rem;
+  color: #ffffff;
+  text-rendering: geometricPrecision;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-align: center;
+}
+
+.sickkids-content h3 {
+  font-size: clamp(1.8rem, 5vw, 2.5rem);
+  font-weight: 900;
+  text-transform: uppercase;
+  color: #ffffff;
+  margin-bottom: 1.5rem;
+  margin-top: 3rem;
+  text-align: center;
+  text-rendering: geometricPrecision;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.sickkids-content p {
+  font-size: 1.1rem;
+  color: rgba(255, 255, 255, 0.8);
+  line-height: 1.7;
+  font-weight: 600;
+  margin-bottom: 1.5rem;
+  text-align: center;
+  max-width: 900px;
+  margin-left: auto;
+  margin-right: auto;
+  text-rendering: geometricPrecision;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.sickkids-content ul {
+  list-style: none;
+  padding: 0;
+  margin: 2rem auto;
+  max-width: 900px;
+}
+
+.sickkids-content ul li {
+  font-size: 1rem;
+  color: rgba(255, 255, 255, 0.8);
+  line-height: 1.7;
+  font-weight: 600;
+  margin-bottom: 1.5rem;
+  padding-left: 2rem;
+  position: relative;
+  text-rendering: geometricPrecision;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.sickkids-content ul li::before {
+  content: "→";
+  position: absolute;
+  left: 0;
+  color: #39FF14;
+  font-weight: 700;
+  font-size: 1.2rem;
+}
+
+.sickkids-content strong {
+  color: #39FF14;
+  font-weight: 700;
+}
+
+.sickkids-content a {
+  color: #39FF14;
+  text-decoration: underline;
+  font-weight: 700;
+  transition: color 0.3s ease;
+}
+
+.sickkids-content a:hover {
+  color: #ff1152;
+}
+
+/* Responsive Design */
+@media screen and (max-width: 768px) {
+  .sickkids-content h2 {
+    font-size: clamp(1.8rem, 6vw, 2.5rem);
+    margin-bottom: 1rem;
+  }
+
+  .sickkids-content h3 {
+    font-size: clamp(1.4rem, 4vw, 1.8rem);
+    margin-top: 2rem;
+    margin-bottom: 1rem;
+  }
+
+  .sickkids-content p {
+    font-size: 1rem;
+    margin-bottom: 1rem;
+  }
+
+  .sickkids-content ul li {
+    font-size: 0.95rem;
+    margin-bottom: 1rem;
+    padding-left: 1.5rem;
+  }
+}

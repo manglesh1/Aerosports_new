@@ -5,7 +5,7 @@ import * as XLSX from 'xlsx';
 // 1) Put this in .env.local (and in your CI/CD env):
 // REDIRECT_SHEET_XLSX="https://docs.google.com/spreadsheets/d/XXX/export?format=xlsx"
 const SHEET_URL = process.env.REDIRECT_SHEET_XLSX
-  ?? 'https://docs.google.com/spreadsheets/d/1zpV1juNopYe4bnFP959w3ldwj0dC-3WF/export?format=xlsx'; // fallback
+  ?? 'https://docs.google.com/spreadsheets/d/1phEZ3UKnCZzR30RqbD9LyLTdPsGxIEO2k-xhtV5mPhw/edit?usp=sharing&ouid=111554940659762157873&rtpof=true&sd=true'; // fallback
 
 async function fetchSheetRedirects() {
   try {
@@ -51,7 +51,7 @@ async function fetchSheetRedirects() {
 const nextConfig = {
   async redirects() {
     const sheetRedirects = await fetchSheetRedirects();
-console.log('Fetched redirects:', sheetRedirects);
+// console.log('Fetched redirects:', sheetRedirects);
 
     // (Optional) Keep a few hardcoded fallbacks here if you want
     // const staticRedirects = [ ... ];
@@ -71,7 +71,7 @@ console.log('Fetched redirects:', sheetRedirects);
   env: {
     NEXT_PUBLIC_API_URL: 'https://apis-351216.nn.r.appspot.com/api',
     NEXT_PUBLIC_BASE_URL: 'https://www.aerosportsparks.ca',
-    SHEET_URL: 'https://docs.google.com/spreadsheets/d/1zpV1juNopYe4bnFP959w3ldwj0dC-3WF/export?format=xlsx',
+    SHEET_URL: 'https://docs.google.com/spreadsheets/d/1phEZ3UKnCZzR30RqbD9LyLTdPsGxIEO2k-xhtV5mPhw/export?format=xlsx',
   },
 };
 

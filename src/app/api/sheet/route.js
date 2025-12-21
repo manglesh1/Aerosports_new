@@ -46,7 +46,7 @@ export async function GET(request) {
 export async function PUT(request) {
   const { searchParams } = new URL(request.url);
   const rowParam = searchParams.get("row");
-  console.log('put api is called:', rowParam);
+  // console.log('put api is called:', rowParam);
 
   let updatedData;
   try {

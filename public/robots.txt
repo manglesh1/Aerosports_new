@@ -5,7 +5,7 @@ Disallow: /admin
 Disallow: /api
 
 # Host
-Host: https://aerosportsparks.ca
+Host: https://www.aerosportsparks.ca
 
 # Sitemaps
-Sitemap: https://aerosportsparks.ca/sitemap.xml
+Sitemap: https://www.aerosportsparks.ca/sitemap.xml

@@ -1,5 +1,6 @@
 import '../../styles/blogs.css'
 import React from "react";
+import Image from 'next/image';
 import { getDataByParentId } from '@/utils/customFunctions';
 import Link from 'next/link';
 import { fetchMenuData, generateMetadataLib,fetchsheetdata,generateSchema } from "@/lib/sheets";
@@ -39,7 +40,7 @@ const page = async({params}) => {
           <article className="aero-blog-main-article-card" key={i}>
             <div className="aero-blog-img-section">
               <Link href={`blogs/${item?.path}`} prefetch>
-              <img src={item.smallimage} alt="Article Image" />
+              <Image src={item.smallimage} alt="Article Image" width={400} height={300} unoptimized />
               </Link>
             </div>
             <div className="aero-blog-content-section">
