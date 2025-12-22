@@ -165,15 +165,7 @@ const MotionImage = ({ pageData, waiverLink, locationData, hideOverlay = false }
             priority
           />
 
-          <motion.article
-            className="image-content"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{
-              duration: 1.5,
-            }}
-          ></motion.article>
-          <div className="z-20 absolute inset-0 flex justify-center items-center bg-gradient-to-br from-black/50 to-black/70 px-6 py-16">
+          <div className="absolute inset-0 flex justify-center items-center bg-gradient-to-br from-black/50 to-black/70 px-6 py-16" style={{ zIndex: 30 }}>
   <div className="max-w-3xl text-center animate-[fadeInUp_1s_ease-out]">
 
     {/* Title */}
