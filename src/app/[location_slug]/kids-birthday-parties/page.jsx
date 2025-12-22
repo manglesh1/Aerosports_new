@@ -173,11 +173,11 @@ const Page = async ({ params }) => {
 
 							{/* Birthday Invitation Button */}
 							{locData.birthdaypartyurl && (
-								<div className="text-center mt-8">
+								<div className="mt-8 text-center">
 									<a
 										href={locData.birthdaypartyurl}
 										target="_blank"
-										className="inline-block bg-neon-green hover:bg-neon-green/90 px-8 py-4 rounded-xl font-extrabold text-black text-base uppercase tracking-wider transition-all duration-300 hover:scale-105"
+										className="inline-block bg-neon-green hover:bg-neon-green/90 px-8 py-4 rounded-xl font-extrabold text-black text-base uppercase tracking-wider hover:scale-105 transition-all duration-300"
 									>
 										Generate Your Custom Birthday Invitation
 									</a>
@@ -211,6 +211,43 @@ const Page = async ({ params }) => {
               dangerouslySetInnerHTML={{ __html: pageData?.seosection || "" }}
             />
 				</section>
+				<div className="mb-16">
+					<h3 className="mb-6 [-webkit-font-smoothing:antialiased] font-black text-[clamp(1.8rem,5vw,2.5rem)] text-white text-center uppercase [text-rendering:geometricPrecision]">
+						Plan Your Birthday Celebration Today!
+					</h3>
+
+					<p className="mx-auto mb-8 max-w-[900px] font-semibold text-white/80 text-lg text-center leading-relaxed">
+						Planning a birthday celebration at AeroSports is easy! Choose your package and let our event planners handle the details. With various options tailored to different age groups, we ensure every child has a fantastic time.
+					</p>
+
+					<div className="gap-6 sm:gap-8 grid grid-cols-1 sm:grid-cols-2 mt-8">
+						{/* Contact Info */}
+						<div className="bg-white/5 shadow-[0_15px_50px_rgba(0,0,0,0.4)] p-8 border-2 border-white/10 rounded-2xl text-center">
+							<div className="mb-4 text-5xl">📞</div>
+							<h4 className="mb-4 font-black text-white text-xl uppercase tracking-wide">Contact Us</h4>
+							<p className="mb-2 font-bold text-neon-pink text-2xl">{locData.phone}</p>
+							<p className="font-semibold text-white/60 text-sm">Call us directly to book your event!</p>
+						</div>
+
+						{/* Location */}
+						<div className="bg-white/5 shadow-[0_15px_50px_rgba(0,0,0,0.4)] p-8 border-2 border-white/10 rounded-2xl text-center">
+							<div className="mb-4 text-5xl">📍</div>
+							<h4 className="mb-4 font-black text-white text-xl uppercase tracking-wide">Find Us At</h4>
+							<p className="font-semibold text-neon-green text-lg leading-relaxed">{locData.address}</p>
+						</div>
+					</div>
+
+					{/* Birthday Invitation Button */}
+					{locData.birthdaypartyurl && (
+						<div className="flex justify-center mt-12">
+							<Button variant="primary" size="lg" asChild>
+								<a href={locData.birthdayurlz} target="_blank">
+									Book Your Party
+								</a>
+							</Button>
+						</div>
+					)}
+				</div>
 			</section>
 			  <script
         type="application/ld+json"
