@@ -66,7 +66,7 @@ const HeroSection = ({ headerImage, waiverLink, locationData, estoreConfig, loca
               </Button>
             )}
             <Button variant="secondary" asChild>
-              <Link href={`${locationData?.[0].birthdayurl}`}>
+              <Link href={locationData?.[0]?.rollerurl || '#'}>
                 Book a Party
               </Link>
             </Button>

@@ -1,0 +1,37 @@
+{
+  "party_packages": {
+    "Premium Party": {
+      "Jump Time": "75 mins",
+      "Room Time": "45 mins",
+      "Mandatory Aero Grip Socks": "50% Off",
+      "Pizza & Drinks": true,
+      "Bowls of Chips & Popcorn": false,
+      "Outside Food": "Additional Cost ($50)",
+      "Valo Arena & Arcade Cards": false,
+      "Arcade Game Cards": false,
+      "Birthday T-Shirt": true,
+      "Free 30 Day Pass": false
+    },
+    "Ultimate Party": { 
+      "Jump Time": "90 mins",
+      "Room Time": "60 mins",
+      "Mandatory Aero Grip Socks": "Free",
+      "Pizza & Drinks": true,
+      "Bowls of Chips & Popcorn": true,
+      "Outside Food": true,
+      "Valo Arena & Arcade Cards": true,
+      "Arcade Game Cards": true,
+      "Birthday T-Shirt": "GLOW T-Shirt",
+      "Free 30 Day Pass": true
+    }
+  },
+  "legend": {
+    "✓": "Included",
+    "✗": "Not Included",
+    "$": "Additional Cost"
+  },
+  "location": {
+    "name": "Aerosports London",
+    "description": "Celebrate your special day at Aerosports London — the ultimate destination for non-stop fun and adventure!"
+  }
+}

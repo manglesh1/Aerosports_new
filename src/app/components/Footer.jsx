@@ -47,7 +47,7 @@ const Footer = ({ location_slug, configdata, menudata, reviewdata,locationData }
         />
         <article className="aero-max-container aero_home_BPJ_wrapper">
           {[
-            { icon: event_icon, text: "Birthday Parties", url:`${locationData?.[0].birthdayurl}`  },
+            { icon: event_icon, text: "Birthday Parties", url: locationData?.[0]?.rollerurl || '#' },
             { icon: park_feature_icon, text: "Gallery", url:`/${location_slug}/${galleryData?.[0]?.path || 'gallery'}` },
             { icon: jump_icon, text: "Group Events" , url:`/${location_slug}/${groupsData?.[0]?.path || 'groups-events'}`},
           ].map((item, index) => (
