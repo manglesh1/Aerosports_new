@@ -527,18 +527,6 @@
   background: linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 100%);
 }
 
-.aero_bp_pricing_table_container::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: 4px;
-  background: linear-gradient(90deg, #ff1152 0%, #caff1a 50%, #ff1152 100%);
-  background-size: 200% 100%;
-  animation: shine 3s linear infinite;
-  z-index: 100;
-}
 
 /* Energetic scrollbar */
 .aero_bp_pricing_table_container::-webkit-scrollbar {
