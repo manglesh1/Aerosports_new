@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Boxing Day 90 Day Pass</title>
+<style>
+    .modal-content {
+        background: transparent !important;
+        border: none !important;
+        box-shadow: none !important;
+        padding: 0 !important;
+        margin: 0 !important;
+    }
+
+    .modal-body {
+        background: transparent !important;
+        padding: 0 !important;
+        margin: 0 !important;
+    }
+
+    .aero_promotion_popup {
+        background: transparent !important;
+        padding: 0 !important;
+        margin: 0 !important;
+    }
+
+    /* Make existing close button visible and styled */
+    .modal-close {
+        position: absolute !important;
+        top: 15px !important;
+        right: 15px !important;
+        z-index: 9999 !important;
+        background: rgba(0, 0, 0, 0.7) !important;
+        border: none !important;
+        border-radius: 50% !important;
+        width: 32px !important;
+        height: 32px !important;
+        cursor: pointer !important;
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        transition: all 0.3s ease !important;
+        box-shadow: none !important;
+    }
+
+    .modal-close:hover {
+        background: rgba(0, 255, 0, 0.8) !important;
+        transform: scale(1.1) !important;
+        box-shadow: none !important;
+    }
+
+    .modal-close svg {
+        width: 16px !important;
+        height: 16px !important;
+        color: #00ff00 !important;
+        transition: all 0.3s ease !important;
+        filter: none !important;
+    }
+
+    .modal-close:hover svg {
+        color: #fff !important;
+    }
+
+    /* Animations */
+    @keyframes float {
+        0%, 100% { transform: translateY(0px); }
+        50% { transform: translateY(-15px); }
+    }
+    
+    @keyframes pulse {
+        0%, 100% { transform: scale(1); }
+        50% { transform: scale(1.05); }
+    }
+
+    @keyframes glow {
+        0%, 100% { 
+            box-shadow: 0 20px 60px rgba(0, 255, 0, 0.4), 0 0 100px rgba(255, 0, 102, 0.3);
+        }
+        50% { 
+            box-shadow: 0 20px 60px rgba(0, 255, 0, 0.6), 0 0 120px rgba(255, 0, 102, 0.5);
+        }
+    }
+
+    @keyframes gradientShift {
+        0%, 100% { background-position: 0% 50%; }
+        50% { background-position: 100% 50%; }
+    }
+
+    @keyframes sparkle {
+        0%, 100% { opacity: 0; transform: scale(0); }
+        50% { opacity: 1; transform: scale(1); }
+    }
+
+    /* Popup Container */
+    .popup-container {
+        position: relative;
+        width: 100%;
+        max-width: 650px;
+        margin: 20px auto;
+        border-radius: 20px;
+        overflow: hidden;
+        box-shadow: 0 20px 60px rgba(0, 255, 0, 0.4), 0 0 100px rgba(255, 0, 102, 0.3);
+        animation: glow 3s ease-in-out infinite;
+    }
+
+    /* Floating Elements */
+    .floating-element {
+        position: absolute;
+        animation: float 4s ease-in-out infinite;
+        z-index: 3;
+        font-size: 2rem;
+        cursor: pointer;
+        transition: all 0.3s ease;
+    }
+    
+    .floating-element:hover {
+        transform: scale(1.3);
+    }
+    
+    .gift-1 { top: 8%; left: 8%; animation-delay: 0s; }
+    .gift-2 { top: 12%; right: 10%; animation-delay: 1.5s; }
+    .gift-3 { bottom: 25%; left: 12%; animation-delay: 2.5s; }
+
+    /* Sparkle Elements */
+    .sparkle {
+        position: absolute;
+        font-size: 1.5rem;
+        animation: sparkle 2s ease-in-out infinite;
+        z-index: 2;
+        pointer-events: none;
+    }
+    
+    .sparkle-1 { top: 15%; left: 20%; animation-delay: 0s; }
+    .sparkle-2 { top: 30%; right: 15%; animation-delay: 0.5s; }
+    .sparkle-3 { bottom: 35%; left: 25%; animation-delay: 1s; }
+    .sparkle-4 { bottom: 20%; right: 20%; animation-delay: 1.5s; }
+
+    /* Promo Image */
+    .promo-image {
+        width: 100%;
+        height: auto;
+        display: block;
+        position: relative;
+        z-index: 2;
+    }
+
+    /* Get Pass Button */
+    .get-pass-button {
+        background: linear-gradient(45deg, #ff0066, #00ff00, #ff0066);
+        background-size: 200% 200%;
+        color: #000;
+        padding: 18px 45px;
+        border: 3px solid #00ff00;
+        border-radius: 50px;
+        font-weight: 800;
+        font-size: 1.2rem;
+        cursor: pointer;
+        box-shadow: 0 8px 25px rgba(0, 255, 0, 0.6), 0 0 40px rgba(255, 0, 102, 0.4);
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        text-decoration: none;
+        display: inline-block;
+        transition: all 0.3s ease;
+        margin: 20px 0;
+        animation: pulse 3s ease-in-out infinite, gradientShift 3s ease-in-out infinite;
+    }
+
+    .get-pass-button:hover {
+        transform: scale(1.08);
+        box-shadow: 0 10px 35px rgba(0, 255, 0, 0.8), 0 0 50px rgba(255, 0, 102, 0.6);
+    }
+
+    .button-container {
+        text-align: center;
+        padding: 0 20px 20px;
+        background: #000;
+        position: relative;
+        z-index: 2;
+    }
+
+    /* Responsive Design */
+    @media (max-width: 768px) {
+        .popup-container {
+            max-width: 95%;
+            margin: 10px auto;
+            border-radius: 15px;
+        }
+        
+        .get-pass-button {
+            font-size: 1rem;
+            padding: 15px 35px;
+            width: 100%;
+            max-width: 100%;
+        }
+
+        .button-container {
+            padding: 0 15px 15px;
+        }
+
+        .gift-1, .gift-2, .gift-3 {
+            font-size: 1.5rem !important;
+        }
+
+        .sparkle {
+            font-size: 1.2rem !important;
+        }
+    }
+
+    @media (max-width: 480px) {
+        .popup-container {
+            max-width: 98%;
+            margin: 5px auto;
+            border-radius: 10px;
+        }
+        
+        .get-pass-button {
+            font-size: 0.9rem;
+            padding: 14px 30px;
+        }
+
+        .button-container {
+            padding: 0 10px 10px;
+        }
+
+        .gift-1, .gift-2, .gift-3 {
+            font-size: 1.2rem !important;
+        }
+
+        .sparkle {
+            font-size: 1rem !important;
+        }
+    }
+</style>
+</head>
+<body>
+
+<div class="popup-container">
+    
+   
+    <!-- Promo Image -->
+    <img src="https://storage.googleapis.com/aerosports/popups/boxingday/ldn_90daypass.png" 
+         alt="Boxing Day 50% Off - 90 Day Pass Only $74.95 - Available Dec 22nd - Jan 4th" 
+         class="promo-image">
+
+    <!-- Get Pass Button -->
+    <div class="button-container">
+        <a href="https://ecom.roller.app/aerosportslondon/londoncheckout/en/home" 
+           target="_blank" 
+           class="get-pass-button">
+            Get Your Pass Now
+        </a>
+    </div>
+
+</div>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    // Add click effect to floating elements
+    const floatingElements = document.querySelectorAll('.floating-element');
+    floatingElements.forEach(element => {
+        element.addEventListener('click', function() {
+            this.style.transform = 'translateY(-60px) scale(1.8) rotate(360deg)';
+            this.style.transition = 'all 0.6s ease';
+            setTimeout(() => {
+                this.style.transform = '';
+                this.style.transition = '';
+            }, 600);
+        });
+    });
+    
+    // Enhanced hover effect for button
+    const passButton = document.querySelector('.get-pass-button');
+    if (passButton) {
+        passButton.addEventListener('mouseenter', function() {
+            this.style.transform = 'scale(1.1)';
+            this.style.boxShadow = '0 10px 35px rgba(0, 255, 0, 0.8), 0 0 60px rgba(255, 0, 102, 0.6)';
+        });
+        
+        passButton.addEventListener('mouseleave', function() {
+            this.style.transform = 'scale(1)';
+            this.style.boxShadow = '0 8px 25px rgba(0, 255, 0, 0.6), 0 0 40px rgba(255, 0, 102, 0.4)';
+        });
+    }
+    
+    // Target existing close button and make it work
+    const existingCloseButton = document.querySelector('.modal-close');
+    if (existingCloseButton) {
+        existingCloseButton.addEventListener('click', function() {
+            const modalContent = document.querySelector('.modal-content');
+            if (modalContent) {
+                modalContent.style.display = 'none';
+            }
+            
+            const modalContainer = modalContent ? modalContent.closest('[class*="modal"]') : null;
+            if (modalContainer && modalContainer !== modalContent) {
+                modalContainer.style.display = 'none';
+            }
+        });
+    }
+});
+</script>
+
+</body>
+</html>

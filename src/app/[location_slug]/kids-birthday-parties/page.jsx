@@ -1,7 +1,6 @@
 import React, { Children } from "react";
 import "../../styles/kidsparty.css";
 import "../../styles/subcategory.css";
-import BirthdayPartySection from "@/components/sections/BirthdayPartySection";
 import { fetchsheetdata, fetchPageData, generateMetadataLib, fetchMenuData, getWaiverLink, generateSchema, fetchBirthdayPartyJson } from "@/lib/sheets";
 import MotionImage from "@/components/MotionImage";
 import TermsModal from "@/components/TermsModal";
