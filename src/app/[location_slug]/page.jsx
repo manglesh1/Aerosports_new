@@ -79,12 +79,13 @@ const Home = async ({ params }) => {
 
       {/* SEO Section - Diagonal Split Layout */}
       {attractionsData?.[0]?.children?.length > 0 && seosection && (
-        <SEOSection
-          locationData={locationData}
-          locationSlug={location_slug}
-          estoreConfig={estoreConfig}
-          seosection={seosection}
-        />
+        // <SEOSection
+        //   locationData={locationData}
+        //   locationSlug={location_slug}
+        //   estoreConfig={estoreConfig}
+        //   seosection={seosection}
+        // />
+        <></>
       )}
 
       {/* Celebrate Your Event Section - Black Background */}

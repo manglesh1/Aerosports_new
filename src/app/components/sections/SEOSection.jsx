@@ -10,10 +10,13 @@ const SEOSection = ({ locationData, locationSlug, estoreConfig, seosection }) =>
 
 			<section style={styles.seoContainer} className="gap-6 md:gap-10 grid grid-cols-1 md:grid-cols-2">
 				{/* Left Side - Content */}
-				<div style={styles.seoLeft}>
+				{/* <div
+              dangerouslySetInnerHTML={{ __html: seosection || "" }}
+            /> */}
+				{/* <div style={styles.seoLeft}>
 					<div style={styles.seoContent}>
 						<div style={styles.seoBadge}>
-							<span>Ultimate Indoor Entertainment</span>
+							<span> Indoor Entertainment</span>
 						</div>
 						<h1 style={styles.seoTitle}>
 							Discover <span style={styles.seoTitleAccent}>AeroSports</span>{" "}
@@ -46,7 +49,7 @@ const SEOSection = ({ locationData, locationSlug, estoreConfig, seosection }) =>
 							<strong style={styles.seoHighlight}>dodgeball arena</strong>.
 						</p>
 					</div>
-				</div>
+				</div> */}
 
 				{/* Right Side - Map & Location Info */}
 				<div style={styles.seoRight}>
