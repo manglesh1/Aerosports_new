@@ -10,7 +10,7 @@ const SEOSection = ({ locationData, locationSlug, estoreConfig, seosection }) =>
 
 			<section style={styles.seoContainer} className="gap-6 md:gap-10 grid grid-cols-1 md:grid-cols-2">
 				{/* Left Side - Content */}
-				<div
+				<div style={styles.seoLeft}
               dangerouslySetInnerHTML={{ __html: seosection || "" }}
             />
 				{/* <div style={styles.seoLeft}>
