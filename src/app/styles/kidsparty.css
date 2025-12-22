@@ -597,15 +597,34 @@
   transition: all 0.3s ease;
   justify-content: center;
   text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.aero_bp_grid_header_package::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0.1) 0%,
+    transparent 100%
+  );
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  pointer-events: none;
+}
+
+.aero_bp_grid_header_package:hover::after {
+  opacity: 1;
 }
 
 .aero_bp_grid_header_package:hover {
-  background: linear-gradient(
-    180deg,
-    rgba(255, 17, 82, 0.25) 0%,
-    rgba(202, 255, 26, 0.15) 100%
-  );
-  transform: translateY(-3px);
+  transform: translateY(-3px) scale(1.02);
+  filter: brightness(1.2);
 }
 
 .aero_bp_grid_header:last-child {
@@ -647,34 +666,32 @@
   font-weight: 500;
   justify-content: center;
   text-align: center;
-  background: linear-gradient(
-    135deg,
-    rgba(0, 0, 0, 0.6) 0%,
-    rgba(26, 26, 26, 0.8) 100%
-  );
+  position: relative;
+  overflow: hidden;
 }
 
-/* Alternating row colors using nth-child */
-.aero_bp_grid_cell:nth-child(8n + 1),
-.aero_bp_grid_cell:nth-child(8n + 2),
-.aero_bp_grid_cell:nth-child(8n + 3),
-.aero_bp_grid_cell:nth-child(8n + 4) {
+.aero_bp_grid_cell_value::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
   background: linear-gradient(
-    135deg,
-    rgba(0, 0, 0, 0.8) 0%,
-    rgba(26, 26, 26, 0.6) 100%
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.1),
+    transparent
   );
+  transition: left 0.5s ease;
 }
 
-.aero_bp_grid_cell:nth-child(8n + 5),
-.aero_bp_grid_cell:nth-child(8n + 6),
-.aero_bp_grid_cell:nth-child(8n + 7),
-.aero_bp_grid_cell:nth-child(8n + 8) {
-  background: linear-gradient(
-    135deg,
-    rgba(10, 10, 10, 0.9) 0%,
-    rgba(20, 20, 20, 0.7) 100%
-  );
+.aero_bp_grid_cell_value:hover::before {
+  left: 100%;
+}
+
+.aero_bp_grid_cell_value:hover {
+  filter: brightness(1.15);
 }
 
 /* Feature cells always maintain their background */

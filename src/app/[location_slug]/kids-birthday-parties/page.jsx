@@ -72,6 +72,20 @@ const Page = async ({ params }) => {
 									// Get package names
 									const packageNames = Object.keys(birthdayPartyJson.party_packages);
 
+									// Brand color palette for packages
+									const packageColors = [
+										{ bg: '#FF1152', bgLight: 'rgba(255, 17, 82, 0.25)', border: '#FF1152', glow: 'rgba(255, 17, 82, 0.6)' }, // Neon Pink
+										{ bg: '#39FF14', bgLight: 'rgba(57, 255, 20, 0.25)', border: '#39FF14', glow: 'rgba(57, 255, 20, 0.6)' }, // Neon Green
+										{ bg: '#9D4EDD', bgLight: 'rgba(157, 78, 221, 0.25)', border: '#9D4EDD', glow: 'rgba(157, 78, 221, 0.6)' }, // Neon Purple
+										{ bg: '#00D9FF', bgLight: 'rgba(0, 217, 255, 0.25)', border: '#00D9FF', glow: 'rgba(0, 217, 255, 0.6)' }, // Neon Blue
+										{ bg: '#FF6B35', bgLight: 'rgba(255, 107, 53, 0.25)', border: '#FF6B35', glow: 'rgba(255, 107, 53, 0.6)' }, // Neon Orange
+										{ bg: '#F00C74', bgLight: 'rgba(240, 12, 116, 0.25)', border: '#F00C74', glow: 'rgba(240, 12, 116, 0.6)' }, // Neon Pink Dark
+										{ bg: '#CAFF1A', bgLight: 'rgba(202, 255, 26, 0.25)', border: '#CAFF1A', glow: 'rgba(202, 255, 26, 0.6)' }, // Neon Green Bright
+									];
+
+									// Assign colors to packages
+									const getPackageColor = (index) => packageColors[index % packageColors.length];
+
 									// Collect all unique features from all packages in a deterministic order
 									const allFeaturesSet = new Set();
 									const firstPackage = birthdayPartyJson.party_packages[packageNames[0]];
@@ -99,15 +113,24 @@ const Page = async ({ params }) => {
 											<div className="[-webkit-font-smoothing:antialiased] font-black text-white text-base uppercase tracking-wide aero_bp_grid_header aero_bp_grid_header_feature [text-rendering:geometricPrecision]">
 												FEATURES
 											</div>
-											{packageNames.map((packageName, index) => (
-												<div
-													key={packageName}
-													className="[-webkit-font-smoothing:antialiased] font-black text-white text-base uppercase tracking-wide aero_bp_grid_header aero_bp_grid_header_package [text-rendering:geometricPrecision]"
-													style={{ animationDelay: `${index * 0.1}s` }}
-												>
-													{packageName}
-												</div>
-											))}
+											{packageNames.map((packageName, index) => {
+												const color = getPackageColor(index);
+												return (
+													<div
+														key={packageName}
+														className="[-webkit-font-smoothing:antialiased] font-black text-white text-base uppercase tracking-wide aero_bp_grid_header aero_bp_grid_header_package [text-rendering:geometricPrecision]"
+														style={{
+															animationDelay: `${index * 0.1}s`,
+															background: `linear-gradient(135deg, ${color.bgLight} 0%, rgba(0, 0, 0, 0.3) 100%)`,
+															borderBottom: `4px solid ${color.border}`,
+															borderRight: `2px solid ${color.border}`,
+															boxShadow: `0 0 20px ${color.glow}`,
+														}}
+													>
+														{packageName}
+													</div>
+												);
+											})}
 
 											{/* Data Rows */}
 											{allFeatures.map((feature, rowIndex) => (
@@ -121,14 +144,19 @@ const Page = async ({ params }) => {
 													</div>
 
 													{/* Package Value Cells */}
-													{packageNames.map((packageName) => {
+													{packageNames.map((packageName, pkgIndex) => {
 														const value = birthdayPartyJson.party_packages[packageName][feature];
+														const color = getPackageColor(pkgIndex);
 
 														return (
 															<div
 																key={`${feature}-${packageName}`}
 																className="[-webkit-font-smoothing:antialiased] font-semibold text-[0.95rem] text-white/80 aero_bp_grid_cell aero_bp_grid_cell_value [text-rendering:geometricPrecision]"
-																style={{ animationDelay: `${rowIndex * 0.05}s` }}
+																style={{
+																	animationDelay: `${rowIndex * 0.05}s`,
+																	borderRight: `1px solid ${color.border}30`,
+																	background: `linear-gradient(135deg, rgba(0, 0, 0, 0.6) 0%, ${color.bgLight}15 100%)`,
+																}}
 															>
 																{value === undefined || value === null ? (
 																	<span className="aero_bp_na">—</span>
