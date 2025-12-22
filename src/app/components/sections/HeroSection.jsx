@@ -32,16 +32,15 @@ const HeroSection = ({ headerImage, waiverLink, locationData, estoreConfig, loca
 
           {/* Subtitle */}
           <p className="mx-auto mb-10 max-w-xl text-gray-300 text-lg leading-relaxed animate-[fadeInUp_1s_ease-out_0.4s_backwards]">
-            The ultimate indoor trampoline park with 130+ trampolines, 27,000 sq
-            ft of pure excitement, and 8+ epic attractions waiting for you.
+            {headerImage?.[0]?.smalltext || ""}
           </p>
 
           {/* Stats */}
           <div className="flex flex-wrap justify-center gap-6 mb-10 animate-[fadeInUp_1s_ease-out_0.6s_backwards]">
-            <div className="text-center">
+            {/* <div className="text-center">
               <div className="font-black text-[#39FF14] text-4xl">27,000+</div>
               <p className="opacity-90 text-white">Sq Ft of Fun</p>
-            </div>
+            </div> */}
 
             <div className="text-center">
               <div className="font-black text-pink-500 text-4xl">8+</div>
