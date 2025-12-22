@@ -70,7 +70,7 @@ const SEOSection = ({ locationData, locationSlug, estoreConfig, seosection }) =>
 								</strong>
 							</p>
 							<p style={styles.locationDescription}>
-								We have locations all over the globe. You can find your
+								We have locations all over Ontario. You can find your
 								local park using our park locator on our website.
 							</p>
 						</div>
