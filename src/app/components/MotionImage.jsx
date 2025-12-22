@@ -177,7 +177,7 @@ const MotionImage = ({ pageData, waiverLink, locationData, hideOverlay = false }
   <div className="max-w-3xl text-center animate-[fadeInUp_1s_ease-out]">
 
     {/* Title */}
-    <h1 className="mb-4 font-black text-[clamp(2rem,6vw,3.5rem)] text-white uppercase leading-tight tracking-wide">
+    <h1 className="mb-4 font-black text-[clamp(2rem,6vw,3.5rem)] text-white leading-tight tracking-wide">
       {item.title}
     </h1>
 
