@@ -121,7 +121,7 @@ const Page = async ({ params }) => {
 														className="[-webkit-font-smoothing:antialiased] font-black text-white text-base uppercase tracking-wide aero_bp_grid_header aero_bp_grid_header_package [text-rendering:geometricPrecision]"
 														style={{
 															animationDelay: `${index * 0.1}s`,
-															background: `linear-gradient(135deg, ${color.bgLight} 0%, rgba(0, 0, 0, 0.3) 100%)`,
+															background: color.bg,
 															borderBottom: `4px solid ${color.border}`,
 															borderRight: `2px solid ${color.border}`,
 															boxShadow: `0 0 20px ${color.glow}`,
@@ -154,8 +154,8 @@ const Page = async ({ params }) => {
 																className="[-webkit-font-smoothing:antialiased] font-semibold text-[0.95rem] text-white/80 aero_bp_grid_cell aero_bp_grid_cell_value [text-rendering:geometricPrecision]"
 																style={{
 																	animationDelay: `${rowIndex * 0.05}s`,
-																	borderRight: `1px solid ${color.border}30`,
-																	background: `linear-gradient(135deg, rgba(0, 0, 0, 0.6) 0%, ${color.bgLight}15 100%)`,
+																	borderRight: `2px solid ${color.border}`,
+																	background: color.bgLight,
 																}}
 															>
 																{value === undefined || value === null ? (
