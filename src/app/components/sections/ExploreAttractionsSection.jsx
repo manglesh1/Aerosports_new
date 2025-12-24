@@ -46,7 +46,7 @@ export default function ExploreAttractionsSection({ attractions, location_slug }
 
 						<h2 className="font-black text-white text-4xl sm:text-5xl lg:text-6xl uppercase leading-tight">
 							Explore <br />
-							<span className="text-[#ff1152]">Our</span> Attractions
+							<span className="text-[#39FF14]">Our</span> Attractions
 						</h2>
 
 						<Button variant="neonGreen" size="full" rounded="md" asChild>
