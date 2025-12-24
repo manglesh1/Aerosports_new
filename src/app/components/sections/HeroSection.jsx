@@ -15,10 +15,10 @@ const HeroSection = ({ headerImage, waiverLink, locationData, estoreConfig, loca
       />
 
       {/* Overlay */}
-      <div className="z-20 absolute inset-0 flex justify-center items-center bg-gradient-to-br from-black/50 to-black/60 px-6 pt-20 sm:pt-30 md:pt-40 lg:pt-50">
+      <div className="z-20 absolute inset-0 flex justify-center items-center bg-gradient-to-br from-black/50 to-black/60 px-6 pt-20 sm:pt-30 md:pt-40 lg:pt-50 pb-16">
         <div className="max-w-7xl text-center animate-[fadeInUp_1s_ease-out]">
           {/* Badge */}
-          <div className="inline-block mb-10 px-7 py-3 border-[#39FF14] border-2 rounded-full font-bold text-[#39FF14] text-[0.85rem] uppercase tracking-wide animate-[scaleIn_0.8s_ease-out]">
+          <div className="hidden sm:inline-block mb-10 px-7 py-3 border-[#39FF14] border-2 rounded-full font-bold text-[#39FF14] text-[0.85rem] uppercase tracking-wide animate-[scaleIn_0.8s_ease-out]">
             Experience Pure Adrenaline
           </div>
 
@@ -64,7 +64,7 @@ const HeroSection = ({ headerImage, waiverLink, locationData, estoreConfig, loca
                 </Link>
               </Button>
             )}
-            <Button variant="secondary" asChild>
+            <Button variant="secondary" asChild className="hidden sm:inline-flex">
               <Link href={locationData?.[0]?.rollerurl || '#'}>
                 Book a Party
               </Link>
