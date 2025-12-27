@@ -527,6 +527,10 @@
   background: linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 100%);
 }
 
+.aero_bp_pricing_table_container::after {
+  display: none;
+}
+
 
 /* Energetic scrollbar */
 .aero_bp_pricing_table_container::-webkit-scrollbar {
@@ -916,7 +920,7 @@
   }
 
   .aero_bp_pricing_table_wrapper {
-    padding: 1.5em 0;
+    padding: 1.5em 0.5em;
   }
 
   .aero_bp_pricing_table_container {
@@ -924,45 +928,68 @@
     border-radius: 12px;
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
     overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
   }
 
   .aero_bp_grid_table {
-    min-width: max-content;
+    min-width: 600px;
     border-radius: 12px;
   }
 
   .aero_bp_grid_header {
-    padding: 16px 12px;
-    font-size: 0.95rem;
+    padding: 12px 8px;
+    font-size: 0.75rem;
     letter-spacing: 0.2px;
-    min-height: 50px;
+    min-height: 45px;
   }
 
   .aero_bp_grid_cell {
-    padding: 16px 12px;
-    font-size: 0.85rem;
-    min-height: 50px;
+    padding: 12px 8px;
+    font-size: 0.75rem;
+    min-height: 45px;
   }
 
   .aero_bp_grid_header_feature,
   .aero_bp_grid_cell_feature {
-    padding-left: 16px;
+    padding-left: 12px;
+    font-size: 0.7rem;
   }
 
   .aero_bp_check,
   .aero_bp_cross {
-    width: 24px;
-    height: 24px;
+    width: 20px;
+    height: 20px;
   }
 
   .aero_bp_text_value {
-    font-size: 0.8rem;
-    padding: 0.25em 0.6em;
+    font-size: 0.7rem;
+    padding: 0.3em 0.5em;
   }
 
   .aero_bp_location_description {
     font-size: 1rem;
     padding: 1em 1em 1.5em;
+  }
+
+  /* Mobile scroll hint */
+  .aero_bp_pricing_table_container::after {
+    display: block;
+    content: "← Scroll →";
+    position: sticky;
+    bottom: 8px;
+    right: 8px;
+    float: right;
+    background: rgba(255, 17, 82, 0.9);
+    color: white;
+    padding: 4px 12px;
+    border-radius: 12px;
+    font-size: 0.7rem;
+    font-weight: 700;
+    pointer-events: none;
+    z-index: 10;
+    margin-top: -32px;
+    margin-right: 8px;
+    animation: badgePulse 2s ease-in-out infinite;
   }
 }
 
