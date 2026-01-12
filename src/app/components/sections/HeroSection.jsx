@@ -60,13 +60,13 @@ const HeroSection = ({ headerImage, waiverLink, locationData, estoreConfig, loca
             {estoreConfig?.value && (
               <Button variant="primary" asChild>
                 <Link href={estoreConfig.value} target="_blank">
-                Start Jumping
+                Book Now
                 </Link>
               </Button>
             )}
             <Button variant="secondary" asChild className="hidden sm:inline-flex">
-              <Link href={locationData?.[0]?.rollerurl || '#'}>
-                Book a Party
+              <Link href={waiverLink || '#'}>
+                Waiver
               </Link>
             </Button>
           </div>
