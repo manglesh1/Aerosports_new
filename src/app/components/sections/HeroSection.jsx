@@ -64,7 +64,7 @@ const HeroSection = ({ headerImage, waiverLink, locationData, estoreConfig, loca
                 </Link>
               </Button>
             )}
-            <Button variant="secondary" asChild className="hidden sm:inline-flex">
+            <Button variant="secondary" asChild>
               <Link href={waiverLink || '#'}>
                 Waiver
               </Link>
