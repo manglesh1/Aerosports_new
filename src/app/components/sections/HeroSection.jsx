@@ -15,7 +15,7 @@ const HeroSection = ({ headerImage, waiverLink, locationData, estoreConfig, loca
       />
 
       {/* Overlay */}
-      <div className="z-20 absolute inset-0 flex justify-center items-center bg-gradient-to-br from-black/50 to-black/60 px-6 pt-20 sm:pt-30 md:pt-40 lg:pt-50 pb-16">
+      <div className="z-20 absolute inset-0 flex justify-center items-start sm:items-center bg-gradient-to-br from-black/50 to-black/60 px-6 pt-24 sm:pt-30 md:pt-40 lg:pt-50 pb-16 overflow-y-auto">
         <div className="max-w-7xl text-center animate-[fadeInUp_1s_ease-out]">
           {/* Badge */}
           <div className="hidden sm:inline-block mb-10 px-7 py-3 border-[#39FF14] border-2 rounded-full font-bold text-[#39FF14] text-[0.85rem] uppercase tracking-wide animate-[scaleIn_0.8s_ease-out]">
