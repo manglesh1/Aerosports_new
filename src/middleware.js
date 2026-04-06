@@ -1,18 +1,32 @@
 import { NextResponse } from 'next/server';
 
-export function middleware(request) {
-  const hostname = request.headers.get('host');
-  const isLocalhost = hostname?.includes('localhost') || hostname?.includes('127.0.0.1');
+export function middleware(req) {
+  const url = req.nextUrl.clone();
+  const host = req.headers.get('host') || '';
+  const isLocal =
+    host.startsWith('localhost') || host.startsWith('127.0.0.1');
 
-  if (!isLocalhost && request.nextUrl.protocol === 'http:') {
-    const url = request.nextUrl.clone();
-    url.protocol = 'https:';
-    return NextResponse.redirect(url, 301);
+  if (!isLocal) {
+    // 1) Ensure HTTPS (use proxy header when deployed)
+    const proto = req.headers.get('x-forwarded-proto') || 'http';
+    if (proto !== 'https') {
+      return NextResponse.redirect(`https://${host}${url.pathname}${url.search}`, 308);
+    }
+
+    // 2) Redirect apex domain to www
+    if (host === 'aerosportsparks.ca') {
+      return NextResponse.redirect(`https://www.aerosportsparks.ca${url.pathname}${url.search}`, 308);
+    }
   }
 
-  return NextResponse.next(); // ✅ Correct method
+  return NextResponse.next();
 }
 
 export const config = {
-  matcher: ['/((?!api|_next/static|_next/image|favicon.ico).*)'],
+  matcher: [
+    '/((?!api|_next/static|_next/image|favicon.ico).*)',
+    '/admin/:path*',
+    '/locations/:path*',
+    '/',
+  ],
 };

@@ -1,8 +1,56 @@
-* {
+@import "tailwindcss";
+
+@theme {
+  /* Custom neon colors */
+  --color-neon-pink: #F00C74;
+  --color-neon-pink-light: #FF1152;
+  --color-neon-green: #39FF14;
+  --color-neon-green-glow: #CAFF1A;
+
+  /* Custom shadows */
+  --shadow-neon-pink: 0 8px 25px rgba(240, 12, 116, 0.5);
+  --shadow-neon-pink-lg: 0 12px 30px rgba(240, 12, 116, 0.6);
+  --shadow-neon-green: 0 8px 25px rgba(202, 255, 26, 0.3);
+  --shadow-neon-green-lg: 0 12px 30px rgba(202, 255, 26, 0.5);
+  --shadow-accent-pink: 0 6px 20px rgba(255, 17, 82, 0.4);
+  --shadow-accent-pink-lg: 0 10px 25px rgba(255, 17, 82, 0.6);
+  --shadow-neon-green-solid: 0 10px 30px rgba(57, 255, 20, 0.3);
+  --shadow-neon-green-solid-lg: 0 15px 35px rgba(57, 255, 20, 0.5);
+
+  /* Radius */
+  --radius: 0.5rem;
+
+  /* Animations */
+  --animate-accordion-down: accordion-down 0.2s ease-out;
+  --animate-accordion-up: accordion-up 0.2s ease-out;
+}
+
+@keyframes accordion-down {
+  from { height: 0; }
+  to { height: var(--radix-accordion-content-height); }
+}
+
+@keyframes accordion-up {
+  from { height: var(--radix-accordion-content-height); }
+  to { height: 0; }
+}
+
+@keyframes cardFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* * {
   box-sizing: border-box;
   padding: 0;
   margin: 0;
-}
+} */
 
 html,
 body {
@@ -14,10 +62,54 @@ body {
 }
 
 :root {
+  /* Legacy custom properties */
   --primary-color: #ed0871;
   --secondary-color: #0052ff;
   --white-color: #fff;
   --black-color: #000;
+
+  /* Shadcn/ui theme variables */
+  --background: 0 0% 100%;
+  --foreground: 0 0% 3.9%;
+  --card: 0 0% 100%;
+  --card-foreground: 0 0% 3.9%;
+  --popover: 0 0% 100%;
+  --popover-foreground: 0 0% 3.9%;
+  --primary: 0 0% 9%;
+  --primary-foreground: 0 0% 98%;
+  --secondary: 0 0% 96.1%;
+  --secondary-foreground: 0 0% 9%;
+  --muted: 0 0% 96.1%;
+  --muted-foreground: 0 0% 45.1%;
+  --accent: 0 0% 96.1%;
+  --accent-foreground: 0 0% 9%;
+  --destructive: 0 84.2% 60.2%;
+  --destructive-foreground: 0 0% 98%;
+  --border: 0 0% 89.8%;
+  --input: 0 0% 89.8%;
+  --ring: 0 0% 3.9%;
+}
+
+.dark {
+  --background: 0 0% 3.9%;
+  --foreground: 0 0% 98%;
+  --card: 0 0% 3.9%;
+  --card-foreground: 0 0% 98%;
+  --popover: 0 0% 3.9%;
+  --popover-foreground: 0 0% 98%;
+  --primary: 0 0% 98%;
+  --primary-foreground: 0 0% 9%;
+  --secondary: 0 0% 14.9%;
+  --secondary-foreground: 0 0% 98%;
+  --muted: 0 0% 14.9%;
+  --muted-foreground: 0 0% 63.9%;
+  --accent: 0 0% 14.9%;
+  --accent-foreground: 0 0% 98%;
+  --destructive: 0 62.8% 30.6%;
+  --destructive-foreground: 0 0% 98%;
+  --border: 0 0% 14.9%;
+  --input: 0 0% 14.9%;
+  --ring: 0 0% 83.1%;
 }
 
 /* utility classes  */
@@ -60,11 +152,11 @@ header:first-child + * {
   padding-top: 105px;
 }
 .heading-with-icon {
-  display: flex;       /* Inline alignment */
-  align-items: center;        /* Vertical alignment */
-  gap: 8px;                   /* Space between icon and text */
-  justify-content: center;    /* Center inside text-center div */
-  font-size: 1.75rem;         /* Optional: match heading size */
+  display: flex; /* Inline alignment */
+  align-items: center; /* Vertical alignment */
+  gap: 8px; /* Space between icon and text */
+  justify-content: center; /* Center inside text-center div */
+  font-size: 1.75rem; /* Optional: match heading size */
   text-align: center;
 }
 
@@ -72,12 +164,47 @@ header:first-child + * {
   width: 2.5rem;
   height: 2.5rem;
   stroke: currentColor;
-  color: var(--primary-color);      
-            /* white icon */
+  color: var(--primary-color);
+  /* white icon */
 }
 @media screen and (min-width: 992px) {
   header:first-child + * {
     padding-top: 142px;
   }
+}
 
+@media screen and (min-width: 1600px) {
+  .city-card-wrapper {
+    gap: 2rem;
+    padding: 3em 2em;
+    max-width: 2000px;
+  }
+
+  .city-card-image-wrap {
+    height: 320px;
+  }
+
+  .city-card-title {
+    font-size: 1.3rem;
+  }
+
+  .city-card-text {
+    font-size: 0.9rem;
+  }
+
+  .city-card-icon {
+    width: 18px;
+    height: 18px;
+  }
+
+  .city-card-cta {
+    font-size: 0.85rem;
+    padding: 0.75em 1.2em;
+  }
+}
+
+@media screen and (min-width: 1025px) {
+  .aero-img-heading {
+    margin-bottom: 50px;
+  }
 }

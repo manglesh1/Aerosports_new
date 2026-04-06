@@ -12,6 +12,12 @@ const inter = Poppins({
   weight: ["100", "200", "300", "400", "500", "600", "700", "800", "900"],
 });
 
+export const viewport = {
+  width: "device-width",
+  initialScale: 1.0,
+  maximumScale: 5.0,
+};
+
 export const metadata = {
   title: "Discover Fun-Filled Adventures with ONE PASS in Ontario",
   description: "Explore the thrill of Aero Sports Trampoline Parks in Ontario, offering diverse activities in multiple locations for family-friendly fun and adventure.",

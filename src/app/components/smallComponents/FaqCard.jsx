@@ -3,7 +3,7 @@ import { fetchFaqData } from "@/lib/sheets";
 import { color } from 'framer-motion';
 
 const FaqCard = async ({ location_slug, page }) => {
-  const data = await fetchFaqData(location_slug, 'kids-birthday-parties');
+  const data = await fetchFaqData(location_slug, page);
 
   // If no FAQ data, don't render anything
   if (!data || data.length === 0) {

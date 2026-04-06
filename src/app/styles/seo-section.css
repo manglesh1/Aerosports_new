@@ -1,0 +1,40 @@
+/* SEO Section Responsive Styles */
+
+/* Mobile - 480px and below */
+@media screen and (max-width: 480px) {
+  .seo-diagonal-bg {
+    width: 100% !important;
+    clip-path: polygon(0 30%, 100% 0, 100% 100%, 0% 100%);
+  }
+
+  .seo-diagonal-bg-left {
+    width: 100% !important;
+    opacity: 0.15 !important;
+  }
+}
+
+/* Tablet - 481px to 768px */
+@media screen and (min-width: 481px) and (max-width: 768px) {
+  .seo-diagonal-bg {
+    width: 70% !important;
+    clip-path: polygon(0 25%, 100% 0, 100% 100%, 0% 100%);
+  }
+
+  .seo-diagonal-bg-left {
+    width: 50% !important;
+    opacity: 0.2 !important;
+  }
+}
+
+/* Desktop - 769px and above */
+@media screen and (min-width: 769px) {
+  .seo-diagonal-bg {
+    width: 65% !important;
+    clip-path: polygon(0 5%, 100% 0, 100% 100%, 30% 100%);
+  }
+
+  .seo-diagonal-bg-left {
+    width: 45% !important;
+    opacity: 0.25 !important;
+  }
+}

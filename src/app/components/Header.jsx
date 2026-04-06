@@ -4,34 +4,42 @@ import Link from "next/link";
 import { GrLocation } from "react-icons/gr";
 import Image from "next/image";
 import MenuButton from "./smallComponents/MenuButton";
-import TopHeader from "./smallComponents/TopHeader";
 import { MdOutlinePermContactCalendar } from "react-icons/md";
 
+const Header = ({ location_slug, menudata, configdata, pricingData }) => {
+  // Define custom order for navigation items
+  const navOrder = ['Attractions', 'Birthday Parties', 'Groups & Events', 'Programs', 'Support SickKids', 'Pricing & Promos', 'About Us'];
 
-const Header = ({ location_slug, menudata, configdata }) => {
   const navList = (Array.isArray(menudata) ? menudata : [])
     .filter((item) => item.isactive === 1)
     .map((item) => ({ navName: item.desc, navUrl: item.path.toLowerCase() }))
-    .sort((a, b) => a.navName.localeCompare(b.navName));
+    .sort((a, b) => {
+      const indexA = navOrder.indexOf(a.navName);
+      const indexB = navOrder.indexOf(b.navName);
 
-    console.log(configdata.length);
+      // If both items are in the custom order, sort by their position
+      if (indexA !== -1 && indexB !== -1) {
+        return indexA - indexB;
+      }
+      // If only one item is in the custom order, it comes first
+      if (indexA !== -1) return -1;
+      if (indexB !== -1) return 1;
+      // If neither is in the custom order, sort alphabetically
+      return a.navName.localeCompare(b.navName);
+    });
+
   const estoreConfig = Array.isArray(configdata)
     ? configdata.find((item) => item.key === "estorebase")
     : null;
 
- // const topHeaderConfig = Array.isArray(configdata)
- //   ? configdata.find((item) => item.key === "top-header")
- //   : null;
   return (
     <header>
-      
-
       <section className="d-flex aero-col-3">
         <div className="aero-menu-location app-container">
           <div className="d-flex-center aero_menu_location_icon">
             <MenuButton navList={navList} location_slug={location_slug} />
             <Link href="/" className="d-flex-center" prefetch>
-              <GrLocation fontSize={30} color="#fff" />
+              <GrLocation fontSize={30} color="#39FF14" />
             </Link>
           </div>
         </div>
@@ -63,13 +71,13 @@ const Header = ({ location_slug, menudata, configdata }) => {
 
         <div className="aero-btn-booknow app-container" style={{ textAlign: "right" }}>
           {estoreConfig?.value && (
-            <Link href={estoreConfig.value} target="_blank" prefetch>
-              <button>book</button>
+            <Link href={estoreConfig.value} target="_blank" prefetch className="aero-faq" style={{ background: '#ff1152' }}>
+              Book Now
             </Link>
           )}
         </div>
 
-        <div className="aero-btn-booknow desktop-container">
+        <div className="hidden lg:flex lg:flex-row-reverse aero-btn-booknow gap-3">
           <Link
             href={`/${location_slug}/contactus`}
             prefetch
@@ -80,8 +88,8 @@ const Header = ({ location_slug, menudata, configdata }) => {
             <span>Inquiry Now</span>
           </Link>
           {estoreConfig?.value && (
-            <Link href={estoreConfig.value} target="_blank" prefetch>
-              <button>book now</button>
+            <Link href={estoreConfig.value} target="_blank" prefetch className="aero-faq" style={{ background: '#ff1152' }}>
+              Book Now
             </Link>
           )}
         </div>
@@ -100,20 +108,18 @@ const Header = ({ location_slug, menudata, configdata }) => {
                   {item.navName}
                 </Link>
               ))}
-          </div>
-          <div style={{ position: "relative" }} className="aero-header-changelocation-wrap">
-            <Link href="/" prefetch className="aero-app-changelocation app-container">
-              {location_slug}
-            </Link>
             <Link
-              href={`/${location_slug}/contactus`}
+              href={`/${location_slug}/pricing-promos`}
               prefetch
-              className="aero-header-contactus-btn aero-app-changelocation app-container"
-              style={{ marginRight: "0" }}
             >
-              <MdOutlinePermContactCalendar />
-              <span>Inquiry</span>
+              Pricing & Promos
             </Link>
+            {/* <Link
+              href={`/${location_slug}/gallery`}
+              prefetch
+            >
+              Gallery
+            </Link> */}
           </div>
         </nav>
       </section>

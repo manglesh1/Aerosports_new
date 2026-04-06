@@ -1,0 +1,41 @@
+{
+  "title": "You Jump, Your Way",
+  "categories": {
+    "Regular Admission": {
+      "Premium Jump Pass": {
+        "Duration": "90 Minutes",
+        "Price": "$24.90"
+      },
+      "VIP Jump Pass": {
+        "Duration": "120 Minutes",
+        "Price": "$29.90"
+      },
+      "All Day Pass": {
+        "Duration": "All Day",
+        "Price": "$39.90"
+      }
+    },
+    "Memberships": {
+      "30 Day Pass": {
+        "Duration": "60 Minutes per visit",
+        "Validity": "30 Days",
+        "Price": "$49.90"
+      },
+      "90 Day Pass": {
+        "Duration": "90 Minutes",
+        "Validity": "90 Days",
+        "Price": "$149.90"
+      }
+    },
+    "Go-Karting": {
+      "Standard Go-Kart": {
+        "Races": "1 Race",
+        "Price": "$19.90"
+      },
+      "Mini Kart": {
+        "Races": "1 Race",
+        "Price": "$9.90"
+      }
+    }
+  }
+}
