@@ -47,7 +47,7 @@
   list-style-type: none;
 }
 :is(.aero_bp_card_wrap_list, .pinklist, .bogo_main_section ul) li::before {
-  content: "⚾";
+  content: "-";
   margin-right: 0.5em;
   margin-top: 0.1em;
 }
