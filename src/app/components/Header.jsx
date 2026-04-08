@@ -89,11 +89,11 @@ const Header = ({ location_slug, menudata, configdata, pricingData, locationData
   // Lock body scroll when mobile menu open
   useEffect(() => {
     if (mobileMenuOpen) {
-      document.body.style.overflow = 'hidden';
+      document.body.style.overflowY = 'hidden';
     } else {
-      document.body.style.overflow = 'unset';
+      document.body.style.overflowY = '';
     }
-    return () => { document.body.style.overflow = 'unset'; };
+    return () => { document.body.style.overflowY = ''; };
   }, [mobileMenuOpen]);
 
   // Get promo config for announcement bar
