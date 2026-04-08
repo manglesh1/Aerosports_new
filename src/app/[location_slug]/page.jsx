@@ -1,6 +1,8 @@
 import { notFound } from "next/navigation";
+import { Roboto_Condensed } from "next/font/google";
 import "../styles/home.css";
 import "../styles/promotions.css";
+import "../styles/kidsparty.css";
 import { getDataByParentId } from "@/utils/customFunctions";
 import PromotionModal from "@/components/model/PromotionModal";
 import LocationPopupModal from "@/components/model/LocationPopupModal";
@@ -17,6 +19,13 @@ import {
   generateMetadataLib,
   generateSchema,
 } from "@/lib/sheets";
+
+const robotoCondensed = Roboto_Condensed({
+  subsets: ["latin"],
+  weight: ["700", "900"],
+  display: "swap",
+  variable: "--font-roboto-condensed",
+});
 
 export async function generateMetadata({ params }) {
   const metadata = await generateMetadataLib({
@@ -64,16 +73,19 @@ const Home = async ({ params }) => {
     ""
   );
 
-  return (
-    <main style={styles.main}>
-      {/* {promotionPopup.length > 0 && (
-        <PromotionModal promotionPopup={promotionPopup} />
-      )} */}
+  const stats = [
+    { number: "8+", label: "Attractions" },
+    { number: "All Ages", label: "Welcome" },
+    { number: "10,000+", label: "Sq Ft of Fun" },
+    { number: "4.7★", label: "Rated Experience" },
+  ];
 
-      {/* Location Popup - Renders HTML from Google Sheets 'popups' workbook */}
+  return (
+    <main className={robotoCondensed.variable} style={{ overflow: "hidden", margin: 0, padding: 0 }}>
+      {/* Location Popup */}
       <LocationPopupModal popupData={popupData} />
 
-      {/* Hero Section - Full Width with Clean, Energetic Design */}
+      {/* Hero Section */}
       <HeroSection
         headerImage={header_image}
         waiverLink={waiverLink}
@@ -82,7 +94,21 @@ const Home = async ({ params }) => {
         locationSlug={location_slug}
       />
 
-      {/* SEO Section - Diagonal Split Layout */}
+      {/* Stats Bar */}
+      <section className="v11_bp_stats_section">
+        <div className="v11_bp_container">
+          <div className="v11_bp_stats_grid">
+            {stats.map((stat, index) => (
+              <div key={index} className="v11_bp_stat_item">
+                <span className="v11_bp_stat_number">{stat.number}</span>
+                <span className="v11_bp_stat_label">{stat.label}</span>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* SEO Section */}
       {attractionsData?.[0]?.children?.length > 0 && seosection && (
         <SEOSection
           locationData={locationData}
@@ -92,12 +118,12 @@ const Home = async ({ params }) => {
         />
       )}
 
-      {/* Celebrate Your Event Section - Black Background */}
+      {/* Celebrate Your Event Section */}
       {attractionsData?.[0]?.children?.length > 0 && (
         <CelebrateSection locationSlug={location_slug} />
       )}
 
-      {/* Explore Attractions - Black Background with Grid Layout */}
+      {/* Explore Attractions */}
       {attractionsData?.[0]?.children?.length > 0 && (
         <ExploreAttractionsSection
           attractions={attractionsData[0]?.children}
@@ -105,12 +131,12 @@ const Home = async ({ params }) => {
         />
       )}
 
-      {/* Plan Your Visit Section - Bottom CTA Section */}
+      {/* Plan Your Visit Section */}
       {attractionsData?.[0]?.children?.length > 0 && seosection && (
         <PlanVisitSection seosection={seosection} locationSlug={location_slug} estoreConfig={estoreConfig} />
       )}
 
-      {/* Blog Section - Show 3 relevant blog cards */}
+      {/* Blog Section */}
       {blogChildren.length > 0 && (
         <BlogSection
           blogs={blogChildren}
@@ -119,24 +145,6 @@ const Home = async ({ params }) => {
         />
       )}
 
-      {/* Statistics Section - Centered Container
-      {attractionsData?.[0]?.children?.length > 0 && (
-        <section className="aero_home_feature_section-bg">
-          <section className="aero-max-container aero_home_feature_section">
-            {[
-              { num: 130, label: "Trampolines" },
-              { num: 27000, label: "Square Feet" },
-              { num: 4, label: "Party Rooms" },
-              { num: 6, label: "Fun Attractions" }
-            ].map((item, i) => (
-              <article key={i} className="aero_home_feature_section-card">
-                <Countup num={item.num} />
-                <div>{item.label}</div>
-              </article>
-            ))}
-          </section>
-        </section>
-      )} */}
       <script
         type="application/ld+json"
         suppressHydrationWarning
@@ -144,17 +152,6 @@ const Home = async ({ params }) => {
       />
     </main>
   );
-};
-
-const styles = {
-  main: {
-    backgroundColor: "#000000",
-    color: "#ffffff",
-    lineHeight: "1.6",
-    overflow: "hidden",
-    margin: 0,
-    padding: 0,
-  },
 };
 
 export default Home;
