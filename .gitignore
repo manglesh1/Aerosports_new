@@ -38,3 +38,4 @@ next-env.d.ts
 
 # sitemap - generated dynamically by route handler
 /public/sitemap*.xml
+scripts/.oauth-token.json
