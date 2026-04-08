@@ -4,10 +4,8 @@ import { useState, useEffect, useRef } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { cn } from "@/lib/utils";
-import { Button } from "@/components/ui/button";
 
 export default function ExploreAttractionsSection({ attractions, location_slug }) {
-	const [hoveredIndex, setHoveredIndex] = useState(null);
 	const [isVisible, setIsVisible] = useState(false);
 	const sectionRef = useRef(null);
 
@@ -28,78 +26,68 @@ export default function ExploreAttractionsSection({ attractions, location_slug }
 		<section
 			ref={sectionRef}
 			className={cn(
-				"relative bg-black py-8 sm:py-16 lg:py-24 overflow-hidden transition-opacity duration-700",
+				"v11_bp_attractions_section transition-opacity duration-700",
 				isVisible ? "opacity-100" : "opacity-0"
 			)}
 		>
-			{/* Animated BG */}
-			<div className="absolute inset-0 bg-gradient-to-br from-[#ff1152] via-[#ff1152] to-[#ff4d7d] [clip-path:polygon(100%_0,100%_100%,80%_100%,0_0)]" />
+			<div className="v11_bp_container">
+				{/* Header */}
+				<h2 className="v11_bp_heading">
+					Explore Our
+					<span className="v11_bp_heading_accent"> Attractions</span>
+				</h2>
+				<p className="v11_bp_subtext">
+					From trampolines to obstacle courses — endless fun for all ages
+				</p>
 
-			<div className="z-10 relative mx-auto px-6 sm:px-10 lg:px-16 max-w-[1400px]">
-				<div className="flex flex-col items-start lg:items-center gap-8 lg:gap-16 lg:grid lg:grid-cols-[0.8fr_1.5fr]">
+				{/* Attractions Grid */}
+				<div className="v11_bp_attractions_grid" style={{ maxWidth: "1100px", margin: "0 auto 2rem" }}>
+					{attractions?.slice(0, 8).map((attraction, index) => (
+						<Link
+							key={index}
+							href={`/${location_slug}/attractions/${attraction?.path}`}
+							className="v11_bp_attraction_card"
+							style={isVisible ? { animation: `v11_cardFadeIn 0.5s ease ${index * 0.08}s forwards`, opacity: 0 } : { opacity: 0 }}
+						>
+							<div className="v11_bp_attraction_img">
+								{attraction?.smallimage && (
+									<Image
+										src={attraction.smallimage}
+										alt={attraction?.name || attraction?.title || `Attraction ${index + 1}`}
+										fill
+										sizes="(max-width: 480px) 100vw, (max-width: 768px) 50vw, (max-width: 992px) 33vw, 250px"
+										style={{ objectFit: "cover" }}
+										loading="lazy"
+									/>
+								)}
+							</div>
+							<div className="v11_bp_attraction_overlay">
+								<h3 className="v11_bp_attraction_name">
+									{(attraction?.name || attraction?.title || "Attraction").split(" - ").pop()}
+								</h3>
+								<span className="v11_bp_attraction_more">Learn More →</span>
+							</div>
+						</Link>
+					))}
+				</div>
 
-					{/* LEFT */}
-					<div className="flex flex-col justify-center gap-6 lg:gap-8 w-full lg:w-auto">
-						<div className="bg-[#39FF14] px-6 py-2 rounded-full w-fit font-semibold text-black text-xs uppercase tracking-wider">
-							Discover
-						</div>
-
-						<h2 className="font-black text-white text-4xl sm:text-5xl lg:text-6xl uppercase leading-tight">
-							Explore <br />
-							<span className="text-[#39FF14]">Our</span> Attractions
-						</h2>
-
-						<Button variant="neonGreen" size="full" rounded="md" asChild>
-							<Link href={`/${location_slug}/attractions`}>
-								View Details →
-							</Link>
-						</Button>
-					</div>
-
-					{/* RIGHT GRID */}
-					<div className="flex flex-col gap-8 w-full">
-						<div className="gap-4 sm:gap-6 grid grid-cols-2 lg:grid-cols-3 w-full">
-							{attractions?.map((attraction, index) => {
-								const isHovered = hoveredIndex === index;
-
-								return (
-									<Link
-										key={index}
-										href={`/${location_slug}/attractions/${attraction?.path}`}
-										onMouseEnter={() => setHoveredIndex(index)}
-										onMouseLeave={() => setHoveredIndex(null)}
-										className={cn(
-											"flex flex-col items-center bg-white overflow-hidden text-center transition-all",
-											isHovered && "bg-neon-pink",
-											isVisible && `animate-[slideUp_.6s_ease-out_${index * 0.1}s_backwards]`
-										)}
-									>
-										<div className="flex justify-center items-center bg-white/5 w-full aspect-square sm:aspect-4/3 lg:aspect-video overflow-hidden">
-											{attraction?.smallimage && (
-												<Image
-													src={attraction.smallimage}
-													width={200} height={200}
-													alt={attraction?.iconalttextforhomepage ?? `Attraction ${index + 1}`}
-													className="w-full h-full object-cover"
-													loading="lazy"
-												/>
-											)}
-										</div>
-
-										<h3 className={cn(
-											"p-3 sm:p-4 w-full font-semibold text-black text-xs sm:text-sm uppercase tracking-wide transition",
-											isHovered && "bg-neon-pink underline"
-										)}>
-											{(attraction?.name || attraction?.title || "Attraction").split(" - ").pop()}
-										</h3>
-									</Link>
-								);
-							})}
-						</div>
-					</div>
-
+				{/* CTA */}
+				<div className="text-center mt-8">
+					<Link
+						href={`/${location_slug}/attractions`}
+						className="inline-block bg-[#FF174A] text-white px-8 py-3 rounded-lg font-bold text-sm uppercase tracking-wider hover:-translate-y-0.5 hover:shadow-[0_8px_25px_rgba(255,23,74,0.3)] transition-all"
+					>
+						View All Attractions →
+					</Link>
 				</div>
 			</div>
+
+			<style>{`
+				@keyframes v11_cardFadeIn {
+					from { opacity: 0; transform: translateY(20px); }
+					to { opacity: 1; transform: translateY(0); }
+				}
+			`}</style>
 		</section>
 	);
 }

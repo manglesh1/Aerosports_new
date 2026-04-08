@@ -472,7 +472,7 @@ const Page = async ({ params }) => {
                 <span className="v11_bp_heading_accent"> Available to Your Party Guests</span>
               </h2>
               <p className="v11_bp_subtext">
-                Every package grants your entire group unlimited access to all our world-class attractions — no extra cost.
+                Every package grants your entire group  access to all our core attractions at no cost and additional attractions — at discounted rates!
               </p>
 
               <div className="v11_bp_attractions_grid">

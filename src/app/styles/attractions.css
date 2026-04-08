@@ -1,234 +1,9 @@
-/* Attractions Page - Modern & Vibrant Design inspired by kidsparty.css */
+/* ═══════════════════════════════════
+   V11 ATTRACTIONS - LIGHT THEME
+   Matches kids-birthday-parties design
+   ═══════════════════════════════════ */
 
-/* Main wrapper with decorative background */
-.aero_attractions_wrapper {
-  position: relative;
-  overflow: hidden;
-  background: black;
-  color: #fff;
-  padding: 3em 0.75em;
-  min-height: 100vh;
-}
-
-/* Decorative Background Elements */
-.aero_attractions_decorative_bg {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  pointer-events: none;
-  z-index: 1;
-  overflow: hidden;
-}
-
-/* Confetti Animations */
-.aero_attractions_confetti {
-  position: absolute;
-  width: 10px;
-  height: 20px;
-  background: linear-gradient(135deg, #f00c74 0%, #ff1152 100%);
-  animation: confettiFall linear infinite;
-  opacity: 0;
-}
-
-.aero_attractions_confetti_1 {
-  left: 10%;
-  animation-duration: 15s;
-  animation-delay: 0s;
-}
-.aero_attractions_confetti_2 {
-  left: 30%;
-  animation-duration: 18s;
-  animation-delay: 2s;
-  background: linear-gradient(45deg, #caff1a, #ff1152);
-}
-.aero_attractions_confetti_3 {
-  left: 50%;
-  animation-duration: 20s;
-  animation-delay: 4s;
-}
-.aero_attractions_confetti_4 {
-  left: 70%;
-  animation-duration: 16s;
-  animation-delay: 1s;
-  background: linear-gradient(45deg, #ff4d7d, #9ce600);
-}
-.aero_attractions_confetti_5 {
-  left: 85%;
-  animation-duration: 19s;
-  animation-delay: 3s;
-}
-
-@keyframes confettiFall {
-  0% {
-    transform: translateY(-100%) rotate(0deg);
-    opacity: 0;
-  }
-  10% {
-    opacity: 1;
-  }
-  90% {
-    opacity: 1;
-  }
-  100% {
-    transform: translateY(100vh) rotate(720deg);
-    opacity: 0;
-  }
-}
-
-/* Floating Circles */
-.aero_attractions_circle {
-  position: absolute;
-  border-radius: 50%;
-  border: 2px solid rgba(255, 17, 82, 0.2);
-  animation: circleFloat 8s ease-in-out infinite;
-}
-
-.aero_attractions_circle_1 {
-  width: 150px;
-  height: 150px;
-  top: 10%;
-  left: 5%;
-  animation-delay: 0s;
-}
-
-.aero_attractions_circle_2 {
-  width: 100px;
-  height: 100px;
-  top: 50%;
-  right: 10%;
-  border-color: rgba(202, 255, 26, 0.2);
-  animation-delay: 2s;
-}
-
-.aero_attractions_circle_3 {
-  width: 200px;
-  height: 200px;
-  bottom: 10%;
-  left: 15%;
-  border-color: rgba(255, 17, 82, 0.15);
-  animation-delay: 4s;
-}
-
-@keyframes circleFloat {
-  0%,
-  100% {
-    transform: translate(0, 0) scale(1);
-    opacity: 0.3;
-  }
-  50% {
-    transform: translate(20px, -30px) scale(1.1);
-    opacity: 0.5;
-  }
-}
-
-/* Star Decorations */
-.aero_attractions_star {
-  position: absolute;
-  font-size: 2rem;
-  color: #caff1a;
-  animation: starTwinkle 4s ease-in-out infinite;
-}
-
-.aero_attractions_star_1 {
-  top: 15%;
-  right: 20%;
-  animation-delay: 0s;
-}
-.aero_attractions_star_2 {
-  top: 40%;
-  left: 10%;
-  animation-delay: 1s;
-  color: #ff1152;
-}
-.aero_attractions_star_3 {
-  bottom: 30%;
-  right: 15%;
-  animation-delay: 2s;
-}
-.aero_attractions_star_4 {
-  bottom: 15%;
-  left: 25%;
-  animation-delay: 3s;
-  color: #ff4d7d;
-}
-
-@keyframes starTwinkle {
-  0%,
-  100% {
-    opacity: 0.3;
-    transform: scale(0.8) rotate(0deg);
-  }
-  50% {
-    opacity: 1;
-    transform: scale(1.2) rotate(180deg);
-  }
-}
-
-/* Animated Title Section */
-.aero_attractions_title_wrapper {
-  position: relative;
-  max-width: 1100px;
-  margin: 0 auto 3em;
-  background: linear-gradient(145deg, #000000 0%, #1a1a1a 50%, #000000 100%);
-  border-radius: 24px;
-  overflow: hidden;
-  box-shadow: 0 25px 50px rgba(0, 0, 0, 0.5), 0 0 0 1px rgba(255, 255, 255, 0.1);
-  animation: fadeInUp 0.8s ease-out;
-  z-index: 10;
-}
-
-.aero_attractions_title_content {
-  position: relative;
-  z-index: 10;
-  text-align: center;
-  padding: 40px 32px;
-}
-
-.aero_attractions_title_badge {
-  display: inline-block;
-  background: linear-gradient(45deg, #ff1152, #ff4d7d);
-  padding: 2px;
-  border-radius: 20px;
-  margin-bottom: 20px;
-  animation: badgePulse 3s ease-in-out infinite;
-}
-
-.aero_attractions_title_badge span {
-  display: block;
-  background: #000;
-  color: #fff;
-  padding: 8px 20px;
-  border-radius: 18px;
-  font-size: 0.8rem;
-  font-weight: 700;
-  letter-spacing: 0.5px;
-}
-
-.aero_attractions_gradient_title {
-  background: linear-gradient(135deg, #f00c74 0%, #ff1152 100%);
-  background-clip: text;
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  font-size: 2.5rem;
-  font-weight: 900;
-  margin: 0 0 20px 0;
-  line-height: 1.1;
-  animation: fadeInUp 1s ease-out 0.2s both;
-}
-
-.aero_attractions_description {
-  color: #e0e0e0;
-  font-size: 1.05rem;
-  line-height: 1.7;
-  text-align: center;
-  max-width: 900px;
-  margin: 0 auto;
-  animation: fadeInUp 1s ease-out 0.4s both;
-}
-
-@keyframes fadeInUp {
+@keyframes v11_cardFadeIn {
   from {
     opacity: 0;
     transform: translateY(20px);
@@ -239,94 +14,53 @@
   }
 }
 
-@keyframes badgePulse {
-  0%,
-  100% {
-    transform: scale(1);
-  }
-  50% {
-    transform: scale(1.05);
-  }
-}
-
-/* Attractions Grid */
+/* Attractions Grid - Light Theme */
 .aero_attractions_grid {
   position: relative;
   z-index: 10;
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-  gap: 2.5rem;
-  max-width: 1400px;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 1.5rem;
+  max-width: 1200px;
   margin: 0 auto;
-  padding: 2em 1em;
+  padding: 3rem 0;
 }
 
-/* Attraction Card */
+/* Attraction Card - Clean White */
 .aero_attraction_card {
   position: relative;
-  background: rgba(255, 255, 255, 0.05);
-  border-radius: 1rem;
+  background: #fff;
+  border-radius: 16px;
   overflow: hidden;
   cursor: pointer;
-  transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  transition: all 0.3s ease;
   opacity: 0;
-  transform: translateY(30px);
-  animation: cardFadeIn 0.6s ease forwards;
-  box-shadow: 0 15px 50px rgba(0, 0, 0, 0.4);
-  border: 2px solid rgba(255, 255, 255, 0.1);
-  clip-path: polygon(
-    0 0,
-    calc(100% - 20px) 0,
-    100% 20px,
-    100% 100%,
-    20px 100%,
-    0 calc(100% - 20px)
-  );
+  transform: translateY(20px);
+  animation: v11_cardFadeIn 0.5s ease forwards;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
+  border: 1px solid #e2e8f0;
 }
 
-.aero_attraction_card:nth-child(1) {
-  animation-delay: 0.1s;
-}
-.aero_attraction_card:nth-child(2) {
-  animation-delay: 0.2s;
-}
-.aero_attraction_card:nth-child(3) {
-  animation-delay: 0.3s;
-}
-.aero_attraction_card:nth-child(4) {
-  animation-delay: 0.4s;
-}
-.aero_attraction_card:nth-child(5) {
-  animation-delay: 0.5s;
-}
-.aero_attraction_card:nth-child(6) {
-  animation-delay: 0.6s;
-}
-.aero_attraction_card:nth-child(7) {
-  animation-delay: 0.7s;
-}
-.aero_attraction_card:nth-child(8) {
-  animation-delay: 0.8s;
-}
-
-@keyframes cardFadeIn {
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
+.aero_attraction_card:nth-child(1) { animation-delay: 0.05s; }
+.aero_attraction_card:nth-child(2) { animation-delay: 0.1s; }
+.aero_attraction_card:nth-child(3) { animation-delay: 0.15s; }
+.aero_attraction_card:nth-child(4) { animation-delay: 0.2s; }
+.aero_attraction_card:nth-child(5) { animation-delay: 0.25s; }
+.aero_attraction_card:nth-child(6) { animation-delay: 0.3s; }
+.aero_attraction_card:nth-child(7) { animation-delay: 0.35s; }
+.aero_attraction_card:nth-child(8) { animation-delay: 0.4s; }
 
 .aero_attraction_card:hover {
-  transform: translateY(-10px) scale(1.03);
-  box-shadow: rgba(0, 0, 0, 0.6) 0px 20px 60px;
-  border-color: rgba(255, 255, 255, 0.2);
+  transform: translateY(-6px);
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.12);
+  border-color: rgba(255, 23, 74, 0.3);
 }
 
 /* Card Image Container */
 .aero_attraction_card_image_wrap {
   position: relative;
   width: 100%;
-  height: 280px;
+  height: 220px;
   overflow: hidden;
 }
 
@@ -334,91 +68,91 @@
   width: 100%;
   height: 100%;
   object-fit: cover;
-  transition: transform 0.5s ease;
+  transition: transform 0.4s ease;
 }
 
 .aero_attraction_card:hover .aero_attraction_card_image {
-  transform: scale(1.15);
+  transform: scale(1.06);
 }
 
-/* Image Overlay - Removed gradient for clean design */
+/* Image Overlay */
 .aero_attraction_card_image_overlay {
   display: none;
 }
 
 /* Card Content */
 .aero_attraction_card_content {
-  padding: 2rem;
+  padding: 1.25rem 1.5rem 1.5rem;
   position: relative;
   z-index: 2;
 }
 
 .aero_attraction_card_title {
-  font-size: 1.2rem;
+  font-family: var(--font-roboto-condensed, 'Roboto Condensed', sans-serif);
+  font-size: 1.1rem;
   font-weight: 900;
-  color: #ffffff;
-  margin: 0 0 1rem 0;
+  color: #0f172a;
+  margin: 0 0 0.5rem 0;
   letter-spacing: 0.5px;
   text-transform: uppercase;
-  text-rendering: geometricprecision;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  line-height: 1.2;
 }
 
 .aero_attraction_card_description {
-  color: rgba(255, 255, 255, 0.7);
-  font-size: 0.95rem;
-  line-height: 1.7;
-  margin-bottom: 1em;
-  font-weight: 600;
+  color: #64748b;
+  font-size: 0.9rem;
+  line-height: 1.6;
+  margin-bottom: 1rem;
+  font-weight: 400;
   display: -webkit-box;
   -webkit-line-clamp: 3;
   -webkit-box-orient: vertical;
   overflow: hidden;
-  text-rendering: geometricprecision;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
 }
 
 .aero_attraction_card_cta {
   display: inline-block;
-  background: linear-gradient(90deg, #ff1152 0%, #f00c74 100%);
-  clip-path: polygon(8% 0, 100% 0, 92% 100%, 0 100%);
+  background: #FF174A;
   color: #fff;
-  padding: 0.6em 1.5em;
+  padding: 0.5em 1.25em;
   font-weight: 700;
-  font-size: 0.9rem;
+  font-size: 0.8rem;
   text-transform: uppercase;
-  letter-spacing: 0.5px;
-  border: 2px solid rgba(255, 17, 82, 0.5);
-  box-shadow: 0 4px 12px rgba(255, 17, 82, 0.3);
-  transition: all 0.3s ease;
+  letter-spacing: 1px;
+  border-radius: 6px;
+  border: none;
+  transition: all 0.2s ease;
   position: relative;
   overflow: hidden;
 }
 
 .aero_attraction_card_cta::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: -100%;
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(90deg, #ff1152 0%, #f00c74 100%);
-  transition: left 0.5s ease;
-  transform: skewX(-20deg);
+  display: none;
 }
 
 .aero_attraction_card:hover .aero_attraction_card_cta {
-  background: linear-gradient(90deg, #ff1152 0%, #f00c74 100%);
-  border-color: var(--color-neon-green);
-  box-shadow: 0 6px 20px rgba(255, 17, 82, 0.5),
-    0 0 30px rgba(202, 255, 26, 0.3);
-  transform: translateX(5px);
+  background: #cc0e3e;
+  transform: none;
+  box-shadow: 0 4px 12px rgba(255, 23, 74, 0.3);
+  border-color: transparent;
 }
 
 .aero_attraction_card:hover .aero_attraction_card_cta::before {
-  left: 100%;
+  display: none;
+}
+
+/* ═══════════════════════════════════
+   LEGACY DARK THEME STYLES (kept for other pages)
+   ═══════════════════════════════════ */
+
+/* Main wrapper - legacy dark */
+.aero_attractions_wrapper {
+  position: relative;
+  overflow: hidden;
+  background: #EEF0F8;
+  color: #0f172a;
+  padding: 3em 0.75em;
+  min-height: auto;
 }
 
 /* Modal Styles - Optimized for Perfect Window Fit */
@@ -819,34 +553,21 @@
 /* Responsive Design - Mobile & Tablet Optimized */
 @media screen and (max-width: 768px) {
   .aero_attractions_wrapper {
-    padding: 2em 0.5em;
-  }
-
-  .aero_attractions_title_wrapper {
-    border-radius: 16px;
-    margin: 0 0.5em 2em;
-  }
-
-  .aero_attractions_title_content {
-    padding: 28px 20px;
-  }
-
-  .aero_attractions_gradient_title {
-    font-size: 1.8rem;
-  }
-
-  .aero_attractions_description {
-    font-size: 0.95rem;
+    padding: 1.5em 0.5em;
   }
 
   .aero_attractions_grid {
     grid-template-columns: 1fr;
-    gap: 1.5rem;
-    padding: 1em 0.5em;
+    gap: 1rem;
+    padding: 1.5rem 0;
   }
 
   .aero_attraction_card_image_wrap {
-    height: 220px;
+    height: 200px;
+  }
+
+  .aero_attraction_card_content {
+    padding: 1rem 1.25rem 1.25rem;
   }
 
   /* Mobile Modal Optimizations */
@@ -923,6 +644,7 @@
 @media screen and (min-width: 769px) and (max-width: 1024px) {
   .aero_attractions_grid {
     grid-template-columns: repeat(2, 1fr);
+    gap: 1.25rem;
   }
 
   .aero_attraction_modal_content {

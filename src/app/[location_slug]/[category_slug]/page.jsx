@@ -1,8 +1,10 @@
 import { notFound } from "next/navigation";
 import Link from "next/link";
 import React from "react";
+import { Roboto_Condensed } from "next/font/google";
 import "../../styles/category.css";
 import "../../styles/attractions.css";
+import "../../styles/kidsparty.css";
 import { getDataByParentId, sanitizeCmsHtml } from "@/utils/customFunctions";
 import {
   fetchMenuData,
@@ -16,6 +18,13 @@ import MotionImage from "@/components/MotionImage";
 import AttractionsGrid from "@/components/AttractionsGrid";
 import SickKidsSection from "@/components/sections/SickKidsSection";
 import BlogSection from "@/components/sections/BlogSection";
+
+const robotoCondensed = Roboto_Condensed({
+  subsets: ["latin"],
+  weight: ["700", "900"],
+  display: "swap",
+  variable: "--font-roboto-condensed",
+});
 
 export async function generateMetadata({ params }) {
   const { location_slug, category_slug } = params;
@@ -69,8 +78,43 @@ const Category = async ({ params }) => {
   // Check if pageData has a video
   const hasVideo = pageData?.video || (Array.isArray(pageData) && pageData[0]?.video);
 
+  // Stats bar data per category
+  const categoryStats = {
+    attractions: [
+      { number: "8+", label: "Attractions" },
+      { number: "All Ages", label: "Welcome" },
+      { number: "10,000+", label: "Sq Ft of Fun" },
+      { number: "4.7★", label: "Rated Experience" },
+    ],
+    "groups-events": [
+      { number: "50+", label: "Groups Monthly" },
+      { number: "Custom", label: "Packages" },
+      { number: "All Ages", label: "Welcome" },
+      { number: "100%", label: "Hassle-Free" },
+    ],
+    membership: [
+      { number: "Unlimited", label: "Visits" },
+      { number: "Best", label: "Value" },
+      { number: "Exclusive", label: "Perks" },
+      { number: "All Ages", label: "Welcome" },
+    ],
+    programs: [
+      { number: "Weekly", label: "Sessions" },
+      { number: "Expert", label: "Instructors" },
+      { number: "All Ages", label: "Welcome" },
+      { number: "100%", label: "Fun Guaranteed" },
+    ],
+  };
+
+  const stats = categoryStats[category_slug] || [
+    { number: "8+", label: "Attractions" },
+    { number: "All Ages", label: "Welcome" },
+    { number: "5★", label: "Rated" },
+    { number: "100%", label: "Fun Guaranteed" },
+  ];
+
   return (
-    <main>
+    <main className={robotoCondensed.variable}>
       {hasVideo && (
         <div style={{ position: 'relative', height: '100vh', minHeight: '600px', width: '100%' }}>
           <MotionImage
@@ -88,30 +132,23 @@ const Category = async ({ params }) => {
         />
       )}
 
-      <section className="aero_attractions_wrapper">
-        <section className="aero-max-container">
-          
-
-          {/* Title Section with Gradient and Animations */}
-          {/* <div className="aero_attractions_title_wrapper">
-            <div className="aero_attractions_title_content">
-              <div className="aero_attractions_title_badge">
-                <span>✨ EXPLORE OUR ATTRACTIONS ✨</span>
+      {/* Stats Bar */}
+      <section className="v11_bp_stats_section">
+        <div className="v11_bp_container">
+          <div className="v11_bp_stats_grid">
+            {stats.map((stat, index) => (
+              <div key={index} className="v11_bp_stat_item">
+                <span className="v11_bp_stat_number">{stat.number}</span>
+                <span className="v11_bp_stat_label">{stat.label}</span>
               </div>
-              <h1 className="aero_attractions_gradient_title">
-                {pageData?.title || "Amazing Adventures Await"}
-              </h1>
-              {pageData?.description && (
-                <p className="aero_attractions_description">
-                  {pageData.description}
-                </p>
-              )}
-            </div>
-          </div> */}
-        {/* </section> */}
+            ))}
+          </div>
+        </div>
+      </section>
 
-          {/* Conditional Content - SickKids or Attractions Grid */}
-
+      <div className="v11_cat_wrapper">
+        {/* Attractions / Content Section */}
+        <section className="v11_cat_container">
           {category_slug === "sickkids" ? (
             <SickKidsSection locationData={locationData} />
           ) : (
@@ -121,21 +158,30 @@ const Category = async ({ params }) => {
               locationSlug={location_slug}
             />
           )}
+        </section>
 
         {/* SEO Content Section */}
-        {/* <section className="aero_home_article_section"> */}
-          {/* <section className="aero-max-container aero_home_seo_section"> */}
-            <div
-              dangerouslySetInnerHTML={{ __html: sanitizeCmsHtml(pageData?.section1) }}
-            />
-            <div
-              dangerouslySetInnerHTML={{ __html: sanitizeCmsHtml(pageData?.seosection) }}
-            />
-          {/* </section> */}
-        </section>
-      </section>
+        {(pageData?.section1 || pageData?.seosection) && (
+          <section className="v11_cat_seo_section">
+            <div className="v11_cat_container">
+              {pageData?.section1 && (
+                <div
+                  className="v11_cat_seo_content"
+                  dangerouslySetInnerHTML={{ __html: sanitizeCmsHtml(pageData.section1) }}
+                />
+              )}
+              {pageData?.seosection && (
+                <div
+                  className="v11_cat_seo_content"
+                  dangerouslySetInnerHTML={{ __html: sanitizeCmsHtml(pageData.seosection) }}
+                />
+              )}
+            </div>
+          </section>
+        )}
+      </div>
 
-      {/* Blog Section - Show 3 relevant blog cards */}
+      {/* Blog Section */}
       {blogChildren.length > 0 && (
         <BlogSection
           blogs={blogChildren}

@@ -27,6 +27,8 @@ const Footer = ({ location_slug, configdata, menudata, reviewdata, locationData 
     location,
     gmburl,
     rollerurl,
+    hours,
+    email,
   } = locationData[0] || {};
 
   const attractionsData = getDataByParentId(menudata, "attractions");
@@ -45,25 +47,27 @@ const Footer = ({ location_slug, configdata, menudata, reviewdata, locationData 
     return `tel:+1${digits}`;
   };
 
+  const locationHours = typeof hours === 'string'
+  ? JSON.parse(hours)
+  : hours ?? [];
   return (
     <footer className="aero_footer_section-bg">
-      {/* Hero Section with Quick Links */}
-      <section className="aero_home-headerimg-wrapper">
-       
-        <article className="aero-max-container aero_home_BPJ_wrapper">
+      {/* Quick Links Section - V11 Light Theme */}
+      <section className="v11_footer_quicklinks">
+        <div className="v11_footer_quicklinks_grid">
           {[
             { icon: event_icon, text: "Birthday Parties", url: `/${location_slug}/kids-birthday-parties` },
             { icon: park_feature_icon, text: "Gallery", url: `/${location_slug}/${galleryData?.[0]?.path || 'gallery'}` },
             { icon: jump_icon, text: "Group Events", url: `/${location_slug}/${groupsData?.[0]?.path || 'groups-events'}` },
           ].map((item, index) => (
-            <div className="d-flex-center" key={index}>
-              <Link href={item.url}>
-                <Image src={item.icon} width={90} height={80} alt={item.text} loading="lazy" />
-                <span>{item.text}</span>
-              </Link>
-            </div>
+            <Link href={item.url} key={index} className="v11_footer_quicklink_card">
+              <div className="v11_footer_quicklink_icon">
+                <Image src={item.icon} width={48} height={48} alt={item.text} loading="lazy" />
+              </div>
+              <span className="v11_footer_quicklink_text">{item.text}</span>
+            </Link>
           ))}
-        </article>
+        </div>
       </section>
 
       <section className="aero-max-container">
@@ -102,12 +106,12 @@ const Footer = ({ location_slug, configdata, menudata, reviewdata, locationData 
                   <span>{phone}</span>
                 </a>
               )}
-              <a href={`mailto:info@aerosports.ca`} className="aero_footer_contact_item">
+              <a href={`mailto:${email}`} className="aero_footer_contact_item">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="aero_footer_contact_icon">
                   <rect width="20" height="16" x="2" y="4" rx="2"/>
                   <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/>
                 </svg>
-                <span>info@aerosports.ca</span>
+                <span>{email}</span>
               </a>
               {address && (
                 <a href={gmburl || '#'} target="_blank" rel="noopener noreferrer" className="aero_footer_contact_item">
@@ -140,25 +144,22 @@ const Footer = ({ location_slug, configdata, menudata, reviewdata, locationData 
             </div>
 
             {/* Park Hours */}
-            <div className="aero_footer_hours">
-              <h4 className="aero_footer_hours_title">Park Hours</h4>
-              <div className="aero_footer_hours_grid">
-                <div className="aero_footer_hours_row">
-                  <span className="aero_footer_hours_day">Mon &ndash; Thu</span>
-                  <span className="aero_footer_hours_time">3:00 PM &ndash; 9:00 PM</span>
+          
+ {locationHours && locationHours.length > 0 && ( 
+              <div className="aero_footer_hours">
+                <h4 className="aero_footer_hours_title">Park Hours</h4>
+                <div className="aero_footer_hours_grid">
+                  {locationHours.map((item, i) => (
+                    <div className="aero_footer_hours_row" key={i}>
+                      <span className="aero_footer_hours_day">{item.days}</span>
+                      <span className="aero_footer_hours_time">{item.hours}</span>
+                    </div>
+                  ))}
                 </div>
-                <div className="aero_footer_hours_row">
-                  <span className="aero_footer_hours_day">Friday</span>
-                  <span className="aero_footer_hours_time">2:00 PM &ndash; 10:00 PM</span>
-                </div>
-                <div className="aero_footer_hours_row">
-                  <span className="aero_footer_hours_day">Sat &ndash; Sun</span>
-                  <span className="aero_footer_hours_time">10:00 AM &ndash; 9:00 PM</span>
-                </div>
+                <p className="aero_footer_parking">Free parking available on site</p>
               </div>
-              <p className="aero_footer_parking">Free parking available on site</p>
-            </div>
-          </div>
+            )}
+          </div> 
 
           {/* MIDDLE COLUMNS: Navigation Links */}
           <div className="aero_footer_links_section">
