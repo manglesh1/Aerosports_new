@@ -1,3 +1,4 @@
+import { notFound } from "next/navigation";
 import "../styles/home.css";
 import "../styles/promotions.css";
 import { getDataByParentId } from "@/utils/customFunctions";

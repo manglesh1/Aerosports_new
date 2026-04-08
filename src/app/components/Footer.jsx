@@ -49,14 +49,7 @@ const Footer = ({ location_slug, configdata, menudata, reviewdata, locationData 
     <footer className="aero_footer_section-bg">
       {/* Hero Section with Quick Links */}
       <section className="aero_home-headerimg-wrapper">
-        <Image
-          src={`https://storage.googleapis.com/aerosports/webp/${location_slug}/kids-activity-glow-in-the-dark.webp`}
-          alt="Glow Night Event"
-          width={1200}
-          height={600}
-          title="Glow Night Event"
-          loading="lazy"
-        />
+       
         <article className="aero-max-container aero_home_BPJ_wrapper">
           {[
             { icon: event_icon, text: "Birthday Parties", url: `/${location_slug}/kids-birthday-parties` },

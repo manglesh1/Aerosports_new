@@ -1,3 +1,4 @@
+import { notFound } from "next/navigation";
 import "../../../styles/blogs.css";
 import "../../../styles/blog-content.css";
 import Image from 'next/image';
@@ -7,6 +8,11 @@ import Link from 'next/link';
 
 export async function generateMetadata({ params }) {
   const { location_slug, slug } = params;
+  // Validate blog post exists before generating metadata
+  const blogData = await fetchPageData(location_slug, slug);
+  if (!blogData || !blogData.path) {
+    notFound();
+  }
   const metadata = await generateMetadataLib({
     location: location_slug,
     category: 'blogs',
@@ -75,6 +81,11 @@ export default async function BlogDetail({ params }) {
     fetchMenuData(location_slug),
     fetchsheetdata('locations', location_slug),
   ]);
+
+  // Return 404 if blog post doesn't exist
+  if (!blogData || !blogData.path) {
+    notFound();
+  }
 
   const extractBlogData = (await getDataByParentId(menuData, "blogs"))[0]?.children?.filter(child => child.path !== slug);
   const readingTime = getReadingTime(blogData?.section1);

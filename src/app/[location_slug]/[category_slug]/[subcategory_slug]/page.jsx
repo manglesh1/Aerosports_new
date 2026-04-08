@@ -1,3 +1,4 @@
+import { notFound } from "next/navigation";
 import React from "react";
 import "../../../styles/subcategory.css";
 import "../../../styles/category.css";
@@ -19,6 +20,11 @@ import Link from "next/link";
 
 export async function generateMetadata({ params }) {
   const { location_slug, subcategory_slug, category_slug } = params;
+  // Validate page data exists before generating metadata
+  const pageData = await fetchPageData(location_slug, subcategory_slug);
+  if (!pageData || !pageData.path) {
+    notFound();
+  }
   const metadata = await generateMetadataLib({
     location: location_slug,
     category: category_slug,
@@ -42,6 +48,11 @@ const Subcategory = async ({ params }) => {
   const menudata = p2.status === "fulfilled" ? p2.value : [];
   const locationData = p3.status === "fulfilled" ? p3.value : {};
   const waiverLink = p4.status === "fulfilled" ? p4.value : null;
+
+  // Return 404 if page data doesn't exist for this subcategory
+  if (!pageData || !pageData.path) {
+    notFound();
+  }
 
   const categoryData = (
     await getDataByParentId(menudata, category_slug)

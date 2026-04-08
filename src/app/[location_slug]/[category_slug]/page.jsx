@@ -1,3 +1,4 @@
+import { notFound } from "next/navigation";
 import Link from "next/link";
 import React from "react";
 import "../../styles/category.css";
@@ -18,6 +19,11 @@ import BlogSection from "@/components/sections/BlogSection";
 
 export async function generateMetadata({ params }) {
   const { location_slug, category_slug } = params;
+  // Validate page data exists before generating metadata
+  const pageData = await fetchPageData(location_slug, category_slug);
+  if (!pageData || !pageData.path) {
+    notFound();
+  }
   const metadata = await generateMetadataLib({
     location: location_slug,
     category: "",
@@ -39,6 +45,11 @@ const Category = async ({ params }) => {
     getWaiverLink(location_slug),
     fetchsheetdata("locations", location_slug),
   ]);
+
+  // Return 404 if page data doesn't exist for this category
+  if (!pageData || (typeof pageData === 'object' && Object.keys(pageData).length === 0 && !pageData.path)) {
+    notFound();
+  }
 
   const jsonLDschema = await generateSchema(
     pageData,
