@@ -19,6 +19,20 @@ const PhotoGallery = ({ galleryData, navbarName = "gallery" }) => {
     return videoExtensions.some((ext) => url.toLowerCase().includes(ext));
   };
 
+  // Derive a readable title from a URL filename
+  const getTitleFromUrl = (url) => {
+    try {
+      const filename = decodeURIComponent(url.split('/').pop().split('?')[0]);
+      // Remove extension, location prefix (aerosports-location-), and numbering
+      return filename
+        .replace(/\.\w+$/, '')
+        .replace(/^aerosports-[\w-]+-/, '')
+        .replace(/-\d+$/, '')
+        .replace(/-/g, ' ')
+        .replace(/\b\w/g, c => c.toUpperCase());
+    } catch { return ''; }
+  };
+
   // Open modal with specific media
   const openModal = (groupIndex, mediaIndex) => {
     setCurrentGroupIndex(groupIndex);
@@ -73,7 +87,8 @@ const PhotoGallery = ({ galleryData, navbarName = "gallery" }) => {
           )}
           <div className="gallery-grid">
             {group.urls.map((url, mediaIndex) => {
-              const alt = group.alttext || `${group.group || "AeroSports"} photo ${mediaIndex + 1}`;
+              const title = (group.titles && group.titles[mediaIndex]) || getTitleFromUrl(url);
+              const alt = (group.alttexts && group.alttexts[mediaIndex]) || title || `${group.group || "AeroSports"} photo ${mediaIndex + 1}`;
               return (
                 <div
                   key={mediaIndex}
@@ -100,6 +115,9 @@ const PhotoGallery = ({ galleryData, navbarName = "gallery" }) => {
                   <div className="gallery-item-overlay">
                     <span className="gallery-item-zoom">&#x1F50D;</span>
                   </div>
+                  {title && (
+                    <div className="gallery-item-title">{title}</div>
+                  )}
                 </div>
               );
             })}
@@ -124,7 +142,7 @@ const PhotoGallery = ({ galleryData, navbarName = "gallery" }) => {
               ) : (
                 <Image
                   src={currentUrls[currentMediaIndex]}
-                  alt={groups[currentGroupIndex].alttext || `${groups[currentGroupIndex].group || "AeroSports"} photo ${currentMediaIndex + 1}`}
+                  alt={(groups[currentGroupIndex].alttexts && groups[currentGroupIndex].alttexts[currentMediaIndex]) || `${groups[currentGroupIndex].group || "AeroSports"} photo ${currentMediaIndex + 1}`}
                   className="gallery-media-full"
                   width={1200}
                   height={900}

@@ -293,28 +293,36 @@ async function fetchGalleryData(location) {
       return {};
     }
 
-    // Group data by navbar value
+    // Group data by navbar > group (one URL per row format)
     const groupedData = {};
 
     jsonData.forEach(row => {
       const navbar = row.navbar || 'gallery';
+      const group = row.group || '';
+      const url = row.urls ? row.urls.trim() : '';
+
+      if (!url) return;
 
       if (!groupedData[navbar]) {
         groupedData[navbar] = [];
       }
 
-      // Parse URLs - split by newline and filter empty strings
-      const urls = row.urls
-        ? row.urls.split('\n').map(url => url.trim()).filter(url => url)
-        : [];
+      // Find existing group or create new one
+      let existingGroup = groupedData[navbar].find(g => g.group === group);
+      if (!existingGroup) {
+        existingGroup = {
+          group: group,
+          urls: [],
+          titles: [],
+          alttexts: [],
+          location: row.location
+        };
+        groupedData[navbar].push(existingGroup);
+      }
 
-      groupedData[navbar].push({
-        group: row.group || '',
-        urls: urls,
-        title: row.title || '',
-        alttext: row.alttext || '',
-        location: row.location
-      });
+      existingGroup.urls.push(url);
+      existingGroup.titles.push(row.title || '');
+      existingGroup.alttexts.push(row.alttext || '');
     });
 
     return groupedData;

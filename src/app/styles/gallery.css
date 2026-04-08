@@ -459,6 +459,18 @@
   filter: drop-shadow(0 2px 8px rgba(0, 0, 0, 0.5));
 }
 
+/* Image title below thumbnail */
+.gallery-item-title {
+  padding: 8px 4px;
+  text-align: center;
+  font-size: 0.85rem;
+  color: #ccc;
+  line-height: 1.3;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
 /* Navigation always visible */
 .gallery-nav-button {
   opacity: 1;
