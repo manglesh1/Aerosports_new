@@ -27,6 +27,7 @@ const Footer = ({ location_slug, configdata, menudata, reviewdata, locationData 
     location,
     gmburl,
     rollerurl,
+    hours,
   } = locationData[0] || {};
 
   const attractionsData = getDataByParentId(menudata, "attractions");
@@ -45,6 +46,9 @@ const Footer = ({ location_slug, configdata, menudata, reviewdata, locationData 
     return `tel:+1${digits}`;
   };
 
+  const locationHours = typeof hours === 'string'
+  ? JSON.parse(hours)
+  : hours ?? [];
   return (
     <footer className="aero_footer_section-bg">
       {/* Hero Section with Quick Links */}
@@ -140,25 +144,22 @@ const Footer = ({ location_slug, configdata, menudata, reviewdata, locationData 
             </div>
 
             {/* Park Hours */}
-            <div className="aero_footer_hours">
-              <h4 className="aero_footer_hours_title">Park Hours</h4>
-              <div className="aero_footer_hours_grid">
-                <div className="aero_footer_hours_row">
-                  <span className="aero_footer_hours_day">Mon &ndash; Thu</span>
-                  <span className="aero_footer_hours_time">3:00 PM &ndash; 9:00 PM</span>
+          
+ {locationHours && locationHours.length > 0 && ( 
+              <div className="aero_footer_hours">
+                <h4 className="aero_footer_hours_title">Park Hours</h4>
+                <div className="aero_footer_hours_grid">
+                  {locationHours.map((item, i) => (
+                    <div className="aero_footer_hours_row" key={i}>
+                      <span className="aero_footer_hours_day">{item.days}</span>
+                      <span className="aero_footer_hours_time">{item.hours}</span>
+                    </div>
+                  ))}
                 </div>
-                <div className="aero_footer_hours_row">
-                  <span className="aero_footer_hours_day">Friday</span>
-                  <span className="aero_footer_hours_time">2:00 PM &ndash; 10:00 PM</span>
-                </div>
-                <div className="aero_footer_hours_row">
-                  <span className="aero_footer_hours_day">Sat &ndash; Sun</span>
-                  <span className="aero_footer_hours_time">10:00 AM &ndash; 9:00 PM</span>
-                </div>
+                <p className="aero_footer_parking">Free parking available on site</p>
               </div>
-              <p className="aero_footer_parking">Free parking available on site</p>
-            </div>
-          </div>
+            )}
+          </div> 
 
           {/* MIDDLE COLUMNS: Navigation Links */}
           <div className="aero_footer_links_section">
