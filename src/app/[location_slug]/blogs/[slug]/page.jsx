@@ -148,7 +148,7 @@ export default async function BlogDetail({ params }) {
                   <div className="aero-blog-content-section">
                     <span className='aero-blog-updated-time'>{item.pageid}</span>
                     <Link href={`/${location_slug}/blogs/${item?.path}`} prefetch><h3 className='aero-blog-second-heading'>{item.title}</h3></Link>
-                    <Link href={`/${location_slug}/blogs/${item?.path}`} prefetch className='aero-blog-readmore-btn'>READ MORE</Link>
+                    <Link href={`/${location_slug}/blogs/${item?.path}`} prefetch className='aero-blog-readmore-btn' aria-label={`Read more about ${item.title}`}>Read More: {item.title}</Link>
                   </div>
                 </article>
               ))}

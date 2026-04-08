@@ -113,8 +113,8 @@ const BlogSection = ({ blogs, location_slug, currentCategory }) => {
                       : blog.metadescription
                     : 'Read more about this topic...'}
                 </p>
-                <span className="aero-blog-section-card-link">
-                  Read More →
+                <span className="aero-blog-section-card-link" aria-label={`Read more about ${blog.title}`}>
+                  Read More: {blog.title} →
                 </span>
               </div>
             </Link>
