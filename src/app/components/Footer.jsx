@@ -249,6 +249,26 @@ const Footer = ({ location_slug, configdata, menudata, reviewdata, locationData 
 
         </div>
 
+        {/* Other Locations */}
+        <div className="aero_footer_locations">
+          <h4 className="aero_footer_locations_title">Visit Our Other Locations</h4>
+          <div className="aero_footer_locations_list">
+            {[
+              { slug: 'oakville', name: 'Oakville' },
+              { slug: 'london', name: 'London' },
+              { slug: 'windsor', name: 'Windsor' },
+              { slug: 'st-catharines', name: 'St. Catharines' },
+              { slug: 'scarborough', name: 'Scarborough' },
+            ]
+              .filter((loc) => loc.slug !== location_slug)
+              .map((loc) => (
+                <Link key={loc.slug} href={`/${loc.slug}`} className="aero_footer_location_link">
+                  AeroSports {loc.name}
+                </Link>
+              ))}
+          </div>
+        </div>
+
         {/* Copyright Bar */}
         <div className="aero_footer_copyright">
           <p>&copy; {new Date().getFullYear()} AeroSports Trampoline Park. All rights reserved.</p>

@@ -2055,6 +2055,41 @@ footer .aero_home-headerimg-wrapper > img:hover {
   box-shadow: 0 8px 20px rgba(57, 255, 20, 0.4);
 }
 
+/* Other Locations */
+.aero_footer_locations {
+  text-align: center;
+  padding: 1.5rem 0;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  margin-top: 2rem;
+}
+
+.aero_footer_locations_title {
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 0.9rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-bottom: 0.75rem;
+}
+
+.aero_footer_locations_list {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 0.5rem 1.5rem;
+}
+
+.aero_footer_location_link {
+  color: rgba(255, 255, 255, 0.6);
+  font-size: 0.85rem;
+  text-decoration: none;
+  transition: color 0.2s;
+}
+
+.aero_footer_location_link:hover {
+  color: #39ff14;
+}
+
 /* Copyright Bar */
 .aero_footer_copyright {
   text-align: center;
