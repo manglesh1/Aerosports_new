@@ -1,5 +1,6 @@
 import { notFound } from "next/navigation";
 import React from "react";
+import { Roboto_Condensed } from "next/font/google";
 import "../../../styles/subcategory.css";
 import "../../../styles/category.css";
 import "../../../styles/kidsparty.css";
@@ -16,7 +17,13 @@ import {
   fetchPageData,
 } from "@/lib/sheets";
 import BlogSection from "@/components/sections/BlogSection";
-import Link from "next/link";
+
+const robotoCondensed = Roboto_Condensed({
+  subsets: ["latin"],
+  weight: ["700", "900"],
+  display: "swap",
+  variable: "--font-roboto-condensed",
+});
 
 export async function generateMetadata({ params }) {
   const { location_slug, subcategory_slug, category_slug } = params;
@@ -73,7 +80,7 @@ const Subcategory = async ({ params }) => {
   );
 
   return (
-    <main>
+    <main className={robotoCondensed.variable}>
       <section>
         <MotionImage
           pageData={pageData}
@@ -82,71 +89,57 @@ const Subcategory = async ({ params }) => {
         />
       </section>
 
-      <section className="subcategory_main_section-bg">
-        <section className="aero-max-container">
-          <div
-            className="subcategory_main_section"
-            dangerouslySetInnerHTML={{
-              __html: sanitizeCmsHtml(pageData.section1),
-            }}
-          />
-{/* <h2
-          style={{
-            fontSize: "clamp(2.5rem, 8vw, 4rem)",
-            fontWeight: 900,
-            textTransform: "uppercase",
-            lineHeight: 0.95,
-            marginBottom: "1.5rem",
-            color: "#fff",
-            textRendering: "geometricprecision",
-            WebkitFontSmoothing: "antialiased",
-          }}
-        >
-          <span style={{ color: "rgb(255, 255, 255)" }}>
-            {pageData?.desc}
-          </span> */}
-        {/* </h2> */}
+      <div className="v11_cat_wrapper">
+        {/* Section 1 CMS Content */}
+        {pageData.section1 && (
+          <section className="v11_cat_seo_section">
+            <div className="v11_cat_container">
+              <div
+                className="v11_cat_seo_content"
+                dangerouslySetInnerHTML={{
+                  __html: sanitizeCmsHtml(pageData.section1),
+                }}
+              />
+            </div>
+          </section>
+        )}
 
         {/* Description */}
-        <p
-          style={{
-            fontSize: "1.1rem",
-            color: "rgba(255, 255, 255, 0.8)",
-            lineHeight: 1.7,
-            fontWeight: 700,
-            textRendering: "geometricprecision",
-            WebkitFontSmoothing: "antialiased",
-            maxWidth: "900px",
-            margin: "0 auto",
-          }}
-        >
-          {pageData?.metadescription}
-        </p>
-      
+        {pageData?.metadescription && (
+          <section className="v11_bp_intro_section">
+            <div className="v11_bp_container">
+              <p className="v11_bp_intro_text">
+                {pageData.metadescription}
+              </p>
+            </div>
+          </section>
+        )}
 
-<SubCategoryCard
+        {/* Related subcategories */}
+        <SubCategoryCard
           attractionsData={categoryData}
           location_slug={location_slug}
-          theme={"default"}
           title={`Other ${pageData.parentid}`}
-          text={[pageData.metadescription]}
         />
-        </section>
-        
-      </section>
+      </div>
 
-      <section className="aero_home_article_section">
-        <section className="aero-max-container aero_home_seo_section">
-          <div
-            dangerouslySetInnerHTML={{
-              __html: sanitizeCmsHtml(pageData.seosection),
-            }}
-          />
+      {/* SEO Content - Dark navy section */}
+      {pageData.seosection && (
+        <section className="v11_bp_packages_section">
+          <div className="v11_bp_container">
+            <div
+              className="v11_subcategory_seo_content"
+              dangerouslySetInnerHTML={{
+                __html: sanitizeCmsHtml(pageData.seosection),
+              }}
+            />
+          </div>
         </section>
-      </section>
+      )}
+
       <FaqCard page={subcategory_slug} location_slug={location_slug} />
 
-      {/* Blog Section - Show 3 relevant blog cards */}
+      {/* Blog Section */}
       {blogChildren.length > 0 && (
         <BlogSection
           blogs={blogChildren}
