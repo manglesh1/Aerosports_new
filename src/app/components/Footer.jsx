@@ -47,9 +47,18 @@ const Footer = ({ location_slug, configdata, menudata, reviewdata, locationData 
     return `tel:+1${digits}`;
   };
 
-  const locationHours = typeof hours === 'string'
-  ? JSON.parse(hours)
-  : hours ?? [];
+  let locationHours = [];
+  if (typeof hours === 'string' && hours.trim()) {
+    try {
+      // Fix trailing commas before ] that can creep in from sheet edits
+      const cleaned = hours.replace(/,\s*]/g, ']');
+      locationHours = JSON.parse(cleaned);
+    } catch (e) {
+      locationHours = [];
+    }
+  } else if (Array.isArray(hours)) {
+    locationHours = hours;
+  }
   return (
     <footer className="aero_footer_section-bg">
       {/* Quick Links Section - V11 Light Theme */}
