@@ -26,7 +26,7 @@ const AttractionsGrid = ({ attractionsData, waiverLink, locationSlug }) => {
                   className="aero_attraction_card_image"
                   width={400}
                   height={300}
-                  unoptimized
+                  loading="lazy"
                 />
                 <div className="aero_attraction_card_image_overlay"></div>
               </div>

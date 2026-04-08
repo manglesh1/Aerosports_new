@@ -8,6 +8,7 @@ import HeroSection from "@/components/sections/HeroSection";
 import SEOSection from "@/components/sections/SEOSection";
 import PlanVisitSection from "@/components/sections/PlanVisitSection";
 import CelebrateSection from "@/components/sections/CelebrateSection";
+import BlogSection from "@/components/sections/BlogSection";
 import {
   fetchsheetdata,
   fetchMenuData,
@@ -52,6 +53,9 @@ const Home = async ({ params }) => {
   const attractionsData = Array.isArray(data)
     ? getDataByParentId(data, "attractions") || []
     : [];
+  const blogsData = getDataByParentId(data, "blogs");
+  const blogChildren = blogsData?.[0]?.children || [];
+
   const jsonLDschema = await generateSchema(
     header_image?.[0],
     locationData,
@@ -103,6 +107,15 @@ const Home = async ({ params }) => {
       {/* Plan Your Visit Section - Bottom CTA Section */}
       {attractionsData?.[0]?.children?.length > 0 && seosection && (
         <PlanVisitSection seosection={seosection} locationSlug={location_slug} estoreConfig={estoreConfig} />
+      )}
+
+      {/* Blog Section - Show 3 relevant blog cards */}
+      {blogChildren.length > 0 && (
+        <BlogSection
+          blogs={blogChildren}
+          location_slug={location_slug}
+          currentCategory="home"
+        />
       )}
 
       {/* Statistics Section - Centered Container

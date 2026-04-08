@@ -8,7 +8,7 @@ import "../style.css";
 
 export default function SheetAdminPage() {
   const [location, setLocation] = useState('all');
-  const [locations] = useState(['all','oakville','london','windsor','st-catharines']);
+  const [locations] = useState(['all','oakville','london','windsor','st-catharines','scarborough']);
   const [rows, setRows] = useState([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);

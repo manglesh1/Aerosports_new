@@ -2,7 +2,7 @@ import Link from "next/link";
 import React from "react";
 import "../../styles/category.css";
 import "../../styles/attractions.css";
-import { getDataByParentId } from "@/utils/customFunctions";
+import { getDataByParentId, sanitizeCmsHtml } from "@/utils/customFunctions";
 import {
   fetchMenuData,
   generateMetadataLib,
@@ -14,6 +14,7 @@ import {
 import MotionImage from "@/components/MotionImage";
 import AttractionsGrid from "@/components/AttractionsGrid";
 import SickKidsSection from "@/components/sections/SickKidsSection";
+import BlogSection from "@/components/sections/BlogSection";
 
 export async function generateMetadata({ params }) {
   const { location_slug, category_slug } = params;
@@ -47,6 +48,8 @@ const Category = async ({ params }) => {
   );
   //console.log('pagedata',pageData);
   const attractionsData = getDataByParentId(data, category_slug);
+  const blogsData = getDataByParentId(data, "blogs");
+  const blogChildren = blogsData?.[0]?.children || [];
   //console.log('waiverLink',waiverLink);
   // Filter active attractions
   const activeAttractions =
@@ -112,14 +115,24 @@ const Category = async ({ params }) => {
         {/* <section className="aero_home_article_section"> */}
           {/* <section className="aero-max-container aero_home_seo_section"> */}
             <div
-              dangerouslySetInnerHTML={{ __html: pageData?.section1 || "" }}
+              dangerouslySetInnerHTML={{ __html: sanitizeCmsHtml(pageData?.section1) }}
             />
             <div
-              dangerouslySetInnerHTML={{ __html: pageData?.seosection || "" }}
+              dangerouslySetInnerHTML={{ __html: sanitizeCmsHtml(pageData?.seosection) }}
             />
           {/* </section> */}
         </section>
       </section>
+
+      {/* Blog Section - Show 3 relevant blog cards */}
+      {blogChildren.length > 0 && (
+        <BlogSection
+          blogs={blogChildren}
+          location_slug={location_slug}
+          currentCategory={category_slug}
+        />
+      )}
+
       <script
         type="application/ld+json"
         suppressHydrationWarning

@@ -1,4 +1,5 @@
 import "../../styles/seo-section.css";
+import { sanitizeCmsHtml } from "@/utils/customFunctions";
 
 const SEOSection = ({ locationData, locationSlug, estoreConfig, seosection }) => {
 	if (!seosection) return null;
@@ -11,7 +12,7 @@ const SEOSection = ({ locationData, locationSlug, estoreConfig, seosection }) =>
 			<section style={styles.seoContainer} className="gap-6 md:gap-10 grid grid-cols-1 md:grid-cols-2">
 				{/* Left Side - Content */}
 				<div style={styles.seoLeft}
-              dangerouslySetInnerHTML={{ __html: seosection || "" }}
+              dangerouslySetInnerHTML={{ __html: sanitizeCmsHtml(seosection) }}
             />
 				{/* <div style={styles.seoLeft}>
 					<div style={styles.seoContent}>
@@ -58,6 +59,8 @@ const SEOSection = ({ locationData, locationSlug, estoreConfig, seosection }) =>
 						<div style={styles.mapContainer}>
 							<iframe
 								src={`https://maps.google.com/maps?width=720&height=600&hl=en&q=Aerosports+${locationData?.[0]?.location}&t=&z=13&ie=UTF8&iwloc=B&output=embed`}
+								title={`AeroSports ${locationData?.[0]?.location || ''} location map`}
+								loading="lazy"
 								style={{
 									width: "100%",
 									height: "400px",

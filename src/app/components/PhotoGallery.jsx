@@ -1,5 +1,5 @@
 "use client";
-import React, { useState, useRef, useEffect, useMemo, useCallback } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import Image from "next/image";
 import Lightbox from "./Lightbox";
 import { IoChevronBack, IoChevronForward } from "react-icons/io5";
@@ -8,14 +8,10 @@ import { FaPlay } from "react-icons/fa";
 const PhotoGallery = ({ galleryData, navbarName = "gallery" }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [currentMediaIndex, setCurrentMediaIndex] = useState(0);
-  const [currentGroup, setCurrentGroup] = useState(null);
-  const [showControls, setShowControls] = useState(true);
-  const [touchStart, setTouchStart] = useState(null);
-  const [touchEnd, setTouchEnd] = useState(null);
-  const hideControlsTimeoutRef = useRef(null);
+  const [currentGroupIndex, setCurrentGroupIndex] = useState(null);
 
   // Get the groups for the specified navbar
-  const groups = useMemo(() => galleryData[navbarName] || [], [galleryData, navbarName]);
+  const groups = galleryData[navbarName] || [];
 
   // Helper function to detect if URL is a video
   const isVideo = (url) => {
@@ -25,76 +21,37 @@ const PhotoGallery = ({ galleryData, navbarName = "gallery" }) => {
 
   // Open modal with specific media
   const openModal = (groupIndex, mediaIndex) => {
-    setCurrentGroup(groupIndex);
+    setCurrentGroupIndex(groupIndex);
     setCurrentMediaIndex(mediaIndex);
     setIsModalOpen(true);
-    setShowControls(true);
   };
 
-  // Navigate to next media
+  const closeModal = () => setIsModalOpen(false);
+
+  // Get current group's media list
+  const currentUrls = currentGroupIndex !== null && groups[currentGroupIndex]
+    ? groups[currentGroupIndex].urls
+    : [];
+
+  // Navigate to next/prev media
   const nextMedia = useCallback((e) => {
     if (e) e.stopPropagation();
-    if (currentGroup !== null && groups[currentGroup]) {
-      const totalMedia = groups[currentGroup].urls.length;
-      setCurrentMediaIndex((prev) => (prev + 1) % totalMedia);
-    }
-  }, [currentGroup, groups]);
+    setCurrentMediaIndex((prev) => (prev + 1) % currentUrls.length);
+  }, [currentUrls.length]);
 
-  // Navigate to previous media
   const prevMedia = useCallback((e) => {
     if (e) e.stopPropagation();
-    if (currentGroup !== null && groups[currentGroup]) {
-      const totalMedia = groups[currentGroup].urls.length;
-      setCurrentMediaIndex((prev) => (prev - 1 + totalMedia) % totalMedia);
-    }
-  }, [currentGroup, groups]);
-
-  // Handle mouse movement to show/hide controls
-  const handleMouseMove = () => {
-    setShowControls(true);
-    if (hideControlsTimeoutRef.current) {
-      clearTimeout(hideControlsTimeoutRef.current);
-    }
-    hideControlsTimeoutRef.current = setTimeout(() => {
-      setShowControls(false);
-    }, 2000);
-  };
-
-  // Touch handlers for swipe gestures
-  const minSwipeDistance = 50;
-
-  const onTouchStart = (e) => {
-    setTouchEnd(null);
-    setTouchStart(e.targetTouches[0].clientX);
-  };
-
-  const onTouchMove = (e) => {
-    setTouchEnd(e.targetTouches[0].clientX);
-  };
-
-  const onTouchEnd = () => {
-    if (!touchStart || !touchEnd) return;
-    const distance = touchStart - touchEnd;
-    const isLeftSwipe = distance > minSwipeDistance;
-    const isRightSwipe = distance < -minSwipeDistance;
-
-    if (isLeftSwipe) {
-      nextMedia();
-    } else if (isRightSwipe) {
-      prevMedia();
-    }
-  };
+    setCurrentMediaIndex((prev) => (prev - 1 + currentUrls.length) % currentUrls.length);
+  }, [currentUrls.length]);
 
   // Handle keyboard navigation
   useEffect(() => {
     if (!isModalOpen) return;
-
     const handleKeyDown = (e) => {
       if (e.key === "ArrowRight") nextMedia();
       if (e.key === "ArrowLeft") prevMedia();
-      if (e.key === "Escape") setIsModalOpen(false);
+      if (e.key === "Escape") closeModal();
     };
-
     window.addEventListener("keydown", handleKeyDown);
     return () => window.removeEventListener("keydown", handleKeyDown);
   }, [isModalOpen, nextMedia, prevMedia]);
@@ -115,54 +72,50 @@ const PhotoGallery = ({ galleryData, navbarName = "gallery" }) => {
             <h2 className="gallery-section-title">{group.group}</h2>
           )}
           <div className="gallery-grid">
-            {group.urls.map((url, mediaIndex) => (
-              <div
-                key={mediaIndex}
-                className="gallery-item"
-                onClick={() => openModal(groupIndex, mediaIndex)}
-              >
-                {isVideo(url) ? (
-                  <div className="gallery-video-thumbnail">
-                    <video
-                      src={url}
-                      className="gallery-media"
-                      preload="metadata"
-                    />
-                    <div className="video-play-overlay">
-                      <FaPlay size={32} />
+            {group.urls.map((url, mediaIndex) => {
+              const alt = group.alttext || `${group.group || "AeroSports"} photo ${mediaIndex + 1}`;
+              return (
+                <div
+                  key={mediaIndex}
+                  className="gallery-item"
+                  onClick={() => openModal(groupIndex, mediaIndex)}
+                >
+                  {isVideo(url) ? (
+                    <div className="gallery-video-thumbnail">
+                      <video src={url} className="gallery-media" preload="metadata" />
+                      <div className="video-play-overlay">
+                        <FaPlay size={24} />
+                      </div>
                     </div>
+                  ) : (
+                    <Image
+                      src={url}
+                      alt={alt}
+                      width={400}
+                      height={300}
+                      className="gallery-media"
+                      loading="lazy"
+                    />
+                  )}
+                  <div className="gallery-item-overlay">
+                    <span className="gallery-item-zoom">&#x1F50D;</span>
                   </div>
-                ) : (
-                  <Image
-                    src={url}
-                    alt={group.group || "Gallery image"}
-                    width={400}
-                    height={300}
-                    className="gallery-media"
-                    unoptimized
-                  />
-                )}
-              </div>
-            ))}
+                </div>
+              );
+            })}
           </div>
         </div>
       ))}
 
-      {/* Modern Lightbox */}
-      {isModalOpen && currentGroup !== null && groups[currentGroup] && (
-        <Lightbox isOpen={isModalOpen} onClose={() => setIsModalOpen(false)}>
-          <div
-            className="gallery-lightbox"
-            onMouseMove={handleMouseMove}
-            onTouchStart={onTouchStart}
-            onTouchMove={onTouchMove}
-            onTouchEnd={onTouchEnd}
-          >
+      {/* Lightbox Modal */}
+      {isModalOpen && currentGroupIndex !== null && currentUrls.length > 0 && (
+        <Lightbox isOpen={isModalOpen} onClose={closeModal}>
+          <div className="gallery-lightbox">
             {/* Main Media */}
             <div className="gallery-lightbox-media">
-              {isVideo(groups[currentGroup].urls[currentMediaIndex]) ? (
+              {isVideo(currentUrls[currentMediaIndex]) ? (
                 <video
-                  src={groups[currentGroup].urls[currentMediaIndex]}
+                  src={currentUrls[currentMediaIndex]}
                   controls
                   autoPlay
                   className="gallery-media-full"
@@ -170,40 +123,48 @@ const PhotoGallery = ({ galleryData, navbarName = "gallery" }) => {
                 />
               ) : (
                 <Image
-                  src={groups[currentGroup].urls[currentMediaIndex]}
-                  alt={groups[currentGroup].group || "Gallery image"}
+                  src={currentUrls[currentMediaIndex]}
+                  alt={groups[currentGroupIndex].alttext || `${groups[currentGroupIndex].group || "AeroSports"} photo ${currentMediaIndex + 1}`}
                   className="gallery-media-full"
                   width={1200}
                   height={900}
-                  unoptimized
+                  quality={90}
                 />
               )}
             </div>
 
-            {/* Side Navigation - Only show if more than 1 image */}
-            {groups[currentGroup].urls.length > 1 && (
+            {/* Navigation - Only show if more than 1 image */}
+            {currentUrls.length > 1 && (
               <>
-                <button
-                  className={`gallery-nav-button gallery-nav-prev ${showControls ? 'visible' : ''}`}
-                  onClick={prevMedia}
-                  aria-label="Previous image"
-                >
+                <button className="gallery-nav-button gallery-nav-prev" onClick={prevMedia} aria-label="Previous image">
                   <IoChevronBack size={28} />
                 </button>
-
-                <button
-                  className={`gallery-nav-button gallery-nav-next ${showControls ? 'visible' : ''}`}
-                  onClick={nextMedia}
-                  aria-label="Next image"
-                >
+                <button className="gallery-nav-button gallery-nav-next" onClick={nextMedia} aria-label="Next image">
                   <IoChevronForward size={28} />
                 </button>
-
-                {/* Image Counter */}
-                <div className={`gallery-image-counter ${showControls ? 'visible' : ''}`}>
-                  {currentMediaIndex + 1} / {groups[currentGroup].urls.length}
+                <div className="gallery-image-counter">
+                  {currentMediaIndex + 1} / {currentUrls.length}
                 </div>
               </>
+            )}
+
+            {/* Thumbnail strip */}
+            {currentUrls.length > 1 && (
+              <div className="gallery-thumbnail-strip">
+                {currentUrls.map((url, i) => (
+                  <button
+                    key={i}
+                    className={`gallery-thumb-btn ${i === currentMediaIndex ? "active" : ""}`}
+                    onClick={(e) => { e.stopPropagation(); setCurrentMediaIndex(i); }}
+                  >
+                    {isVideo(url) ? (
+                      <div className="gallery-thumb-video"><FaPlay size={10} /></div>
+                    ) : (
+                      <Image src={url} alt="" width={80} height={60} className="gallery-thumb-img" />
+                    )}
+                  </button>
+                ))}
+              </div>
             )}
           </div>
         </Lightbox>

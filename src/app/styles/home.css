@@ -1707,63 +1707,112 @@ footer .aero_home-headerimg-wrapper > img:hover {
   padding-top: 3rem;
 }
 
-/* Modern Footer Wrapper */
+/* Modern Footer Wrapper - 5 column v11 layout */
 .aero_footer_modern_wrapper {
   display: grid;
-  grid-template-columns: 1fr;
-  gap: 4rem;
+  grid-template-columns: 1.4fr 1fr 1fr 1fr 1.2fr;
+  gap: 2.5rem;
   padding: 3rem 0;
   animation: fadeInUp 0.8s ease-out;
 }
 
-/* Brand Section */
-.aero_footer_brand_section {
-  text-align: center;
-  margin-bottom: 2rem;
+/* ─── Contact Section (left column) ─── */
+.aero_footer_contact_section {
+  padding-right: 1.5rem;
+  border-right: 1px solid rgba(57, 255, 20, 0.12);
+}
+
+.aero_footer_brand_header {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 1.2rem;
+}
+
+.aero_footer_brand_name {
+  font-size: 1.3rem;
+  font-weight: 800;
+  color: #ffffff;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin: 0;
+}
+
+.aero_footer_brand_sub {
+  font-size: 0.78rem;
+  color: rgba(255, 255, 255, 0.5);
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  margin: 0;
 }
 
 .aero_footer_logo {
   display: inline-block;
-  margin-bottom: 2rem;
   transition: all 0.3s ease;
+  flex-shrink: 0;
 }
 
 .aero_footer_logo:hover {
   transform: scale(1.08);
-  filter: drop-shadow(0 15px 30px rgba(255, 17, 82, 0.6));
+  filter: drop-shadow(0 10px 20px rgba(255, 17, 82, 0.5));
 }
 
 .aero_footer_tagline {
-  color: rgba(255, 255, 255, 0.8);
-  font-size: 1.05rem;
-  line-height: 1.8;
-  margin-bottom: 2.5rem;
-  max-width: 600px;
-  margin-left: auto;
-  margin-right: auto;
+  color: rgba(255, 255, 255, 0.65);
+  font-size: 0.92rem;
+  line-height: 1.7;
+  margin-bottom: 1.5rem;
 }
 
-/* Clean Social Media Icons */
+/* Contact Details */
+.aero_footer_contact_details {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  margin-bottom: 1.5rem;
+}
+
+.aero_footer_contact_item {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  color: rgba(255, 255, 255, 0.8);
+  font-size: 0.92rem;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.aero_footer_contact_item:hover {
+  color: #39ff14;
+}
+
+.aero_footer_contact_icon {
+  width: 18px;
+  height: 18px;
+  flex-shrink: 0;
+  color: #ff1152;
+}
+
+.aero_footer_contact_item:hover .aero_footer_contact_icon {
+  color: #39ff14;
+}
+
+/* Social Media Icons */
 .aero_footer_social_icons {
   display: flex;
-  gap: 1.5rem;
-  justify-content: center;
-  flex-wrap: wrap;
+  gap: 0.75rem;
+  margin-bottom: 1.8rem;
 }
 
 .aero_footer_social_link {
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 50px;
-  height: 50px;
+  width: 42px;
+  height: 42px;
   border-radius: 50%;
-  background: linear-gradient(
-    135deg,
-    rgba(57, 255, 20, 0.1) 0%,
-    rgba(255, 17, 82, 0.1) 100%
-  );
-  border: 2px solid rgba(57, 255, 20, 0.3);
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.15);
   color: #ffffff;
   transition: all 0.3s ease;
   position: relative;
@@ -1777,11 +1826,7 @@ footer .aero_home-headerimg-wrapper > img:hover {
   left: 0;
   width: 100%;
   height: 100%;
-  background: linear-gradient(
-    135deg,
-    rgba(57, 255, 20, 0.3) 0%,
-    rgba(255, 17, 82, 0.3) 100%
-  );
+  background: linear-gradient(135deg, rgba(57, 255, 20, 0.3) 0%, rgba(255, 17, 82, 0.3) 100%);
   opacity: 0;
   transition: opacity 0.3s ease;
 }
@@ -1791,30 +1836,73 @@ footer .aero_home-headerimg-wrapper > img:hover {
 }
 
 .aero_footer_social_link svg {
-  width: 24px;
-  height: 24px;
+  width: 20px;
+  height: 20px;
   position: relative;
   z-index: 1;
   transition: all 0.3s ease;
 }
 
 .aero_footer_social_link:hover {
-  transform: translateY(-5px) scale(1.15);
+  transform: translateY(-3px);
   border-color: #39ff14;
-  box-shadow: 0 10px 30px rgba(57, 255, 20, 0.4);
+  box-shadow: 0 8px 20px rgba(57, 255, 20, 0.3);
 }
 
 .aero_footer_social_link:hover svg {
   color: #39ff14;
-  transform: scale(1.1);
 }
 
-/* Links Section */
+/* Park Hours */
+.aero_footer_hours {
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  padding-top: 1.2rem;
+}
+
+.aero_footer_hours_title {
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: #ffffff;
+  text-transform: uppercase;
+  letter-spacing: 1.2px;
+  margin-bottom: 0.8rem;
+}
+
+.aero_footer_hours_grid {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.aero_footer_hours_row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.35rem 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.aero_footer_hours_day {
+  color: rgba(255, 255, 255, 0.75);
+  font-size: 0.88rem;
+  font-weight: 600;
+}
+
+.aero_footer_hours_time {
+  color: rgba(255, 255, 255, 0.6);
+  font-size: 0.88rem;
+}
+
+.aero_footer_parking {
+  color: rgba(255, 255, 255, 0.4);
+  font-size: 0.78rem;
+  font-style: italic;
+  margin-top: 0.6rem;
+}
+
+/* ─── Links Section (middle columns) ─── */
 .aero_footer_links_section {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 3rem;
-  padding: 2rem 0;
+  display: contents;
 }
 
 .aero_footer_links_column {
@@ -1833,25 +1921,22 @@ footer .aero_home-headerimg-wrapper > img:hover {
 }
 
 .aero_footer_column_title {
-  font-size: 1.1rem;
+  font-size: 0.95rem;
   font-weight: 700;
-  margin-bottom: 1.5rem;
-  color: #39ff14;
+  margin-bottom: 1.3rem;
+  color: #ffffff;
   text-transform: uppercase;
   letter-spacing: 1.2px;
   position: relative;
-  padding-bottom: 1rem;
+  padding-bottom: 0.8rem;
+  text-decoration: underline;
+  text-decoration-color: #ff1152;
+  text-underline-offset: 8px;
+  text-decoration-thickness: 2px;
 }
 
 .aero_footer_column_title::after {
-  content: "";
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  width: 40px;
-  height: 3px;
-  background: #39ff14;
-  border-radius: 2px;
+  display: none;
 }
 
 .aero_footer_links_list {
@@ -1861,49 +1946,126 @@ footer .aero_home-headerimg-wrapper > img:hover {
 }
 
 .aero_footer_links_list li {
-  margin-bottom: 1rem;
+  margin-bottom: 0.7rem;
+}
+
+.aero_footer_links_list li::before {
+  content: "\2022";
+  color: #ff1152;
+  font-weight: bold;
+  display: inline-block;
+  width: 1em;
+  margin-left: -0.1em;
 }
 
 .aero_footer_links_list li a {
   color: rgba(255, 255, 255, 0.75);
-  font-size: 0.95rem;
-  font-weight: 500;
-  transition: all 0.3s ease;
-  display: inline-block;
+  font-size: 0.9rem;
+  font-weight: 400;
+  transition: all 0.25s ease;
+  display: inline;
   position: relative;
-  padding-left: 0;
   line-height: 1.6;
 }
 
 .aero_footer_links_list li a::before {
-  content: "→";
-  position: absolute;
-  left: -1.2em;
-  opacity: 0;
-  transition: all 0.3s ease;
-  color: #39ff14;
+  display: none;
 }
 
 .aero_footer_links_list li a:hover {
-  color: #39ff14;
-  padding-left: 1.2em;
+  color: #ff1152;
+  padding-left: 0;
 }
 
-.aero_footer_links_list li a:hover::before {
-  opacity: 1;
+/* ─── CTA Section (right column) ─── */
+.aero_footer_cta_section {
+  padding-left: 1.5rem;
+  border-left: 1px solid rgba(57, 255, 20, 0.12);
+  animation: fadeInUp 0.6s ease-out 0.4s both;
+}
+
+.aero_footer_cta_title {
+  font-size: 1.1rem;
+  font-weight: 800;
+  color: #ffffff;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-bottom: 0.8rem;
+}
+
+.aero_footer_cta_text {
+  color: rgba(255, 255, 255, 0.6);
+  font-size: 0.88rem;
+  line-height: 1.6;
+  margin-bottom: 1.5rem;
+}
+
+.aero_footer_cta_button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.6rem;
+  width: 100%;
+  padding: 0.8rem 1.2rem;
+  border-radius: 8px;
+  font-size: 0.9rem;
+  font-weight: 700;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  margin-bottom: 0.75rem;
+  cursor: pointer;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.aero_footer_cta_phone {
+  background: #ff1152;
+  color: #ffffff;
+  border: none;
+}
+
+.aero_footer_cta_phone:hover {
+  background: #e00e47;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(255, 17, 82, 0.4);
+}
+
+.aero_footer_cta_email {
+  background: transparent;
+  color: #ffffff;
+  border: 2px solid rgba(255, 255, 255, 0.3);
+}
+
+.aero_footer_cta_email:hover {
+  border-color: #39ff14;
+  color: #39ff14;
+  transform: translateY(-2px);
+}
+
+.aero_footer_cta_book {
+  background: #39ff14;
+  color: #000000;
+  border: none;
+  font-weight: 800;
+}
+
+.aero_footer_cta_book:hover {
+  background: #2ee00f;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(57, 255, 20, 0.4);
 }
 
 /* Copyright Bar */
 .aero_footer_copyright {
   text-align: center;
   padding: 2rem 0;
-  border-top: 1px solid rgba(57, 255, 20, 0.2);
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
   margin-top: 2rem;
 }
 
 .aero_footer_copyright p {
-  color: rgba(255, 255, 255, 0.6);
-  font-size: 0.9rem;
+  color: rgba(255, 255, 255, 0.5);
+  font-size: 0.85rem;
   margin: 0;
   letter-spacing: 0.5px;
 }
@@ -2079,14 +2241,46 @@ ul.attractions-grid li:nth-child(8) {
     font-size: 1.4rem;
   }
 
-  /* Tablet Footer Links - Fix 3 column layout */
-  .aero_footer_links_section {
-    grid-template-columns: repeat(2, 1fr);
+  /* Responsive Footer - stack on tablet/mobile */
+  .aero_footer_modern_wrapper {
+    grid-template-columns: 1fr;
     gap: 2rem;
+  }
+
+  .aero_footer_contact_section {
+    border-right: none;
+    padding-right: 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    padding-bottom: 2rem;
+  }
+
+  .aero_footer_links_section {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+  }
+
+  .aero_footer_cta_section {
+    border-left: none;
+    padding-left: 0;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    padding-top: 2rem;
+  }
+
+  .aero_footer_cta_button {
+    max-width: 320px;
   }
 
   footer .aero_home-headerimg-wrapper {
     min-height: 550px;
+  }
+}
+
+@media (max-width: 540px) {
+  .aero_footer_links_section {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
   }
 }
 

@@ -9,7 +9,8 @@ const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL;
 
 const inter = Poppins({
   subsets: ["latin"],
-  weight: ["100", "200", "300", "400", "500", "600", "700", "800", "900"],
+  weight: ["400", "600", "700", "800"],
+  display: "swap",
 });
 
 export const viewport = {
@@ -35,7 +36,7 @@ export const metadata = {
     description: "The GTA's ultimate play destination: A huge trampoline park with climbing walls, towering slides, a jungle gym, obstacle courses, dodgeball, and more. Ideal for birthday parties!",
     images: [
       {
-        url: "https://storage.googleapis.com/aerosports/logo_white.png",
+        url: "https://storage.googleapis.com/aerosports/webp/oakville/logo_white.webp",
       },
     ],
   },
@@ -44,11 +45,15 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
+      <head>
+        <link rel="preconnect" href="https://storage.googleapis.com" />
+        <link rel="dns-prefetch" href="https://storage.googleapis.com" />
+        <link rel="preconnect" href="https://docs.google.com" />
+        <link rel="dns-prefetch" href="https://docs.google.com" />
+      </head>
       <body className={inter.className}>
-        <GoogleAnalytics />{" "}
-        {/* Render the client-side Google Analytics component */}
+        <GoogleAnalytics />
         <Suspense fallback={<Loading />}>{children}</Suspense>
-        
       </body>
     </html>
   );

@@ -81,7 +81,7 @@ export default function ExploreAttractionsSection({ attractions, location_slug }
 													width={200} height={200}
 													alt={attraction?.iconalttextforhomepage ?? `Attraction ${index + 1}`}
 													className="w-full h-full object-cover"
-													unoptimized
+													loading="lazy"
 												/>
 											)}
 										</div>

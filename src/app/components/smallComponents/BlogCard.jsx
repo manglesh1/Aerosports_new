@@ -14,12 +14,12 @@ const BlogCard = ({ blogsData, location_slug }) => {
             >
               <article className="aero_home_article_card">
                 <Image
-                  src={item?.smallimage || 'https://storage.googleapis.com/aerosports/common/gallery-thummbnail-wall-climbwall.jpg'}
+                  src={item?.smallimage || `https://storage.googleapis.com/aerosports/webp/${location_slug}/gallery-thummbnail-wall-climbwall.webp`}
                   width={120}
                   height={120}
                   alt="article image"
                   title={item.title}
-                  unoptimized
+                  loading="lazy"
                 />
                 <div className="aero_home_article_desc">
                   <div>{i + 1}</div>

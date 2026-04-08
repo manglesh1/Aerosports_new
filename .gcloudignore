@@ -12,7 +12,15 @@
 # below:
 .git
 .gitignore
-.next
+
+# Upload .next build output (needed for production)
+# .next/cache is excluded to reduce upload size
+.next/cache
 
 # Node.js dependencies:
 node_modules/
+
+# Dev files
+scripts/
+.claude/
+*.md

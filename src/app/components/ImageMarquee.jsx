@@ -48,7 +48,6 @@ if (imagesString) {
                 width={400}
                 height={267}
                 loading='lazy'
-                unoptimized
               />
               {image.title && <p className={styles.title}>{image.title}</p>}
             </div>
@@ -67,7 +66,6 @@ if (imagesString) {
                 width={400}
                 height={267}
                 loading='lazy'
-                unoptimized
               />
               {image.title && <p className={styles.title}>{image.title}</p>}
             </div>

@@ -2,7 +2,7 @@ import React from "react";
 import "../../../styles/subcategory.css";
 import "../../../styles/category.css";
 import "../../../styles/kidsparty.css";
-import { getDataByParentId } from "@/utils/customFunctions";
+import { getDataByParentId, sanitizeCmsHtml } from "@/utils/customFunctions";
 import MotionImage from "@/components/MotionImage";
 import SubCategoryCard from "@/components/smallComponents/SubCategoryCard";
 import FaqCard from "@/components/smallComponents/FaqCard";
@@ -14,6 +14,7 @@ import {
   generateSchema,
   fetchPageData,
 } from "@/lib/sheets";
+import BlogSection from "@/components/sections/BlogSection";
 import Link from "next/link";
 
 export async function generateMetadata({ params }) {
@@ -50,6 +51,9 @@ const Subcategory = async ({ params }) => {
 
   // console.log("param ", location_slug, subcategory_slug, category_slug);
 
+  const blogsData = getDataByParentId(menudata, "blogs");
+  const blogChildren = blogsData?.[0]?.children || [];
+
   const jsonLDschema = await generateSchema(
     pageData,
     locationData,
@@ -72,7 +76,7 @@ const Subcategory = async ({ params }) => {
           <div
             className="subcategory_main_section"
             dangerouslySetInnerHTML={{
-              __html: pageData.section1 || "",
+              __html: sanitizeCmsHtml(pageData.section1),
             }}
           />
 {/* <h2
@@ -124,12 +128,22 @@ const Subcategory = async ({ params }) => {
         <section className="aero-max-container aero_home_seo_section">
           <div
             dangerouslySetInnerHTML={{
-              __html: pageData.seosection || "",
+              __html: sanitizeCmsHtml(pageData.seosection),
             }}
           />
         </section>
       </section>
       <FaqCard page={subcategory_slug} location_slug={location_slug} />
+
+      {/* Blog Section - Show 3 relevant blog cards */}
+      {blogChildren.length > 0 && (
+        <BlogSection
+          blogs={blogChildren}
+          location_slug={location_slug}
+          currentCategory={category_slug}
+        />
+      )}
+
       <script
         type="application/ld+json"
         suppressHydrationWarning

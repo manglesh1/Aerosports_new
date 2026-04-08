@@ -9,31 +9,18 @@ const waiverLinkCache = new Map();
 const reviewesData = new Map();
 async function fetchsheetdata(sheetName, location) {
   if(sheetName === 'refresh'){
-    console.log('refreshing data');
     sheetCache.clear();
   }
   const cacheKey = `${sheetName}:${location || 'all'}`;
-  
   const now = Date.now();
 
   const cached = sheetCache.get(cacheKey);
-  if(cached)
-  {
-    console.log('cache found');
-    
-   
+  if(location=='.well-known') {
+    return [];
   }
-    if(location=='.well-known')
-    {
-      console.log('unknown location', location);
-      return [];
-    }
   if (cached && now - cached.timestamp < CACHE_TTL) {
-    console.log("✅ from cache " + cacheKey);
     return cached.data;
   }
-
-  console.log("🚀 fetching fresh sheet data " + cacheKey);
 
   try {
 
@@ -134,7 +121,6 @@ async function fetchFaqData(location, page) {
 }
 
 async function getWaiverLink(location){
-  console.log(location);
   const cacheKey = `waiver:${location}`;
   const cached = waiverLinkCache.get(cacheKey);
   //console.log(cacheKey, cached);
@@ -172,15 +158,19 @@ async function generateMetadataLib({ location, category, page }) {
     ? metadataItem.headerimage
     : `${BASE_URL}${metadataItem?.headerimage || ""}`;
 
+  const metaTitle = metadataItem?.metatitle || "AeroSports Trampoline Park";
+  const metaDesc = metadataItem?.metadescription || "Fun for all ages at AeroSports!";
+  const isBlogPost = category === 'blogs' || page?.includes('blog');
+
   return {
-    title: metadataItem?.metatitle || "AeroSports Trampoline Park",
-    description: metadataItem?.metadescription || "Fun for all ages at AeroSports!",
+    title: metaTitle,
+    description: metaDesc,
     alternates: {
       canonical: fullUrl,
     },
     openGraph: {
-      title: metadataItem?.metatitle || "AeroSports Trampoline Park",
-      description: metadataItem?.metadescription || "Fun for all ages at AeroSports!",
+      title: metaTitle,
+      description: metaDesc,
       url: fullUrl,
       siteName: "AeroSports Trampoline Park",
       images: imageUrl
@@ -189,18 +179,23 @@ async function generateMetadataLib({ location, category, page }) {
               url: imageUrl,
               width: 1200,
               height: 630,
-              alt: `AeroSports`,
+              alt: metaTitle,
             },
           ]
         : [],
       locale: "en_CA",
-      type: "website",
+      type: isBlogPost ? "article" : "website",
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: metaTitle,
+      description: metaDesc,
+      images: imageUrl ? [imageUrl] : [],
     },
   };
 }
 
 async function getReviewsData(locationid){
-  console.log(locationid);
   if(!locationid || locationid=='undefined')
     return [];
   
@@ -212,8 +207,6 @@ async function getReviewsData(locationid){
        return cached;
   }
   try {
-   console.log('fetching reviews data',locationid);
-   //console.log('locationid', locationid); 
   const url = `${process.env.NEXT_PUBLIC_API_URL}/getreviews?locationid=${locationid}`;
    const response = await fetch(url, {next: {revalidate: 3600*24*5}}); 
    const data = await response.json();
@@ -261,7 +254,7 @@ async function generateSchema(pagedata, locationData, category, page ) {
  */
 async function fetchBirthdayPartyJson(location) {
   try {
-    const jsonData = await fetchsheetdata("location json", location);
+    const jsonData = await fetchsheetdata("birthdaypage", location);
 
     if (!jsonData || jsonData.length === 0) {
       console.warn(`No birthday party data found for location: ${location}`);
@@ -318,6 +311,8 @@ async function fetchGalleryData(location) {
       groupedData[navbar].push({
         group: row.group || '',
         urls: urls,
+        title: row.title || '',
+        alttext: row.alttext || '',
         location: row.location
       });
     });

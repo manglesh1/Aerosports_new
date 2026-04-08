@@ -437,7 +437,99 @@
   }
 }
 
-/* Animations - Removed duplicate fadeIn animation as fadeInUp is already defined above */
+/* Hover overlay with zoom icon */
+.gallery-item-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  pointer-events: none;
+}
+
+.gallery-item:hover .gallery-item-overlay {
+  opacity: 1;
+}
+
+.gallery-item-zoom {
+  font-size: 2rem;
+  filter: drop-shadow(0 2px 8px rgba(0, 0, 0, 0.5));
+}
+
+/* Navigation always visible */
+.gallery-nav-button {
+  opacity: 1;
+}
+
+/* Image counter always visible */
+.gallery-image-counter {
+  opacity: 1;
+}
+
+/* Thumbnail strip in lightbox */
+.gallery-thumbnail-strip {
+  position: absolute;
+  bottom: 12px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 6px;
+  padding: 8px 12px;
+  background: rgba(0, 0, 0, 0.7);
+  backdrop-filter: blur(10px);
+  border-radius: 12px;
+  max-width: 90vw;
+  overflow-x: auto;
+  z-index: 10;
+}
+
+.gallery-thumb-btn {
+  flex-shrink: 0;
+  width: 60px;
+  height: 45px;
+  border-radius: 6px;
+  overflow: hidden;
+  cursor: pointer;
+  border: 2px solid transparent;
+  padding: 0;
+  background: rgba(255, 255, 255, 0.1);
+  transition: border-color 0.2s ease, opacity 0.2s ease;
+  opacity: 0.6;
+}
+
+.gallery-thumb-btn.active {
+  border-color: #39ff14;
+  opacity: 1;
+}
+
+.gallery-thumb-btn:hover {
+  opacity: 1;
+}
+
+.gallery-thumb-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.gallery-thumb-video {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  background: rgba(255, 17, 82, 0.3);
+}
+
+/* Adjust counter position when thumbnail strip is present */
+.gallery-thumbnail-strip ~ .gallery-image-counter {
+  bottom: 80px;
+}
 
 /* Prevent text selection in lightbox */
 .gallery-lightbox * {
@@ -448,4 +540,21 @@
 .gallery-lightbox video {
   -webkit-user-select: auto;
   user-select: auto;
+}
+
+@media (max-width: 768px) {
+  .gallery-thumbnail-strip {
+    bottom: 8px;
+    gap: 4px;
+    padding: 6px 8px;
+  }
+
+  .gallery-thumb-btn {
+    width: 48px;
+    height: 36px;
+  }
+
+  .gallery-item-zoom {
+    font-size: 1.5rem;
+  }
 }

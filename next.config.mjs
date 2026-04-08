@@ -5,7 +5,7 @@ import * as XLSX from 'xlsx';
 // 1) Put this in .env.local (and in your CI/CD env):
 // REDIRECT_SHEET_XLSX="https://docs.google.com/spreadsheets/d/XXX/export?format=xlsx"
 const SHEET_URL = process.env.REDIRECT_SHEET_XLSX
-  ?? 'https://docs.google.com/spreadsheets/d/1phEZ3UKnCZzR30RqbD9LyLTdPsGxIEO2k-xhtV5mPhw/edit?usp=sharing&ouid=111554940659762157873&rtpof=true&sd=true'; // fallback
+  ?? 'https://docs.google.com/spreadsheets/d/1B_9EaTQDztWGH_cD3lUP7hpWD6FvNBJ-6Czml2x7d9c/edit?usp=sharing&ouid=111554940659762157873&rtpof=true&sd=true'; // fallback
 
 async function fetchSheetRedirects() {
   try {
@@ -65,13 +65,26 @@ const nextConfig = {
       { protocol: 'https', hostname: 'storage.googleapis.com' },
       { protocol: 'https', hostname: 'www.aerosportsparks.ca' },
     ],
+    formats: ['image/avif', 'image/webp'],
+    minimumCacheTTL: 60 * 60 * 24 * 30,
+  },
+
+  // Use in-memory ISR cache (App Engine Standard has read-only filesystem)
+  cacheMaxMemorySize: 50 * 1024 * 1024, // 50 MB
+
+  experimental: {
+    optimizePackageImports: ['react-bootstrap', 'react-icons'],
+  },
+
+  compiler: {
+    removeConsole: process.env.NODE_ENV === 'production' ? { exclude: ['error', 'warn'] } : false,
   },
 
   // NOTE: this exposes envs to the client bundle; it does NOT affect process.env
   env: {
     NEXT_PUBLIC_API_URL: 'https://apis-351216.nn.r.appspot.com/api',
     NEXT_PUBLIC_BASE_URL: 'https://www.aerosportsparks.ca',
-    SHEET_URL: 'https://docs.google.com/spreadsheets/d/1phEZ3UKnCZzR30RqbD9LyLTdPsGxIEO2k-xhtV5mPhw/export?format=xlsx',
+    SHEET_URL: 'https://docs.google.com/spreadsheets/d/1B_9EaTQDztWGH_cD3lUP7hpWD6FvNBJ-6Czml2x7d9c/export?format=xlsx',
   },
 };
 

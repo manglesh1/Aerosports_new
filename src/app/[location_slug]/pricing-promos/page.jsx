@@ -1,7 +1,9 @@
 import React from "react";
 import "../../styles/subcategory.css";
 import "../../styles/kidsparty.css";
-import { generateMetadataLib, generateSchema, fetchPricingTableData, fetchPageData, fetchsheetdata } from "@/lib/sheets";
+import BlogSection from "@/components/sections/BlogSection";
+import { generateMetadataLib, generateSchema, fetchPricingTableData, fetchPageData, fetchsheetdata, fetchMenuData } from "@/lib/sheets";
+import { getDataByParentId, sanitizeCmsHtml } from "@/utils/customFunctions";
 
 export async function generateMetadata({ params }) {
   const metadata = await generateMetadataLib({
@@ -23,12 +25,14 @@ export async function generateMetadata({ params }) {
 const page = async ({ params }) => {
   const { location_slug } = params;
 
-  const [pricingData, locationData, promotions] = await Promise.all([
+  const [pricingData, locationData, promotions, menuData] = await Promise.all([
     fetchPricingTableData(location_slug),
     fetchPageData(location_slug, 'home'),
     fetchsheetdata("promotions", location_slug),
-
+    fetchMenuData(location_slug),
   ]);
+  const blogsData = getDataByParentId(menuData, "blogs");
+  const blogChildren = blogsData?.[0]?.children || [];
 
   // Safely prepare header and footer HTML - ensure they're always strings
   let headerHTML = '';
@@ -53,9 +57,9 @@ const page = async ({ params }) => {
       Limited-Time Offers
     </div>
 
-    <h2 className="mb-6 font-black text-[clamp(2.5rem,8vw,4rem)] text-white uppercase leading-[0.95]">
+    <h1 className="mb-6 font-black text-[clamp(2.5rem,8vw,4rem)] text-white uppercase leading-[0.95]">
       Exclusive <span className="text-[#ff1152]">Promotions</span>
-    </h2>
+    </h1>
 
     <p className="font-semibold text-white/80 text-lg leading-relaxed">
       Don’t miss out on our special deals designed to bring more fun, more value,
@@ -126,7 +130,7 @@ const page = async ({ params }) => {
               <div className="aero_bp_title_content">
                 <div
                   className="aero_bp_title_description"
-                  dangerouslySetInnerHTML={{ __html: headerHTML }}
+                  dangerouslySetInnerHTML={{ __html: sanitizeCmsHtml(headerHTML) }}
                 />
               </div>
             </div>
@@ -264,13 +268,21 @@ const page = async ({ params }) => {
                 {/* <div className="aero_bp_footer_icon">📋</div> */}
                 <div
                   className="aero_bp_footer_text"
-                  dangerouslySetInnerHTML={{ __html: footerHTML }}
+                  dangerouslySetInnerHTML={{ __html: sanitizeCmsHtml(footerHTML) }}
                 />
               </div>
             </div>
           )}
         </section>
       </section>
+
+      {blogChildren.length > 0 && (
+        <BlogSection
+          blogs={blogChildren}
+          location_slug={location_slug}
+          currentCategory="pricing-promos"
+        />
+      )}
     </main>
   );
 };

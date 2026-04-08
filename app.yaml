@@ -1,14 +1,19 @@
 runtime: nodejs20
 env: standard
 
-instance_class: F1  
+instance_class: F4
 
 automatic_scaling:
-  min_instances: 0  
-  max_instances: 2   
+  min_instances: 0
+  max_instances: 3
   target_cpu_utilization: 0.65
   target_throughput_utilization: 0.75
 
+env_variables:
+  NODE_ENV: "production"
+  NEXT_PUBLIC_BASE_URL: "https://www.aerosportsparks.ca"
+  NEXT_PUBLIC_API_URL: "https://apis-351216.nn.r.appspot.com/api"
+
 handlers:
   - url: /.*
-    script: auto 
+    script: auto

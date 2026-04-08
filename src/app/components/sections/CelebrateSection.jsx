@@ -6,21 +6,21 @@ const CelebrateSection = ({ locationSlug }) => {
   {
     title: "Team Building",
     image:
-      "https://storage.googleapis.com/aerosports/team-building-aerosports-trampoline-park.png",
+      `https://storage.googleapis.com/aerosports/webp/${locationSlug}/team-building-aerosports-trampoline-park.webp`,
     text: "Promote collaboration and problem-solving with our engaging team-based attractions.",
     href: "groups-events/corporate-parties-events-groups",
   },
   {
     title: "Birthday Parties",
     image:
-      "https://storage.googleapis.com/aerosports/celeberate-your-birthday-parties-at-aerosports.png",
+      `https://storage.googleapis.com/aerosports/webp/${locationSlug}/celeberate-your-birthday-parties-at-aerosports.webp`,
     text: "All-inclusive packages with private room, host, pizza, and open-jump access.",
     href: "kids-birthday-parties",
   },
   {
     title: "Field Trips",
     image:
-      "https://storage.googleapis.com/aerosports/schools-field-trips-at-aerosports.png",
+      `https://storage.googleapis.com/aerosports/webp/${locationSlug}/schools-field-trips-at-aerosports.webp`,
     text: "Special group rates for schools and educational organizations.",
     href: "groups-events/school-groups",
   },

@@ -1,0 +1,206 @@
+/* ===========================================
+   Blog Content Typography
+   Styles for HTML content from Google Sheets
+   rendered via dangerouslySetInnerHTML
+   =========================================== */
+
+.aero-blog-content h1,
+.aero-blog-content h2,
+.aero-blog-content h3,
+.aero-blog-content h4,
+.aero-blog-content h5,
+.aero-blog-content h6 {
+  color: #ffffff;
+  font-weight: 700;
+  line-height: 1.3;
+  margin-top: 1.8em;
+  margin-bottom: 0.6em;
+}
+
+.aero-blog-content h1 {
+  font-size: 2rem;
+}
+
+.aero-blog-content h2 {
+  font-size: 1.6rem;
+  padding-bottom: 0.3em;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.aero-blog-content h3 {
+  font-size: 1.3rem;
+}
+
+.aero-blog-content h4 {
+  font-size: 1.1rem;
+}
+
+.aero-blog-content h5,
+.aero-blog-content h6 {
+  font-size: 1rem;
+}
+
+/* Paragraphs */
+.aero-blog-content p {
+  font-size: 1.05rem;
+  line-height: 1.8;
+  color: rgba(255, 255, 255, 0.85);
+  margin-bottom: 1.4em;
+}
+
+/* Links */
+.aero-blog-content a {
+  color: #f7941d;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  transition: color 0.2s ease;
+}
+
+.aero-blog-content a:hover {
+  color: #ffb84d;
+}
+
+/* Lists */
+.aero-blog-content ul,
+.aero-blog-content ol {
+  margin: 1.2em 0;
+  padding-left: 1.8em;
+  color: rgba(255, 255, 255, 0.85);
+}
+
+.aero-blog-content ul {
+  list-style-type: disc;
+}
+
+.aero-blog-content ol {
+  list-style-type: decimal;
+}
+
+.aero-blog-content li {
+  font-size: 1.05rem;
+  line-height: 1.7;
+  margin-bottom: 0.5em;
+  padding-left: 0.3em;
+}
+
+.aero-blog-content li::marker {
+  color: #f7941d;
+}
+
+.aero-blog-content ul ul,
+.aero-blog-content ol ol,
+.aero-blog-content ul ol,
+.aero-blog-content ol ul {
+  margin-top: 0.4em;
+  margin-bottom: 0.4em;
+}
+
+/* Images */
+.aero-blog-content img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 12px;
+  margin: 1.5em 0;
+}
+
+/* Blockquotes */
+.aero-blog-content blockquote {
+  border-left: 4px solid #f7941d;
+  margin: 1.5em 0;
+  padding: 1em 1.5em;
+  background: rgba(255, 255, 255, 0.04);
+  border-radius: 0 8px 8px 0;
+  font-style: italic;
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.aero-blog-content blockquote p {
+  margin-bottom: 0;
+}
+
+/* Tables */
+.aero-blog-content table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 1.5em 0;
+  font-size: 0.95rem;
+}
+
+.aero-blog-content th,
+.aero-blog-content td {
+  padding: 0.75em 1em;
+  text-align: left;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  color: rgba(255, 255, 255, 0.85);
+}
+
+.aero-blog-content th {
+  background: rgba(247, 148, 29, 0.15);
+  font-weight: 700;
+  color: #ffffff;
+}
+
+.aero-blog-content tr:nth-child(even) {
+  background: rgba(255, 255, 255, 0.03);
+}
+
+/* Bold / Italic / Strong */
+.aero-blog-content strong,
+.aero-blog-content b {
+  font-weight: 700;
+  color: #ffffff;
+}
+
+.aero-blog-content em,
+.aero-blog-content i {
+  font-style: italic;
+}
+
+/* Horizontal rule */
+.aero-blog-content hr {
+  border: none;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  margin: 2em 0;
+}
+
+/* Code */
+.aero-blog-content code {
+  background: rgba(255, 255, 255, 0.08);
+  padding: 0.2em 0.4em;
+  border-radius: 4px;
+  font-size: 0.9em;
+  color: #f7941d;
+}
+
+.aero-blog-content pre {
+  background: rgba(255, 255, 255, 0.06);
+  padding: 1.2em;
+  border-radius: 8px;
+  overflow-x: auto;
+  margin: 1.5em 0;
+}
+
+.aero-blog-content pre code {
+  background: none;
+  padding: 0;
+}
+
+/* Spacing: remove top margin from first child, bottom from last */
+.aero-blog-content > *:first-child {
+  margin-top: 0;
+}
+
+.aero-blog-content > *:last-child {
+  margin-bottom: 0;
+}
+
+/* Ensure spans with inline styles from sheets are readable */
+.aero-blog-content span {
+  line-height: 1.7;
+}
+
+/* Google Sheets sometimes outputs divs instead of paragraphs */
+.aero-blog-content div {
+  margin-bottom: 0.8em;
+  line-height: 1.7;
+}

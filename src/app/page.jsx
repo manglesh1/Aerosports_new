@@ -37,7 +37,6 @@ export default async function Home() {
                       width={400}
                       height={280}
                       loading="lazy"
-                      unoptimized
                     />
                     <div className="right-0 bottom-0 left-0 z-10 absolute bg-linear-to-t from-black/90 to-transparent h-1/2"></div>
                   </div>

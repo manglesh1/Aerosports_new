@@ -3,7 +3,7 @@ import React from "react";
 import Image from 'next/image';
 import { getDataByParentId } from '@/utils/customFunctions';
 import Link from 'next/link';
-import { fetchMenuData, generateMetadataLib,fetchsheetdata,generateSchema } from "@/lib/sheets";
+import { fetchMenuData, generateMetadataLib, fetchsheetdata, generateSchema } from "@/lib/sheets";
 
 export async function generateMetadata({ params }) {
   const metadata = await generateMetadataLib({
@@ -14,48 +14,65 @@ export async function generateMetadata({ params }) {
   return metadata;
 }
 
+function stripHtml(html) {
+  return html?.replace(/<[^>]*>/g, ' ').replace(/\s+/g, ' ').trim() || '';
+}
 
-const page = async({params}) => {
+const page = async ({ params }) => {
   const location_slug = params?.location_slug;
-  const API_URL = process.env.NEXT_PUBLIC_API_URL;
-   const [data, locationData] = await Promise.all([
+  const [data, locationData] = await Promise.all([
     fetchMenuData(location_slug),
-       fetchsheetdata('locations',location_slug),
-    
+    fetchsheetdata('locations', location_slug),
   ]);
-  
 
- 
   const blogsData = getDataByParentId(data, "blogs");
-  const extractBlogData = blogsData[0]?.children
-  const jsonLDschema = await generateSchema(blogsData[0],locationData,'','blogs');
-  //console.log('blogsData');
-   //console.log(blogsData);
+  const extractBlogData = blogsData[0]?.children;
+  const jsonLDschema = await generateSchema(blogsData[0], locationData, '', 'blogs');
+
   return (
     <main className="aero-blog-main-section">
       <section className='aero-max-container'>
-      <h1 className="aero-blog-main-heading">{blogsData[0]?.title}</h1>
-      <section className="aero-blog-main-article-wrapper">
-        {extractBlogData?.map((item,i) => (
-          <article className="aero-blog-main-article-card" key={i}>
-            <div className="aero-blog-img-section">
-              <Link href={`blogs/${item?.path}`} prefetch>
-              <Image src={item.smallimage} alt="Article Image" width={400} height={300} unoptimized />
-              </Link>
-            </div>
-            <div className="aero-blog-content-section">
-              <span className='aero-blog-updated-time'>{item.pageid}</span>
-              <Link href={`blogs/${item?.path}`} prefetch><h2 className='aero-blog-second-heading'>{item.title}</h2></Link>
-              <Link href={`blogs/${item?.path}`} prefetch className='aero-blog-readmore-btn'>READ MORE</Link>
-            </div>
-          </article>
-        ))}
+        <h1 className="aero-blog-main-heading">{blogsData[0]?.title}</h1>
+
+        <div className="aero-blog-listing-grid">
+          {extractBlogData?.map((item, i) => (
+            <Link href={`/${location_slug}/blogs/${item?.path}`} className="aero-blog-listing-card" key={i} prefetch>
+              <div className="aero-blog-listing-card-image">
+                <Image
+                  src={item.smallimage}
+                  alt={item.title || "Blog article"}
+                  width={400}
+                  height={250}
+                  loading={i < 3 ? "eager" : "lazy"}
+                />
+              </div>
+              <div className="aero-blog-listing-card-body">
+                {item.category && (
+                  <span className="aero-blog-listing-card-category">
+                    {item.category.replace(/-/g, ' ')}
+                  </span>
+                )}
+                <h2 className="aero-blog-listing-card-title">{item.title}</h2>
+                <p className="aero-blog-listing-card-excerpt">
+                  {item.metadescription
+                    ? item.metadescription.length > 140
+                      ? item.metadescription.substring(0, 140) + '...'
+                      : item.metadescription
+                    : stripHtml(item.section1)?.substring(0, 140) + '...'}
+                </p>
+                <div className="aero-blog-listing-card-footer">
+                  <span className="aero-blog-listing-card-date">{item.pageid}</span>
+                  <span className="aero-blog-listing-card-readmore">Read More →</span>
+                </div>
+              </div>
+            </Link>
+          ))}
+        </div>
       </section>
 
-      </section>
       <script type="application/ld+json" suppressHydrationWarning
-  dangerouslySetInnerHTML={{ __html: jsonLDschema }}
-/>
+        dangerouslySetInnerHTML={{ __html: jsonLDschema }}
+      />
     </main>
   );
 };

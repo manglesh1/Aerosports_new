@@ -1,10 +1,8 @@
-"use client";
-
 import React from "react";
-import { motion } from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";
-const MotionImage = ({ pageData, waiverLink, locationData, hideOverlay = false }) => {
+const MotionImage = ({ pageData, waiverLink, locationData, hideOverlay = false, headingAs = 'h1' }) => {
+  const Heading = headingAs;
   //console.log(header_image);
   const item =
     Array.isArray(pageData) && pageData.length > 0 ? pageData[0] : pageData;
@@ -61,6 +59,8 @@ const MotionImage = ({ pageData, waiverLink, locationData, hideOverlay = false }
             autoPlay
             muted
             loop
+            playsInline
+            preload="metadata"
             style={{
               width: "100%",
               height: "100%",
@@ -76,16 +76,13 @@ const MotionImage = ({ pageData, waiverLink, locationData, hideOverlay = false }
           {/* Overlay Content - Only show if hideOverlay is false */}
           {!hideOverlay && (
             <div className="z-20 absolute inset-0 flex justify-center items-center bg-gradient-to-br from-black/50 to-black/70 px-6 py-16">
-              <motion.div
-                className="max-w-3xl text-center"
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 1 }}
+              <div
+                className="max-w-3xl text-center animate-[fadeInUp_1s_ease-out]"
               >
                 {/* Title */}
-                <h1 className="mb-4 font-black text-[clamp(2rem,6vw,3.5rem)] text-white uppercase leading-tight tracking-wide">
+                <Heading className="mb-4 font-black text-[clamp(2rem,6vw,3.5rem)] text-white uppercase leading-tight tracking-wide">
                   {item.title}
-                </h1>
+                </Heading>
 
                 {/* Small Text */}
                 {item.smalltext && (
@@ -129,17 +126,15 @@ const MotionImage = ({ pageData, waiverLink, locationData, hideOverlay = false }
                       target="_blank"
                       title="sign your waiver at aerosports trampoline park"
                     >
-                      <motion.button
+                      <button
                         className="bg-neon-green hover:bg-[#2ddb10] shadow-[0_0_20px_#39FF14] px-8 py-3 rounded-full font-bold text-black transition animate-pulse"
-                        animate={{ scale: [1, 1.05, 1] }}
-                        transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
                       >
                         Sign Waiver
-                      </motion.button>
+                      </button>
                     </Link>
                   </div>
                 )}
-              </motion.div>
+              </div>
             </div>
           )}
         </section>
@@ -160,8 +155,9 @@ const MotionImage = ({ pageData, waiverLink, locationData, hideOverlay = false }
             }
             alt={item.headerimagetitle || "Aerosports fun for everyone"}
             fill
+            sizes="100vw"
             style={{ objectFit: "cover" }}
-            quality={85}
+            quality={75}
             priority
           />
 
@@ -169,9 +165,9 @@ const MotionImage = ({ pageData, waiverLink, locationData, hideOverlay = false }
   <div className="max-w-3xl text-center animate-[fadeInUp_1s_ease-out]">
 
     {/* Title */}
-    <h1 className="mb-4 font-black text-[clamp(2rem,6vw,3.5rem)] text-white leading-tight tracking-wide">
+    <Heading className="mb-4 font-black text-[clamp(2rem,6vw,3.5rem)] text-white leading-tight tracking-wide">
       {item.title}
-    </h1>
+    </Heading>
 
     {/* Small Text */}
     <p className="mx-auto mb-8 max-w-xl text-gray-300 text-lg leading-relaxed">
@@ -211,62 +207,18 @@ const MotionImage = ({ pageData, waiverLink, locationData, hideOverlay = false }
           target="_blank"
           title="sign your waiver at aerosports trampoline park"
         >
-          <motion.button
+          <button
             className="bg-[#39FF14] hover:bg-[#2ddb10] shadow-[0_0_20px_#39FF14] px-8 py-3 rounded-full font-bold text-black transition animate-pulse"
-            animate={{ scale: [1, 1.05, 1] }}
-            transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
           >
             Sign Waiver
-          </motion.button>
+          </button>
         </Link>
       </div>
     )}
   </div>
 </div>
 
-          {/* <div className="location-overlay-box">
-            <h1 className="aero-home-h1heading">{item.title}</h1>
-            <p>{item.smalltext}</p>
 
-            <p>
-              <strong>Phone:</strong>{" "}
-              <a
-                href={toTelHref(locData.phone)}
-                aria-label={`Call AeroSports ${locData.location} at ${locData.phone}`}
-                itemProp="telephone"
-              >
-                {locData.phone}
-              </a>
-            </p>
-            <p>
-              <strong>Address:</strong>{" "}
-              <a href={locData.gmburl} target="_blank">
-                {" "}
-                {locData.address}
-              </a>
-            </p>
-            {waiverLink && (
-              <div className="aero-btn-booknow">
-                <Link
-                  href={waiverLink}
-                  target="_blank"
-                  title="sign your waiver at aerosports trampoline park"
-                >
-                  <motion.button
-                    className="sigma_btn-custom"
-                    animate={{ scale: [1, 1.05, 1] }}
-                    transition={{
-                      duration: 2,
-                      repeat: Infinity,
-                      ease: "easeInOut",
-                    }}
-                  >
-                    Sign Waiver
-                  </motion.button>
-                </Link>
-              </div>
-            )}
-          </div> */}
         </div>
       </div>
     </section>
