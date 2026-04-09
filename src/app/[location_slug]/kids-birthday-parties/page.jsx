@@ -67,8 +67,11 @@ const Page = async ({ params }) => {
     "",
     "kids-birthday-parties"
   );
+  console.log("locationData", locationData);
   const pageData = data;
   const locData = locationData[0];
+  const birthdayUrl = locationData[0]?.birthdayurlz || `/${location_slug}/kids-birthday-parties`;
+  console.log("birthdayUrl", birthdayUrl);
   const locationName =
     locData?.location?.charAt(0).toUpperCase() +
     locData?.location?.slice(1) || "Our Location";
@@ -369,11 +372,11 @@ const Page = async ({ params }) => {
                       {packageNames.map((name, i) => (
                         <div key={`cta-${name}`} className="v11_bp_pkg_cell v11_bp_pkg_cta">
                           <a
-                            href={locData?.birthdaypartyurl || `/${location_slug}/kids-birthday-parties/invitations`}
+                            href={birthdayUrl || `/${location_slug}/kids-birthday-parties`}
                             className="v11_bp_pkg_book_btn"
                             style={{ backgroundColor: packageColors[i % packageColors.length].bg }}
-                            target={locData?.birthdaypartyurl ? "_blank" : undefined}
-                            rel={locData?.birthdaypartyurl ? "noopener noreferrer" : undefined}
+                            target={birthdayUrl ? "_blank" : undefined}
+                            rel={birthdayUrl ? "noopener noreferrer" : undefined}
                           >
                             Book {name.split(" ")[0]}
                           </a>
@@ -741,10 +744,10 @@ const Page = async ({ params }) => {
                 )}
 
               <a
-                href={locData?.birthdaypartyurl || `/${location_slug}/kids-birthday-parties/invitations`}
+                href={locData?.birthdayurlz || `/${location_slug}/kids-birthday-parties`}
                 className="v11_bp_cta_btn v11_bp_cta_btn_book"
-                target={locData?.birthdaypartyurl ? "_blank" : undefined}
-                rel={locData?.birthdaypartyurl ? "noopener noreferrer" : undefined}
+                target={locData?.birthdayurlz ? "_blank" : undefined}
+                rel={locData?.birthdayurlz ? "noopener noreferrer" : undefined}
               >
                 Book Online Now &rarr;
               </a>
