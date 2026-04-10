@@ -1,31 +1,28 @@
-import { notFound } from "next/navigation";
-import { Roboto_Condensed } from "next/font/google";
-import "../styles/home.css";
+import "../styles/home-v2.css";
 import "../styles/promotions.css";
 import "../styles/kidsparty.css";
 import { getDataByParentId } from "@/utils/customFunctions";
-import PromotionModal from "@/components/model/PromotionModal";
 import LocationPopupModal from "@/components/model/LocationPopupModal";
-import ExploreAttractionsSection from "@/components/sections/ExploreAttractionsSection";
-import HeroSection from "@/components/sections/HeroSection";
-import SEOSection from "@/components/sections/SEOSection";
-import PlanVisitSection from "@/components/sections/PlanVisitSection";
-import CelebrateSection from "@/components/sections/CelebrateSection";
-import BlogSection from "@/components/sections/BlogSection";
+
+import HeroV2 from "@/components/home-v2/HeroV2";
+import HighlightsV2 from "@/components/home-v2/HighlightsV2";
+import AttractionsV2 from "@/components/home-v2/AttractionsV2";
+import PlanV2 from "@/components/home-v2/PlanV2";
+import PartyV2 from "@/components/home-v2/PartyV2";
+import SocialProofV2 from "@/components/home-v2/SocialProofV2";
+import WhyChooseV2 from "@/components/home-v2/WhyChooseV2";
+import PromoV2 from "@/components/home-v2/PromoV2";
+import LocationV2 from "@/components/home-v2/LocationV2";
+import FinalCtaV2 from "@/components/home-v2/FinalCtaV2";
+
 import {
   fetchsheetdata,
   fetchMenuData,
   getWaiverLink,
+  getReviewsData,
   generateMetadataLib,
   generateSchema,
 } from "@/lib/sheets";
-
-const robotoCondensed = Roboto_Condensed({
-  subsets: ["latin"],
-  weight: ["700", "900"],
-  display: "swap",
-  variable: "--font-roboto-condensed",
-});
 
 export async function generateMetadata({ params }) {
   const metadata = await generateMetadataLib({
@@ -38,19 +35,25 @@ export async function generateMetadata({ params }) {
 
 const Home = async ({ params }) => {
   const location_slug = params?.location_slug;
-  const [data, dataconfig, promotions, locationData, waiverLink, popupData] =
-    await Promise.all([
-      fetchMenuData(location_slug),
-      fetchsheetdata("config", location_slug),
-      fetchsheetdata("promotions", location_slug),
-      fetchsheetdata("locations", location_slug),
-      getWaiverLink(location_slug),
-      fetchsheetdata("popups", location_slug),
-    ]);
 
-  const promotionPopup = Array.isArray(dataconfig)
-    ? dataconfig.filter((item) => item.key === "promotion-popup")
-    : [];
+  const [
+    data,
+    dataconfig,
+    promotions,
+    locationData,
+    waiverLink,
+    popupData,
+  ] = await Promise.all([
+    fetchMenuData(location_slug),
+    fetchsheetdata("config", location_slug),
+    fetchsheetdata("promotions", location_slug),
+    fetchsheetdata("locations", location_slug),
+    getWaiverLink(location_slug),
+    fetchsheetdata("popups", location_slug),
+  ]);
+
+  const locationid = locationData?.[0]?.locationid || null;
+  const reviewdata = locationid ? await getReviewsData(locationid) : [];
 
   const estoreConfig = Array.isArray(dataconfig)
     ? dataconfig.find((item) => item.key === "estorebase")
@@ -59,12 +62,12 @@ const Home = async ({ params }) => {
   const header_image = Array.isArray(data)
     ? data.filter((item) => item.path === "home")
     : [];
-  const seosection = header_image?.[0]?.seosection || "";
+
   const attractionsData = Array.isArray(data)
     ? getDataByParentId(data, "attractions") || []
     : [];
-  const blogsData = getDataByParentId(data, "blogs");
-  const blogChildren = blogsData?.[0]?.children || [];
+
+  const attractions = attractionsData?.[0]?.children || [];
 
   const jsonLDschema = await generateSchema(
     header_image?.[0],
@@ -73,77 +76,70 @@ const Home = async ({ params }) => {
     ""
   );
 
-  const stats = [
-    { number: "8+", label: "Attractions" },
-    { number: "All Ages", label: "Welcome" },
-    { number: "10,000+", label: "Sq Ft of Fun" },
-    { number: "4.7★", label: "Rated Experience" },
-  ];
+  // Build a human-readable location display name from the slug/locations sheet.
+  // Used for hero badge, highlights card and why-choose headline interpolation.
+  const rawLocation = locationData?.[0]?.location || location_slug || "";
+  const displayName = rawLocation
+    .split("-")
+    .map((w) => (w === "st" ? "St." : w.charAt(0).toUpperCase() + w.slice(1)))
+    .join(" ");
 
   return (
-    <main className={robotoCondensed.variable} style={{ overflow: "hidden", margin: 0, padding: 0 }}>
-      {/* Location Popup */}
+    <main className="hv2" style={{ margin: 0, padding: 0 }}>
       <LocationPopupModal popupData={popupData} />
 
-      {/* Hero Section */}
-      <HeroSection
+      <HeroV2
         headerImage={header_image}
-        waiverLink={waiverLink}
         locationData={locationData}
         estoreConfig={estoreConfig}
+        waiverLink={waiverLink}
+        locationSlug={location_slug}
+        locationDisplay={displayName}
+      />
+
+      <HighlightsV2
+        reviewdata={reviewdata}
+        attractionsCount={attractions.length}
+        locationDisplay={displayName}
+      />
+
+      {attractions.length > 0 && (
+        <AttractionsV2
+          attractions={attractions}
+          locationSlug={location_slug}
+        />
+      )}
+
+      <PlanV2
+        locationSlug={location_slug}
+        estoreConfig={estoreConfig}
+        waiverLink={waiverLink}
+      />
+
+      <PartyV2
+        locationSlug={location_slug}
+        locationData={locationData}
+      />
+
+      <SocialProofV2
+        reviewdata={reviewdata}
+        locationData={locationData}
+      />
+
+      <WhyChooseV2 locationDisplay={displayName} />
+
+      <PromoV2
+        promotions={promotions}
         locationSlug={location_slug}
       />
 
-      {/* Stats Bar */}
-      <section className="v11_bp_stats_section">
-        <div className="v11_bp_container">
-          <div className="v11_bp_stats_grid">
-            {stats.map((stat, index) => (
-              <div key={index} className="v11_bp_stat_item">
-                <span className="v11_bp_stat_number">{stat.number}</span>
-                <span className="v11_bp_stat_label">{stat.label}</span>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
+      <LocationV2 locationData={locationData} />
 
-      {/* SEO Section */}
-      {attractionsData?.[0]?.children?.length > 0 && seosection && (
-        <SEOSection
-          locationData={locationData}
-          locationSlug={location_slug}
-          estoreConfig={estoreConfig}
-          seosection={seosection}
-        />
-      )}
-
-      {/* Celebrate Your Event Section */}
-      {attractionsData?.[0]?.children?.length > 0 && (
-        <CelebrateSection locationSlug={location_slug} />
-      )}
-
-      {/* Explore Attractions */}
-      {attractionsData?.[0]?.children?.length > 0 && (
-        <ExploreAttractionsSection
-          attractions={attractionsData[0]?.children}
-          location_slug={location_slug}
-        />
-      )}
-
-      {/* Plan Your Visit Section */}
-      {attractionsData?.[0]?.children?.length > 0 && seosection && (
-        <PlanVisitSection seosection={seosection} locationSlug={location_slug} estoreConfig={estoreConfig} />
-      )}
-
-      {/* Blog Section */}
-      {blogChildren.length > 0 && (
-        <BlogSection
-          blogs={blogChildren}
-          location_slug={location_slug}
-          currentCategory="home"
-        />
-      )}
+      <FinalCtaV2
+        locationSlug={location_slug}
+        estoreConfig={estoreConfig}
+        waiverLink={waiverLink}
+      />
 
       <script
         type="application/ld+json"

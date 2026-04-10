@@ -1,4 +1,4 @@
-import { Poppins } from "next/font/google";
+import { Poppins, Bebas_Neue } from "next/font/google";
 import "./globals.css";
 import dynamic from "next/dynamic";
 const GoogleAnalytics = dynamic(()=> import('./components/GoogleAnalytics'));
@@ -11,6 +11,16 @@ const inter = Poppins({
   subsets: ["latin"],
   weight: ["400", "600", "700", "800"],
   display: "swap",
+});
+
+// Bebas Neue is used by the home-v2 hero headline (.hv2-hero-h1) and other
+// display headings. Exposed as the CSS variable --font-bebas so home-v2.css
+// can reference it without needing to import next/font directly.
+const bebasNeue = Bebas_Neue({
+  subsets: ["latin"],
+  weight: ["400"],
+  display: "swap",
+  variable: "--font-bebas",
 });
 
 export const viewport = {
@@ -44,7 +54,7 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en">
+    <html lang="en" className={bebasNeue.variable}>
       <head>
         <link rel="preconnect" href="https://storage.googleapis.com" />
         <link rel="dns-prefetch" href="https://storage.googleapis.com" />

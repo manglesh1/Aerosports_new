@@ -2,88 +2,82 @@
 const axios = require('axios');
 const XLSX = require('xlsx');
 
-const SHEET_URL =process.env.SHEET_URL;
+const SHEET_URL = process.env.SHEET_URL;
 const sheetCache = new Map();
-const CACHE_TTL = 1000 * 60 * 60 * 24; // 15 min
+const CACHE_TTL = 1000 * 60 * 5; // 5 minutes — short enough that sheet edits show up quickly
 const waiverLinkCache = new Map();
 const reviewesData = new Map();
-async function fetchsheetdata(sheetName, location) {
-  if(sheetName === 'refresh'){
-    sheetCache.clear();
-  }
-  const cacheKey = `${sheetName}:${location || 'all'}`;
-  const now = Date.now();
 
-  const cached = sheetCache.get(cacheKey);
-  if(location=='.well-known') {
+async function fetchsheetdata(sheetName, location) {
+  if (sheetName === 'refresh') {
+    sheetCache.clear();
     return [];
   }
+  if (location === '.well-known') return [];
+
+  const cacheKey = `${sheetName}:${location || 'all'}`;
+  const now = Date.now();
+  const cached = sheetCache.get(cacheKey);
   if (cached && now - cached.timestamp < CACHE_TTL) {
     return cached.data;
   }
 
   try {
-
-    const response = await axios.get(SHEET_URL, { responseType: 'arraybuffer' });
+    // Cache-bust the Google Sheets export endpoint so we don't get a stale
+    // CDN copy after editing the sheet.
+    const bustedUrl = SHEET_URL
+      ? `${SHEET_URL}${SHEET_URL.includes('?') ? '&' : '?'}_=${Date.now()}`
+      : SHEET_URL;
+    const response = await axios.get(bustedUrl, {
+      responseType: 'arraybuffer',
+      headers: { 'Cache-Control': 'no-cache', Pragma: 'no-cache' },
+    });
     const workbook = XLSX.read(response.data, { type: 'buffer' });
 
     const worksheetLocationsData = workbook.Sheets['locations'];
     const jsonLocationsData = XLSX.utils.sheet_to_json(worksheetLocationsData, { defval: '' });
-    sheetCache.set('locations:all', {
-      data: jsonLocationsData,
-      timestamp: now,
-    });
-    const locationSet = new Set();
-    jsonLocationsData.forEach(row => {
-      if (row.location) {
-        locationSet.add(row.location);
-      }
-    });
-    const distinctLocations = Array.from(locationSet);
-    //console.log("Distinct Locations:", distinctLocations);
-    // Cache per sheet and location
+    sheetCache.set('locations:all', { data: jsonLocationsData, timestamp: now });
+
+    const distinctLocations = Array.from(
+      new Set(jsonLocationsData.map((r) => r.location).filter(Boolean))
+    );
+
     workbook.SheetNames.forEach((name) => {
       const worksheet = workbook.Sheets[name];
       let sheetData = XLSX.utils.sheet_to_json(worksheet, { defval: '' });
 
       if (name === 'config') {
-        sheetData = sheetData.map(m => ({
+        sheetData = sheetData.map((m) => ({
           ...m,
-          value: m.value.replace(/\r?\n|\r/g, "<br/>"),
+          value: typeof m.value === 'string'
+            ? m.value.replace(/\r?\n|\r/g, '<br/>')
+            : m.value,
         }));
       }
 
-
-      
       distinctLocations.forEach((loc) => {
-        const filteredData = sheetData.filter(
-          m => m.location?.includes(loc) || m.location === ""
+        const filtered = sheetData.filter(
+          (m) => (m.location || '').includes(loc) || m.location === ''
         );
-        const cacheKeyLocal = `${name}:${loc}`;
-      //  console.log('setting cache for: ',cacheKeyLocal)
-        sheetCache.set(cacheKeyLocal, {
-          data: filteredData,
-          timestamp: now,
-        });
+        sheetCache.set(`${name}:${loc}`, { data: filtered, timestamp: now });
       });
+      sheetCache.set(`${name}:all`, { data: sheetData, timestamp: now });
     });
-      const result = sheetCache.get(cacheKey);
-      return result ? result.data : [];
-    
+
+    const result = sheetCache.get(cacheKey);
+    return result ? result.data : [];
   } catch (error) {
     console.error(`❌ Error in fetchsheetdata("${sheetName}"):`, error.message);
-    throw error;
+    sheetCache.set('__lastError', { data: error.message, timestamp: Date.now() });
+    return cached?.data || [];
   }
 }
 
 async function fetchsheetdataNoCache(sheetName) {
-   
-    const response = await axios.get(SHEET_URL, { responseType: 'arraybuffer' });
-    const workbook = XLSX.read(response.data, { type: 'buffer' });
-
-    const worksheetLocationsData = workbook.Sheets[sheetName];
-    const jsonLocationsData = XLSX.utils.sheet_to_json(worksheetLocationsData, { defval: '' });
-    return jsonLocationsData;
+  const response = await axios.get(SHEET_URL, { responseType: 'arraybuffer' });
+  const workbook = XLSX.read(response.data, { type: 'buffer' });
+  const worksheet = workbook.Sheets[sheetName];
+  return XLSX.utils.sheet_to_json(worksheet, { defval: '' });
 }
 
 /**
@@ -195,29 +189,33 @@ async function generateMetadataLib({ location, category, page }) {
   };
 }
 
+// Reviews cache: refresh from API once per day, serve from memory for the rest.
+const REVIEWS_TTL = 1000 * 60 * 60 * 24; // 24 hours
+
 async function getReviewsData(locationid){
   if(!locationid || locationid=='undefined')
     return [];
-  
+
   const cacheKey = `reviews:${locationid}`;
   const cached = reviewesData.get(cacheKey);
-  
-  if(cached)
-  {
-       return cached;
+  const now = Date.now();
+
+  if (cached && now - cached.timestamp < REVIEWS_TTL) {
+    return cached.data;
   }
+
   try {
-  const url = `${process.env.NEXT_PUBLIC_API_URL}/getreviews?locationid=${locationid}`;
-   const response = await fetch(url, {next: {revalidate: 3600*24*5}}); 
-   const data = await response.json();
-   //console.log('review data',data);
-  reviewesData.set(cacheKey,data);
-   return data;
+    const url = `${process.env.NEXT_PUBLIC_API_URL}/getreviews?locationid=${locationid}`;
+    // Next.js fetch revalidation aligned to 24h so the framework cache also refreshes daily.
+    const response = await fetch(url, { next: { revalidate: 60 * 60 * 24 } });
+    const data = await response.json();
+    reviewesData.set(cacheKey, { data, timestamp: now });
+    return data;
   } catch (error) {
     console.error(`❌ Error in getReviewsData("${locationid}"):`, error.message);
-    return [];
+    // On failure, fall back to stale cache if available so the page still renders real reviews.
+    return cached?.data || [];
   }
- 
 }
    
 async function generateSchema(pagedata, locationData, category, page ) {
@@ -247,6 +245,35 @@ async function generateSchema(pagedata, locationData, category, page ) {
 
   return     filled;
 
+}
+
+/**
+ * Fetch and parse the page-json-data column for the home page from the Data sheet.
+ * This returns the parsed JSON object containing all home-page text content
+ * (hero, highlights, attractions section, party, why-choose, ticker, final CTA, etc.)
+ * that does NOT live in dedicated columns.
+ */
+async function fetchHomePageJsonData(location) {
+  try {
+    const jsonData = await fetchsheetdata("Data", location);
+    if (!Array.isArray(jsonData)) return null;
+
+    const homeRow = jsonData.find(
+      (row) => row.path === "home" && row.location === location
+    );
+    if (!homeRow || !homeRow["page-json-data"]) return null;
+
+    const raw = String(homeRow["page-json-data"]).trim();
+    if (!raw) return null;
+
+    return JSON.parse(raw);
+  } catch (error) {
+    console.error(
+      `Error parsing home page-json-data for ${location}:`,
+      error.message
+    );
+    return null;
+  }
 }
 
 /**
@@ -379,7 +406,12 @@ async function fetchPricingTableData(location) {
 
 
 
+function getLastSheetError() {
+  return sheetCache.get('__lastError')?.data || null;
+}
+
 module.exports = {
+  getLastSheetError,
   fetchsheetdata,
   fetchMenuData,
   fetchPageData,
@@ -390,6 +422,7 @@ module.exports = {
   fetchsheetdataNoCache,
   generateSchema,
   fetchBirthdayPartyJson,
+  fetchHomePageJsonData,
   fetchGalleryData,
   fetchPricingTableData
 };
