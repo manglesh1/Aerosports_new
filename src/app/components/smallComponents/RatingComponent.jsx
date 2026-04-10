@@ -1,12 +1,10 @@
 import React, { memo } from "react";
-import star from "@public/assets/images/home/star.png";
-import Image from "next/image";
 
 const renderStars = (rating) => {
   const stars = [];
   const fullStars = Math.floor(rating);
   for (let i = 0; i < fullStars; i++) {
-    stars.push( <Image src={star} alt="star icon" width={18} height={18} key={`star-${i}`} />);
+    stars.push( <img src="/assets/images/home/star.png" alt="star icon" width={18} height={18} key={`star-${i}`} />);
   }
   return stars;
 };

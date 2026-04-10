@@ -1,7 +1,6 @@
 "use client";
 import "../styles/header-v11.css";
 import Link from "next/link";
-import Image from "next/image";
 import { useState, useEffect, useRef } from "react";
 
 const Header = ({ location_slug, menudata, configdata, pricingData, locationData, promotions }) => {
@@ -12,10 +11,10 @@ const Header = ({ location_slug, menudata, configdata, pricingData, locationData
   const mobileMenuRef = useRef(null);
 
   // Nav order matching V11 prototype
-  const navOrder = ['Attractions', 'Birthday Parties', 'Groups & Events', 'About Us', 'Pricing & Promos'];
+  const navOrder = ['Attractions', 'Programs', 'Birthday Parties', 'Groups & Events', 'About Us', 'Pricing & Promos'];
 
   // Items that have dropdown submenus
-  const dropdownItems = ['Attractions', 'Groups & Events'];
+  const dropdownItems = ['Attractions', 'Programs', 'Groups & Events'];
 
   // Build nav list from menudata — only show items in the V11 nav order
   const allNavItems = (Array.isArray(menudata) ? menudata : [])
@@ -26,13 +25,16 @@ const Header = ({ location_slug, menudata, configdata, pricingData, locationData
       children: item.children || [],
     }));
 
-  // Filter and sort to match V11 prototype nav order
+  // Filter and sort to match V11 prototype nav order.
+  // Tolerate slight mismatches between sheet desc and nav name
+  // (e.g. "Pricing + Promos" in sheet vs "Pricing & Promos" here).
+  const normalize = (s) => s.toLowerCase().replace(/[+&]/g, "").replace(/\s+/g, " ").trim();
   const navList = navOrder
-    .map((name) => allNavItems.find((item) => item.navName === name))
+    .map((name) => allNavItems.find((item) => normalize(item.navName) === normalize(name)))
     .filter(Boolean);
 
   // If "Pricing & Promos" isn't in menu data, add it manually
-  if (!navList.find((item) => item.navName === 'Pricing & Promos')) {
+  if (!navList.find((item) => normalize(item.navName) === normalize('Pricing & Promos'))) {
     navList.push({ navName: 'Pricing & Promos', navUrl: 'pricing-promos', children: [] });
   }
 
@@ -158,13 +160,13 @@ const Header = ({ location_slug, menudata, configdata, pricingData, locationData
       <div className="v11_header_main_nav">
         {/* Logo in orange panel */}
         <Link href={`/${location_slug}`} className="v11_header_logo_panel" prefetch>
-          <Image
+          <img
             src={`https://storage.googleapis.com/aerosports/webp/${location_slug}/logo_white.webp`}
             height={56}
             width={56}
             alt="AeroSports Logo"
             title="AeroSports Trampoline Park"
-            priority
+            fetchPriority="high"
             className="v11_header_logo_img"
           />
         </Link>

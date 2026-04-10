@@ -1,4 +1,3 @@
-import Image from 'next/image';
 import Link from 'next/link';
 import React from 'react';
 import '../../styles/blog-section.css';
@@ -87,7 +86,7 @@ const BlogSection = ({ blogs, location_slug, currentCategory }) => {
               className="aero-blog-section-card"
             >
               <div className="aero-blog-section-card-image">
-                <Image
+                <img
                   src={
                     blog.smallimage ||
                     `https://storage.googleapis.com/aerosports/webp/${location_slug}/gallery-thummbnail-wall-climbwall.webp`

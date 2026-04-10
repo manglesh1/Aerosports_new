@@ -2,7 +2,8 @@
    V11 HEADER STYLES
    3-part: Utility Bar | Main Nav | Promo Bar
    ============================================ */
-@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700;900&display=swap');
+/* Roboto is loaded via next/font in layout.js — no @import needed.
+   The CSS variable --font-roboto is set on <html> by the root layout. */
 
 /* === HEADER WRAPPER === */
 .v11_header {
@@ -12,7 +13,7 @@
   width: 100%;
   z-index: 1000;
   background: #000;
-  font-family: 'Roboto', sans-serif;
+  font-family: var(--font-roboto), 'Roboto', sans-serif;
 }
 
 /* === TOP UTILITY BAR === */

@@ -2,7 +2,6 @@
 
 import React, { useRef, useState } from "react";
 import { useParams } from "next/navigation";
-import Image from "next/image";
 import dynamic from "next/dynamic";
 
 // Lazy-load html2canvas to avoid SSR issues

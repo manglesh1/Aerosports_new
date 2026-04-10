@@ -1,0 +1,103 @@
+================================================================================
+ HOMEPAGE AUDIT — ITEMS NOT YET ADDRESSED (Limitations)
+ Based on 22-page website audit for AeroSports Parks
+================================================================================
+
+1. ATTRACTION CARD DESCRIPTIONS & AUDIENCE LABELS (Audit p6-7)
+   Status:  CODE READY — waiting for sheet data
+   What:    Each attraction card should show a one-line description and an
+            audience chip (e.g. "Ages 3-8", "Teens & Groups", "All Ages").
+   How:     Add 3 columns to the Data sheet on each attraction row:
+              - desc      (string)  "High-energy team dodgeball on trampolines"
+              - audience  (string)  "Teens & Groups"
+              - priority  (number)  1 = shown first, blank = default order
+   Code:    AttractionsV2.jsx reads these directly from the attraction row.
+            CSS classes .hv2-attr-audience and .hv2-attr-desc are ready.
+
+2. PARTY IMAGE CAROUSEL (Audit p12)
+   Status:  CODE READY — waiting for sheet data
+   What:    Show multiple party images instead of a single static image.
+   How:     In the Data sheet, home row's page-json-data column, add:
+            { "partyImages": ["url1.webp", "url2.webp", "url3.webp"] }
+   Code:    PartyV2.jsx reads partyImages array. Shows dot indicators for 2+.
+            Falls back to default single image when key is missing.
+   Note:    Client-side JS for auto-cycling slides is NOT implemented yet.
+            Currently only the first image shows; dots are rendered but
+            need a small script or React state to rotate images.
+
+3. USER JOURNEY SEGMENTATION (Audit p3)
+   Status:  NOT STARTED — needs new UI component
+   What:    Add clear entry points: "Plan a Birthday Party", "Visit with
+            Family", "Group or Corporate Booking" as a segmentation bar.
+   Why:     This is a new section/component, not a copy fix. Needs design
+            mockup and UX decisions on placement (hero? below highlights?).
+
+4. OFFER CARDS WITH PRICING/TIMING/ELIGIBILITY (Audit p17)
+   Status:  NOT STARTED — needs promotions sheet schema change
+   What:    Each promo card should show specific pricing, timing, who it's
+            for, and an expiry date with urgency.
+   How:     Add columns to the Promotions sheet:
+              - price     (string)  "$25/person"
+              - timing    (string)  "Weekdays 10am-2pm"
+              - eligible  (string)  "Ages 2-5"
+              - expiry    (string)  "2026-04-30"
+   Code:    PromoV2.jsx would need to read these and render structured cards
+            with countdown/urgency based on expiry.
+
+5. VIDEO / IMAGE TESTIMONIALS IN REVIEWS (Audit p13-14)
+   Status:  NOT STARTED — needs new data source
+   What:    Add video testimonials or customer photos alongside text reviews.
+   Why:     Google Places API does not return customer photos for reviews.
+            Would need a separate data source (e.g. a sheet column with
+            video URLs, or a curated testimonials sheet).
+
+6. FOOTER LINK PRIORITIZATION & SEO ANCHOR TEXT (Audit p21-22)
+   Status:  NOT STARTED — separate component
+   What:    Prioritize high-intent links (Book a Party, Pricing, Attractions)
+            and use keyword-rich anchor text in the footer.
+   Why:     Footer is Footer.jsx — a shared component across all pages,
+            not part of the home-v2 redesign. Changing it affects every page.
+
+7. INTERNAL LINKING FOR SEO CRAWLABILITY (Audit p8, p22)
+   Status:  NOT STARTED — site-wide structural work
+   What:    Each attraction should link to a dedicated page; footer should
+            internally link all key pages with keyword-rich text.
+   Why:     Attractions already link to /{location}/attractions/{path} but
+            some attraction pages may not exist for all locations. This is a
+            content gap, not a code gap.
+
+8. H1 TAG OPTIMIZATION (Audit p3)
+   Status:  PARTIALLY DONE
+   What:    Audit suggests H1 = "Trampoline Park in {Location}".
+   Current: H1 = "{Location}'s Ultimate Fun For Kids & Families"
+            Contains location name and relevant keywords but differs from
+            the exact audit recommendation. Could be swapped if preferred.
+
+================================================================================
+ SUMMARY
+================================================================================
+
+ DONE (code + copy changes applied):
+   - Hero: SEO headline, badge, subtext, CTAs, trust items
+   - Highlights: stat labels, credibility context, trust card
+   - Attractions: SEO heading, descriptive subtext, stronger CTA
+   - Plan Your Visit: reordered CTAs, action-driven labels
+   - Party: SEO headline, social proof, stronger CTA
+   - Reviews: truncated text, review count, trust context
+   - Why Choose: value-driven headline, differentiation cards
+   - Promos: action CTA, urgency in ticker
+   - Location: urgency signals, trust rating
+   - Final CTA: conversion headline, party priority, urgency copy
+
+ CODE READY (waiting for sheet data):
+   - Attraction desc/audience/priority columns (#1)
+   - Party image carousel via page-json-data (#2)
+
+ NOT STARTED (needs design/backend work):
+   - User journey segmentation (#3)
+   - Structured promo cards with expiry (#4)
+   - Video/image testimonials (#5)
+   - Footer optimization (#6)
+   - Site-wide internal linking (#7)
+
+================================================================================

@@ -1,6 +1,4 @@
-import Image from "next/image";
 import Link from "next/link";
-import logo_white from "@public/assets/images/city/logo_white.png";
 import { Button } from "./components/ui/button";
 import { fetchsheetdata } from "./lib/sheets";
 
@@ -12,7 +10,7 @@ export default async function Home() {
     <main className="before:z-0 before:absolute relative before:inset-0 before:bg-[radial-gradient(circle_at_20%_30%,rgba(240,12,116,0.15)_0%,transparent_50%),radial-gradient(circle_at_80%_70%,rgba(202,255,26,0.1)_0%,transparent_50%)] bg-linear-to-br from-black via-[#1a1a1a] to-black min-h-screen overflow-hidden before:pointer-events-none">
       <section className="z-10 relative px-4 md:px-8 py-4 md:py-8 pb-12">
         <div className="mb-5 lg:mb-12">
-          <Image src={logo_white} alt="logo" className="w-auto h-[100px]" />
+          <img src="/assets/images/city/logo_white.png" alt="logo" className="w-auto h-[100px]" />
           <h1 className="bg-clip-text bg-linear-to-r from-[#ff1152] to-[#caff1a] font-black text-transparent text-4xl text-center uppercase tracking-wide">
             ONE PASS MORE FUN
           </h1>
@@ -30,7 +28,7 @@ export default async function Home() {
               >
                 <article className="relative flex flex-col bg-linear-to-br from-black/80 to-[#1a1a1a]/60 shadow-[0_10px_30px_rgba(240,12,116,0.3),0_0_0_2px_rgba(240,12,116,0.2)] hover:shadow-[0_20px_50px_rgba(240,12,116,0.5),0_0_60px_rgba(202,255,26,0.4)] rounded-[20px] w-full h-full overflow-hidden hover:scale-[1.03] transition-all hover:-translate-y-2.5 duration-[400ms] ease-[cubic-bezier(0.175,0.885,0.32,1.275)] [clip-path:polygon(0_0,calc(100%-20px)_0,100%_20px,100%_100%,20px_100%,0_calc(100%-20px))]">
                   <div className="relative w-full h-[220px] md:h-60 lg:h-[260px] 2xl:h-80 xl:h-[280px] overflow-hidden shrink-0">
-                    <Image
+                    <img
                       src={card.smallimage}
                       alt={card.desc}
                       className="w-full h-full object-cover group-hover:scale-[1.15] transition-transform duration-500"

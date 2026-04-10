@@ -1,5 +1,4 @@
 import React from "react";
-import Image from "next/image";
 import Link from "next/link";
 const MotionImage = ({ pageData, waiverLink, locationData, hideOverlay = false, headingAs = 'h1' }) => {
   const Heading = headingAs;
@@ -60,7 +59,7 @@ const MotionImage = ({ pageData, waiverLink, locationData, hideOverlay = false, 
             muted
             loop
             playsInline
-            preload="metadata"
+            preload="none"
             style={{
               width: "100%",
               height: "100%",
@@ -148,17 +147,14 @@ const MotionImage = ({ pageData, waiverLink, locationData, hideOverlay = false, 
           className="image-container"
           style={{ maxHeight: "800px", minHeight: "450px", width: "100%", position: "relative", margin: 0, padding: 0 }}
         >
-          <Image
+          <img
             src={
               item.headerimage ||
               "https://storage.googleapis.com/aerosports/aerosports-trampoline-park-redefine-fun.svg"
             }
             alt={item.headerimagetitle || "Aerosports fun for everyone"}
-            fill
-            sizes="100vw"
-            style={{ objectFit: "cover" }}
-            quality={75}
-            priority
+            fetchPriority="high"
+            style={{ position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "cover" }}
           />
 
           <div className="absolute inset-0 flex justify-center items-center bg-gradient-to-br from-black/50 to-black/70 px-6 py-16" style={{ zIndex: 30 }}>

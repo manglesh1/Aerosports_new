@@ -10,20 +10,20 @@ const FinalCtaV2 = ({ locationSlug, estoreConfig, waiverLink }) => {
     <section className="hv2-final-cta">
       <div className="hv2-final-cta-bg" />
       <div className="hv2-final-cta-inner">
-        <h2>Ready to Jump In?</h2>
-        <p>Book your session, plan a party, or just show up — we&apos;re ready when you are.</p>
+        <h2>Ready to Book Your Visit or Party?</h2>
+        <p>Limited slots available this weekend — takes less than 2 minutes to book.</p>
         <div className="hv2-final-cta-btns">
+          <Link href={`/${locationSlug}/kids-birthday-parties`} className="hv2-btn hv2-btn-white hv2-btn-lg">
+            Plan a Birthday Party →
+          </Link>
           {estoreConfig?.value && (
-            <a href={estoreConfig.value} target="_blank" rel="noopener noreferrer" className="hv2-btn hv2-btn-white hv2-btn-lg">
-              Book Jump Session →
+            <a href={estoreConfig.value} target="_blank" rel="noopener noreferrer" className="hv2-btn hv2-btn-dark hv2-btn-lg">
+              Book Jump Session
             </a>
           )}
-          <Link href={`/${locationSlug}/kids-birthday-parties`} className="hv2-btn hv2-btn-dark hv2-btn-lg">
-            Plan a Party
-          </Link>
           {waiverLink && (
             <a href={waiverLink} target="_blank" rel="noopener noreferrer" className="hv2-btn hv2-btn-dark hv2-btn-lg">
-              Sign Waiver
+              Sign Before You Arrive
             </a>
           )}
         </div>

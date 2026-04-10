@@ -1,5 +1,4 @@
 import Link from "next/link";
-import Image from "next/image";
 
 const SubCategoryCard = ({
   attractionsData,
@@ -33,13 +32,11 @@ const SubCategoryCard = ({
             >
               <div className="v11_bp_attraction_img">
                 {item?.smallimage ? (
-                  <Image
+                  <img
                     src={item.smallimage}
                     alt={item?.desc || item?.title || item?.path?.replace(/-/g, " ")}
-                    fill
-                    sizes="(max-width: 480px) 100vw, (max-width: 768px) 50vw, (max-width: 992px) 33vw, 250px"
-                    style={{ objectFit: "cover" }}
                     loading="lazy"
+                    style={{ position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "cover" }}
                   />
                 ) : (
                   <div className="v11_bp_attraction_placeholder" />

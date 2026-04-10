@@ -1,4 +1,4 @@
-import { Poppins, Bebas_Neue } from "next/font/google";
+import { Poppins, Bebas_Neue, Roboto } from "next/font/google";
 import "./globals.css";
 import dynamic from "next/dynamic";
 const GoogleAnalytics = dynamic(()=> import('./components/GoogleAnalytics'));
@@ -21,6 +21,15 @@ const bebasNeue = Bebas_Neue({
   weight: ["400"],
   display: "swap",
   variable: "--font-bebas",
+});
+
+// Roboto is used by the V11 header. Loaded here instead of a render-blocking
+// CSS @import so Next.js can inline-preload the font files.
+const roboto = Roboto({
+  subsets: ["latin"],
+  weight: ["400", "500", "700", "900"],
+  display: "swap",
+  variable: "--font-roboto",
 });
 
 export const viewport = {
@@ -54,7 +63,7 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en" className={bebasNeue.variable}>
+    <html lang="en" className={`${bebasNeue.variable} ${roboto.variable}`}>
       <head>
         <link rel="preconnect" href="https://storage.googleapis.com" />
         <link rel="dns-prefetch" href="https://storage.googleapis.com" />

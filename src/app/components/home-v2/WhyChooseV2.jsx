@@ -4,22 +4,22 @@ const CARDS = [
   {
     icon: "👨‍👩‍👧‍👦",
     title: "Family-Friendly",
-    text: "Dedicated toddler zones, Toddler Time on Saturdays, and programming that works for ages 2 to adult.",
+    text: "Dedicated toddler zones, comfortable parent areas, and programming for ages 2 to adult — everyone belongs here.",
   },
   {
     icon: "🛡️",
     title: "Safety First",
-    text: "Professional supervision, padded equipment, safety briefings, and required grip socks for every jumper.",
+    text: "Certified trained staff, padded equipment, safety briefings, and required grip socks — your kids are in good hands.",
   },
   {
-    icon: "💪",
-    title: "Fitness Focused",
-    text: "Trampoline exercise burns calories while feeling like pure fun — physical activity that kids beg for.",
+    icon: "🎉",
+    title: "Stress-Free Birthdays",
+    text: "Dedicated party hosts, private rooms, and all-inclusive packages — 50,000+ parties hosted and counting.",
   },
   {
-    icon: "🎮",
-    title: "Always Something New",
-    text: "Seasonal glow nights, themed events and new attractions keep every visit fresh.",
+    icon: "🎯",
+    title: "Everything Under One Roof",
+    text: "Trampolines, ninja courses, dodgeball, foam pits and more — endless variety keeps every visit fresh.",
   },
 ];
 
@@ -31,7 +31,7 @@ const WhyChooseV2 = ({ locationDisplay }) => {
         <div className="hv2-why-header">
           <div className="hv2-section-tag">Why AeroSports</div>
           <h2 className="hv2-why-h2">
-            {locationDisplay ? `${locationDisplay}'s Ultimate Play Destination` : "Your Ultimate Play Destination"}
+            {locationDisplay ? `Why Families Choose AeroSports in ${locationDisplay}` : "Why Families Choose AeroSports"}
           </h2>
         </div>
         <div className="hv2-why-grid">

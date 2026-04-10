@@ -4,10 +4,10 @@
 //   - attractions → real count of attraction tiles for this location
 //   - location    → the location display name from the locations sheet
 const CARDS = [
-  { icon: "🎯", source: "attractions", label: "Attractions", desc: "Something for everyone", fallback: "10+" },
-  { icon: "🎉", source: null,          label: "Parties Hosted", desc: "Unforgettable memories", num: "50K+" },
-  { icon: "⭐", source: "rating",      label: "Star Rated", desc: "On Google reviews", fallback: "4.8★" },
-  { icon: "📍", source: "location",    label: "Location", desc: "Easy to find", fallback: "AeroSports" },
+  { icon: "🎯", source: "attractions", label: "Attractions", desc: "For all age groups", fallback: "10+" },
+  { icon: "🎉", source: null,          label: "Birthday Parties Hosted", desc: "Stress-free celebrations", num: "50K+" },
+  { icon: "⭐", source: "rating",      label: "Rated on Google", desc: "By families like yours", fallback: "4.8★" },
+  { icon: "🛡️", source: "location",   label: "Trusted by Families", desc: "Your local fun destination", fallback: "AeroSports" },
 ];
 
 const HighlightsV2 = ({ reviewdata, attractionsCount, locationDisplay }) => {
@@ -18,7 +18,7 @@ const HighlightsV2 = ({ reviewdata, attractionsCount, locationDisplay }) => {
   const resolveNum = (c) => {
     if (c.source === "rating") return apiRating || c.fallback;
     if (c.source === "attractions") return attractionsCount > 0 ? `${attractionsCount}+` : c.fallback;
-    if (c.source === "location") return locationDisplay || c.fallback;
+    if (c.source === "location") return locationDisplay ? `Across ${locationDisplay}` : c.fallback;
     return c.num;
   };
 

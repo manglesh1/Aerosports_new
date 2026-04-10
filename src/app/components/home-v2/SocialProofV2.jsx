@@ -16,18 +16,27 @@ const INSTA_TILES = [
   { icon: "🏆", bg: "#1F1F08" },
 ];
 
+// Truncate long review text to roughly 2-3 lines (audit: reviews too long)
+const MAX_REVIEW_CHARS = 180;
+const truncateReview = (text) => {
+  if (!text || text.length <= MAX_REVIEW_CHARS) return text;
+  return text.slice(0, MAX_REVIEW_CHARS).replace(/\s+\S*$/, "") + "…";
+};
+
 const SocialProofV2 = ({ reviewdata, locationData }) => {
-  // API shape: { rating: 4.6, reviews: [{ author_name, rating, text, ... }] }
+  // API shape: { rating: 4.6, total_reviews: 1024, reviews: [{ author_name, rating, text, ... }] }
   const apiReviews = Array.isArray(reviewdata?.reviews) ? reviewdata.reviews : [];
   const reviews = apiReviews.slice(0, 3).map((r) => ({
     stars: r.rating || 5,
-    text: r.text || "",
+    text: truncateReview(r.text || ""),
     name: r.author_name || "Guest",
   }));
 
   const overallRating = reviewdata?.rating
     ? Number(reviewdata.rating).toFixed(1)
     : null;
+  // The API may return total_reviews or user_ratings_total
+  const reviewCount = reviewdata?.total_reviews || reviewdata?.user_ratings_total || null;
 
   const instaHandle = locationData?.[0]?.insta || null;
   // The sheet stores the raw handle; tolerate someone pasting a full URL too.
@@ -50,7 +59,9 @@ const SocialProofV2 = ({ reviewdata, locationData }) => {
               <div className="hv2-rating-num">{overallRating}</div>
               <div>
                 <div className="hv2-rating-stars">★★★★★</div>
-                <div className="hv2-rating-count">Google reviews</div>
+                <div className="hv2-rating-count">
+                  {reviewCount ? `Rated on Google by ${Number(reviewCount).toLocaleString()}+ families` : "Google reviews"}
+                </div>
               </div>
             </div>
           )}

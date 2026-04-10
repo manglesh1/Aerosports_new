@@ -9,6 +9,13 @@ const VALID_LOCATIONS = new Set([
   'scarborough',
 ]);
 
+// Legacy / redirect-only path prefixes — let Next.js redirects (next.config.mjs) handle these
+// Keep in sync with the "redirects" tab in the Google Sheet
+const REDIRECT_PREFIXES = new Set([
+  'brampton',
+  'thunderbay',
+]);
+
 export function middleware(req) {
   const url = req.nextUrl.clone();
   const host = req.headers.get('host') || '';
@@ -33,7 +40,13 @@ export function middleware(req) {
   if (segments.length >= 1) {
     const locationSlug = segments[0].toLowerCase();
     // Skip known non-location paths
-    const skipPaths = ['admin', 'api', '_next', 'favicon.ico', 'sitemap.xml', 'robots.txt', 'test'];
+    const skipPaths = ['admin', 'api', '_next', 'assets', 'invitations', 'favicon.ico', 'sitemap.xml', 'robots.txt', 'test', 'llms.txt'];
+
+    // Allow redirect prefixes through — next.config.mjs redirects will handle them
+    if (REDIRECT_PREFIXES.has(locationSlug)) {
+      return NextResponse.next();
+    }
+
     if (!skipPaths.includes(locationSlug) && !VALID_LOCATIONS.has(locationSlug)) {
       // Rewrite to the not-found page with 404 status
       url.pathname = '/_not-found';

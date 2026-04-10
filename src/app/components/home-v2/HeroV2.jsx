@@ -1,5 +1,4 @@
 import Link from "next/link";
-import Image from "next/image";
 
 // Hero section. All copy is hardcoded (identical across every location)
 // with the exception of the interpolated location display name.
@@ -8,9 +7,9 @@ import Image from "next/image";
 //   - address from locations sheet
 //   - CTA URLs: estorebase config, pricing page, waiver link
 const TRUST_ITEMS = [
-  { icon: "🛡️", title: "Safety First", subtitle: "Trained staff on site" },
-  { icon: "⭐",  title: "4.8★ Rated",   subtitle: "Thousands of families" },
-  { icon: "🎉", title: "Birthday Pro", subtitle: "Stress-free parties" },
+  { icon: "🛡️", title: "Safety First", subtitle: "Certified & trained staff" },
+  { icon: "⭐",  title: "Top Rated",    subtitle: "Loved by families" },
+  { icon: "🎉", title: "Birthday Pro", subtitle: "All-inclusive, stress-free" },
 ];
 
 const FLOAT_STATS = [
@@ -39,16 +38,16 @@ const HeroV2 = ({ headerImage, locationData, estoreConfig, waiverLink, locationS
         <div className="hv2-hero-left">
           <div className="hv2-hero-badge">
             <div className="hv2-hero-badge-dot" />
-            <span>Now Open {locationDisplay || ""}</span>
+            <span>#1 Indoor Trampoline Park {locationDisplay ? `in ${locationDisplay}` : ""}</span>
           </div>
           <h1 className="hv2-hero-h1">
-            Jump Into<br />
-            <em>Unstoppable Fun</em><br />
-            Today
+            {locationDisplay ? `${locationDisplay}'s` : "The"}<br />
+            <em>Ultimate Fun</em><br />
+            For Kids &amp; Families
           </h1>
           <p className="hv2-hero-sub">
-            Trampolines, foam pits, dodgeball, ninja courses and more — the ultimate
-            play destination for kids, teens and families.
+            Trampolines, ninja courses, dodgeball &amp; more — the easiest way to plan
+            an unforgettable birthday party or family outing.
           </p>
           {/*
             Hero CTA labels are hardcoded (universal across locations).
@@ -61,15 +60,15 @@ const HeroV2 = ({ headerImage, locationData, estoreConfig, waiverLink, locationS
           <div className="hv2-hero-actions">
             {estoreConfig?.value && (
               <Link href={estoreConfig.value} target="_blank" rel="noopener noreferrer" className="hv2-btn hv2-btn-red hv2-btn-hero">
-                Book Now →
+                Book Your Fun Now →
               </Link>
             )}
             <Link href={`/${locationSlug}/pricing-promos`} className="hv2-btn hv2-btn-outline hv2-btn-hero">
-              View Pricing
+              Explore Pricing
             </Link>
             {waiverLink && (
               <Link href={waiverLink} target="_blank" rel="noopener noreferrer" className="hv2-btn hv2-btn-ghost hv2-btn-hero">
-                Sign Waiver
+                Sign Before You Arrive
               </Link>
             )}
           </div>
@@ -98,7 +97,7 @@ const HeroV2 = ({ headerImage, locationData, estoreConfig, waiverLink, locationS
                     muted
                     loop
                     playsInline
-                    preload="metadata"
+                    preload="none"
                     aria-label={cardImageAlt}
                     style={{
                       position: "absolute",
@@ -110,13 +109,11 @@ const HeroV2 = ({ headerImage, locationData, estoreConfig, waiverLink, locationS
                   />
                 ) : (
                   cardImage && (
-                    <Image
+                    <img
                       src={cardImage}
                       alt={cardImageAlt}
-                      fill
-                      sizes="(max-width: 900px) 0px, 480px"
-                      style={{ objectFit: "cover" }}
-                      priority
+                      fetchPriority="high"
+                      style={{ position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "cover" }}
                     />
                   )
                 )}

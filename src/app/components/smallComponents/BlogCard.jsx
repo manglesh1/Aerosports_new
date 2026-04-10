@@ -1,4 +1,3 @@
-import Image from 'next/image';
 import Link from 'next/link';
 import React from 'react'
 
@@ -13,7 +12,7 @@ const BlogCard = ({ blogsData, location_slug }) => {
               href={`/${location_slug}/${item?.parentid}/${item?.path}`}
             >
               <article className="aero_home_article_card">
-                <Image
+                <img
                   src={item?.smallimage || `https://storage.googleapis.com/aerosports/webp/${location_slug}/gallery-thummbnail-wall-climbwall.webp`}
                   width={120}
                   height={120}

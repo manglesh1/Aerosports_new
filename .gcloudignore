@@ -13,9 +13,8 @@
 .git
 .gitignore
 
-# Upload .next build output (needed for production)
-# .next/cache is excluded to reduce upload size
-.next/cache
+# Exclude .next — App Engine Cloud Build runs `next build` from source
+.next/
 
 # Node.js dependencies:
 node_modules/

@@ -22,6 +22,7 @@ import {
   getReviewsData,
   generateMetadataLib,
   generateSchema,
+  fetchHomePageJsonData,
 } from "@/lib/sheets";
 
 export async function generateMetadata({ params }) {
@@ -43,6 +44,7 @@ const Home = async ({ params }) => {
     locationData,
     waiverLink,
     popupData,
+    pageJson,
   ] = await Promise.all([
     fetchMenuData(location_slug),
     fetchsheetdata("config", location_slug),
@@ -50,7 +52,13 @@ const Home = async ({ params }) => {
     fetchsheetdata("locations", location_slug),
     getWaiverLink(location_slug),
     fetchsheetdata("popups", location_slug),
+    fetchHomePageJsonData(location_slug),
   ]);
+
+  // page-json-data holds per-location overrides as JSON.
+  // Schema: { attractions: { "<path>": { desc, audience, priority } },
+  //           partyImages: ["url1","url2"], promoMeta: { ... } }
+  const pj = pageJson || {};
 
   const locationid = locationData?.[0]?.locationid || null;
   const reviewdata = locationid ? await getReviewsData(locationid) : [];
@@ -107,6 +115,7 @@ const Home = async ({ params }) => {
         <AttractionsV2
           attractions={attractions}
           locationSlug={location_slug}
+          locationDisplay={displayName}
         />
       )}
 
@@ -119,6 +128,8 @@ const Home = async ({ params }) => {
       <PartyV2
         locationSlug={location_slug}
         locationData={locationData}
+        locationDisplay={displayName}
+        partyImages={pj.partyImages}
       />
 
       <SocialProofV2
@@ -133,7 +144,7 @@ const Home = async ({ params }) => {
         locationSlug={location_slug}
       />
 
-      <LocationV2 locationData={locationData} />
+      <LocationV2 locationData={locationData} reviewdata={reviewdata} />
 
       <FinalCtaV2
         locationSlug={location_slug}

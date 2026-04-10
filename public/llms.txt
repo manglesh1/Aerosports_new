@@ -1,0 +1,23 @@
+# AeroSports Parks Canada
+> Indoor trampoline parks and family entertainment centres across Ontario
+
+## About
+AeroSports Parks operates indoor trampoline parks and family entertainment centres in five Ontario locations: Oakville, London, Windsor, St. Catharines, and Scarborough. We offer trampolines, dodgeball, ninja courses, birthday parties, group events, camps, and more.
+
+## Locations
+- [AeroSports Oakville](https://www.aerosportsparks.ca/oakville)
+- [AeroSports London](https://www.aerosportsparks.ca/london)
+- [AeroSports Windsor](https://www.aerosportsparks.ca/windsor)
+- [AeroSports St. Catharines](https://www.aerosportsparks.ca/st-catharines)
+- [AeroSports Scarborough](https://www.aerosportsparks.ca/scarborough)
+
+## Key Pages
+- [Birthday Parties](https://www.aerosportsparks.ca/oakville/kids-birthday-parties)
+- [Group Events](https://www.aerosportsparks.ca/oakville/groups-events)
+- [Attractions](https://www.aerosportsparks.ca/oakville/attractions)
+- [Programs & Camps](https://www.aerosportsparks.ca/oakville/programs)
+- [Pricing](https://www.aerosportsparks.ca/oakville/pricing)
+
+## Contact
+- Website: https://www.aerosportsparks.ca
+- Email: info@aerosportsparks.ca

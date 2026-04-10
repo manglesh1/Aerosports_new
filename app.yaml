@@ -1,10 +1,10 @@
 runtime: nodejs20
 env: standard
 
-instance_class: F4
+instance_class: F2
 
 automatic_scaling:
-  min_instances: 0
+  min_instances: 1
   max_instances: 3
   target_cpu_utilization: 0.65
   target_throughput_utilization: 0.75
@@ -15,5 +15,34 @@ env_variables:
   NEXT_PUBLIC_API_URL: "https://apis-351216.nn.r.appspot.com/api"
 
 handlers:
+  # Static assets — served directly by App Engine CDN edge, bypasses Node.js
+  - url: /assets
+    static_dir: public/assets
+    expiration: "30d"
+    secure: always
+
+  - url: /invitations
+    static_dir: public/invitations
+    expiration: "30d"
+    secure: always
+
+  - url: /robots.txt
+    static_files: public/robots.txt
+    upload: public/robots\.txt
+    expiration: "7d"
+    secure: always
+
+  - url: /llms.txt
+    static_files: public/llms.txt
+    upload: public/llms\.txt
+    expiration: "7d"
+    secure: always
+
+  - url: /.well-known
+    static_dir: public/.well-known
+    secure: always
+
+  # Everything else → Next.js
   - url: /.*
     script: auto
+    secure: always

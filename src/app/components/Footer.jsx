@@ -1,11 +1,7 @@
 'use client';
 
 import { useEffect, useState } from "react";
-import Image from "next/image";
 import "../styles/home.css";
-import event_icon from "@public/assets/images/home/event_icon.svg";
-import park_feature_icon from "@public/assets/images/home/park_feature_icon.svg";
-import jump_icon from "@public/assets/images/home/jump_icon.svg";
 import Link from "next/link";
 import { getDataByParentId } from "@/utils/customFunctions";
 import RatingComponent from "./smallComponents/RatingComponent";
@@ -65,13 +61,13 @@ const Footer = ({ location_slug, configdata, menudata, reviewdata, locationData 
       <section className="v11_footer_quicklinks">
         <div className="v11_footer_quicklinks_grid">
           {[
-            { icon: event_icon, text: "Birthday Parties", url: `/${location_slug}/kids-birthday-parties` },
-            { icon: park_feature_icon, text: "Gallery", url: `/${location_slug}/${galleryData?.[0]?.path || 'gallery'}` },
-            { icon: jump_icon, text: "Group Events", url: `/${location_slug}/${groupsData?.[0]?.path || 'groups-events'}` },
+            { icon: "/assets/images/home/event_icon.svg", text: "Birthday Parties", url: `/${location_slug}/kids-birthday-parties` },
+            { icon: "/assets/images/home/park_feature_icon.svg", text: "Gallery", url: `/${location_slug}/${galleryData?.[0]?.path || 'gallery'}` },
+            { icon: "/assets/images/home/jump_icon.svg", text: "Group Events", url: `/${location_slug}/${groupsData?.[0]?.path || 'groups-events'}` },
           ].map((item, index) => (
             <Link href={item.url} key={index} className="v11_footer_quicklink_card">
               <div className="v11_footer_quicklink_icon">
-                <Image src={item.icon} width={48} height={48} alt={item.text} loading="lazy" />
+                <img src={item.icon} width={48} height={48} alt={item.text} loading="lazy" />
               </div>
               <span className="v11_footer_quicklink_text">{item.text}</span>
             </Link>
@@ -87,7 +83,7 @@ const Footer = ({ location_slug, configdata, menudata, reviewdata, locationData 
           <div className="aero_footer_contact_section">
             <div className="aero_footer_brand_header">
               <Link href={`/${location_slug}`} prefetch className="aero_footer_logo">
-                <Image
+                <img
                   src={`https://storage.googleapis.com/aerosports/webp/${location_slug}/logo_white.webp`}
                   alt="AeroSports Logo"
                   width={50}

@@ -1,7 +1,6 @@
 'use client';
 
 import Link from 'next/link';
-import Image from 'next/image';
 import "../styles/attractions.css";
 import "../styles/subcategory.css";
 
@@ -20,7 +19,7 @@ const AttractionsGrid = ({ attractionsData, waiverLink, locationSlug }) => {
           >
             <article className="aero_attraction_card">
               <div className="aero_attraction_card_image_wrap">
-                <Image
+                <img
                   src={item?.smallimage}
                   alt={item?.title || item?.desc}
                   className="aero_attraction_card_image"

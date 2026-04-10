@@ -17,7 +17,6 @@ import dynamic from "next/dynamic";
 const TermsModal = dynamic(() => import("@/components/TermsModal"));
 const BlogSection = dynamic(() => import("@/components/sections/BlogSection"));
 const BirthdayFAQ = dynamic(() => import("./BirthdayFAQ"));
-import Image from "next/image";
 import Link from "next/link";
 import { sanitizeCmsHtml } from "@/utils/customFunctions";
 
@@ -228,7 +227,7 @@ const Page = async ({ params }) => {
         pageData={data}
         waiverLink={waiverLink}
         locationData={locationData}
-        headingAs="h2"
+        headingAs="h1"
       />
 
       {/* ══════════════════════════════════════════════
@@ -487,13 +486,11 @@ const Page = async ({ params }) => {
                   >
                     <div className="v11_bp_attraction_img">
                       {attraction.headerimage ? (
-                        <Image
+                        <img
                           src={attraction.headerimage}
                           alt={attraction.name || attraction.path?.replace(/-/g, " ")}
-                          fill
-                          sizes="(max-width: 480px) 100vw, (max-width: 768px) 50vw, (max-width: 992px) 33vw, 200px"
-                          style={{ objectFit: "cover" }}
                           loading="lazy"
+                          style={{ position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "cover" }}
                         />
                       ) : (
                         <div className="v11_bp_attraction_placeholder" />

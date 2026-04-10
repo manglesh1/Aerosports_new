@@ -5,12 +5,12 @@ import Link from "next/link";
 // - Promo CARDS come from the Promotions sheet for this location.
 //   Cards are hidden entirely if there are no promotions.
 const TICKER = [
-  "Birthday Discounts Available — Book Early",
-  "Toddler Time Every Saturday 9–10 AM",
+  "Birthday Discounts Available — Limited Slots, Book Early",
+  "Toddler Time Every Saturday 9–10 AM — Reserve Your Spot",
   "Glow Night Coming Soon — Stay Tuned",
-  "Group Rates for Schools & Camps",
+  "Group Rates for Schools & Camps — Book Now",
   "SickKids Charity Night — Watch for Dates",
-  "Members Get 20% Off Every Visit",
+  "Members Get 20% Off Every Visit — Join Today",
 ];
 
 const PromoV2 = ({ promotions, locationSlug }) => {
@@ -60,7 +60,7 @@ const PromoV2 = ({ promotions, locationSlug }) => {
                   {c.title && <h3>{c.title}</h3>}
                   {c.desc && <p>{c.desc}</p>}
                   <Comp className="hv2-btn hv2-btn-red" style={{ fontSize: 13, padding: "10px 20px" }} {...linkProps}>
-                    Claim Offer →
+                    Book This Offer →
                   </Comp>
                 </div>
               );

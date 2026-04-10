@@ -1677,7 +1677,7 @@ footer .aero_home-headerimg-wrapper > img:hover {
 .v11_footer_quicklink_icon img {
   width: 36px;
   height: 36px;
-  filter: none;
+  filter: saturate(1.8) contrast(1.3);
 }
 
 .v11_footer_quicklink_text {

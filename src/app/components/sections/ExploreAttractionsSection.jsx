@@ -1,7 +1,6 @@
 'use client';
 
 import { useState, useEffect, useRef } from 'react';
-import Image from 'next/image';
 import Link from 'next/link';
 import { cn } from "@/lib/utils";
 
@@ -51,13 +50,11 @@ export default function ExploreAttractionsSection({ attractions, location_slug }
 						>
 							<div className="v11_bp_attraction_img">
 								{attraction?.smallimage && (
-									<Image
+									<img
 										src={attraction.smallimage}
 										alt={attraction?.name || attraction?.title || `Attraction ${index + 1}`}
-										fill
-										sizes="(max-width: 480px) 100vw, (max-width: 768px) 50vw, (max-width: 992px) 33vw, 250px"
-										style={{ objectFit: "cover" }}
 										loading="lazy"
+										style={{ position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "cover" }}
 									/>
 								)}
 							</div>

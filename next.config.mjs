@@ -5,7 +5,7 @@ import * as XLSX from 'xlsx';
 // 1) Put this in .env.local (and in your CI/CD env):
 // REDIRECT_SHEET_XLSX="https://docs.google.com/spreadsheets/d/XXX/export?format=xlsx"
 const SHEET_URL = process.env.REDIRECT_SHEET_XLSX
-  ?? 'https://docs.google.com/spreadsheets/d/1B_9EaTQDztWGH_cD3lUP7hpWD6FvNBJ-6Czml2x7d9c/edit?usp=sharing&ouid=111554940659762157873&rtpof=true&sd=true'; // fallback
+  ?? 'https://docs.google.com/spreadsheets/d/1B_9EaTQDztWGH_cD3lUP7hpWD6FvNBJ-6Czml2x7d9c/export?format=xlsx';
 
 async function fetchSheetRedirects() {
   try {
@@ -49,6 +49,33 @@ async function fetchSheetRedirects() {
 }
 
 const nextConfig = {
+  // Cache headers — Cloudflare respects these to cache at edge
+  async headers() {
+    return [
+      {
+        // HTML pages: cache at Cloudflare edge for 10 min, stale-while-revalidate for 1 hour.
+        // Browsers always revalidate (max-age=0) so users never see truly stale content.
+        source: '/:path*',
+        headers: [
+          {
+            key: 'Cache-Control',
+            value: 'public, max-age=0, s-maxage=600, stale-while-revalidate=21600',
+          },
+        ],
+      },
+      {
+        // Next.js static assets — immutable, cache forever (they have hashed filenames)
+        source: '/_next/static/:path*',
+        headers: [
+          {
+            key: 'Cache-Control',
+            value: 'public, max-age=31536000, immutable',
+          },
+        ],
+      },
+    ];
+  },
+
   async redirects() {
     const sheetRedirects = await fetchSheetRedirects();
 // console.log('Fetched redirects:', sheetRedirects);
@@ -60,20 +87,15 @@ const nextConfig = {
     return sheetRedirects;
   },
 
-  images: {
-    remotePatterns: [
-      { protocol: 'https', hostname: 'storage.googleapis.com' },
-      { protocol: 'https', hostname: 'www.aerosportsparks.ca' },
-    ],
-    formats: ['image/avif', 'image/webp'],
-    minimumCacheTTL: 60 * 60 * 24 * 30,
-  },
+  // Image optimization disabled — all images are pre-optimized WebP on GCS.
+  // Serving directly from GCS CDN is faster than proxying through /_next/image.
+  images: { unoptimized: true },
 
   // Use in-memory ISR cache (App Engine Standard has read-only filesystem)
   cacheMaxMemorySize: 50 * 1024 * 1024, // 50 MB
 
   experimental: {
-    optimizePackageImports: ['react-bootstrap', 'react-icons'],
+    optimizePackageImports: ['react-bootstrap', 'react-icons', 'date-fns', 'xlsx', 'react-quill'],
   },
 
   compiler: {

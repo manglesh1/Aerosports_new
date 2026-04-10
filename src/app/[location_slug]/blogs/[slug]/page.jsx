@@ -1,7 +1,6 @@
 import { notFound } from "next/navigation";
 import "../../../styles/blogs.css";
 import "../../../styles/blog-content.css";
-import Image from 'next/image';
 import { getDataByParentId, sanitizeCmsHtml } from "@/utils/customFunctions";
 import { fetchPageData, fetchMenuData, generateMetadataLib, fetchsheetdata } from "@/lib/sheets";
 import Link from 'next/link';
@@ -111,12 +110,12 @@ export default async function BlogDetail({ params }) {
 
           {/* Hero Image */}
           <div className="aero-blog-detail-hero">
-            <Image
+            <img
               src={blogData?.headerimage}
               alt={blogData?.headerimagetitle || blogData?.title}
               width={1200}
               height={630}
-              priority
+              fetchPriority="high"
               style={{ width: '100%', height: 'auto', borderRadius: '16px' }}
             />
           </div>
@@ -142,7 +141,7 @@ export default async function BlogDetail({ params }) {
                 <article className="aero-blog-main-article-card" key={i}>
                   <div className="aero-blog-img-section">
                     <Link href={`/${location_slug}/blogs/${item?.path}`} prefetch>
-                      <Image src={item.smallimage} alt={item.title || "Blog article"} width={400} height={300} loading="lazy" />
+                      <img src={item.smallimage} alt={item.title || "Blog article"} width={400} height={300} loading="lazy" />
                     </Link>
                   </div>
                   <div className="aero-blog-content-section">

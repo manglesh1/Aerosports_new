@@ -1,6 +1,5 @@
 "use client";
 import React, { useState, useEffect, useCallback } from "react";
-import Image from "next/image";
 import Lightbox from "./Lightbox";
 import { IoChevronBack, IoChevronForward } from "react-icons/io5";
 import { FaPlay } from "react-icons/fa";
@@ -103,7 +102,7 @@ const PhotoGallery = ({ galleryData, navbarName = "gallery" }) => {
                       </div>
                     </div>
                   ) : (
-                    <Image
+                    <img
                       src={url}
                       alt={alt}
                       width={400}
@@ -140,13 +139,11 @@ const PhotoGallery = ({ galleryData, navbarName = "gallery" }) => {
                   key={currentMediaIndex}
                 />
               ) : (
-                <Image
+                <img
                   src={currentUrls[currentMediaIndex]}
                   alt={(groups[currentGroupIndex].alttexts && groups[currentGroupIndex].alttexts[currentMediaIndex]) || `${groups[currentGroupIndex].group || "AeroSports"} photo ${currentMediaIndex + 1}`}
                   className="gallery-media-full"
-                  width={1200}
-                  height={900}
-                  quality={90}
+                  style={{ maxWidth: "100%", maxHeight: "80vh", objectFit: "contain" }}
                 />
               )}
             </div>
@@ -178,7 +175,7 @@ const PhotoGallery = ({ galleryData, navbarName = "gallery" }) => {
                     {isVideo(url) ? (
                       <div className="gallery-thumb-video"><FaPlay size={10} /></div>
                     ) : (
-                      <Image src={url} alt="" width={80} height={60} className="gallery-thumb-img" />
+                      <img src={url} alt="" width={80} height={60} className="gallery-thumb-img" />
                     )}
                   </button>
                 ))}

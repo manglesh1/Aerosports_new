@@ -1,6 +1,5 @@
 import '../../styles/blogs.css'
 import React from "react";
-import Image from 'next/image';
 import { getDataByParentId } from '@/utils/customFunctions';
 import Link from 'next/link';
 import { fetchMenuData, generateMetadataLib, fetchsheetdata, generateSchema } from "@/lib/sheets";
@@ -38,7 +37,7 @@ const page = async ({ params }) => {
           {extractBlogData?.map((item, i) => (
             <Link href={`/${location_slug}/blogs/${item?.path}`} className="aero-blog-listing-card" key={i} prefetch>
               <div className="aero-blog-listing-card-image">
-                <Image
+                <img
                   src={item.smallimage}
                   alt={item.title || "Blog article"}
                   width={400}

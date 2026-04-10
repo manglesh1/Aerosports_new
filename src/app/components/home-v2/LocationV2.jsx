@@ -1,10 +1,12 @@
+import Link from "next/link";
+
 // "Find Us" section. Tag/headline/subtext/labels are hardcoded.
 // Dynamic pieces from the locations sheet:
 //   - address, phone, email
 //   - map embed URL (`map` column)
 //   - directions URL (`gmburl` column, falls back to maps.google.com)
 //   - hours JSON (`hours` column — stored as a JSON string)
-const LocationV2 = ({ locationData }) => {
+const LocationV2 = ({ locationData, reviewdata }) => {
   const lInfo = locationData?.[0] || {};
 
   let hours = [];
@@ -55,7 +57,12 @@ const LocationV2 = ({ locationData }) => {
           <h2>
             We&apos;re Right<br />In Your Backyard
           </h2>
-          <p>Easy to find, easier to love. Come visit — we can&apos;t wait to meet you.</p>
+          <p>Walk-ins welcome · Free parking · Open today</p>
+          {reviewdata?.rating && (
+            <p style={{ fontSize: 14, color: "#666", marginTop: 4 }}>
+              ⭐ Rated {Number(reviewdata.rating).toFixed(1)} on Google by families like yours
+            </p>
+          )}
           <div className="hv2-info-cards">
             {address && (
               <div className="hv2-info-card">
