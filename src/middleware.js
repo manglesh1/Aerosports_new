@@ -40,7 +40,7 @@ export function middleware(req) {
   if (segments.length >= 1) {
     const locationSlug = segments[0].toLowerCase();
     // Skip known non-location paths
-    const skipPaths = ['admin', 'api', '_next', 'assets', 'invitations', 'favicon.ico', 'sitemap.xml', 'robots.txt', 'test', 'llms.txt'];
+    const skipPaths = ['admin', 'api', '_next', 'assets', 'invitations', 'favicon.ico', 'sitemap.xml', 'robots.txt', 'test', 'llms.txt', 'about-us', 'contact-us', 'privacy-policy', 'attractions', 'school-groups', 'summer-camps', 'team-celebrations', 'corporate-events'];
 
     // Allow redirect prefixes through — next.config.mjs redirects will handle them
     if (REDIRECT_PREFIXES.has(locationSlug)) {

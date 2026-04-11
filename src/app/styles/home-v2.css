@@ -96,7 +96,7 @@
 
 .hv2-hero-inner {
   position: relative; z-index: 2;
-  width: 100%; max-width: 1200px; margin: 0 auto;
+  width: 100%; max-width: 1600px; margin: 0 auto;
   padding: 5rem 2rem 4rem;
   display: grid; grid-template-columns: 1fr 1fr; gap: 4rem;
   align-items: center;
@@ -192,7 +192,7 @@
 /* ── QUICK HIGHLIGHTS ───────────────── */
 .hv2-highlights { background: var(--hv2-red); padding: 0; }
 .hv2-highlights-inner {
-  max-width: 1200px; margin: 0 auto;
+  max-width: 1600px; margin: 0 auto;
   display: grid; grid-template-columns: repeat(4, 1fr);
 }
 .hv2-hl-card {
@@ -222,12 +222,12 @@
 /* ── ATTRACTIONS ────────────────────── */
 .hv2-attractions { padding: 6rem 2rem; background: var(--hv2-offwhite); }
 .hv2-section-header {
-  max-width: 1200px; margin: 0 auto 3rem;
+  max-width: 1600px; margin: 0 auto 3rem;
   display: flex; justify-content: space-between; align-items: flex-end;
   flex-wrap: wrap; gap: 1.5rem;
 }
 .hv2-attractions-grid {
-  max-width: 1200px; margin: 0 auto;
+  max-width: 1600px; margin: 0 auto;
   display: grid; grid-template-columns: repeat(3, 1fr);
   grid-template-rows: auto auto; gap: 16px;
 }
@@ -290,7 +290,7 @@
 
 /* ── PLAN YOUR VISIT ────────────────── */
 .hv2-plan { background: var(--hv2-navy); padding: 3rem 2rem; }
-.hv2-plan-inner { max-width: 1200px; margin: 0 auto; }
+.hv2-plan-inner { max-width: 1600px; margin: 0 auto; }
 .hv2-plan-label {
   font-size: 12px; font-weight: 700; color: var(--hv2-muted);
   text-transform: uppercase; letter-spacing: 0.12em; margin-bottom: 20px;
@@ -317,7 +317,7 @@
 /* ── PARTY SPOTLIGHT ────────────────── */
 .hv2-parties { padding: 6rem 2rem; background: #fff; }
 .hv2-parties-inner {
-  max-width: 1200px; margin: 0 auto;
+  max-width: 1600px; margin: 0 auto;
   display: grid; grid-template-columns: 1fr 1fr; gap: 5rem;
   align-items: center;
 }
@@ -392,7 +392,7 @@
 
 /* ── SOCIAL PROOF ───────────────────── */
 .hv2-social { padding: 6rem 2rem; background: var(--hv2-offwhite); }
-.hv2-social-inner { max-width: 1200px; margin: 0 auto; }
+.hv2-social-inner { max-width: 1600px; margin: 0 auto; }
 .hv2-social-header {
   display: flex; justify-content: space-between; align-items: flex-end;
   margin-bottom: 2rem; flex-wrap: wrap; gap: 1rem;
@@ -462,7 +462,7 @@
     radial-gradient(circle at 20% 50%, rgba(245,22,59,0.08) 0%, transparent 60%),
     radial-gradient(circle at 80% 50%, rgba(255,107,0,0.05) 0%, transparent 60%);
 }
-.hv2-why-inner { max-width: 1200px; margin: 0 auto; position: relative; z-index: 1; }
+.hv2-why-inner { max-width: 1600px; margin: 0 auto; position: relative; z-index: 1; }
 .hv2-why-header { text-align: center; margin-bottom: 4rem; }
 .hv2-why-h2 {
   font-family: var(--font-bebas), 'Bebas Neue', 'Barlow Condensed', sans-serif;
@@ -491,7 +491,7 @@
 
 /* ── PROMO STRIP ────────────────────── */
 .hv2-promo { padding: 4rem 2rem; background: #fff; }
-.hv2-promo-inner { max-width: 1200px; margin: 0 auto; }
+.hv2-promo-inner { max-width: 1600px; margin: 0 auto; }
 .hv2-ticker-wrap {
   background: var(--hv2-red); border-radius: 8px;
   overflow: hidden; margin-bottom: 32px;
@@ -544,7 +544,7 @@
 /* ── LOCATION ───────────────────────── */
 .hv2-location { padding: 6rem 2rem; background: var(--hv2-offwhite); }
 .hv2-location-inner {
-  max-width: 1200px; margin: 0 auto;
+  max-width: 1600px; margin: 0 auto;
   display: grid; grid-template-columns: 1fr 1fr; gap: 4rem;
   align-items: start;
 }

@@ -15,7 +15,7 @@ async function fetchsheetdata(sheetName, location) {
   }
   if (location === '.well-known') return [];
 
-  const cacheKey = `${sheetName}:${location || 'all'}`;
+  const cacheKey = `${sheetName}:${location === '' ? '_corporate' : location || 'all'}`;
   const now = Date.now();
   const cached = sheetCache.get(cacheKey);
   if (cached && now - cached.timestamp < CACHE_TTL) {
@@ -61,6 +61,10 @@ async function fetchsheetdata(sheetName, location) {
         );
         sheetCache.set(`${name}:${loc}`, { data: filtered, timestamp: now });
       });
+      // Cache corporate rows (blank location) separately
+      const corporateRows = sheetData.filter((m) => !m.location);
+      sheetCache.set(`${name}:_corporate`, { data: corporateRows, timestamp: now });
+
       sheetCache.set(`${name}:all`, { data: sheetData, timestamp: now });
     });
 
@@ -106,7 +110,11 @@ async function fetchMenuData(location) {
  */
 async function fetchPageData(location, page) {
   const jsonData = await fetchsheetdata("Data", location);
-  const filtered= jsonData.filter(m => m.path?.toUpperCase().includes(page.toUpperCase()));
+  const pageUpper = page.toUpperCase();
+  const filtered = jsonData.filter(m =>
+    m.path?.toUpperCase().includes(pageUpper) ||
+    m.desc?.toUpperCase() === pageUpper
+  );
   return filtered[0];
 }
 async function fetchFaqData(location, page) {
@@ -138,16 +146,16 @@ async function generateMetadataLib({ location, category, page }) {
   const metadataItem = data;//?.find((item) => item.path === pagefordata);
 //console.log(pagefordata);
   // Construct canonical path
-  let canonicalPath = location;
+  let canonicalPath = location || '';
   if (category && page) {
     canonicalPath += `/${category}/${page}`;
-  } else if (page) {
-     canonicalPath += `/${page}`;
+  } else if (page && page !== 'home') {
+     canonicalPath += canonicalPath ? `/${page}` : page;
   } else if (category) {
-    canonicalPath += `/${category}`;
+    canonicalPath += canonicalPath ? `/${category}` : category;
   }
 
-  const fullUrl = `${BASE_URL}/${canonicalPath}`;
+  const fullUrl = canonicalPath ? `${BASE_URL}/${canonicalPath}` : BASE_URL;
   const imageUrl = metadataItem?.headerimage?.startsWith("http")
     ? metadataItem.headerimage
     : `${BASE_URL}${metadataItem?.headerimage || ""}`;

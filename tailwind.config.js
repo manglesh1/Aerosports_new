@@ -66,6 +66,7 @@ export default {
       /* TYPOGRAPHY */
       fontFamily: {
         sans: "var(--font-family)",
+        display: "var(--font-bebas), sans-serif",
       },
 
       fontSize: {
