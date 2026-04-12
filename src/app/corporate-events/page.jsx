@@ -60,7 +60,7 @@ export default async function CorporateEventsPage() {
         <div style={{ maxWidth: 1600, margin: "0 auto", position: "relative", zIndex: 1 }}>
           <span
             className="hv2-section-tag"
-            style={{ background: "rgba(245,22,59,0.15)", color: "var(--hv2-red)" }}
+            style={{ background: "rgba(200,255,0,0.15)", color: "var(--hv2-red)" }}
           >
             🏢 Corporate Events
           </span>
@@ -104,7 +104,7 @@ export default async function CorporateEventsPage() {
               <div style={{ maxWidth: 900, margin: "0 auto 4rem" }}>
                 <span
                   className="hv2-section-tag"
-                  style={{ background: "rgba(245,22,59,0.15)", color: "var(--hv2-red)" }}
+                  style={{ background: "rgba(200,255,0,0.15)", color: "var(--hv2-red)" }}
                 >
                   Why AeroSports
                 </span>
@@ -122,7 +122,7 @@ export default async function CorporateEventsPage() {
               <div style={{ maxWidth: 900, margin: "0 auto 4rem" }}>
                 <span
                   className="hv2-section-tag"
-                  style={{ background: "rgba(57,255,20,0.15)", color: "var(--hv2-lime-dark, #2d8a0e)" }}
+                  style={{ background: "rgba(255,45,135,0.15)", color: "var(--hv2-lime-dark)" }}
                 >
                   Event Options
                 </span>

@@ -79,8 +79,8 @@
 .subcategory_main_section .textinsidecircle {
   background: linear-gradient(
     145deg,
-    #f00c74 0%,
-    #ff1152 75%,
+    #2ED60F 0%,
+    #c8ff00 75%,
     rgba(202, 255, 26, 0.25) 100%
   );
   color: var(--white-color);
@@ -282,7 +282,7 @@
 
 .v11_subcategory_seo_content h2 span,
 .v11_subcategory_seo_content h3 span {
-  color: #FF174A;
+  color: #c8ff00;
 }
 
 .v11_subcategory_seo_content p {
@@ -291,12 +291,12 @@
 }
 
 .v11_subcategory_seo_content strong {
-  color: #FF174A;
+  color: #c8ff00;
   font-weight: 700;
 }
 
 .v11_subcategory_seo_content a {
-  color: #FF174A;
+  color: #c8ff00;
   text-decoration: underline;
   text-underline-offset: 2px;
   font-weight: 600;

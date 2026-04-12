@@ -10,22 +10,18 @@ const FinalCtaV2 = ({ locationSlug, estoreConfig, waiverLink }) => {
     <section className="hv2-final-cta">
       <div className="hv2-final-cta-bg" />
       <div className="hv2-final-cta-inner">
-        <h2>Ready to Book Your Visit or Party?</h2>
-        <p>Limited slots available this weekend — takes less than 2 minutes to book.</p>
+        <div className="hv2-final-cta-badge">✦ Limited Weekend Slots Available</div>
+        <h2>Ready to Plan<br /><em>Your Next Visit?</em></h2>
+        <p>Join millions of thrill-seekers who&apos;ve made AeroSports their go-to destination for high-flying fun across Ontario.</p>
         <div className="hv2-final-cta-btns">
-          <Link href={`/${locationSlug}/kids-birthday-parties`} className="hv2-btn hv2-btn-white hv2-btn-lg">
-            Plan a Birthday Party →
-          </Link>
           {estoreConfig?.value && (
-            <a href={estoreConfig.value} target="_blank" rel="noopener noreferrer" className="hv2-btn hv2-btn-dark hv2-btn-lg">
-              Book Jump Session
+            <a href={estoreConfig.value} target="_blank" rel="noopener noreferrer" className="hv2-btn hv2-btn-red hv2-btn-lg">
+              Book Your Session
             </a>
           )}
-          {waiverLink && (
-            <a href={waiverLink} target="_blank" rel="noopener noreferrer" className="hv2-btn hv2-btn-dark hv2-btn-lg">
-              Sign Before You Arrive
-            </a>
-          )}
+          <Link href={`/${locationSlug}/kids-birthday-parties`} className="hv2-btn hv2-btn-outline-pink hv2-btn-lg">
+            Find Your Location
+          </Link>
         </div>
       </div>
     </section>

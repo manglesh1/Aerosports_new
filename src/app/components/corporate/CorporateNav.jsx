@@ -14,6 +14,7 @@ export default function CorporateNav() {
   const [scrolled, setScrolled] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
   const [mounted, setMounted] = useState(false);
+  const [hoveredLink, setHoveredLink] = useState(null);
 
   useEffect(() => {
     setMounted(true);
@@ -29,20 +30,16 @@ export default function CorporateNav() {
     };
   }, []);
 
-  const linkStyle = {
+  const linkStyle = (href) => ({
     fontSize: 13,
     fontWeight: 700,
-    color: "rgba(255,255,255,0.7)",
+    color: hoveredLink === href ? "#c8ff00" : "rgba(255,255,255,0.7)",
     textDecoration: "none",
     textTransform: "uppercase",
     letterSpacing: "0.08em",
     transition: "color 0.2s",
-  };
-
-  // Compute dynamic styles only after mount to avoid hydration mismatches
-  const navBg = mounted && scrolled ? "rgba(8,11,24,0.95)" : "transparent";
-  const navBlur = mounted && scrolled ? "blur(12px)" : "none";
-  const navPad = mounted && scrolled ? "12px 0" : "24px 0";
+    cursor: "pointer",
+  });
 
   return (
     <nav
@@ -54,10 +51,11 @@ export default function CorporateNav() {
         right: 0,
         zIndex: 50,
         transition: "all 0.3s",
-        background: navBg,
-        WebkitBackdropFilter: navBlur,
-        backdropFilter: navBlur,
-        padding: navPad,
+        background: mounted && scrolled ? "rgba(8,11,24,0.97)" : "rgba(8,11,24,0.85)",
+        WebkitBackdropFilter: "blur(12px)",
+        backdropFilter: "blur(12px)",
+        padding: mounted && scrolled ? "10px 0" : "18px 0",
+        borderBottom: "1px solid rgba(200,255,0,0.08)",
       }}
     >
       <div
@@ -76,24 +74,25 @@ export default function CorporateNav() {
           style={{
             display: "flex",
             alignItems: "center",
-            gap: 4,
+            background: "#c8ff00",
+            padding: "8px 20px",
+            borderRadius: 6,
             textDecoration: "none",
+            transition: "filter 0.2s",
           }}
         >
-          <span
+          <img
+            src="https://storage.googleapis.com/aerosports/webp/oakville/logo_white.webp"
+            alt="AeroSports Logo"
             style={{
-              fontFamily: "var(--font-bebas), 'Bebas Neue', sans-serif",
-              fontSize: 28,
-              color: "#fff",
-              letterSpacing: "0.02em",
+              height: 40,
+              width: "auto",
+              objectFit: "contain",
             }}
-          >
-            AERO
-            <span style={{ color: "var(--hv2-red, #F5163B)" }}>SPORTS</span>
-          </span>
+          />
         </a>
 
-        {/* Desktop nav — always rendered, hidden via CSS on mobile */}
+        {/* Desktop nav */}
         <div
           suppressHydrationWarning
           style={{
@@ -114,7 +113,12 @@ export default function CorporateNav() {
           >
             {NAV_LINKS.map((l) => (
               <li key={l.href}>
-                <a href={l.href} style={linkStyle}>
+                <a
+                  href={l.href}
+                  style={linkStyle(l.href)}
+                  onMouseEnter={() => setHoveredLink(l.href)}
+                  onMouseLeave={() => setHoveredLink(null)}
+                >
                   {l.label}
                 </a>
               </li>
@@ -133,21 +137,21 @@ export default function CorporateNav() {
               letterSpacing: "0.05em",
               textTransform: "uppercase",
               textDecoration: "none",
-              background: "var(--hv2-red, #F5163B)",
+              background: "#ff2d87",
               color: "#fff",
               transition: "all 0.2s",
-              border: "1.5px solid var(--hv2-red, #F5163B)",
+              boxShadow: "0 0 16px rgba(255,45,135,0.35)",
             }}
           >
             <svg style={{ width: 14, height: 14 }} fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
               <path strokeLinecap="round" strokeLinejoin="round" d="M20 10c0 4.993-5.539 10.193-7.399 11.799a1 1 0 0 1-1.202 0C9.539 20.193 4 14.993 4 10a8 8 0 0 1 16 0" />
               <circle cx="12" cy="10" r="3" />
             </svg>
-            Find Your Park
+            Book Now
           </a>
         </div>
 
-        {/* Mobile hamburger — always rendered, hidden via CSS on desktop */}
+        {/* Mobile hamburger */}
         <button
           onClick={() => setMobileOpen(!mobileOpen)}
           suppressHydrationWarning
@@ -189,8 +193,8 @@ export default function CorporateNav() {
       {mounted && isMobile && mobileOpen && (
         <div
           style={{
-            background: "#080B18",
-            borderTop: "1px solid rgba(255,255,255,0.1)",
+            background: "rgba(8,11,24,0.98)",
+            borderTop: "1px solid rgba(200,255,0,0.1)",
             padding: "0 24px 16px",
           }}
         >
@@ -202,7 +206,12 @@ export default function CorporateNav() {
               style={{
                 display: "block",
                 padding: "14px 0",
-                ...linkStyle,
+                fontSize: 13,
+                fontWeight: 700,
+                color: "rgba(255,255,255,0.7)",
+                textDecoration: "none",
+                textTransform: "uppercase",
+                letterSpacing: "0.08em",
                 borderBottom: "1px solid rgba(255,255,255,0.05)",
               }}
             >
@@ -223,11 +232,12 @@ export default function CorporateNav() {
               letterSpacing: "0.05em",
               textTransform: "uppercase",
               textDecoration: "none",
-              background: "var(--hv2-red, #F5163B)",
+              background: "#ff2d87",
               color: "#fff",
+              boxShadow: "0 0 12px rgba(255,45,135,0.3)",
             }}
           >
-            Find Your Park
+            Book Now
           </a>
         </div>
       )}

@@ -79,7 +79,7 @@ const MotionImage = ({ pageData, waiverLink, locationData, hideOverlay = false, 
                 className="max-w-3xl text-center animate-[fadeInUp_1s_ease-out]"
               >
                 {/* Title */}
-                <Heading className="mb-4 font-black text-[clamp(2rem,6vw,3.5rem)] text-white uppercase leading-tight tracking-wide">
+                <Heading className="mb-4 font-black text-[clamp(2rem,6vw,3.5rem)] text-white uppercase leading-tight tracking-wide" style={{ fontFamily: "var(--font-bebas), 'Bebas Neue', 'Barlow Condensed', sans-serif" }}>
                   {item.title}
                 </Heading>
 
@@ -126,7 +126,7 @@ const MotionImage = ({ pageData, waiverLink, locationData, hideOverlay = false, 
                       title="sign your waiver at aerosports trampoline park"
                     >
                       <button
-                        className="bg-neon-green hover:bg-[#2ddb10] shadow-[0_0_20px_#39FF14] px-8 py-3 rounded-full font-bold text-black transition animate-pulse"
+                        className="bg-neon-green hover:bg-[#2ddb10] shadow-[0_0_20px_#c8ff00] px-8 py-3 rounded-full font-bold text-black transition animate-pulse"
                       >
                         Sign Waiver
                       </button>
@@ -161,7 +161,7 @@ const MotionImage = ({ pageData, waiverLink, locationData, hideOverlay = false, 
   <div className="max-w-3xl text-center animate-[fadeInUp_1s_ease-out]">
 
     {/* Title */}
-    <Heading className="mb-4 font-black text-[clamp(2rem,6vw,3.5rem)] text-white leading-tight tracking-wide">
+    <Heading className="mb-4 font-black text-[clamp(2rem,6vw,3.5rem)] text-white uppercase leading-tight tracking-wide" style={{ fontFamily: "var(--font-bebas), 'Bebas Neue', 'Barlow Condensed', sans-serif" }}>
       {item.title}
     </Heading>
 
@@ -173,22 +173,22 @@ const MotionImage = ({ pageData, waiverLink, locationData, hideOverlay = false, 
     {/* Info Blocks */}
     <div className="space-y-4 mb-8 text-white text-lg">
       <p>
-        <span className="font-bold text-[#39FF14]">Phone: </span>
+        <span className="font-bold text-[#c8ff00]">Phone: </span>
         <a
           href={toTelHref(locData.phone)}
           aria-label={`Call AeroSports ${locData.location} at ${locData.phone}`}
-          className="hover:text-[#39FF14] transition"
+          className="hover:text-[#c8ff00] transition"
         >
           {locData.phone}
         </a>
       </p>
 
       <p>
-        <span className="font-bold text-[#39FF14]">Address: </span>
+        <span className="font-bold text-[#c8ff00]">Address: </span>
         <a
           href={locData.gmburl}
           target="_blank"
-          className="hover:text-[#39FF14] transition"
+          className="hover:text-[#c8ff00] transition"
         >
           {locData.address}
         </a>
@@ -204,7 +204,7 @@ const MotionImage = ({ pageData, waiverLink, locationData, hideOverlay = false, 
           title="sign your waiver at aerosports trampoline park"
         >
           <button
-            className="bg-[#39FF14] hover:bg-[#2ddb10] shadow-[0_0_20px_#39FF14] px-8 py-3 rounded-full font-bold text-black transition animate-pulse"
+            className="bg-[#c8ff00] hover:bg-[#2ddb10] shadow-[0_0_20px_#c8ff00] px-8 py-3 rounded-full font-bold text-black transition animate-pulse"
           >
             Sign Waiver
           </button>

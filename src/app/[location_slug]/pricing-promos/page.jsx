@@ -52,7 +52,7 @@ const page = async ({ params }) => {
 
   // Package column accent colors (matching v11 birthday party design)
   const packageColors = [
-    { bg: "#FF174A", light: "rgba(255, 23, 74, 0.06)", border: "rgba(255, 23, 74, 0.2)" },
+    { bg: "#c8ff00", light: "rgba(255, 23, 74, 0.06)", border: "rgba(255, 23, 74, 0.2)" },
     { bg: "#3B82F6", light: "rgba(59, 130, 246, 0.06)", border: "rgba(59, 130, 246, 0.2)" },
     { bg: "#8B5CF6", light: "rgba(139, 92, 246, 0.06)", border: "rgba(139, 92, 246, 0.2)" },
     { bg: "#F59E0B", light: "rgba(245, 158, 11, 0.06)", border: "rgba(245, 158, 11, 0.2)" },
@@ -70,7 +70,7 @@ const page = async ({ params }) => {
         <div className="absolute -bottom-[20%] -left-[10%] w-80 h-80 rounded-full pointer-events-none" style={{ background: "rgba(59, 130, 246, 0.05)", filter: "blur(80px)" }} />
 
         <div className="relative z-10 max-w-4xl mx-auto px-6 py-24 md:py-32 text-center">
-          <p className="text-xs font-black text-[#FF174A] uppercase tracking-[3px] mb-3">
+          <p className="text-xs font-black text-[#c8ff00] uppercase tracking-[3px] mb-3">
             Value & Savings
           </p>
           <h1 className="v11_bp_heading v11_bp_heading_light" style={{ fontStyle: "italic", fontSize: "clamp(2.5rem, 7vw, 4rem)", marginBottom: "1.5rem" }}>
@@ -92,7 +92,7 @@ const page = async ({ params }) => {
           <section className="py-16 md:py-20 px-4">
             <div className="v11_bp_container">
               <div className="text-center mb-12">
-                <p className="v11_bp_packages_eyebrow" style={{ color: "#FF174A" }}>Limited-Time Offers</p>
+                <p className="v11_bp_packages_eyebrow" style={{ color: "#c8ff00" }}>Limited-Time Offers</p>
                 <h2 className="v11_bp_heading">
                   Exclusive
                   <span className="v11_bp_heading_accent"> Promotions</span>
@@ -106,7 +106,7 @@ const page = async ({ params }) => {
                 {promotions.map((promo, index) => (
                   <article
                     key={index}
-                    className="relative bg-white rounded-2xl border border-[#e2e8f0] overflow-hidden transition-all duration-300 hover:-translate-y-1.5 hover:shadow-[0_12px_32px_rgba(0,0,0,0.1)] hover:border-[#FF174A]/30"
+                    className="relative bg-white rounded-2xl border border-[#e2e8f0] overflow-hidden transition-all duration-300 hover:-translate-y-1.5 hover:shadow-[0_12px_32px_rgba(0,0,0,0.1)] hover:border-[#c8ff00]/30"
                   >
                     {/* Top accent bar */}
                     <div className="h-1" style={{ background: packageColors[index % packageColors.length].bg }} />
@@ -114,7 +114,7 @@ const page = async ({ params }) => {
                     <div className="p-6 md:p-8">
                       {/* Badge */}
                       {promo.badge && (
-                        <span className="inline-block bg-[#FF174A] text-white text-[0.65rem] font-black uppercase tracking-widest px-3 py-1 rounded-full mb-4">
+                        <span className="inline-block bg-[#c8ff00] text-white text-[0.65rem] font-black uppercase tracking-widest px-3 py-1 rounded-full mb-4">
                           {promo.badge}
                         </span>
                       )}
@@ -133,7 +133,7 @@ const page = async ({ params }) => {
                       <div className="flex flex-col gap-1.5 mb-6 text-sm">
                         <time className="text-[#475569] font-semibold">{promo.validity}</time>
                         {promo.code && (
-                          <span className="text-[#FF174A] font-bold uppercase tracking-wide">
+                          <span className="text-[#c8ff00] font-bold uppercase tracking-wide">
                             Code: {promo.code}
                           </span>
                         )}
@@ -142,7 +142,7 @@ const page = async ({ params }) => {
                       {/* CTA */}
                       <a
                         href={promo.link}
-                        className="block w-full text-center bg-[#FF174A] hover:bg-[#cc0e3e] text-white text-sm font-black uppercase tracking-wider px-6 py-3 rounded-lg transition-all duration-200 hover:-translate-y-0.5 hover:shadow-[0_8px_25px_rgba(255,23,74,0.3)]"
+                        className="block w-full text-center bg-[#c8ff00] hover:bg-[#cc0e3e] text-white text-sm font-black uppercase tracking-wider px-6 py-3 rounded-lg transition-all duration-200 hover:-translate-y-0.5 hover:shadow-[0_8px_25px_rgba(255,23,74,0.3)]"
                       >
                         {promo.linktext}
                       </a>

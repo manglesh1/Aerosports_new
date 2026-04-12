@@ -43,7 +43,7 @@ const CelebrateSection = ({ locationSlug }) => {
 						<Link
 							key={index}
 							href={`/${locationSlug}/${event.href}`}
-							className="group block bg-white/5 rounded-2xl overflow-hidden border border-white/10 transition-all duration-300 hover:-translate-y-1.5 hover:shadow-[0_16px_40px_rgba(0,0,0,0.4)] hover:border-[#FF174A]/30"
+							className="group block bg-white/5 rounded-2xl overflow-hidden border border-white/10 transition-all duration-300 hover:-translate-y-1.5 hover:shadow-[0_16px_40px_rgba(0,0,0,0.4)] hover:border-[#c8ff00]/30"
 						>
 							<div
 								className="relative w-full h-[200px] sm:h-56 md:h-[200px] bg-cover bg-center overflow-hidden"
@@ -63,7 +63,7 @@ const CelebrateSection = ({ locationSlug }) => {
 								<p className="text-white/60 text-sm leading-relaxed mb-4">
 									{event.text}
 								</p>
-								<span className="inline-block text-[#FF174A] text-xs font-bold uppercase tracking-wider group-hover:translate-x-1 transition-transform">
+								<span className="inline-block text-[#c8ff00] text-xs font-bold uppercase tracking-wider group-hover:translate-x-1 transition-transform">
 									More Info →
 								</span>
 							</div>

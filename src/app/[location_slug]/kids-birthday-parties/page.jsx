@@ -201,7 +201,7 @@ const Page = async ({ params }) => {
 
   // Feature icon accent colors (v11 style)
   const featureAccents = [
-    { bg: "rgba(255, 23, 74, 0.08)", color: "#FF174A", border: "rgba(255, 23, 74, 0.15)" },
+    { bg: "rgba(255, 23, 74, 0.08)", color: "#c8ff00", border: "rgba(255, 23, 74, 0.15)" },
     { bg: "rgba(59, 130, 246, 0.08)", color: "#3B82F6", border: "rgba(59, 130, 246, 0.15)" },
     { bg: "rgba(245, 158, 11, 0.08)", color: "#F59E0B", border: "rgba(245, 158, 11, 0.15)" },
     { bg: "rgba(16, 185, 129, 0.08)", color: "#10B981", border: "rgba(16, 185, 129, 0.15)" },
@@ -211,7 +211,7 @@ const Page = async ({ params }) => {
 
   // Package column accent colors
   const packageColors = [
-    { bg: "#FF174A", light: "rgba(255, 23, 74, 0.06)", border: "rgba(255, 23, 74, 0.2)" },
+    { bg: "#c8ff00", light: "rgba(255, 23, 74, 0.06)", border: "rgba(255, 23, 74, 0.2)" },
     { bg: "#3B82F6", light: "rgba(59, 130, 246, 0.06)", border: "rgba(59, 130, 246, 0.2)" },
     { bg: "#8B5CF6", light: "rgba(139, 92, 246, 0.06)", border: "rgba(139, 92, 246, 0.2)" },
     { bg: "#F59E0B", light: "rgba(245, 158, 11, 0.06)", border: "rgba(245, 158, 11, 0.2)" },

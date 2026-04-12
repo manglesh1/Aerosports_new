@@ -38,13 +38,13 @@
   text-align: center;
   font-size: 2.75rem;
   font-weight: 900;
-  color: #39ff14;
+  color: #c8ff00;
   margin-bottom: 16px;
   letter-spacing: 2px;
   line-height: 1.2;
   text-transform: uppercase;
   animation: fadeInUp 1s ease-out;
-  text-shadow: 0 0 20px rgba(57, 255, 20, 0.5);
+  text-shadow: 0 0 20px rgba(200, 255, 0, 0.5);
 }
 
 @keyframes fadeInUp {
@@ -79,7 +79,7 @@
 .gallery-navbar-title {
   font-size: 1.875rem;
   font-weight: 700;
-  color: #ff1152;
+  color: #c8ff00;
   margin-bottom: 32px;
   text-transform: uppercase;
   letter-spacing: 1px;
@@ -99,7 +99,7 @@
 .gallery-section-title {
   font-size: 1.5rem;
   font-weight: 700;
-  color: #ff1152;
+  color: #c8ff00;
   margin-bottom: 24px;
   text-transform: uppercase;
   letter-spacing: 1px;
@@ -513,7 +513,7 @@
 }
 
 .gallery-thumb-btn.active {
-  border-color: #39ff14;
+  border-color: #c8ff00;
   opacity: 1;
 }
 

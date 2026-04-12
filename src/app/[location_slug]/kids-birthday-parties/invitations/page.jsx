@@ -51,7 +51,7 @@ function TemplateSelector({ label, items, selected, onSelect }) {
             key={idx}
             className={`w-14 h-14 lg:w-20 lg:h-20 bg-cover bg-center rounded-xl border-2 transition-all duration-200 ${
               selected === src
-                ? "border-[#39FF14] ring-2 ring-[#39FF14]/40 scale-105"
+                ? "border-[#c8ff00] ring-2 ring-[#c8ff00]/40 scale-105"
                 : "border-white/20 hover:border-white/50"
             }`}
             style={{ backgroundImage: `url(${src})` }}
@@ -65,10 +65,10 @@ function TemplateSelector({ label, items, selected, onSelect }) {
 
 function InvitationForm({ details, onChange, checkInTime, onTimeChange }) {
   const inputClass =
-    "mt-1 w-full p-2.5 bg-black/30 border border-white/20 text-white placeholder-white/40 rounded-lg focus:border-[#39FF14] focus:ring-1 focus:ring-[#39FF14]/30 focus:outline-none transition-colors";
+    "mt-1 w-full p-2.5 bg-black/30 border border-white/20 text-white placeholder-white/40 rounded-lg focus:border-[#c8ff00] focus:ring-1 focus:ring-[#c8ff00]/30 focus:outline-none transition-colors";
   const labelClass = "block text-sm font-semibold text-gray-300 mb-1";
   const selectClass =
-    "p-2.5 bg-black/30 border border-white/20 text-white rounded-lg focus:border-[#39FF14] focus:outline-none appearance-none";
+    "p-2.5 bg-black/30 border border-white/20 text-white rounded-lg focus:border-[#c8ff00] focus:outline-none appearance-none";
 
   return (
     <form className="space-y-4">
@@ -154,7 +154,7 @@ function InvitationPreview({ cardRef, bgImage, fgImage, details, checkInTime, on
       {/* Download button */}
       <button
         onClick={onDownload}
-        className="absolute top-3 right-3 bg-[#ff1152] hover:bg-[#e00e47] text-white p-3 rounded-full shadow-lg transition-all duration-200 hover:scale-110 z-10"
+        className="absolute top-3 right-3 bg-[#c8ff00] hover:bg-[#e00e47] text-white p-3 rounded-full shadow-lg transition-all duration-200 hover:scale-110 z-10"
         title="Download Invitation"
       >
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="w-5 h-5">
@@ -229,12 +229,12 @@ export default function InvitationsPage() {
   return (
     <div className="min-h-screen bg-gradient-to-br from-black via-gray-950 to-black">
       {/* Header banner */}
-      <div className="bg-gradient-to-r from-[#ff1152]/20 to-[#39FF14]/10 border-b border-white/10 px-6 py-8 text-center">
-        <span className="inline-block mb-3 px-4 py-1.5 border border-[#39FF14] rounded-full text-[#39FF14] text-xs font-bold uppercase tracking-widest">
+      <div className="bg-gradient-to-r from-[#c8ff00]/20 to-[#c8ff00]/10 border-b border-white/10 px-6 py-8 text-center">
+        <span className="inline-block mb-3 px-4 py-1.5 border border-[#c8ff00] rounded-full text-[#c8ff00] text-xs font-bold uppercase tracking-widest">
           Birthday Parties
         </span>
         <h1 className="text-3xl md:text-4xl font-black text-white uppercase tracking-wide">
-          Create Your <span className="text-[#ff1152]">Party Invitation</span>
+          Create Your <span className="text-[#c8ff00]">Party Invitation</span>
         </h1>
         <p className="text-gray-400 mt-2 max-w-lg mx-auto">
           Design a custom digital invitation for your AeroSports birthday party and share it with your guests.

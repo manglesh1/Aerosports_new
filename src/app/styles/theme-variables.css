@@ -6,10 +6,10 @@
 :root,
 [data-theme="dark"] {
   /* Primary Brand Colors */
-  --primary-pink: #ff1152;
-  --primary-lime: #caff1a;
-  --secondary-pink: #ff4d7d;
-  --secondary-lime: #d4ff4d;
+  --primary-pink: var(--brand-green);
+  --primary-lime: var(--brand-pink);
+  --secondary-pink: var(--brand-green);
+  --secondary-lime: var(--brand-green);
 
   /* Background Colors */
   --bg-primary: #000000;
@@ -28,22 +28,22 @@
   --text-dark: #000000;
 
   /* Border & Divider Colors */
-  --border-primary: rgba(255, 17, 82, 0.3);
+  --border-primary: rgba(var(--brand-green-rgb), 0.3);
   --border-secondary: rgba(255, 255, 255, 0.1);
-  --border-hover: rgba(202, 255, 26, 0.8);
+  --border-hover: rgba(255, 45, 135, 0.8);
 
   /* Shadow Colors */
-  --shadow-primary: rgba(255, 17, 82, 0.3);
+  --shadow-primary: rgba(var(--brand-green-rgb), 0.3);
   --shadow-secondary: rgba(0, 0, 0, 0.5);
-  --shadow-glow: rgba(202, 255, 26, 0.3);
+  --shadow-glow: rgba(255, 45, 135, 0.3);
 
   /* Overlay Colors */
   --overlay-dark: rgba(0, 0, 0, 0.7);
   --overlay-light: rgba(0, 0, 0, 0.3);
 
   /* Button Gradients */
-  --btn-gradient: linear-gradient(135deg, rgba(255, 17, 82, 0.9) 0%, rgba(255, 17, 82, 0.7) 100%);
-  --btn-gradient-hover: linear-gradient(135deg, rgba(255, 17, 82, 1) 0%, rgba(255, 26, 140, 0.9) 100%);
+  --btn-gradient: linear-gradient(135deg, rgba(var(--brand-green-rgb), 0.9) 0%, rgba(var(--brand-green-rgb), 0.7) 100%);
+  --btn-gradient-hover: linear-gradient(135deg, rgba(var(--brand-green-rgb), 1) 0%, rgba(255, 26, 140, 0.9) 100%);
 
   /* Card Background */
   --card-bg: linear-gradient(135deg, rgba(26, 26, 26, 0.8) 0%, rgba(38, 38, 38, 0.9) 100%);
@@ -52,10 +52,10 @@
 /* Light Mode */
 [data-theme="light"] {
   /* Primary Brand Colors (same) */
-  --primary-pink: #ff1152;
-  --primary-lime: #caff1a;
-  --secondary-pink: #ff4d7d;
-  --secondary-lime: #9ce600;
+  --primary-pink: var(--brand-green);
+  --primary-lime: var(--brand-pink);
+  --secondary-pink: var(--brand-green);
+  --secondary-lime: var(--brand-green-dark);
 
   /* Background Colors */
   --bg-primary: #ffffff;
@@ -74,22 +74,22 @@
   --text-dark: #000000;
 
   /* Border & Divider Colors */
-  --border-primary: rgba(255, 17, 82, 0.4);
+  --border-primary: rgba(57, 255, 20, 0.4);
   --border-secondary: rgba(0, 0, 0, 0.1);
-  --border-hover: rgba(202, 255, 26, 0.9);
+  --border-hover: rgba(255, 45, 135, 0.9);
 
   /* Shadow Colors */
-  --shadow-primary: rgba(255, 17, 82, 0.25);
+  --shadow-primary: rgba(57, 255, 20, 0.25);
   --shadow-secondary: rgba(0, 0, 0, 0.15);
-  --shadow-glow: rgba(202, 255, 26, 0.4);
+  --shadow-glow: rgba(255, 45, 135, 0.4);
 
   /* Overlay Colors */
   --overlay-dark: rgba(0, 0, 0, 0.6);
   --overlay-light: rgba(0, 0, 0, 0.2);
 
   /* Button Gradients */
-  --btn-gradient: linear-gradient(135deg, rgba(255, 17, 82, 0.95) 0%, rgba(255, 17, 82, 0.8) 100%);
-  --btn-gradient-hover: linear-gradient(135deg, rgba(255, 17, 82, 1) 0%, rgba(255, 26, 140, 1) 100%);
+  --btn-gradient: linear-gradient(135deg, rgba(57, 255, 20, 0.95) 0%, rgba(57, 255, 20, 0.8) 100%);
+  --btn-gradient-hover: linear-gradient(135deg, rgba(57, 255, 20, 1) 0%, rgba(255, 26, 140, 1) 100%);
 
   /* Card Background */
   --card-bg: linear-gradient(135deg, rgba(255, 255, 255, 0.95) 0%, rgba(248, 248, 248, 0.9) 100%);

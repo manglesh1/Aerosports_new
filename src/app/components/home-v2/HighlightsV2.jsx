@@ -28,7 +28,7 @@ const HighlightsV2 = ({ reviewdata, attractionsCount, locationDisplay }) => {
         {CARDS.map((c, i) => (
           <div key={i} className="hv2-hl-card">
             <div className="hv2-hl-icon">{c.icon}</div>
-            <div className="hv2-hl-num">{resolveNum(c)}</div>
+            <div className={`hv2-hl-num ${i % 2 === 0 ? 'hv2-hl-green' : 'hv2-hl-pink'}`}>{resolveNum(c)}</div>
             <div className="hv2-hl-label">{c.label}</div>
             <div className="hv2-hl-desc">{c.desc}</div>
           </div>

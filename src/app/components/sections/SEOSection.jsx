@@ -8,7 +8,7 @@ const SEOSection = ({ locationData, locationSlug, estoreConfig, seosection }) =>
 			<div className="max-w-[1200px] mx-auto px-6 grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12 items-center">
 				{/* Left Side - CMS Content */}
 				<div
-					className="flex flex-col gap-4 [&_h1]:text-[clamp(2rem,5vw,3rem)] [&_h1]:font-black [&_h1]:uppercase [&_h1]:leading-[1.15] [&_h1]:text-[#0f172a] [&_h2]:text-[clamp(1.5rem,4vw,2.2rem)] [&_h2]:font-black [&_h2]:uppercase [&_h2]:leading-[1.15] [&_h2]:text-[#0f172a] [&_p]:text-[#475569] [&_p]:leading-[1.8] [&_p]:text-base [&_strong]:text-[#FF174A] [&_strong]:font-bold"
+					className="flex flex-col gap-4 [&_h1]:text-[clamp(2rem,5vw,3rem)] [&_h1]:font-black [&_h1]:uppercase [&_h1]:leading-[1.15] [&_h1]:text-[#0f172a] [&_h2]:text-[clamp(1.5rem,4vw,2.2rem)] [&_h2]:font-black [&_h2]:uppercase [&_h2]:leading-[1.15] [&_h2]:text-[#0f172a] [&_p]:text-[#475569] [&_p]:leading-[1.8] [&_p]:text-base [&_strong]:text-[#c8ff00] [&_strong]:font-bold"
 					style={{ fontFamily: "var(--font-roboto-condensed, 'Roboto Condensed', sans-serif)" }}
 					dangerouslySetInnerHTML={{ __html: sanitizeCmsHtml(seosection) }}
 				/>
@@ -35,7 +35,7 @@ const SEOSection = ({ locationData, locationSlug, estoreConfig, seosection }) =>
 							</div>
 						</div>
 						<div className="px-6 pb-6">
-							<p className="text-base font-bold text-[#FF174A] mb-1">
+							<p className="text-base font-bold text-[#c8ff00] mb-1">
 								{locationData?.[0]?.address || "Visit our location"}
 							</p>
 							<p className="text-sm text-[#64748b] leading-relaxed">

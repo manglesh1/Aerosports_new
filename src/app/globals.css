@@ -2,20 +2,20 @@
 
 @theme {
   /* Custom neon colors */
-  --color-neon-pink: #F00C74;
-  --color-neon-pink-light: #FF1152;
-  --color-neon-green: #39FF14;
-  --color-neon-green-glow: #CAFF1A;
+  --color-neon-pink: #c8ff00;
+  --color-neon-pink-light: #a8d600;
+  --color-neon-green: #F5163B;
+  --color-neon-green-glow: #c8ff00;
 
   /* Custom shadows */
-  --shadow-neon-pink: 0 8px 25px rgba(240, 12, 116, 0.5);
-  --shadow-neon-pink-lg: 0 12px 30px rgba(240, 12, 116, 0.6);
-  --shadow-neon-green: 0 8px 25px rgba(202, 255, 26, 0.3);
-  --shadow-neon-green-lg: 0 12px 30px rgba(202, 255, 26, 0.5);
-  --shadow-accent-pink: 0 6px 20px rgba(255, 17, 82, 0.4);
-  --shadow-accent-pink-lg: 0 10px 25px rgba(255, 17, 82, 0.6);
-  --shadow-neon-green-solid: 0 10px 30px rgba(57, 255, 20, 0.3);
-  --shadow-neon-green-solid-lg: 0 15px 35px rgba(57, 255, 20, 0.5);
+  --shadow-neon-pink: 0 8px 25px rgba(200, 255, 0, 0.5);
+  --shadow-neon-pink-lg: 0 12px 30px rgba(200, 255, 0, 0.6);
+  --shadow-neon-green: 0 8px 25px rgba(245, 22, 59, 0.3);
+  --shadow-neon-green-lg: 0 12px 30px rgba(245, 22, 59, 0.5);
+  --shadow-accent-pink: 0 6px 20px rgba(200, 255, 0, 0.4);
+  --shadow-accent-pink-lg: 0 10px 25px rgba(200, 255, 0, 0.6);
+  --shadow-neon-green-solid: 0 10px 30px rgba(245, 22, 59, 0.3);
+  --shadow-neon-green-solid-lg: 0 15px 35px rgba(245, 22, 59, 0.5);
 
   /* Radius */
   --radius: 0.5rem;
@@ -69,6 +69,18 @@ body {
 }
 
 :root {
+  /* ===== CENTRALIZED BRAND COLORS ===== */
+  --brand-green: #c8ff00;
+  --brand-green-dark: #a8d600;
+  --brand-green-light: #f0ffe0;
+  --brand-green-rgb: 200, 255, 0;
+  --brand-pink: #ff2d87;
+  --brand-pink-dark: #d6246f;
+  --brand-pink-light: #ffe0ed;
+  --brand-pink-rgb: 255, 45, 135;
+  --brand-green-text: #0d7a00; /* darker green for text on light backgrounds */
+  --brand-text-on-green: #000000; /* black text on green backgrounds */
+
   /* Legacy custom properties */
   --primary-color: #ed0871;
   --secondary-color: #0052ff;

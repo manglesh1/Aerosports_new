@@ -50,12 +50,12 @@
 }
 
 .v11_cat_seo_content strong {
-  color: #FF174A;
+  color: #c8ff00;
   font-weight: 700;
 }
 
 .v11_cat_seo_content a {
-  color: #FF174A;
+  color: #c8ff00;
   text-decoration: underline;
   text-underline-offset: 2px;
   font-weight: 600;
@@ -165,8 +165,8 @@
 .aero_category_section_card_desc {
   background: linear-gradient(
     145deg,
-    #f00c74 0%,
-    #ff1152 75%,
+    #2ED60F 0%,
+    #c8ff00 75%,
     rgba(202, 255, 26, 0.25) 100%
   );
   clip-path: polygon(0 0, calc(100% - 15px) 0, 100% 15px, 100% 100%, 0 100%);

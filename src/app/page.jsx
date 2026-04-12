@@ -210,11 +210,11 @@ export default async function CorporatePage() {
 
             <div style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: 16 }}>
               {[
-                { icon: "⚡", bg: "rgba(245,22,59,0.1)", color: "var(--hv2-red)", title: "Active Play", desc: "Wall-to-wall trampolines, ninja courses, and climbing walls to keep everyone moving." },
-                { icon: "🎉", bg: "rgba(57,255,20,0.1)", color: "var(--hv2-lime)", title: "Celebrations", desc: "The ultimate stress-free destination for unforgettable birthdays and team events." },
-                { icon: "👥", bg: "rgba(8,11,24,0.1)", color: "var(--hv2-navy)", title: "Shared Experiences", desc: "Designed for families and friends to disconnect from screens and connect through play." },
+                { icon: "⚡", bg: "rgba(255,45,135,0.08)", color: "#ff2d87", title: "Active Play", desc: "Wall-to-wall trampolines, ninja courses, and climbing walls to keep everyone moving." },
+                { icon: "🎉", bg: "rgba(255,45,135,0.08)", color: "#ff2d87", title: "Celebrations", desc: "The ultimate stress-free destination for unforgettable birthdays and team events." },
+                { icon: "👥", bg: "rgba(8,11,24,0.08)", color: "var(--hv2-navy)", title: "Shared Experiences", desc: "Designed for families and friends to disconnect from screens and connect through play." },
               ].map((f, i) => (
-                <div key={i} style={{ background: "#fff", borderRadius: 16, padding: "32px 28px", border: "1px solid #eee", transition: "box-shadow 0.3s" }}>
+                <div key={i} style={{ background: "#fff", borderRadius: 16, padding: "32px 28px", border: "1px solid #eee", borderTop: "3px solid #ff2d87", transition: "box-shadow 0.3s" }}>
                   <div style={{ width: 56, height: 56, borderRadius: 12, background: f.bg, display: "flex", alignItems: "center", justifyContent: "center", marginBottom: 24, fontSize: 28 }}>
                     {f.icon}
                   </div>
@@ -231,16 +231,16 @@ export default async function CorporatePage() {
       <section className="hv2-plan" style={{ padding: "6rem 2rem" }}>
         <div style={{ maxWidth: 1600, margin: "0 auto" }}>
           <div style={{ textAlign: "center", marginBottom: 48 }}>
-            <span className="hv2-section-tag" style={{ background: "rgba(245,22,59,0.15)", color: "var(--hv2-red)" }}>Start Here</span>
+            <span className="hv2-section-tag" style={{ background: "rgba(200,255,0,0.15)", color: "var(--hv2-red)" }}>Start Here</span>
             <h2 className="hv2-why-h2" style={{ marginTop: 12 }}>Choose Your Experience</h2>
           </div>
 
           <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 20, maxWidth: 900, margin: "0 auto" }}>
             {[
               { title: "Birthday Parties", desc: "Stress-free celebrations with private rooms and hosts.", href: "#parties", gradient: "linear-gradient(135deg, rgba(88,28,135,0.8), #181D35)" },
-              { title: "Attractions", desc: "Trampolines, ninja courses, arcades and more.", href: "#attractions", gradient: "linear-gradient(135deg, rgba(245,22,59,0.4), #181D35)" },
+              { title: "Attractions", desc: "Trampolines, ninja courses, arcades and more.", href: "#attractions", gradient: "linear-gradient(135deg, rgba(200,255,0,0.4), #181D35)" },
               { title: "Group Events", desc: "School trips, corporate building, and camps.", href: "#groups", gradient: "linear-gradient(135deg, rgba(30,58,138,0.6), #181D35)" },
-              { title: "Locations", desc: "Find an AeroSports park near you to start playing.", href: "#locations", gradient: "linear-gradient(135deg, rgba(57,255,20,0.2), #181D35)" },
+              { title: "Locations", desc: "Find an AeroSports park near you to start playing.", href: "#locations", gradient: "linear-gradient(135deg, rgba(255,45,135,0.2), #181D35)" },
             ].map((e, i) => (
               <a
                 key={i}
@@ -476,7 +476,7 @@ export default async function CorporatePage() {
                     </div>
                   )}
                   <div style={{ position: "absolute", top: 16, left: 16 }}>
-                    <span style={{ background: "var(--hv2-red)", color: "#fff", fontSize: 10, fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.1em", padding: "4px 12px", borderRadius: 100 }}>
+                    <span style={{ background: "var(--hv2-red)", color: "#000", fontSize: 10, fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.1em", padding: "4px 12px", borderRadius: 100 }}>
                       Now Open
                     </span>
                   </div>

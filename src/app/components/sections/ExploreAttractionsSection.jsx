@@ -72,7 +72,7 @@ export default function ExploreAttractionsSection({ attractions, location_slug }
 				<div className="text-center mt-8">
 					<Link
 						href={`/${location_slug}/attractions`}
-						className="inline-block bg-[#FF174A] text-white px-8 py-3 rounded-lg font-bold text-sm uppercase tracking-wider hover:-translate-y-0.5 hover:shadow-[0_8px_25px_rgba(255,23,74,0.3)] transition-all"
+						className="inline-block bg-[#c8ff00] text-white px-8 py-3 rounded-lg font-bold text-sm uppercase tracking-wider hover:-translate-y-0.5 hover:shadow-[0_8px_25px_rgba(255,23,74,0.3)] transition-all"
 					>
 						View All Attractions →
 					</Link>

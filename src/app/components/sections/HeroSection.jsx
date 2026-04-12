@@ -17,7 +17,7 @@ const HeroSection = ({ headerImage, waiverLink, locationData, estoreConfig, loca
       <div className="z-20 absolute inset-0 flex justify-center items-start sm:items-center bg-gradient-to-b from-black/60 via-black/50 to-black/70 px-6 pt-24 sm:pt-30 md:pt-40 lg:pt-50 pb-16 overflow-y-auto">
         <div className="max-w-4xl text-center animate-[fadeInUp_1s_ease-out]">
           {/* Badge */}
-          <div className="hidden sm:inline-block mb-8 px-5 py-2 bg-[#FF174A] rounded-full font-bold text-white text-xs uppercase tracking-[1.5px] animate-[scaleIn_0.8s_ease-out]">
+          <div className="hidden sm:inline-block mb-8 px-5 py-2 bg-[#c8ff00] rounded-full font-bold text-white text-xs uppercase tracking-[1.5px] animate-[scaleIn_0.8s_ease-out]">
             Experience Pure Adrenaline
           </div>
 
@@ -27,7 +27,7 @@ const HeroSection = ({ headerImage, waiverLink, locationData, estoreConfig, loca
             style={{ fontFamily: "var(--font-roboto-condensed, 'Roboto Condensed', sans-serif)" }}
           >
             Jump Into The Fun at{" "}
-            <span className="text-[#FF174A]">
+            <span className="text-[#c8ff00]" style={{ textShadow: '0 0 30px rgba(200,255,0,0.4)' }}>
               AeroSports {locationData?.[0]?.location || "Oakville"}
             </span>
           </h1>

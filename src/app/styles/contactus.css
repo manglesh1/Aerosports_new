@@ -43,8 +43,8 @@
   width: 100%;
   background: linear-gradient(
     145deg,
-    #f00c74 0%,
-    #ff1152 75%,
+    #2ED60F 0%,
+    #c8ff00 75%,
     rgba(202, 255, 26, 0.25) 100%
   );
   clip-path: polygon(8% 0, 100% 0, 92% 100%, 0 100%);
@@ -148,7 +148,7 @@
   .form-group select:focus,
   .form-group textarea:focus {
     outline: none;
-    border-color: #ff1152;
+    border-color: #c8ff00;
     box-shadow: 0 0 0 3px rgba(255, 17, 82, 0.1);
   }
 

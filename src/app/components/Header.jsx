@@ -357,7 +357,7 @@ const Header = ({ location_slug, menudata, configdata, pricingData, locationData
             </nav>
             <div className="v11_header_mobile_footer">
               <div className="v11_header_mobile_info">
-                <svg width="14" height="14" fill="currentColor" viewBox="0 0 20 20" style={{ color: '#ff1152', flexShrink: 0 }}>
+                <svg width="14" height="14" fill="currentColor" viewBox="0 0 20 20" style={{ color: '#c8ff00', flexShrink: 0 }}>
                   <path fillRule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clipRule="evenodd" />
                 </svg>
                 <span>{address || `${locationName} Location`}</span>
