@@ -111,10 +111,28 @@ async function fetchMenuData(location) {
 async function fetchPageData(location, page) {
   const jsonData = await fetchsheetdata("Data", location);
   const pageUpper = page.toUpperCase();
+  const pageSlug = page.toLowerCase();
+  const locationSlug = (location || '').toLowerCase();
+  const rowLocationRank = (row) => {
+    const rawLocation = String(row.location || '').toLowerCase();
+    if (!locationSlug) return rawLocation ? 1 : 0;
+    if (!rawLocation) return 1;
+    const locations = rawLocation.split(',').map((loc) => loc.trim());
+    return locations.includes(locationSlug) ? 0 : 2;
+  };
+  const rowPageRank = (row) => {
+    const path = String(row.path || '').toLowerCase();
+    const desc = String(row.desc || '').toLowerCase();
+    if (path === pageSlug) return 0;
+    if (desc === pageSlug) return 1;
+    if (path.includes(pageSlug)) return 2;
+    return 3;
+  };
   const filtered = jsonData.filter(m =>
     m.path?.toUpperCase().includes(pageUpper) ||
     m.desc?.toUpperCase() === pageUpper
   );
+  filtered.sort((a, b) => rowLocationRank(a) - rowLocationRank(b) || rowPageRank(a) - rowPageRank(b));
   return filtered[0];
 }
 async function fetchFaqData(location, page) {
@@ -231,17 +249,13 @@ async function generateSchema(pagedata, locationData, category, page ) {
 
   const metadataItem = pagedata;//?.find((item) => item.path === pagefordata);
 //console.log('pagedata', pagedata);
-  let canonicalPath = pagedata?.location;
-  if (category && page) {
-    canonicalPath += `/${category}/${page}`;
-  } else if (page) {
-     canonicalPath += `/${page}`;
-  } else if (category) {
-    canonicalPath += `/${category}`;
-  }
-
-
-  const fullUrl = `${BASE_URL}/${canonicalPath}`;
+  const locationSegment = String(
+    pagedata?.location || locationData?.[0]?.location || ''
+  ).split(',')[0].trim().toLowerCase();
+  const canonicalPath = [locationSegment, category, page]
+    .filter(Boolean)
+    .join('/');
+  const fullUrl = canonicalPath ? `${BASE_URL}/${canonicalPath}` : BASE_URL;
   const imageUrl = metadataItem?.headerimage?.startsWith("http")
     ? metadataItem.headerimage
     : `${BASE_URL}${metadataItem?.headerimage || ""}`;

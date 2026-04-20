@@ -7,6 +7,25 @@ import * as XLSX from 'xlsx';
 const SHEET_URL = process.env.REDIRECT_SHEET_XLSX
   ?? 'https://docs.google.com/spreadsheets/d/1B_9EaTQDztWGH_cD3lUP7hpWD6FvNBJ-6Czml2x7d9c/export?format=xlsx';
 
+function normalizeLegacyWildcardRedirect(source, destination) {
+  const splatParams = [];
+  let splatIndex = 0;
+
+  const normalizedSource = source.replace(/\/\*(?=\/|$)/g, () => {
+    const param = `:splat${splatIndex++}*`;
+    splatParams.push(param);
+    return `/${param}`;
+  });
+
+  let destinationSplatIndex = 0;
+  const normalizedDestination = destination.replace(/\/\*(?=\/|$)/g, () => {
+    const param = splatParams[destinationSplatIndex++] || splatParams[splatParams.length - 1];
+    return param ? `/${param}` : '';
+  });
+
+  return { source: normalizedSource, destination: normalizedDestination };
+}
+
 async function fetchSheetRedirects() {
   try {
     const res = await fetch(SHEET_URL, { cache: 'no-store' });
@@ -25,13 +44,14 @@ async function fetchSheetRedirects() {
     const out = [];
     for (const r of rows) {
       // Be forgiving about column casing/names
-      const source = String(r.source ?? '').trim();
-      const destination = String(r.destination ?? '').trim();
+      let source = String(r.source ?? '').trim();
+      let destination = String(r.destination ?? '').trim();
       const raw = String(
         r.permanent?? r.code ?? r.Code ?? ''
       ).trim().toLowerCase();
 
       if (!source || !destination) continue;
+      ({ source, destination } = normalizeLegacyWildcardRedirect(source, destination));
 
       // permanent: true for 301 (or empty), false for 302
       const permanent =
@@ -52,6 +72,24 @@ const nextConfig = {
   // Cache headers — Cloudflare respects these to cache at edge
   async headers() {
     return [
+      {
+        source: '/admin/:path*',
+        headers: [
+          {
+            key: 'X-Robots-Tag',
+            value: 'noindex, nofollow, noarchive',
+          },
+        ],
+      },
+      {
+        source: '/api/:path*',
+        headers: [
+          {
+            key: 'X-Robots-Tag',
+            value: 'noindex, nofollow, noarchive',
+          },
+        ],
+      },
       {
         // HTML pages: cache at Cloudflare edge for 10 min, stale-while-revalidate for 1 hour.
         // Browsers always revalidate (max-age=0) so users never see truly stale content.

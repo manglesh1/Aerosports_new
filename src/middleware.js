@@ -47,10 +47,40 @@ export function middleware(req) {
       return NextResponse.next();
     }
 
+    if (
+      VALID_LOCATIONS.has(locationSlug) &&
+      segments.length === 2 &&
+      ['contactus', 'contact-us'].includes(segments[1].toLowerCase())
+    ) {
+      url.pathname = `/${locationSlug}/about-us/contact-us`;
+      return NextResponse.redirect(url, 308);
+    }
+
     if (!skipPaths.includes(locationSlug) && !VALID_LOCATIONS.has(locationSlug)) {
-      // Rewrite to the not-found page with 404 status
-      url.pathname = '/_not-found';
-      return NextResponse.rewrite(url, { status: 404 });
+      return new NextResponse(
+        `<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="robots" content="noindex, nofollow" />
+    <title>404 | AeroSports Parks</title>
+  </head>
+  <body>
+    <main>
+      <h1>404</h1>
+      <p>Sorry, we couldn't find that page.</p>
+      <p><a href="/">Return to Home</a></p>
+    </main>
+  </body>
+</html>`,
+        {
+          status: 404,
+          headers: {
+            'Content-Type': 'text/html; charset=utf-8',
+            'X-Robots-Tag': 'noindex, nofollow',
+          },
+        }
+      );
     }
   }
 

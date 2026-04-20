@@ -1,6 +1,8 @@
 import { NextResponse } from "next/server";
 import { fetchHomePageJsonData, fetchsheetdata, getLastSheetError } from "../../lib/sheets";
 
+export const dynamic = "force-dynamic";
+
 // GET /api/page-json?location=<slug>
 // Diagnostic endpoint: returns the parsed page-json-data object for a given
 // location, plus the raw string from the sheet so you can spot JSON errors.

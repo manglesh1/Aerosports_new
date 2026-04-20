@@ -3,6 +3,18 @@ import { fetchsheetdataNoCache } from "@/lib/sheets";
 
 const SITE_URL = 'https://www.aerosportsparks.ca';
 
+// Corporate routes that are not scoped to a park location
+const CORPORATE_ROUTES = [
+  { path: 'about-us', priority: 0.7, changefreq: 'monthly' },
+  { path: 'attractions', priority: 0.7, changefreq: 'weekly' },
+  { path: 'contact-us', priority: 0.6, changefreq: 'monthly' },
+  { path: 'corporate-events', priority: 0.7, changefreq: 'monthly' },
+  { path: 'privacy-policy', priority: 0.3, changefreq: 'yearly' },
+  { path: 'school-groups', priority: 0.7, changefreq: 'monthly' },
+  { path: 'summer-camps', priority: 0.7, changefreq: 'monthly' },
+  { path: 'team-celebrations', priority: 0.7, changefreq: 'monthly' },
+];
+
 // Static routes that exist for every location
 const STATIC_ROUTES = [
   { path: 'blogs', priority: 0.8, changefreq: 'weekly' },
@@ -11,7 +23,6 @@ const STATIC_ROUTES = [
   { path: 'membership', priority: 0.7, changefreq: 'monthly' },
   { path: 'bogo', priority: 0.7, changefreq: 'monthly' },
   { path: 'gallery', priority: 0.6, changefreq: 'monthly' },
-  { path: 'contactus', priority: 0.5, changefreq: 'monthly' }
 ];
 
 // Helper function to validate location strings
@@ -50,6 +61,11 @@ export async function GET() {
 
     // Add root homepage
     urlMap.set(SITE_URL, createUrlEntry(1.0, 'weekly'));
+
+    // Add corporate static routes
+    CORPORATE_ROUTES.forEach(route => {
+      urlMap.set(`${SITE_URL}/${route.path}`, createUrlEntry(route.priority, route.changefreq));
+    });
 
     // Add location homepages
     validLocationSlugs.forEach(location => {

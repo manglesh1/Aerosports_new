@@ -1,24 +1,5 @@
-import React from 'react'
-import '../../styles/contactus.css'
-import ContactForm from '@/components/smallComponents/ContactForm';
-import { generateMetadataLib } from "@/lib/sheets";
+import { permanentRedirect } from "next/navigation";
 
-export async function generateMetadata({ params }) {
-  const metadata = await generateMetadataLib({
-    location: params.location_slug,
-    category: "",
-    page: "contact-us",
-  });
-  return metadata;
+export default function Page({ params }) {
+  permanentRedirect(`/${params.location_slug}/about-us/contact-us`);
 }
-
-const page = ({ params }) => {
-  return (
-    <div>
-      <h1 className='aero_contact-mainheading'>Contact Us</h1>
-       <ContactForm/>
-    </div>
-  );
-}
-
-export default page

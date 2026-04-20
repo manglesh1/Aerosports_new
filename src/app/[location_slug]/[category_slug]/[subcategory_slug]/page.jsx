@@ -75,8 +75,8 @@ const Subcategory = async ({ params }) => {
   const jsonLDschema = await generateSchema(
     pageData,
     locationData,
-    subcategory_slug,
-    category_slug
+    category_slug,
+    subcategory_slug
   );
 
   return (
