@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { mediaBackgroundImage } from "@/lib/media-url";
 
 // Attractions section. Tag/headline/subtext are hardcoded and interpolate
 // the location display name for SEO. Tiles come from the menu data (data
@@ -75,7 +76,7 @@ const AttractionsV2 = ({ attractions, locationSlug, locationDisplay }) => {
             >
               <div
                 className="hv2-attr-bg"
-                style={img ? { backgroundImage: `url('${img}')` } : undefined}
+                style={img ? { backgroundImage: mediaBackgroundImage(img) } : undefined}
               >
                 <div className="hv2-attr-overlay" />
                 <div className="hv2-attr-hover-overlay" />

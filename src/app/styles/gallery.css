@@ -38,13 +38,13 @@
   text-align: center;
   font-size: 2.75rem;
   font-weight: 900;
-  color: #c8ff00;
+  color: #B7E600;
   margin-bottom: 16px;
   letter-spacing: 2px;
   line-height: 1.2;
   text-transform: uppercase;
   animation: fadeInUp 1s ease-out;
-  text-shadow: 0 0 20px rgba(200, 255, 0, 0.5);
+  text-shadow: 0 0 20px rgba(183, 230, 0, 0.5);
 }
 
 @keyframes fadeInUp {
@@ -79,12 +79,28 @@
 .gallery-navbar-title {
   font-size: 1.875rem;
   font-weight: 700;
-  color: #c8ff00;
+  color: #B7E600;
   margin-bottom: 32px;
   text-transform: uppercase;
   letter-spacing: 1px;
   animation: fadeInUp 0.8s ease-out;
   text-shadow: 0 0 20px rgba(255, 17, 82, 0.5);
+}
+
+.aero-page-gallery-section {
+  padding: 64px 20px;
+  background: #000000;
+  color: #ffffff;
+}
+
+.aero-page-gallery-heading {
+  color: #B7E600;
+  font-size: 2rem;
+  font-weight: 900;
+  line-height: 1.2;
+  margin: 0 0 32px;
+  text-align: center;
+  text-transform: uppercase;
 }
 
 /* Photo Gallery Container */
@@ -99,7 +115,7 @@
 .gallery-section-title {
   font-size: 1.5rem;
   font-weight: 700;
-  color: #c8ff00;
+  color: #B7E600;
   margin-bottom: 24px;
   text-transform: uppercase;
   letter-spacing: 1px;
@@ -513,7 +529,7 @@
 }
 
 .gallery-thumb-btn.active {
-  border-color: #c8ff00;
+  border-color: #B7E600;
   opacity: 1;
 }
 

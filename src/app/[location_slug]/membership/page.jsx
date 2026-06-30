@@ -1,11 +1,24 @@
 import React from "react";
+import "../../styles/kidsparty.css";
 import "../../styles/subcategory.css";
-import MotionImage from "@/components/MotionImage";
-import BlogSection from "@/components/sections/BlogSection";
-import { getDataByParentId, sanitizeCmsHtml } from "@/utils/customFunctions";
-import { fetchsheetdata, fetchMenuData, generateMetadataLib,getWaiverLink,generateSchema,fetchPageData } from "@/lib/sheets";
+import { generateMetadataLib } from "@/lib/sheets";
+
+import MembershipPage from "@/components/membership/MembershipPage";
+
+import { resolveLocationGroup } from "@/lib/location-groups.mjs";
+import Group2Membership from "@g2/pages/Group2Membership";
+import { generateMetadataLib as generateMetadataLibG2 } from "@g2/lib/sheets";
+
+const isGroup2 = (slug) => resolveLocationGroup(slug)?.group?.key === "group2";
 
 export async function generateMetadata({ params }) {
+  if (isGroup2(params.location_slug)) {
+    return await generateMetadataLibG2({
+      location: params.location_slug,
+      category: '',
+      page: 'membership'
+    });
+  }
   const metadata = await generateMetadataLib({
     location: params.location_slug,
     category: '',
@@ -17,44 +30,9 @@ export async function generateMetadata({ params }) {
 
 
 const page = async ({ params }) => {
-  const { location_slug } = params;
-  
-  const [pagedata,waiverLink, locationData, menuData] = await Promise.all([
-    fetchPageData(location_slug,"membership"),getWaiverLink(location_slug),
-     fetchsheetdata('locations',location_slug),
-     fetchMenuData(location_slug),
-  ]);
-  const blogsData = getDataByParentId(menuData, "blogs");
-  const blogChildren = blogsData?.[0]?.children || [];
- 
-    
-  
-const jsonLDschema = await generateSchema(pagedata,locationData,'',"membership");
-  return (
-    <main>
-      <section>
-        <MotionImage pageData={pagedata}  waiverLink={waiverLink} locationData={locationData} />
-      </section>
-      <section className="subcategory_main_section-bg">
-        <section className="aero-max-container">
-          <div
-            className="subcategory_main_section"
-            dangerouslySetInnerHTML={{ __html: sanitizeCmsHtml(pagedata?.section1) }}
-          ></div>
-        </section>
-      </section>
-      {blogChildren.length > 0 && (
-        <BlogSection
-          blogs={blogChildren}
-          location_slug={location_slug}
-          currentCategory="membership"
-        />
-      )}
-    <script type="application/ld+json" suppressHydrationWarning
-  dangerouslySetInnerHTML={{ __html: jsonLDschema }}
-/>
-    </main>
-  );
+  if (isGroup2(params?.location_slug)) return <Group2Membership params={params} />;
+
+  return <MembershipPage params={params} />;
 };
 
 export default page;

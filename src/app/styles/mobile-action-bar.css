@@ -1,0 +1,228 @@
+/* ============================================
+   V11 MOBILE ACTION BAR
+   Mobile-only fixed bottom bar: Book Now + Enquire
+   + Enquire modal (usable on desktop too)
+   ============================================ */
+
+/* ── MOBILE: Fixed two-action bottom bar ── */
+.v11_mab_bar {
+  display: flex;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 1200;
+  padding-bottom: env(safe-area-inset-bottom, 0);
+  box-shadow: 0 -4px 18px rgba(0, 0, 0, 0.18);
+}
+
+/* Hide bar on desktop */
+@media (min-width: 992px) {
+  .v11_mab_bar {
+    display: none;
+  }
+}
+
+.v11_mab_book,
+.v11_mab_enquire {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  min-height: 54px;
+  border: none;
+  cursor: pointer;
+  font-family: var(--font-roboto-condensed, 'Roboto Condensed', sans-serif);
+  font-weight: 900;
+  font-size: 15px;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  text-decoration: none;
+  transition: filter 0.15s;
+}
+
+.v11_mab_book {
+  background: #B7E600;
+  color: #050816;
+}
+
+.v11_mab_enquire {
+  background: #FF2D87;
+  color: #fff;
+}
+
+.v11_mab_book:active,
+.v11_mab_enquire:active {
+  filter: brightness(0.92);
+}
+
+.v11_mab_icon {
+  width: 20px;
+  height: 20px;
+  flex-shrink: 0;
+}
+
+/* Push page content above the fixed bar on mobile.
+   (Old v11_waiver_mobile bar added no padding; this is the single source.) */
+@media (max-width: 991px) {
+  body {
+    padding-bottom: calc(54px + env(safe-area-inset-bottom, 0));
+  }
+}
+
+/* ── MODAL ── */
+.v11_mab_overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 6000;
+  background: rgba(0, 0, 0, 0.6);
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  padding: 0;
+}
+
+@media (min-width: 600px) {
+  .v11_mab_overlay {
+    align-items: center;
+    padding: 1.5rem;
+  }
+}
+
+.v11_mab_modal {
+  position: relative;
+  width: 100%;
+  max-width: 440px;
+  max-height: 90vh;
+  overflow: auto;
+  background: #fff;
+  border-radius: 20px 20px 0 0;
+  padding: 1.5rem;
+  box-shadow: 0 -8px 40px rgba(0, 0, 0, 0.3);
+}
+
+@media (min-width: 600px) {
+  .v11_mab_modal {
+    border-radius: 20px;
+  }
+}
+
+.v11_mab_close {
+  position: absolute;
+  top: 0.75rem;
+  right: 0.75rem;
+  width: 38px;
+  height: 38px;
+  border: none;
+  background: #f1f1f4;
+  color: #050816;
+  border-radius: 50%;
+  font-size: 24px;
+  line-height: 1;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.15s;
+}
+
+.v11_mab_close:hover {
+  background: #e3e3e8;
+}
+
+.v11_mab_title {
+  margin: 0 2.25rem 0.25rem 0;
+  font-family: var(--font-roboto-condensed, 'Roboto Condensed', sans-serif);
+  font-weight: 900;
+  font-size: 22px;
+  text-transform: uppercase;
+  color: #050816;
+}
+
+.v11_mab_subtitle {
+  margin: 0 0 1.25rem;
+  font-size: 14px;
+  color: #555;
+}
+
+.v11_mab_form {
+  display: flex;
+  flex-direction: column;
+  gap: 0.85rem;
+}
+
+.v11_mab_label {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  font-size: 13px;
+  font-weight: 700;
+  color: #050816;
+}
+
+.v11_mab_label input,
+.v11_mab_label select,
+.v11_mab_label textarea {
+  width: 100%;
+  padding: 0.7rem 0.85rem;
+  border: 1px solid #d6d6dd;
+  border-radius: 10px;
+  font-size: 15px;
+  font-weight: 400;
+  color: #050816;
+  background: #fff;
+  font-family: inherit;
+}
+
+.v11_mab_label textarea {
+  resize: vertical;
+}
+
+.v11_mab_label input:focus,
+.v11_mab_label select:focus,
+.v11_mab_label textarea:focus {
+  outline: none;
+  border-color: #B7E600;
+  box-shadow: 0 0 0 3px rgba(183, 230, 0, 0.25);
+}
+
+.v11_mab_submit {
+  min-height: 50px;
+  border: none;
+  border-radius: 12px;
+  background: #B7E600;
+  color: #050816;
+  font-family: var(--font-roboto-condensed, 'Roboto Condensed', sans-serif);
+  font-weight: 900;
+  font-size: 16px;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  cursor: pointer;
+  transition: filter 0.15s;
+  margin-top: 0.25rem;
+}
+
+.v11_mab_submit:hover:not(:disabled) {
+  filter: brightness(0.95);
+}
+
+.v11_mab_submit:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.v11_mab_msg {
+  margin: 0;
+  font-size: 14px;
+  font-weight: 600;
+  text-align: center;
+}
+
+.v11_mab_success {
+  color: #0d7a00;
+}
+
+.v11_mab_error {
+  color: #dc2626;
+}

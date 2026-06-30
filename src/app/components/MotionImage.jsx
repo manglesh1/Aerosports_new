@@ -1,221 +1,152 @@
 import React from "react";
 import Link from "next/link";
-const MotionImage = ({ pageData, waiverLink, locationData, hideOverlay = false, headingAs = 'h1' }) => {
+import AppImage from "./AppImage";
+import ResponsiveVideo from "./ResponsiveVideo";
+
+const MotionImage = ({
+  pageData,
+  waiverLink,
+  locationData,
+  hideOverlay = false,
+  headingAs = "h1",
+  primaryHref,
+  primaryLabel,
+  secondaryHref,
+  secondaryLabel,
+  reviewText,
+  reviewName,
+  playVideoOnMobile = true,
+}) => {
   const Heading = headingAs;
-  //console.log(header_image);
   const item =
     Array.isArray(pageData) && pageData.length > 0 ? pageData[0] : pageData;
-  // Handle case when no item exists
+
   if (!item) return null;
 
-  const locData = locationData[0];
-  const hasVideo = !!item.video;
-  const toTelHref = (phone) => {
-    const digits = (phone || "").replace(/\D/g, "");
-    if (!digits) return "tel:";
-    // North America: add +1 if missing, keep leading 1 if present
-    const e164 =
-      digits.length === 11 && digits.startsWith("1")
-        ? `+${digits}`
-        : `+1${digits}`;
-    return `tel:${e164}`;
-  };
+  const locData = Array.isArray(locationData) ? locationData[0] : locationData;
+  const locationName = locData?.location
+    ? `${locData.location.charAt(0).toUpperCase()}${locData.location.slice(1)}, ON`
+    : item.location || "";
+  const heroImage =
+    item.headerimage ||
+    "https://storage.googleapis.com/aerosports/aerosports-trampoline-park-redefine-fun.svg";
+  const heroVideo = item.video || "";
+  const heroAlt = item.headerimagetitle || item.title || "AeroSports";
+  const title = item.title || item.headerimagetitle || "AeroSports";
+  const description = item.smalltext || item.metadescription || "";
+  const descriptionLines = String(description)
+    .split(/<br\s*\/?>/gi)
+    .map((line) => line.trim())
+    .filter(Boolean);
+  const defaultPrimaryLabel = title.toLowerCase().includes("birthday")
+    ? "Book a Party"
+    : "Book Now";
+  const resolvedPrimaryHref =
+    primaryHref ||
+    item.buttonurl ||
+    item.bookingurl ||
+    item.url ||
+    (locData ? waiverLink || "#" : "/#locations");
+  const resolvedPrimaryLabel = primaryLabel || item.buttontext || defaultPrimaryLabel;
+  const resolvedSecondaryHref = secondaryHref || waiverLink || "";
+  const resolvedSecondaryLabel = secondaryLabel || (waiverLink ? "Sign Waiver" : "");
+  const resolvedReviewText =
+    reviewText || "Our team makes planning simple, fast, and fun from start to finish.";
 
-  if (hasVideo)
+  if (hideOverlay) {
     return (
-      <section
-        className="aero_home-headerimg-wrapper"
-        style={{
-          position: "absolute",
-          top: 0,
-          left: 0,
-          right: 0,
-          bottom: 0,
-          width: "100%",
-          height: "100%",
-          margin: 0,
-          padding: 0,
-          zIndex: 1,
-          overflow: "hidden",
-        }}
-      >
-        <section
-          className="aero_home_video-container"
-          style={{
-            position: "absolute",
-            top: 0,
-            left: 0,
-            right: 0,
-            bottom: 0,
-            width: "100%",
-            height: "100%",
-            margin: 0,
-            padding: 0,
-            overflow: "hidden",
-          }}
-        >
-          <video
+      <section className="aero_home-headerimg-wrapper" aria-hidden="true">
+        <div className="aero_home_video-container">
+          {heroVideo ? (
+            <ResponsiveVideo
+              src={heroVideo}
+              sourceMedia={playVideoOnMobile ? undefined : "(min-width: 821px)"}
+              posterSrc={heroImage}
+              autoPlay
+              muted
+              loop
+              playsInline
+              preload="none"
+            />
+          ) : (
+            <AppImage src={heroImage} alt="" fill priority sizes="100vw" />
+          )}
+        </div>
+      </section>
+    );
+  }
+
+  const isExternalPrimary = /^https?:\/\//i.test(resolvedPrimaryHref);
+  const isExternalSecondary = /^https?:\/\//i.test(resolvedSecondaryHref);
+
+  return (
+    <section className="v11_bp_party_hero v11_inner_hero">
+      <div className="v11_bp_party_hero_media" aria-hidden="true">
+        {heroVideo ? (
+          <ResponsiveVideo
+            src={heroVideo}
+            sourceMedia={playVideoOnMobile ? undefined : "(min-width: 821px)"}
+            posterSrc={heroImage}
             autoPlay
             muted
             loop
             playsInline
             preload="none"
-            style={{
-              width: "100%",
-              height: "100%",
-              display: "block",
-              margin: 0,
-              padding: 0,
-              objectFit: "cover",
-            }}
-          >
-            <source src={item.video} type="video/mp4" />
-          </video>
-
-          {/* Overlay Content - Only show if hideOverlay is false */}
-          {!hideOverlay && (
-            <div className="z-20 absolute inset-0 flex justify-center items-center bg-gradient-to-br from-black/50 to-black/70 px-6 py-16">
-              <div
-                className="max-w-3xl text-center animate-[fadeInUp_1s_ease-out]"
-              >
-                {/* Title */}
-                <Heading className="mb-4 font-black text-[clamp(2rem,6vw,3.5rem)] text-white uppercase leading-tight tracking-wide" style={{ fontFamily: "var(--font-bebas), 'Bebas Neue', 'Barlow Condensed', sans-serif" }}>
-                  {item.title}
-                </Heading>
-
-                {/* Small Text */}
-                {item.smalltext && (
-                  <p className="mx-auto mb-8 max-w-xl text-gray-300 text-lg leading-relaxed">
-                    {item.smalltext}
-                  </p>
-                )}
-
-                {/* Info Blocks */}
-                {locData && (
-                  <div className="space-y-4 mb-8 text-white text-lg">
-                    <p>
-                      <span className="font-bold text-neon-green">Phone: </span>
-                      <a
-                        href={toTelHref(locData.phone)}
-                        aria-label={`Call AeroSports ${locData.location} at ${locData.phone}`}
-                        className="hover:text-neon-green transition"
-                      >
-                        {locData.phone}
-                      </a>
-                    </p>
-
-                    <p>
-                      <span className="font-bold text-neon-green">Address: </span>
-                      <a
-                        href={locData.gmburl}
-                        target="_blank"
-                        className="hover:text-neon-green transition"
-                      >
-                        {locData.address}
-                      </a>
-                    </p>
-                  </div>
-                )}
-
-                {/* Waiver Button */}
-                {waiverLink && (
-                  <div className="flex justify-center">
-                    <Link
-                      href={waiverLink}
-                      target="_blank"
-                      title="sign your waiver at aerosports trampoline park"
-                    >
-                      <button
-                        className="bg-neon-green hover:bg-[#2ddb10] shadow-[0_0_20px_#c8ff00] px-8 py-3 rounded-full font-bold text-black transition animate-pulse"
-                      >
-                        Sign Waiver
-                      </button>
-                    </Link>
-                  </div>
-                )}
-              </div>
-            </div>
-          )}
-        </section>
-      </section>
-    );
-
-  return (
-    <section className="aero_home-headerimg-wrapper" style={{ width: "100%", margin: 0, padding: 0 }}>
-      <div className="aero_home-headerimg-container" style={{ width: "100%", maxWidth: "none", margin: 0, padding: 0 }}>
-        <div
-          className="image-container"
-          style={{ maxHeight: "800px", minHeight: "450px", width: "100%", position: "relative", margin: 0, padding: 0 }}
-        >
-          <img
-            src={
-              item.headerimage ||
-              "https://storage.googleapis.com/aerosports/aerosports-trampoline-park-redefine-fun.svg"
-            }
-            alt={item.headerimagetitle || "Aerosports fun for everyone"}
-            fetchPriority="high"
-            style={{ position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "cover" }}
           />
-
-          <div className="absolute inset-0 flex justify-center items-center bg-gradient-to-br from-black/50 to-black/70 px-6 py-16" style={{ zIndex: 30 }}>
-  <div className="max-w-3xl text-center animate-[fadeInUp_1s_ease-out]">
-
-    {/* Title */}
-    <Heading className="mb-4 font-black text-[clamp(2rem,6vw,3.5rem)] text-white uppercase leading-tight tracking-wide" style={{ fontFamily: "var(--font-bebas), 'Bebas Neue', 'Barlow Condensed', sans-serif" }}>
-      {item.title}
-    </Heading>
-
-    {/* Small Text */}
-    <p className="mx-auto mb-8 max-w-xl text-gray-300 text-lg leading-relaxed">
-      {item.smalltext}
-    </p>
-
-    {/* Info Blocks */}
-    <div className="space-y-4 mb-8 text-white text-lg">
-      <p>
-        <span className="font-bold text-[#c8ff00]">Phone: </span>
-        <a
-          href={toTelHref(locData.phone)}
-          aria-label={`Call AeroSports ${locData.location} at ${locData.phone}`}
-          className="hover:text-[#c8ff00] transition"
-        >
-          {locData.phone}
-        </a>
-      </p>
-
-      <p>
-        <span className="font-bold text-[#c8ff00]">Address: </span>
-        <a
-          href={locData.gmburl}
-          target="_blank"
-          className="hover:text-[#c8ff00] transition"
-        >
-          {locData.address}
-        </a>
-      </p>
-    </div>
-
-    {/* Waiver Button */}
-    {waiverLink && (
-      <div className="flex justify-center animate-[fadeInUp_1s_ease-out_0.5s_backwards]">
-        <Link
-          href={waiverLink}
-          target="_blank"
-          title="sign your waiver at aerosports trampoline park"
-        >
-          <button
-            className="bg-[#c8ff00] hover:bg-[#2ddb10] shadow-[0_0_20px_#c8ff00] px-8 py-3 rounded-full font-bold text-black transition animate-pulse"
-          >
-            Sign Waiver
-          </button>
-        </Link>
+        ) : (
+          <AppImage src={heroImage} alt={heroAlt} fill priority sizes="100vw" />
+        )}
       </div>
-    )}
-  </div>
-</div>
+      <div className="v11_bp_party_hero_overlay" />
+      <div className="v11_bp_party_hero_pattern" />
 
-
+      <div className="v11_bp_party_hero_inner">
+        <div className="v11_bp_party_hero_content">
+          {locationName && <p className="v11_bp_party_hero_location">{locationName}</p>}
+          <Heading>{title}</Heading>
+          {descriptionLines.length > 0 && (
+            <p>
+              {descriptionLines.map((line, index) => (
+                <React.Fragment key={`${line}-${index}`}>
+                  {index > 0 && <br />}
+                  {line}
+                </React.Fragment>
+              ))}
+            </p>
+          )}
+          <div className="v11_bp_party_hero_actions">
+            <Link
+              href={resolvedPrimaryHref}
+              className="v11_bp_party_hero_primary"
+              target={isExternalPrimary ? "_blank" : undefined}
+              rel={isExternalPrimary ? "noopener noreferrer" : undefined}
+            >
+              {resolvedPrimaryLabel}
+            </Link>
+            {resolvedSecondaryHref && (
+              <Link
+                href={resolvedSecondaryHref}
+                className="v11_bp_party_hero_secondary"
+                target={isExternalSecondary ? "_blank" : undefined}
+                rel={isExternalSecondary ? "noopener noreferrer" : undefined}
+              >
+                {resolvedSecondaryLabel}
+              </Link>
+            )}
+          </div>
         </div>
+
+        <aside className="v11_bp_party_hero_review">
+          <div className="v11_bp_party_hero_stars" aria-label="5 star rating">
+            {[...Array(5)].map((_, index) => (
+              <svg key={index} viewBox="0 0 24 24" fill="currentColor">
+                <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" />
+              </svg>
+            ))}
+          </div>
+          <p>{resolvedReviewText}</p>
+          {reviewName && <strong>{reviewName}</strong>}
+        </aside>
       </div>
     </section>
   );

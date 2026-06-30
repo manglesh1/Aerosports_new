@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 160 160" role="img" aria-label="Drink add-on">
+  <rect width="160" height="160" rx="26" fill="#101828"/>
+  <path d="M56 36h48l-6 96H62Z" fill="#fff" stroke="#0f172a" stroke-width="5"/>
+  <path d="M62 75h36l-3 48H65Z" fill="#FF2B8A"/>
+  <path d="M74 36 94 16" stroke="#B7E600" stroke-width="8" stroke-linecap="round"/>
+  <path d="M64 56h32" stroke="#B7E600" stroke-width="8" stroke-linecap="round"/>
+</svg>

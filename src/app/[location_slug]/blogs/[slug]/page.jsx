@@ -4,9 +4,23 @@ import "../../../styles/blog-content.css";
 import { getDataByParentId, sanitizeCmsHtml } from "@/utils/customFunctions";
 import { fetchPageData, fetchMenuData, generateMetadataLib, fetchsheetdata } from "@/lib/sheets";
 import Link from 'next/link';
+import AppImage from "@/components/AppImage";
+
+import { resolveLocationGroup } from "@/lib/location-groups.mjs";
+import Group2BlogDetail from "@g2/pages/Group2BlogDetail";
+import { generateMetadataLib as generateMetadataLibG2 } from "@g2/lib/sheets";
+
+const isGroup2 = (slug) => resolveLocationGroup(slug)?.group?.key === "group2";
 
 export async function generateMetadata({ params }) {
   const { location_slug, slug } = params;
+  if (isGroup2(location_slug)) {
+    return await generateMetadataLibG2({
+      location: location_slug,
+      category: 'blogs',
+      page: slug
+    });
+  }
   // Validate blog post exists before generating metadata
   const blogData = await fetchPageData(location_slug, slug);
   if (!blogData || !blogData.path) {
@@ -72,6 +86,8 @@ function generateBlogSchema(blogData, locationData, slug, BASE_URL) {
 }
 
 export default async function BlogDetail({ params }) {
+  if (isGroup2(params?.location_slug)) return <Group2BlogDetail params={params} />;
+
   const { location_slug, slug } = params;
   const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL;
 
@@ -110,12 +126,13 @@ export default async function BlogDetail({ params }) {
 
           {/* Hero Image */}
           <div className="aero-blog-detail-hero">
-            <img
+            <AppImage
               src={blogData?.headerimage}
               alt={blogData?.headerimagetitle || blogData?.title}
               width={1200}
               height={630}
-              fetchPriority="high"
+              priority
+              sizes="100vw"
               style={{ width: '100%', height: 'auto', borderRadius: '16px' }}
             />
           </div>
@@ -141,7 +158,7 @@ export default async function BlogDetail({ params }) {
                 <article className="aero-blog-main-article-card" key={i}>
                   <div className="aero-blog-img-section">
                     <Link href={`/${location_slug}/blogs/${item?.path}`} prefetch>
-                      <img src={item.smallimage} alt={item.title || "Blog article"} width={400} height={300} loading="lazy" />
+                      <AppImage src={item.smallimage} alt={item.title || "Blog article"} width={400} height={300} sizes="(max-width: 768px) 100vw, 33vw" />
                     </Link>
                   </div>
                   <div className="aero-blog-content-section">

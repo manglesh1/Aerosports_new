@@ -1,5 +1,6 @@
 import Link from "next/link";
 import PartyCarousel from "./PartyCarousel";
+import AppImage from "../AppImage";
 
 // Birthday parties section. Most copy is hardcoded (identical across every
 // location). Dynamic pieces from data:
@@ -48,11 +49,12 @@ const PartyV2 = ({ locationSlug, locationData, locationDisplay, partyImages }) =
         <div className="hv2-party-visual">
           {images.map((src, i) => (
             <div className="hv2-party-main-img" key={i} style={images.length > 1 ? { display: i === 0 ? "block" : "none" } : undefined} data-party-slide={i}>
-              <img
+              <AppImage
                 src={src}
                 alt={`AeroSports birthday party ${i + 1}`}
-                loading={i === 0 ? "eager" : "lazy"}
-                style={{ position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "cover" }}
+                fill
+                priority={false}
+                sizes="(max-width: 900px) 100vw, 50vw"
               />
               <div className="hv2-party-badge">BOOK YOUR PARTY</div>
             </div>

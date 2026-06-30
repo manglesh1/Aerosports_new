@@ -226,7 +226,7 @@ header.navbar-hidden {
   font-size: 0.75rem;
   text-transform: uppercase;
   letter-spacing: 0.5px;
-  border: 2px solid rgba(200, 255, 0, 0.5);
+  border: 2px solid rgba(183, 230, 0, 0.5);
   box-shadow: 0 4px 12px rgba(255, 17, 82, 0.2);
   transition: all 0.3s ease;
   position: relative;
@@ -292,7 +292,7 @@ header.navbar-hidden {
   font-size: 0.75rem;
   text-transform: uppercase;
   letter-spacing: 0.5px;
-  border: 2px solid rgba(200, 255, 0, 0.5);
+  border: 2px solid rgba(183, 230, 0, 0.5);
   box-shadow: 0 4px 12px rgba(255, 17, 82, 0.3);
   transition: all 0.3s ease;
   position: relative;
@@ -319,7 +319,7 @@ header.navbar-hidden {
 }
 
 .aero-faq:hover {
-  background: rgba(200, 255, 0, 0.1);
+  background: rgba(183, 230, 0, 0.1);
   border-color: rgba(202, 255, 26, 0.8);
   box-shadow: 0 6px 20px rgba(255, 17, 82, 0.5),
     0 0 30px rgba(202, 255, 26, 0.3);
@@ -363,7 +363,7 @@ header.navbar-hidden {
   transform: translateX(-50%);
   width: 0;
   height: 2px;
-  background: linear-gradient(90deg, #c8ff00, #c8ff00);
+  background: linear-gradient(90deg, #B7E600, #B7E600);
   transition: width 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
@@ -398,7 +398,7 @@ header.navbar-hidden {
   letter-spacing: 0.5px;
   border: 2px solid rgba(255, 17, 82, 0.6);
   box-shadow: 0 6px 20px rgba(255, 17, 82, 0.4),
-    0 0 16px rgba(200,255,0,0.35);
+    0 0 16px rgba(183,230,0,0.35);
   transition: all 0.3s ease;
   position: relative;
   cursor: pointer;
@@ -462,7 +462,7 @@ header.navbar-hidden {
   font-size: 0.75rem;
   text-transform: uppercase;
   letter-spacing: 0.5px;
-  border: 2px solid rgba(200, 255, 0, 0.5);
+  border: 2px solid rgba(183, 230, 0, 0.5);
   box-shadow: 0 4px 12px rgba(255, 17, 82, 0.3);
   transition: all 0.3s ease;
   position: relative;
@@ -490,7 +490,7 @@ header.navbar-hidden {
 }
 
 .aero-header-contactus-btn:hover {
-  background: rgba(200, 255, 0, 0.1);
+  background: rgba(183, 230, 0, 0.1);
   border-color: rgba(202, 255, 26, 0.8);
   box-shadow: 0 6px 20px rgba(255, 17, 82, 0.5),
     0 0 30px rgba(202, 255, 26, 0.3);
@@ -608,7 +608,7 @@ header.navbar-hidden {
 .location-overlay-box h2 {
   font-size: 0.7rem;
   margin-bottom: 8px;
-  color: #c8ff00;
+  color: #B7E600;
   text-transform: uppercase;
   letter-spacing: 3px;
   font-weight: 700;
@@ -665,7 +665,7 @@ header.navbar-hidden {
 .location-overlay-box p strong {
   font-size: 0.9em;
   margin-right: 0.5em;
-  color: #c8ff00;
+  color: #B7E600;
   font-weight: 600;
   text-transform: uppercase;
   letter-spacing: 0.5px;
@@ -683,8 +683,8 @@ header.navbar-hidden {
 }
 
 .location-overlay-box p a:hover {
-  color: #c8ff00;
-  border-bottom-color: #c8ff00;
+  color: #B7E600;
+  border-bottom-color: #B7E600;
   text-shadow: 0 0 10px rgba(202, 255, 26, 0.5);
 }
 
@@ -716,7 +716,7 @@ header.navbar-hidden {
 .aero-home-h1heading {
   text-align: center;
   margin-top: 50px;
-  background: linear-gradient(135deg, #c8ff00, #c8ff00);
+  background: linear-gradient(135deg, #B7E600, #B7E600);
   background-clip: text;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -736,7 +736,7 @@ header.navbar-hidden {
   font-weight: 800;
   text-align: center;
   text-transform: uppercase;
-  background: linear-gradient(135deg, #c8ff00, #c8ff00);
+  background: linear-gradient(135deg, #B7E600, #B7E600);
   background-clip: text;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -747,7 +747,7 @@ header.navbar-hidden {
 .promotions__icon {
   width: 40px;
   height: 40px;
-  stroke: #c8ff00;
+  stroke: #B7E600;
   filter: drop-shadow(0 2px 4px rgba(255, 17, 82, 0.3));
 }
 
@@ -777,12 +777,12 @@ header.navbar-hidden {
   bottom: 0;
   background: radial-gradient(
       circle at 30% 50%,
-      rgba(200, 255, 0, 0.08) 0%,
+      rgba(183, 230, 0, 0.08) 0%,
       transparent 50%
     ),
     radial-gradient(
       circle at 70% 50%,
-      rgba(200, 255, 0, 0.10) 0%,
+      rgba(183, 230, 0, 0.10) 0%,
       transparent 50%
     );
   pointer-events: none;
@@ -914,7 +914,7 @@ footer .aero_home-headerimg-wrapper > img:hover {
   content: "";
   position: absolute;
   inset: 0;
-  background: radial-gradient(circle at 50% 50%, rgba(200,255,0,0.08) 0%, transparent 70%);
+  background: radial-gradient(circle at 50% 50%, rgba(183,230,0,0.08) 0%, transparent 70%);
   pointer-events: none;
 }
 
@@ -925,7 +925,7 @@ footer .aero_home-headerimg-wrapper > img:hover {
   left: 0;
   right: 0;
   height: 3px;
-  background: linear-gradient(90deg, #c8ff00, #c8ff00, #c8ff00);
+  background: linear-gradient(90deg, #B7E600, #B7E600, #B7E600);
   background-size: 200% 100%;
   animation: shine 3s linear infinite;
 }
@@ -939,7 +939,7 @@ footer .aero_home-headerimg-wrapper > img:hover {
 .aero_home-actionbtn h2 {
   font-size: 1.8rem;
   font-weight: 800;
-  background: linear-gradient(135deg, #c8ff00, #c8ff00);
+  background: linear-gradient(135deg, #B7E600, #B7E600);
   background-clip: text;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -1052,7 +1052,7 @@ footer .aero_home-headerimg-wrapper > img:hover {
   color: var(--black-color);
   font-size: 2rem;
   font-weight: 800;
-  background: linear-gradient(135deg, #c8ff00, #c8ff00);
+  background: linear-gradient(135deg, #B7E600, #B7E600);
   background-clip: text;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -1257,17 +1257,17 @@ footer .aero_home-headerimg-wrapper > img:hover {
   bottom: 0;
   background: radial-gradient(
       circle at 20% 30%,
-      rgba(200, 255, 0, 0.10) 0%,
+      rgba(183, 230, 0, 0.10) 0%,
       transparent 50%
     ),
     radial-gradient(
       circle at 80% 70%,
-      rgba(200, 255, 0, 0.12) 0%,
+      rgba(183, 230, 0, 0.12) 0%,
       transparent 50%
     ),
     radial-gradient(
       circle at 50% 50%,
-      rgba(200, 255, 0, 0.06) 0%,
+      rgba(183, 230, 0, 0.06) 0%,
       transparent 70%
     );
   pointer-events: none;
@@ -1308,7 +1308,7 @@ footer .aero_home-headerimg-wrapper > img:hover {
 }
 
 .aero_rating_overallrating strong {
-  color: #c8ff00;
+  color: #B7E600;
   font-size: 1.2em;
 }
 
@@ -1405,7 +1405,7 @@ footer .aero_home-headerimg-wrapper > img:hover {
   box-shadow: 0 10px 30px rgba(255, 17, 82, 0.2);
   border: 3px solid transparent;
   background-image: linear-gradient(#fff, #fff),
-    linear-gradient(135deg, #c8ff00, #c8ff00);
+    linear-gradient(135deg, #B7E600, #B7E600);
   background-origin: border-box;
   background-clip: padding-box, border-box;
   border-radius: 30px;
@@ -1423,7 +1423,7 @@ footer .aero_home-headerimg-wrapper > img:hover {
 .aero_home_feature_section-card div:first-child {
   font-size: 3rem;
   font-weight: 900;
-  background: linear-gradient(135deg, #c8ff00, #c8ff00);
+  background: linear-gradient(135deg, #B7E600, #B7E600);
   background-clip: text;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -1452,7 +1452,7 @@ footer .aero_home-headerimg-wrapper > img:hover {
   text-align: center;
   font-size: 1.5rem;
   margin-bottom: 1em;
-  background: linear-gradient(135deg, #c8ff00, #c8ff00);
+  background: linear-gradient(135deg, #B7E600, #B7E600);
   background-clip: text;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -1567,7 +1567,7 @@ footer .aero_home-headerimg-wrapper > img:hover {
 /* depth, movement — classy, not chaotic */
 .aero_home_BPJ_wrapper > div:hover {
   transform: translateY(-16px) scale(1.035);
-  border-color: #c8ff00;
+  border-color: #B7E600;
   background: rgba(0, 0, 0, 0.85);
   box-shadow: 0 25px 50px rgba(255, 17, 82, 0.45),
     0 0 90px rgba(255, 17, 82, 0.35);
@@ -1582,7 +1582,7 @@ footer .aero_home-headerimg-wrapper > img:hover {
   border-radius: 50%;
 
   background: transparent;
-  border: 2px solid rgba(200, 255, 0, 0.5);
+  border: 2px solid rgba(183, 230, 0, 0.5);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -1594,7 +1594,7 @@ footer .aero_home-headerimg-wrapper > img:hover {
 .aero_home_BPJ_wrapper > div:hover a {
   transform: scale(1.18);
   box-shadow: 0 0 45px rgba(255, 17, 82, 0.85);
-  border-color: #c8ff00;
+  border-color: #B7E600;
 }
 
 /* icon asset */
@@ -1619,7 +1619,7 @@ footer .aero_home-headerimg-wrapper > img:hover {
   text-transform: uppercase;
   letter-spacing: 2px;
 
-  background: linear-gradient(135deg, #c8ff00 10%, #2ED60F 90%);
+  background: linear-gradient(135deg, #B7E600 10%, #B7E600 90%);
   background-clip: text;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -1704,7 +1704,7 @@ footer .aero_home-headerimg-wrapper > img:hover {
 }
 
 .v11_footer_quicklink_card:hover .v11_footer_quicklink_text {
-  color: #c8ff00;
+  color: #B7E600;
 }
 
 @media screen and (max-width: 768px) {
@@ -1768,7 +1768,7 @@ footer .aero_home-headerimg-wrapper > img:hover {
   gap: 0.5rem;
   font-size: 1.3rem;
   font-weight: 600;
-  color: #c8ff00;
+  color: #B7E600;
 }
 
 .aero_rating_card p {
@@ -1790,7 +1790,7 @@ footer .aero_home-headerimg-wrapper > img:hover {
   font-size: 1.1rem;
   font-weight: 500;
   font-style: italic;
-  color: #c8ff00;
+  color: #B7E600;
 }
 
 .aero_rating_readmore {
@@ -1816,7 +1816,7 @@ footer .aero_home-headerimg-wrapper > img:hover {
 .aero_footer_section-bg {
   background: #000000;
   border-top: 3px solid;
-  border-image: linear-gradient(90deg, #c8ff00, #c8ff00) 1;
+  border-image: linear-gradient(90deg, #B7E600, #B7E600) 1;
   padding-top: 3rem;
   position: relative;
   overflow: hidden;
@@ -1825,7 +1825,7 @@ footer .aero_home-headerimg-wrapper > img:hover {
   content: "";
   position: absolute;
   inset: 0;
-  background: radial-gradient(circle at 30% 30%, rgba(200,255,0,0.06) 0%, transparent 60%);
+  background: radial-gradient(circle at 30% 30%, rgba(183,230,0,0.06) 0%, transparent 60%);
   pointer-events: none;
 }
 
@@ -1841,7 +1841,7 @@ footer .aero_home-headerimg-wrapper > img:hover {
 /* ─── Contact Section (left column) ─── */
 .aero_footer_contact_section {
   padding-right: 1.5rem;
-  border-right: 1px solid rgba(200, 255, 0, 0.12);
+  border-right: 1px solid rgba(183, 230, 0, 0.12);
 }
 
 .aero_footer_brand_header {
@@ -1905,18 +1905,18 @@ footer .aero_home-headerimg-wrapper > img:hover {
 }
 
 .aero_footer_contact_item:hover {
-  color: #c8ff00;
+  color: #B7E600;
 }
 
 .aero_footer_contact_icon {
   width: 18px;
   height: 18px;
   flex-shrink: 0;
-  color: #c8ff00;
+  color: #B7E600;
 }
 
 .aero_footer_contact_item:hover .aero_footer_contact_icon {
-  color: #c8ff00;
+  color: #B7E600;
 }
 
 /* Social Media Icons */
@@ -1948,7 +1948,7 @@ footer .aero_home-headerimg-wrapper > img:hover {
   left: 0;
   width: 100%;
   height: 100%;
-  background: linear-gradient(135deg, rgba(200, 255, 0, 0.3) 0%, rgba(255, 17, 82, 0.3) 100%);
+  background: linear-gradient(135deg, rgba(183, 230, 0, 0.3) 0%, rgba(255, 17, 82, 0.3) 100%);
   opacity: 0;
   transition: opacity 0.3s ease;
 }
@@ -1967,12 +1967,12 @@ footer .aero_home-headerimg-wrapper > img:hover {
 
 .aero_footer_social_link:hover {
   transform: translateY(-3px);
-  border-color: #c8ff00;
-  box-shadow: 0 8px 20px rgba(200, 255, 0, 0.3);
+  border-color: #B7E600;
+  box-shadow: 0 8px 20px rgba(183, 230, 0, 0.3);
 }
 
 .aero_footer_social_link:hover svg {
-  color: #c8ff00;
+  color: #B7E600;
 }
 
 /* Park Hours */
@@ -2052,7 +2052,7 @@ footer .aero_home-headerimg-wrapper > img:hover {
   position: relative;
   padding-bottom: 0.8rem;
   text-decoration: underline;
-  text-decoration-color: #c8ff00;
+  text-decoration-color: #B7E600;
   text-underline-offset: 8px;
   text-decoration-thickness: 2px;
 }
@@ -2073,7 +2073,7 @@ footer .aero_home-headerimg-wrapper > img:hover {
 
 .aero_footer_links_list li::before {
   content: "\2022";
-  color: #c8ff00;
+  color: #B7E600;
   font-weight: bold;
   display: inline-block;
   width: 1em;
@@ -2095,14 +2095,14 @@ footer .aero_home-headerimg-wrapper > img:hover {
 }
 
 .aero_footer_links_list li a:hover {
-  color: #c8ff00;
+  color: #B7E600;
   padding-left: 0;
 }
 
 /* ─── CTA Section (right column) ─── */
 .aero_footer_cta_section {
   padding-left: 1.5rem;
-  border-left: 1px solid rgba(200, 255, 0, 0.12);
+  border-left: 1px solid rgba(183, 230, 0, 0.12);
   animation: fadeInUp 0.6s ease-out 0.4s both;
 }
 
@@ -2141,7 +2141,7 @@ footer .aero_home-headerimg-wrapper > img:hover {
 }
 
 .aero_footer_cta_phone {
-  background: #c8ff00;
+  background: #B7E600;
   color: #000;
   border: none;
 }
@@ -2159,13 +2159,13 @@ footer .aero_home-headerimg-wrapper > img:hover {
 }
 
 .aero_footer_cta_email:hover {
-  border-color: #c8ff00;
-  color: #c8ff00;
+  border-color: #B7E600;
+  color: #B7E600;
   transform: translateY(-2px);
 }
 
 .aero_footer_cta_book {
-  background: #c8ff00;
+  background: #B7E600;
   color: #000000;
   border: none;
   font-weight: 800;
@@ -2174,7 +2174,7 @@ footer .aero_home-headerimg-wrapper > img:hover {
 .aero_footer_cta_book:hover {
   background: #2ee00f;
   transform: translateY(-2px);
-  box-shadow: 0 8px 20px rgba(200, 255, 0, 0.4);
+  box-shadow: 0 8px 20px rgba(183, 230, 0, 0.4);
 }
 
 /* Other Locations */
@@ -2209,7 +2209,7 @@ footer .aero_home-headerimg-wrapper > img:hover {
 }
 
 .aero_footer_location_link:hover {
-  color: #c8ff00;
+  color: #B7E600;
 }
 
 /* Copyright Bar */
@@ -2244,7 +2244,7 @@ footer .aero_home-headerimg-wrapper > img:hover {
 .figcaption-bg h3 {
   font-size: 1.4rem;
   font-weight: 800;
-  background: linear-gradient(135deg, #c8ff00, #c8ff00);
+  background: linear-gradient(135deg, #B7E600, #B7E600);
   background-clip: text;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -2813,7 +2813,7 @@ ul.attractions-grid li:nth-child(8) {
   display: inline-block;
   background: transparent;
   clip-path: polygon(8% 0, 100% 0, 92% 100%, 0 100%);
-  border: 2px solid rgba(200, 255, 0, 0.5);
+  border: 2px solid rgba(183, 230, 0, 0.5);
   padding: 8px 24px;
   margin-bottom: 20px;
   transition: all 0.3s ease;
@@ -2844,7 +2844,7 @@ ul.attractions-grid li:nth-child(8) {
 
 .hero-section-badge:hover {
   border-color: rgba(202, 255, 26, 0.8);
-  background: rgba(200, 255, 0, 0.1);
+  background: rgba(183, 230, 0, 0.1);
 }
 
 /* ========================================
@@ -2853,8 +2853,8 @@ ul.attractions-grid li:nth-child(8) {
 
 /* CSS Variables */
 :root {
-  --primary-color: #c8ff00;
-  --secondary-color: #c8ff00;
+  --primary-color: #B7E600;
+  --secondary-color: #B7E600;
   --white-color: #fff;
 }
 
@@ -2863,7 +2863,7 @@ ul.attractions-grid li:nth-child(8) {
   display: inline-block;
   background: transparent;
   clip-path: polygon(8% 0, 100% 0, 92% 100%, 0 100%);
-  border: 2px solid rgba(200, 255, 0, 0.5);
+  border: 2px solid rgba(183, 230, 0, 0.5);
   padding: 8px 24px;
   margin-bottom: 20px;
   transition: all 0.3s ease;
@@ -2906,7 +2906,7 @@ ul.attractions-grid li:nth-child(8) {
 
 .badge:hover {
   border-color: rgba(202, 255, 26, 0.8);
-  background: rgba(200, 255, 0, 0.1);
+  background: rgba(183, 230, 0, 0.1);
 }
 
 .badge span {
@@ -2996,7 +2996,7 @@ ul.attractions-grid li:nth-child(8) {
 }
 
 .stat-box.pink {
-  border: 1px solid rgba(200, 255, 0, 0.2);
+  border: 1px solid rgba(183, 230, 0, 0.2);
 }
 
 .stat-box.green {
@@ -3016,12 +3016,12 @@ ul.attractions-grid li:nth-child(8) {
 
 .stat-number.pink {
   color: var(--primary-color);
-  text-shadow: 0 0 30px rgba(200, 255, 0, 0.4);
+  text-shadow: 0 0 30px rgba(183, 230, 0, 0.4);
 }
 
 .stat-number.green {
   color: var(--secondary-color);
-  text-shadow: 0 0 30px rgba(200, 255, 0, 0.4);
+  text-shadow: 0 0 30px rgba(183, 230, 0, 0.4);
 }
 
 .stat-number.gradient {
@@ -3217,12 +3217,12 @@ ul.attractions-grid li:nth-child(8) {
 .cta-button.primary {
   background: linear-gradient(
     145deg,
-    #2ED60F 0%,
-    #c8ff00 75%,
+    #B7E600 0%,
+    #B7E600 75%,
     rgba(202, 255, 26, 0.25) 100%
   );
   color: #fff;
-  border: 2px solid rgba(200, 255, 0, 0.5);
+  border: 2px solid rgba(183, 230, 0, 0.5);
   box-shadow: 0 4px 12px rgba(255, 17, 82, 0.3);
 }
 
@@ -3256,14 +3256,18 @@ ul.attractions-grid li:nth-child(8) {
 strong.highlight {
   color: var(--secondary-color);
   font-weight: 700;
-  text-shadow: 0 0 30px rgba(200, 255, 0, 0.4);
+  text-shadow: 0 0 30px rgba(183, 230, 0, 0.4);
 }
 
 /* Mobile Responsive Styles */
 @media (max-width: 768px) {
   .stats-container {
-    flex-direction: column;
-    gap: 20px;
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 0;
+    width: 100%;
+    margin: 0 auto 20px;
+    overflow: hidden;
   }
 
   .cta-buttons {
@@ -3293,6 +3297,88 @@ strong.highlight {
   }
 
   .stat-box {
-    padding: 18px 22px;
+    min-width: 0;
+    width: 100%;
+    padding: 18px 10px;
+    clip-path: none;
+    border-radius: 0;
+    box-shadow: none;
+    border-width: 0 0 1px 0;
+  }
+
+  .stat-number {
+    font-size: clamp(2rem, 12vw, 3.4rem);
+    line-height: 0.95;
+    white-space: normal;
+    overflow-wrap: anywhere;
+  }
+
+  .stat-label {
+    max-width: 100%;
+    font-size: 0.72rem;
+    line-height: 1.35;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    overflow-wrap: anywhere;
+  }
+}
+
+/* Footer quick links as photo cards */
+.v11_footer_quicklink_photo_card {
+  position: relative;
+  min-height: 190px;
+  overflow: hidden;
+  align-items: flex-start;
+  justify-content: flex-end;
+  padding: 1.5rem;
+  color: #fff;
+  border: 1px solid rgba(15, 23, 42, 0.08);
+  isolation: isolate;
+}
+
+.v11_footer_quicklink_photo {
+  transition: transform 0.45s ease, filter 0.45s ease;
+}
+
+.v11_footer_quicklink_photo_card:hover .v11_footer_quicklink_photo {
+  transform: scale(1.06);
+  filter: brightness(1.08) saturate(1.08);
+}
+
+.v11_footer_quicklink_overlay {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background: linear-gradient(180deg, rgba(8,11,24,0.05) 0%, rgba(8,11,24,0.24) 42%, rgba(8,11,24,0.88) 100%);
+}
+
+.v11_footer_quicklink_photo_card::after {
+  content: "";
+  position: absolute;
+  left: 1.5rem;
+  right: 1.5rem;
+  bottom: 1.2rem;
+  z-index: 2;
+  height: 3px;
+  border-radius: 999px;
+  background: linear-gradient(90deg, #B7E600, #ff2d87);
+}
+
+.v11_footer_quicklink_photo_card .v11_footer_quicklink_text {
+  position: relative;
+  z-index: 3;
+  color: #fff;
+  font-size: 1.18rem;
+  text-shadow: 0 2px 14px rgba(0,0,0,0.55);
+  margin-bottom: 0.85rem;
+}
+
+.v11_footer_quicklink_photo_card:hover .v11_footer_quicklink_text {
+  color: #fff;
+}
+
+@media (max-width: 768px) {
+  .v11_footer_quicklink_photo_card {
+    min-height: 170px;
   }
 }

@@ -1,0 +1,29 @@
+[
+  {
+    "sheetName": "popups",
+    "row": 4,
+    "col": 3,
+    "a1": "popups!C4",
+    "raw": "https://storage.googleapis.com/aerosports/oakville/popup/Summer_Camp_Poster-_SCBOAK.png",
+    "objectPath": "oakville/popup/Summer_Camp_Poster-_SCBOAK.png",
+    "mediaUrl": "https://media.aerosportsparks.ca/oakville/popup/Summer_Camp_Poster-_SCBOAK.png"
+  },
+  {
+    "sheetName": "popups",
+    "row": 5,
+    "col": 3,
+    "a1": "popups!C5",
+    "raw": "https://storage.googleapis.com/aerosports/oakville/popup/Summer_Camp_Poster-_LDN.png",
+    "objectPath": "oakville/popup/Summer_Camp_Poster-_LDN.png",
+    "mediaUrl": "https://media.aerosportsparks.ca/oakville/popup/Summer_Camp_Poster-_LDN.png"
+  },
+  {
+    "sheetName": "popups",
+    "row": 6,
+    "col": 3,
+    "a1": "popups!C6",
+    "raw": "https://storage.googleapis.com/aerosports/oakville/popup/Summer_Camp_Poster-_SCBOAK.png",
+    "objectPath": "oakville/popup/Summer_Camp_Poster-_SCBOAK.png",
+    "mediaUrl": "https://media.aerosportsparks.ca/oakville/popup/Summer_Camp_Poster-_SCBOAK.png"
+  }
+]

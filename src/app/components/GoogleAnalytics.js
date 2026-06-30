@@ -1,7 +1,7 @@
 "use client";
 
 import { usePathname } from "next/navigation";
-import { useEffect, useRef } from "react";
+import { useEffect, useMemo, useRef } from "react";
 import Script from "next/script";
 
 const globalTrackingId = "G-1TETQERPZN";
@@ -14,12 +14,40 @@ const locationTrackingIds = {
   scarborough: "G-D5W5H2N64H",
 };
 
-export default function GoogleAnalytics() {
+function normalizeTrackingIds(value) {
+  if (Array.isArray(value)) return value.flatMap(normalizeTrackingIds);
+  return String(value || "")
+    .split(",")
+    .map((id) => id.trim())
+    .filter((id, index, ids) => id && ids.indexOf(id) === index);
+}
+
+export default function GoogleAnalytics({ sheetLocationTrackingIds = {} }) {
   const pathname = usePathname();
   const initialized = useRef(false);
 
   const locationSlug = pathname?.split("/")[1] || "";
-  const locationTrackingId = locationTrackingIds[locationSlug];
+  const mergedLocationTrackingIds = useMemo(
+    () => ({
+      ...locationTrackingIds,
+      ...sheetLocationTrackingIds,
+    }),
+    [sheetLocationTrackingIds]
+  );
+  const pageTrackingIds = useMemo(
+    () => normalizeTrackingIds([globalTrackingId, mergedLocationTrackingIds[locationSlug]]),
+    [locationSlug, mergedLocationTrackingIds]
+  );
+  const initialLocationTrackingMap = useMemo(
+    () =>
+      Object.fromEntries(
+        Object.entries(mergedLocationTrackingIds).map(([slug, ids]) => [
+          slug,
+          normalizeTrackingIds(ids),
+        ])
+      ),
+    [mergedLocationTrackingIds]
+  );
 
   useEffect(() => {
     if (!initialized.current && window.gtag) {
@@ -27,13 +55,11 @@ export default function GoogleAnalytics() {
     }
 
     if (window.gtag) {
-      window.gtag("config", globalTrackingId, { page_path: pathname });
-
-      if (locationTrackingId) {
-        window.gtag("config", locationTrackingId, { page_path: pathname });
-      }
+      pageTrackingIds.forEach((trackingId) => {
+        window.gtag("config", trackingId, { page_path: pathname });
+      });
     }
-  }, [pathname, locationTrackingId]);
+  }, [pathname, pageTrackingIds]);
 
   return (
     <>
@@ -50,7 +76,14 @@ export default function GoogleAnalytics() {
           window.dataLayer = window.dataLayer || [];
           function gtag(){dataLayer.push(arguments);}
           gtag('js', new Date());
-          gtag('config', '${globalTrackingId}', { page_path: window.location.pathname });
+          var locationTrackingMap = ${JSON.stringify(initialLocationTrackingMap)};
+          var currentLocationSlug = window.location.pathname.split('/')[1] || '';
+          var initialTrackingIds = ${JSON.stringify([globalTrackingId])}.concat(locationTrackingMap[currentLocationSlug] || []);
+          initialTrackingIds
+            .filter(function(id, index, ids) { return id && ids.indexOf(id) === index; })
+            .forEach(function(id) {
+              gtag('config', id, { page_path: window.location.pathname });
+            });
         `,
         }}
       />

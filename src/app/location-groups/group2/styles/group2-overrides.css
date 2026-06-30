@@ -1,0 +1,8 @@
+/* Group2 overrides — loaded by Group2LocationLayout for every group2 page.
+   The main app has a global rule `header:first-child + *  { padding-top: ~142px }`
+   to offset its FIXED header. Group2's header is `position: sticky` (already in
+   normal flow), so that offset just creates an empty gap above the content.
+   Neutralize it for group2 only (higher specificity than the global rule). */
+.group2-scope header:first-child + * {
+  padding-top: 0;
+}

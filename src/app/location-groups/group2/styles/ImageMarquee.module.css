@@ -1,0 +1,46 @@
+.group2-scope .marquee {
+  overflow: hidden;
+  white-space: nowrap;
+  width: 100%;
+  background: black; /* Remove white background */
+  display: flex;
+}
+
+.group2-scope .marqueeContent {
+  display: inline-flex;
+  animation: scroll 30s linear infinite;
+}
+
+.group2-scope .marqueeContentDuplicated {
+  display: inline-flex;
+  animation: scroll 30s linear infinite;
+}
+
+/* Duplicate the marquee content */
+.group2-scope .marqueeContent,
+.group2-scope .marqueeContentDuplicated {
+  animation: scroll 30s linear infinite;
+}
+
+.group2-scope .imageContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-right: 20px; /* Space between images */
+}
+
+.group2-scope .title {
+  text-align: center;
+  font-size: 0.9rem;
+  color: #fff;
+  margin-top: 5px;
+}
+
+@keyframes scroll {
+  0% {
+    transform: translateX(0); /* Start at the beginning */
+  }
+  100% {
+    transform: translateX(-100%); /* Move to the end */
+  }
+}

@@ -1,0 +1,1 @@
+"use strict";exports.id=6873,exports.ids=[6873],exports.modules={96873:(r,t,e)=>{e.r(t),e.d(t,{default:()=>s});let s=(0,e(68570).createProxy)(String.raw`C:\code\Aerosports_new - Copy - Copy\src\app\[location_slug]\kids-birthday-parties\BirthdayFAQ.jsx#default`)}};

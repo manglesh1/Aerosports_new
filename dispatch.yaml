@@ -1,0 +1,13 @@
+# No custom dispatch rules.
+#
+# All locations are served by the `default` service, which resolves each
+# location_slug to its group (group1 = windsor/st-catharines, group2 =
+# oakville/london/scarborough) at runtime via src/app/lib/location-groups.mjs.
+# See docs/location-group-architecture.md.
+#
+# Windsor was previously dispatched to the `group3` service; that caused
+# /_next/* route-chunk 404s + CORS because App Router emits route-segment
+# chunks as root-relative /_next/... (ignoring assetPrefix), which resolved
+# against the default service's mismatched build. Serving /windsor from
+# `default` (same build, one origin) removes the collision entirely.
+dispatch: []

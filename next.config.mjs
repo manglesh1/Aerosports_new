@@ -6,6 +6,8 @@ import * as XLSX from 'xlsx';
 // REDIRECT_SHEET_XLSX="https://docs.google.com/spreadsheets/d/XXX/export?format=xlsx"
 const SHEET_URL = process.env.REDIRECT_SHEET_XLSX
   ?? 'https://docs.google.com/spreadsheets/d/1B_9EaTQDztWGH_cD3lUP7hpWD6FvNBJ-6Czml2x7d9c/export?format=xlsx';
+const ASSET_ORIGIN = (process.env.NEXT_ASSET_ORIGIN || '').replace(/\/$/, '');
+const ASSET_PATH_PREFIX = (process.env.NEXT_ASSET_PATH_PREFIX || '').replace(/\/$/, '');
 
 function normalizeLegacyWildcardRedirect(source, destination) {
   const splatParams = [];
@@ -69,6 +71,12 @@ async function fetchSheetRedirects() {
 }
 
 const nextConfig = {
+  // When a service is mounted under the public domain by Cloudflare path rules,
+  // its Next build assets still live at /_next/* on that service. Point JS/CSS/font
+  // chunks to the service origin so they don't 404 against the default app.
+  assetPrefix: ASSET_ORIGIN || ASSET_PATH_PREFIX || undefined,
+  crossOrigin: ASSET_ORIGIN ? 'anonymous' : undefined,
+
   // Cache headers — Cloudflare respects these to cache at edge
   async headers() {
     return [
@@ -91,13 +99,40 @@ const nextConfig = {
         ],
       },
       {
-        // HTML pages: cache at Cloudflare edge for 10 min, stale-while-revalidate for 1 hour.
+        source: '/studio/:path*',
+        headers: [
+          {
+            key: 'X-Robots-Tag',
+            value: 'noindex, nofollow, noarchive',
+          },
+        ],
+      },
+      {
+        source: '/test/:path*',
+        headers: [
+          {
+            key: 'X-Robots-Tag',
+            value: 'noindex, nofollow, noarchive',
+          },
+        ],
+      },
+      {
+        source: '/audits/:path*',
+        headers: [
+          {
+            key: 'X-Robots-Tag',
+            value: 'noindex, nofollow, noarchive',
+          },
+        ],
+      },
+      {
+        // HTML pages: cache at the edge for the same daily rhythm as sheet data.
         // Browsers always revalidate (max-age=0) so users never see truly stale content.
         source: '/:path*',
         headers: [
           {
             key: 'Cache-Control',
-            value: 'public, max-age=0, s-maxage=600, stale-while-revalidate=21600',
+            value: 'public, max-age=0, s-maxage=86400, stale-while-revalidate=604800',
           },
         ],
       },
@@ -107,7 +142,18 @@ const nextConfig = {
         headers: [
           {
             key: 'Cache-Control',
-            value: 'public, max-age=31536000, immutable',
+            value:
+              process.env.NODE_ENV === 'production'
+                ? 'public, max-age=31536000, immutable'
+                : 'no-store, must-revalidate',
+          },
+          {
+            key: 'Access-Control-Allow-Origin',
+            value: '*',
+          },
+          {
+            key: 'Cross-Origin-Resource-Policy',
+            value: 'cross-origin',
           },
         ],
       },
@@ -125,14 +171,40 @@ const nextConfig = {
     return sheetRedirects;
   },
 
-  // Image optimization disabled — all images are pre-optimized WebP on GCS.
-  // Serving directly from GCS CDN is faster than proxying through /_next/image.
-  images: { unoptimized: true },
+  // Allow Next image optimization for approved remote media hosts.
+  // Note: this only affects images rendered through next/image.
+  images: {
+    // Production path routing does not reliably serve /_next/image optimizer
+    // responses, while our media is already CDN-hosted WebP. Serve image
+    // sources directly so production matches the working CDN URLs.
+    unoptimized: true,
+    path: ASSET_ORIGIN
+      ? `${ASSET_ORIGIN}/_next/image`
+      : ASSET_PATH_PREFIX
+        ? `${ASSET_PATH_PREFIX}/_next/image`
+        : '/_next/image',
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: 'media.aerosportsparks.ca',
+      },
+      {
+        protocol: 'https',
+        hostname: 'storage.googleapis.com',
+      },
+    ],
+    deviceSizes: [640, 750, 828, 1080, 1200, 1440, 1920],
+    imageSizes: [16, 32, 48, 64, 96, 128, 256, 384],
+    formats: ['image/avif', 'image/webp'],
+    minimumCacheTTL: 31536000,
+  },
 
   // Use in-memory ISR cache (App Engine Standard has read-only filesystem)
   cacheMaxMemorySize: 50 * 1024 * 1024, // 50 MB
 
   experimental: {
+    // Keep build-time sheet reads serialized to avoid Google Sheets 429s during static generation.
+    cpus: 1,
     optimizePackageImports: ['react-bootstrap', 'react-icons', 'date-fns', 'xlsx', 'react-quill'],
   },
 

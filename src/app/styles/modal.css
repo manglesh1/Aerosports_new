@@ -46,8 +46,8 @@
   display: inline-block;
   background: linear-gradient(
     145deg,
-    #2ED60F 0%,
-    #c8ff00 75%,
+    #B7E600 0%,
+    #B7E600 75%,
     rgba(202, 255, 26, 0.25) 100%
   );
   clip-path: polygon(8% 0, 100% 0, 92% 100%, 0 100%);

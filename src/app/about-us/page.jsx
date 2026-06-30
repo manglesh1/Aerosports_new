@@ -1,6 +1,8 @@
 import Link from "next/link";
 import { fetchsheetdata, fetchPageData, generateMetadataLib } from "../lib/sheets";
 import CorporateNav from "../components/corporate/CorporateNav";
+import MotionImage from "../components/MotionImage";
+import "../styles/kidsparty.css";
 import "../styles/home-v2.css";
 
 export async function generateMetadata() {
@@ -26,70 +28,13 @@ export default async function AboutUsPage() {
   return (
     <main className="hv2" style={{ background: "#fff", minHeight: "100vh" }}>
       <CorporateNav />
-
-      {/* ═══════════ HERO ═══════════ */}
-      <section
-        className="hv2-hero"
-        style={{
-          position: "relative",
-          padding: "10rem 2rem 5rem",
-          textAlign: "center",
-          overflow: "hidden",
-          background: pageData?.video ? "#080B18" : "linear-gradient(135deg, #080B18 0%, #181D35 100%)",
+      <MotionImage
+        pageData={{
+          ...pageData,
+          title: pageData?.title || 'About AeroSports Parks',
+          smalltext: pageData?.subtitle || pageData?.smalltext || 'Ontario\'s premier indoor adventure park chain',
         }}
-      >
-        {pageData?.video && (
-          <video
-            autoPlay
-            muted
-            loop
-            playsInline
-            style={{
-              position: "absolute",
-              top: 0,
-              left: 0,
-              width: "100%",
-              height: "100%",
-              objectFit: "cover",
-              opacity: 0.4,
-            }}
-          >
-            <source src={pageData.video} type="video/mp4" />
-          </video>
-        )}
-        <div style={{ maxWidth: 1600, margin: "0 auto", position: "relative", zIndex: 1 }}>
-          <span
-            className="hv2-section-tag"
-            style={{ background: "rgba(200,255,0,0.15)", color: "var(--hv2-red)" }}
-          >
-            Our Story
-          </span>
-          <h1
-            style={{
-              fontFamily: "var(--font-bebas), 'Bebas Neue', sans-serif",
-              fontSize: "clamp(40px, 6vw, 72px)",
-              color: "#fff",
-              textTransform: "uppercase",
-              letterSpacing: "0.02em",
-              lineHeight: 1.05,
-              marginTop: 12,
-            }}
-          >
-            {pageData?.title || "About AeroSports Parks"}
-          </h1>
-          <p
-            style={{
-              fontSize: 18,
-              color: "rgba(255,255,255,0.5)",
-              maxWidth: 600,
-              margin: "16px auto 0",
-              lineHeight: 1.6,
-            }}
-          >
-            {pageData?.subtitle || "Ontario's premier indoor adventure park chain"}
-          </p>
-        </div>
-      </section>
+      />
 
       {/* ═══════════ CONTENT ═══════════ */}
       <section style={{ padding: "5rem 2rem" }}>
@@ -105,7 +50,7 @@ export default async function AboutUsPage() {
               <div style={{ maxWidth: 900, margin: "0 auto 4rem" }}>
                 <span
                   className="hv2-section-tag"
-                  style={{ background: "rgba(200,255,0,0.15)", color: "var(--hv2-red)" }}
+                  style={{ background: "rgba(183,230,0,0.15)", color: "var(--hv2-red)" }}
                 >
                   Who We Are
                 </span>

@@ -1,10 +1,11 @@
 import React, { memo } from "react";
+import AppImage from "../AppImage";
 
 const renderStars = (rating) => {
   const stars = [];
   const fullStars = Math.floor(rating);
   for (let i = 0; i < fullStars; i++) {
-    stars.push( <img src="/assets/images/home/star.png" alt="star icon" width={18} height={18} key={`star-${i}`} />);
+    stars.push(<AppImage src="/assets/images/home/star.png" alt="star icon" width={18} height={18} sizes="18px" key={`star-${i}`} />);
   }
   return stars;
 };

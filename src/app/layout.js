@@ -4,6 +4,7 @@ import dynamic from "next/dynamic";
 const GoogleAnalytics = dynamic(()=> import('./components/GoogleAnalytics'));
 import { Suspense } from "react";
 import Loading from "./loading";
+import { fetchsheetdata } from "./lib/sheets";
 
 const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL;
 
@@ -61,7 +62,25 @@ export const metadata = {
   },
 };
 
-export default function RootLayout({ children }) {
+async function getLocationTrackingIds() {
+  try {
+    const locations = await fetchsheetdata("locations", "all");
+    return Object.fromEntries(
+      (Array.isArray(locations) ? locations : [])
+        .map((row) => [
+          String(row.locations || row.location || "").trim().toLowerCase(),
+          String(row.tag || "").trim(),
+        ])
+        .filter(([slug, tag]) => slug && tag)
+    );
+  } catch {
+    return {};
+  }
+}
+
+export default async function RootLayout({ children }) {
+  const sheetLocationTrackingIds = await getLocationTrackingIds();
+
   return (
     <html lang="en" className={`${bebasNeue.variable} ${roboto.variable}`}>
       <head>
@@ -71,7 +90,7 @@ export default function RootLayout({ children }) {
         <link rel="dns-prefetch" href="https://docs.google.com" />
       </head>
       <body className={inter.className}>
-        <GoogleAnalytics />
+        <GoogleAnalytics sheetLocationTrackingIds={sheetLocationTrackingIds} />
         <Suspense fallback={<Loading />}>{children}</Suspense>
       </body>
     </html>

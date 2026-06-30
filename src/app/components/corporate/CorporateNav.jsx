@@ -1,12 +1,15 @@
 "use client";
 import { useState, useEffect, useCallback } from "react";
+import AppImage from "../AppImage";
+
+const BRAND_LOGO_URL = "/assets/aerosports-logo.webp";
 
 const NAV_LINKS = [
-  { label: "Attractions", href: "#attractions" },
-  { label: "Birthday Parties", href: "#parties" },
-  { label: "Group Events", href: "#groups" },
-  { label: "Blog", href: "#blog" },
-  { label: "Locations", href: "#locations" },
+  { label: "Attractions", href: "/#attractions" },
+  { label: "Birthday Parties", href: "/#parties" },
+  { label: "Group Events", href: "/#groups" },
+  { label: "Blog", href: "/blogs" },
+  { label: "Locations", href: "/#locations" },
 ];
 
 export default function CorporateNav() {
@@ -32,11 +35,11 @@ export default function CorporateNav() {
 
   const linkStyle = (href) => ({
     fontSize: 13,
-    fontWeight: 700,
-    color: hoveredLink === href ? "#c8ff00" : "rgba(255,255,255,0.7)",
+    fontWeight: 900,
+    color: hoveredLink === href ? "#B7E600" : "rgba(255,255,255,0.92)",
     textDecoration: "none",
     textTransform: "uppercase",
-    letterSpacing: "0.08em",
+    letterSpacing: "0.1em",
     transition: "color 0.2s",
     cursor: "pointer",
   });
@@ -74,20 +77,20 @@ export default function CorporateNav() {
           style={{
             display: "flex",
             alignItems: "center",
-            background: "#c8ff00",
-            padding: "8px 20px",
-            borderRadius: 6,
             textDecoration: "none",
             transition: "filter 0.2s",
           }}
         >
-          <img
-            src="https://storage.googleapis.com/aerosports/webp/oakville/logo_white.webp"
-            alt="AeroSports Logo"
+          <span
+            role="img"
+            aria-label="AeroSports Trampoline Parks"
             style={{
-              height: 40,
-              width: "auto",
-              objectFit: "contain",
+              display: "inline-block",
+              height: 52,
+              width: 166,
+              backgroundColor: "#B7E600",
+              WebkitMask: `url('${BRAND_LOGO_URL}') no-repeat center / contain`,
+              mask: `url('${BRAND_LOGO_URL}') no-repeat center / contain`,
             }}
           />
         </a>
@@ -125,7 +128,7 @@ export default function CorporateNav() {
             ))}
           </ul>
           <a
-            href="#locations"
+            href="/#locations"
             style={{
               display: "inline-flex",
               alignItems: "center",
@@ -133,7 +136,7 @@ export default function CorporateNav() {
               padding: "10px 24px",
               borderRadius: 100,
               fontSize: 13,
-              fontWeight: 700,
+              fontWeight: 900,
               letterSpacing: "0.05em",
               textTransform: "uppercase",
               textDecoration: "none",
@@ -207,11 +210,11 @@ export default function CorporateNav() {
                 display: "block",
                 padding: "14px 0",
                 fontSize: 13,
-                fontWeight: 700,
-                color: "rgba(255,255,255,0.7)",
+                fontWeight: 900,
+                color: "rgba(255,255,255,0.92)",
                 textDecoration: "none",
                 textTransform: "uppercase",
-                letterSpacing: "0.08em",
+                letterSpacing: "0.1em",
                 borderBottom: "1px solid rgba(255,255,255,0.05)",
               }}
             >
@@ -219,7 +222,7 @@ export default function CorporateNav() {
             </a>
           ))}
           <a
-            href="#locations"
+            href="/#locations"
             onClick={() => setMobileOpen(false)}
             style={{
               display: "block",
@@ -228,7 +231,7 @@ export default function CorporateNav() {
               padding: "9px 20px",
               borderRadius: 6,
               fontSize: 13,
-              fontWeight: 700,
+              fontWeight: 900,
               letterSpacing: "0.05em",
               textTransform: "uppercase",
               textDecoration: "none",
@@ -244,3 +247,4 @@ export default function CorporateNav() {
     </nav>
   );
 }
+

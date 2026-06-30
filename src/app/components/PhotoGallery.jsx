@@ -3,6 +3,8 @@ import React, { useState, useEffect, useCallback } from "react";
 import Lightbox from "./Lightbox";
 import { IoChevronBack, IoChevronForward } from "react-icons/io5";
 import { FaPlay } from "react-icons/fa";
+import AppImage from "./AppImage";
+import ResponsiveVideo from "./ResponsiveVideo";
 
 const PhotoGallery = ({ galleryData, navbarName = "gallery" }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -96,19 +98,19 @@ const PhotoGallery = ({ galleryData, navbarName = "gallery" }) => {
                 >
                   {isVideo(url) ? (
                     <div className="gallery-video-thumbnail">
-                      <video src={url} className="gallery-media" preload="metadata" />
+                      <ResponsiveVideo src={url} className="gallery-media" preload="metadata" />
                       <div className="video-play-overlay">
                         <FaPlay size={24} />
                       </div>
                     </div>
                   ) : (
-                    <img
+                    <AppImage
                       src={url}
                       alt={alt}
                       width={400}
                       height={300}
                       className="gallery-media"
-                      loading="lazy"
+                      sizes="(max-width: 768px) 100vw, 33vw"
                     />
                   )}
                   <div className="gallery-item-overlay">
@@ -131,7 +133,7 @@ const PhotoGallery = ({ galleryData, navbarName = "gallery" }) => {
             {/* Main Media */}
             <div className="gallery-lightbox-media">
               {isVideo(currentUrls[currentMediaIndex]) ? (
-                <video
+                <ResponsiveVideo
                   src={currentUrls[currentMediaIndex]}
                   controls
                   autoPlay
@@ -139,11 +141,14 @@ const PhotoGallery = ({ galleryData, navbarName = "gallery" }) => {
                   key={currentMediaIndex}
                 />
               ) : (
-                <img
+                <AppImage
                   src={currentUrls[currentMediaIndex]}
                   alt={(groups[currentGroupIndex].alttexts && groups[currentGroupIndex].alttexts[currentMediaIndex]) || `${groups[currentGroupIndex].group || "AeroSports"} photo ${currentMediaIndex + 1}`}
+                  width={1600}
+                  height={1000}
                   className="gallery-media-full"
                   style={{ maxWidth: "100%", maxHeight: "80vh", objectFit: "contain" }}
+                  sizes="100vw"
                 />
               )}
             </div>
@@ -175,7 +180,7 @@ const PhotoGallery = ({ galleryData, navbarName = "gallery" }) => {
                     {isVideo(url) ? (
                       <div className="gallery-thumb-video"><FaPlay size={10} /></div>
                     ) : (
-                      <img src={url} alt="" width={80} height={60} className="gallery-thumb-img" />
+                      <AppImage src={url} alt="" width={80} height={60} className="gallery-thumb-img" sizes="80px" />
                     )}
                   </button>
                 ))}

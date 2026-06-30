@@ -1,5 +1,6 @@
 import PropTypes from 'prop-types';
 import styles from '../styles/ImageMarquee.module.css';
+import AppImage from './AppImage';
 
 const DEFAULT_IMAGE = '/images/default-marquee.jpg'; // 🔁 Replace with your actual default image path
 
@@ -27,26 +28,26 @@ if (imagesString) {
       <div className={styles.marqueeContent}>
         {isDefault ? (
           <div className={styles.imageContainer}>
-            <img
+            <AppImage
               src={DEFAULT_IMAGE}
               alt="AeroSports Fun"
               title="AeroSports Trampoline Park"
               width={400}
               height={267}
-              loading="lazy"
+              sizes="400px"
             />
             <p className={styles.title}>AeroSports Trampoline Fun</p>
           </div>
         ) : (
           images.map((image, index) => (
             <div key={index} className={styles.imageContainer}>
-              <img
+              <AppImage
                 src={image.src}
                 alt={image.title}
                 title={image.title}
                 width={400}
                 height={267}
-                loading="lazy"
+                sizes="400px"
               />
               {image.title && <p className={styles.title}>{image.title}</p>}
             </div>
@@ -58,13 +59,13 @@ if (imagesString) {
         <div className={styles.marqueeContentDuplicated}>
           {images.map((image, index) => (
             <div key={`${index}-duplicate`} className={styles.imageContainer}>
-              <img
+              <AppImage
                 src={image.src}
                 alt={image.title}
                 title={image.title}
                 width={400}
                 height={267}
-                loading="lazy"
+                sizes="400px"
               />
               {image.title && <p className={styles.title}>{image.title}</p>}
             </div>

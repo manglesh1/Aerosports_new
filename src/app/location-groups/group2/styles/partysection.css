@@ -1,0 +1,75 @@
+/* Base styles for the section */
+.group2-scope .aero-party-section {
+    padding: 2rem 1rem;
+    max-width: 960px;
+    margin: 0 auto;
+  }
+  
+  .group2-scope .aero-party-section h2 {
+    font-size: 2rem;
+    font-weight: 700;
+    text-align: center;
+    margin-bottom: 1rem;
+  }
+  
+  .group2-scope .aero-toggle-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  
+  .group2-scope .aero-toggle-item {
+    border-bottom: 1px solid #eee;
+    padding: 1rem 0;
+  }
+  
+  .group2-scope .aero-toggle-heading {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    justify-content: space-between;
+  }
+  
+  .group2-scope .aero-toggle-heading h3 {
+    font-size: 1.2rem;
+    margin: 0;
+    flex: 1;
+  }
+  
+  .group2-scope .aero-toggle-heading svg {
+    flex-shrink: 0;
+    transition: transform 0.3s ease;
+  }
+  
+  .group2-scope .aero-toggle-item.active .aero-toggle-heading svg {
+    transform: rotate(180deg);
+  }
+  
+  .group2-scope .aero-toggle-content {
+    margin-top: 1rem;
+    display: none;
+  }
+  
+  .group2-scope .aero-toggle-item.active .aero-toggle-content {
+    display: block;
+  }
+  
+  .group2-scope .aero-toggle-content p {
+    margin-bottom: 0.75rem;
+  }
+  
+  .group2-scope .aero-toggle-content ul {
+    padding-left: 1.25rem;
+  }
+  
+  .group2-scope .aero-toggle-content li {
+    list-style-type: disc;
+    margin-bottom: 0.5rem;
+  }
+  
+  /* Optional: Slight orange accent color like Sky Zone for action buttons/icons */
+  .group2-scope .aero-accent {
+    color: #fe5100;
+  }
+  
+  

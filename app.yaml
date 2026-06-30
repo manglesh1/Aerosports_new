@@ -1,4 +1,4 @@
-runtime: nodejs20
+runtime: nodejs22
 env: standard
 
 instance_class: F2
@@ -13,6 +13,10 @@ env_variables:
   NODE_ENV: "production"
   NEXT_PUBLIC_BASE_URL: "https://www.aerosportsparks.ca"
   NEXT_PUBLIC_API_URL: "https://apis-351216.nn.r.appspot.com/api"
+  # App Engine's filesystem is read-only, so the Next image optimizer can't
+  # write .next/cache and 500s on image-heavy pages. Our media is already
+  # CDN-hosted WebP, so serve it unoptimized in production.
+  NEXT_DISABLE_IMAGE_OPT: "1"
 
 handlers:
   # Static assets — served directly by App Engine CDN edge, bypasses Node.js

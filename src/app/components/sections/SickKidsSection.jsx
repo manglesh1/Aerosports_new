@@ -182,7 +182,7 @@ const styles = {
 	},
 	badge: {
 		display: "inline-block",
-		background: "#c8ff00",
+		background: "#B7E600",
 		color: "#000000",
 		padding: "0.6rem 1.5rem",
 		borderRadius: "50px",
@@ -204,7 +204,7 @@ const styles = {
 		MozOsxFontSmoothing: "grayscale",
 	},
 	titleAccent: {
-		color: "#c8ff00",
+		color: "#B7E600",
 	},
 	subtitle: {
 		fontSize: "1.1rem",
@@ -256,7 +256,7 @@ const styles = {
 		background: "rgba(255, 45, 135, 0.08)",
 		borderRadius: "1rem",
 		padding: "2rem",
-		border: "2px solid #c8ff00",
+		border: "2px solid #B7E600",
 		transition: "all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275)",
 		boxShadow: "0 15px 50px rgba(0, 0, 0, 0.4)",
 		position: "relative",
@@ -265,7 +265,7 @@ const styles = {
 		position: "absolute",
 		top: "-10px",
 		right: "1rem",
-		background: "#c8ff00",
+		background: "#B7E600",
 		color: "#000000",
 		padding: "0.3rem 0.8rem",
 		borderRadius: "12px",
@@ -360,13 +360,13 @@ const styles = {
 	contactPhone: {
 		fontSize: "1.5rem",
 		fontWeight: "700",
-		color: "#c8ff00",
+		color: "#B7E600",
 		marginBottom: "0.5rem",
 	},
 	contactHighlight: {
 		fontSize: "1.3rem",
 		fontWeight: "700",
-		color: "#c8ff00",
+		color: "#B7E600",
 		marginBottom: "0.5rem",
 	},
 	contactSubtext: {

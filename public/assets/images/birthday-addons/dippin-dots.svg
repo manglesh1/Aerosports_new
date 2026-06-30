@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 160 160" role="img" aria-label="Dippin Dots add-on">
+  <rect width="160" height="160" rx="26" fill="#101828"/>
+  <path d="M42 73h76l-10 58H52Z" fill="#fff" stroke="#0f172a" stroke-width="5"/>
+  <path d="M46 74c5-24 63-24 69 0Z" fill="#B7E600"/>
+  <g fill="#FF2B8A"><circle cx="62" cy="66" r="7"/><circle cx="81" cy="58" r="7"/><circle cx="100" cy="67" r="7"/></g>
+  <g fill="#3B82F6"><circle cx="73" cy="78" r="6"/><circle cx="94" cy="82" r="6"/></g>
+</svg>

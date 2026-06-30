@@ -1,6 +1,15 @@
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
 
+export const metadata = {
+  title: "Component Test | AeroSports",
+  description: "Internal component test page for AeroSports.",
+  robots: {
+    index: false,
+    follow: false,
+  },
+};
+
 const ButtonShowcase = () => {
   return (
     <div className="min-h-screen p-8">

@@ -1,6 +1,7 @@
 import Link from 'next/link';
 import React from 'react';
 import '../../styles/blog-section.css';
+import AppImage from '../AppImage';
 
 /**
  * Keywords associated with each page category/path for blog relevance matching
@@ -84,9 +85,10 @@ const BlogSection = ({ blogs, location_slug, currentCategory }) => {
               key={blog.pageid || index}
               href={`/${location_slug}/blogs/${blog.path}`}
               className="aero-blog-section-card"
+              prefetch={false}
             >
               <div className="aero-blog-section-card-image">
-                <img
+                <AppImage
                   src={
                     blog.smallimage ||
                     `https://storage.googleapis.com/aerosports/webp/${location_slug}/gallery-thummbnail-wall-climbwall.webp`
@@ -95,7 +97,7 @@ const BlogSection = ({ blogs, location_slug, currentCategory }) => {
                   height={250}
                   alt={blog.title || 'Blog article'}
                   title={blog.title}
-                  loading="lazy"
+                  sizes="(max-width: 768px) calc(100vw - 32px), 33vw"
                 />
               </div>
               <div className="aero-blog-section-card-content">

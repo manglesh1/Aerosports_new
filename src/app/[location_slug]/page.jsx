@@ -11,7 +11,6 @@ import PlanV2 from "@/components/home-v2/PlanV2";
 import PartyV2 from "@/components/home-v2/PartyV2";
 import SocialProofV2 from "@/components/home-v2/SocialProofV2";
 import WhyChooseV2 from "@/components/home-v2/WhyChooseV2";
-import PromoV2 from "@/components/home-v2/PromoV2";
 import LocationV2 from "@/components/home-v2/LocationV2";
 import FinalCtaV2 from "@/components/home-v2/FinalCtaV2";
 
@@ -25,22 +24,33 @@ import {
   fetchHomePageJsonData,
 } from "@/lib/sheets";
 
+// Group2 (oakville/london/scarborough) renders its own ported design + sheet.
+import { resolveLocationGroup } from "@/lib/location-groups.mjs";
+import Group2LocationHome from "@g2/pages/Group2LocationHome";
+import { generateMetadataLib as generateMetadataLibG2 } from "@g2/lib/sheets";
+
+const isGroup2 = (slug) => resolveLocationGroup(slug)?.group?.key === "group2";
+
+export const revalidate = 86400;
+
 export async function generateMetadata({ params }) {
-  const metadata = await generateMetadataLib({
-    location: params.location_slug,
-    category: "",
-    page: "",
-  });
+  const location = params.location_slug;
+  const metaLib = isGroup2(location) ? generateMetadataLibG2 : generateMetadataLib;
+  const metadata = await metaLib({ location, category: "", page: "" });
   return metadata;
 }
 
 const Home = async ({ params }) => {
   const location_slug = params?.location_slug;
 
+  // Group2 cities render the ported group2 home (own components + own sheet).
+  if (isGroup2(location_slug)) {
+    return <Group2LocationHome location_slug={location_slug} />;
+  }
+
   const [
     data,
     dataconfig,
-    promotions,
     locationData,
     waiverLink,
     popupData,
@@ -48,7 +58,6 @@ const Home = async ({ params }) => {
   ] = await Promise.all([
     fetchMenuData(location_slug),
     fetchsheetdata("config", location_slug),
-    fetchsheetdata("promotions", location_slug),
     fetchsheetdata("locations", location_slug),
     getWaiverLink(location_slug),
     fetchsheetdata("popups", location_slug),
@@ -138,11 +147,6 @@ const Home = async ({ params }) => {
       />
 
       <WhyChooseV2 locationDisplay={displayName} />
-
-      <PromoV2
-        promotions={promotions}
-        locationSlug={location_slug}
-      />
 
       <LocationV2 locationData={locationData} reviewdata={reviewdata} />
 

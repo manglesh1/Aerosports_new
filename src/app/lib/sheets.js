@@ -4,13 +4,55 @@ const XLSX = require('xlsx');
 
 const SHEET_URL = process.env.SHEET_URL;
 const sheetCache = new Map();
-const CACHE_TTL = 1000 * 60 * 5; // 5 minutes — short enough that sheet edits show up quickly
-const waiverLinkCache = new Map();
+const CACHE_TTL =  (parseInt(process.env.SHEET_CACHE_TTL_SECONDS || "86400", 10)) * 1000;
+  const waiverLinkCache = new Map();
 const reviewesData = new Map();
+let sheetWorkbookRequest = null;
+
+const GCS_MEDIA_PREFIX = "https://storage.googleapis.com/aerosports/";
+const CDN_MEDIA_PREFIX = "https://media.aerosportsparks.ca/";
+
+function normalizeMediaUrl(value) {
+  if (typeof value !== "string") return value;
+  if (value.startsWith(GCS_MEDIA_PREFIX)) {
+    return `${CDN_MEDIA_PREFIX}${value.slice(GCS_MEDIA_PREFIX.length)}`;
+  }
+  return value;
+}
+
+async function fetchWorkbook() {
+  if (!sheetWorkbookRequest) {
+    sheetWorkbookRequest = (async () => {
+      const bustedUrl = SHEET_URL
+        ? `${SHEET_URL}${SHEET_URL.includes("?") ? "&" : "?"}_=${Date.now()}`
+        : SHEET_URL;
+
+      const response = await fetch(bustedUrl, {
+        headers: { "Cache-Control": "no-cache", Pragma: "no-cache" },
+      });
+
+      if (!response.ok) {
+        throw new Error(`Sheet fetch failed: ${response.status} ${response.statusText}`);
+      }
+
+      const buffer = Buffer.from(await response.arrayBuffer());
+      return XLSX.read(buffer, { type: "buffer" });
+    })().finally(() => {
+      sheetWorkbookRequest = null;
+    });
+  }
+
+  return sheetWorkbookRequest;
+}
 
 async function fetchsheetdata(sheetName, location) {
   if (sheetName === 'refresh') {
+    // Clear every in-process read cache so the next request re-fetches live.
     sheetCache.clear();
+    waiverLinkCache.clear();
+    reviewesData.clear();
+    mediaMapCache.map = null;
+    mediaMapCache.timestamp = 0;
     return [];
   }
   if (location === '.well-known') return [];
@@ -19,20 +61,10 @@ async function fetchsheetdata(sheetName, location) {
   const now = Date.now();
   const cached = sheetCache.get(cacheKey);
   if (cached && now - cached.timestamp < CACHE_TTL) {
-    return cached.data;
+    return await resolveMaybe(sheetName, cached.data);
   }
-
   try {
-    // Cache-bust the Google Sheets export endpoint so we don't get a stale
-    // CDN copy after editing the sheet.
-    const bustedUrl = SHEET_URL
-      ? `${SHEET_URL}${SHEET_URL.includes('?') ? '&' : '?'}_=${Date.now()}`
-      : SHEET_URL;
-    const response = await axios.get(bustedUrl, {
-      responseType: 'arraybuffer',
-      headers: { 'Cache-Control': 'no-cache', Pragma: 'no-cache' },
-    });
-    const workbook = XLSX.read(response.data, { type: 'buffer' });
+    const workbook = await fetchWorkbook();
 
     const worksheetLocationsData = workbook.Sheets['locations'];
     const jsonLocationsData = XLSX.utils.sheet_to_json(worksheetLocationsData, { defval: '' });
@@ -69,7 +101,7 @@ async function fetchsheetdata(sheetName, location) {
     });
 
     const result = sheetCache.get(cacheKey);
-    return result ? result.data : [];
+    return await resolveMaybe(sheetName, result ? result.data : []);
   } catch (error) {
     console.error(`❌ Error in fetchsheetdata("${sheetName}"):`, error.message);
     sheetCache.set('__lastError', { data: error.message, timestamp: Date.now() });
@@ -77,28 +109,136 @@ async function fetchsheetdata(sheetName, location) {
   }
 }
 
+// --- Media library resolution -------------------------------------------------
+// Content sheets can reference a row in the "media" sheet by its id. We transparently
+// replace any field value that matches a media id with that media's desktop_url, and
+// attach a `${field}_media` object (desktop_url, mobile_url, alt, title) for components
+// that want the responsive/alt data. Values that aren't media ids (e.g. raw URLs) pass
+// through unchanged — fully backwards-compatible and dormant until media ids are used.
+let mediaMapCache = { map: null, timestamp: 0 };
+
+async function getMediaMap() {
+  const now = Date.now();
+  if (mediaMapCache.map && now - mediaMapCache.timestamp < CACHE_TTL) {
+    return mediaMapCache.map;
+  }
+  let rows = [];
+  try {
+    rows = await fetchsheetdata('media', 'all');
+  } catch {
+    rows = [];
+  }
+  const map = new Map();
+  (Array.isArray(rows) ? rows : []).forEach((r) => {
+    const id = r && r.id != null ? String(r.id).trim() : '';
+    if (id) map.set(id, r);
+  });
+  mediaMapCache = { map, timestamp: now };
+  return map;
+}
+
+function resolveMediaInData(data, mediaMap) {
+  return data.map((row) => {
+    let out = null;
+    for (const key in row) {
+      const v = row[key];
+      if (typeof v === 'string' && v && mediaMap.has(v.trim())) {
+        const m = mediaMap.get(v.trim());
+        if (!out) out = { ...row };
+        out[key] = normalizeMediaUrl(m.desktop_url || v);
+        out[`${key}_media`] = {
+          id: m.id,
+          type: m.type || 'image',
+          desktop_url: normalizeMediaUrl(m.desktop_url || ''),
+          mobile_url: normalizeMediaUrl(m.mobile_url || ''),
+          alt: m.alt || '',
+          title: m.title || '',
+        };
+      } else if (typeof v === 'string') {
+        const normalized = normalizeMediaUrl(v);
+        if (normalized !== v) {
+          if (!out) out = { ...row };
+          out[key] = normalized;
+        }
+      }
+    }
+    return out || row;
+  });
+}
+
+async function resolveMaybe(sheetName, data) {
+  if (sheetName === 'media' || !Array.isArray(data) || data.length === 0) return data;
+  const mediaMap = await getMediaMap();
+  if (!mediaMap || mediaMap.size === 0) return data;
+  return resolveMediaInData(data, mediaMap);
+}
+
 async function fetchsheetdataNoCache(sheetName) {
   const response = await axios.get(SHEET_URL, { responseType: 'arraybuffer' });
   const workbook = XLSX.read(response.data, { type: 'buffer' });
   const worksheet = workbook.Sheets[sheetName];
+  if (!worksheet) return [];
   return XLSX.utils.sheet_to_json(worksheet, { defval: '' });
 }
 
 /**
  * Builds menu data with nested children from "Data" sheet
  */
+// Pages live in the "Data" sheet and blog posts in the "blogs" sheet, but most of the app
+// treats them as one content set (menu hierarchy + page lookups), so merge them at read time.
+// Safe before the blogs sheet exists: fetchsheetdata("blogs") returns [] -> just Data.
+async function fetchContentData(location) {
+  const [pages, blogs] = await Promise.all([
+    fetchsheetdata("Data", location),
+    fetchsheetdata("blogs", location),
+  ]);
+  return [
+    ...(Array.isArray(pages) ? pages : []),
+    ...(Array.isArray(blogs) ? blogs : []),
+  ];
+}
+
+function normalizeLookupSlug(value) {
+  return String(value || "")
+    .trim()
+    .toLowerCase()
+    .replace(/^\/+|\/+$/g, "")
+    .replace(/\s+/g, "-");
+}
+
+function isActiveSheetRow(row) {
+  const value = String(row?.isactive ?? "").trim().toLowerCase();
+  return value === "" || value === "1" || value === "true" || value === "yes";
+}
+
 async function fetchMenuData(location) {
-  const jsonData = await fetchsheetdata("Data", location);
+  const jsonData = await fetchContentData(location);
   const hierarchy = {};
 
+  // Which row wins for a given path is decided ONLY by the `location` column:
+  // when rows share a path (e.g. a per-park "blogs" container vs. a blank/shared one),
+  // the row whose location column matches the requested location wins; a blank row is
+  // the fallback. This stops one park's row from leaking onto another park's page.
+  const loc = (location || '').toLowerCase();
+  const locRank = (row) => {
+    const raw = String(row.location || '').toLowerCase();
+    if (!loc) return raw ? 1 : 0;        // corporate (blank request): prefer blank rows
+    if (!raw) return 1;                   // shared/blank row
+    return raw.split(',').map((s) => s.trim()).includes(loc) ? 0 : 2; // exact column match wins
+  };
+
   jsonData.forEach(item => {
+    const existing = hierarchy[item.path];
+    if (existing && locRank(existing) <= locRank(item)) return;
     const { section1, section2, ruleyes, ruleno, ...rest } = item;
     hierarchy[item.path] = { ...rest, children: [] };
   });
 
+  const attached = new Set();
   jsonData.forEach(item => {
-    if (item.parentid && hierarchy[item.parentid]) {
+    if (item.parentid && hierarchy[item.parentid] && hierarchy[item.path] && !attached.has(item.path)) {
       hierarchy[item.parentid].children.push(hierarchy[item.path]);
+      attached.add(item.path);
     }
   });
 
@@ -108,10 +248,10 @@ async function fetchMenuData(location) {
 /**
  * Filter page-specific data
  */
-async function fetchPageData(location, page) {
-  const jsonData = await fetchsheetdata("Data", location);
-  const pageUpper = page.toUpperCase();
-  const pageSlug = page.toLowerCase();
+async function fetchPageData(location, page, options = {}) {
+  const { requireActive = false } = options;
+  const jsonData = await fetchContentData(location);
+  const pageSlug = normalizeLookupSlug(page);
   const locationSlug = (location || '').toLowerCase();
   const rowLocationRank = (row) => {
     const rawLocation = String(row.location || '').toLowerCase();
@@ -121,20 +261,44 @@ async function fetchPageData(location, page) {
     return locations.includes(locationSlug) ? 0 : 2;
   };
   const rowPageRank = (row) => {
-    const path = String(row.path || '').toLowerCase();
-    const desc = String(row.desc || '').toLowerCase();
+    const path = normalizeLookupSlug(row.path);
+    const desc = normalizeLookupSlug(row.desc);
     if (path === pageSlug) return 0;
     if (desc === pageSlug) return 1;
-    if (path.includes(pageSlug)) return 2;
-    return 3;
+    return 2;
   };
-  const filtered = jsonData.filter(m =>
-    m.path?.toUpperCase().includes(pageUpper) ||
-    m.desc?.toUpperCase() === pageUpper
-  );
+  const filtered = jsonData.filter((row) => {
+    if (rowLocationRank(row) > 1) return false;
+    if (requireActive && !isActiveSheetRow(row)) return false;
+    return rowPageRank(row) < 2;
+  });
   filtered.sort((a, b) => rowLocationRank(a) - rowLocationRank(b) || rowPageRank(a) - rowPageRank(b));
   return filtered[0];
 }
+
+async function fetchAttractionContent(location, path) {
+  const jsonData = await fetchsheetdata("attractions", location);
+  const requestedLocation = String(location || "").trim().toLowerCase();
+  const requestedPath = normalizeLookupSlug(path);
+
+  if (!Array.isArray(jsonData) || !requestedPath) return null;
+
+  const locationRank = (row) => {
+    const rawLocation = String(row.location || "").toLowerCase();
+    if (!requestedLocation) return rawLocation ? 1 : 0;
+    if (!rawLocation) return 1;
+    return rawLocation.split(",").map((item) => item.trim()).includes(requestedLocation) ? 0 : 2;
+  };
+
+  const filtered = jsonData.filter((row) => {
+    if (locationRank(row) > 1) return false;
+    return normalizeLookupSlug(row.path) === requestedPath;
+  });
+
+  filtered.sort((a, b) => locationRank(a) - locationRank(b));
+  return filtered[0] || null;
+}
+
 async function fetchFaqData(location, page) {
   const jsonData = await fetchsheetdata("faq", location);
   return jsonData.filter(m => m.path?.toUpperCase().includes(page.toUpperCase()));
@@ -329,11 +493,57 @@ async function fetchBirthdayPartyJson(location) {
   }
 }
 
+function normalizeGalleryPath(value) {
+  if (value === undefined || value === null) return "";
+  let cleaned = String(value).trim().toLowerCase();
+
+  if (!cleaned) return "";
+
+  try {
+    if (/^https?:\/\//i.test(cleaned)) {
+      cleaned = new URL(cleaned).pathname;
+    }
+  } catch {
+    // Leave non-URL values as-is.
+  }
+
+  return cleaned
+    .replace(/[?#].*$/, "")
+    .replace(/^\/+|\/+$/g, "")
+    .replace(/\s+/g, "-");
+}
+
+function splitGalleryPaths(value) {
+  return String(value || "")
+    .split(/[\n,|]+/)
+    .map(normalizeGalleryPath)
+    .filter(Boolean);
+}
+
+function galleryRowMatchesPath(rowPath, pagePaths) {
+  const requestedPaths = Array.isArray(pagePaths)
+    ? pagePaths.map(normalizeGalleryPath).filter(Boolean)
+    : splitGalleryPaths(pagePaths);
+
+  if (requestedPaths.length === 0) return true;
+
+  const rowPaths = splitGalleryPaths(rowPath);
+  if (rowPaths.length === 0) return false;
+
+  return rowPaths.some((rowValue) =>
+    requestedPaths.some((requestedValue) =>
+      rowValue === requestedValue ||
+      rowValue.endsWith(`/${requestedValue}`) ||
+      requestedValue.endsWith(`/${rowValue}`)
+    )
+  );
+}
+
 /**
  * Fetch photo gallery data from "photo gallery" sheet
  * Returns organized data by navbar groups with parsed URLs
  */
-async function fetchGalleryData(location) {
+async function fetchGalleryData(location, pagePaths = "") {
   try {
     const jsonData = await fetchsheetdata("photo gallery", location);
 
@@ -346,6 +556,8 @@ async function fetchGalleryData(location) {
     const groupedData = {};
 
     jsonData.forEach(row => {
+      if (!galleryRowMatchesPath(row.path, pagePaths)) return;
+
       const navbar = row.navbar || 'gallery';
       const group = row.group || '';
       const url = row.urls ? row.urls.trim() : '';
@@ -437,6 +649,7 @@ module.exports = {
   fetchsheetdata,
   fetchMenuData,
   fetchPageData,
+  fetchAttractionContent,
   generateMetadataLib,
   fetchFaqData,
   getWaiverLink,

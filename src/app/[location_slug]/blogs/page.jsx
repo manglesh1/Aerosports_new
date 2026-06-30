@@ -3,8 +3,22 @@ import React from "react";
 import { getDataByParentId } from '@/utils/customFunctions';
 import Link from 'next/link';
 import { fetchMenuData, generateMetadataLib, fetchsheetdata, generateSchema } from "@/lib/sheets";
+import AppImage from "@/components/AppImage";
+
+import { resolveLocationGroup } from "@/lib/location-groups.mjs";
+import Group2Blogs from "@g2/pages/Group2Blogs";
+import { generateMetadataLib as generateMetadataLibG2 } from "@g2/lib/sheets";
+
+const isGroup2 = (slug) => resolveLocationGroup(slug)?.group?.key === "group2";
 
 export async function generateMetadata({ params }) {
+  if (isGroup2(params.location_slug)) {
+    return await generateMetadataLibG2({
+      location: params.location_slug,
+      category: '',
+      page: 'blogs'
+    });
+  }
   const metadata = await generateMetadataLib({
     location: params.location_slug,
     category: '',
@@ -18,6 +32,8 @@ function stripHtml(html) {
 }
 
 const page = async ({ params }) => {
+  if (isGroup2(params?.location_slug)) return <Group2Blogs params={params} />;
+
   const location_slug = params?.location_slug;
   const [data, locationData] = await Promise.all([
     fetchMenuData(location_slug),
@@ -37,12 +53,13 @@ const page = async ({ params }) => {
           {extractBlogData?.map((item, i) => (
             <Link href={`/${location_slug}/blogs/${item?.path}`} className="aero-blog-listing-card" key={i} prefetch>
               <div className="aero-blog-listing-card-image">
-                <img
+                <AppImage
                   src={item.smallimage}
-                  alt={item.title || "Blog article"}
+                  alt={item.smallimage_media?.alt || item.title || "Blog article"}
                   width={400}
                   height={250}
-                  loading={i < 3 ? "eager" : "lazy"}
+                  priority={i < 3}
+                  sizes="(max-width: 768px) 100vw, 33vw"
                 />
               </div>
               <div className="aero-blog-listing-card-body">

@@ -1,0 +1,715 @@
+﻿.pass_ad_page {
+  --pass-bg: #070a14;
+  --pass-card: #111725;
+  --pass-ink: #ffffff;
+  --pass-muted: #c8d2e5;
+  --pass-pink: #ff2b86;
+  --pass-lime: #B7E600;
+  background: #f3f6fb;
+  color: #050816;
+  font-family: var(--font-roboto-condensed), Arial, sans-serif;
+}
+
+.pass_ad_hero {
+  position: relative;
+  min-height: 760px;
+  isolation: isolate;
+  overflow: hidden;
+  background: var(--pass-bg);
+  color: var(--pass-ink);
+}
+
+.pass_ad_hero_media,
+.pass_ad_hero_media img,
+.pass_ad_hero_media video {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.pass_ad_hero_media {
+  z-index: -3;
+  filter: brightness(1.18) saturate(1.12);
+}
+
+.pass_ad_overlay {
+  position: absolute;
+  inset: 0;
+  z-index: -2;
+  background:
+    radial-gradient(circle at 82% 12%, rgba(255, 43, 134, 0.24), transparent 28%),
+    radial-gradient(circle at 18% 75%, rgba(183, 230, 0, 0.22), transparent 30%),
+    linear-gradient(90deg, rgba(5, 8, 18, 0.82), rgba(5, 8, 18, 0.54) 48%, rgba(5, 8, 18, 0.18)),
+    linear-gradient(180deg, rgba(5, 8, 18, 0.08), rgba(5, 8, 18, 0.72));
+}
+
+.pass_ad_nav {
+  width: min(1180px, calc(100% - 40px));
+  margin: 0 auto;
+  padding: 22px 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: relative;
+  z-index: 2;
+}
+
+.pass_ad_nav a {
+  color: #fff;
+  text-decoration: none;
+  text-transform: uppercase;
+  font-weight: 900;
+  letter-spacing: 0.04em;
+}
+
+.pass_ad_nav > a:first-child {
+  color: var(--pass-lime);
+  font-size: 28px;
+}
+
+.pass_ad_nav_cta,
+.pass_ad_primary,
+.pass_ad_card_cta {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 52px;
+  border-radius: 12px;
+  padding: 16px 24px;
+  background: var(--pass-lime);
+  color: #050816 !important;
+  text-decoration: none;
+  text-transform: uppercase;
+  font-weight: 900;
+  letter-spacing: 0.04em;
+  box-shadow: 0 18px 35px rgba(183, 230, 0, 0.28);
+}
+
+.pass_ad_hero_inner {
+  width: min(1180px, calc(100% - 40px));
+  margin: 0 auto;
+  padding: 58px 0 86px;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(340px, 0.48fr);
+  gap: 54px;
+  align-items: start;
+}
+
+.pass_ad_eyebrow,
+.pass_ad_section_head span,
+.pass_ad_reason_copy > span {
+  display: inline-flex;
+  width: max-content;
+  border-radius: 999px;
+  padding: 9px 14px;
+  background: rgba(255, 43, 134, 0.18);
+  color: #ff80b8;
+  text-transform: uppercase;
+  letter-spacing: 0.09em;
+  font-size: 13px;
+  font-weight: 900;
+}
+
+.pass_ad_hero h1 {
+  margin: 24px 0 20px;
+  max-width: 780px;
+  font-size: clamp(52px, 7vw, 96px);
+  line-height: 0.9;
+  text-transform: uppercase;
+}
+
+.pass_ad_hero p {
+  max-width: 610px;
+  color: var(--pass-muted);
+  font-family: Arial, sans-serif;
+  font-size: 20px;
+  line-height: 1.6;
+}
+
+.pass_ad_actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px;
+  margin-top: 30px;
+}
+
+.pass_ad_secondary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 52px;
+  border: 1px solid rgba(255, 255, 255, 0.28);
+  border-radius: 12px;
+  padding: 16px 24px;
+  color: #fff;
+  text-decoration: none;
+  text-transform: uppercase;
+  font-weight: 900;
+}
+
+.pass_ad_proof {
+  margin-top: 30px;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 14px;
+  max-width: 720px;
+}
+
+.pass_ad_proof span,
+.pass_ad_buy_box {
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  border-radius: 18px;
+  padding: 18px;
+  background: rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(14px);
+  color: var(--pass-muted);
+  font-family: Arial, sans-serif;
+}
+
+.pass_ad_proof strong {
+  display: block;
+  color: var(--pass-lime);
+  font-family: var(--font-roboto-condensed), Arial, sans-serif;
+  font-size: 32px;
+  text-transform: uppercase;
+}
+
+.pass_ad_buy_box {
+  border-top: 4px solid var(--pass-pink);
+  padding: 26px;
+  background: rgba(9, 13, 27, 0.88);
+  box-shadow: 0 30px 80px rgba(0, 0, 0, 0.34);
+}
+
+.pass_ad_buy_box > span,
+.pass_ad_badge {
+  display: inline-flex;
+  padding: 7px 11px;
+  border-radius: 999px;
+  background: rgba(255, 43, 134, 0.18);
+  color: #ff80b8;
+  text-transform: uppercase;
+  font-weight: 900;
+  font-size: 12px;
+}
+
+.pass_ad_buy_box h2 {
+  margin: 18px 0 8px;
+  color: #fff;
+  font-size: 36px;
+  text-transform: uppercase;
+}
+
+.pass_ad_buy_price {
+  margin: 0 0 20px !important;
+  color: var(--pass-lime) !important;
+  font-family: var(--font-roboto-condensed), Arial, sans-serif !important;
+  font-size: 48px !important;
+  font-weight: 900;
+}
+
+.pass_ad_buy_box ul,
+.pass_ad_card ul {
+  display: grid;
+  gap: 12px;
+  padding: 0;
+  margin: 0 0 24px;
+  list-style: none;
+}
+
+.pass_ad_buy_box li,
+.pass_ad_card li {
+  display: grid;
+  gap: 4px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+  font-family: Arial, sans-serif;
+}
+
+.pass_ad_buy_box li b,
+.pass_ad_card li span {
+  color: #8f9ab0;
+  text-transform: uppercase;
+  font-size: 12px;
+  font-weight: 900;
+}
+
+.pass_ad_buy_box li span,
+.pass_ad_card li strong {
+  color: #fff;
+}
+
+.pass_ad_buy_box small {
+  display: block;
+  margin-top: 14px;
+  color: #97a3b8;
+  font-family: Arial, sans-serif;
+}
+
+.pass_ad_strip {
+  display: flex;
+  overflow: hidden;
+  background: linear-gradient(90deg, var(--pass-lime), #ffdc75, var(--pass-pink));
+  color: #050816;
+}
+
+.pass_ad_strip span {
+  flex: 1;
+  min-width: 220px;
+  padding: 17px 24px;
+  text-align: center;
+  text-transform: uppercase;
+  font-weight: 900;
+  letter-spacing: 0.06em;
+}
+
+.pass_ad_compare,
+.pass_ad_reason_section,
+.pass_ad_final {
+  padding: 82px max(24px, calc((100vw - 1180px) / 2));
+}
+
+.pass_ad_section_head {
+  max-width: 740px;
+  margin: 0 auto 34px;
+  text-align: center;
+}
+
+.pass_ad_section_head span,
+.pass_ad_reason_copy > span {
+  color: var(--pass-pink);
+  background: rgba(255, 43, 134, 0.12);
+}
+
+.pass_ad_section_head h2,
+.pass_ad_reason_copy h2,
+.pass_ad_final h2 {
+  margin: 16px 0;
+  font-size: clamp(42px, 5vw, 70px);
+  line-height: 0.95;
+  text-transform: uppercase;
+}
+
+.pass_ad_section_head p,
+.pass_ad_reason_copy p,
+.pass_ad_final p,
+.pass_ad_reason_grid p {
+  color: #536078;
+  font-family: Arial, sans-serif;
+  font-size: 18px;
+  line-height: 1.6;
+}
+
+
+.pass_ad_compare_shell {
+  overflow-x: auto;
+  border: 1px solid rgba(8, 11, 21, 0.1);
+  border-radius: 22px;
+  background: #fff;
+  box-shadow: 0 24px 60px rgba(8, 11, 21, 0.12);
+}
+
+.pass_ad_compare_grid,
+.pass_ad_compare_ctas {
+  display: grid;
+  min-width: 720px;
+}
+
+.pass_ad_compare_cell {
+  min-height: 66px;
+  display: flex;
+  align-items: center;
+  padding: 18px 20px;
+  border-right: 1px solid rgba(49, 84, 217, 0.18);
+  border-bottom: 1px solid rgba(8, 11, 21, 0.08);
+  font-family: Arial, sans-serif;
+}
+
+.pass_ad_compare_header {
+  min-height: 64px;
+  font-family: var(--font-roboto-condensed), Arial, sans-serif;
+  text-transform: uppercase;
+  font-weight: 900;
+  letter-spacing: 0.06em;
+}
+
+.pass_ad_compare_feature {
+  position: sticky;
+  left: 0;
+  z-index: 2;
+  justify-content: flex-start;
+  background: #fff;
+  color: #061125;
+  font-weight: 900;
+}
+
+.pass_ad_compare_header.pass_ad_compare_feature {
+  z-index: 4;
+}
+
+.pass_ad_compare_plan {
+  justify-content: center;
+  color: #fff;
+  text-align: center;
+  font-size: 18px;
+}
+
+.pass_ad_compare_plan_0 {
+  background: var(--pass-lime);
+  color: #061125;
+}
+
+.pass_ad_compare_plan_1 {
+  background: #3b82f6;
+}
+
+.pass_ad_compare_plan_2 {
+  background: #8b5cf6;
+}
+
+.pass_ad_compare_plan_3 {
+  background: #ff2b86;
+}
+
+.pass_ad_compare_value {
+  justify-content: center;
+  text-align: center;
+  color: #061125;
+  font-weight: 900;
+}
+
+.pass_ad_compare_alt {
+  background: #eef3fa;
+}
+
+.pass_ad_compare_feature.pass_ad_compare_alt {
+  background: #eef3fa;
+}
+
+.pass_ad_check {
+  display: inline-grid;
+  place-items: center;
+  width: 34px;
+  height: 34px;
+  border-radius: 999px;
+  background: rgba(16, 185, 129, 0.18);
+  color: #059669;
+  font-size: 20px;
+  font-weight: 900;
+}
+
+.pass_ad_dash {
+  color: #c4cfdf;
+  font-size: 26px;
+  font-weight: 900;
+}
+
+.pass_ad_compare_price {
+  color: #ff2b86;
+  font-family: var(--font-roboto-condensed), Arial, sans-serif;
+  font-size: 28px;
+}
+
+.pass_ad_compare_ctas {
+  gap: 0;
+  padding: 18px 20px 22px;
+  background: #fff;
+}
+
+.pass_ad_compare_ctas > span {
+  display: block;
+}
+
+.pass_ad_compare_ctas .pass_ad_card_cta {
+  margin: 0 10px;
+}
+
+.pass_ad_cards {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 22px;
+  align-items: stretch;
+}
+
+.pass_ad_card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  border: 1px solid rgba(8, 11, 21, 0.1);
+  border-radius: 22px;
+  padding: 28px;
+  background: #fff;
+  box-shadow: 0 20px 50px rgba(8, 11, 21, 0.1);
+}
+
+.pass_ad_card::before {
+  content: "";
+  position: absolute;
+  inset: 0 0 auto;
+  height: 5px;
+  background: linear-gradient(90deg, var(--pass-lime), var(--pass-pink));
+}
+
+.pass_ad_card_featured {
+  background: #080b15;
+  color: #fff;
+  transform: translateY(-8px);
+}
+
+.pass_ad_card h3 {
+  margin: 18px 0 10px;
+  font-size: 38px;
+  line-height: 0.95;
+  text-transform: uppercase;
+}
+
+.pass_ad_card_price {
+  margin-bottom: 22px;
+  color: var(--pass-pink);
+  font-size: 52px;
+  font-weight: 900;
+}
+
+.pass_ad_card:not(.pass_ad_card_featured) li {
+  border-bottom-color: rgba(8, 11, 21, 0.08);
+}
+
+.pass_ad_card:not(.pass_ad_card_featured) li strong {
+  color: #050816;
+}
+
+.pass_ad_card_cta {
+  margin-top: auto;
+}
+
+.pass_ad_reason_section {
+  display: grid;
+  grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
+  gap: 44px;
+  align-items: center;
+  background: #fff;
+}
+
+.pass_ad_reason_grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 16px;
+}
+
+.pass_ad_reason_grid article {
+  border: 1px solid rgba(8, 11, 21, 0.1);
+  border-radius: 18px;
+  padding: 22px;
+  background: #f7f9fd;
+}
+
+.pass_ad_reason_grid article span {
+  display: inline-grid;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  margin-bottom: 16px;
+  border-radius: 14px;
+  background: rgba(183, 230, 0, 0.24);
+  font-weight: 900;
+}
+
+.pass_ad_reason_grid h3 {
+  margin: 0;
+  text-transform: uppercase;
+  font-size: 24px;
+}
+
+.pass_ad_final {
+  text-align: center;
+  background: #080b15;
+  color: #fff;
+}
+
+.pass_ad_final p {
+  margin: 0 auto 26px;
+  max-width: 620px;
+  color: var(--pass-muted);
+}
+
+.pass_ad_sticky {
+  position: fixed;
+  z-index: 50;
+  right: 18px;
+  bottom: 18px;
+}
+
+.pass_ad_sticky a {
+  display: inline-flex;
+  border-radius: 999px;
+  padding: 16px 24px;
+  background: var(--pass-pink);
+  color: #fff;
+  text-decoration: none;
+  text-transform: uppercase;
+  font-weight: 900;
+  box-shadow: 0 18px 36px rgba(255, 43, 134, 0.34);
+}
+
+@media (max-width: 900px) {
+  .pass_ad_hero {
+    min-height: 0;
+  }
+
+  .pass_ad_hero_inner,
+  .pass_ad_cards,
+  .pass_ad_reason_section,
+  .pass_ad_reason_grid,
+  .pass_ad_proof {
+    grid-template-columns: 1fr;
+  }
+
+  .pass_ad_card_featured {
+    transform: none;
+  }
+
+  .pass_ad_nav {
+    width: min(100% - 28px, 1180px);
+  }
+
+  .pass_ad_nav > a:first-child {
+    font-size: 22px;
+  }
+
+  .pass_ad_hero_inner {
+    width: min(100% - 28px, 1180px);
+    padding: 32px 0 70px;
+    gap: 28px;
+  }
+
+  .pass_ad_hero h1 {
+    font-size: clamp(42px, 13vw, 62px);
+  }
+
+  .pass_ad_compare,
+  .pass_ad_reason_section,
+  .pass_ad_final {
+    padding: 56px 20px;
+  }
+
+  .pass_ad_actions a,
+  .pass_ad_buy_box .pass_ad_primary,
+  .pass_ad_card_cta {
+    width: 100%;
+  }
+
+
+  .pass_ad_compare_shell {
+    margin-inline: -20px;
+    border-radius: 0;
+  }
+
+  .pass_ad_compare_feature {
+    min-width: 170px;
+  }
+
+  .pass_ad_compare_cell {
+    padding: 16px 14px;
+  }
+
+  .pass_ad_sticky {
+    left: 0;
+    right: 0;
+    bottom: 0;
+  }
+
+  .pass_ad_sticky a {
+    width: 100%;
+    border-radius: 0;
+    justify-content: center;
+  }
+}
+
+/* Compact mobile comparison for summer pass landing */
+.pass_ad_compare_grid,
+.pass_ad_compare_ctas {
+  grid-template-columns: minmax(180px, 1.05fr) repeat(var(--pass-ad-plan-count), minmax(150px, 1fr));
+}
+
+@media (max-width: 760px) {
+  .pass_ad_compare_shell {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    overscroll-behavior-x: contain;
+  }
+
+  .pass_ad_compare_shell::before {
+    content: "Swipe to compare \2192";
+    position: sticky;
+    left: 0.75rem;
+    z-index: 8;
+    display: inline-flex;
+    align-items: center;
+    min-height: 32px;
+    margin: 0.75rem 0 0.5rem;
+    padding: 0.42rem 0.72rem;
+    border-radius: 999px;
+    background: rgba(183, 230, 0, 0.16);
+    color: #0f172a;
+    font-size: 0.68rem;
+    font-weight: 900;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+
+  .pass_ad_compare_grid,
+  .pass_ad_compare_ctas {
+    grid-template-columns: 112px repeat(var(--pass-ad-plan-count), 96px);
+    min-width: max-content;
+  }
+
+  .pass_ad_compare_cell {
+    min-height: 54px;
+    padding: 0.58rem 0.45rem;
+    font-size: 0.72rem;
+    line-height: 1.25;
+  }
+
+  .pass_ad_compare_header {
+    min-height: 62px;
+    padding: 0.62rem 0.38rem;
+    font-size: 0.64rem;
+    line-height: 1.25;
+    letter-spacing: 0.04em;
+  }
+
+  .pass_ad_compare_feature {
+    position: sticky;
+    left: 0;
+    z-index: 4;
+    width: 112px;
+    min-width: 112px;
+    box-shadow: 8px 0 18px rgba(15, 23, 42, 0.08);
+  }
+
+  .pass_ad_compare_header.pass_ad_compare_feature {
+    z-index: 6;
+  }
+
+  .pass_ad_compare_plan,
+  .pass_ad_compare_value {
+    min-width: 96px;
+    overflow-wrap: anywhere;
+  }
+
+  .pass_ad_check,
+  .pass_ad_dash {
+    width: 27px;
+    height: 27px;
+  }
+
+  .pass_ad_card_cta {
+    width: 100%;
+    padding: 0.55rem 0.4rem;
+    font-size: 0.65rem;
+    line-height: 1.15;
+  }
+}

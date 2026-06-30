@@ -1,12 +1,11 @@
 import { NextResponse } from 'next/server';
 
-// Valid location slugs - must match what's in the Google Sheet "locations" tab
+// Location slugs served by THIS codebase — the Main project (corporate + Windsor + St. Catharines).
+// Oakville / London / Scarborough live in the separate Group3 codebase and are routed there by the
+// Cloudflare Worker before requests reach this app. See docs/two-codebase-architecture.md.
 const VALID_LOCATIONS = new Set([
-  'oakville',
-  'london',
   'windsor',
   'st-catharines',
-  'scarborough',
 ]);
 
 // Legacy / redirect-only path prefixes — let Next.js redirects (next.config.mjs) handle these
@@ -15,6 +14,20 @@ const REDIRECT_PREFIXES = new Set([
   'brampton',
   'thunderbay',
 ]);
+
+// Cities served by the separate Group3 codebase (Oakville / London / Scarborough).
+const GROUP3_LOCATIONS = new Set([
+  'oakville',
+  'london',
+  'scarborough',
+]);
+
+// Proxy the Group3 cities to the Group3 app when GROUP3_ORIGIN is set — e.g.
+// http://localhost:3005 locally, or the Group3 deploy URL for the prototype. This makes Main a
+// reverse proxy for those paths (one origin, flat URLs, no Cloudflare/DNS work) — fine for
+// prototyping. At production scale, move this routing to the Cloudflare Worker and leave
+// GROUP3_ORIGIN unset here so Main is no longer in the path. See docs/two-codebase-architecture.md.
+const GROUP3_ORIGIN = process.env.GROUP3_ORIGIN;
 
 export function middleware(req) {
   const url = req.nextUrl.clone();
@@ -40,7 +53,7 @@ export function middleware(req) {
   if (segments.length >= 1) {
     const locationSlug = segments[0].toLowerCase();
     // Skip known non-location paths
-    const skipPaths = ['admin', 'api', '_next', 'assets', 'invitations', 'favicon.ico', 'sitemap.xml', 'robots.txt', 'test', 'llms.txt', 'about-us', 'contact-us', 'privacy-policy', 'attractions', 'school-groups', 'summer-camps', 'team-celebrations', 'corporate-events'];
+    const skipPaths = ['admin', 'studio', 'api', '_next', 'assets', 'invitations', 'favicon.ico', 'sitemap.xml', 'robots.txt', 'test', 'llms.txt', 'about-us', 'contact-us', 'privacy-policy', 'attractions', 'school-groups', 'summer-camps', 'team-celebrations', 'corporate-events', 'blogs', 'audits'];
 
     // Allow redirect prefixes through — next.config.mjs redirects will handle them
     if (REDIRECT_PREFIXES.has(locationSlug)) {
@@ -56,7 +69,28 @@ export function middleware(req) {
       return NextResponse.redirect(url, 308);
     }
 
-    if (!skipPaths.includes(locationSlug) && !VALID_LOCATIONS.has(locationSlug)) {
+    if (
+      VALID_LOCATIONS.has(locationSlug) &&
+      segments.length === 2 &&
+      segments[1].toLowerCase() === 'camps'
+    ) {
+      url.pathname = `/${locationSlug}/programs/camps`;
+      return NextResponse.redirect(url, 308);
+    }
+
+    // LOCAL DEV: forward the Group3 cities to the Group3 dev server instead of 404-ing.
+    // No-op in production (GROUP3_ORIGIN unset) — Cloudflare routes these paths there.
+    if (GROUP3_ORIGIN && GROUP3_LOCATIONS.has(locationSlug)) {
+      return NextResponse.rewrite(new URL(`${url.pathname}${url.search}`, GROUP3_ORIGIN));
+    }
+
+    // Group2 cities (oakville/london/scarborough) are served by THIS service via the
+    // location-groups system (group2). Treat them as valid so they render instead of 404-ing.
+    if (
+      !skipPaths.includes(locationSlug) &&
+      !VALID_LOCATIONS.has(locationSlug) &&
+      !GROUP3_LOCATIONS.has(locationSlug)
+    ) {
       return new NextResponse(
         `<!doctype html>
 <html lang="en">

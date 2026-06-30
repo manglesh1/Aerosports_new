@@ -3,8 +3,8 @@
   "configurations": [
     {
       "name": "next-dev",
-      "runtimeExecutable": "cmd",
-      "runtimeArgs": ["/c", "cd /d C:\\code\\Aerosports_new\\src && npx next dev -p 3001"],
+      "runtimeExecutable": "npm",
+      "runtimeArgs": ["run", "dev", "--", "-p", "3001"],
       "port": 3001
     }
   ]

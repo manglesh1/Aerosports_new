@@ -1,0 +1,381 @@
+- generic [active] [ref=e1]:
+  - generic [ref=e2]:
+    - banner [ref=e3]:
+      - generic [ref=e5]:
+        - link "AeroSports Trampoline Parks" [ref=e6] [cursor=pointer]:
+          - /url: /st-catharines
+          - img "AeroSports Trampoline Parks" [ref=e7]
+        - generic [ref=e8]:
+          - link "Book" [ref=e9] [cursor=pointer]:
+            - /url: https://ecom.roller.app/aerosportsstcatharines/products/en/home
+          - button "Toggle mobile menu" [ref=e10] [cursor=pointer]
+      - generic "Current promotions" [ref=e14]:
+        - generic [ref=e15]:
+          - generic [ref=e16]:
+            - generic [ref=e17]: Deal
+            - generic [ref=e18]: Weekday Party Special
+            - generic [ref=e19]:
+              - generic [ref=e20]: Code
+              - generic [ref=e21]: BDAY50
+            - generic [ref=e22]: Monday - Thursday only
+          - generic [ref=e24]:
+            - generic [ref=e25]: Deal
+            - generic [ref=e26]: Summer Special
+            - generic [ref=e27]:
+              - generic [ref=e28]: Code
+              - generic [ref=e29]: BDAY100
+            - generic [ref=e30]: Valid until July 30th - Book by July 30th & host by dec 31st
+          - generic [ref=e32]:
+            - generic [ref=e33]: Deal
+            - generic [ref=e34]: University Students Special
+            - generic [ref=e35]:
+              - generic [ref=e36]: Code
+              - generic [ref=e37]: STUDENT25
+            - generic [ref=e38]: Valid until Dec 31st
+          - generic [ref=e40]:
+            - generic [ref=e41]: Deal
+            - generic [ref=e42]: Summer Special
+            - generic [ref=e43]:
+              - generic [ref=e44]: Code
+              - generic [ref=e45]: 50OFF
+            - generic [ref=e46]: Valid until 4th Sept
+          - generic [ref=e48]:
+            - generic [ref=e49]: Deal
+            - generic [ref=e50]: Weekday Party Special
+            - generic [ref=e51]:
+              - generic [ref=e52]: Code
+              - generic [ref=e53]: BDAY50
+            - generic [ref=e54]: Monday - Thursday only
+          - generic [ref=e56]:
+            - generic [ref=e57]: Deal
+            - generic [ref=e58]: Summer Special
+            - generic [ref=e59]:
+              - generic [ref=e60]: Code
+              - generic [ref=e61]: BDAY100
+            - generic [ref=e62]: Valid until July 30th - Book by July 30th & host by dec 31st
+          - generic [ref=e64]:
+            - generic [ref=e65]: Deal
+            - generic [ref=e66]: University Students Special
+            - generic [ref=e67]:
+              - generic [ref=e68]: Code
+              - generic [ref=e69]: STUDENT25
+            - generic [ref=e70]: Valid until Dec 31st
+          - generic [ref=e72]:
+            - generic [ref=e73]: Deal
+            - generic [ref=e74]: Summer Special
+            - generic [ref=e75]:
+              - generic [ref=e76]: Code
+              - generic [ref=e77]: 50OFF
+            - generic [ref=e78]: Valid until 4th Sept
+          - generic [ref=e80]:
+            - generic [ref=e81]: Deal
+            - generic [ref=e82]: Weekday Party Special
+            - generic [ref=e83]:
+              - generic [ref=e84]: Code
+              - generic [ref=e85]: BDAY50
+            - generic [ref=e86]: Monday - Thursday only
+          - generic [ref=e88]:
+            - generic [ref=e89]: Deal
+            - generic [ref=e90]: Summer Special
+            - generic [ref=e91]:
+              - generic [ref=e92]: Code
+              - generic [ref=e93]: BDAY100
+            - generic [ref=e94]: Valid until July 30th - Book by July 30th & host by dec 31st
+          - generic [ref=e96]:
+            - generic [ref=e97]: Deal
+            - generic [ref=e98]: University Students Special
+            - generic [ref=e99]:
+              - generic [ref=e100]: Code
+              - generic [ref=e101]: STUDENT25
+            - generic [ref=e102]: Valid until Dec 31st
+          - generic [ref=e104]:
+            - generic [ref=e105]: Deal
+            - generic [ref=e106]: Summer Special
+            - generic [ref=e107]:
+              - generic [ref=e108]: Code
+              - generic [ref=e109]: 50OFF
+            - generic [ref=e110]: Valid until 4th Sept
+    - main [ref=e112]:
+      - generic [ref=e113]:
+        - img [ref=e115]
+        - generic [ref=e117]:
+          - paragraph [ref=e118]: St-catharines, ON
+          - heading "St-Catharines - Open Jump" [level=1] [ref=e119]
+          - paragraph [ref=e120]: "Jump into Adventure: Open Jump at <br/> Aerosports Trampoline Park St. Catharines!"
+          - link "Book Now" [ref=e122] [cursor=pointer]:
+            - /url: https://waiver.roller.app/aerosportsstcatharines
+      - generic [ref=e129]:
+        - generic [ref=e131]: Ultimate Freedom
+        - heading "Open Jump at AeroSports St. Catharines" [level=2] [ref=e132]
+        - paragraph [ref=e133]: Jump Into Fun With Open Jump!
+        - paragraph [ref=e135]:
+          - text: Experience the ultimate freedom of open jump at
+          - link "AeroSports St. Catharines" [ref=e136] [cursor=pointer]:
+            - /url: /st-catharines
+          - text: "! Bounce, flip, and soar across our expansive trampolines, where every jump is an exhilarating adventure. Perfect for all ages, open jump lets you unleash your energy and creativity in a safe, fun environment. Families from Niagara Falls, Welland, Thorold, and the Niagara Region love our park for non-stop trampoline entertainment."
+        - heading "Why You'll Love Open Jump" [level=3] [ref=e137]
+        - generic [ref=e138]:
+          - generic [ref=e139]:
+            - generic [ref=e140]: ⚡
+            - heading "Expansive Trampolines" [level=4] [ref=e141]
+            - paragraph [ref=e142]: Jump across our massive trampoline area with endless space to flip, soar, and explore.
+          - generic [ref=e143]:
+            - generic [ref=e144]: 🏋
+            - heading "Perfect for All Ages" [level=4] [ref=e145]
+            - paragraph [ref=e146]: Whether you're 3 or 63, open jump offers fun and excitement for the whole family.
+          - generic [ref=e147]:
+            - generic [ref=e148]: 💫
+            - heading "Safe & Supervised" [level=4] [ref=e149]
+            - paragraph [ref=e150]: Our trained staff ensures a safe, clean, and fun environment for all jumpers.
+        - generic [ref=e151]:
+          - heading "Ready to Jump?" [level=3] [ref=e152]
+          - paragraph [ref=e153]: Book your session today at AeroSports St. Catharines and bring the whole crew!
+          - link "Book Now Online" [ref=e154] [cursor=pointer]:
+            - /url: https://ecom.roller.app/aerosportsstcatharines/products/en/home
+      - generic [ref=e156]:
+        - generic [ref=e157]:
+          - heading "Latest From Our Blog" [level=2] [ref=e158]
+          - link "View All Articles →" [ref=e159] [cursor=pointer]:
+            - /url: /st-catharines/blogs
+        - generic [ref=e160]:
+          - link "Exploring the Benefits of Jumping on a Trampoline for Longevity Exploring the Benefits of Jumping on a Trampoline for Longevity Exploring the Benefits of Jumping on a Trampoline for Longevity Read more about Exploring the Benefits of Jumping on a Trampoline for Longevity" [ref=e161] [cursor=pointer]:
+            - /url: /st-catharines/blogs/exploring-the-benefits-of-jumping-on-a-trampoline-for-longevity
+            - img "Exploring the Benefits of Jumping on a Trampoline for Longevity" [ref=e163]
+            - generic [ref=e164]:
+              - heading "Exploring the Benefits of Jumping on a Trampoline for Longevity" [level=3] [ref=e165]
+              - paragraph [ref=e166]: Exploring the Benefits of Jumping on a Trampoline for Longevity
+              - generic "Read more about Exploring the Benefits of Jumping on a Trampoline for Longevity" [ref=e167]: "Read More: Exploring the Benefits of Jumping on a Trampoline for Longevity →"
+          - link "Uncover the History and Fun of Trampolines in St Catharines Uncover the History and Fun of Trampolines in St Catharines Explore 6 exciting trampoline facts that make bouncing at aerosports trampoline park st catharines even more fun Read more about Uncover the History and Fun of Trampolines in St Catharines" [ref=e168] [cursor=pointer]:
+            - /url: /st-catharines/blogs/6-Trampoline-Facts-that-will-Knock-Your-Jump-Socks-Off
+            - img "Uncover the History and Fun of Trampolines in St Catharines" [ref=e170]
+            - generic [ref=e171]:
+              - heading "Uncover the History and Fun of Trampolines in St Catharines" [level=3] [ref=e172]
+              - paragraph [ref=e173]: Explore 6 exciting trampoline facts that make bouncing at aerosports trampoline park st catharines even more fun
+              - generic "Read more about Uncover the History and Fun of Trampolines in St Catharines" [ref=e174]: "Read More: Uncover the History and Fun of Trampolines in St Catharines →"
+          - link "Discover Jumping Activities for Adults You Haven’t Tried Yet Discover Jumping Activities for Adults You Haven’t Tried Yet Discover Jumping Activities for Adults You Haven’t Tried Yet Read more about Discover Jumping Activities for Adults You Haven’t Tried Yet" [ref=e175] [cursor=pointer]:
+            - /url: /st-catharines/blogs/discover-jumping-activities-for-adults-you-havent-tried-yet
+            - img "Discover Jumping Activities for Adults You Haven’t Tried Yet" [ref=e177]
+            - generic [ref=e178]:
+              - heading "Discover Jumping Activities for Adults You Haven’t Tried Yet" [level=3] [ref=e179]
+              - paragraph [ref=e180]: Discover Jumping Activities for Adults You Haven’t Tried Yet
+              - generic "Read more about Discover Jumping Activities for Adults You Haven’t Tried Yet" [ref=e181]: "Read More: Discover Jumping Activities for Adults You Haven’t Tried Yet →"
+    - contentinfo [ref=e182]:
+      - generic [ref=e184]:
+        - link "Birthday Parties Birthday Parties" [ref=e185] [cursor=pointer]:
+          - /url: /st-catharines/kids-birthday-parties
+          - img "Birthday Parties" [ref=e186]
+          - generic [ref=e188]: Birthday Parties
+        - link "Gallery Gallery" [ref=e189] [cursor=pointer]:
+          - /url: /st-catharines/gallery
+          - img "Gallery" [ref=e190]
+          - generic [ref=e192]: Gallery
+        - link "Group Events Group Events" [ref=e193] [cursor=pointer]:
+          - /url: /st-catharines/groups-events
+          - img "Group Events" [ref=e194]
+          - generic [ref=e196]: Group Events
+      - generic [ref=e197]:
+        - generic [ref=e198]:
+          - generic [ref=e199]:
+            - link "AeroSports Logo" [ref=e201] [cursor=pointer]:
+              - /url: /st-catharines
+              - img "AeroSports Logo" [ref=e202]
+            - paragraph [ref=e203]: st-catharines's premier indoor trampoline park — wall-to-wall fun, cinematic motion design, and unforgettable celebrations for the whole family.
+            - generic [ref=e204]:
+              - link "289-362-3377" [ref=e205] [cursor=pointer]:
+                - /url: tel:+12893623377
+                - img [ref=e206]
+                - generic [ref=e208]: 289-362-3377
+              - link "events@aerosportsparks.ca" [ref=e209] [cursor=pointer]:
+                - /url: mailto:events@aerosportsparks.ca
+                - img [ref=e210]
+                - generic [ref=e213]: events@aerosportsparks.ca
+              - link "333 Ontario St, St. Catharines, ON L2R 5L3" [ref=e214] [cursor=pointer]:
+                - /url: https://g.page/AeroSports-st-catharines
+                - img [ref=e215]
+                - generic [ref=e218]: 333 Ontario St, St. Catharines, ON L2R 5L3
+            - generic [ref=e219]:
+              - link "Follow AeroSports st-catharines on Facebook" [ref=e220] [cursor=pointer]:
+                - /url: https://www.facebook.com/aerosportsstcatharines
+                - img [ref=e221]
+              - link "Follow AeroSports st-catharines on Instagram" [ref=e223] [cursor=pointer]:
+                - /url: https://www.instagram.com/aerosportsstcatharines
+                - img [ref=e224]
+              - link "Follow AeroSports st-catharines on TikTok" [ref=e226] [cursor=pointer]:
+                - /url: https://www.tiktok.com/@aerosports.stc
+                - img [ref=e227]
+            - generic [ref=e229]:
+              - heading "Park Hours" [level=4] [ref=e230]
+              - generic [ref=e231]:
+                - generic [ref=e232]:
+                  - generic [ref=e233]: Monday–Thursday
+                  - generic [ref=e234]: 12–8 p.m.
+                - generic [ref=e235]:
+                  - generic [ref=e236]: Friday
+                  - generic [ref=e237]: 10 a.m.–9 p.m.
+                - generic [ref=e238]:
+                  - generic [ref=e239]: Saturday
+                  - generic [ref=e240]: 9 a.m.–9 p.m.
+                - generic [ref=e241]:
+                  - generic [ref=e242]: Sunday
+                  - generic [ref=e243]: 10 a.m.–8 p.m.
+              - paragraph [ref=e244]: Free parking available on site
+          - generic [ref=e245]:
+            - generic [ref=e246]:
+              - heading "Attractions" [level=3] [ref=e247]
+              - list [ref=e248]:
+                - listitem [ref=e249]:
+                  - text: •
+                  - link "Hexa quest" [ref=e250] [cursor=pointer]:
+                    - /url: /st-catharines/attractions/hexaquest
+                - listitem [ref=e251]:
+                  - text: •
+                  - link "Glow in dark Mini Golf" [ref=e252] [cursor=pointer]:
+                    - /url: /st-catharines/attractions/golf-glow-dark-mini-putt
+                - listitem [ref=e253]:
+                  - text: •
+                  - link "Open Jump" [ref=e254] [cursor=pointer]:
+                    - /url: /st-catharines/attractions/open-jump
+                - listitem [ref=e255]:
+                  - text: •
+                  - link "Archery" [ref=e256] [cursor=pointer]:
+                    - /url: /st-catharines/attractions/archery
+                - listitem [ref=e257]:
+                  - text: •
+                  - link "Aero Hoops" [ref=e258] [cursor=pointer]:
+                    - /url: /st-catharines/attractions/aero-hoops
+                - listitem [ref=e259]:
+                  - text: •
+                  - link "Battle beam" [ref=e260] [cursor=pointer]:
+                    - /url: /st-catharines/attractions/battle-beam
+                - listitem [ref=e261]:
+                  - text: •
+                  - link "Tile Hunt" [ref=e262] [cursor=pointer]:
+                    - /url: /st-catharines/attractions/tile-hunt
+                - listitem [ref=e263]:
+                  - text: •
+                  - link "Dodge ball" [ref=e264] [cursor=pointer]:
+                    - /url: /st-catharines/attractions/dodgeball
+                - listitem [ref=e265]:
+                  - text: •
+                  - link "Aero Slam" [ref=e266] [cursor=pointer]:
+                    - /url: /st-catharines/attractions/slam-basketball
+                - listitem [ref=e267]:
+                  - text: •
+                  - link "Ninja Warrior" [ref=e268] [cursor=pointer]:
+                    - /url: /st-catharines/attractions/ninja-warrior
+                - listitem [ref=e269]:
+                  - text: •
+                  - link "Aero Ladder" [ref=e270] [cursor=pointer]:
+                    - /url: /st-catharines/attractions/aero-ladder
+                - listitem [ref=e271]:
+                  - text: •
+                  - link "Arcade" [ref=e272] [cursor=pointer]:
+                    - /url: /st-catharines/attractions/arcade
+                - listitem [ref=e273]:
+                  - text: •
+                  - link "ninja maze" [ref=e274] [cursor=pointer]:
+                    - /url: /st-catharines/attractions/ninjatag
+                - listitem [ref=e275]:
+                  - text: •
+                  - link "Axe Throw" [ref=e276] [cursor=pointer]:
+                    - /url: /st-catharines/attractions/axe-throw
+                - listitem [ref=e277]:
+                  - text: •
+                  - link "Bumper Cars" [ref=e278] [cursor=pointer]:
+                    - /url: /st-catharines/attractions/bumper-cars
+                - listitem [ref=e279]:
+                  - text: •
+                  - link "Push Game" [ref=e280] [cursor=pointer]:
+                    - /url: /st-catharines/attractions/push-game
+                - listitem [ref=e281]:
+                  - text: •
+                  - link "Climb" [ref=e282] [cursor=pointer]:
+                    - /url: /st-catharines/attractions/climb
+                - listitem [ref=e283]:
+                  - text: •
+                  - link "Recipe" [ref=e284] [cursor=pointer]:
+                    - /url: /st-catharines/attractions/recipe
+                - listitem [ref=e285]:
+                  - text: •
+                  - link "Laser Shooting" [ref=e286] [cursor=pointer]:
+                    - /url: /st-catharines/attractions/laser-shooting
+                - listitem [ref=e287]:
+                  - text: •
+                  - link "Hoops" [ref=e288] [cursor=pointer]:
+                    - /url: /st-catharines/attractions/hoops
+            - generic [ref=e289]:
+              - heading "Parties & Events" [level=3] [ref=e290]
+              - list [ref=e291]:
+                - listitem [ref=e292]:
+                  - text: •
+                  - link "christmas party" [ref=e293] [cursor=pointer]:
+                    - /url: /st-catharines/groups-events/christmas-party
+                - listitem [ref=e294]:
+                  - text: •
+                  - link "Corporate Parties" [ref=e295] [cursor=pointer]:
+                    - /url: /st-catharines/groups-events/corporate-parties-events-groups
+                - listitem [ref=e296]:
+                  - text: •
+                  - link "School /Groups" [ref=e297] [cursor=pointer]:
+                    - /url: /st-catharines/groups-events/school-groups
+                - listitem [ref=e298]:
+                  - text: •
+                  - link "Fund Raising" [ref=e299] [cursor=pointer]:
+                    - /url: /st-catharines/groups-events/fund-raising
+                - listitem [ref=e300]:
+                  - text: •
+                  - link "Facility Rental" [ref=e301] [cursor=pointer]:
+                    - /url: /st-catharines/groups-events/facility-rental
+            - generic [ref=e302]:
+              - heading "Quick Links" [level=3] [ref=e303]
+              - list [ref=e304]:
+                - listitem [ref=e305]:
+                  - text: •
+                  - link "Camps" [ref=e306] [cursor=pointer]:
+                    - /url: /st-catharines/programs/camps
+                - listitem [ref=e307]:
+                  - text: •
+                  - link "Glow" [ref=e308] [cursor=pointer]:
+                    - /url: /st-catharines/programs/glow
+                - listitem [ref=e309]:
+                  - text: •
+                  - link "Toddler Time" [ref=e310] [cursor=pointer]:
+                    - /url: /st-catharines/programs/toddler-time
+                - listitem [ref=e311]:
+                  - text: •
+                  - link "Lock-in" [ref=e312] [cursor=pointer]:
+                    - /url: /st-catharines/programs/lock-in
+          - generic [ref=e313]:
+            - heading "Book a Party" [level=3] [ref=e314]
+            - paragraph [ref=e315]: Ready to book the most unforgettable birthday in st-catharines? Our team is just a call away.
+            - link "289-362-3377" [ref=e316] [cursor=pointer]:
+              - /url: tel:+12893623377
+              - img [ref=e317]
+              - text: 289-362-3377
+            - link "Email Us" [ref=e319] [cursor=pointer]:
+              - /url: mailto:events@aerosportsparks.ca
+              - img [ref=e320]
+              - text: Email Us
+            - link "Book Now" [ref=e323] [cursor=pointer]:
+              - /url: https://ecom.roller.app/aerosportsstcatharines/products/en/home
+        - generic [ref=e324]:
+          - heading "Visit Our Other Locations" [level=4] [ref=e325]
+          - generic [ref=e326]:
+            - link "AeroSports Oakville" [ref=e327] [cursor=pointer]:
+              - /url: /oakville
+            - link "AeroSports London" [ref=e328] [cursor=pointer]:
+              - /url: /london
+            - link "AeroSports Windsor" [ref=e329] [cursor=pointer]:
+              - /url: /windsor
+            - link "AeroSports Scarborough" [ref=e330] [cursor=pointer]:
+              - /url: /scarborough
+        - paragraph [ref=e332]: © 2026 AeroSports Trampoline Park. All rights reserved.
+    - generic [ref=e333]:
+      - link "Sign Your Waiver" [ref=e334] [cursor=pointer]:
+        - /url: https://waiver.roller.app/aerosportsstcatharines
+        - img [ref=e335]
+        - generic [ref=e337]: Sign Your Waiver
+      - button "Enquire" [ref=e338] [cursor=pointer]:
+        - img [ref=e339]
+        - generic [ref=e341]: Enquire
+  - alert [ref=e342]

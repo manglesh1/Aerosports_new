@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 160 160" role="img" aria-label="Pizza add-on">
+  <defs><linearGradient id="g" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#B7E600"/><stop offset="1" stop-color="#FF2B8A"/></linearGradient></defs>
+  <rect width="160" height="160" rx="26" fill="#101828"/>
+  <circle cx="112" cy="42" r="34" fill="url(#g)" opacity=".35"/>
+  <path d="M38 121 128 33 98 132Z" fill="#ffd166" stroke="#fff4bd" stroke-width="6" stroke-linejoin="round"/>
+  <path d="M48 112 121 40" stroke="#d66b32" stroke-width="10" stroke-linecap="round"/>
+  <circle cx="83" cy="91" r="8" fill="#ff2b8a"/><circle cx="99" cy="70" r="7" fill="#ff2b8a"/><circle cx="91" cy="114" r="6" fill="#0f172a"/>
+</svg>

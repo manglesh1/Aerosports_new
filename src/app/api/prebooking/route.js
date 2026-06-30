@@ -40,7 +40,7 @@ export async function POST(request) {
               padding: 20px;
             }
             .header {
-              background: linear-gradient(135deg, #c8ff00 0%, #ff2d87 100%);
+              background: linear-gradient(135deg, #B7E600 0%, #ff2d87 100%);
               color: white;
               padding: 30px;
               text-align: center;
@@ -70,7 +70,7 @@ export async function POST(request) {
             }
             .info-label {
               font-weight: bold;
-              color: #c8ff00;
+              color: #B7E600;
               display: block;
               margin-bottom: 5px;
               text-transform: uppercase;
@@ -82,7 +82,7 @@ export async function POST(request) {
               color: #333;
               padding: 10px;
               background: #f9f9f9;
-              border-left: 3px solid #c8ff00;
+              border-left: 3px solid #B7E600;
               margin-bottom: 10px;
             }
             .interests-list {
@@ -132,14 +132,14 @@ export async function POST(request) {
             <div class="info-section">
               <span class="info-label">Email Address</span>
               <div class="info-value">
-                <a href="mailto:${email}" style="color: #c8ff00; text-decoration: none;">${email}</a>
+                <a href="mailto:${email}" style="color: #B7E600; text-decoration: none;">${email}</a>
               </div>
             </div>
 
             <div class="info-section">
               <span class="info-label">Phone Number</span>
               <div class="info-value">
-                <a href="tel:${phone}" style="color: #c8ff00; text-decoration: none;">${phone}</a>
+                <a href="tel:${phone}" style="color: #B7E600; text-decoration: none;">${phone}</a>
               </div>
             </div>
 
@@ -245,7 +245,7 @@ Submitted: ${new Date(submittedAt).toLocaleString()}
               padding: 20px;
             }
             .header {
-              background: linear-gradient(135deg, #c8ff00 0%, #ff2d87 100%);
+              background: linear-gradient(135deg, #B7E600 0%, #ff2d87 100%);
               color: white;
               padding: 40px 30px;
               text-align: center;
@@ -263,7 +263,7 @@ Submitted: ${new Date(submittedAt).toLocaleString()}
             }
             .highlight-box {
               background: #f9f9f9;
-              border-left: 4px solid #c8ff00;
+              border-left: 4px solid #B7E600;
               padding: 20px;
               margin: 20px 0;
             }
@@ -284,7 +284,7 @@ Submitted: ${new Date(submittedAt).toLocaleString()}
             }
             .cta-button {
               display: inline-block;
-              background: linear-gradient(135deg, #c8ff00 0%, #ff2d87 100%);
+              background: linear-gradient(135deg, #B7E600 0%, #ff2d87 100%);
               color: white;
               padding: 15px 40px;
               text-decoration: none;
@@ -319,7 +319,7 @@ Submitted: ${new Date(submittedAt).toLocaleString()}
             <p>Thank you for your interest in <strong>Aerosports Scarborough</strong>! We're thrilled to have you join us as we prepare for our grand opening.</p>
 
             <div class="highlight-box">
-              <h3 style="margin-top: 0; color: #c8ff00;">What's Next?</h3>
+              <h3 style="margin-top: 0; color: #B7E600;">What's Next?</h3>
               <p>Our team will review your pre-booking and reach out to you soon with:</p>
               <ul class="benefits">
                 <li>Exclusive early bird pricing and launch promotions</li>
@@ -345,7 +345,7 @@ Submitted: ${new Date(submittedAt).toLocaleString()}
             <p>In the meantime, follow us on social media to stay updated with exclusive sneak peeks, behind-the-scenes content, and special announcements!</p>
 
             <div style="text-align: center; margin: 30px 0;">
-              <p style="font-size: 18px; color: #c8ff00; font-weight: bold;">Get Ready for the Ultimate Entertainment Experience!</p>
+              <p style="font-size: 18px; color: #B7E600; font-weight: bold;">Get Ready for the Ultimate Entertainment Experience!</p>
             </div>
 
             <p>If you have any questions, feel free to reach out to us anytime.</p>

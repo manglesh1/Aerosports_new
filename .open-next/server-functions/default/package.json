@@ -1,0 +1,57 @@
+{
+  "name": "aerosport",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint",
+    "gcp-build": "mkdir -p .next && rm -rf .next/cache && mkdir -p /tmp/.next-cache && ln -s /tmp/.next-cache .next/cache && next build",
+    "preview:cf": "opennextjs-cloudflare build && opennextjs-cloudflare preview",
+    "deploy:cf": "opennextjs-cloudflare build && opennextjs-cloudflare deploy",
+    "cf-typegen": "wrangler types --env-interface CloudflareEnv cloudflare-env.d.ts"
+  },
+  "dependencies": {
+    "@google-cloud/storage": "^7.21.0",
+    "@radix-ui/react-slot": "^1.2.4",
+    "@rjsf/core": "6.0.0-beta.13",
+    "@rjsf/react-bootstrap": "6.0.0-beta.10",
+    "@rjsf/utils": "6.0.0-beta.13",
+    "@rjsf/validator-ajv8": "6.0.0-beta.13",
+    "@tailwindcss/postcss": "^4.1.11",
+    "axios": "^1.10.0",
+    "bootstrap": "5.3.7",
+    "class-variance-authority": "^0.7.1",
+    "cookies-next": "^4.2.1",
+    "date-fns": "^4.1.0",
+    "framer-motion": "^11.5.4",
+    "google-auth-library": "^10.1.0",
+    "google-spreadsheet": "^4.1.5",
+    "googleapis": "^152.0.0",
+    "html2canvas-pro": "^1.5.8",
+    "js-beautify": "^1.15.4",
+    "next": "^14.2.30",
+    "next-sitemap": "^4.2.3",
+    "nodemailer": "^7.0.10",
+    "postcss": "^8.5.6",
+    "react": "^18",
+    "react-bootstrap": "2.10.10",
+    "react-dom": "^18",
+    "react-icons": "^5.2.1",
+    "react-quill": "^2.0.0",
+    "sharp": "^0.34.5",
+    "tailwind-merge": "^3.4.0",
+    "tailwindcss": "^4.1.17",
+    "xlsx": "^0.18.5"
+  },
+  "devDependencies": {
+    "@opennextjs/cloudflare": "^1.10.1",
+    "eslint": "^8",
+    "eslint-config-next": "14.1.3",
+    "wrangler": "^4.103.0"
+  },
+  "engines": {
+    "node": ">=20.0.0"
+  }
+}

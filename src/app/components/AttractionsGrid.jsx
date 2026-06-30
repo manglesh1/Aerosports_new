@@ -3,6 +3,7 @@
 import Link from 'next/link';
 import "../styles/attractions.css";
 import "../styles/subcategory.css";
+import AppImage from "./AppImage";
 
 const AttractionsGrid = ({ attractionsData, waiverLink, locationSlug }) => {
   return (
@@ -15,17 +16,17 @@ const AttractionsGrid = ({ attractionsData, waiverLink, locationSlug }) => {
           <Link
             key={i}
             href={`/${locationSlug}/${item?.parentid}/${item?.path}`}
-            prefetch
+            prefetch={false}
           >
             <article className="aero_attraction_card">
               <div className="aero_attraction_card_image_wrap">
-                <img
+                <AppImage
                   src={item?.smallimage}
-                  alt={item?.title || item?.desc}
+                  alt={item?.smallimage_media?.alt || item?.title || item?.desc}
                   className="aero_attraction_card_image"
                   width={400}
                   height={300}
-                  loading="lazy"
+                  sizes="(max-width: 768px) calc(100vw - 32px), 33vw"
                 />
                 <div className="aero_attraction_card_image_overlay"></div>
               </div>

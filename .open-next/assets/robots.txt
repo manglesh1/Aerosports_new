@@ -1,0 +1,11 @@
+# *
+User-agent: *
+Allow: /
+Disallow: /api
+
+# Host
+Host: https://www.aerosportsparks.ca
+
+# Sitemaps
+Sitemap: https://www.aerosportsparks.ca/sitemap.xml
+Sitemap: https://www.aerosportsparks.ca/sitemap-group3.xml

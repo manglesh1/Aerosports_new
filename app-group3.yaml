@@ -1,0 +1,52 @@
+service: group3
+runtime: nodejs22
+env: standard
+
+
+instance_class: F2
+
+automatic_scaling:
+  min_instances: 1
+  max_instances: 3
+  target_cpu_utilization: 0.65
+  target_throughput_utilization: 0.75
+
+env_variables:
+  NODE_ENV: "production"
+  NEXT_PUBLIC_BASE_URL: "https://www.aerosportsparks.ca"
+  NEXT_PUBLIC_API_URL: "https://apis-351216.nn.r.appspot.com/api"
+  NEXT_PUBLIC_MEDIA_CDN_URL: "https://media.aerosportsparks.ca"
+  SHEET_URL: "https://docs.google.com/spreadsheets/d/1B_9EaTQDztWGH_cD3lUP7hpWD6FvNBJ-6Czml2x7d9c/export?format=xlsx"
+  GROUP1_SHEET_URL: "https://docs.google.com/spreadsheets/d/1B_9EaTQDztWGH_cD3lUP7hpWD6FvNBJ-6Czml2x7d9c/export?format=xlsx"
+  GROUP2_SHEET_URL: "https://docs.google.com/spreadsheets/d/1B_9EaTQDztWGH_cD3lUP7hpWD6FvNBJ-6Czml2x7d9c/export?format=xlsx"
+  DEFAULT_LOCATION_GROUP_KEY: "group2"
+handlers:
+  - url: /assets
+    static_dir: public/assets
+    expiration: "30d"
+    secure: always
+
+  - url: /invitations
+    static_dir: public/invitations
+    expiration: "30d"
+    secure: always
+
+  - url: /robots.txt
+    static_files: public/robots.txt
+    upload: public/robots\.txt
+    expiration: "7d"
+    secure: always
+
+  - url: /llms.txt
+    static_files: public/llms.txt
+    upload: public/llms\.txt
+    expiration: "7d"
+    secure: always
+
+  - url: /.well-known
+    static_dir: public/.well-known
+    secure: always
+
+  - url: /.*
+    script: auto
+    secure: always

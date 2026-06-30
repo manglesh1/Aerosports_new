@@ -1,4 +1,6 @@
 import Link from "next/link";
+import AppImage from "../AppImage";
+import ResponsiveVideo from "../ResponsiveVideo";
 
 // Hero section. All copy is hardcoded (identical across every location)
 // with the exception of the interpolated location display name.
@@ -14,7 +16,7 @@ const TRUST_ITEMS = [
 
 const FLOAT_STATS = [
   { num: "15+", label: "Attractions" },
-  { num: "50K+", label: "Happy Jumpers" },
+  { num: "20K+", label: "Happy Jumpers" },
 ];
 
 const HeroV2 = ({ headerImage, locationData, estoreConfig, waiverLink, locationSlug, locationDisplay }) => {
@@ -29,6 +31,23 @@ const HeroV2 = ({ headerImage, locationData, estoreConfig, waiverLink, locationS
   return (
     <section className="hv2-hero">
       <div className="hv2-hero-bg">
+        {(cardVideo || cardImage) && (
+          <div className="hv2-hero-mobile-media" aria-hidden="true">
+            {cardVideo ? (
+              <ResponsiveVideo
+                src={cardVideo}
+                posterSrc={cardImage}
+                autoPlay
+                muted
+                loop
+                playsInline
+                preload="none"
+              />
+            ) : (
+              <AppImage src={cardImage} alt="" fill priority sizes="100vw" />
+            )}
+          </div>
+        )}
         <div className="hv2-hero-pattern" />
         <div className="hv2-hero-orb hv2-orb1" />
         <div className="hv2-hero-orb hv2-orb2" />
@@ -66,11 +85,7 @@ const HeroV2 = ({ headerImage, locationData, estoreConfig, waiverLink, locationS
             <Link href={`/${locationSlug}/pricing-promos`} className="hv2-btn hv2-btn-outline hv2-btn-hero">
               Explore Pricing
             </Link>
-            {waiverLink && (
-              <Link href={waiverLink} target="_blank" rel="noopener noreferrer" className="hv2-btn hv2-btn-ghost hv2-btn-hero">
-                Sign Before You Arrive
-              </Link>
-            )}
+          
           </div>
           <div className="hv2-hero-trust">
             {TRUST_ITEMS.map((t, i) => (
@@ -90,9 +105,9 @@ const HeroV2 = ({ headerImage, locationData, estoreConfig, waiverLink, locationS
             <div className="hv2-hero-main-card">
               <div className="hv2-hero-card-bg">
                 {cardVideo ? (
-                  <video
+                  <ResponsiveVideo
                     src={cardVideo}
-                    poster={cardImage || undefined}
+                    posterSrc={cardImage}
                     autoPlay
                     muted
                     loop
@@ -109,11 +124,12 @@ const HeroV2 = ({ headerImage, locationData, estoreConfig, waiverLink, locationS
                   />
                 ) : (
                   cardImage && (
-                    <img
+                    <AppImage
                       src={cardImage}
                       alt={cardImageAlt}
-                      fetchPriority="high"
-                      style={{ position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "cover" }}
+                      fill
+                      priority={false}
+                      sizes="(max-width: 900px) 100vw, 50vw"
                     />
                   )
                 )}

@@ -6,6 +6,7 @@ import Link from "next/link";
 import { getDataByParentId } from "@/utils/customFunctions";
 import RatingComponent from "./smallComponents/RatingComponent";
 import Script from "next/script";
+import AppImage from "./AppImage";
 
 
 const Footer = ({ location_slug, configdata, menudata, reviewdata, locationData }) => {
@@ -61,14 +62,31 @@ const Footer = ({ location_slug, configdata, menudata, reviewdata, locationData 
       <section className="v11_footer_quicklinks">
         <div className="v11_footer_quicklinks_grid">
           {[
-            { icon: "/assets/images/home/event_icon.svg", text: "Birthday Parties", url: `/${location_slug}/kids-birthday-parties` },
-            { icon: "/assets/images/home/park_feature_icon.svg", text: "Gallery", url: `/${location_slug}/${galleryData?.[0]?.path || 'gallery'}` },
-            { icon: "/assets/images/home/jump_icon.svg", text: "Group Events", url: `/${location_slug}/${groupsData?.[0]?.path || 'groups-events'}` },
+            {
+              image: "https://media.aerosportsparks.ca/home-experience/birthday-parties.webp",
+              text: "Birthday Parties",
+              url: `/${location_slug}/kids-birthday-parties`,
+            },
+            {
+              image: "https://media.aerosportsparks.ca/home-experience/gallery.webp",
+              text: "Gallery",
+              url: `/${location_slug}/${galleryData?.[0]?.path || 'gallery'}`,
+            },
+            {
+              image: "https://media.aerosportsparks.ca/home-experience/group-events.webp",
+              text: "Group Events",
+              url: `/${location_slug}/${groupsData?.[0]?.path || 'groups-events'}`,
+            },
           ].map((item, index) => (
-            <Link href={item.url} key={index} className="v11_footer_quicklink_card">
-              <div className="v11_footer_quicklink_icon">
-                <img src={item.icon} width={48} height={48} alt={item.text} loading="lazy" />
-              </div>
+            <Link href={item.url} key={index} className="v11_footer_quicklink_card v11_footer_quicklink_photo_card">
+              <AppImage
+                src={item.image}
+                alt={item.text}
+                fill
+                sizes="(max-width: 768px) 100vw, 33vw"
+                className="v11_footer_quicklink_photo"
+              />
+              <span className="v11_footer_quicklink_overlay" />
               <span className="v11_footer_quicklink_text">{item.text}</span>
             </Link>
           ))}
@@ -83,18 +101,20 @@ const Footer = ({ location_slug, configdata, menudata, reviewdata, locationData 
           <div className="aero_footer_contact_section">
             <div className="aero_footer_brand_header">
               <Link href={`/${location_slug}`} prefetch className="aero_footer_logo">
-                <img
-                  src={`https://storage.googleapis.com/aerosports/webp/${location_slug}/logo_white.webp`}
-                  alt="AeroSports Logo"
-                  width={50}
-                  height={50}
-                  loading="lazy"
+                <span
+                  role="img"
+                  aria-label="AeroSports Logo"
+                  style={{
+                    display: "inline-block",
+                    width: 131,
+                    height: 41,
+                    backgroundColor: "#B7E600",
+                    WebkitMask:
+                      "url('/assets/aerosports-logo.webp') no-repeat center / contain",
+                    mask: "url('/assets/aerosports-logo.webp') no-repeat center / contain",
+                  }}
                 />
               </Link>
-              <div>
-                <h3 className="aero_footer_brand_name">AeroSports</h3>
-                <p className="aero_footer_brand_sub">Trampoline Park &middot; {location || "Oakville"}</p>
-              </div>
             </div>
 
             <p className="aero_footer_tagline">
@@ -287,7 +307,7 @@ const Footer = ({ location_slug, configdata, menudata, reviewdata, locationData 
           src="https://widgets.leadconnectorhq.com/loader.js"
           data-resources-url="https://widgets.leadconnectorhq.com/chat-widget/loader.js"
           data-widget-id={chatid}
-          strategy="afterInteractive"
+          strategy="lazyOnload"
         />
       )}
     </footer>

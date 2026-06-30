@@ -1,0 +1,2063 @@
+[
+  {
+    "objectPath": "Aerosports00074.jpg",
+    "firstSeen": {
+      "sheetName": "media",
+      "row": 214,
+      "col": 3
+    },
+    "occurrences": 1
+  },
+  {
+    "objectPath": "gallery/st-catharines/aerosports-st-catharines-archery-tag-arena-01.jpg",
+    "firstSeen": {
+      "sheetName": "photo gallery",
+      "row": 21,
+      "col": 4
+    },
+    "occurrences": 1
+  },
+  {
+    "objectPath": "gallery/st-catharines/aerosports-st-catharines-foam-pit-02.jpg",
+    "firstSeen": {
+      "sheetName": "photo gallery",
+      "row": 24,
+      "col": 4
+    },
+    "occurrences": 1
+  },
+  {
+    "objectPath": "gallery/st-catharines/aerosports-st-catharines-foam-pit-03.jpg",
+    "firstSeen": {
+      "sheetName": "photo gallery",
+      "row": 25,
+      "col": 4
+    },
+    "occurrences": 1
+  },
+  {
+    "objectPath": "gallery/st-catharines/aerosports-st-catharines-hexa-quest-01.jpg",
+    "firstSeen": {
+      "sheetName": "photo gallery",
+      "row": 26,
+      "col": 4
+    },
+    "occurrences": 1
+  },
+  {
+    "objectPath": "gallery/st-catharines/aerosports-st-catharines-hexa-quest-02.jpg",
+    "firstSeen": {
+      "sheetName": "photo gallery",
+      "row": 27,
+      "col": 4
+    },
+    "occurrences": 1
+  },
+  {
+    "objectPath": "gallery/st-catharines/aerosports-st-catharines-main-court-01.jpg",
+    "firstSeen": {
+      "sheetName": "photo gallery",
+      "row": 17,
+      "col": 4
+    },
+    "occurrences": 1
+  },
+  {
+    "objectPath": "gallery/st-catharines/aerosports-st-catharines-main-court-02.jpg",
+    "firstSeen": {
+      "sheetName": "photo gallery",
+      "row": 18,
+      "col": 4
+    },
+    "occurrences": 1
+  },
+  {
+    "objectPath": "gallery/st-catharines/aerosports-st-catharines-ninja-warrior-course-01.jpg",
+    "firstSeen": {
+      "sheetName": "photo gallery",
+      "row": 22,
+      "col": 4
+    },
+    "occurrences": 1
+  },
+  {
+    "objectPath": "gallery/st-catharines/aerosports-st-catharines-ninja-warrior-course-02.jpg",
+    "firstSeen": {
+      "sheetName": "photo gallery",
+      "row": 23,
+      "col": 4
+    },
+    "occurrences": 1
+  },
+  {
+    "objectPath": "gallery/st-catharines/aerosports-st-catharines-open-jump-01.jpg",
+    "firstSeen": {
+      "sheetName": "photo gallery",
+      "row": 19,
+      "col": 4
+    },
+    "occurrences": 1
+  },
+  {
+    "objectPath": "gallery/st-catharines/aerosports-st-catharines-slam-dunk-zone-01.jpg",
+    "firstSeen": {
+      "sheetName": "photo gallery",
+      "row": 20,
+      "col": 4
+    },
+    "occurrences": 1
+  },
+  {
+    "objectPath": "gallery/st-catharines/aerosports-st-catharines-snack-shack-01.jpg",
+    "firstSeen": {
+      "sheetName": "photo gallery",
+      "row": 29,
+      "col": 4
+    },
+    "occurrences": 1
+  },
+  {
+    "objectPath": "gallery/st-catharines/aerosports-st-catharines-tile-quest-01.jpg",
+    "firstSeen": {
+      "sheetName": "photo gallery",
+      "row": 28,
+      "col": 4
+    },
+    "occurrences": 1
+  },
+  {
+    "objectPath": "gallery/st-catharines/aerosports-st-catharines-trampoline-court-01.jpg",
+    "firstSeen": {
+      "sheetName": "photo gallery",
+      "row": 15,
+      "col": 4
+    },
+    "occurrences": 1
+  },
+  {
+    "objectPath": "gallery/st-catharines/aerosports-st-catharines-trampoline-court-02.jpg",
+    "firstSeen": {
+      "sheetName": "photo gallery",
+      "row": 16,
+      "col": 4
+    },
+    "occurrences": 1
+  },
+  {
+    "objectPath": "gallery/windsor/aerosports-windsor-climbing-wall-01.jpg",
+    "firstSeen": {
+      "sheetName": "photo gallery",
+      "row": 36,
+      "col": 4
+    },
+    "occurrences": 1
+  },
+  {
+    "objectPath": "gallery/windsor/aerosports-windsor-foam-pit-obstacle-01.jpg",
+    "firstSeen": {
+      "sheetName": "photo gallery",
+      "row": 39,
+      "col": 4
+    },
+    "occurrences": 1
+  },
+  {
+    "objectPath": "gallery/windsor/aerosports-windsor-foam-pit-obstacle-02.jpg",
+    "firstSeen": {
+      "sheetName": "photo gallery",
+      "row": 40,
+      "col": 4
+    },
+    "occurrences": 1
+  },
+  {
+    "objectPath": "gallery/windsor/aerosports-windsor-main-court-01.jpg",
+    "firstSeen": {
+      "sheetName": "photo gallery",
+      "row": 30,
+      "col": 4
+    },
+    "occurrences": 1
+  },
+  {
+    "objectPath": "gallery/windsor/aerosports-windsor-main-court-03.jpg",
+    "firstSeen": {
+      "sheetName": "photo gallery",
+      "row": 31,
+      "col": 4
+    },
+    "occurrences": 1
+  },
+  {
+    "objectPath": "gallery/windsor/aerosports-windsor-main-court-05.jpg",
+    "firstSeen": {
+      "sheetName": "photo gallery",
+      "row": 32,
+      "col": 4
+    },
+    "occurrences": 1
+  },
+  {
+    "objectPath": "gallery/windsor/aerosports-windsor-ninja-course-01.jpg",
+    "firstSeen": {
+      "sheetName": "photo gallery",
+      "row": 37,
+      "col": 4
+    },
+    "occurrences": 1
+  },
+  {
+    "objectPath": "gallery/windsor/aerosports-windsor-ninja-course-02.jpg",
+    "firstSeen": {
+      "sheetName": "photo gallery",
+      "row": 38,
+      "col": 4
+    },
+    "occurrences": 1
+  },
+  {
+    "objectPath": "gallery/windsor/aerosports-windsor-party-candy-table-01.jpg",
+    "firstSeen": {
+      "sheetName": "photo gallery",
+      "row": 44,
+      "col": 4
+    },
+    "occurrences": 1
+  },
+  {
+    "objectPath": "gallery/windsor/aerosports-windsor-party-cupcakes-01.jpg",
+    "firstSeen": {
+      "sheetName": "photo gallery",
+      "row": 43,
+      "col": 4
+    },
+    "occurrences": 1
+  },
+  {
+    "objectPath": "gallery/windsor/aerosports-windsor-party-room-01.jpg",
+    "firstSeen": {
+      "sheetName": "photo gallery",
+      "row": 41,
+      "col": 4
+    },
+    "occurrences": 1
+  },
+  {
+    "objectPath": "gallery/windsor/aerosports-windsor-party-room-02.jpg",
+    "firstSeen": {
+      "sheetName": "photo gallery",
+      "row": 42,
+      "col": 4
+    },
+    "occurrences": 1
+  },
+  {
+    "objectPath": "gallery/windsor/aerosports-windsor-trampoline-court-01.jpg",
+    "firstSeen": {
+      "sheetName": "photo gallery",
+      "row": 33,
+      "col": 4
+    },
+    "occurrences": 1
+  },
+  {
+    "objectPath": "gallery/windsor/aerosports-windsor-trampoline-court-02.jpg",
+    "firstSeen": {
+      "sheetName": "photo gallery",
+      "row": 34,
+      "col": 4
+    },
+    "occurrences": 1
+  },
+  {
+    "objectPath": "gallery/windsor/aerosports-windsor-trampoline-lane-01.jpg",
+    "firstSeen": {
+      "sheetName": "photo gallery",
+      "row": 35,
+      "col": 4
+    },
+    "occurrences": 1
+  },
+  {
+    "objectPath": "hema-banner/St,cathrines.jpeg",
+    "firstSeen": {
+      "sheetName": "popups",
+      "row": 2,
+      "col": 3
+    },
+    "occurrences": 1
+  },
+  {
+    "objectPath": "hema-banner/win_summercamp.jpeg",
+    "firstSeen": {
+      "sheetName": "popups",
+      "row": 3,
+      "col": 3
+    },
+    "occurrences": 1
+  },
+  {
+    "objectPath": "indoor-playground-at-aerosports-trampoline-park-windsor.mp4",
+    "firstSeen": {
+      "sheetName": "Data",
+      "row": 9,
+      "col": 11
+    },
+    "occurrences": 2
+  },
+  {
+    "objectPath": "London/Video/AeroSports_London.mp4",
+    "firstSeen": {
+      "sheetName": "Data",
+      "row": 8,
+      "col": 11
+    },
+    "occurrences": 1
+  },
+  {
+    "objectPath": "ninja-warrior-at-aerosports-trampoline-park.mp4",
+    "firstSeen": {
+      "sheetName": "Data",
+      "row": 72,
+      "col": 11
+    },
+    "occurrences": 2
+  },
+  {
+    "objectPath": "oakville-new/indoor-playground-activities-at-aerosports-trampoline-park-oakville.mp4",
+    "firstSeen": {
+      "sheetName": "Data",
+      "row": 7,
+      "col": 11
+    },
+    "occurrences": 1
+  },
+  {
+    "objectPath": "oakville/aerosports_oakville_attractions.mp4",
+    "firstSeen": {
+      "sheetName": "Data",
+      "row": 14,
+      "col": 11
+    },
+    "occurrences": 1
+  },
+  {
+    "objectPath": "popups/fathersday/london_fathersday.webp",
+    "firstSeen": {
+      "sheetName": "popups",
+      "row": 5,
+      "col": 3
+    },
+    "occurrences": 1
+  },
+  {
+    "objectPath": "popups/fathersday/oakville_fathersday.webp",
+    "firstSeen": {
+      "sheetName": "popups",
+      "row": 6,
+      "col": 3
+    },
+    "occurrences": 1
+  },
+  {
+    "objectPath": "popups/fathersday/scarborough_fathersday.webp",
+    "firstSeen": {
+      "sheetName": "popups",
+      "row": 4,
+      "col": 3
+    },
+    "occurrences": 1
+  },
+  {
+    "objectPath": "scarborough/videos/AeroSports Scarborough Background.mp4",
+    "firstSeen": {
+      "sheetName": "Data",
+      "row": 2,
+      "col": 11
+    },
+    "occurrences": 2
+  },
+  {
+    "objectPath": "st-catharines-new/aerosports-trampoline-park-activities.mp4",
+    "firstSeen": {
+      "sheetName": "Data",
+      "row": 10,
+      "col": 11
+    },
+    "occurrences": 3
+  },
+  {
+    "objectPath": "UploadDRIVE-46.jpg",
+    "firstSeen": {
+      "sheetName": "media",
+      "row": 213,
+      "col": 3
+    },
+    "occurrences": 1
+  },
+  {
+    "objectPath": "webp/blogs/blog-arcade-games-thumb.webp",
+    "firstSeen": {
+      "sheetName": "media",
+      "row": 202,
+      "col": 3
+    },
+    "occurrences": 1
+  },
+  {
+    "objectPath": "webp/blogs/blog-arcade-games.webp",
+    "firstSeen": {
+      "sheetName": "media",
+      "row": 201,
+      "col": 3
+    },
+    "occurrences": 1
+  },
+  {
+    "objectPath": "webp/blogs/blog-archery-thumb.webp",
+    "firstSeen": {
+      "sheetName": "media",
+      "row": 206,
+      "col": 3
+    },
+    "occurrences": 1
+  },
+  {
+    "objectPath": "webp/blogs/blog-archery.webp",
+    "firstSeen": {
+      "sheetName": "media",
+      "row": 205,
+      "col": 3
+    },
+    "occurrences": 1
+  },
+  {
+    "objectPath": "webp/blogs/blog-attractions-activities-thumb.webp",
+    "firstSeen": {
+      "sheetName": "media",
+      "row": 200,
+      "col": 3
+    },
+    "occurrences": 1
+  },
+  {
+    "objectPath": "webp/blogs/blog-attractions-activities.webp",
+    "firstSeen": {
+      "sheetName": "media",
+      "row": 199,
+      "col": 3
+    },
+    "occurrences": 1
+  },
+  {
+    "objectPath": "webp/blogs/blog-axe-throwing-thumb.webp",
+    "firstSeen": {
+      "sheetName": "media",
+      "row": 208,
+      "col": 3
+    },
+    "occurrences": 1
+  },
+  {
+    "objectPath": "webp/blogs/blog-axe-throwing.webp",
+    "firstSeen": {
+      "sheetName": "media",
+      "row": 207,
+      "col": 3
+    },
+    "occurrences": 1
+  },
+  {
+    "objectPath": "webp/blogs/blog-birthday-party-thumb.webp",
+    "firstSeen": {
+      "sheetName": "media",
+      "row": 169,
+      "col": 3
+    },
+    "occurrences": 1
+  },
+  {
+    "objectPath": "webp/blogs/blog-birthday-party.webp",
+    "firstSeen": {
+      "sheetName": "media",
+      "row": 168,
+      "col": 3
+    },
+    "occurrences": 1
+  },
+  {
+    "objectPath": "webp/blogs/blog-escape-room-thumb.webp",
+    "firstSeen": {
+      "sheetName": "media",
+      "row": 204,
+      "col": 3
+    },
+    "occurrences": 1
+  },
+  {
+    "objectPath": "webp/blogs/blog-escape-room.webp",
+    "firstSeen": {
+      "sheetName": "media",
+      "row": 203,
+      "col": 3
+    },
+    "occurrences": 1
+  },
+  {
+    "objectPath": "webp/blogs/blog-general-fun-thumb.webp",
+    "firstSeen": {
+      "sheetName": "media",
+      "row": 165,
+      "col": 3
+    },
+    "occurrences": 1
+  },
+  {
+    "objectPath": "webp/blogs/blog-general-fun.webp",
+    "firstSeen": {
+      "sheetName": "media",
+      "row": 164,
+      "col": 3
+    },
+    "occurrences": 1
+  },
+  {
+    "objectPath": "webp/blogs/blog-indoor-playground-thumb.webp",
+    "firstSeen": {
+      "sheetName": "media",
+      "row": 156,
+      "col": 3
+    },
+    "occurrences": 1
+  },
+  {
+    "objectPath": "webp/blogs/blog-indoor-playground.webp",
+    "firstSeen": {
+      "sheetName": "media",
+      "row": 155,
+      "col": 3
+    },
+    "occurrences": 1
+  },
+  {
+    "objectPath": "webp/blogs/blog-mini-golf-thumb.webp",
+    "firstSeen": {
+      "sheetName": "media",
+      "row": 198,
+      "col": 3
+    },
+    "occurrences": 1
+  },
+  {
+    "objectPath": "webp/blogs/blog-mini-golf.webp",
+    "firstSeen": {
+      "sheetName": "media",
+      "row": 197,
+      "col": 3
+    },
+    "occurrences": 1
+  },
+  {
+    "objectPath": "webp/blogs/blog-rock-climbing-thumb.webp",
+    "firstSeen": {
+      "sheetName": "media",
+      "row": 196,
+      "col": 3
+    },
+    "occurrences": 1
+  },
+  {
+    "objectPath": "webp/blogs/blog-rock-climbing.webp",
+    "firstSeen": {
+      "sheetName": "media",
+      "row": 195,
+      "col": 3
+    },
+    "occurrences": 1
+  },
+  {
+    "objectPath": "webp/blogs/blog-summer-camp-thumb.webp",
+    "firstSeen": {
+      "sheetName": "media",
+      "row": 210,
+      "col": 3
+    },
+    "occurrences": 1
+  },
+  {
+    "objectPath": "webp/blogs/blog-summer-camp.webp",
+    "firstSeen": {
+      "sheetName": "media",
+      "row": 209,
+      "col": 3
+    },
+    "occurrences": 1
+  },
+  {
+    "objectPath": "webp/blogs/blog-team-building-thumb.webp",
+    "firstSeen": {
+      "sheetName": "media",
+      "row": 158,
+      "col": 3
+    },
+    "occurrences": 1
+  },
+  {
+    "objectPath": "webp/blogs/blog-team-building.webp",
+    "firstSeen": {
+      "sheetName": "media",
+      "row": 157,
+      "col": 3
+    },
+    "occurrences": 1
+  },
+  {
+    "objectPath": "webp/blogs/blog-things-to-do-thumb.webp",
+    "firstSeen": {
+      "sheetName": "media",
+      "row": 167,
+      "col": 3
+    },
+    "occurrences": 1
+  },
+  {
+    "objectPath": "webp/blogs/blog-things-to-do.webp",
+    "firstSeen": {
+      "sheetName": "media",
+      "row": 166,
+      "col": 3
+    },
+    "occurrences": 1
+  },
+  {
+    "objectPath": "webp/blogs/blog-trampoline-jumping-thumb.webp",
+    "firstSeen": {
+      "sheetName": "media",
+      "row": 160,
+      "col": 3
+    },
+    "occurrences": 1
+  },
+  {
+    "objectPath": "webp/blogs/blog-trampoline-jumping.webp",
+    "firstSeen": {
+      "sheetName": "media",
+      "row": 159,
+      "col": 3
+    },
+    "occurrences": 1
+  },
+  {
+    "objectPath": "webp/camp.webp",
+    "firstSeen": {
+      "sheetName": "Data",
+      "row": 159,
+      "col": 16
+    },
+    "occurrences": 4
+  },
+  {
+    "objectPath": "webp/camps-at-aerosports-trampoline-park.webp",
+    "firstSeen": {
+      "sheetName": "media",
+      "row": 121,
+      "col": 3
+    },
+    "occurrences": 1
+  },
+  {
+    "objectPath": "webp/common/aboutus.webp",
+    "firstSeen": {
+      "sheetName": "media",
+      "row": 18,
+      "col": 3
+    },
+    "occurrences": 1
+  },
+  {
+    "objectPath": "webp/common/blogs.webp",
+    "firstSeen": {
+      "sheetName": "media",
+      "row": 20,
+      "col": 3
+    },
+    "occurrences": 1
+  },
+  {
+    "objectPath": "webp/common/camps.webp",
+    "firstSeen": {
+      "sheetName": "media",
+      "row": 191,
+      "col": 3
+    },
+    "occurrences": 1
+  },
+  {
+    "objectPath": "webp/common/contact-us.webp",
+    "firstSeen": {
+      "sheetName": "media",
+      "row": 117,
+      "col": 3
+    },
+    "occurrences": 1
+  },
+  {
+    "objectPath": "webp/common/dodgeball.webp",
+    "firstSeen": {
+      "sheetName": "media",
+      "row": 67,
+      "col": 3
+    },
+    "occurrences": 1
+  },
+  {
+    "objectPath": "webp/common/faq.webp",
+    "firstSeen": {
+      "sheetName": "media",
+      "row": 110,
+      "col": 3
+    },
+    "occurrences": 1
+  },
+  {
+    "objectPath": "webp/common/gallery-thummbnail-wall-climbwall.webp",
+    "firstSeen": {
+      "sheetName": "photo gallery",
+      "row": 5,
+      "col": 4
+    },
+    "occurrences": 8
+  },
+  {
+    "objectPath": "webp/common/glow.webp",
+    "firstSeen": {
+      "sheetName": "media",
+      "row": 126,
+      "col": 3
+    },
+    "occurrences": 1
+  },
+  {
+    "objectPath": "webp/common/gnericHeader.webp",
+    "firstSeen": {
+      "sheetName": "media",
+      "row": 22,
+      "col": 3
+    },
+    "occurrences": 1
+  },
+  {
+    "objectPath": "webp/common/open-jumps.webp",
+    "firstSeen": {
+      "sheetName": "media",
+      "row": 34,
+      "col": 3
+    },
+    "occurrences": 1
+  },
+  {
+    "objectPath": "webp/common/pricing-promos.webp",
+    "firstSeen": {
+      "sheetName": "media",
+      "row": 21,
+      "col": 3
+    },
+    "occurrences": 1
+  },
+  {
+    "objectPath": "webp/gold-membership-at-aerosports.webp",
+    "firstSeen": {
+      "sheetName": "Data",
+      "row": 123,
+      "col": 16
+    },
+    "occurrences": 5
+  },
+  {
+    "objectPath": "webp/hexaquest.webp",
+    "firstSeen": {
+      "sheetName": "media",
+      "row": 28,
+      "col": 3
+    },
+    "occurrences": 1
+  },
+  {
+    "objectPath": "webp/logo_white.webp",
+    "firstSeen": {
+      "sheetName": "locations",
+      "row": 3,
+      "col": 22
+    },
+    "occurrences": 4
+  },
+  {
+    "objectPath": "webp/London-new/Aero_drop.webp",
+    "firstSeen": {
+      "sheetName": "media",
+      "row": 99,
+      "col": 3
+    },
+    "occurrences": 1
+  },
+  {
+    "objectPath": "webp/London-new/Aero_Ladder.webp",
+    "firstSeen": {
+      "sheetName": "media",
+      "row": 92,
+      "col": 3
+    },
+    "occurrences": 1
+  },
+  {
+    "objectPath": "webp/London-new/Aero_Slam.webp",
+    "firstSeen": {
+      "sheetName": "media",
+      "row": 74,
+      "col": 3
+    },
+    "occurrences": 1
+  },
+  {
+    "objectPath": "webp/London-new/arcade.webp",
+    "firstSeen": {
+      "sheetName": "media",
+      "row": 104,
+      "col": 3
+    },
+    "occurrences": 1
+  },
+  {
+    "objectPath": "webp/London-new/Battle_Beam.webp",
+    "firstSeen": {
+      "sheetName": "media",
+      "row": 45,
+      "col": 3
+    },
+    "occurrences": 1
+  },
+  {
+    "objectPath": "webp/London-new/Climbing_Walls.webp",
+    "firstSeen": {
+      "sheetName": "media",
+      "row": 60,
+      "col": 3
+    },
+    "occurrences": 1
+  },
+  {
+    "objectPath": "webp/London-new/Dodgeball.webp",
+    "firstSeen": {
+      "sheetName": "media",
+      "row": 65,
+      "col": 3
+    },
+    "occurrences": 1
+  },
+  {
+    "objectPath": "webp/London-new/Ninja_warrior.webp",
+    "firstSeen": {
+      "sheetName": "media",
+      "row": 88,
+      "col": 3
+    },
+    "occurrences": 1
+  },
+  {
+    "objectPath": "webp/London-new/Open_Jump.webp",
+    "firstSeen": {
+      "sheetName": "media",
+      "row": 26,
+      "col": 3
+    },
+    "occurrences": 1
+  },
+  {
+    "objectPath": "webp/London-new/warped_wall.webp",
+    "firstSeen": {
+      "sheetName": "media",
+      "row": 96,
+      "col": 3
+    },
+    "occurrences": 1
+  },
+  {
+    "objectPath": "webp/London/Contact Us .webp",
+    "firstSeen": {
+      "sheetName": "media",
+      "row": 119,
+      "col": 3
+    },
+    "occurrences": 1
+  },
+  {
+    "objectPath": "webp/London/Copy of New Open Jump Picture.webp",
+    "firstSeen": {
+      "sheetName": "media",
+      "row": 25,
+      "col": 3
+    },
+    "occurrences": 1
+  },
+  {
+    "objectPath": "webp/London/Facility Rental .webp",
+    "firstSeen": {
+      "sheetName": "media",
+      "row": 146,
+      "col": 3
+    },
+    "occurrences": 1
+  },
+  {
+    "objectPath": "webp/London/FAQ .webp",
+    "firstSeen": {
+      "sheetName": "media",
+      "row": 112,
+      "col": 3
+    },
+    "occurrences": 1
+  },
+  {
+    "objectPath": "webp/London/london.webp",
+    "firstSeen": {
+      "sheetName": "locations",
+      "row": 5,
+      "col": 12
+    },
+    "occurrences": 1
+  },
+  {
+    "objectPath": "webp/London/New Aero Latte.webp",
+    "firstSeen": {
+      "sheetName": "media",
+      "row": 90,
+      "col": 3
+    },
+    "occurrences": 1
+  },
+  {
+    "objectPath": "webp/London/New Battle Beam.webp",
+    "firstSeen": {
+      "sheetName": "media",
+      "row": 44,
+      "col": 3
+    },
+    "occurrences": 1
+  },
+  {
+    "objectPath": "webp/London/New Dodgeball.webp",
+    "firstSeen": {
+      "sheetName": "media",
+      "row": 64,
+      "col": 3
+    },
+    "occurrences": 1
+  },
+  {
+    "objectPath": "webp/London/New Ninja Warrior.webp",
+    "firstSeen": {
+      "sheetName": "media",
+      "row": 87,
+      "col": 3
+    },
+    "occurrences": 1
+  },
+  {
+    "objectPath": "webp/London/NINJA TAG.webp",
+    "firstSeen": {
+      "sheetName": "media",
+      "row": 150,
+      "col": 3
+    },
+    "occurrences": 1
+  },
+  {
+    "objectPath": "webp/London/warped-wall.webp",
+    "firstSeen": {
+      "sheetName": "media",
+      "row": 95,
+      "col": 3
+    },
+    "occurrences": 1
+  },
+  {
+    "objectPath": "webp/London/Website Pictures.webp",
+    "firstSeen": {
+      "sheetName": "media",
+      "row": 133,
+      "col": 3
+    },
+    "occurrences": 1
+  },
+  {
+    "objectPath": "webp/oakville-new/indoor-playground-activities-at-aerosports-trampoline-park-oakville.mp4",
+    "firstSeen": {
+      "sheetName": "photo gallery",
+      "row": 6,
+      "col": 4
+    },
+    "occurrences": 2
+  },
+  {
+    "objectPath": "webp/oakville/aerosports_oakville_about_us.webp",
+    "firstSeen": {
+      "sheetName": "media",
+      "row": 19,
+      "col": 3
+    },
+    "occurrences": 1
+  },
+  {
+    "objectPath": "webp/oakville/aerosports_oakville_birthday.webp",
+    "firstSeen": {
+      "sheetName": "media",
+      "row": 10,
+      "col": 3
+    },
+    "occurrences": 1
+  },
+  {
+    "objectPath": "webp/oakville/AeroSports_Oakville_FAQ.webp",
+    "firstSeen": {
+      "sheetName": "media",
+      "row": 115,
+      "col": 3
+    },
+    "occurrences": 1
+  },
+  {
+    "objectPath": "webp/oakville/aerosports-trampoline-park-oakville-mississauga-explore-location.webp",
+    "firstSeen": {
+      "sheetName": "locations",
+      "row": 3,
+      "col": 12
+    },
+    "occurrences": 1
+  },
+  {
+    "objectPath": "webp/oakville/aerosports-trampoline-park-redefine-fun.webp",
+    "firstSeen": {
+      "sheetName": "media",
+      "row": 2,
+      "col": 3
+    },
+    "occurrences": 1
+  },
+  {
+    "objectPath": "webp/oakville/climb&slide/1.webp",
+    "firstSeen": {
+      "sheetName": "media",
+      "row": 55,
+      "col": 3
+    },
+    "occurrences": 1
+  },
+  {
+    "objectPath": "webp/oakville/Copy of Copy of Groups & events.webp",
+    "firstSeen": {
+      "sheetName": "media",
+      "row": 17,
+      "col": 3
+    },
+    "occurrences": 1
+  },
+  {
+    "objectPath": "webp/oakville/Copy of Groups & events.webp",
+    "firstSeen": {
+      "sheetName": "media",
+      "row": 16,
+      "col": 3
+    },
+    "occurrences": 1
+  },
+  {
+    "objectPath": "webp/oakville/Dodgeball.webp",
+    "firstSeen": {
+      "sheetName": "media",
+      "row": 62,
+      "col": 3
+    },
+    "occurrences": 1
+  },
+  {
+    "objectPath": "webp/oakville/glow.webp",
+    "firstSeen": {
+      "sheetName": "media",
+      "row": 124,
+      "col": 3
+    },
+    "occurrences": 1
+  },
+  {
+    "objectPath": "webp/oakville/Main Park.webp",
+    "firstSeen": {
+      "sheetName": "media",
+      "row": 4,
+      "col": 3
+    },
+    "occurrences": 1
+  },
+  {
+    "objectPath": "webp/oakville/ninjawarrior/1.webp",
+    "firstSeen": {
+      "sheetName": "media",
+      "row": 79,
+      "col": 3
+    },
+    "occurrences": 1
+  },
+  {
+    "objectPath": "webp/oakville/OAK Contact Us image.webp",
+    "firstSeen": {
+      "sheetName": "media",
+      "row": 113,
+      "col": 3
+    },
+    "occurrences": 1
+  },
+  {
+    "objectPath": "webp/oakville/openjump/1.webp",
+    "firstSeen": {
+      "sheetName": "media",
+      "row": 23,
+      "col": 3
+    },
+    "occurrences": 1
+  },
+  {
+    "objectPath": "webp/oakville/PROGRAMS.webp",
+    "firstSeen": {
+      "sheetName": "media",
+      "row": 8,
+      "col": 3
+    },
+    "occurrences": 1
+  },
+  {
+    "objectPath": "webp/oakville/Rockwall/1.webp",
+    "firstSeen": {
+      "sheetName": "media",
+      "row": 57,
+      "col": 3
+    },
+    "occurrences": 1
+  },
+  {
+    "objectPath": "webp/oakville/Safety Information .webp",
+    "firstSeen": {
+      "sheetName": "media",
+      "row": 109,
+      "col": 3
+    },
+    "occurrences": 1
+  },
+  {
+    "objectPath": "webp/oakville/trampoline-park-oakville-header.webp",
+    "firstSeen": {
+      "sheetName": "media",
+      "row": 3,
+      "col": 3
+    },
+    "occurrences": 1
+  },
+  {
+    "objectPath": "webp/oakville/valomotion/1.webp",
+    "firstSeen": {
+      "sheetName": "media",
+      "row": 51,
+      "col": 3
+    },
+    "occurrences": 1
+  },
+  {
+    "objectPath": "webp/oakville/Website Pictures.webp",
+    "firstSeen": {
+      "sheetName": "media",
+      "row": 135,
+      "col": 3
+    },
+    "occurrences": 1
+  },
+  {
+    "objectPath": "webp/oakville/wipeout/1.webp",
+    "firstSeen": {
+      "sheetName": "media",
+      "row": 53,
+      "col": 3
+    },
+    "occurrences": 1
+  },
+  {
+    "objectPath": "webp/party-1.webp",
+    "firstSeen": {
+      "sheetName": "Data",
+      "row": 7,
+      "col": 18
+    },
+    "occurrences": 5
+  },
+  {
+    "objectPath": "webp/party-2.webp",
+    "firstSeen": {
+      "sheetName": "Data",
+      "row": 7,
+      "col": 18
+    },
+    "occurrences": 5
+  },
+  {
+    "objectPath": "webp/party-3.webp",
+    "firstSeen": {
+      "sheetName": "Data",
+      "row": 7,
+      "col": 18
+    },
+    "occurrences": 5
+  },
+  {
+    "objectPath": "webp/party-4.webp",
+    "firstSeen": {
+      "sheetName": "Data",
+      "row": 7,
+      "col": 18
+    },
+    "occurrences": 5
+  },
+  {
+    "objectPath": "webp/party-5.webp",
+    "firstSeen": {
+      "sheetName": "Data",
+      "row": 7,
+      "col": 18
+    },
+    "occurrences": 5
+  },
+  {
+    "objectPath": "webp/platinum-membership-at-aerosports.webp",
+    "firstSeen": {
+      "sheetName": "Data",
+      "row": 123,
+      "col": 16
+    },
+    "occurrences": 6
+  },
+  {
+    "objectPath": "webp/popups/boxingday/ldn_90daypass.webp",
+    "firstSeen": {
+      "sheetName": "config",
+      "row": 102,
+      "col": 3
+    },
+    "occurrences": 1
+  },
+  {
+    "objectPath": "webp/popups/boxingday/oakville_90daypass.webp",
+    "firstSeen": {
+      "sheetName": "config",
+      "row": 101,
+      "col": 3
+    },
+    "occurrences": 1
+  },
+  {
+    "objectPath": "webp/popups/boxingday/scb_90daypas.webp",
+    "firstSeen": {
+      "sheetName": "config",
+      "row": 103,
+      "col": 3
+    },
+    "occurrences": 1
+  },
+  {
+    "objectPath": "webp/popups/TEMP/teens_only_saturday.webp",
+    "firstSeen": {
+      "sheetName": "media",
+      "row": 187,
+      "col": 3
+    },
+    "occurrences": 1
+  },
+  {
+    "objectPath": "webp/Scarborough/aerosports_Scarborough_about_us.webp",
+    "firstSeen": {
+      "sheetName": "media",
+      "row": 175,
+      "col": 3
+    },
+    "occurrences": 1
+  },
+  {
+    "objectPath": "webp/scarborough/attractions/aerosportsscarborough_360bike.webp",
+    "firstSeen": {
+      "sheetName": "media",
+      "row": 179,
+      "col": 3
+    },
+    "occurrences": 1
+  },
+  {
+    "objectPath": "webp/scarborough/attractions/aerosportsscarborough_AeroSlam.webp",
+    "firstSeen": {
+      "sheetName": "media",
+      "row": 177,
+      "col": 3
+    },
+    "occurrences": 1
+  },
+  {
+    "objectPath": "webp/scarborough/attractions/aerosportsscarborough_bazooka.webp",
+    "firstSeen": {
+      "sheetName": "media",
+      "row": 184,
+      "col": 3
+    },
+    "occurrences": 1
+  },
+  {
+    "objectPath": "webp/scarborough/attractions/aerosportsscarborough_Climb&Slide.webp",
+    "firstSeen": {
+      "sheetName": "media",
+      "row": 180,
+      "col": 3
+    },
+    "occurrences": 1
+  },
+  {
+    "objectPath": "webp/scarborough/attractions/aerosportsscarborough_lasertag.webp",
+    "firstSeen": {
+      "sheetName": "media",
+      "row": 185,
+      "col": 3
+    },
+    "occurrences": 1
+  },
+  {
+    "objectPath": "webp/scarborough/attractions/aerosportsscarborough_MiniGolf.webp",
+    "firstSeen": {
+      "sheetName": "media",
+      "row": 186,
+      "col": 3
+    },
+    "occurrences": 1
+  },
+  {
+    "objectPath": "webp/scarborough/attractions/aerosportsscarborough_NinjaTag.webp",
+    "firstSeen": {
+      "sheetName": "locations",
+      "row": 2,
+      "col": 12
+    },
+    "occurrences": 1
+  },
+  {
+    "objectPath": "webp/scarborough/attractions/aerosportsscarborough_OpenJump.webp",
+    "firstSeen": {
+      "sheetName": "media",
+      "row": 171,
+      "col": 3
+    },
+    "occurrences": 1
+  },
+  {
+    "objectPath": "webp/scarborough/attractions/aerosportsscarborough_RockWall.webp",
+    "firstSeen": {
+      "sheetName": "media",
+      "row": 176,
+      "col": 3
+    },
+    "occurrences": 1
+  },
+  {
+    "objectPath": "webp/scarborough/attractions/aerosportsscarborough_UltimateNinjaWarrior.webp",
+    "firstSeen": {
+      "sheetName": "media",
+      "row": 190,
+      "col": 3
+    },
+    "occurrences": 1
+  },
+  {
+    "objectPath": "webp/scarborough/attractions/gokarts3.webp",
+    "firstSeen": {
+      "sheetName": "media",
+      "row": 178,
+      "col": 3
+    },
+    "occurrences": 1
+  },
+  {
+    "objectPath": "webp/Scarborough/Copy of Copy of Groups & events.webp",
+    "firstSeen": {
+      "sheetName": "media",
+      "row": 174,
+      "col": 3
+    },
+    "occurrences": 1
+  },
+  {
+    "objectPath": "webp/Scarborough/Main Park.webp",
+    "firstSeen": {
+      "sheetName": "media",
+      "row": 170,
+      "col": 3
+    },
+    "occurrences": 1
+  },
+  {
+    "objectPath": "webp/Scarborough/PROGRAMS.webp",
+    "firstSeen": {
+      "sheetName": "media",
+      "row": 173,
+      "col": 3
+    },
+    "occurrences": 1
+  },
+  {
+    "objectPath": "webp/silver-membership-at-aerosports.webp",
+    "firstSeen": {
+      "sheetName": "Data",
+      "row": 125,
+      "col": 16
+    },
+    "occurrences": 2
+  },
+  {
+    "objectPath": "webp/st-catharines-new/Aero_ladder.webp",
+    "firstSeen": {
+      "sheetName": "media",
+      "row": 91,
+      "col": 3
+    },
+    "occurrences": 1
+  },
+  {
+    "objectPath": "webp/st-catharines-new/aero_slam.webp",
+    "firstSeen": {
+      "sheetName": "media",
+      "row": 78,
+      "col": 3
+    },
+    "occurrences": 1
+  },
+  {
+    "objectPath": "webp/st-catharines-new/archery-1.webp",
+    "firstSeen": {
+      "sheetName": "media",
+      "row": 40,
+      "col": 3
+    },
+    "occurrences": 1
+  },
+  {
+    "objectPath": "webp/st-catharines-new/Axe-throw-BigAxeHunter.webp",
+    "firstSeen": {
+      "sheetName": "media",
+      "row": 153,
+      "col": 3
+    },
+    "occurrences": 1
+  },
+  {
+    "objectPath": "webp/st-catharines-new/axe-throw.webp",
+    "firstSeen": {
+      "sheetName": "media",
+      "row": 154,
+      "col": 3
+    },
+    "occurrences": 1
+  },
+  {
+    "objectPath": "webp/st-catharines-new/battle_beam.webp",
+    "firstSeen": {
+      "sheetName": "media",
+      "row": 48,
+      "col": 3
+    },
+    "occurrences": 1
+  },
+  {
+    "objectPath": "webp/st-catharines-new/contact-aerosports-st-catharines-trampoline-park.webp",
+    "firstSeen": {
+      "sheetName": "media",
+      "row": 118,
+      "col": 3
+    },
+    "occurrences": 1
+  },
+  {
+    "objectPath": "webp/st-catharines-new/corporate-parties-aerosports-st-catharines-event-venue.jpg.webp",
+    "firstSeen": {
+      "sheetName": "media",
+      "row": 132,
+      "col": 3
+    },
+    "occurrences": 1
+  },
+  {
+    "objectPath": "webp/st-catharines-new/Dodge_ball.webp",
+    "firstSeen": {
+      "sheetName": "media",
+      "row": 72,
+      "col": 3
+    },
+    "occurrences": 1
+  },
+  {
+    "objectPath": "webp/st-catharines-new/facility-rental-events-aerosports-st-catharines-trampoline-park.webp",
+    "firstSeen": {
+      "sheetName": "media",
+      "row": 145,
+      "col": 3
+    },
+    "occurrences": 1
+  },
+  {
+    "objectPath": "webp/st-catharines-new/faq-aerosports-st-catharines-trampoline-park.webp",
+    "firstSeen": {
+      "sheetName": "media",
+      "row": 111,
+      "col": 3
+    },
+    "occurrences": 1
+  },
+  {
+    "objectPath": "webp/st-catharines-new/fundraising-events-aerosports-st-catharines-trampoline-park.jpg.webp",
+    "firstSeen": {
+      "sheetName": "media",
+      "row": 141,
+      "col": 3
+    },
+    "occurrences": 1
+  },
+  {
+    "objectPath": "webp/st-catharines-new/hexa-quest-new.webp",
+    "firstSeen": {
+      "sheetName": "media",
+      "row": 29,
+      "col": 3
+    },
+    "occurrences": 1
+  },
+  {
+    "objectPath": "webp/st-catharines-new/hoops.webp",
+    "firstSeen": {
+      "sheetName": "media",
+      "row": 42,
+      "col": 3
+    },
+    "occurrences": 1
+  },
+  {
+    "objectPath": "webp/st-catharines-new/minigolf_image.webp",
+    "firstSeen": {
+      "sheetName": "media",
+      "row": 32,
+      "col": 3
+    },
+    "occurrences": 1
+  },
+  {
+    "objectPath": "webp/st-catharines-new/ninja-tag.webp",
+    "firstSeen": {
+      "sheetName": "media",
+      "row": 151,
+      "col": 3
+    },
+    "occurrences": 1
+  },
+  {
+    "objectPath": "webp/st-catharines-new/ninja-warrior-1.webp",
+    "firstSeen": {
+      "sheetName": "media",
+      "row": 85,
+      "col": 3
+    },
+    "occurrences": 1
+  },
+  {
+    "objectPath": "webp/st-catharines-new/Open-jump.webp",
+    "firstSeen": {
+      "sheetName": "media",
+      "row": 35,
+      "col": 3
+    },
+    "occurrences": 1
+  },
+  {
+    "objectPath": "webp/st-catharines-new/safety-rules-aerosports-st-catharines-trampoline-park.webp",
+    "firstSeen": {
+      "sheetName": "media",
+      "row": 106,
+      "col": 3
+    },
+    "occurrences": 1
+  },
+  {
+    "objectPath": "webp/st-catharines-new/school-trip-in-aerosports-st-catharines.webp",
+    "firstSeen": {
+      "sheetName": "media",
+      "row": 140,
+      "col": 3
+    },
+    "occurrences": 1
+  },
+  {
+    "objectPath": "webp/st-catharines-new/tile-quest-1.webp",
+    "firstSeen": {
+      "sheetName": "media",
+      "row": 71,
+      "col": 3
+    },
+    "occurrences": 1
+  },
+  {
+    "objectPath": "webp/st-catharines-new/toddler-time-aerosports-st-catharines-trampoline-park.webp",
+    "firstSeen": {
+      "sheetName": "media",
+      "row": 130,
+      "col": 3
+    },
+    "occurrences": 1
+  },
+  {
+    "objectPath": "webp/st-catharines/Archery.webp",
+    "firstSeen": {
+      "sheetName": "media",
+      "row": 39,
+      "col": 3
+    },
+    "occurrences": 1
+  },
+  {
+    "objectPath": "webp/st-catharines/birthday-parties/glow-party-room.webp",
+    "firstSeen": {
+      "sheetName": "media",
+      "row": 9,
+      "col": 3
+    },
+    "occurrences": 1
+  },
+  {
+    "objectPath": "webp/st-catharines/home.webp",
+    "firstSeen": {
+      "sheetName": "media",
+      "row": 7,
+      "col": 3
+    },
+    "occurrences": 1
+  },
+  {
+    "objectPath": "webp/st-catharines/minigolf/mingolf2.webp",
+    "firstSeen": {
+      "sheetName": "media",
+      "row": 31,
+      "col": 3
+    },
+    "occurrences": 1
+  },
+  {
+    "objectPath": "webp/st-catharines/ninja-warrior-h.webp",
+    "firstSeen": {
+      "sheetName": "media",
+      "row": 84,
+      "col": 3
+    },
+    "occurrences": 1
+  },
+  {
+    "objectPath": "webp/st-catharines/ninja-warrior1.webp",
+    "firstSeen": {
+      "sheetName": "media",
+      "row": 86,
+      "col": 3
+    },
+    "occurrences": 1
+  },
+  {
+    "objectPath": "webp/st-catharines/st.-catherines.webp",
+    "firstSeen": {
+      "sheetName": "locations",
+      "row": 4,
+      "col": 12
+    },
+    "occurrences": 1
+  },
+  {
+    "objectPath": "webp/tilehunt.webp",
+    "firstSeen": {
+      "sheetName": "media",
+      "row": 70,
+      "col": 3
+    },
+    "occurrences": 1
+  },
+  {
+    "objectPath": "webp/uploads/media-0210/photo-0718-25-mqo4zj5o.webp",
+    "firstSeen": {
+      "sheetName": "media",
+      "row": 211,
+      "col": 3
+    },
+    "occurrences": 1
+  },
+  {
+    "objectPath": "webp/windsor-new/accessibility-plan-for-aerosports-trampoline-par-windsor.webp",
+    "firstSeen": {
+      "sheetName": "media",
+      "row": 14,
+      "col": 3
+    },
+    "occurrences": 1
+  },
+  {
+    "objectPath": "webp/windsor-new/Aero_drop.webp",
+    "firstSeen": {
+      "sheetName": "media",
+      "row": 101,
+      "col": 3
+    },
+    "occurrences": 1
+  },
+  {
+    "objectPath": "webp/windsor-new/Aero_Ladder.webp",
+    "firstSeen": {
+      "sheetName": "media",
+      "row": 94,
+      "col": 3
+    },
+    "occurrences": 1
+  },
+  {
+    "objectPath": "webp/windsor-new/Aero_Slam.webp",
+    "firstSeen": {
+      "sheetName": "media",
+      "row": 77,
+      "col": 3
+    },
+    "occurrences": 1
+  },
+  {
+    "objectPath": "webp/windsor-new/Battle_Beam.webp",
+    "firstSeen": {
+      "sheetName": "media",
+      "row": 50,
+      "col": 3
+    },
+    "occurrences": 1
+  },
+  {
+    "objectPath": "webp/windsor-new/corporate-parties-at-aerosports-trampoline-park-windsor.webp",
+    "firstSeen": {
+      "sheetName": "media",
+      "row": 134,
+      "col": 3
+    },
+    "occurrences": 1
+  },
+  {
+    "objectPath": "webp/windsor-new/darkride.webp",
+    "firstSeen": {
+      "sheetName": "media",
+      "row": 30,
+      "col": 3
+    },
+    "occurrences": 1
+  },
+  {
+    "objectPath": "webp/windsor-new/Dodgeball.webp",
+    "firstSeen": {
+      "sheetName": "media",
+      "row": 68,
+      "col": 3
+    },
+    "occurrences": 1
+  },
+  {
+    "objectPath": "webp/windsor-new/facility-rental-events-aerosports-windsor-trampoline-park.webp",
+    "firstSeen": {
+      "sheetName": "media",
+      "row": 148,
+      "col": 3
+    },
+    "occurrences": 1
+  },
+  {
+    "objectPath": "webp/windsor-new/faq-for-trampoline-park-windsor.webp",
+    "firstSeen": {
+      "sheetName": "media",
+      "row": 114,
+      "col": 3
+    },
+    "occurrences": 1
+  },
+  {
+    "objectPath": "webp/windsor-new/fitness-aerosports-st-catharines-trampoline-park.webp",
+    "firstSeen": {
+      "sheetName": "media",
+      "row": 123,
+      "col": 3
+    },
+    "occurrences": 1
+  },
+  {
+    "objectPath": "webp/windsor-new/fund-raising-at-trampoline-park-windsor.webp",
+    "firstSeen": {
+      "sheetName": "media",
+      "row": 143,
+      "col": 3
+    },
+    "occurrences": 1
+  },
+  {
+    "objectPath": "webp/windsor-new/kids-activity-glow-in-the-dark.webp",
+    "firstSeen": {
+      "sheetName": "media",
+      "row": 5,
+      "col": 3
+    },
+    "occurrences": 1
+  },
+  {
+    "objectPath": "webp/windsor-new/Ninja_warrior.webp",
+    "firstSeen": {
+      "sheetName": "media",
+      "row": 82,
+      "col": 3
+    },
+    "occurrences": 1
+  },
+  {
+    "objectPath": "webp/windsor-new/Open_Jump.webp",
+    "firstSeen": {
+      "sheetName": "media",
+      "row": 37,
+      "col": 3
+    },
+    "occurrences": 1
+  },
+  {
+    "objectPath": "webp/windsor-new/school-trip-in-aerosports-windsor.webp",
+    "firstSeen": {
+      "sheetName": "media",
+      "row": 139,
+      "col": 3
+    },
+    "occurrences": 1
+  },
+  {
+    "objectPath": "webp/windsor-new/softplay.webp",
+    "firstSeen": {
+      "sheetName": "media",
+      "row": 162,
+      "col": 3
+    },
+    "occurrences": 1
+  },
+  {
+    "objectPath": "webp/windsor-new/toddler-time-aerosports-windsor-trampoline-park.webp",
+    "firstSeen": {
+      "sheetName": "media",
+      "row": 131,
+      "col": 3
+    },
+    "occurrences": 1
+  },
+  {
+    "objectPath": "webp/windsor/Aero-Hoops-h.webp",
+    "firstSeen": {
+      "sheetName": "media",
+      "row": 41,
+      "col": 3
+    },
+    "occurrences": 1
+  },
+  {
+    "objectPath": "webp/windsor/Aero-Hoops.webp",
+    "firstSeen": {
+      "sheetName": "media",
+      "row": 43,
+      "col": 3
+    },
+    "occurrences": 1
+  },
+  {
+    "objectPath": "webp/windsor/AeroSlam-h.webp",
+    "firstSeen": {
+      "sheetName": "media",
+      "row": 73,
+      "col": 3
+    },
+    "occurrences": 1
+  },
+  {
+    "objectPath": "webp/windsor/AeroSlam.webp",
+    "firstSeen": {
+      "sheetName": "media",
+      "row": 75,
+      "col": 3
+    },
+    "occurrences": 1
+  },
+  {
+    "objectPath": "webp/windsor/Air-Bag-1.webp",
+    "firstSeen": {
+      "sheetName": "media",
+      "row": 102,
+      "col": 3
+    },
+    "occurrences": 1
+  },
+  {
+    "objectPath": "webp/windsor/Air-BAg-h.webp",
+    "firstSeen": {
+      "sheetName": "media",
+      "row": 97,
+      "col": 3
+    },
+    "occurrences": 1
+  },
+  {
+    "objectPath": "webp/windsor/birthday-h.webp",
+    "firstSeen": {
+      "sheetName": "media",
+      "row": 11,
+      "col": 3
+    },
+    "occurrences": 1
+  },
+  {
+    "objectPath": "webp/windsor/Challenge-1-h.webp",
+    "firstSeen": {
+      "sheetName": "media",
+      "row": 47,
+      "col": 3
+    },
+    "occurrences": 1
+  },
+  {
+    "objectPath": "webp/windsor/Challenge-boys.webp",
+    "firstSeen": {
+      "sheetName": "media",
+      "row": 49,
+      "col": 3
+    },
+    "occurrences": 1
+  },
+  {
+    "objectPath": "webp/windsor/Dodgeball-1.webp",
+    "firstSeen": {
+      "sheetName": "media",
+      "row": 69,
+      "col": 3
+    },
+    "occurrences": 1
+  },
+  {
+    "objectPath": "webp/windsor/GLOW-5.webp",
+    "firstSeen": {
+      "sheetName": "media",
+      "row": 6,
+      "col": 3
+    },
+    "occurrences": 1
+  },
+  {
+    "objectPath": "webp/windsor/header/birthday_party.webp",
+    "firstSeen": {
+      "sheetName": "media",
+      "row": 12,
+      "col": 3
+    },
+    "occurrences": 1
+  },
+  {
+    "objectPath": "webp/windsor/header/school_group_destop.webp",
+    "firstSeen": {
+      "sheetName": "media",
+      "row": 137,
+      "col": 3
+    },
+    "occurrences": 1
+  },
+  {
+    "objectPath": "webp/windsor/jump trampoline.webp",
+    "firstSeen": {
+      "sheetName": "photo gallery",
+      "row": 2,
+      "col": 4
+    },
+    "occurrences": 3
+  },
+  {
+    "objectPath": "webp/windsor/Main-Court-1-h.webp",
+    "firstSeen": {
+      "sheetName": "media",
+      "row": 38,
+      "col": 3
+    },
+    "occurrences": 1
+  },
+  {
+    "objectPath": "webp/windsor/Main-Court-1.webp",
+    "firstSeen": {
+      "sheetName": "media",
+      "row": 36,
+      "col": 3
+    },
+    "occurrences": 1
+  },
+  {
+    "objectPath": "webp/windsor/mobile/Birthdayparty_mobile.webp",
+    "firstSeen": {
+      "sheetName": "media",
+      "row": 13,
+      "col": 3
+    },
+    "occurrences": 1
+  },
+  {
+    "objectPath": "webp/windsor/softplay1.webp",
+    "firstSeen": {
+      "sheetName": "media",
+      "row": 163,
+      "col": 3
+    },
+    "occurrences": 1
+  },
+  {
+    "objectPath": "webp/windsor/softplay3-h.webp",
+    "firstSeen": {
+      "sheetName": "media",
+      "row": 161,
+      "col": 3
+    },
+    "occurrences": 1
+  },
+  {
+    "objectPath": "webp/windsor/Warriro-General.webp",
+    "firstSeen": {
+      "sheetName": "media",
+      "row": 81,
+      "col": 3
+    },
+    "occurrences": 1
+  },
+  {
+    "objectPath": "webp/windsor/Warriror-Background.webp",
+    "firstSeen": {
+      "sheetName": "media",
+      "row": 83,
+      "col": 3
+    },
+    "occurrences": 1
+  },
+  {
+    "objectPath": "webp/windsor/windsor.webp",
+    "firstSeen": {
+      "sheetName": "locations",
+      "row": 6,
+      "col": 12
+    },
+    "occurrences": 1
+  }
+]

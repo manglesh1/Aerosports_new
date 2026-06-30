@@ -2,6 +2,9 @@ import Link from "next/link";
 import { fetchsheetdata, fetchMenuData, fetchPageData, generateMetadataLib } from "../lib/sheets";
 import { getDataByParentId } from "@/utils/customFunctions";
 import CorporateNav from "../components/corporate/CorporateNav";
+import MotionImage from "../components/MotionImage";
+import AppImage from "../components/AppImage";
+import "../styles/kidsparty.css";
 import "../styles/home-v2.css";
 
 export async function generateMetadata() {
@@ -52,70 +55,13 @@ export default async function AttractionsPage() {
   return (
     <main className="hv2" style={{ background: "#fff", minHeight: "100vh" }}>
       <CorporateNav />
-
-      {/* ═══════════ HERO ═══════════ */}
-      <section
-        className="hv2-hero"
-        style={{
-          position: "relative",
-          padding: "10rem 2rem 5rem",
-          textAlign: "center",
-          overflow: "hidden",
-          background: pageData?.video ? "#080B18" : "linear-gradient(135deg, #080B18 0%, #181D35 100%)",
+      <MotionImage
+        pageData={{
+          ...pageData,
+          title: pageData?.title || 'Our Attractions',
+          smalltext: pageData?.subtitle || pageData?.smalltext || 'Explore trampolines, ninja courses, climbing walls, arcades, and more across our Ontario indoor adventure parks.',
         }}
-      >
-        {pageData?.video && (
-          <video
-            autoPlay
-            muted
-            loop
-            playsInline
-            style={{
-              position: "absolute",
-              top: 0,
-              left: 0,
-              width: "100%",
-              height: "100%",
-              objectFit: "cover",
-              opacity: 0.4,
-            }}
-          >
-            <source src={pageData.video} type="video/mp4" />
-          </video>
-        )}
-        <div style={{ maxWidth: 1600, margin: "0 auto", position: "relative", zIndex: 1 }}>
-          <span
-            className="hv2-section-tag"
-            style={{ background: "rgba(200,255,0,0.15)", color: "var(--hv2-red)" }}
-          >
-            Activities
-          </span>
-          <h1
-            style={{
-              fontFamily: "var(--font-bebas), 'Bebas Neue', sans-serif",
-              fontSize: "clamp(40px, 6vw, 72px)",
-              color: "#fff",
-              textTransform: "uppercase",
-              letterSpacing: "0.02em",
-              lineHeight: 1.05,
-              marginTop: 12,
-            }}
-          >
-            {pageData?.title || "Our Attractions"}
-          </h1>
-          <p
-            style={{
-              fontSize: 18,
-              color: "rgba(255,255,255,0.5)",
-              maxWidth: 600,
-              margin: "16px auto 0",
-              lineHeight: 1.6,
-            }}
-          >
-            {pageData?.subtitle || "Wall-to-wall fun across all our parks. Experiences may vary by location."}
-          </p>
-        </div>
-      </section>
+      />
 
       {/* ═══════════ ATTRACTIONS GRID ═══════════ */}
       <section style={{ padding: "5rem 2rem" }}>
@@ -145,16 +91,12 @@ export default async function AttractionsPage() {
                 >
                   <div style={{ height: 220, overflow: "hidden", position: "relative" }}>
                     {a.image ? (
-                      <img
+                      <AppImage
                         src={a.image}
                         alt={a.name}
-                        style={{
-                          width: "100%",
-                          height: "100%",
-                          objectFit: "cover",
-                          transition: "transform 0.5s",
-                        }}
-                        loading="lazy"
+                        fill
+                        sizes="(max-width: 768px) 100vw, 33vw"
+                        style={{ transition: "transform 0.5s" }}
                       />
                     ) : (
                       <div

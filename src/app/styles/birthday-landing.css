@@ -1,0 +1,803 @@
+.birthday_ad_page {
+  --ad-bg: #080b15;
+  --ad-ink: #ffffff;
+  --ad-muted: #c9d2e3;
+  --ad-pink: #ff2b86;
+  --ad-lime: #B7E600;
+  --ad-blue: #3154d9;
+  --ad-card: #101421;
+  background: #f3f6fb;
+  color: #050816;
+  font-family: var(--font-roboto-condensed), Arial, sans-serif;
+}
+
+.birthday_ad_hero {
+  min-height: 700px;
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  background: var(--ad-bg);
+  color: var(--ad-ink);
+}
+
+.birthday_ad_hero_media,
+.birthday_ad_hero_media img,
+.birthday_ad_hero_media video {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.birthday_ad_hero_media {
+  z-index: -3;
+  filter: brightness(1.38) saturate(1.16);
+}
+
+.birthday_ad_hero_media::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg, rgba(5, 8, 18, 0.34) 0%, rgba(5, 8, 18, 0.2) 42%, rgba(5, 8, 18, 0.02) 100%);
+  z-index: 1;
+}
+
+.birthday_ad_hero_overlay {
+  position: absolute;
+  inset: 0;
+  z-index: -2;
+  background:
+    radial-gradient(circle at 84% 12%, rgba(255, 43, 134, 0.18), transparent 26%),
+    radial-gradient(circle at 18% 74%, rgba(183, 230, 0, 0.14), transparent 28%),
+    linear-gradient(180deg, rgba(5, 8, 18, 0.02), rgba(8, 11, 21, 0.34) 96%);
+}
+
+.birthday_ad_nav {
+  width: min(1180px, calc(100% - 40px));
+  margin: 0 auto;
+  padding: 22px 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  position: relative;
+  z-index: 2;
+}
+
+.birthday_ad_logo {
+  color: var(--ad-lime);
+  font-size: 28px;
+  font-weight: 900;
+  text-transform: uppercase;
+  text-decoration: none;
+  letter-spacing: -0.02em;
+}
+
+.birthday_ad_nav nav {
+  display: flex;
+  gap: 26px;
+}
+
+.birthday_ad_nav a {
+  color: #fff;
+  text-decoration: none;
+  text-transform: uppercase;
+  font-weight: 900;
+  letter-spacing: 0.04em;
+  font-size: 14px;
+}
+
+.birthday_ad_call {
+  padding: 12px 18px;
+  border-radius: 999px;
+  background: var(--ad-lime);
+  color: #050816 !important;
+  box-shadow: 0 12px 26px rgba(183, 230, 0, 0.26);
+}
+
+.birthday_ad_hero_inner {
+  width: min(1180px, calc(100% - 40px));
+  margin: 0 auto;
+  padding: 48px 0 78px;
+  display: grid;
+  grid-template-columns: minmax(0, 1.05fr) minmax(360px, 0.72fr);
+  gap: 54px;
+  align-items: start;
+  position: relative;
+  z-index: 1;
+}
+
+.birthday_ad_eyebrow,
+.birthday_ad_section_head span,
+.birthday_ad_split_copy span,
+.birthday_ad_experience span {
+  display: inline-flex;
+  width: max-content;
+  border-radius: 999px;
+  padding: 9px 14px;
+  background: rgba(255, 43, 134, 0.18);
+  color: var(--ad-pink);
+  text-transform: uppercase;
+  letter-spacing: 0.09em;
+  font-size: 13px;
+  font-weight: 900;
+}
+
+.birthday_ad_hero_copy h1 {
+  margin: 22px 0 20px;
+  max-width: 760px;
+  font-size: clamp(48px, 6vw, 82px);
+  line-height: 0.92;
+  letter-spacing: 0;
+  text-transform: uppercase;
+}
+
+.birthday_ad_hero_copy p {
+  max-width: 560px;
+  color: var(--ad-muted);
+  font-family: Arial, sans-serif;
+  font-size: 20px;
+  line-height: 1.65;
+}
+
+.birthday_ad_actions,
+.birthday_ad_final div,
+.birthday_ad_private_actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px;
+  margin-top: 30px;
+}
+
+.birthday_ad_primary,
+.birthday_ad_secondary,
+.birthday_ad_package_btn,
+.birthday_ad_submit,
+.birthday_ad_private_actions a {
+  border: 0;
+  border-radius: 10px;
+  padding: 17px 24px;
+  text-decoration: none;
+  text-transform: uppercase;
+  font-weight: 900;
+  letter-spacing: 0.04em;
+  font-size: 15px;
+  cursor: pointer;
+}
+
+.birthday_ad_primary,
+.birthday_ad_submit,
+.birthday_ad_package_btn {
+  background: var(--ad-lime);
+  color: #050816;
+  box-shadow: 0 18px 35px rgba(183, 230, 0, 0.28);
+}
+
+.birthday_ad_secondary,
+.birthday_ad_private_actions a {
+  background: #fff;
+  color: #050816;
+}
+
+.birthday_ad_primary_dark {
+  display: inline-flex;
+  margin-top: 14px;
+}
+
+.birthday_ad_stats {
+  margin-top: 28px;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 14px;
+  max-width: 660px;
+}
+
+.birthday_ad_stats span {
+  min-height: 92px;
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  border-radius: 18px;
+  padding: 18px;
+  background: rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(12px);
+  color: var(--ad-muted);
+  font-family: Arial, sans-serif;
+  font-size: 14px;
+}
+
+.birthday_ad_stats strong {
+  display: block;
+  margin-bottom: 8px;
+  color: var(--ad-lime);
+  font-family: var(--font-roboto-condensed), Arial, sans-serif;
+  font-size: 32px;
+  line-height: 1;
+  text-transform: uppercase;
+}
+
+.birthday_ad_form {
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  border-top: 4px solid var(--ad-pink);
+  border-radius: 24px;
+  padding: 24px;
+  background: rgba(9, 13, 27, 0.86);
+  box-shadow: 0 30px 80px rgba(0, 0, 0, 0.32);
+  backdrop-filter: blur(18px);
+}
+
+.birthday_ad_form_header span {
+  color: var(--ad-lime);
+  text-transform: uppercase;
+  font-size: 13px;
+  letter-spacing: 0.12em;
+  font-weight: 900;
+}
+
+.birthday_ad_form_header h2 {
+  margin: 8px 0;
+  color: #fff;
+  font-size: 36px;
+  text-transform: uppercase;
+}
+
+.birthday_ad_form_header p,
+.birthday_ad_form_note,
+.birthday_ad_form_message {
+  color: var(--ad-muted);
+  font-family: Arial, sans-serif;
+  line-height: 1.55;
+}
+
+.birthday_ad_form_grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 14px;
+  margin-top: 22px;
+}
+
+.birthday_ad_form label {
+  display: grid;
+  gap: 7px;
+  color: #fff;
+  font-size: 13px;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  font-weight: 900;
+}
+
+.birthday_ad_form input,
+.birthday_ad_form select,
+.birthday_ad_form textarea {
+  width: 100%;
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  border-radius: 10px;
+  padding: 13px 12px;
+  background: rgba(255, 255, 255, 0.08);
+  color: #fff;
+  font-family: Arial, sans-serif;
+  font-size: 15px;
+}
+
+.birthday_ad_form select option {
+  color: #050816;
+}
+
+.birthday_ad_form_full,
+.birthday_ad_submit,
+.birthday_ad_form_note,
+.birthday_ad_form_message {
+  grid-column: 1 / -1;
+}
+
+.birthday_ad_submit {
+  width: 100%;
+  margin-top: 18px;
+}
+
+.birthday_ad_form_success {
+  color: var(--ad-lime);
+}
+
+.birthday_ad_form_error {
+  color: #ff8ab8;
+}
+
+.birthday_ad_packages,
+.birthday_ad_highlights,
+.birthday_ad_games,
+.birthday_ad_reviews {
+  width: min(1180px, calc(100% - 40px));
+  margin: 0 auto;
+  padding: 64px 0;
+}
+
+.birthday_ad_section_head {
+  display: grid;
+  justify-items: center;
+  text-align: center;
+  margin-bottom: 38px;
+}
+
+.birthday_ad_section_head_left {
+  justify-items: start;
+  text-align: left;
+}
+
+.birthday_ad_section_head h2,
+.birthday_ad_split_copy h2,
+.birthday_ad_experience h2,
+.birthday_ad_final h2 {
+  margin: 16px 0 10px;
+  max-width: 760px;
+  font-size: clamp(34px, 4vw, 56px);
+  line-height: 0.94;
+  text-transform: uppercase;
+}
+
+.birthday_ad_section_head p,
+.birthday_ad_split_copy p,
+.birthday_ad_experience p {
+  max-width: 700px;
+  color: #5d6576;
+  font-family: Arial, sans-serif;
+  font-size: 17px;
+  line-height: 1.65;
+}
+
+.birthday_ad_package_grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 18px;
+}
+
+.birthday_ad_package {
+  position: relative;
+  min-height: 360px;
+  display: flex;
+  flex-direction: column;
+  border: 1px solid #dfe5ef;
+  border-top: 5px solid var(--ad-lime);
+  border-radius: 20px;
+  padding: 24px;
+  background: #fff;
+  box-shadow: 0 24px 60px rgba(15, 23, 42, 0.08);
+}
+
+.birthday_ad_package_popular {
+  border-top-color: var(--ad-pink);
+  transform: translateY(-12px);
+}
+
+.birthday_ad_badge {
+  position: absolute;
+  top: 18px;
+  right: 18px;
+  border-radius: 999px;
+  padding: 8px 10px;
+  background: var(--ad-pink);
+  color: #fff;
+  font-size: 11px;
+  font-weight: 900;
+  text-transform: uppercase;
+}
+
+.birthday_ad_package h3 {
+  margin: 28px 0 10px;
+  font-size: 32px;
+  line-height: 1;
+  text-transform: uppercase;
+}
+
+.birthday_ad_price {
+  margin: 0 0 18px;
+  color: var(--ad-pink);
+  font-size: 30px;
+  font-weight: 900;
+}
+
+.birthday_ad_package ul,
+.birthday_ad_split_copy ul {
+  display: grid;
+  gap: 12px;
+  padding: 0;
+  margin: 0 0 26px;
+  list-style: none;
+  font-family: Arial, sans-serif;
+  color: #4d5567;
+}
+
+.birthday_ad_package li::before,
+.birthday_ad_split_copy li::before {
+  content: "+";
+  margin-right: 8px;
+  color: var(--ad-lime);
+  font-weight: 900;
+}
+
+.birthday_ad_package_btn {
+  margin-top: auto;
+  text-align: center;
+}
+
+.birthday_ad_private {
+  width: min(1180px, calc(100% - 40px));
+  margin: 10px auto 40px;
+  border-top: 5px solid var(--ad-pink);
+  border-radius: 12px;
+  padding: 28px 34px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  background: linear-gradient(105deg, var(--ad-lime), #ffe08a 54%, #ffbd86);
+  color: #09101f;
+}
+
+.birthday_ad_private h2 {
+  margin: 0 0 8px;
+  font-size: 38px;
+  text-transform: uppercase;
+}
+
+.birthday_ad_private p {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  font-weight: 700;
+}
+
+.birthday_ad_private_actions a {
+  background: #050816;
+  color: #fff;
+}
+
+.birthday_ad_highlight_grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 18px;
+}
+
+.birthday_ad_highlight_grid article,
+.birthday_ad_review_grid article {
+  border-radius: 18px;
+  padding: 24px;
+  background: #fff;
+  border: 1px solid #dfe5ef;
+}
+
+.birthday_ad_highlight_grid span {
+  color: var(--ad-pink);
+  font-size: 44px;
+  font-weight: 900;
+}
+
+.birthday_ad_highlight_grid h3 {
+  margin: 12px 0;
+  font-size: 28px;
+  text-transform: uppercase;
+}
+
+.birthday_ad_highlight_grid p,
+.birthday_ad_review_grid p {
+  color: #5d6576;
+  font-family: Arial, sans-serif;
+  line-height: 1.65;
+}
+
+.birthday_ad_split,
+.birthday_ad_experience,
+.birthday_ad_final {
+  width: min(1180px, calc(100% - 40px));
+  margin: 0 auto;
+  border-radius: 28px;
+  overflow: hidden;
+  background: #08101f;
+  color: #fff;
+}
+
+.birthday_ad_split {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+
+.birthday_ad_split_media {
+  position: relative;
+  min-height: 560px;
+}
+
+.birthday_ad_split_copy {
+  padding: 70px 58px;
+}
+
+.birthday_ad_split_copy p,
+.birthday_ad_experience p {
+  color: #c9d2e3;
+}
+
+.birthday_ad_split_copy ul {
+  color: #e7eefc;
+}
+
+.birthday_ad_game_grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 14px;
+}
+
+.birthday_ad_game {
+  min-height: 230px;
+  position: relative;
+  overflow: hidden;
+  border-radius: 18px;
+  background: #0b1020;
+  color: #fff;
+}
+
+.birthday_ad_game::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, transparent 34%, rgba(0, 0, 0, 0.86));
+}
+
+.birthday_ad_game div {
+  position: absolute;
+  inset: auto 16px 16px;
+  z-index: 1;
+}
+
+.birthday_ad_game h3 {
+  margin: 0;
+  font-size: 24px;
+  text-transform: uppercase;
+}
+
+.birthday_ad_game p {
+  margin: 8px 0 0;
+  color: #d7deec;
+  font-family: Arial, sans-serif;
+  font-size: 13px;
+  line-height: 1.4;
+}
+
+.birthday_ad_experience {
+  margin-top: 30px;
+  padding: 70px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 50px;
+  align-items: center;
+}
+
+.birthday_ad_checklist {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 14px;
+}
+
+.birthday_ad_checklist span {
+  display: block;
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  border-radius: 14px;
+  padding: 18px;
+  background: rgba(255, 255, 255, 0.06);
+  color: #fff;
+  text-transform: uppercase;
+  font-weight: 900;
+}
+
+.birthday_ad_review_grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 18px;
+}
+
+.birthday_ad_review_grid span {
+  color: #ffc400;
+  letter-spacing: 0.1em;
+}
+
+.birthday_ad_review_grid strong {
+  color: #050816;
+}
+
+.birthday_ad_final {
+  margin-bottom: 80px;
+  padding: 70px;
+  text-align: center;
+  display: grid;
+  justify-items: center;
+  background:
+    radial-gradient(circle at 16% 12%, rgba(183, 230, 0, 0.28), transparent 26%),
+    radial-gradient(circle at 86% 18%, rgba(255, 43, 134, 0.32), transparent 28%),
+    #08101f;
+}
+
+.birthday_ad_final h2 {
+  max-width: 850px;
+}
+
+@media (max-width: 980px) {
+  .birthday_ad_hero {
+    min-height: auto;
+  }
+
+  .birthday_ad_nav nav {
+    display: none;
+  }
+
+  .birthday_ad_hero_inner,
+  .birthday_ad_split,
+  .birthday_ad_experience {
+    grid-template-columns: 1fr;
+  }
+
+  .birthday_ad_hero_inner {
+    padding-top: 44px;
+  }
+
+  .birthday_ad_package_grid,
+  .birthday_ad_highlight_grid,
+  .birthday_ad_review_grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .birthday_ad_game_grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .birthday_ad_private {
+    align-items: stretch;
+    flex-direction: column;
+  }
+}
+
+@media (max-width: 640px) {
+  .birthday_ad_nav,
+  .birthday_ad_hero_inner,
+  .birthday_ad_packages,
+  .birthday_ad_highlights,
+  .birthday_ad_games,
+  .birthday_ad_reviews,
+  .birthday_ad_private,
+  .birthday_ad_split,
+  .birthday_ad_experience,
+  .birthday_ad_final {
+    width: min(100% - 28px, 520px);
+  }
+
+  .birthday_ad_nav {
+    padding: 16px 0;
+  }
+
+  .birthday_ad_logo {
+    font-size: 22px;
+  }
+
+  .birthday_ad_call {
+    padding: 10px 12px;
+    font-size: 12px !important;
+  }
+
+  .birthday_ad_hero_inner {
+    gap: 30px;
+    padding: 24px 0 52px;
+  }
+
+  .birthday_ad_hero_copy h1 {
+    font-size: 42px;
+  }
+
+  .birthday_ad_hero_copy p {
+    font-size: 17px;
+  }
+
+  .birthday_ad_stats,
+  .birthday_ad_form_grid,
+  .birthday_ad_package_grid,
+  .birthday_ad_highlight_grid,
+  .birthday_ad_review_grid,
+  .birthday_ad_checklist {
+    grid-template-columns: 1fr;
+  }
+
+  .birthday_ad_package_popular {
+    transform: none;
+  }
+
+  .birthday_ad_game_grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .birthday_ad_game {
+    min-height: 190px;
+  }
+
+  .birthday_ad_split_media {
+    min-height: 310px;
+  }
+
+  .birthday_ad_split_copy,
+  .birthday_ad_experience,
+  .birthday_ad_final {
+    padding: 34px 22px;
+  }
+
+  .birthday_ad_private {
+    padding: 24px 20px;
+  }
+
+  .birthday_ad_private h2,
+  .birthday_ad_section_head h2,
+  .birthday_ad_split_copy h2,
+  .birthday_ad_experience h2,
+  .birthday_ad_final h2 {
+    font-size: 34px;
+  }
+}
+
+.birthday_ad_mobile_cta {
+  display: none;
+}
+
+@media (max-width: 640px) {
+  .birthday_ad_actions,
+  .birthday_ad_final div,
+  .birthday_ad_private_actions {
+    width: 100%;
+  }
+
+  .birthday_ad_primary,
+  .birthday_ad_secondary,
+  .birthday_ad_package_btn,
+  .birthday_ad_submit,
+  .birthday_ad_private_actions a {
+    width: 100%;
+    text-align: center;
+  }
+
+  .birthday_ad_form {
+    padding: 20px;
+  }
+
+  .birthday_ad_form_header h2 {
+    font-size: 30px;
+  }
+
+  .birthday_ad_packages,
+  .birthday_ad_highlights,
+  .birthday_ad_games,
+  .birthday_ad_reviews {
+    padding: 42px 0;
+  }
+
+  .birthday_ad_mobile_cta {
+    position: fixed;
+    left: 14px;
+    right: 14px;
+    bottom: 12px;
+    z-index: 40;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+    padding: 10px;
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    border-radius: 16px;
+    background: rgba(5, 8, 18, 0.92);
+    box-shadow: 0 18px 40px rgba(0, 0, 0, 0.35);
+    backdrop-filter: blur(16px);
+  }
+
+  .birthday_ad_mobile_cta a {
+    display: grid;
+    place-items: center;
+    min-height: 44px;
+    border-radius: 10px;
+    background: var(--ad-lime);
+    color: #050816;
+    text-decoration: none;
+    text-transform: uppercase;
+    font-size: 13px;
+    font-weight: 900;
+    letter-spacing: 0.04em;
+  }
+}

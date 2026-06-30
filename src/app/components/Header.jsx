@@ -2,8 +2,28 @@
 import "../styles/header-v11.css";
 import Link from "next/link";
 import { useState, useEffect, useRef } from "react";
+import AppImage from "./AppImage";
 
-const Header = ({ location_slug, menudata, configdata, pricingData, locationData, promotions }) => {
+const BRAND_LOGO_URL = "https://media.aerosportsparks.ca/brand/aerosports-logo-brand-v2.webp";
+
+const normalizeLocationList = (value) =>
+  String(value || "")
+    .split(",")
+    .map((entry) => entry.trim().toLowerCase())
+    .filter(Boolean);
+
+const isYesValue = (value) =>
+  ["yes", "y", "true", "1"].includes(String(value || "").trim().toLowerCase());
+
+const buildPromoKey = (promo) =>
+  [
+    String(promo.title || "").trim().toLowerCase(),
+    String(promo.code || "").trim().toLowerCase(),
+    String(promo.validity || "").trim().toLowerCase(),
+    String(promo.description || "").trim().toLowerCase(),
+  ].join("|");
+
+const Header = ({ location_slug, menudata, configdata, locationData, promotions }) => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [locationDropdownOpen, setLocationDropdownOpen] = useState(false);
   const [openDropdown, setOpenDropdown] = useState(null);
@@ -14,7 +34,7 @@ const Header = ({ location_slug, menudata, configdata, pricingData, locationData
   const navOrder = ['Attractions', 'Programs', 'Birthday Parties', 'Groups & Events', 'About Us', 'Pricing & Promos'];
 
   // Items that have dropdown submenus
-  const dropdownItems = ['Attractions', 'Programs', 'Groups & Events'];
+  const dropdownItems = ['Attractions', 'Programs', 'Groups & Events', 'About Us'];
 
   // Build nav list from menudata — only show items in the V11 nav order
   const allNavItems = (Array.isArray(menudata) ? menudata : [])
@@ -22,6 +42,8 @@ const Header = ({ location_slug, menudata, configdata, pricingData, locationData
     .map((item) => ({
       navName: item.desc,
       navUrl: item.path.toLowerCase(),
+      path: item.path,
+      parentid: item.parentid,
       children: item.children || [],
     }));
 
@@ -32,6 +54,23 @@ const Header = ({ location_slug, menudata, configdata, pricingData, locationData
   const navList = navOrder
     .map((name) => allNavItems.find((item) => normalize(item.navName) === normalize(name)))
     .filter(Boolean);
+
+  const normalizePathSegment = (value) =>
+    String(value || "")
+      .trim()
+      .toLowerCase()
+      .replace(/^\/+|\/+$/g, "");
+
+  const buildMenuHref = (item, parentPath = "") => {
+    let itemPath = normalizePathSegment(item?.path || item?.navUrl);
+    const parent = normalizePathSegment(parentPath || item?.parentid);
+
+    if (parent && itemPath && itemPath !== parent && !itemPath.startsWith(`${parent}/`)) {
+      itemPath = `${parent}/${itemPath}`;
+    }
+
+    return itemPath ? `/${location_slug}/${itemPath}` : `/${location_slug}`;
+  };
 
   // If "Pricing & Promos" isn't in menu data, add it manually
   if (!navList.find((item) => normalize(item.navName) === normalize('Pricing & Promos'))) {
@@ -56,9 +95,25 @@ const Header = ({ location_slug, menudata, configdata, pricingData, locationData
   const instaUrl = locData?.insta ? `https://www.instagram.com/${locData.insta}` : '#';
   const tiktokUrl = locData?.tiktok ? `https://www.tiktok.com/@${locData.tiktok}` : '#';
 
-  // Filter promotions that have a title (skip empty rows)
+  // Only show marquee promos that explicitly opt in, match the current location,
+  // and are unique after sheet-level fallbacks / duplicates are merged in.
   const activePromos = Array.isArray(promotions)
-    ? promotions.filter((p) => p.title && p.title.trim())
+    ? promotions.filter((promo, index, list) => {
+        const title = String(promo?.title || "").trim();
+        if (!title) return false;
+
+        if (!isYesValue(promo?.Marquee ?? promo?.marquee)) {
+          return false;
+        }
+
+        const promoLocations = normalizeLocationList(promo?.location ?? promo?.locations);
+        if (promoLocations.length > 0 && !promoLocations.includes(String(location_slug || "").toLowerCase())) {
+          return false;
+        }
+
+        const promoKey = buildPromoKey(promo);
+        return index === list.findIndex((item) => buildPromoKey(item) === promoKey);
+      })
     : [];
 
   // All locations for the dropdown
@@ -160,21 +215,18 @@ const Header = ({ location_slug, menudata, configdata, pricingData, locationData
       <div className="v11_header_main_nav">
         {/* Logo in orange panel */}
         <Link href={`/${location_slug}`} className="v11_header_logo_panel" prefetch>
-          <img
-            src={`https://storage.googleapis.com/aerosports/webp/${location_slug}/logo_white.webp`}
-            height={56}
-            width={56}
-            alt="AeroSports Logo"
+          <span
+            className="v11_header_logo_img v11_logo_green"
+            role="img"
+            aria-label="AeroSports Trampoline Parks"
             title="AeroSports Trampoline Park"
-            fetchPriority="high"
-            className="v11_header_logo_img"
           />
         </Link>
 
         {/* Nav links */}
         <nav className="v11_header_nav_links">
           {navList.map((item) => {
-            const hasDropdown = dropdownItems.includes(item.navName) && item.children && item.children.length > 0;
+            const hasDropdown = dropdownItems.some((name) => normalize(name) === normalize(item.navName)) && item.children && item.children.length > 0;
             const isActive = false; // Will be determined by current path
 
             if (hasDropdown) {
@@ -184,9 +236,9 @@ const Header = ({ location_slug, menudata, configdata, pricingData, locationData
                   className="v11_header_nav_dropdown"
                   onMouseEnter={() => setOpenDropdown(item.navName)}
                   onMouseLeave={() => setOpenDropdown(null)}
-                >
+                  >
                   <Link
-                    href={`/${location_slug}/${item.navUrl}`}
+                    href={buildMenuHref(item)}
                     prefetch
                     className={`v11_header_nav_link ${isActive ? 'v11_header_nav_active' : ''}`}
                   >
@@ -200,7 +252,7 @@ const Header = ({ location_slug, menudata, configdata, pricingData, locationData
                       {item.children.map((child) => (
                         <Link
                           key={child.path}
-                          href={`/${location_slug}/${child.path.toLowerCase()}`}
+                          href={buildMenuHref(child, item.navUrl)}
                           prefetch
                           className="v11_header_dropdown_link"
                         >
@@ -216,7 +268,7 @@ const Header = ({ location_slug, menudata, configdata, pricingData, locationData
             return (
               <Link
                 key={item.navName}
-                href={`/${location_slug}/${item.navUrl}`}
+                href={buildMenuHref(item)}
                 prefetch
                 className={`v11_header_nav_link ${isActive ? 'v11_header_nav_active' : ''}`}
               >
@@ -308,8 +360,12 @@ const Header = ({ location_slug, menudata, configdata, pricingData, locationData
       <div className="v11_header_mobile">
         <div className="v11_header_mobile_bar">
           <Link href={`/${location_slug}`} className="v11_header_mobile_logo" prefetch>
-            <div className="v11_header_mobile_logo_box">A</div>
-            <span className="v11_header_mobile_brand">AeroSports</span>
+            <span
+              className="v11_header_mobile_logo_img v11_logo_green"
+              role="img"
+              aria-label="AeroSports Trampoline Parks"
+              title="AeroSports Trampoline Park"
+            />
           </Link>
 
           <div className="v11_header_mobile_actions">
@@ -343,21 +399,41 @@ const Header = ({ location_slug, menudata, configdata, pricingData, locationData
         {mobileMenuOpen && (
           <div className="v11_header_mobile_menu" ref={mobileMenuRef}>
             <nav className="v11_header_mobile_nav">
-              {navList.map((item) => (
-                <Link
-                  key={item.navName}
-                  href={`/${location_slug}/${item.navUrl}`}
-                  prefetch
-                  className="v11_header_mobile_nav_link"
-                  onClick={() => setMobileMenuOpen(false)}
-                >
-                  {item.navName}
-                </Link>
-              ))}
+              {navList.map((item) => {
+                const hasChildren = item.children && item.children.length > 0;
+
+                return (
+                  <div key={item.navName} className="v11_header_mobile_nav_group">
+                    <Link
+                      href={buildMenuHref(item)}
+                      prefetch
+                      className="v11_header_mobile_nav_link"
+                      onClick={() => setMobileMenuOpen(false)}
+                    >
+                      {item.navName}
+                    </Link>
+                    {hasChildren && (
+                      <div className="v11_header_mobile_subnav">
+                        {item.children.map((child) => (
+                          <Link
+                            key={child.path}
+                            href={buildMenuHref(child, item.navUrl)}
+                            prefetch
+                            className="v11_header_mobile_subnav_link"
+                            onClick={() => setMobileMenuOpen(false)}
+                          >
+                            {child.desc}
+                          </Link>
+                        ))}
+                      </div>
+                    )}
+                  </div>
+                );
+              })}
             </nav>
             <div className="v11_header_mobile_footer">
               <div className="v11_header_mobile_info">
-                <svg width="14" height="14" fill="currentColor" viewBox="0 0 20 20" style={{ color: '#c8ff00', flexShrink: 0 }}>
+                <svg width="14" height="14" fill="currentColor" viewBox="0 0 20 20" style={{ color: '#B7E600', flexShrink: 0 }}>
                   <path fillRule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clipRule="evenodd" />
                 </svg>
                 <span>{address || `${locationName} Location`}</span>
@@ -384,21 +460,24 @@ const Header = ({ location_slug, menudata, configdata, pricingData, locationData
 
       {/* ===== ANNOUNCEMENT / PROMO BAR ===== */}
       {activePromos.length > 0 && (
-        <div className="v11_header_promo_bar">
-          <div className="v11_header_promo_inner">
-            <span className="v11_header_promo_text">
-              {activePromos[0].title}
-            </span>
-            {activePromos[0].code && (
-              <>
-                <span className="v11_header_promo_divider">|</span>
-                <span className="v11_header_promo_code_label">Code:</span>
-                <span className="v11_header_promo_code">{activePromos[0].code}</span>
-              </>
-            )}
-            {activePromos[0].validity && (
-              <span className="v11_header_promo_terms">{activePromos[0].validity.replace(/\n/g, ' · ')}</span>
-            )}
+        <div className="v11_header_promo_bar" aria-label="Current promotions">
+          <div className="v11_header_promo_inner" aria-hidden="true">
+            {[...activePromos, ...activePromos, ...activePromos].map((promo, index) => (
+              <span className="v11_header_promo_item" key={`${promo.title}-${index}`}>
+                <span className="v11_header_promo_burst">Deal</span>
+                <span className="v11_header_promo_text">{promo.title}</span>
+                {promo.code && (
+                  <span className="v11_header_promo_code_wrap">
+                    <span className="v11_header_promo_code_label">Code</span>
+                    <span className="v11_header_promo_code">{promo.code}</span>
+                  </span>
+                )}
+                {promo.validity && (
+                  <span className="v11_header_promo_terms">{promo.validity.replace(/\n/g, " - ")}</span>
+                )}
+                <span className="v11_header_promo_spark" />
+              </span>
+            ))}
           </div>
         </div>
       )}

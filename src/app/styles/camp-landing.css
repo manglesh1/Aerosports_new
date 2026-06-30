@@ -1,0 +1,346 @@
+.camp_ad_page {
+  --ad-lime: #B7E600;
+}
+
+.camp_ad_hero {
+  min-height: 720px;
+}
+
+.camp_ad_hero .birthday_ad_hero_overlay {
+  background:
+    radial-gradient(circle at 82% 16%, rgba(183, 230, 0, 0.22), transparent 25%),
+    radial-gradient(circle at 22% 78%, rgba(255, 43, 134, 0.16), transparent 28%),
+    linear-gradient(180deg, rgba(5, 8, 18, 0.02), rgba(8, 11, 21, 0.3) 96%);
+}
+
+.camp_ad_form {
+  border-top-color: var(--ad-lime);
+}
+
+.camp_ad_stats strong {
+  color: var(--ad-lime);
+}
+
+.camp_ad_band {
+  padding: 76px max(24px, calc((100vw - 1180px) / 2));
+  background: #f3f6fb;
+}
+
+.camp_ad_dark {
+  background: #080b15;
+  color: #fff;
+}
+
+.camp_ad_package_grid,
+.camp_ad_activity_grid,
+.camp_ad_reason_grid {
+  display: grid;
+  gap: 18px;
+}
+
+.camp_ad_package_grid {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  align-items: stretch;
+}
+
+.camp_ad_package,
+.camp_ad_activity_grid article,
+.camp_ad_reason_grid article {
+  border: 1px solid rgba(8, 11, 21, 0.1);
+  border-radius: 20px;
+  padding: 24px;
+  background: #fff;
+  box-shadow: 0 18px 40px rgba(8, 11, 21, 0.08);
+}
+
+.camp_ad_package {
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+.camp_ad_package::before {
+  content: "";
+  position: absolute;
+  inset: 0 0 auto;
+  height: 5px;
+  background: linear-gradient(90deg, var(--ad-lime), #ff2b86);
+}
+
+.camp_ad_package_featured {
+  transform: translateY(-8px);
+  box-shadow: 0 28px 60px rgba(183, 230, 0, 0.18);
+}
+
+.camp_ad_package > strong {
+  display: inline-flex;
+  margin-bottom: 14px;
+  padding: 7px 11px;
+  border-radius: 999px;
+  background: rgba(255, 43, 134, 0.12);
+  color: #ff2b86;
+  text-transform: uppercase;
+  font-size: 12px;
+}
+
+.camp_ad_package h3,
+.camp_ad_split_copy h2,
+.camp_ad_activity_grid h3,
+.camp_ad_reason_grid h3,
+.camp_ad_timeline h3 {
+  margin: 0;
+  color: #050816;
+  text-transform: uppercase;
+  line-height: 1;
+}
+
+.camp_ad_package h3 {
+  font-size: 30px;
+  min-height: 62px;
+  display: flex;
+  align-items: flex-end;
+}
+
+.camp_ad_package p,
+.camp_ad_package li,
+.camp_ad_split_copy p,
+.camp_ad_activity_grid p,
+.camp_ad_reason_grid p,
+.camp_ad_timeline p {
+  color: #536078;
+  font-family: Arial, sans-serif;
+  line-height: 1.55;
+}
+
+.camp_ad_price_list {
+  display: grid;
+  gap: 8px;
+  margin: 20px 0;
+  padding: 12px;
+  border-radius: 16px;
+  background: linear-gradient(135deg, rgba(183, 230, 0, 0.16), rgba(255, 43, 134, 0.08));
+}
+
+.camp_ad_price_row {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 12px;
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.84);
+  border: 1px solid rgba(8, 11, 21, 0.08);
+}
+
+.camp_ad_price_row span {
+  color: #536078;
+  font-family: Arial, sans-serif;
+  font-size: 13px;
+  font-weight: 800;
+  line-height: 1.25;
+}
+
+.camp_ad_price_row strong {
+  color: #ff2b86;
+  font-size: clamp(18px, 2vw, 24px);
+  font-weight: 900;
+  white-space: nowrap;
+}
+
+.camp_ad_package ul {
+  display: grid;
+  gap: 10px;
+  padding: 0;
+  margin: 0 0 22px;
+  list-style: none;
+}
+
+.camp_ad_package li {
+  display: grid;
+  gap: 3px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid rgba(8, 11, 21, 0.08);
+}
+
+.camp_ad_package li span {
+  color: #8b93a5;
+  text-transform: uppercase;
+  font-size: 12px;
+  font-weight: 900;
+}
+
+.camp_ad_package li b {
+  color: #050816;
+}
+
+.camp_ad_package .birthday_ad_package_btn {
+  margin-top: auto;
+  text-align: center;
+}
+
+.camp_ad_split {
+  display: grid;
+  grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
+  gap: 54px;
+  align-items: center;
+  padding: 86px max(24px, calc((100vw - 1180px) / 2));
+  background: #fff;
+}
+
+.camp_ad_split_media {
+  position: relative;
+  min-height: 520px;
+  overflow: hidden;
+  border-radius: 24px;
+  box-shadow: 0 28px 70px rgba(8, 11, 21, 0.16);
+}
+
+.camp_ad_split_copy > span {
+  display: inline-flex;
+  padding: 9px 14px;
+  border-radius: 999px;
+  background: rgba(183, 230, 0, 0.18);
+  color: #7d9c00;
+  text-transform: uppercase;
+  font-weight: 900;
+  letter-spacing: 0.08em;
+}
+
+.camp_ad_split_copy h2 {
+  margin: 18px 0;
+  font-size: clamp(42px, 5vw, 72px);
+}
+
+.camp_ad_reason_grid {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  margin-top: 28px;
+}
+
+.camp_ad_reason_grid article span,
+.camp_ad_activity_grid article span {
+  display: inline-grid;
+  place-items: center;
+  width: 46px;
+  height: 46px;
+  margin-bottom: 16px;
+  border-radius: 14px;
+  background: rgba(183, 230, 0, 0.2);
+  color: #050816;
+  font-weight: 900;
+}
+
+.camp_ad_dark .birthday_ad_section_head h2,
+.camp_ad_dark .birthday_ad_section_head p,
+.camp_ad_dark .camp_ad_activity_grid h3 {
+  color: #fff;
+}
+
+.camp_ad_activity_grid {
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+
+.camp_ad_activity_grid article {
+  background: rgba(255, 255, 255, 0.06);
+  border-color: rgba(255, 255, 255, 0.12);
+  box-shadow: none;
+}
+
+.camp_ad_activity_grid article {
+  overflow: hidden;
+  padding: 0;
+}
+
+.camp_ad_activity_media {
+  position: relative;
+  min-height: 220px;
+  background: #111827;
+}
+
+.camp_ad_activity_body {
+  padding: 22px;
+}
+
+.camp_ad_activity_body h3 {
+  margin-bottom: 10px;
+}
+
+.camp_ad_activity_body p {
+  margin-bottom: 0;
+}
+
+.camp_ad_timeline {
+  width: min(900px, 100%);
+  margin: 34px auto 0;
+  padding: 0;
+  list-style: none;
+  display: grid;
+  gap: 14px;
+}
+
+.camp_ad_timeline li {
+  display: grid;
+  grid-template-columns: 150px 1fr;
+  gap: 22px;
+  padding: 20px;
+  border-radius: 18px;
+  background: #fff;
+  box-shadow: 0 16px 34px rgba(8, 11, 21, 0.08);
+}
+
+.camp_ad_timeline time {
+  color: #ff2b86;
+  font-weight: 900;
+  text-transform: uppercase;
+}
+
+.camp_ad_final {
+  background: #080b15;
+}
+
+@media (max-width: 900px) {
+  .camp_ad_hero_inner,
+  .camp_ad_split,
+  .camp_ad_package_grid,
+  .camp_ad_activity_grid,
+  .camp_ad_reason_grid {
+    grid-template-columns: 1fr;
+  }
+
+  .camp_ad_package_featured {
+    transform: none;
+  }
+
+  .camp_ad_split_media {
+    min-height: 320px;
+  }
+
+  .camp_ad_timeline li {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 640px) {
+  .camp_ad_hero {
+    min-height: 0;
+  }
+
+  .camp_ad_band,
+  .camp_ad_split {
+    padding: 52px 20px;
+  }
+
+  .camp_ad_package h3 {
+    min-height: auto;
+    font-size: 28px;
+  }
+
+  .camp_ad_price_row {
+    grid-template-columns: 1fr;
+    gap: 4px;
+  }
+
+  .camp_ad_price_row strong {
+    white-space: normal;
+  }
+}

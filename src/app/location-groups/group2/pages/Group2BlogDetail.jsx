@@ -1,0 +1,55 @@
+import "../styles/blogs.css";
+import Image from 'next/image';
+import { getDataByBlogId, getDataByParentId } from "@g2/utils/customFunctions";
+import { fetchPageData, fetchMenuData, generateSchema, fetchsheetdata } from "@g2/lib/sheets";
+import Link from 'next/link';
+
+export default async function Group2BlogDetail({ params }) {
+  const { location_slug, slug } = params;
+
+  const [blogData, menuData, locationData] = await Promise.all([
+    fetchPageData(location_slug, slug),
+    fetchMenuData(location_slug), fetchsheetdata('locations', location_slug),
+
+  ]);
+
+const extractBlogData = (await getDataByParentId(menuData, "blogs"))[0]?.children?.filter(child => child.path !== slug);
+
+const jsonLDschema = await generateSchema(blogData, locationData, slug, 'blogs');
+
+  return (
+    <main className="aero_home-actionbtn-bg">
+      <section className="aero-max-container">
+        <div className="aero-blog-detail-main-section">
+          <div className="aero-blog-img-section aero-blog-detail-img-section">
+          <Image src={blogData?.headerimage} alt={blogData?.headerimagetitle} width={800} height={500} unoptimized style={{width: '100%', height: 'auto'}} />
+          </div>
+          <h1>{ blogData?.title }</h1>
+          <div
+            className="aero-blog-detail-content-section"
+            dangerouslySetInnerHTML={{ __html: blogData?.section1 || "" }}
+          ></div>
+        </div>
+        <section className="aero-blog-main-article-wrapper">
+        {extractBlogData?.map((item, i) => (
+          <article className="aero-blog-main-article-card" key={i}>
+            <div className="aero-blog-img-section">
+              <Link href={`${item?.path}`} prefetch>
+              <Image src={item.smallimage} alt="Article Image" width={400} height={300} unoptimized />
+              </Link>
+            </div>
+            <div className="aero-blog-content-section">
+              <span className='aero-blog-updated-time'>{item.pageid}</span>
+              <Link href={`${item?.path}`} prefetch><h2 className='aero-blog-second-heading'>{item.title}</h2></Link>
+              <Link href={`${item?.path}`} prefetch className='aero-blog-readmore-btn'>READ MORE</Link>
+            </div>
+          </article>
+        ))}
+      </section>
+      </section>
+    <script type="application/ld+json" suppressHydrationWarning
+  dangerouslySetInnerHTML={{ __html: jsonLDschema }}
+/>
+    </main>
+  );
+}

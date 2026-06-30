@@ -1,0 +1,1 @@
+"use strict";exports.id=929,exports.ids=[929],exports.modules={70929:(e,o,s)=>{s.r(o),s.d(o,{default:()=>t});let t=(0,s(68570).createProxy)(String.raw`C:\code\Aerosports_new - Copy - Copy\src\app\components\GoogleAnalytics.js#default`)}};

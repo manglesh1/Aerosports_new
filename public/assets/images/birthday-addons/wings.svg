@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 160 160" role="img" aria-label="Wings add-on">
+  <rect width="160" height="160" rx="26" fill="#101828"/>
+  <path d="M42 101c18-44 53-61 82-50-7 35-31 58-72 66Z" fill="#ff9f1c" stroke="#fff4bd" stroke-width="6"/>
+  <path d="M48 104 33 130l34-10" fill="#B7E600" stroke="#fff4bd" stroke-width="5"/>
+  <path d="M69 81c13 9 27 11 43 7" fill="none" stroke="#FF2B8A" stroke-width="8" stroke-linecap="round"/>
+</svg>

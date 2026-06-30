@@ -1,4 +1,5 @@
 import Link from "next/link";
+import AppImage from "../AppImage";
 
 const SubCategoryCard = ({
   attractionsData,
@@ -28,15 +29,15 @@ const SubCategoryCard = ({
               key={i}
               href={`/${location_slug}/${item?.parentid}/${item?.path}`}
               className="v11_bp_attraction_card"
-              prefetch
+              prefetch={false}
             >
               <div className="v11_bp_attraction_img">
                 {item?.smallimage ? (
-                  <img
+                  <AppImage
                     src={item.smallimage}
                     alt={item?.desc || item?.title || item?.path?.replace(/-/g, " ")}
-                    loading="lazy"
-                    style={{ position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "cover" }}
+                    fill
+                    sizes="(max-width: 768px) calc(100vw - 32px), 33vw"
                   />
                 ) : (
                   <div className="v11_bp_attraction_placeholder" />

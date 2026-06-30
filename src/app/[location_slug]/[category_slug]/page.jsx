@@ -19,6 +19,30 @@ import AttractionsGrid from "@/components/AttractionsGrid";
 import SickKidsSection from "@/components/sections/SickKidsSection";
 import BlogSection from "@/components/sections/BlogSection";
 
+import { resolveLocationGroup } from "@/lib/location-groups.mjs";
+import Group2Category from "@g2/pages/Group2Category";
+import { generateMetadataLib as generateMetadataLibG2 } from "@g2/lib/sheets";
+import GroupsEventsPage from "@/components/groups-events/GroupsEventsPage";
+import ProgramsPage from "@/components/programs/ProgramsPage";
+import AboutUsPage from "@/components/about/AboutUsPage";
+
+const isGroup2 = (slug) => resolveLocationGroup(slug)?.group?.key === "group2";
+
+// The group1/main-site Groups & Events marketing page is matched by slug.
+const GROUPS_EVENTS_SLUGS = new Set(["groups-events", "groups", "group-events"]);
+const isGroupsEventsSlug = (slug) =>
+  GROUPS_EVENTS_SLUGS.has(String(slug || "").toLowerCase());
+
+// The group1/main-site Programs marketing page is matched by slug.
+const PROGRAMS_SLUGS = new Set(["programs"]);
+const isProgramsSlug = (slug) =>
+  PROGRAMS_SLUGS.has(String(slug || "").toLowerCase());
+
+// The group1/main-site About Us marketing page is matched by slug.
+const ABOUT_SLUGS = new Set(["about-us"]);
+const isAboutSlug = (slug) =>
+  ABOUT_SLUGS.has(String(slug || "").toLowerCase());
+
 const robotoCondensed = Roboto_Condensed({
   subsets: ["latin"],
   weight: ["700", "900"],
@@ -28,6 +52,22 @@ const robotoCondensed = Roboto_Condensed({
 
 export async function generateMetadata({ params }) {
   const { location_slug, category_slug } = params;
+  if (isGroup2(location_slug)) {
+    return await generateMetadataLibG2({
+      location: location_slug,
+      category: "",
+      page: category_slug,
+    });
+  }
+  // group1 Groups & Events page is not backed by a Data-sheet row, so skip the
+  // pageData 404 guard for it and generate metadata directly.
+  if (isGroupsEventsSlug(category_slug) || isProgramsSlug(category_slug)) {
+    return await generateMetadataLib({
+      location: location_slug,
+      category: "",
+      page: category_slug,
+    });
+  }
   // Validate page data exists before generating metadata
   const pageData = await fetchPageData(location_slug, category_slug);
   if (!pageData || !pageData.path) {
@@ -42,10 +82,30 @@ export async function generateMetadata({ params }) {
 }
 
 const Category = async ({ params }) => {
+  if (isGroup2(params?.location_slug)) {
+    return <Group2Category params={params} />;
+  }
+
   const { location_slug, category_slug } = params;
   if (category_slug === "refresh") {
     await fetchsheetdata("refresh", location_slug);
     return "data refreshed";
+  }
+
+  // group1/main-site Groups & Events marketing page (not group2).
+  if (isGroupsEventsSlug(category_slug)) {
+    return <GroupsEventsPage params={params} />;
+  }
+
+  // group1/main-site Programs marketing page (not group2).
+  if (isProgramsSlug(category_slug)) {
+    return <ProgramsPage params={params} />;
+  }
+
+  // group1/main-site About Us marketing page (not group2). about-us HAS a
+  // Data row, so generateMetadata still works via the existing path.
+  if (isAboutSlug(category_slug)) {
+    return <AboutUsPage params={params} />;
   }
 
   const [data, pageData, waiverLink, locationData] = await Promise.all([
@@ -75,76 +135,15 @@ const Category = async ({ params }) => {
   const activeAttractions =
     attractionsData[0]?.children?.filter((item) => item?.isactive == 1) || [];
 
-  // Check if pageData has a video
-  const hasVideo = pageData?.video || (Array.isArray(pageData) && pageData[0]?.video);
-
-  // Stats bar data per category
-  const categoryStats = {
-    attractions: [
-      { number: "8+", label: "Attractions" },
-      { number: "All Ages", label: "Welcome" },
-      { number: "10,000+", label: "Sq Ft of Fun" },
-      { number: "4.7★", label: "Rated Experience" },
-    ],
-    "groups-events": [
-      { number: "50+", label: "Groups Monthly" },
-      { number: "Custom", label: "Packages" },
-      { number: "All Ages", label: "Welcome" },
-      { number: "100%", label: "Hassle-Free" },
-    ],
-    membership: [
-      { number: "Unlimited", label: "Visits" },
-      { number: "Best", label: "Value" },
-      { number: "Exclusive", label: "Perks" },
-      { number: "All Ages", label: "Welcome" },
-    ],
-    programs: [
-      { number: "Weekly", label: "Sessions" },
-      { number: "Expert", label: "Instructors" },
-      { number: "All Ages", label: "Welcome" },
-      { number: "100%", label: "Fun Guaranteed" },
-    ],
-  };
-
-  const stats = categoryStats[category_slug] || [
-    { number: "8+", label: "Attractions" },
-    { number: "All Ages", label: "Welcome" },
-    { number: "5★", label: "Rated" },
-    { number: "100%", label: "Fun Guaranteed" },
-  ];
 
   return (
     <main className={robotoCondensed.variable}>
-      {hasVideo && (
-        <div style={{ position: 'relative', height: '100vh', minHeight: '600px', width: '100%' }}>
-          <MotionImage
-            pageData={pageData}
-            waiverLink={waiverLink}
-            locationData={locationData}
-          />
-        </div>
-      )}
-      {!hasVideo && (
-        <MotionImage
-          pageData={pageData}
-          waiverLink={waiverLink}
-          locationData={locationData}
-        />
-      )}
+      <MotionImage
+        pageData={pageData}
+        waiverLink={waiverLink}
+        locationData={locationData}
+      />
 
-      {/* Stats Bar */}
-      <section className="v11_bp_stats_section">
-        <div className="v11_bp_container">
-          <div className="v11_bp_stats_grid">
-            {stats.map((stat, index) => (
-              <div key={index} className="v11_bp_stat_item">
-                <span className="v11_bp_stat_number">{stat.number}</span>
-                <span className="v11_bp_stat_label">{stat.label}</span>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
 
       <div className="v11_cat_wrapper">
         {/* Attractions / Content Section */}

@@ -65,25 +65,25 @@
   content: "→";
   position: absolute;
   left: 0;
-  color: #c8ff00;
+  color: #B7E600;
   font-weight: 700;
   font-size: 1.2rem;
 }
 
 .sickkids-content strong {
-  color: #c8ff00;
+  color: #B7E600;
   font-weight: 700;
 }
 
 .sickkids-content a {
-  color: #c8ff00;
+  color: #B7E600;
   text-decoration: underline;
   font-weight: 700;
   transition: color 0.3s ease;
 }
 
 .sickkids-content a:hover {
-  color: #c8ff00;
+  color: #B7E600;
 }
 
 /* Responsive Design */

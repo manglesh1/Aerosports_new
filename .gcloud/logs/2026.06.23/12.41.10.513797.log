@@ -1,0 +1,91 @@
+2026-06-23 12:41:10,523 DEBUG    root            Loaded Command Group: ['gcloud', 'storage']
+2026-06-23 12:41:10,618 DEBUG    root            On GCE from disk cache: False
+2026-06-23 12:41:10,891 DEBUG    root            Loaded Command Group: ['gcloud', 'storage', 'cp']
+2026-06-23 12:41:10,894 DEBUG    root            Running [gcloud.storage.cp] with arguments: [--cache-control: "public,max-age=31536000,immutable", DESTINATION: "gs://media.aerosportsparks.ca/webp/st-catharines-new/ninja-tag.webp", SOURCE:1: "['gs://aerosports/webp/st-catharines-new/ninja-tag.webp']"]
+2026-06-23 12:41:10,896 DEBUG    root            [WinError 5] Access is denied
+Traceback (most recent call last):
+  File "C:\Program Files (x86)\Google\Cloud SDK\google-cloud-sdk\lib\googlecloudsdk\calliope\cli.py", line 957, in Execute
+    resources = calliope_command.Run(cli=self, args=args)
+  File "C:\Program Files (x86)\Google\Cloud SDK\google-cloud-sdk\lib\googlecloudsdk\calliope\backend.py", line 968, in Run
+    resources = command_instance.Run(args)
+  File "C:\Program Files (x86)\Google\Cloud SDK\google-cloud-sdk\lib\surface\storage\cp.py", line 94, in Run
+    self.exit_code = cp_command_util.run_cp(args)
+                     ~~~~~~~~~~~~~~~~~~~~~~^^^^^^
+  File "C:\Program Files (x86)\Google\Cloud SDK\google-cloud-sdk\lib\googlecloudsdk\command_lib\storage\cp_command_util.py", line 884, in run_cp
+    exit_code = _execute_copy_tasks(
+        args=args,
+    ...<3 lines>...
+        source_expansion_iterator=source_expansion_iterator,
+    )
+  File "C:\Program Files (x86)\Google\Cloud SDK\google-cloud-sdk\lib\googlecloudsdk\command_lib\storage\cp_command_util.py", line 513, in _execute_copy_tasks
+    task_status_queue = task_graph_executor.multiprocessing_context.Queue()
+  File "C:\Program Files (x86)\Google\Cloud SDK\google-cloud-sdk\platform\bundledpython\Lib\multiprocessing\context.py", line 103, in Queue
+    return Queue(maxsize, ctx=self.get_context())
+  File "C:\Program Files (x86)\Google\Cloud SDK\google-cloud-sdk\platform\bundledpython\Lib\multiprocessing\queues.py", line 40, in __init__
+    self._reader, self._writer = connection.Pipe(duplex=False)
+                                 ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^
+  File "C:\Program Files (x86)\Google\Cloud SDK\google-cloud-sdk\platform\bundledpython\Lib\multiprocessing\connection.py", line 575, in Pipe
+    h2 = _winapi.CreateFile(
+        address, access, 0, _winapi.NULL, _winapi.OPEN_EXISTING,
+        _winapi.FILE_FLAG_OVERLAPPED, _winapi.NULL
+        )
+PermissionError: [WinError 5] Access is denied
+2026-06-23 12:41:10,899 ERROR    ___FILE_ONLY___ BEGIN CRASH STACKTRACE
+Traceback (most recent call last):
+  File "C:\Program Files (x86)\Google\Cloud SDK\google-cloud-sdk\lib\googlecloudsdk\command_lib\crash_handling.py", line 216, in Wrapper
+    target_function(*args, **kwargs)
+    ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "C:\Program Files (x86)\Google\Cloud SDK\google-cloud-sdk\lib\googlecloudsdk\gcloud_main.py", line 207, in main
+    gcloud_cli.Execute()
+    ~~~~~~~~~~~~~~~~~~^^
+  File "C:\Program Files (x86)\Google\Cloud SDK\google-cloud-sdk\lib\googlecloudsdk\calliope\cli.py", line 986, in Execute
+    self._HandleAllErrors(exc, command_path_string, specified_arg_names)
+    ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Program Files (x86)\Google\Cloud SDK\google-cloud-sdk\lib\googlecloudsdk\calliope\cli.py", line 1030, in _HandleAllErrors
+    exceptions.HandleError(exc, command_path_string, self.__known_error_handler)
+    ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Program Files (x86)\Google\Cloud SDK\google-cloud-sdk\lib\googlecloudsdk\calliope\exceptions.py", line 588, in HandleError
+    core_exceptions.reraise(exc)
+    ~~~~~~~~~~~~~~~~~~~~~~~^^^^^
+  File "C:\Program Files (x86)\Google\Cloud SDK\google-cloud-sdk\lib\googlecloudsdk\core\exceptions.py", line 146, in reraise
+    six.reraise(type(exc_value), exc_value, tb)
+    ~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Program Files (x86)\Google\Cloud SDK\google-cloud-sdk\lib\third_party\six\__init__.py", line 719, in reraise
+    raise value
+  File "C:\Program Files (x86)\Google\Cloud SDK\google-cloud-sdk\lib\googlecloudsdk\calliope\cli.py", line 957, in Execute
+    resources = calliope_command.Run(cli=self, args=args)
+  File "C:\Program Files (x86)\Google\Cloud SDK\google-cloud-sdk\lib\googlecloudsdk\calliope\backend.py", line 968, in Run
+    resources = command_instance.Run(args)
+  File "C:\Program Files (x86)\Google\Cloud SDK\google-cloud-sdk\lib\surface\storage\cp.py", line 94, in Run
+    self.exit_code = cp_command_util.run_cp(args)
+                     ~~~~~~~~~~~~~~~~~~~~~~^^^^^^
+  File "C:\Program Files (x86)\Google\Cloud SDK\google-cloud-sdk\lib\googlecloudsdk\command_lib\storage\cp_command_util.py", line 884, in run_cp
+    exit_code = _execute_copy_tasks(
+        args=args,
+    ...<3 lines>...
+        source_expansion_iterator=source_expansion_iterator,
+    )
+  File "C:\Program Files (x86)\Google\Cloud SDK\google-cloud-sdk\lib\googlecloudsdk\command_lib\storage\cp_command_util.py", line 513, in _execute_copy_tasks
+    task_status_queue = task_graph_executor.multiprocessing_context.Queue()
+  File "C:\Program Files (x86)\Google\Cloud SDK\google-cloud-sdk\platform\bundledpython\Lib\multiprocessing\context.py", line 103, in Queue
+    return Queue(maxsize, ctx=self.get_context())
+  File "C:\Program Files (x86)\Google\Cloud SDK\google-cloud-sdk\platform\bundledpython\Lib\multiprocessing\queues.py", line 40, in __init__
+    self._reader, self._writer = connection.Pipe(duplex=False)
+                                 ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^
+  File "C:\Program Files (x86)\Google\Cloud SDK\google-cloud-sdk\platform\bundledpython\Lib\multiprocessing\connection.py", line 575, in Pipe
+    h2 = _winapi.CreateFile(
+        address, access, 0, _winapi.NULL, _winapi.OPEN_EXISTING,
+        _winapi.FILE_FLAG_OVERLAPPED, _winapi.NULL
+        )
+PermissionError: [WinError 5] Access is denied
+2026-06-23 12:41:10,902 ERROR    root            gcloud crashed (PermissionError): [WinError 5] Access is denied
+2026-06-23 12:41:10,902 INFO     ___FILE_ONLY___ 
+If you would like to report this issue, please run the following command:
+
+2026-06-23 12:41:10,902 INFO     ___FILE_ONLY___   gcloud feedback
+
+2026-06-23 12:41:10,902 INFO     ___FILE_ONLY___ 
+To check gcloud for common problems, please run the following command:
+
+2026-06-23 12:41:10,902 INFO     ___FILE_ONLY___   gcloud info --run-diagnostics
+

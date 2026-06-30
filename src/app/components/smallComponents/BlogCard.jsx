@@ -1,5 +1,6 @@
 import Link from 'next/link';
 import React from 'react'
+import AppImage from "../AppImage";
 
 const BlogCard = ({ blogsData, location_slug }) => {
   return (
@@ -12,13 +13,13 @@ const BlogCard = ({ blogsData, location_slug }) => {
               href={`/${location_slug}/${item?.parentid}/${item?.path}`}
             >
               <article className="aero_home_article_card">
-                <img
+                <AppImage
                   src={item?.smallimage || `https://storage.googleapis.com/aerosports/webp/${location_slug}/gallery-thummbnail-wall-climbwall.webp`}
                   width={120}
                   height={120}
                   alt="article image"
                   title={item.title}
-                  loading="lazy"
+                  sizes="120px"
                 />
                 <div className="aero_home_article_desc">
                   <div>{i + 1}</div>
