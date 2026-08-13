@@ -15,6 +15,11 @@ const isGroup2 = (slug) => resolveLocationGroup(slug)?.group?.key === "group2";
 export async function generateMetadata({ params }) {
   const { location_slug, slug } = params;
   if (isGroup2(location_slug)) {
+    const blogData = await fetchPageData(location_slug, slug);
+    if (!blogData || !blogData.path) {
+      notFound();
+    }
+
     return await generateMetadataLibG2({
       location: location_slug,
       category: 'blogs',
@@ -55,7 +60,7 @@ function generateBlogSchema(blogData, locationData, slug, BASE_URL) {
     "@context": "https://schema.org",
     "@type": "BlogPosting",
     "headline": blogData?.metatitle || blogData?.title || "",
-    "description": blogData?.metadescription || "",
+    "description": blogData?.metadescription || blogData?.smalltext || "",
     "image": imageUrl,
     "url": fullUrl,
     "datePublished": blogData?.createdon || blogData?.pageid || new Date().toISOString().split('T')[0],
@@ -118,6 +123,9 @@ export default async function BlogDetail({ params }) {
               </Link>
             )}
             <h1 className="aero-blog-detail-title">{blogData?.title}</h1>
+            {blogData?.smalltext && (
+              <p className="aero-blog-detail-smalltext">{blogData.smalltext}</p>
+            )}
             <div className="aero-blog-detail-meta">
               {blogData?.pageid && <span className="aero-blog-detail-date">{blogData.pageid}</span>}
               <span className="aero-blog-detail-reading-time">{readingTime} min read</span>

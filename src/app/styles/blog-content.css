@@ -1,8 +1,19 @@
 /* ===========================================
    Blog Content Typography
    Styles for HTML content from Google Sheets
-   rendered via dangerouslySetInnerHTML
    =========================================== */
+
+.aero-blog-content {
+  max-width: 780px;
+  margin: 0 auto;
+  padding: 32px 20px;
+  border-radius: 16px;
+  background: #ffffff;
+  color: #1a1a2e;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  font-size: 1rem;
+  line-height: 1.65;
+}
 
 .aero-blog-content h1,
 .aero-blog-content h2,
@@ -10,182 +21,179 @@
 .aero-blog-content h4,
 .aero-blog-content h5,
 .aero-blog-content h6 {
-  color: #ffffff;
+  color: #1a1a2e;
   font-weight: 700;
-  line-height: 1.3;
-  margin-top: 1.8em;
-  margin-bottom: 0.6em;
+  line-height: 1.25;
+  margin: 2rem 0 0.6rem;
 }
 
 .aero-blog-content h1 {
-  font-size: 2rem;
+  font-size: 2.05rem;
+  line-height: 1.22;
+  margin-bottom: 0.25rem;
 }
 
 .aero-blog-content h2 {
-  font-size: 1.6rem;
-  padding-bottom: 0.3em;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  font-size: 1.4rem;
 }
 
 .aero-blog-content h3 {
-  font-size: 1.3rem;
-}
-
-.aero-blog-content h4 {
   font-size: 1.1rem;
+  margin-bottom: 0.2rem;
 }
 
+.aero-blog-content h4,
 .aero-blog-content h5,
 .aero-blog-content h6 {
   font-size: 1rem;
 }
 
-/* Paragraphs */
-.aero-blog-content p {
-  font-size: 1.05rem;
-  line-height: 1.8;
-  color: rgba(255, 255, 255, 0.85);
-  margin-bottom: 1.4em;
+.aero-blog-content p,
+.aero-blog-content li,
+.aero-blog-content div {
+  color: #1a1a2e;
+  line-height: 1.65;
 }
 
-/* Links */
+.aero-blog-content p {
+  margin: 0 0 1.15rem;
+}
+
 .aero-blog-content a {
-  color: #f7941d;
-  text-decoration: underline;
-  text-underline-offset: 3px;
-  transition: color 0.2s ease;
+  color: #d6006e;
+  font-weight: 600;
+  text-decoration: none;
 }
 
 .aero-blog-content a:hover {
-  color: #ffb84d;
+  text-decoration: underline;
 }
 
-/* Lists */
 .aero-blog-content ul,
 .aero-blog-content ol {
-  margin: 1.2em 0;
-  padding-left: 1.8em;
-  color: rgba(255, 255, 255, 0.85);
-}
-
-.aero-blog-content ul {
-  list-style-type: disc;
-}
-
-.aero-blog-content ol {
-  list-style-type: decimal;
+  margin: 1.2rem 0;
+  padding-left: 1.6rem;
 }
 
 .aero-blog-content li {
-  font-size: 1.05rem;
-  line-height: 1.7;
-  margin-bottom: 0.5em;
-  padding-left: 0.3em;
+  margin-bottom: 0.45rem;
+  padding-left: 0.2rem;
 }
 
 .aero-blog-content li::marker {
-  color: #f7941d;
+  color: #d6006e;
 }
 
-.aero-blog-content ul ul,
-.aero-blog-content ol ol,
-.aero-blog-content ul ol,
-.aero-blog-content ol ul {
-  margin-top: 0.4em;
-  margin-bottom: 0.4em;
-}
-
-/* Images */
 .aero-blog-content img {
+  display: block;
   max-width: 100%;
   height: auto;
   border-radius: 12px;
-  margin: 1.5em 0;
+  margin: 1rem 0;
 }
 
-/* Blockquotes */
+.aero-blog-content table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 1.25rem 0;
+  font-size: 0.95rem;
+}
+
+.aero-blog-content th,
+.aero-blog-content td {
+  border: 1px solid #e5e7eb;
+  padding: 8px 10px;
+  text-align: left;
+  vertical-align: top;
+}
+
+.aero-blog-content th {
+  background: #faf0f5;
+  color: #1a1a2e;
+  font-weight: 700;
+}
+
 .aero-blog-content blockquote {
-  border-left: 4px solid #f7941d;
-  margin: 1.5em 0;
-  padding: 1em 1.5em;
-  background: rgba(255, 255, 255, 0.04);
-  border-radius: 0 8px 8px 0;
-  font-style: italic;
-  color: rgba(255, 255, 255, 0.8);
+  margin: 1.4rem 0;
+  padding: 1rem 1.25rem;
+  border-left: 4px solid #d6006e;
+  background: #f6f6fb;
+  border-radius: 0 12px 12px 0;
+  color: #34344f;
 }
 
 .aero-blog-content blockquote p {
   margin-bottom: 0;
 }
 
-/* Tables */
-.aero-blog-content table {
-  width: 100%;
-  border-collapse: collapse;
-  margin: 1.5em 0;
-  font-size: 0.95rem;
-}
-
-.aero-blog-content th,
-.aero-blog-content td {
-  padding: 0.75em 1em;
-  text-align: left;
-  border: 1px solid rgba(255, 255, 255, 0.12);
-  color: rgba(255, 255, 255, 0.85);
-}
-
-.aero-blog-content th {
-  background: rgba(247, 148, 29, 0.15);
-  font-weight: 700;
-  color: #ffffff;
-}
-
-.aero-blog-content tr:nth-child(even) {
-  background: rgba(255, 255, 255, 0.03);
-}
-
-/* Bold / Italic / Strong */
 .aero-blog-content strong,
 .aero-blog-content b {
+  color: #1a1a2e;
   font-weight: 700;
-  color: #ffffff;
 }
 
-.aero-blog-content em,
-.aero-blog-content i {
-  font-style: italic;
-}
-
-/* Horizontal rule */
 .aero-blog-content hr {
-  border: none;
-  border-top: 1px solid rgba(255, 255, 255, 0.1);
-  margin: 2em 0;
+  border: 0;
+  border-top: 1px solid #e5e7eb;
+  margin: 2.5rem 0;
 }
 
-/* Code */
 .aero-blog-content code {
-  background: rgba(255, 255, 255, 0.08);
-  padding: 0.2em 0.4em;
+  background: #f6f6fb;
   border-radius: 4px;
+  color: #d6006e;
   font-size: 0.9em;
-  color: #f7941d;
+  padding: 0.2em 0.4em;
 }
 
 .aero-blog-content pre {
-  background: rgba(255, 255, 255, 0.06);
-  padding: 1.2em;
-  border-radius: 8px;
+  background: #f6f6fb;
+  border-radius: 10px;
+  margin: 1.25rem 0;
   overflow-x: auto;
-  margin: 1.5em 0;
+  padding: 1rem;
 }
 
 .aero-blog-content pre code {
-  background: none;
+  background: transparent;
   padding: 0;
 }
 
-/* Spacing: remove top margin from first child, bottom from last */
+.aero-blog-content .meta {
+  color: #6b7280;
+  font-size: 0.9rem;
+  margin-bottom: 1.5rem;
+}
+
+.aero-blog-content .cta {
+  display: inline-block;
+  margin: 0.5rem 0;
+  padding: 14px 26px;
+  border-radius: 999px;
+  background: #d6006e;
+  color: #ffffff;
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.aero-blog-content .cta:hover {
+  opacity: 0.92;
+  text-decoration: none;
+}
+
+.aero-blog-content .loc {
+  margin: 1rem 0;
+  padding: 16px 20px;
+  border-radius: 14px;
+  background: #f6f6fb;
+}
+
+.aero-blog-content .related {
+  margin-top: 2.5rem;
+  padding-top: 1.25rem;
+  border-top: 1px solid #e5e7eb;
+}
+
 .aero-blog-content > *:first-child {
   margin-top: 0;
 }
@@ -194,13 +202,23 @@
   margin-bottom: 0;
 }
 
-/* Ensure spans with inline styles from sheets are readable */
-.aero-blog-content span {
-  line-height: 1.7;
-}
+@media screen and (max-width: 768px) {
+  .aero-blog-content {
+    padding: 24px 16px;
+    border-radius: 12px;
+  }
 
-/* Google Sheets sometimes outputs divs instead of paragraphs */
-.aero-blog-content div {
-  margin-bottom: 0.8em;
-  line-height: 1.7;
+  .aero-blog-content h1 {
+    font-size: 1.75rem;
+  }
+
+  .aero-blog-content h2 {
+    font-size: 1.25rem;
+  }
+
+  .aero-blog-content table {
+    display: block;
+    overflow-x: auto;
+    white-space: nowrap;
+  }
 }

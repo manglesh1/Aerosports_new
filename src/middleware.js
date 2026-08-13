@@ -11,7 +11,6 @@ const VALID_LOCATIONS = new Set([
 // Legacy / redirect-only path prefixes — let Next.js redirects (next.config.mjs) handle these
 // Keep in sync with the "redirects" tab in the Google Sheet
 const REDIRECT_PREFIXES = new Set([
-  'brampton',
   'thunderbay',
 ]);
 
@@ -21,6 +20,47 @@ const GROUP3_LOCATIONS = new Set([
   'london',
   'scarborough',
 ]);
+
+// Reversed malformed URLs discovered in GSC append a real top-level section
+// slug as the final segment, e.g. /{location}/{child}/blogs. Those should be
+// hard 404s instead of soft-404 app responses.
+const HARD_404_TRAILING_SECTION_SLUGS = new Set([
+  'about-us',
+  'attractions',
+  'blogs',
+  'group-events',
+  'groups',
+  'groups-events',
+  'pricing-promos',
+  'programs',
+]);
+
+function renderHard404() {
+  return new NextResponse(
+    `<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="robots" content="noindex, nofollow" />
+    <title>404 | AeroSports Parks</title>
+  </head>
+  <body>
+    <main>
+      <h1>404</h1>
+      <p>Sorry, we couldn't find that page.</p>
+      <p><a href="/">Return to Home</a></p>
+    </main>
+  </body>
+</html>`,
+    {
+      status: 404,
+      headers: {
+        'Content-Type': 'text/html; charset=utf-8',
+        'X-Robots-Tag': 'noindex, nofollow',
+      },
+    }
+  );
+}
 
 // Proxy the Group3 cities to the Group3 app when GROUP3_ORIGIN is set — e.g.
 // http://localhost:3005 locally, or the Group3 deploy URL for the prototype. This makes Main a
@@ -78,6 +118,20 @@ export function middleware(req) {
       return NextResponse.redirect(url, 308);
     }
 
+    if (
+      (VALID_LOCATIONS.has(locationSlug) || GROUP3_LOCATIONS.has(locationSlug)) &&
+      segments.length === 3
+    ) {
+      const middleSlug = segments[1].toLowerCase();
+      const trailingSlug = segments[2].toLowerCase();
+      if (
+        HARD_404_TRAILING_SECTION_SLUGS.has(trailingSlug) &&
+        middleSlug !== trailingSlug
+      ) {
+        return renderHard404();
+      }
+    }
+
     // LOCAL DEV: forward the Group3 cities to the Group3 dev server instead of 404-ing.
     // No-op in production (GROUP3_ORIGIN unset) — Cloudflare routes these paths there.
     if (GROUP3_ORIGIN && GROUP3_LOCATIONS.has(locationSlug)) {
@@ -91,30 +145,7 @@ export function middleware(req) {
       !VALID_LOCATIONS.has(locationSlug) &&
       !GROUP3_LOCATIONS.has(locationSlug)
     ) {
-      return new NextResponse(
-        `<!doctype html>
-<html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <meta name="robots" content="noindex, nofollow" />
-    <title>404 | AeroSports Parks</title>
-  </head>
-  <body>
-    <main>
-      <h1>404</h1>
-      <p>Sorry, we couldn't find that page.</p>
-      <p><a href="/">Return to Home</a></p>
-    </main>
-  </body>
-</html>`,
-        {
-          status: 404,
-          headers: {
-            'Content-Type': 'text/html; charset=utf-8',
-            'X-Robots-Tag': 'noindex, nofollow',
-          },
-        }
-      );
+      return renderHard404();
     }
   }
 

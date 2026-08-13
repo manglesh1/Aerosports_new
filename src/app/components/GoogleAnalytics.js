@@ -2,7 +2,6 @@
 
 import { usePathname } from "next/navigation";
 import { useEffect, useMemo, useRef } from "react";
-import Script from "next/script";
 
 const globalTrackingId = "G-1TETQERPZN";
 
@@ -22,9 +21,56 @@ function normalizeTrackingIds(value) {
     .filter((id, index, ids) => id && ids.indexOf(id) === index);
 }
 
+function classifyTrackingId(id) {
+  const normalizedId = String(id || "").trim().toUpperCase();
+
+  if (normalizedId.startsWith("GTM-")) return "gtm";
+  if (normalizedId.startsWith("G-")) return "ga4";
+
+  return "unknown";
+}
+
+function ensureScript({ id, src }) {
+  if (typeof document === "undefined" || !src) return;
+  if (document.getElementById(id)) return;
+
+  const script = document.createElement("script");
+  script.id = id;
+  script.async = true;
+  script.src = src;
+  document.head.appendChild(script);
+}
+
+function ensureGtmContainer(containerId) {
+  if (typeof document === "undefined" || !containerId) return;
+
+  const loaderId = `google-tag-manager-loader-${containerId}`;
+  if (!document.getElementById(loaderId)) {
+    const script = document.createElement("script");
+    script.id = loaderId;
+    script.text = `
+      (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+      new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+      j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+      'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+      })(window,document,'script','dataLayer','${containerId}');
+    `;
+    document.head.appendChild(script);
+  }
+
+  const noscriptId = `google-tag-manager-noscript-${containerId}`;
+  if (!document.getElementById(noscriptId) && document.body) {
+    const noscript = document.createElement("noscript");
+    noscript.id = noscriptId;
+    noscript.innerHTML = `<iframe src="https://www.googletagmanager.com/ns.html?id=${containerId}" height="0" width="0" style="display:none;visibility:hidden"></iframe>`;
+    document.body.prepend(noscript);
+  }
+}
+
 export default function GoogleAnalytics({ sheetLocationTrackingIds = {} }) {
   const pathname = usePathname();
-  const initialized = useRef(false);
+  const bootstrappedRef = useRef(false);
+  const lastConfigKey = useRef("");
 
   const locationSlug = pathname?.split("/")[1] || "";
   const mergedLocationTrackingIds = useMemo(
@@ -34,59 +80,65 @@ export default function GoogleAnalytics({ sheetLocationTrackingIds = {} }) {
     }),
     [sheetLocationTrackingIds]
   );
-  const pageTrackingIds = useMemo(
+  const trackingEntries = useMemo(
     () => normalizeTrackingIds([globalTrackingId, mergedLocationTrackingIds[locationSlug]]),
     [locationSlug, mergedLocationTrackingIds]
   );
-  const initialLocationTrackingMap = useMemo(
+  const gaTrackingIds = useMemo(
     () =>
-      Object.fromEntries(
-        Object.entries(mergedLocationTrackingIds).map(([slug, ids]) => [
-          slug,
-          normalizeTrackingIds(ids),
-        ])
-      ),
-    [mergedLocationTrackingIds]
+      trackingEntries.filter((trackingId) => classifyTrackingId(trackingId) === "ga4"),
+    [trackingEntries]
+  );
+  const gtmContainerIds = useMemo(
+    () =>
+      trackingEntries.filter((trackingId) => classifyTrackingId(trackingId) === "gtm"),
+    [trackingEntries]
   );
 
   useEffect(() => {
-    if (!initialized.current && window.gtag) {
-      initialized.current = true;
+    if (typeof window === "undefined") return;
+
+    window.dataLayer = window.dataLayer || [];
+
+    if (typeof window.gtag !== "function") {
+      window.gtag = function gtag() {
+        window.dataLayer.push(arguments);
+      };
     }
 
-    if (window.gtag) {
-      pageTrackingIds.forEach((trackingId) => {
-        window.gtag("config", trackingId, { page_path: pathname });
+    if (!bootstrappedRef.current) {
+      window.gtag("js", new Date());
+      bootstrappedRef.current = true;
+    }
+
+    if (gaTrackingIds.length > 0) {
+      ensureScript({
+        id: `google-analytics-loader-${gaTrackingIds[0]}`,
+        src: `https://www.googletagmanager.com/gtag/js?id=${gaTrackingIds[0]}`,
       });
     }
-  }, [pathname, pageTrackingIds]);
 
-  return (
-    <>
-      <Script
-        src={`https://www.googletagmanager.com/gtag/js?id=${globalTrackingId}`}
-        strategy="afterInteractive"
-        async
-      />
-      <Script
-        id="google-analytics-init"
-        strategy="afterInteractive"
-        dangerouslySetInnerHTML={{
-          __html: `
-          window.dataLayer = window.dataLayer || [];
-          function gtag(){dataLayer.push(arguments);}
-          gtag('js', new Date());
-          var locationTrackingMap = ${JSON.stringify(initialLocationTrackingMap)};
-          var currentLocationSlug = window.location.pathname.split('/')[1] || '';
-          var initialTrackingIds = ${JSON.stringify([globalTrackingId])}.concat(locationTrackingMap[currentLocationSlug] || []);
-          initialTrackingIds
-            .filter(function(id, index, ids) { return id && ids.indexOf(id) === index; })
-            .forEach(function(id) {
-              gtag('config', id, { page_path: window.location.pathname });
-            });
-        `,
-        }}
-      />
-    </>
-  );
+    gtmContainerIds.forEach((containerId) => {
+      ensureGtmContainer(containerId);
+    });
+  }, [gaTrackingIds, gtmContainerIds]);
+
+  useEffect(() => {
+    if (typeof window === "undefined" || typeof window.gtag !== "function" || gaTrackingIds.length === 0) {
+      return;
+    }
+
+    const pagePath = pathname || window.location.pathname;
+    const configKey = `${pagePath}::${gaTrackingIds.join(",")}`;
+    if (lastConfigKey.current === configKey) {
+      return;
+    }
+
+    lastConfigKey.current = configKey;
+    gaTrackingIds.forEach((trackingId) => {
+      window.gtag("config", trackingId, { page_path: pagePath });
+    });
+  }, [pathname, gaTrackingIds]);
+
+  return null;
 }

@@ -43,6 +43,14 @@ const ABOUT_SLUGS = new Set(["about-us"]);
 const isAboutSlug = (slug) =>
   ABOUT_SLUGS.has(String(slug || "").toLowerCase());
 
+const normalizeSlug = (value) =>
+  String(value || "").trim().toLowerCase();
+
+const isTopLevelPageRow = (row) => {
+  const parentSlug = normalizeSlug(row?.parentid);
+  return !parentSlug || parentSlug === normalizeSlug(row?.path);
+};
+
 const robotoCondensed = Roboto_Condensed({
   subsets: ["latin"],
   weight: ["700", "900"],
@@ -53,6 +61,10 @@ const robotoCondensed = Roboto_Condensed({
 export async function generateMetadata({ params }) {
   const { location_slug, category_slug } = params;
   if (isGroup2(location_slug)) {
+    const pageData = await fetchPageData(location_slug, category_slug);
+    if (!pageData || !pageData.path || !isTopLevelPageRow(pageData)) {
+      notFound();
+    }
     return await generateMetadataLibG2({
       location: location_slug,
       category: "",
@@ -70,7 +82,7 @@ export async function generateMetadata({ params }) {
   }
   // Validate page data exists before generating metadata
   const pageData = await fetchPageData(location_slug, category_slug);
-  if (!pageData || !pageData.path) {
+  if (!pageData || !pageData.path || !isTopLevelPageRow(pageData)) {
     notFound();
   }
   const metadata = await generateMetadataLib({
@@ -117,6 +129,9 @@ const Category = async ({ params }) => {
 
   // Return 404 if page data doesn't exist for this category
   if (!pageData || (typeof pageData === 'object' && Object.keys(pageData).length === 0 && !pageData.path)) {
+    notFound();
+  }
+  if (!isTopLevelPageRow(pageData)) {
     notFound();
   }
 

@@ -1,4 +1,5 @@
 import { getActivePromotionsForPath, getPromotionDisplayData } from "@/lib/promotions";
+import PromoCountdown from "@/components/sections/PromoCountdown";
 
 const DAY_MS = 24 * 60 * 60 * 1000;
 
@@ -27,7 +28,8 @@ const parsePromoDate = (value) => {
 const getTimeLeft = (validTo) => {
   const endDate = parsePromoDate(validTo);
   if (!endDate) return null;
-  const totalMs = Math.max(0, endDate.getTime() - Date.now());
+  const totalMs = endDate.getTime() - Date.now();
+  if (totalMs <= 0) return null;
   const days = Math.floor(totalMs / DAY_MS);
   const hours = Math.floor((totalMs % DAY_MS) / (60 * 60 * 1000));
   const minutes = Math.floor((totalMs % (60 * 60 * 1000)) / (60 * 1000));
@@ -43,6 +45,8 @@ export default function DiscountPromoSlot({
   limit = 2,
   primaryHref = "",
   className = "",
+  countdownHours = 0,
+  hideValidity = false,
 }) {
   const activePromotions = getActivePromotionsForPath(promotions, {
     locationSlug,
@@ -56,17 +60,30 @@ export default function DiscountPromoSlot({
     const promo = getPromotionDisplayData(activePromotions[0]);
     const href = promo.link || primaryHref;
     const timeLeft = getTimeLeft(promo.validTo);
+    const hasValidTo = Boolean(timeLeft);
 
     return (
       <section className={`landing_discount_offer ${className}`.trim()} aria-label="Limited time offer">
-        {timeLeft && (
-          <div className="landing_discount_timer">
-            <span>Sale ends in</span>
-            <strong>{timeLeft.days}d</strong>
-            <strong>{timeLeft.hours}h</strong>
-            <strong>{timeLeft.minutes}m</strong>
-            <strong>{timeLeft.seconds}s</strong>
-          </div>
+        {hasValidTo ? (
+          <PromoCountdown
+            deadline={promo.validTo}
+            storageKey={`aero_promo_${locationSlug || "x"}_${path || "x"}_${promo.validTo}`}
+          />
+        ) : countdownHours ? (
+          <PromoCountdown
+            hours={countdownHours}
+            storageKey={`aero_promo_${locationSlug || "x"}_${path || "x"}`}
+          />
+        ) : (
+          timeLeft && (
+            <div className="landing_discount_timer">
+              <span>Sale ends in</span>
+              <strong>{timeLeft.days}d</strong>
+              <strong>{timeLeft.hours}h</strong>
+              <strong>{timeLeft.minutes}m</strong>
+              <strong>{timeLeft.seconds}s</strong>
+            </div>
+          )
         )}
 
         <div className="landing_discount_inner">
@@ -75,7 +92,7 @@ export default function DiscountPromoSlot({
             <h2>{promo.title}</h2>
             {promo.description && <p>{promo.description}</p>}
             <ul>
-              {promo.validity && <li>{promo.validity}</li>}
+              {!hideValidity && promo.validity && <li>{promo.validity}</li>}
               {promo.code && <li>Use code <strong>{promo.code}</strong></li>}
             </ul>
             {href && <a className="landing_discount_cta" href={href}>{promo.linkText}</a>}

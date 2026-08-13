@@ -4,6 +4,7 @@ import AppImage from "@/components/AppImage";
 import {
   fetchMenuData,
   fetchsheetdata,
+  fetchPageData,
   getWaiverLink,
   fetchFaqData,
   fetchHomePageJsonData,
@@ -77,10 +78,11 @@ const TESTIMONIALS = [
 const GroupsEventsPage = async ({ params }) => {
   const location_slug = params.location_slug;
 
-  const [menudata, locationData, config] = await Promise.all([
+  const [menudata, locationData, config, pageData] = await Promise.all([
     fetchMenuData(location_slug),
     fetchsheetdata("locations", location_slug),
     fetchsheetdata("config", location_slug),
+    fetchPageData(location_slug, "groups-events"),
   ]);
 
   const waiverLink = await getWaiverLink(location_slug);
@@ -127,6 +129,13 @@ const GroupsEventsPage = async ({ params }) => {
 
   const displayName =
     locationData?.[0]?.displayName || toDisplayName(location_slug);
+  const pageTitle =
+    pageData?.title || `Plan Your Next Group Event at AeroSports ${displayName}`;
+  const pageSmallText =
+    pageData?.smalltext ||
+    pageData?.metadescription ||
+    "From corporate outings to school trips, experience a high-energy event designed for groups of all sizes.";
+  const pageEyebrow = pageData?.desc || "Groups & Events";
 
   // CTA: estorebase -> rollerurl -> waiverLink -> #g1ge-quote anchor
   const estoreConfig = Array.isArray(config)
@@ -167,15 +176,10 @@ const GroupsEventsPage = async ({ params }) => {
         <div className="g1ge_hero_inner">
           <div className="g1ge_hero_left">
             <span className="g1ge_tag" style={{ color: "var(--g1ge-green)" }}>
-              Groups &amp; Events
+              {pageEyebrow}
             </span>
-            <h1 className="g1ge_hero_h1">
-              Plan Your Next Group Event at <em>AeroSports {displayName}</em>
-            </h1>
-            <p className="g1ge_hero_sub">
-              From corporate outings to school trips, experience a high-energy
-              event designed for groups of all sizes.
-            </p>
+            <h1 className="g1ge_hero_h1">{pageTitle}</h1>
+            <p className="g1ge_hero_sub">{pageSmallText}</p>
             <div className="g1ge_hero_actions">
               <Link
                 href={bookingLink}

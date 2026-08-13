@@ -102,11 +102,35 @@ async function fetchsheetdataNoCache(sheetName) {
     return jsonLocationsData;
 }
 
+function normalizeLookupSlug(value) {
+  return String(value || "")
+    .trim()
+    .toLowerCase()
+    .replace(/^\/+|\/+$/g, "")
+    .replace(/\s+/g, "-");
+}
+
+function getActiveSheetValue(row) {
+  return row?.active ?? row?.isactive ?? "";
+}
+
+function isPublishedSheetRow(row) {
+  const value = String(getActiveSheetValue(row)).trim().toLowerCase();
+  return value === "1" || value === "true" || value === "yes";
+}
+
+function isBlogContentRow(row) {
+  return normalizeLookupSlug(row?.parentid) === "blogs";
+}
+
 /**
  * Builds menu data with nested children from "Data" sheet
  */
 async function fetchMenuData(location) {
-  const jsonData = await fetchsheetdata("Data", location);
+  const sheetRows = await fetchsheetdata("Data", location);
+  const jsonData = Array.isArray(sheetRows)
+    ? sheetRows.filter((row) => !isBlogContentRow(row) || isPublishedSheetRow(row))
+    : [];
   const hierarchy = {};
 
   jsonData.forEach(item => {
@@ -127,8 +151,35 @@ async function fetchMenuData(location) {
  * Filter page-specific data
  */
 async function fetchPageData(location, page) {
-  const jsonData = await fetchsheetdata("Data", location);
-  const filtered= jsonData.filter(m => m.path?.toUpperCase().includes(page.toUpperCase()));
+  const sheetRows = await fetchsheetdata("Data", location);
+  const jsonData = Array.isArray(sheetRows)
+    ? sheetRows.filter((row) => !isBlogContentRow(row) || isPublishedSheetRow(row))
+    : [];
+  const pageSlug = normalizeLookupSlug(page);
+  const locationSlug = String(location || "").trim().toLowerCase();
+  const rowLocationRank = (row) => {
+    const rawLocation = String(row.location || "").toLowerCase();
+    if (!locationSlug) return rawLocation ? 1 : 0;
+    if (!rawLocation) return 1;
+    const locations = rawLocation.split(",").map((loc) => loc.trim());
+    return locations.includes(locationSlug) ? 0 : 2;
+  };
+  const rowPageRank = (row) => {
+    const path = normalizeLookupSlug(row.path);
+    const desc = normalizeLookupSlug(row.desc);
+    if (path === pageSlug) return 0;
+    if (desc === pageSlug) return 1;
+    return 2;
+  };
+
+  const filtered = jsonData.filter((row) => {
+    if (rowLocationRank(row) > 1) return false;
+    return rowPageRank(row) < 2;
+  });
+
+  filtered.sort(
+    (a, b) => rowLocationRank(a) - rowLocationRank(b) || rowPageRank(a) - rowPageRank(b)
+  );
   return filtered[0];
 }
 async function fetchFaqData(location, page) {
@@ -235,17 +286,11 @@ async function generateSchema(pagedata, locationData, category, page ) {
 
   const metadataItem = pagedata;//?.find((item) => item.path === pagefordata);
 //console.log('pagedata', pagedata);
-  let canonicalPath = pagedata?.location;
-  if (category && page) {
-    canonicalPath += `/${category}/${page}`;
-  } else if (page) {
-     canonicalPath += `/${page}`;
-  } else if (category) {
-    canonicalPath += `/${category}`;
-  }
-
-
-  const fullUrl = `${BASE_URL}/${canonicalPath}`;
+  const locationSegment = String(
+    pagedata?.location || locationData?.[0]?.location || ""
+  ).split(",")[0].trim().toLowerCase();
+  const canonicalPath = [locationSegment, category, page].filter(Boolean).join("/");
+  const fullUrl = canonicalPath ? `${BASE_URL}/${canonicalPath}` : BASE_URL;
   const imageUrl = metadataItem?.headerimage?.startsWith("http")
     ? metadataItem.headerimage
     : `${BASE_URL}${metadataItem?.headerimage || ""}`;

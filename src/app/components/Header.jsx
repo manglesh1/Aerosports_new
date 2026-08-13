@@ -25,6 +25,7 @@ const buildPromoKey = (promo) =>
 
 const Header = ({ location_slug, menudata, configdata, locationData, promotions }) => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [expandedMobileNav, setExpandedMobileNav] = useState(null);
   const [locationDropdownOpen, setLocationDropdownOpen] = useState(false);
   const [openDropdown, setOpenDropdown] = useState(null);
   const locationDropRef = useRef(null);
@@ -149,6 +150,7 @@ const Header = ({ location_slug, menudata, configdata, locationData, promotions 
       document.body.style.overflowY = 'hidden';
     } else {
       document.body.style.overflowY = '';
+      setExpandedMobileNav(null);
     }
     return () => { document.body.style.overflowY = ''; };
   }, [mobileMenuOpen]);
@@ -401,19 +403,42 @@ const Header = ({ location_slug, menudata, configdata, locationData, promotions 
             <nav className="v11_header_mobile_nav">
               {navList.map((item) => {
                 const hasChildren = item.children && item.children.length > 0;
+                const isExpanded = expandedMobileNav === item.navName;
 
                 return (
                   <div key={item.navName} className="v11_header_mobile_nav_group">
-                    <Link
-                      href={buildMenuHref(item)}
-                      prefetch
-                      className="v11_header_mobile_nav_link"
-                      onClick={() => setMobileMenuOpen(false)}
-                    >
-                      {item.navName}
-                    </Link>
-                    {hasChildren && (
+                    {hasChildren ? (
+                      <button
+                        type="button"
+                        className={`v11_header_mobile_nav_link v11_header_mobile_nav_toggle ${isExpanded ? 'is-expanded' : ''}`}
+                        onClick={() => setExpandedMobileNav(isExpanded ? null : item.navName)}
+                        aria-expanded={isExpanded}
+                      >
+                        <span>{item.navName}</span>
+                        <svg className="v11_header_mobile_chevron" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="3" d="M19 9l-7 7-7-7" />
+                        </svg>
+                      </button>
+                    ) : (
+                      <Link
+                        href={buildMenuHref(item)}
+                        prefetch
+                        className="v11_header_mobile_nav_link"
+                        onClick={() => setMobileMenuOpen(false)}
+                      >
+                        {item.navName}
+                      </Link>
+                    )}
+                    {hasChildren && isExpanded && (
                       <div className="v11_header_mobile_subnav">
+                        <Link
+                          href={buildMenuHref(item)}
+                          prefetch
+                          className="v11_header_mobile_subnav_link v11_header_mobile_subnav_link_all"
+                          onClick={() => setMobileMenuOpen(false)}
+                        >
+                          View All {item.navName}
+                        </Link>
                         {item.children.map((child) => (
                           <Link
                             key={child.path}

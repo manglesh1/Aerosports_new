@@ -9,10 +9,28 @@ const LocationPopupModal = ({popupData}) => {
   const closeModal = () => setIsModalOpen(false);
 
   useEffect(() => {
-    // Only open modal if we have popup data
-    if (popupData && popupData.length > 0 && popupData[0]?.value) {
-      openModal();
+    if (!popupData || popupData.length === 0 || !popupData[0]?.value) {
+      return undefined;
     }
+
+    const openOnce = () => {
+      openModal();
+      cleanup();
+    };
+
+    const cleanup = () => {
+      window.removeEventListener("click", openOnce);
+      window.removeEventListener("keydown", openOnce);
+      window.removeEventListener("scroll", openOnce);
+      window.removeEventListener("touchstart", openOnce);
+    };
+
+    window.addEventListener("click", openOnce, { once: true });
+    window.addEventListener("keydown", openOnce, { once: true });
+    window.addEventListener("scroll", openOnce, { once: true, passive: true });
+    window.addEventListener("touchstart", openOnce, { once: true, passive: true });
+
+    return cleanup;
   }, [popupData]);
 
   // If no popup data, don't render anything

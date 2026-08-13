@@ -26,6 +26,7 @@ import {
 } from "@/lib/sheets";
 import BlogSection from "@/components/sections/BlogSection";
 import PageGallerySection from "@/components/PageGallerySection";
+import DiscountPromoSlot from "@/components/sections/DiscountPromoSlot";
 
 import { resolveLocationGroup } from "@/lib/location-groups.mjs";
 import Group2Subcategory from "@g2/pages/Group2Subcategory";
@@ -207,10 +208,11 @@ function AttractionDetailPage({
   jsonLDschema,
   reviewdata,
 }) {
-  const title = pageData?.desc || pageData?.metatitle || toTitleCase(subcategory_slug);
+  const title = pageData?.title || pageData?.desc || pageData?.metatitle || toTitleCase(subcategory_slug);
   const locationDisplay = getLocationDisplay(location_slug, locationData);
   const content =
     attractionContent || getFallbackAttractionContent(title, locationDisplay, pageData || {});
+  const heroText = pageData?.smalltext || content.what_is;
   const heroImage = getPageImage(pageData, galleryData);
   const heroAlt = pageData?.headerimage_media?.alt || `${title} at AeroSports ${locationDisplay}`;
   const trustItems = getTrustItems(content.trust, reviewdata);
@@ -236,8 +238,8 @@ function AttractionDetailPage({
               {title}
               <span>{locationDisplay}</span>
             </h1>
-            {content.what_is && (
-              <p className="aero_detail_hero_text">{content.what_is}</p>
+            {heroText && (
+              <p className="aero_detail_hero_text">{heroText}</p>
             )}
             <div className="aero_detail_actions" aria-label={`${title} actions`}>
               <Link className="aero_detail_btn aero_detail_btn_primary" href={bookHref}>
@@ -411,6 +413,17 @@ function AttractionDetailPage({
 export async function generateMetadata({ params }) {
   const { location_slug, subcategory_slug, category_slug } = params;
   if (isGroup2(location_slug) && !isAttractionsCategory(category_slug)) {
+    const pageData = await fetchPageData(location_slug, subcategory_slug);
+    const parentMatchesUrl =
+      pageData &&
+      pageData.path &&
+      String(pageData.parentid || "").trim().toLowerCase() ===
+        String(category_slug || "").trim().toLowerCase();
+
+    if (!parentMatchesUrl) {
+      notFound();
+    }
+
     return await generateMetadataLibG2({
       location: location_slug,
       category: category_slug,
@@ -425,19 +438,29 @@ export async function generateMetadata({ params }) {
       notFound();
     }
 
-    const title = toTitleCase(subcategory_slug);
+    const fallbackTitle = toTitleCase(subcategory_slug);
+    const title =
+      pageData?.metatitle ||
+      pageData?.title ||
+      pageData?.desc ||
+      fallbackTitle;
+    const description =
+      pageData?.metadescription ||
+      pageData?.smalltext ||
+      attractionContent.what_is ||
+      `Experience ${fallbackTitle} at AeroSports ${toTitleCase(location_slug)}.`;
     const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL || "";
     const canonical = `${BASE_URL}/${location_slug}/${category_slug}/${subcategory_slug}`;
 
     return {
-      title: `${title} | AeroSports ${toTitleCase(location_slug)}`,
-      description: attractionContent.what_is || `Experience ${title} at AeroSports ${toTitleCase(location_slug)}.`,
+      title,
+      description,
       alternates: {
         canonical,
       },
       openGraph: {
-        title: `${title} | AeroSports ${toTitleCase(location_slug)}`,
-        description: attractionContent.what_is || `Experience ${title} at AeroSports ${toTitleCase(location_slug)}.`,
+        title,
+        description,
         url: canonical,
         siteName: "AeroSports Trampoline Park",
         locale: "en_CA",
@@ -445,12 +468,22 @@ export async function generateMetadata({ params }) {
       },
       twitter: {
         card: "summary_large_image",
-        title: `${title} | AeroSports ${toTitleCase(location_slug)}`,
-        description: attractionContent.what_is || `Experience ${title} at AeroSports ${toTitleCase(location_slug)}.`,
+        title,
+        description,
       },
     };
   }
   if (!pageData || !pageData.path) {
+    notFound();
+  }
+  // The resolved page must belong to the requested parent segment; otherwise
+  // this is an invalid/reversed URL (e.g. /{location}/{attraction}/attractions)
+  // and should 404 rather than soft-404 with duplicate content.
+  if (
+    !isAttractionsCategory(category_slug) &&
+    String(pageData.parentid || "").trim().toLowerCase() !==
+      String(category_slug || "").trim().toLowerCase()
+  ) {
     notFound();
   }
   const metadata = await generateMetadataLib({
@@ -466,7 +499,12 @@ const Subcategory = async ({ params }) => {
   const attractionPage = isAttractionsCategory(category_slug);
   if (isGroup2(location_slug) && !attractionPage) return <Group2Subcategory params={params} />;
 
-  const [p0, p1, p2, p3, p4, p5, p6, p7] = await Promise.allSettled([
+  // Coupons/promos sub-pages (under pricing-promos) surface the same live
+  // offers as the pricing page, pulled from the "promotions" sheet by path.
+  const isPricingPromosCategory =
+    String(category_slug || "").toLowerCase() === "pricing-promos";
+
+  const [p0, p1, p2, p3, p4, p5, p6, p7, p8] = await Promise.allSettled([
     fetchPageData(location_slug, subcategory_slug),
     fetchsheetdata("config", location_slug),
     fetchMenuData(location_slug),
@@ -477,6 +515,7 @@ const Subcategory = async ({ params }) => {
     attractionPage
       ? fetchGalleryData(location_slug, [`${category_slug}/${subcategory_slug}`, subcategory_slug])
       : Promise.resolve({}),
+    isPricingPromosCategory ? fetchsheetdata("promotions", location_slug) : Promise.resolve([]),
   ]);
 
   const pageData = p0.status === "fulfilled" ? p0.value : {};
@@ -487,14 +526,33 @@ const Subcategory = async ({ params }) => {
   const attractionContent = p5.status === "fulfilled" ? p5.value : null;
   const faqData = p6.status === "fulfilled" ? p6.value : [];
   const galleryData = p7.status === "fulfilled" ? p7.value : {};
+  const promotions = p8.status === "fulfilled" ? p8.value : [];
+  const estoreBase = Array.isArray(dataconfig)
+    ? dataconfig.find((item) => String(item?.key || "").toLowerCase() === "estorebase")?.value || ""
+    : "";
+  const couponsBookingHref = estoreBase || `/${location_slug}/pricing-promos`;
   const locationid = getLocationId(locationData);
   const reviewdata =
     attractionPage && locationid
       ? await getReviewsData(locationid)
       : null;
 
-  // Return 404 if page data doesn't exist for this subcategory
-  if ((!pageData || !pageData.path) && !(attractionPage && attractionContent)) {
+  // Return 404 when the sub-page doesn't exist, OR when it exists but is being
+  // requested under the wrong parent segment. fetchPageData resolves by slug
+  // only, so without the parent check a reversed/duplicate URL like
+  // /{location}/{attraction}/attractions would render the real Attractions
+  // listing (a soft-404 duplicate). Attractions are validated by their own
+  // content, since they always live under the /attractions/ parent.
+  const normalizeSlug = (value) => String(value || "").trim().toLowerCase();
+  const subPageExists = Boolean(pageData && pageData.path);
+  const parentMatchesUrl =
+    subPageExists && normalizeSlug(pageData.parentid) === normalizeSlug(category_slug);
+
+  if (attractionPage) {
+    if (!subPageExists && !attractionContent) {
+      notFound();
+    }
+  } else if (!parentMatchesUrl) {
     notFound();
   }
 
@@ -508,6 +566,12 @@ const Subcategory = async ({ params }) => {
 
   const blogsData = getDataByParentId(menudata, "blogs");
   const blogChildren = blogsData?.[0]?.children || [];
+  const section1Html = pageData?.section1 || "";
+  const hasSection1Content = Boolean(String(section1Html || "").trim());
+  const hasIntroDescription = Boolean(String(pageData?.metadescription || "").trim());
+  const hasRelatedSubcategories = Array.isArray(categoryData) && categoryData.length > 0;
+  const hasPostHeroIntroContent =
+    hasSection1Content || hasIntroDescription || hasRelatedSubcategories;
 
   const jsonLDschema = pageData?.path
     ? await generateSchema(
@@ -539,48 +603,68 @@ const Subcategory = async ({ params }) => {
   }
 
   return (
-    <main className={robotoCondensed.variable}>
-      <section>
+    <main
+      className={`${robotoCondensed.variable} v11_subcategory_page${
+        hasPostHeroIntroContent ? "" : " v11_subcategory_page_no_intro"
+      }`}
+    >
+      {!isPricingPromosCategory && (
         <MotionImage
           pageData={pageData}
           waiverLink={waiverLink}
           locationData={locationData}
         />
-      </section>
+      )}
 
-      <div className="v11_cat_wrapper">
-        {/* Section 1 CMS Content */}
-        {pageData.section1 && (
-          <section className="v11_cat_seo_section">
-            <div className="v11_cat_container">
-              <div
-                className="v11_cat_seo_content"
-                dangerouslySetInnerHTML={{
-                  __html: sanitizeCmsHtml(pageData.section1),
-                }}
-              />
-            </div>
-          </section>
-        )}
-
-        {/* Description */}
-        {pageData?.metadescription && (
-          <section className="v11_bp_intro_section">
-            <div className="v11_bp_container">
-              <p className="v11_bp_intro_text">
-                {pageData.metadescription}
-              </p>
-            </div>
-          </section>
-        )}
-
-        {/* Related subcategories */}
-        <SubCategoryCard
-          attractionsData={categoryData}
-          location_slug={location_slug}
-          title={`Other ${pageData.parentid}`}
+      {isPricingPromosCategory && (
+        <DiscountPromoSlot
+          promotions={promotions}
+          locationSlug={location_slug}
+          path={subcategory_slug}
+          variant="landing"
+          hideValidity
+          primaryHref={couponsBookingHref}
+          className="pricing_promos_offer_slot"
         />
-      </div>
+      )}
+
+      {hasPostHeroIntroContent && (
+        <div className="v11_cat_wrapper">
+          {/* Section 1 CMS Content */}
+          {hasSection1Content && (
+            <section className="v11_cat_seo_section">
+              <div className="v11_cat_container">
+                <div
+                  className="v11_cat_seo_content"
+                  dangerouslySetInnerHTML={{
+                    __html: sanitizeCmsHtml(section1Html),
+                  }}
+                />
+              </div>
+            </section>
+          )}
+
+          {/* Description */}
+          {hasIntroDescription && (
+            <section className="v11_bp_intro_section">
+              <div className="v11_bp_container">
+                <p className="v11_bp_intro_text">
+                  {pageData.metadescription}
+                </p>
+              </div>
+            </section>
+          )}
+
+          {/* Related subcategories */}
+          {hasRelatedSubcategories && (
+            <SubCategoryCard
+              attractionsData={categoryData}
+              location_slug={location_slug}
+              title={`Other ${pageData.parentid}`}
+            />
+          )}
+        </div>
+      )}
 
       {/* SEO Content - Dark navy section */}
       {pageData.seosection && (

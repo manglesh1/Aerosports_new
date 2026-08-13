@@ -1,6 +1,7 @@
 import "../styles/blogs.css";
+import { notFound } from "next/navigation";
 import Image from 'next/image';
-import { getDataByBlogId, getDataByParentId } from "@g2/utils/customFunctions";
+import { getDataByParentId } from "@g2/utils/customFunctions";
 import { fetchPageData, fetchMenuData, generateSchema, fetchsheetdata } from "@g2/lib/sheets";
 import Link from 'next/link';
 
@@ -15,7 +16,11 @@ export default async function Group2BlogDetail({ params }) {
 
 const extractBlogData = (await getDataByParentId(menuData, "blogs"))[0]?.children?.filter(child => child.path !== slug);
 
-const jsonLDschema = await generateSchema(blogData, locationData, slug, 'blogs');
+  if (!blogData || !blogData.path) {
+    notFound();
+  }
+
+const jsonLDschema = await generateSchema(blogData, locationData, 'blogs', slug);
 
   return (
     <main className="aero_home-actionbtn-bg">
@@ -34,14 +39,14 @@ const jsonLDschema = await generateSchema(blogData, locationData, slug, 'blogs')
         {extractBlogData?.map((item, i) => (
           <article className="aero-blog-main-article-card" key={i}>
             <div className="aero-blog-img-section">
-              <Link href={`${item?.path}`} prefetch>
+              <Link href={`/${location_slug}/blogs/${item?.path}`} prefetch>
               <Image src={item.smallimage} alt="Article Image" width={400} height={300} unoptimized />
               </Link>
             </div>
             <div className="aero-blog-content-section">
               <span className='aero-blog-updated-time'>{item.pageid}</span>
-              <Link href={`${item?.path}`} prefetch><h2 className='aero-blog-second-heading'>{item.title}</h2></Link>
-              <Link href={`${item?.path}`} prefetch className='aero-blog-readmore-btn'>READ MORE</Link>
+              <Link href={`/${location_slug}/blogs/${item?.path}`} prefetch><h2 className='aero-blog-second-heading'>{item.title}</h2></Link>
+              <Link href={`/${location_slug}/blogs/${item?.path}`} prefetch className='aero-blog-readmore-btn'>READ MORE</Link>
             </div>
           </article>
         ))}

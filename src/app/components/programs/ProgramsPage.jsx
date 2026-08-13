@@ -4,6 +4,7 @@ import AppImage from "@/components/AppImage";
 import {
   fetchMenuData,
   fetchsheetdata,
+  fetchPageData,
   getWaiverLink,
   fetchFaqData,
   fetchHomePageJsonData,
@@ -84,10 +85,11 @@ const TESTIMONIALS = [
 const ProgramsPage = async ({ params }) => {
   const location_slug = params.location_slug;
 
-  const [menudata, locationData, config] = await Promise.all([
+  const [menudata, locationData, config, pageData] = await Promise.all([
     fetchMenuData(location_slug),
     fetchsheetdata("locations", location_slug),
     fetchsheetdata("config", location_slug),
+    fetchPageData(location_slug, "programs"),
   ]);
 
   const waiverLink = await getWaiverLink(location_slug);
@@ -132,6 +134,13 @@ const ProgramsPage = async ({ params }) => {
 
   const displayName =
     locationData?.[0]?.displayName || toDisplayName(location_slug);
+  const pageTitle =
+    pageData?.title || `Learn, Play & Grow at AeroSports ${displayName}`;
+  const pageSmallText =
+    pageData?.smalltext ||
+    pageData?.metadescription ||
+    "Discover structured programs designed to build skills, confidence, and fitness through fun.";
+  const pageEyebrow = pageData?.desc || "Programs";
 
   // CTA: estorebase -> rollerurl -> waiverLink -> #programs-types anchor
   const estoreConfig = Array.isArray(config)
@@ -172,15 +181,10 @@ const ProgramsPage = async ({ params }) => {
         <div className="g1ge_hero_inner">
           <div className="g1ge_hero_left">
             <span className="g1ge_tag" style={{ color: "var(--g1ge-green)" }}>
-              Programs
+              {pageEyebrow}
             </span>
-            <h1 className="g1ge_hero_h1">
-              Learn, Play &amp; Grow at <em>AeroSports {displayName}</em>
-            </h1>
-            <p className="g1ge_hero_sub">
-              Discover structured programs designed to build skills, confidence,
-              and fitness through fun.
-            </p>
+            <h1 className="g1ge_hero_h1">{pageTitle}</h1>
+            <p className="g1ge_hero_sub">{pageSmallText}</p>
             <div className="g1ge_hero_actions">
               <Link href="#programs-types" className="g1ge_btn g1ge_btn_green">
                 Explore Programs

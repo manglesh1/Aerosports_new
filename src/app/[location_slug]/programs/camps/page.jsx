@@ -133,7 +133,7 @@ const getFallbackHero = (pageData, locationData, locationSlug) => {
 export async function generateMetadata({ params }) {
   const metadata = await generateMetadataLib({
     location: params.location_slug,
-    category: "",
+    category: "programs",
     page: "camps",
   });
 
@@ -171,12 +171,12 @@ const CampsPage = async ({ params }) => {
   const activitiesImage = contentValue(content, "activities-image", campFallbackImage);
   const blogsData = getDataByParentId(menuData, "blogs");
   const blogChildren = blogsData?.[0]?.children || [];
-  const jsonLDschema = await generateSchema(pageData, locationData, "", "camps");
+  const jsonLDschema = await generateSchema(pageData, locationData, "programs", "camps");
 
   return (
     <main className={`v11_camps_page ${robotoCondensed.variable}`}>
       {jsonLDschema && (
-        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLDschema) }} />
+        <script type="application/ld+json" suppressHydrationWarning dangerouslySetInnerHTML={{ __html: jsonLDschema }} />
       )}
 
       <MotionImage

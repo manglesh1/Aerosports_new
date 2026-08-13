@@ -322,6 +322,15 @@
   color: rgba(255, 255, 255, 0.7);
 }
 
+.v11_subcategory_page_no_intro .v11_bp_party_hero::after {
+  display: none;
+}
+
+.v11_subcategory_page_no_intro .aero_home_article_section:first-of-type,
+.v11_subcategory_page_no_intro .v11_bp_packages_section:first-of-type {
+  margin-top: 0;
+}
+
 @media screen and (max-width: 768px) {
   .subcategory_main_section-bg {
     padding-top: 2em;

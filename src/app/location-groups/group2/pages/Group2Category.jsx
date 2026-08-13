@@ -1,5 +1,5 @@
-import Link from "next/link";
 import React from "react";
+import { notFound } from "next/navigation";
 import "../styles/category.css";
 import "../styles/attractions.css";
 import { getDataByParentId } from "@g2/utils/customFunctions";
@@ -13,6 +13,13 @@ import {
 import MotionImage from "@g2/components/MotionImage";
 import AttractionsGrid from "@g2/components/AttractionsGrid";
 import SickKidsSection from "@g2/components/sections/SickKidsSection";
+
+const normalizeSlug = (value) => String(value || "").trim().toLowerCase();
+
+const isTopLevelPageRow = (row) => {
+  const parentSlug = normalizeSlug(row?.parentid);
+  return !parentSlug || parentSlug === normalizeSlug(row?.path);
+};
 
 const Group2Category = async ({ params }) => {
   const { location_slug, category_slug } = params;
@@ -38,6 +45,13 @@ const Group2Category = async ({ params }) => {
   // Filter active attractions
   const activeAttractions =
     attractionsData[0]?.children?.filter((item) => item?.isactive == 1) || [];
+
+  if (!pageData || !pageData.path) {
+    notFound();
+  }
+  if (!isTopLevelPageRow(pageData)) {
+    notFound();
+  }
 
   // Check if pageData has a video
   const hasVideo = pageData?.video || (Array.isArray(pageData) && pageData[0]?.video);

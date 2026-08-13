@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { fetchsheetdata, fetchMenuData } from "../lib/sheets";
+import { fetchsheetdata, fetchMenuData, fetchPageData, generateMetadataLib } from "../lib/sheets";
 import { getDataByParentId } from "../utils/customFunctions";
 import CorporateNav from "../components/corporate/CorporateNav";
 import CorporateFooter from "../components/corporate/CorporateFooter";
@@ -8,12 +8,11 @@ import "../styles/home-v2.css";
 
 const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL;
 
-export const metadata = {
-  title: "Blog | AeroSports Parks Canada",
-  description:
-    "Party tips, attraction guides, and the latest news from AeroSports indoor adventure parks across Ontario.",
-  alternates: { canonical: `${BASE_URL}/blogs` },
-};
+export async function generateMetadata() {
+  const metadata = await generateMetadataLib({ location: "", category: "", page: "blogs" });
+  if (metadata?.alternates) metadata.alternates.canonical = `${BASE_URL}/blogs`;
+  return metadata;
+}
 
 function stripHtml(html) {
   return html?.replace(/<[^>]*>/g, " ").replace(/\s+/g, " ").trim() || "";
@@ -23,14 +22,20 @@ function getPostTitle(post) {
   return post?.title || post?.desc || post?.metatitle || "Blog article";
 }
 
-// Corporate blog list: only blogs with no location (fetchMenuData("") returns
-// the blank-location "_corporate" content set).
+function isPublishedPost(post) {
+  const value = String(post?.active ?? post?.isactive ?? "").trim().toLowerCase();
+  return value === "1" || value === "true" || value === "yes";
+}
+
+// Corporate blog list: fetchMenuData("") returns global blog content:
+// blank-location rows plus rows marked location="corporate".
 export default async function CorporateBlogList() {
   console.log("CorporateBlogList: fetching data...");
-  const [allLocations, corporateMenu, corporateBlogRows] = await Promise.all([
+  const [allLocations, corporateMenu, corporateBlogRows, pageData] = await Promise.all([
     fetchsheetdata("locations"),
     fetchMenuData(""),
     fetchsheetdata("blogs",""),
+    fetchPageData("", "blogs"),
   ]);
   const locations = allLocations.filter((l) => l.locations);
 
@@ -40,7 +45,7 @@ export default async function CorporateBlogList() {
   const posts = blogsParent?.[0]?.children?.length
     ? blogsParent[0].children
     : (Array.isArray(corporateBlogRows) ? corporateBlogRows : []).filter(
-        (row) => row?.parentid === "blogs" && row?.path
+        (row) => isPublishedPost(row) && row?.parentid === "blogs" && row?.path
       );
 
   return (
@@ -50,9 +55,9 @@ export default async function CorporateBlogList() {
       <section className="hv2-attractions" style={{ paddingTop: 140 }}>
         <div style={{ maxWidth: 1100, margin: "0 auto 48px", textAlign: "center" }}>
           <span className="hv2-section-tag">Blog</span>
-          <h1 className="hv2-section-h2" style={{ marginTop: 12 }}>The AeroSports Blog</h1>
+          <h1 className="hv2-section-h2" style={{ marginTop: 12 }}>{pageData?.title || "The AeroSports Blog"}</h1>
           <p style={{ fontSize: 15, color: "#666", marginTop: 8 }}>
-            Party tips, attraction guides, and the latest from across our parks.
+            {pageData?.smalltext || pageData?.metadescription || "Party tips, attraction guides, and the latest from across our parks."}
           </p>
         </div>
 

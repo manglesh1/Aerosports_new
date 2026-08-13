@@ -556,8 +556,11 @@ const Page = async ({ params }) => {
         pageData={{
           ...(Array.isArray(pageData) ? pageData[0] : pageData),
           headerimage: birthdayHeroImage,
-          title: "Birthday Parties",
-          smalltext: birthdayCopy("intro-description", `Looking for the best place to celebrate your child's birthday? Look no further than AeroSports Trampoline Park ${locationName}. With wall-to-wall trampolines, obstacle courses, and dedicated party rooms, every birthday becomes an unforgettable adventure.`),
+          title: pageHeroData.title || birthdayCopy("intro-heading", "Birthday Parties"),
+          smalltext:
+            pageHeroData.smalltext ||
+            pageHeroData.metadescription ||
+            birthdayCopy("intro-description", `Looking for the best place to celebrate your child's birthday? Look no further than AeroSports Trampoline Park ${locationName}. With wall-to-wall trampolines, obstacle courses, and dedicated party rooms, every birthday becomes an unforgettable adventure.`),
         }}
         waiverLink={waiverLink}
         locationData={locationData}

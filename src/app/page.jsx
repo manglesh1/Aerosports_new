@@ -132,24 +132,25 @@ export default async function CorporatePage() {
         <div className="hv2-hero-bg">
           {(corporateHome?.video || locations[0]?.smallimage) && (
             <div className="hv2-hero-mobile-media" aria-hidden="true">
-              {corporateHome?.video ? (
-                <ResponsiveVideo
-                  src={corporateHome.video}
-                  posterSrc={locations[0]?.smallimage || corporateHome?.headerimage}
-                  autoPlay
-                  muted
-                  loop
-                  playsInline
-                  preload="metadata"
-                />
-              ) : (
+              {locations[0]?.smallimage || corporateHome?.headerimage ? (
                 <AppImage
-                  src={locations[0].smallimage}
+                  src={locations[0]?.smallimage || corporateHome?.headerimage}
                   alt=""
                   fill
                   sizes="100vw"
                   priority
                 />
+              ) : corporateHome?.video ? (
+                <ResponsiveVideo
+                  src={corporateHome.video}
+                  autoPlay
+                  muted
+                  loop
+                  playsInline
+                  preload="none"
+                />
+              ) : (
+                null
               )}
             </div>
           )}
@@ -195,7 +196,9 @@ export default async function CorporatePage() {
                     <ResponsiveVideo
                       src={corporateHome.video}
                       posterSrc={locations[0]?.smallimage || corporateHome?.headerimage}
-                      autoPlay muted loop playsInline
+                      autoPlay muted loop playsInline preload="none"
+                      deferSource
+                      deferDelay={3500}
                       style={{ width: "100%", height: "100%", objectFit: "cover" }}
                     />
                   ) : locations[0]?.smallimage ? (

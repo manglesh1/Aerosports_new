@@ -48,6 +48,9 @@ const page = async ({ params }) => {
     <main className="aero-blog-main-section">
       <section className='aero-max-container'>
         <h1 className="aero-blog-main-heading">{blogsData[0]?.title}</h1>
+        {blogsData[0]?.smalltext && (
+          <p className="aero-blog-main-smalltext">{blogsData[0].smalltext}</p>
+        )}
 
         <div className="aero-blog-listing-grid">
           {extractBlogData?.map((item, i) => (

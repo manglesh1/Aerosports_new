@@ -13,6 +13,16 @@
   font-size: 2.4rem;
   font-weight: 600;
 }
+
+.aero-blog-main-smalltext {
+  max-width: 760px;
+  margin: 0 auto 28px;
+  padding: 0 20px;
+  text-align: center;
+  color: rgba(255, 255, 255, 0.72);
+  font-size: 1rem;
+  line-height: 1.65;
+}
 .aero-blog-second-heading {
   font-size: 29px;
   line-height: 1.2;
@@ -111,6 +121,14 @@
   line-height: 1.2;
   color: #ffffff;
   margin: 0 0 16px;
+}
+
+.aero-blog-detail-smalltext {
+  max-width: 760px;
+  margin: 0 auto 18px;
+  color: rgba(255, 255, 255, 0.72);
+  font-size: 1rem;
+  line-height: 1.65;
 }
 
 .aero-blog-detail-meta {
@@ -344,6 +362,10 @@
     font-size: 1.6rem;
   }
 
+  .aero-blog-detail-smalltext {
+    font-size: 0.95rem;
+  }
+
   .aero-blog-listing-grid {
     grid-template-columns: 1fr;
     gap: 20px;
@@ -357,5 +379,9 @@
   .aero-blog-main-heading {
     font-size: 1.8rem;
     padding: 30px 16px 10px;
+  }
+
+  .aero-blog-main-smalltext {
+    font-size: 0.95rem;
   }
 }

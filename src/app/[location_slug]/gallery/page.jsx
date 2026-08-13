@@ -1,6 +1,6 @@
 import '../../styles/gallery.css';
 import React from "react";
-import { fetchGalleryData, fetchsheetdata, generateMetadataLib, generateSchema } from "@/lib/sheets";
+import { fetchGalleryData, fetchPageData, fetchsheetdata, generateMetadataLib, generateSchema } from "@/lib/sheets";
 import PhotoGallery from "@/components/PhotoGallery";
 
 import { resolveLocationGroup } from "@/lib/location-groups.mjs";
@@ -28,11 +28,7 @@ export async function generateMetadata({ params }) {
     page: 'gallery'
   });
 
-  return {
-    ...metadata,
-    title: `Photo Gallery - ${params.location_slug} | AeroSports`,
-    description: `Browse photos and videos from AeroSports ${params.location_slug} location. See our attractions, events, and happy customers in action!`
-  };
+  return metadata;
 }
 
 const GalleryPage = async ({ params }) => {
@@ -41,9 +37,10 @@ const GalleryPage = async ({ params }) => {
   const location_slug = params?.location_slug;
 
   // Fetch gallery data and location data in parallel
-  const [galleryData, locationData] = await Promise.all([
+  const [galleryData, locationData, pageData] = await Promise.all([
     fetchGalleryData(location_slug),
     fetchsheetdata('locations', location_slug),
+    fetchPageData(location_slug, "gallery"),
   ]);
 
   // Get all navbar values from galleryData
@@ -52,9 +49,9 @@ const GalleryPage = async ({ params }) => {
   return (
     <main className="aero-gallery-main-section">
       <section className="aero-max-container">
-        <h1 className="aero-gallery-main-heading">Photo & Video Gallery</h1>
+        <h1 className="aero-gallery-main-heading">{pageData?.title || "Photo & Video Gallery"}</h1>
         <p className="aero-gallery-description">
-          Explore our collection of photos and videos from AeroSports {location_slug}.
+          {pageData?.smalltext || pageData?.metadescription || `Explore our collection of photos and videos from AeroSports ${location_slug}.`}
         </p>
 
         {navbarTabs.length > 0 ? (

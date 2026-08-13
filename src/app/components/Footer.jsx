@@ -186,6 +186,15 @@ const Footer = ({ location_slug, configdata, menudata, reviewdata, locationData 
             )}
           </div> 
 
+          <nav className="aero_footer_mobile_links" aria-label="Footer quick links">
+            <Link href={`/${location_slug}/attractions`} prefetch>Attractions</Link>
+            <Link href={`/${location_slug}/kids-birthday-parties`} prefetch>Birthday Parties</Link>
+            <Link href={`/${location_slug}/groups-events`} prefetch>Groups & Events</Link>
+            <Link href={`/${location_slug}/programs`} prefetch>Programs</Link>
+            <Link href={`/${location_slug}/pricing-promos`} prefetch>Pricing & Promos</Link>
+            <Link href={`/${location_slug}/${galleryData?.[0]?.path || 'gallery'}`} prefetch>Gallery</Link>
+          </nav>
+
           {/* MIDDLE COLUMNS: Navigation Links */}
           <div className="aero_footer_links_section">
             <div className="aero_footer_links_column">

@@ -38,7 +38,7 @@ function generateBlogSchema(blogData, slug) {
     "@context": "https://schema.org",
     "@type": "BlogPosting",
     headline: blogData?.metatitle || blogData?.title || "",
-    description: blogData?.metadescription || "",
+    description: blogData?.metadescription || blogData?.smalltext || "",
     image: imageUrl,
     url: fullUrl,
     datePublished: blogData?.createdon || blogData?.pageid || "",
@@ -88,6 +88,9 @@ export default async function CorporateBlogDetail({ params }) {
               </Link>
             )}
             <h1 className="aero-blog-detail-title">{blogData?.title}</h1>
+            {blogData?.smalltext && (
+              <p className="aero-blog-detail-smalltext">{blogData.smalltext}</p>
+            )}
             <div className="aero-blog-detail-meta">
               {blogData?.pageid && <span className="aero-blog-detail-date">{blogData.pageid}</span>}
               <span className="aero-blog-detail-reading-time">{readingTime} min read</span>

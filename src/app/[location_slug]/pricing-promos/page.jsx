@@ -63,6 +63,17 @@ function formatPrice(value) {
   return raw.startsWith("$") ? raw : `$${raw}`;
 }
 
+function normalizePassProductName(locationSlug, productName, index) {
+  if (normalizeKey(locationSlug) !== "windsor") return productName;
+
+  const windsorPassNames = [
+    "Basic (Summer Pass)",
+    "Elite (Summer Pass)",
+    "1 Month Pass",
+  ];
+  return windsorPassNames[index] || productName;
+}
+
 function getPricingField(row) {
   return normalizeLabel(row?.Tickets);
 }
@@ -251,7 +262,12 @@ function parseComparablePricingRows(rows, locationSlug) {
   ["tickets", "passes", "memberships"].forEach((sectionKey) => {
     sections[sectionKey].products = Object.values(productsBySection[sectionKey]).filter(
       (product) => product.price || Object.keys(product.features).length > 0
-    );
+    ).map((product, index) => ({
+      ...product,
+      name: sectionKey === "passes"
+        ? normalizePassProductName(locationSlug, product.name, index)
+        : product.name,
+    }));
   });
 
   return sections;
@@ -308,11 +324,7 @@ export async function generateMetadata({ params }) {
     page: 'pricing-promos'
   });
 
-  return {
-    ...metadata,
-    title: `Pricing & Promos - ${params.location_slug} | AeroSports`,
-    description: `View our pricing and promotions for ${params.location_slug} location. Compare packages and find the best deal for your adventure.`,
-  };
+  return metadata;
 }
 
 const page = async ({ params }) => {
@@ -348,8 +360,11 @@ const page = async ({ params }) => {
       : homePageData || {};
   const pricingHeroData = {
     ...pricingHeroSource,
-    title: "Pricing & Promotions",
-    smalltext: `Compare tickets, passes, memberships, attractions, and current deals for AeroSports ${String(location_slug || "").replace(/-/g, " ")}.`,
+    title: pricingHeroSource?.title || "Pricing & Promotions",
+    smalltext:
+      pricingHeroSource?.smalltext ||
+      pricingHeroSource?.metadescription ||
+      `Compare tickets, passes, memberships, attractions, and current deals for AeroSports ${String(location_slug || "").replace(/-/g, " ")}.`,
   };
 
   // Package column accent colors (matching v11 birthday party design)

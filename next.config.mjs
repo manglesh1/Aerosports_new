@@ -8,6 +8,37 @@ const SHEET_URL = process.env.REDIRECT_SHEET_XLSX
   ?? 'https://docs.google.com/spreadsheets/d/1B_9EaTQDztWGH_cD3lUP7hpWD6FvNBJ-6Czml2x7d9c/export?format=xlsx';
 const ASSET_ORIGIN = (process.env.NEXT_ASSET_ORIGIN || '').replace(/\/$/, '');
 const ASSET_PATH_PREFIX = (process.env.NEXT_ASSET_PATH_PREFIX || '').replace(/\/$/, '');
+let sheetWorkbookRequest = null;
+
+function normalizeSheetSlug(value) {
+  return String(value ?? '')
+    .trim()
+    .toLowerCase()
+    .replace(/^\/+|\/+$/g, '');
+}
+
+function isActiveSheetRow(row) {
+  const value = String(row?.active ?? row?.isactive ?? '')
+    .trim()
+    .toLowerCase();
+  return value === '1' || value === 'true' || value === 'yes';
+}
+
+async function fetchSheetWorkbook() {
+  if (!sheetWorkbookRequest) {
+    sheetWorkbookRequest = (async () => {
+      const res = await fetch(SHEET_URL, { cache: 'no-store' });
+      if (!res.ok) throw new Error(`Sheet fetch failed: ${res.status} ${res.statusText}`);
+
+      const buf = Buffer.from(await res.arrayBuffer());
+      return XLSX.read(buf, { type: 'buffer' });
+    })().finally(() => {
+      sheetWorkbookRequest = null;
+    });
+  }
+
+  return sheetWorkbookRequest;
+}
 
 function normalizeLegacyWildcardRedirect(source, destination) {
   const splatParams = [];
@@ -30,12 +61,7 @@ function normalizeLegacyWildcardRedirect(source, destination) {
 
 async function fetchSheetRedirects() {
   try {
-    const res = await fetch(SHEET_URL, { cache: 'no-store' });
-    if (!res.ok) throw new Error(`Sheet fetch failed: ${res.status} ${res.statusText}`);
-
-    // Parse XLSX
-    const buf = Buffer.from(await res.arrayBuffer());
-    const wb = XLSX.read(buf, { type: 'buffer' });
+    const wb = await fetchSheetWorkbook();
 
     // Prefer a sheet named "redirects", else first sheet
     const ws = wb.Sheets['redirects'] ?? wb.Sheets[wb.SheetNames[0]];
@@ -66,6 +92,54 @@ async function fetchSheetRedirects() {
     return out;
   } catch (e) {
     console.warn('[redirects] Failed to load sheet:', e.message);
+    return [];
+  }
+}
+
+async function fetchCanonicalChildRedirects() {
+  try {
+    const wb = await fetchSheetWorkbook();
+    const ws = wb.Sheets['Data'];
+    if (!ws) return [];
+
+    const rows = XLSX.utils.sheet_to_json(ws, { defval: '' });
+    const topLevelPaths = new Set();
+    const childParentsByPath = new Map();
+
+    rows.forEach((row) => {
+      if (!isActiveSheetRow(row)) return;
+
+      const path = normalizeSheetSlug(row.path);
+      const parentId = normalizeSheetSlug(row.parentid);
+      if (!path) return;
+
+      if (!parentId || parentId === path) {
+        topLevelPaths.add(path);
+        return;
+      }
+
+      if (!childParentsByPath.has(path)) {
+        childParentsByPath.set(path, new Set());
+      }
+      childParentsByPath.get(path).add(parentId);
+    });
+
+    const redirects = [];
+    for (const [path, parents] of childParentsByPath.entries()) {
+      if (parents.size !== 1) continue;
+      if (topLevelPaths.has(path)) continue;
+
+      const [parentId] = Array.from(parents);
+      redirects.push({
+        source: `/:location/${path}`,
+        destination: `/:location/${parentId}/${path}`,
+        permanent: true,
+      });
+    }
+
+    return redirects;
+  } catch (e) {
+    console.warn('[redirects] Failed to load canonical child redirects:', e.message);
     return [];
   }
 }
@@ -162,13 +236,24 @@ const nextConfig = {
 
   async redirects() {
     const sheetRedirects = await fetchSheetRedirects();
+    const canonicalChildRedirects = await fetchCanonicalChildRedirects();
 // console.log('Fetched redirects:', sheetRedirects);
 
-    // (Optional) Keep a few hardcoded fallbacks here if you want
-    // const staticRedirects = [ ... ];
-    // return [...staticRedirects, ...sheetRedirects];
+    // Reversed/duplicate attraction URLs like /:location/:attraction/attractions
+    // (bad internal links) were soft-404'ing by rendering the Attractions listing
+    // at an invalid URL. 301 them to the canonical attraction detail page.
+    // The negative-lookahead on :attraction avoids a self-redirect loop on
+    // /:location/attractions/attractions.
+    const staticRedirects = [
+      {
+        source: '/:location/:attraction((?!attractions/)[^/]+)/attractions',
+        destination: '/:location/attractions/:attraction',
+        permanent: true,
+      },
+    ];
 
-    return sheetRedirects;
+    // Sheet redirects first so any explicit rule wins over the generic pattern.
+    return [...sheetRedirects, ...canonicalChildRedirects, ...staticRedirects];
   },
 
   // Allow Next image optimization for approved remote media hosts.

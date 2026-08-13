@@ -20,12 +20,24 @@ const FLOAT_STATS = [
 ];
 
 const HeroV2 = ({ headerImage, locationData, estoreConfig, waiverLink, locationSlug, locationDisplay }) => {
-  const cardImage = headerImage?.[0]?.headerimage || "";
-  const cardImageAlt = headerImage?.[0]?.headerimagetitle || `AeroSports ${locationData?.[0]?.location || ""}`;
+  const heroRow = headerImage?.[0] || {};
+  const cardImage = heroRow.headerimage || "";
+  const cardImageAlt = heroRow.headerimagetitle || `AeroSports ${locationData?.[0]?.location || ""}`;
+  const heroTitle = heroRow.title || (
+    <>
+      {locationDisplay ? `${locationDisplay}'s` : "The"}<br />
+      <em>Ultimate Fun</em><br />
+      For Kids &amp; Families
+    </>
+  );
+  const heroSmallText =
+    heroRow.smalltext ||
+    heroRow.metadescription ||
+    "Trampolines, ninja courses, dodgeball & more - the easiest way to plan an unforgettable birthday party or family outing.";
   // The home row in the Data sheet has a `video` column. When present, the
   // hero card plays it on loop/muted/autoplay; otherwise we fall back to the
   // headerimage still.
-  const cardVideo = headerImage?.[0]?.video || "";
+  const cardVideo = heroRow.video || "";
   const address = locationData?.[0]?.address || "";
 
   return (
@@ -42,9 +54,13 @@ const HeroV2 = ({ headerImage, locationData, estoreConfig, waiverLink, locationS
                 loop
                 playsInline
                 preload="none"
+                deferSource
+                deferDelay={3500}
               />
-            ) : (
+            ) : cardImage ? (
               <AppImage src={cardImage} alt="" fill priority sizes="100vw" />
+            ) : (
+              null
             )}
           </div>
         )}
@@ -59,15 +75,8 @@ const HeroV2 = ({ headerImage, locationData, estoreConfig, waiverLink, locationS
             <div className="hv2-hero-badge-dot" />
             <span>#1 Indoor Trampoline Park {locationDisplay ? `in ${locationDisplay}` : ""}</span>
           </div>
-          <h1 className="hv2-hero-h1">
-            {locationDisplay ? `${locationDisplay}'s` : "The"}<br />
-            <em>Ultimate Fun</em><br />
-            For Kids &amp; Families
-          </h1>
-          <p className="hv2-hero-sub">
-            Trampolines, ninja courses, dodgeball &amp; more — the easiest way to plan
-            an unforgettable birthday party or family outing.
-          </p>
+          <h1 className="hv2-hero-h1">{heroTitle}</h1>
+          <p className="hv2-hero-sub">{heroSmallText}</p>
           {/*
             Hero CTA labels are hardcoded (universal across locations).
             Only the URLs come from data:
@@ -113,6 +122,8 @@ const HeroV2 = ({ headerImage, locationData, estoreConfig, waiverLink, locationS
                     loop
                     playsInline
                     preload="none"
+                    deferSource
+                    deferDelay={3500}
                     aria-label={cardImageAlt}
                     style={{
                       position: "absolute",

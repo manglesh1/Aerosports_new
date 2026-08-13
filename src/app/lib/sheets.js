@@ -20,6 +20,19 @@ function normalizeMediaUrl(value) {
   return value;
 }
 
+function normalizeLocationList(value) {
+  return String(value || "")
+    .toLowerCase()
+    .split(",")
+    .map((item) => item.trim())
+    .filter(Boolean);
+}
+
+function isCorporateLocation(value) {
+  const locations = normalizeLocationList(value);
+  return locations.length === 0 || locations.includes("corporate");
+}
+
 async function fetchWorkbook() {
   if (!sheetWorkbookRequest) {
     sheetWorkbookRequest = (async () => {
@@ -88,13 +101,18 @@ async function fetchsheetdata(sheetName, location) {
       }
 
       distinctLocations.forEach((loc) => {
+        const normalizedLoc = String(loc || '').toLowerCase().trim();
         const filtered = sheetData.filter(
-          (m) => (m.location || '').includes(loc) || m.location === ''
+          (m) => {
+            const rowLocations = normalizeLocationList(m.location);
+            return rowLocations.length === 0 || rowLocations.includes(normalizedLoc);
+          }
         );
         sheetCache.set(`${name}:${loc}`, { data: filtered, timestamp: now });
       });
-      // Cache corporate rows (blank location) separately
-      const corporateRows = sheetData.filter((m) => !m.location);
+      // Cache corporate rows separately. Use location="corporate" for content
+      // that should appear on global pages such as /blogs but not on park pages.
+      const corporateRows = sheetData.filter((m) => isCorporateLocation(m.location));
       sheetCache.set(`${name}:_corporate`, { data: corporateRows, timestamp: now });
 
       sheetCache.set(`${name}:all`, { data: sheetData, timestamp: now });
@@ -193,8 +211,8 @@ async function fetchContentData(location) {
     fetchsheetdata("blogs", location),
   ]);
   return [
-    ...(Array.isArray(pages) ? pages : []),
-    ...(Array.isArray(blogs) ? blogs : []),
+    ...(Array.isArray(pages) ? pages.filter((row) => !isBlogContentRow(row) || isPublishedSheetRow(row)) : []),
+    ...(Array.isArray(blogs) ? blogs.filter(isPublishedSheetRow) : []),
   ];
 }
 
@@ -206,9 +224,17 @@ function normalizeLookupSlug(value) {
     .replace(/\s+/g, "-");
 }
 
-function isActiveSheetRow(row) {
-  const value = String(row?.isactive ?? "").trim().toLowerCase();
-  return value === "" || value === "1" || value === "true" || value === "yes";
+function getActiveSheetValue(row) {
+  return row?.active ?? row?.isactive ?? "";
+}
+
+function isPublishedSheetRow(row) {
+  const value = String(getActiveSheetValue(row)).trim().toLowerCase();
+  return value === "1" || value === "true" || value === "yes";
+}
+
+function isBlogContentRow(row) {
+  return normalizeLookupSlug(row?.parentid) === "blogs";
 }
 
 async function fetchMenuData(location) {
@@ -269,7 +295,7 @@ async function fetchPageData(location, page, options = {}) {
   };
   const filtered = jsonData.filter((row) => {
     if (rowLocationRank(row) > 1) return false;
-    if (requireActive && !isActiveSheetRow(row)) return false;
+    if (requireActive && !isPublishedSheetRow(row)) return false;
     return rowPageRank(row) < 2;
   });
   filtered.sort((a, b) => rowLocationRank(a) - rowLocationRank(b) || rowPageRank(a) - rowPageRank(b));
@@ -342,8 +368,8 @@ async function generateMetadataLib({ location, category, page }) {
     ? metadataItem.headerimage
     : `${BASE_URL}${metadataItem?.headerimage || ""}`;
 
-  const metaTitle = metadataItem?.metatitle || "AeroSports Trampoline Park";
-  const metaDesc = metadataItem?.metadescription || "Fun for all ages at AeroSports!";
+  const metaTitle = metadataItem?.metatitle || metadataItem?.title || metadataItem?.desc || "AeroSports Trampoline Park";
+  const metaDesc = metadataItem?.metadescription || metadataItem?.smalltext || metadataItem?.subtitle || metadataItem?.text || "Fun for all ages at AeroSports!";
   const isBlogPost = category === 'blogs' || page?.includes('blog');
 
   return {
@@ -425,7 +451,7 @@ async function generateSchema(pagedata, locationData, category, page ) {
     : `${BASE_URL}${metadataItem?.headerimage || ""}`;
 
   const filled = locationData?.[0]?.schema
-  .replace('"{{metadesc}}"', JSON.stringify(metadataItem?.metadescription || "Fun for all ages at AeroSports!"))
+  .replace('"{{metadesc}}"', JSON.stringify(metadataItem?.metadescription || metadataItem?.smalltext || metadataItem?.subtitle || metadataItem?.text || "Fun for all ages at AeroSports!"))
   .replace('"{{image}}"', JSON.stringify(imageUrl))
   .replace('"{{url}}"', JSON.stringify(fullUrl));
 

@@ -9,4 +9,3 @@ Disallow: /audits
 
 # Sitemaps
 Sitemap: https://www.aerosportsparks.ca/sitemap.xml
-Sitemap: https://www.aerosportsparks.ca/sitemap-group3.xml

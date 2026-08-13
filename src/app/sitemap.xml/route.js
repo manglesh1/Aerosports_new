@@ -2,9 +2,12 @@ import { format } from 'date-fns';
 import { fetchsheetdataNoCache } from "@/lib/sheets";
 
 const SITE_URL = 'https://www.aerosportsparks.ca';
-const OWNED_LOCATION_SLUGS = new Set([
+const SITEMAP_LOCATION_SLUGS = new Set([
   'windsor',
   'st-catharines',
+  'scarborough',
+  'oakville',
+  'london',
 ]);
 
 // Corporate routes that are not scoped to a park location
@@ -51,16 +54,20 @@ function normalizeSlug(value) {
     .replace(/\s+/g, '-');
 }
 
+function getActiveValue(row) {
+  return row?.active ?? row?.isactive ?? '';
+}
+
 function isActiveRow(row) {
-  const value = String(row?.isactive ?? '').trim().toLowerCase();
-  return value === '' || value === '1' || value === 'true' || value === 'yes';
+  const value = String(getActiveValue(row)).trim().toLowerCase();
+  return value === '1' || value === 'true' || value === 'yes';
 }
 
 function isRedirectOnlyRow(row) {
   const path = normalizeSlug(row?.path);
   const parentId = normalizeSlug(row?.parentid);
 
-  if (!path || path === 'refresh' || path === 'home') {
+  if (!path || path === 'refresh' || path === 'home' || path === 'blogs') {
     return true;
   }
 
@@ -71,15 +78,24 @@ function isRedirectOnlyRow(row) {
   return parentId === 'about-us' && ['contactus', 'contact-us'].includes(path);
 }
 
+function isHomeRow(row) {
+  return normalizeSlug(row?.path) === 'home';
+}
+
+function isCorporateLocation(row) {
+  const location = normalizeSlug(row?.location);
+  return !location || location === 'corporate';
+}
+
 function getOwnedLocations(value, options = {}) {
   const { expandBlank = false } = options;
   const locations = String(value || '')
     .split(',')
     .map((entry) => normalizeSlug(entry))
-    .filter((entry) => entry && OWNED_LOCATION_SLUGS.has(entry));
+    .filter((entry) => entry && SITEMAP_LOCATION_SLUGS.has(entry));
 
   if (locations.length === 0 && expandBlank) {
-    return Array.from(OWNED_LOCATION_SLUGS);
+    return Array.from(SITEMAP_LOCATION_SLUGS);
   }
 
   return locations;
@@ -122,21 +138,36 @@ export async function GET() {
     const pageDataRows = Array.isArray(pageRows) ? pageRows : [];
     const blogDataRows = Array.isArray(blogRows) ? blogRows : [];
     const galleryDataRows = Array.isArray(galleryRows) ? galleryRows : [];
+    const corporateBlogRows = blogDataRows.filter((row) =>
+      isActiveRow(row) &&
+      !isRedirectOnlyRow(row) &&
+      isCorporateLocation(row) &&
+      Boolean(normalizeSlug(row.path))
+    );
 
     // Extract and validate unique location slugs
     const validLocationSlugs = new Set();
     locationRows.forEach(row => {
       const slug = normalizeSlug(row.location || row.locations || '');
-      if (isValidLocation(slug) && OWNED_LOCATION_SLUGS.has(slug)) {
+      if (isValidLocation(slug) && SITEMAP_LOCATION_SLUGS.has(slug)) {
         validLocationSlugs.add(slug);
       }
+    });
+    pageDataRows.forEach((row) => {
+      if (!isHomeRow(row)) {
+        return;
+      }
+
+      getOwnedLocations(row.location).forEach((location) => {
+        validLocationSlugs.add(location);
+      });
     });
 
     const activePagePathsByLocation = getLocationPathSet(pageDataRows, () => true, { expandBlank: true });
     const activeBlogPathsByLocation = getLocationPathSet(blogDataRows);
     const galleryLocations = new Set(
       galleryDataRows
-        .filter((row) => String(row.urls || '').trim())
+        .filter((row) => isActiveRow(row) && String(row.urls || '').trim())
         .flatMap((row) => getOwnedLocations(row.location))
     );
 
@@ -148,6 +179,10 @@ export async function GET() {
 
     // Add corporate static routes
     CORPORATE_ROUTES.forEach(route => {
+      if (route.path === 'blogs' && corporateBlogRows.length === 0) {
+        return;
+      }
+
       urlMap.set(`${SITE_URL}/${route.path}`, createUrlEntry(route.priority, route.changefreq));
     });
 
@@ -180,16 +215,8 @@ export async function GET() {
     });
 
     // Add corporate blog detail URLs.
-    blogDataRows.forEach((row) => {
-      if (!isActiveRow(row) || isRedirectOnlyRow(row)) {
-        return;
-      }
-
+    corporateBlogRows.forEach((row) => {
       const path = normalizeSlug(row.path);
-      if (!path || getOwnedLocations(row.location).length > 0) {
-        return;
-      }
-
       urlMap.set(`${SITE_URL}/blogs/${path}`, createUrlEntry(0.6, 'monthly'));
     });
 
@@ -203,6 +230,13 @@ export async function GET() {
       const parentId = normalizeSlug(row.parentid);
       const locations = getOwnedLocations(row.location, { expandBlank: true });
 
+      // Blog detail URLs are generated from the dedicated "blogs" sheet below.
+      // Older Data rows with parentid=blogs are not the source of truth and
+      // blank locations there would incorrectly expand into every park sitemap.
+      if (parentId === 'blogs') {
+        return;
+      }
+
       if (!path || locations.length === 0) {
         return;
       }
@@ -215,10 +249,6 @@ export async function GET() {
         urlPath = path;
         priority = 0.7;
         changefreq = 'weekly';
-      } else if (parentId === 'blogs') {
-        urlPath = `blogs/${path}`;
-        priority = 0.6;
-        changefreq = 'monthly';
       } else {
         urlPath = `${parentId}/${path}`;
         priority = 0.6;

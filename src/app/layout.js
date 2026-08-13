@@ -84,6 +84,8 @@ export default async function RootLayout({ children }) {
   return (
     <html lang="en" className={`${bebasNeue.variable} ${roboto.variable}`}>
       <head>
+        <link rel="preconnect" href="https://media.aerosportsparks.ca" />
+        <link rel="dns-prefetch" href="https://media.aerosportsparks.ca" />
         <link rel="preconnect" href="https://storage.googleapis.com" />
         <link rel="dns-prefetch" href="https://storage.googleapis.com" />
         <link rel="preconnect" href="https://docs.google.com" />

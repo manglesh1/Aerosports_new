@@ -1,4 +1,5 @@
 import React from "react";
+import { notFound } from "next/navigation";
 import "../styles/subcategory.css";
 import "../styles/category.css";
 import "../styles/kidsparty.css";
@@ -37,11 +38,20 @@ const Group2Subcategory = async ({ params }) => {
     (child) => child.path !== subcategory_slug && child.isactive == 1
   );
 
+  const normalizeSlug = (value) => String(value || "").trim().toLowerCase();
+  const subPageExists = Boolean(pageData && pageData.path);
+  const parentMatchesUrl =
+    subPageExists && normalizeSlug(pageData.parentid) === normalizeSlug(category_slug);
+
+  if (!parentMatchesUrl) {
+    notFound();
+  }
+
   const jsonLDschema = await generateSchema(
     pageData,
     locationData,
-    subcategory_slug,
-    category_slug
+    category_slug,
+    subcategory_slug
   );
 
   return (

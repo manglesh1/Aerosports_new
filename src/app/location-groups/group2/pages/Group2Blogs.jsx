@@ -25,14 +25,14 @@ const Group2Blogs = async ({ params }) => {
         {extractBlogData?.map((item, i) => (
           <article className="aero-blog-main-article-card" key={i}>
             <div className="aero-blog-img-section">
-              <Link href={`blogs/${item?.path}`} prefetch>
+              <Link href={`/${location_slug}/blogs/${item?.path}`} prefetch>
               <Image src={item.smallimage} alt="Article Image" width={400} height={300} unoptimized />
               </Link>
             </div>
             <div className="aero-blog-content-section">
               <span className='aero-blog-updated-time'>{item.pageid}</span>
-              <Link href={`blogs/${item?.path}`} prefetch><h2 className='aero-blog-second-heading'>{item.title}</h2></Link>
-              <Link href={`blogs/${item?.path}`} prefetch className='aero-blog-readmore-btn'>READ MORE</Link>
+              <Link href={`/${location_slug}/blogs/${item?.path}`} prefetch><h2 className='aero-blog-second-heading'>{item.title}</h2></Link>
+              <Link href={`/${location_slug}/blogs/${item?.path}`} prefetch className='aero-blog-readmore-btn'>READ MORE</Link>
             </div>
           </article>
         ))}

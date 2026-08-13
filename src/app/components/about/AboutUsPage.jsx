@@ -91,6 +91,12 @@ const AboutUsPage = async ({ params }) => {
 
   const displayName =
     locationData?.[0]?.displayName || toDisplayName(location_slug);
+  const pageTitle = pageData?.title || "More Than Just Fun";
+  const pageSmallText =
+    pageData?.smalltext ||
+    pageData?.metadescription ||
+    "We create high-energy experiences that bring people together through fun, movement, and connection.";
+  const pageEyebrow = pageData?.desc || `AeroSports ${displayName}`;
 
   // CTA: estorebase -> rollerurl -> waiverLink -> #
   const estoreConfig = Array.isArray(config)
@@ -113,15 +119,10 @@ const AboutUsPage = async ({ params }) => {
         <div className="g1ge_hero_inner">
           <div className="g1ge_hero_left">
             <span className="g1ge_tag" style={{ color: "var(--g1ge-green)" }}>
-              AeroSports {displayName}
+              {pageEyebrow}
             </span>
-            <h1 className="g1ge_hero_h1">
-              More Than Just <em>Fun</em>
-            </h1>
-            <p className="g1ge_hero_sub">
-              We create high-energy experiences that bring people together
-              through fun, movement, and connection.
-            </p>
+            <h1 className="g1ge_hero_h1">{pageTitle}</h1>
+            <p className="g1ge_hero_sub">{pageSmallText}</p>
             <div className="g1ge_hero_actions">
               <Link
                 href={`/${location_slug}/attractions`}

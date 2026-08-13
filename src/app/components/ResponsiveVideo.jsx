@@ -18,11 +18,14 @@ export default function ResponsiveVideo({
   sourceMedia,
   posterSrc,
   posterQuality = 75,
+  deferSource = false,
+  deferDelay = 2500,
   children,
   ...props
 }) {
   const ref = useRef(null);
   const [posterWidth, setPosterWidth] = useState(640);
+  const [sourceReady, setSourceReady] = useState(!deferSource);
   const normalizedPoster = useMemo(() => toMediaUrl(posterSrc), [posterSrc]);
   const normalizedSrc = useMemo(() => toMediaUrl(src), [src]);
   const poster = normalizedPoster
@@ -50,9 +53,52 @@ export default function ResponsiveVideo({
     };
   }, [normalizedPoster]);
 
+  useEffect(() => {
+    if (!deferSource) {
+      setSourceReady(true);
+      return undefined;
+    }
+
+    let timeoutId;
+    let idleId;
+    const loadSource = () => {
+      timeoutId = window.setTimeout(() => {
+        setSourceReady(true);
+      }, deferDelay);
+    };
+
+    if (document.readyState === "complete") {
+      if ("requestIdleCallback" in window) {
+        idleId = window.requestIdleCallback(loadSource, { timeout: deferDelay });
+      } else {
+        loadSource();
+      }
+    } else {
+      window.addEventListener("load", loadSource, { once: true });
+    }
+
+    return () => {
+      window.removeEventListener("load", loadSource);
+      window.clearTimeout(timeoutId);
+      if (idleId && "cancelIdleCallback" in window) {
+        window.cancelIdleCallback(idleId);
+      }
+    };
+  }, [deferDelay, deferSource]);
+
+  useEffect(() => {
+    const element = ref.current;
+    if (!element || !sourceReady) return;
+
+    element.load();
+    if (props.autoPlay) {
+      element.play().catch(() => {});
+    }
+  }, [props.autoPlay, sourceReady]);
+
   return (
     <video ref={ref} poster={poster || normalizedPoster || undefined} {...props}>
-      {normalizedSrc && <source src={normalizedSrc} type={type} media={sourceMedia} />}
+      {normalizedSrc && sourceReady && <source src={normalizedSrc} type={type} media={sourceMedia} />}
       {children}
     </video>
   );
